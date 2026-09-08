@@ -1,0 +1,151 @@
+---
+title: "Funções Exponenciais"
+subject: "Funções"
+order: 2
+relevance: >
+  Função exponencial é qualquer função em que a variável aparece no expoente de uma potência (não na
+  base). É o modelo matemático que descreve tudo que cresce ou diminui proporcionalmente ao que já
+  existe — juros compostos, crescimento de bactérias, decaimento radioativo, desvalorização de carros,
+  propagação de doenças. Aparece em praticamente todas as edições do ENEM, geralmente em Matemática (1
+  a 2 questões) e frequentemente cruzada com Química (radioatividade, meia-vida) e Biologia
+  (crescimento populacional). É considerada uma das funções mais rentáveis para estudar, porque o
+  padrão de cobrança se repete muito.
+quickSummary: >
+  Função exponencial tem a forma f(x) = a · bˣ, onde a é o valor inicial (quando x=0), b é a base
+  (fator de crescimento se b>1, fator de decaimento se 0<b<1), e x é o expoente, normalmente o tempo.
+---
+
+## Aula Teórica Completa
+
+### Passo 1: Por que precisamos de uma função nova?
+
+Você já estudou função linear (afim): y = ax + b. Nela, a cada passo, **soma-se** sempre a mesma quantidade. Exemplo: uma vela que perde 2 cm de altura a cada hora, sempre 2 cm, não importa a altura atual.
+
+Mas existem fenômenos onde a variação não é uma soma fixa, e sim uma **multiplicação** fixa. Uma população de bactérias que dobra a cada hora: começa com 100, vira 200, depois 400, depois 800. Repare: o "quanto aumenta" muda a cada hora (100, depois 200, depois 400), mas o **fator multiplicativo** (×2) é sempre o mesmo. Isso é crescimento exponencial.
+
+**A armadilha nº 1 do ENEM**: confundir "aumenta uma quantidade fixa" (afim) com "multiplica por um fator fixo" (exponencial). Sempre pergunte: o enunciado fala em *somar/subtrair* uma quantidade, ou em *dobrar/triplicar/reduzir à metade/aumentar X%*? Se for a segunda opção, é exponencial.
+
+### Passo 2: A fórmula geral
+
+f(x) = a · bˣ
+
+Decompondo cada peça:
+- **f(x)** = o valor da grandeza depois de x unidades de tempo (a "resposta" da função).
+- **a** = o valor inicial, quando x = 0 (é o que você tinha no começo, antes de qualquer crescimento/decaimento).
+- **b** = a base, chamada de **fator de crescimento** (se b > 1) ou **fator de decaimento** (se 0 &lt; b &lt; 1). É o número pelo qual você multiplica a cada unidade de tempo.
+- **x** = a variável independente, geralmente o tempo, que fica no **expoente**.
+
+Regra de ouro: **b > 1** → a função cresce. **0 &lt; b &lt; 1** → a função decresce (decai).
+
+### Passo 3: Como descobrir "b" a partir de uma porcentagem
+
+Esse é o formato favorito do ENEM: "aumento de 3% ao ano", "desvalorização de 10% ao ano", "reduz à metade a cada 6 horas".
+
+- Se cresce X% ao período: b = 1 + (X/100). Exemplo: aumento de 3% → b = 1,03.
+- Se decresce X% ao período: b = 1 − (X/100). Exemplo: desvalorização de 10% → b = 1 − 0,10 = 0,90.
+- Se **dobra**: b = 2. Se **triplica**: b = 3. Se **reduz à metade**: b = 1/2 = 0,5.
+
+### Passo 4: Meia-vida — um caso especialíssimo (e certo no ENEM)
+
+Meia-vida é o tempo necessário para uma quantidade **cair pela metade**. Sempre que o enunciado der uma meia-vida "t½" e pedir o valor após um tempo T, o caminho mais rápido — e o que o ENEM espera — é:
+
+1. Descobrir quantas meias-vidas cabem no tempo total: n = T / t½.
+2. Dividir a quantidade inicial por 2, n vezes: quantidade final = inicial × (1/2)ⁿ.
+
+**Armadilha nº 2 (fatal e recorrente)**: usar regra de três simples (linear) em problemas de meia-vida. Se algo perde metade em 8 dias, **não** significa que perde tudo em 16 dias — perde apenas 1/4 do que tinha, porque o decaimento é sempre "pela metade do que restou", não "pela metade do valor original a cada intervalo igual". Nunca aplique proporcionalidade direta aqui.
+
+### Passo 5: A notação com "e" (número de Euler)
+
+Às vezes a fórmula aparece como N(t) = N₀ · eᵏᵗ, onde "e" é a constante de Euler (≈ 2,718) e k é uma constante (positiva = crescimento, negativa = decaimento). Não se assuste: é a mesma lógica de f(x) = a·bˣ, só que a base é substituída por "e" elevado a uma constante. O ENEM costuma dar informação suficiente (como "triplicou em 1 hora") para você descobrir o valor de eᵏ substituindo diretamente na equação, sem precisar calcular k isoladamente — depois é só usar as propriedades de potência (eᵏᵗ = (eᵏ)ᵗ).
+
+### Passo 6: Propriedades de potência que você vai usar o tempo todo
+
+- aᵐ · aⁿ = aᵐ⁺ⁿ
+- (aᵐ)ⁿ = aᵐ·ⁿ
+- a⁻ⁿ = 1/aⁿ
+- Se aᵐ = aⁿ, então m = n (quando a > 0 e a ≠ 1) — essa propriedade resolve equações exponenciais "escondendo" a variável no expoente igualando as bases.
+
+### Padrões de armadilha do INEP nesse tópico
+
+1. **Confundir crescimento linear com exponencial** (a armadilha mais comum, já citada).
+2. **Aplicar regra de três em meia-vida/decaimento** (ignora que a base de comparação muda a cada intervalo).
+3. **Esquecer o valor inicial "a"** quando o gráfico ou tabela não começa em x = 0, ou quando y(0) não é zero (como no problema do eucalipto, onde a muda já nasce com 0,5 m).
+4. **Confundir a função exponencial com a logarítmica**: a exponencial responde "quanto tenho depois de um tempo X?"; a logarítmica (inversa) responde "quanto tempo leva para eu ter uma quantidade X?". O ENEM adora colocar uma alternativa logarítmica como distrator de uma pergunta puramente exponencial (e vice-versa).
+5. **Em decaimento acumulado com doses repetidas** (bem comum em Química/Farmacologia), esquecer de somar o resíduo da dose anterior com a nova dose.
+
+## Tópicos-Chave para Revisão
+
+<div className="topico">
+
+Função exponencial tem a forma **f(x) = a · bˣ**, onde a é o **valor inicial** (quando x=0), b é a **base** (fator de crescimento se b>1, fator de decaimento se 0&lt;b&lt;1), e x é o **expoente**, normalmente o tempo. A diferença crucial em relação à função afim é que aqui a variação é **multiplicativa** (multiplica-se por um fator fixo a cada intervalo), enquanto na afim a variação é **aditiva** (soma-se um valor fixo).
+
+Para transformar uma **porcentagem de crescimento ou decaimento** em base b, use: cresce X% → b = 1 + X/100; decresce X% → b = 1 − X/100. Casos especiais: dobrar é b=2, triplicar é b=3, reduzir à metade é b=0,5.
+
+**Meia-vida** é o tempo para uma grandeza cair pela metade. O cálculo correto é sempre por **meias-vidas sucessivas**: número de meias-vidas n = tempo total / meia-vida, e quantidade final = inicial × (1/2)ⁿ. Nunca use regra de três linear aqui — esse é o erro mais comum e mais punido pelo INEP.
+
+A notação com o número de Euler, **N(t) = N₀·eᵏᵗ**, segue a mesma lógica: N₀ é o valor inicial, k é a constante de crescimento (positiva) ou decaimento (negativa). Informações do tipo "triplicou em 1 hora" servem para descobrir o valor de eᵏ diretamente, sem precisar isolar k.
+
+As **propriedades de potência** (aᵐ·aⁿ=aᵐ⁺ⁿ, (aᵐ)ⁿ=aᵐⁿ, a⁻ⁿ=1/aⁿ, e a regra "bases iguais implicam expoentes iguais") são a ferramenta operacional para resolver qualquer equação exponencial que o ENEM apresentar.
+
+O ENEM nunca cobra função exponencial isolada de contexto: ela sempre está embutida em situações de **modelagem real** — juros, radioatividade, medicamentos, população, depreciação de bens. Reconhecer o padrão verbal ("aumenta X% ao ano", "reduz à metade a cada Y horas", "triplica em Z horas") é o que te leva direto à base b correta.
+
+</div>
+
+## Teste de Fogo
+
+*Questões sem gabarito — resolva primeiro, depois confira com o professor ou com a IA.*
+
+**Questão 1 (ENEM 2016, 2ª aplicação)**
+
+Admita que um tipo de eucalipto tenha expectativa de crescimento exponencial, nos primeiros anos após seu plantio, modelado pela função y(t) = aᵗ⁻¹, na qual y representa a altura da planta em metro, t é considerado em ano, e a é uma constante maior que 1. O gráfico da função y mostra que, quando t = 0, a altura y vale 0,5 m. Admita ainda que y(0) fornece a altura da muda quando plantada, e deseja-se cortar os eucaliptos quando as mudas crescerem 7,5 m após o plantio.
+
+O tempo entre a plantação e o corte, em ano, é igual a:
+a) 3
+b) 4
+c) 6
+d) log₂7
+e) log₂15
+
+**Questão 2 (ENEM PPL 2019)**
+
+Em um laboratório, cientistas observaram o crescimento de uma população de bactérias submetida a uma dieta magra em fósforo, com generosas porções de arsênico. Descobriu-se que o número de bactérias dessa população, após t horas de observação, poderia ser modelado pela função exponencial N(t) = N₀·eᵏᵗ, em que N₀ é o número de bactérias no instante do início da observação (t = 0), e k é uma constante real positiva. Sabe-se que, após uma hora de observação, o número de bactérias foi triplicado.
+
+Cinco horas após o início da observação, o número de bactérias, em relação ao número inicial dessa cultura, foi:
+a) 3N₀
+b) 15N₀
+c) 243N₀
+d) 360N₀
+e) 729N₀
+
+**Questão 3 (ENEM PPL 2015)**
+
+O sindicato de trabalhadores de uma empresa sugere que o piso salarial da classe seja de R$ 1.800,00, propondo um aumento percentual fixo por cada ano dedicado ao trabalho. A expressão que corresponde à proposta salarial (s), em função do tempo de serviço (t), em anos, é s(t) = 1.800 · (1,03)ᵗ.
+
+De acordo com a proposta do sindicato, o salário de um profissional dessa empresa com 2 anos de tempo de serviço será, em reais:
+a) 7.416,00
+b) 3.819,24
+c) 3.709,62
+d) 3.708,00
+e) 1.909,62
+
+**Questão 4 (ENEM PPL 2018)**
+
+O terremoto e o tsunami ocorridos no Japão em 11 de março de 2011 romperam as paredes de isolamento de alguns reatores da usina nuclear de Fukushima, o que ocasionou a liberação de substâncias radioativas. Entre elas está o iodo-131, cuja presença na natureza está limitada por sua meia-vida de oito dias.
+
+O tempo estimado para que esse material se desintegre até atingir 1/16 da sua massa inicial é de:
+a) 8 dias
+b) 16 dias
+c) 24 dias
+d) 32 dias
+e) 128 dias
+
+**Questão 5 (ENEM PPL 2013)**
+
+Em um experimento, uma cultura de bactérias tem sua população reduzida pela metade a cada hora, devido à ação de um agente bactericida.
+
+Neste experimento, o número de bactérias em função do tempo pode ser modelado por uma função do tipo:
+a) afim
+b) seno
+c) cosseno
+d) logarítmica crescente
+e) exponencial

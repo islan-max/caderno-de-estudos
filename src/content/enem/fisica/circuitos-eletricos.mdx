@@ -1,0 +1,174 @@
+---
+title: "Circuitos Elétricos"
+subject: "Física"
+order: 4
+relevance: >
+  Circuitos elétricos é um dos assuntos mais recorrentes da prova de Física do ENEM — aparece quase
+  todo ano, geralmente misturado com o dia a dia: chuveiro elétrico, conta de luz, lâmpadas,
+  disjuntores. A boa notícia é que, apesar de parecer assustador, o ENEM cobra um conjunto pequeno e
+  bem definido de ideias: como a corrente se comporta quando os componentes estão em série ou em
+  paralelo, e como transformar isso em conta de energia e dinheiro. Quem domina essas poucas ideias
+  resolve a grande maioria das questões.
+quickSummary: >
+  A corrente elétrica, a tensão e a resistência se relacionam pela primeira Lei de Ohm (V = R · i).
+  Pense sempre nessa fórmula como um equilíbrio: para uma mesma resistência, mais tensão empurra mais
+  corrente; para uma mesma tensão, mais resistência restringe mais a corrente.
+---
+
+## Aula Teórica Completa
+
+### A ideia central: um circuito é um caminho fechado
+
+Imagine um circuito elétrico como uma pista de corrida fechada por onde "carrinhos" (as cargas elétricas) circulam sem parar. Para os carrinhos andarem, é preciso uma bateria — ela é como uma bomba que empurra os carrinhos, dando energia a eles. Essa energia por carga se chama **tensão elétrica** (ou diferença de potencial), medida em volts (V). Quanto de carrinho passa por um ponto da pista a cada segundo é a **corrente elétrica**, medida em ampères (A). E os obstáculos na pista — lâmpadas, resistores, chuveiros — que dificultam a passagem dos carrinhos, representam a **resistência elétrica**, medida em ohms (Ω).
+
+Essas três grandezas se relacionam pela primeira Lei de Ohm:
+
+**V = R · i**
+
+Onde: V = tensão (volts), R = resistência (ohms), i = corrente (ampères).
+
+Pense assim: quanto maior o obstáculo (R) para uma mesma corrente passar, mais "empurrão" (V) é necessário. Ou, para uma mesma tensão disponível, quanto maior a resistência, menor a corrente que consegue passar.
+
+### Potência e energia elétrica: o que realmente vai na conta de luz
+
+A **potência elétrica** é a rapidez com que um aparelho converte energia elétrica em outra forma (luz, calor, movimento):
+
+**P = V · i**
+
+Combinando com a Lei de Ohm, surgem duas variações muito úteis, dependendo do que você já sabe sobre o aparelho:
+
+**P = R · i²** (útil quando você sabe a corrente e a resistência)
+
+**P = V² / R** (útil quando você sabe a tensão e a resistência — é a fórmula clássica das questões de chuveiro elétrico)
+
+A **energia elétrica** consumida é a potência mantida durante um tempo:
+
+**E = P · t**
+
+Onde: E = energia, P = potência, t = tempo. Se P estiver em quilowatts (kW) e t em horas (h), E sai em quilowatt-hora (kWh) — a unidade que aparece na sua conta de luz. É por isso que praticamente toda questão de "quanto vai custar" ou "quanto vou economizar" no ENEM usa essa fórmula: primeiro converta Watts para quilowatts (divida por 1000), depois multiplique pelo tempo em horas.
+
+### Associação em série: um único caminho
+
+Quando os componentes estão em **série**, existe apenas um caminho possível para a corrente — como carrinhos numa fila única de pedágios. Isso tem duas consequências que você precisa gravar:
+
+A corrente é a mesma em todos os pontos do circuito em série (não há onde ela "se perder" ou "se dividir"). Já a tensão da bateria se reparte entre os componentes — cada um "gasta" uma parte da energia disponível.
+
+A resistência equivalente (aquela que substituiria todos os resistores por um só, produzindo o mesmo efeito) é simplesmente a soma:
+
+**R_eq = R₁ + R₂ + R₃ + ... + Rₙ**
+
+Pense assim: se você aumenta o número de obstáculos na mesma pista única, fica cada vez mais difícil para os carrinhos passarem — por isso a resistência total só aumenta.
+
+### Associação em paralelo: vários caminhos
+
+Quando os componentes estão em **paralelo**, existem vários caminhos possíveis simultâneos — como pedágios paralelos numa rodovia com várias faixas. Aqui a lógica se inverte:
+
+A tensão é a mesma em cada ramo (todos "sentem" o mesmo empurrão da bateria). Já a corrente total se divide entre os ramos — cada ramo carrega uma parte da corrente, e a soma das correntes dos ramos é igual à corrente total.
+
+A resistência equivalente é dada pelo inverso da soma dos inversos:
+
+**1/R_eq = 1/R₁ + 1/R₂ + 1/R₃ + ... + 1/Rₙ**
+
+Pense assim: quando você abre mais faixas (mais caminhos), fica mais fácil para os carrinhos passarem no total — por isso a resistência equivalente do paralelo é sempre **menor** do que a menor resistência individual do grupo. Dois casos particulares que caem muito no ENEM:
+
+Se são apenas dois resistores em paralelo: **R_eq = (R₁ · R₂) / (R₁ + R₂)**
+
+Se são "n" resistores iguais em paralelo, cada um com resistência R: **R_eq = R / n**
+
+### Associação mista
+
+É quando um circuito combina trechos em série e trechos em paralelo. A estratégia é sempre a mesma: identifique primeiro os pedacinhos que estão claramente em paralelo, calcule a resistência equivalente desses pedacinhos, e depois some esse resultado (agora um único "bloco") com o que estiver em série, como se fosse um resistor só.
+
+### Um detalhe que confunde muita gente: o que acontece quando uma lâmpada queima
+
+Essa é uma armadilha clássica do INEP. Quando um componente que estava em **paralelo** com outros "queima" (some do circuito), a resistência daquele ramo desaparece, e isso **aumenta** a resistência equivalente do trecho (porque você perdeu um caminho). Resistência equivalente maior, com a mesma tensão da fonte, significa **corrente total menor** pela Lei de Ohm — e por isso o brilho das lâmpadas restantes **diminui**, mesmo que elas continuem fisicamente intactas. É um raciocínio em cadeia que o ENEM adora testar.
+
+## Tópicos-Chave para Revisão
+
+<div className="topico">
+
+A corrente elétrica, a tensão e a resistência se relacionam pela **primeira Lei de Ohm (V = R · i)**. Pense sempre nessa fórmula como um equilíbrio: para uma mesma resistência, mais tensão empurra mais corrente; para uma mesma tensão, mais resistência restringe mais a corrente.
+
+A potência elétrica mede a rapidez da conversão de energia e pode ser calculada de três formas equivalentes, dependendo dos dados disponíveis: **P = V · i**, **P = R · i²** e **P = V² / R**. Questões de chuveiro elétrico quase sempre usam a última, porque a tensão da rede (110 V ou 220 V) é dada e a resistência do chuveiro se mantém fixa.
+
+A energia elétrica consumida é **E = P · t**, e é essa grandeza — não a potência — que aparece na conta de luz em quilowatt-hora (kWh). O erro mais comum aqui é esquecer de converter Watts para quilowatts antes de multiplicar pelo tempo.
+
+Na associação em série, existe um único caminho para a corrente: a **corrente é igual em todos os pontos** e a tensão se reparte entre os componentes. A resistência equivalente é a soma direta: **R_eq = R₁ + R₂ + ... + Rₙ**.
+
+Na associação em paralelo, existem vários caminhos: a **tensão é igual em cada ramo** e a corrente total se divide entre eles. A resistência equivalente segue **1/R_eq = 1/R₁ + 1/R₂ + ... + 1/Rₙ**, e, para dois resistores, o atalho é **R_eq = (R₁·R₂)/(R₁+R₂)**; para n resistores iguais de valor R, **R_eq = R/n**.
+
+Circuitos mistos se resolvem "por partes": reduza primeiro os blocos em paralelo a uma única resistência equivalente, depois trate esse resultado como mais um elemento em série com o resto do circuito.
+
+Quando uma lâmpada em paralelo com outras se queima, o caminho dela desaparece, a resistência equivalente daquele trecho aumenta, a corrente total do circuito diminui (pela Lei de Ohm), e por isso o brilho de todas as lâmpadas restantes diminui — mesmo as que não queimaram. Esse é o padrão de armadilha que liga "associação de resistores" com "eletrodinâmica" numa questão só.
+
+A segunda Lei de Ohm relaciona a resistência de um fio com sua geometria e material: **R = ρ · L / A**, onde ρ é a resistividade (depende só do material), L é o comprimento do fio e A é a área da seção transversal. Fio mais comprido = mais resistência; fio mais grosso (maior área) = menos resistência.
+
+</div>
+
+## Teste de Fogo
+
+*Questões sem gabarito — resolva primeiro, depois confira com o professor ou com a IA.*
+
+**Questão 1 (ENEM 2016, Caderno Amarelo, Q51)**
+
+Três lâmpadas idênticas foram ligadas no circuito esquematizado (representado acima). A bateria apresenta resistência interna desprezível, e os fios possuem resistência nula. Um técnico fez uma análise do circuito para prever a corrente elétrica nos pontos A, B, C, D e E, e rotulou essas correntes de I_A, I_B, I_C, I_D e I_E, respectivamente.
+
+O técnico concluiu que as correntes que apresentam o mesmo valor são:
+
+a) I_A = I_E e I_C = I_D.
+b) I_A = I_B = I_E e I_C = I_D.
+c) I_A = I_B, apenas.
+d) I_A = I_B = I_E, apenas.
+e) I_C = I_B, apenas.
+
+---
+
+**Questão 2 (ENEM 2023, Caderno Azul, 2º dia, Q120)**
+
+O circuito com três lâmpadas incandescentes idênticas, representado acima, consiste em uma associação mista de resistores. Cada lâmpada (L1, L2 e L3) é associada, em paralelo, a um resistor de resistência R, formando um conjunto. Esses conjuntos são associados em série, tendo todas as lâmpadas o mesmo brilho quando ligadas à fonte de energia. Após vários dias em uso, apenas a lâmpada L2 queima, enquanto as demais permanecem acesas.
+
+Em relação à situação em que todas as lâmpadas funcionam, após a queima de L2, os brilhos das lâmpadas serão:
+
+a) os mesmos.
+b) mais intensos.
+c) menos intensos.
+d) menos intenso para L1 e o mesmo para L3.
+e) mais intenso para L1 e menos intenso para L3.
+
+---
+
+**Questão 3 (ENEM 2013, Caderno Azul, Q75)**
+
+O chuveiro elétrico é um dispositivo capaz de transformar energia elétrica em energia térmica, o que possibilita a elevação da temperatura da água. Um chuveiro projetado para funcionar em 110 V pode ser adaptado para funcionar em 220 V, de modo a manter inalterada sua potência. Uma das maneiras de fazer essa adaptação é trocar a resistência do chuveiro por outra, de mesmo material e com o(a):
+
+a) dobro do comprimento do fio.
+b) metade do comprimento do fio.
+c) metade da área da seção reta do fio.
+d) quádruplo da área da seção reta do fio.
+e) quarta parte da área da seção reta do fio.
+
+---
+
+**Questão 4 (ENEM PPL 2022, 2º dia, Q92)**
+
+A preocupação com a sustentabilidade faz com que se procurem, cada vez mais, métodos eficientes para a economia de energia elétrica. Um procedimento que se pode adotar é a substituição das lâmpadas incandescentes por lâmpadas de LED nas residências. Uma lâmpada incandescente, que opera 8 horas por dia, foi substituída por uma de LED. Elas apresentam 60 W e 8 W de potência nominal de consumo, respectivamente.
+
+A redução do consumo de energia elétrica, em quilowatt-hora, obtida durante trinta dias foi:
+
+a) 0,24.
+b) 1,80.
+c) 1,92.
+d) 12,48.
+e) 14,40.
+
+---
+
+**Questão 5 (elaborada no estilo ENEM — não é questão oficial do INEP)**
+
+Em uma instalação residencial, dois resistores, R₁ = 6 Ω e R₂ = 3 Ω, são ligados em paralelo entre si. Esse conjunto é ligado em série com um terceiro resistor, R₃ = 4 Ω, a uma bateria ideal de 12 V. A corrente total fornecida pela bateria a esse circuito é de:
+
+a) 1,0 A
+b) 1,5 A
+c) 2,0 A
+d) 3,0 A
+e) 6,0 A

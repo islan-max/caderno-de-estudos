@@ -1,0 +1,181 @@
+---
+title: "Inflação"
+subject: "Matemática Financeira"
+order: 3
+relevance: >
+  Inflação é o aumento generalizado e contínuo dos preços de bens e serviços em um período de tempo.
+  Isso não é um tópico isolado no ENEM — ele quase nunca aparece como "calcule a inflação" sozinho. Em
+  vez disso, a banca combina inflação com porcentagem, ganho real de salário, reajuste de valores
+  (aluguéis, contratos, preços de produtos) e aumentos sucessivos. É um dos temas mais recorrentes da
+  prova, porque conecta matemática básica com cidadania financeira — exatamente o tipo de "matemática
+  do cotidiano" que o INEP adora cobrar. Se você domina bem "aumento percentual" e "poder de compra",
+  você resolve a esmagadora maioria das questões que envolvem inflação.
+quickSummary: >
+  Inflação é o aumento generalizado e contínuo dos preços de bens e serviços, medido por um índice de
+  inflação (como o IPCA). O índice mostra, em percentual, quanto os preços variaram entre duas datas,
+  e serve de base para calcular reajustes de salários, aluguéis e contratos.
+---
+
+## Aula Teórica Completa
+
+**O que é inflação, de fato?**
+Imagine que você compra sempre os mesmos produtos: arroz, feijão, passagem de ônibus. Se, de um ano para o outro, você precisa gastar mais dinheiro para comprar exatamente as mesmas coisas, na mesma quantidade, isso significa que os preços subiram. Essa subida geral de preços é a inflação. Ela é medida por um **índice de inflação**, que é simplesmente um número em porcentagem mostrando o quanto os preços variaram, em média, entre duas datas. No Brasil, o índice oficial é o IPCA (calculado pelo IBGE), mas existem outros, como o INPC e o IGP-M.
+
+**A ideia central: fator de aumento**
+Para trabalhar com inflação matematicamente, você usa a mesma lógica de "aumento percentual" que já vimos em outros tópicos. Se algo aumenta P%, multiplicamos o valor original pelo **fator de aumento** (1 + P/100).
+
+Exemplo simples: um produto custava R$ 100,00 e a inflação do período foi de 8%. O novo preço é:
+Novo preço = 100 × (1 + 0,08) = 100 × 1,08 = R$ 108,00
+
+**Poder de compra: o conceito que realmente separa quem entende de quem decora fórmula**
+
+Poder de compra é a capacidade que o seu dinheiro tem de comprar bens e serviços. Se o seu salário sobe, mas os preços sobem mais ainda, você fica **mais pobre na prática**, mesmo ganhando mais dinheiro em números absolutos. Essa é a armadilha mental mais importante do assunto: um aumento nominal (em reais) não significa automaticamente um ganho real.
+
+O poder de compra pode ser pensado como uma razão:
+
+Poder de compra = Salário / Custo de vida
+
+Se o salário sobe por um fator (1 + i) e o custo de vida (a inflação) sobe por um fator (1 + f), o novo poder de compra é:
+
+Poder de compra novo = [Salário × (1+i)] / [Custo × (1+f)]
+
+**A fórmula do ganho real**
+
+O ENEM tem uma fórmula oficial e recorrente para isso, que costuma vir *dada no próprio enunciado* (você não precisa decorá-la, mas precisa saber usá-la):
+
+1 + r = (1 + i) / (1 + f)
+
+Decompondo cada letra:
+- **r** = ganho real (a taxa de crescimento verdadeira do poder de compra do salário)
+- **i** = percentual de aumento do salário (o número "bruto", nominal)
+- **f** = taxa de inflação do período
+
+Repare: **r não é simplesmente "i menos f"**. Essa subtração direta é a armadilha número um do INEP nesse tema. Quem calcula 10% − 5% = 5% de ganho real está errado, porque o aumento e a inflação incidem sobre bases diferentes (uma incide sobre o salário antigo, a outra sobre os preços antigos), e por isso a relação correta é uma **divisão de fatores**, não uma subtração de percentuais.
+
+**Aumentos sucessivos (quando o efeito se repete por vários períodos)**
+
+Quando salário e inflação aumentam todo ano, por vários anos seguidos, você não soma as porcentagens — você multiplica os fatores de aumento, um para cada ano.
+
+Exemplo: salário sobe 10% ao ano, inflação sobe 6% ao ano, durante 2 anos.
+Fator do salário em 2 anos = (1,10)² = 1,21 → salário subiu 21% no total
+Fator da inflação em 2 anos = (1,06)² = 1,1236 → preços subiram 12,36% no total
+Fator do poder de compra = 1,21 / 1,1236 ≈ 1,077 → ganho real de aproximadamente 7,7%
+
+**Reajuste de custos com pesos diferentes (proporção do orçamento)**
+
+Outro formato clássico: um custo total é dividido em partes (por exemplo, 60% papel e 40% gráfica), e cada parte sofre um reajuste percentual diferente. Aqui você não aplica um reajuste único sobre o total — você aplica cada reajuste sobre a parte correspondente, e depois soma os resultados.
+
+## Tópicos-Chave para Revisão
+
+<div className="topico">
+
+Inflação é o aumento generalizado e contínuo dos preços de bens e serviços, medido por um índice de inflação (como o IPCA). O índice mostra, em percentual, quanto os preços variaram entre duas datas, e serve de base para calcular reajustes de salários, aluguéis e contratos.
+
+Fator de aumento é a ferramenta matemática central do assunto: para aumentar um valor V em P%, multiplica-se V por (1 + P/100). A fórmula do montante com reajuste percentual simples é M = V × (1 + P/100), onde M é o valor final, V é o valor inicial e P é a taxa percentual de reajuste.
+
+Poder de compra é a relação entre o quanto você ganha e o quanto as coisas custam. Quando o salário sobe mais devagar que a inflação, o poder de compra cai, mesmo que o salário nominal tenha aumentado. A fórmula geral é Poder de compra = Salário / Custo de vida.
+
+Ganho real é o crescimento verdadeiro do poder de compra do salário, dado pela fórmula 1 + r = (1 + i) / (1 + f), em que r é o ganho real, i é o percentual de aumento do salário e f é a taxa de inflação do período. A armadilha clássica do INEP é o aluno calcular r como uma subtração simples (i − f) em vez de usar a divisão de fatores — isso quase sempre aparece como uma alternativa "isca" na prova.
+
+Aumentos sucessivos ao longo de vários períodos não se somam — multiplicam-se os fatores de cada período. Para dois aumentos seguidos de P1% e P2%, o fator total é (1 + P1/100) × (1 + P2/100), e não (P1 + P2)%.
+
+Reajustes proporcionais em custos compostos ocorrem quando um valor total é formado por partes com pesos diferentes (por exemplo, 60% de um custo é papel, 40% é gráfica), e cada parte sofre um índice de reajuste distinto. Nesses casos, aplica-se o reajuste específico a cada parcela separadamente antes de somar os resultados finais — nunca se aplica uma média simples dos dois percentuais sobre o total.
+
+</div>
+
+## Teste de Fogo
+
+*Questões sem gabarito — resolva primeiro, depois confira com o professor ou com a IA.*
+
+**Questão 1 (ENEM 2011, 2ª Aplicação)**
+
+A taxa de inflação é um índice que aponta, em percentuais, a evolução média dos preços de mercadorias e serviços. Entretanto, cada família percebe a variação dos preços de modo particular, pois o peso de cada item no seu orçamento é diferente. Assim, se o preço dos medicamentos sobe muito, o impacto da inflação para as famílias que têm mais idosos tende a ser maior. Se o preço dos alimentos cai, o impacto da inflação para as famílias mais pobres tende a ser menor, já que boa parte de seu orçamento é gasto em alimentação.
+
+Disponível em: http://www.dieese.org.br (adaptado).
+
+Considere que os salários de determinado grupo de pessoas crescem 10,0% ao ano, mas a inflação, para esse grupo, cresce 6,0% ao ano.
+
+O aumento percentual do poder de compra, em dois anos, das pessoas que pertencem ao referido grupo, mais aproximado, será de
+
+A) 4,0%.
+B) 7,7%.
+C) 8,0%.
+D) 8,6%.
+E) 14,0%.
+
+---
+
+**Questão 2 (ENEM Digital 2020)**
+
+Uma editora pretende fazer uma reimpressão de um de seus livros. A direção da editora sabe que o gasto com papel representa 60% do custo de reimpressão, e que as despesas com a gráfica representam os 40% restantes. Dentro da programação da editora, no momento em que ela realizar a reimpressão, o preço do papel e os custos com a gráfica terão sofrido reajustes de 25,9% e 32,5%, respectivamente. O custo para a reimpressão de cada livro, nos preços atuais, é de R$ 100,00.
+
+Qual será o custo, em real, para a reimpressão de cada livro com os reajustes estimados de custo de papel e despesas com a gráfica?
+
+A) 128,54
+B) 129,20
+C) 129,86
+D) 158,40
+E) 166,82
+
+---
+
+**Questão 3 (ENEM Digital 2020)**
+
+O ganho real de um salário, r, é a taxa de crescimento do poder de compra desse salário. Ele é calculado a partir do percentual de aumento dos salários e da taxa de inflação, referidos a um mesmo período. Algebricamente, pode-se calcular o ganho real pela fórmula
+
+1 + r = (1 + i) / (1 + f)
+
+em que i é o percentual de aumento no valor dos salários e f é a taxa de inflação, ambos referidos a um mesmo período.
+
+Considere que uma categoria de trabalhadores recebeu uma proposta de aumento salarial de 10%, e que a taxa de inflação do período correspondente tenha sido 5%. Para avaliar a proposta, os trabalhadores criaram uma classificação em função dos ganhos reais, conforme o quadro:
+
+| Ganho real | Classificação |
+|---|---|
+| Igual ou superior a 5% | Boa |
+| Maior ou igual a 1,5% e menor que 5% | Regular |
+| Maior que 0% e menor que 1,5% | Ruim |
+| Igual ou menor que 0% | Inaceitável |
+
+Eles classificaram a proposta de aumento e justificaram essa classificação apresentando o valor do ganho real que obteriam. A classificação, com sua respectiva justificativa, foi
+
+A) inaceitável, porque o ganho real seria mais próximo de –5%.
+B) ruim, porque o ganho real seria mais próximo de 1,05%.
+C) regular, porque o ganho real seria mais próximo de 4,7%.
+D) boa, porque o ganho real seria mais próximo de 9,5%.
+E) boa, porque o ganho real seria mais próximo de 5%.
+
+---
+
+**Questão 4 (ENEM 2020)**
+
+O quadro representa os gastos mensais, em real, de uma família com internet, mensalidade escolar e mesada do filho:
+
+| Item | Gasto mensal (R$) |
+|---|---|
+| Internet | 120,00 |
+| Mensalidade escolar | 700,00 |
+| Mesada do filho | 400,00 |
+
+No início do ano, a internet e a mensalidade escolar tiveram acréscimos, respectivamente, de 20% e 10%. Necessitando manter o valor da despesa mensal total com os itens citados, a família reduzirá a mesada do filho.
+
+Qual será a porcentagem da redução da mesada?
+
+A) 15,0
+B) 23,5
+C) 30,0
+D) 70,0
+E) 76,5
+
+---
+
+**Questão 5 (ENEM 2020 – reaplicação/variação da questão do ganho real)**
+
+Considerando a mesma fórmula da Questão 3, 1 + r = (1 + i) / (1 + f), suponha agora que uma outra categoria de trabalhadores tenha recebido uma proposta de aumento salarial de 8%, com taxa de inflação do período de 8%.
+
+Nessa situação, o ganho real dessa categoria de trabalhadores é
+
+A) negativo, pois o aumento salarial não supera a inflação.
+B) exatamente igual a 8%, pois i e f têm o mesmo valor.
+C) igual a zero, pois o aumento salarial se anula exatamente com a inflação.
+D) impossível de calcular sem conhecer o salário inicial em reais.
+E) igual a 16%, pois somamos os dois percentuais de 8%.

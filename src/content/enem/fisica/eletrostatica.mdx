@@ -1,0 +1,263 @@
+---
+title: "Eletrostática"
+subject: "Física"
+order: 6
+relevance: >
+  Eletrostática é o estudo das cargas elétricas paradas (em repouso) e das forças que elas exercem
+  umas sobre as outras. É a base de tudo que vem depois em eletricidade: sem entender carga elétrica,
+  campo elétrico e potencial elétrico, fica impossível entender circuitos, capacitores ou
+  eletromagnetismo. No ENEM, eletrostática aparece quase todo ano, geralmente em 1 a 2 questões de
+  Física, sempre embutida em um contexto do mundo real: gerador de Van de Graaff em museus de ciência,
+  raios durante tempestades, desfibriladores em hospitais, filtros industriais de poluição, para-raios
+  em prédios, e até tecnologias novas como placas solares que geram energia com a chuva.
+quickSummary: >
+  Toda carga elétrica nasce de um desequilíbrio entre prótons e elétrons em um corpo; perder elétrons
+  deixa o corpo positivo, ganhar elétrons deixa o corpo negativo, e a carga elementar do elétron vale
+  e = 1,6 × 10⁻¹⁹ C, com a carga total de qualquer corpo sendo sempre um múltiplo dela, Q = n · e.
+---
+
+## Aula Teórica Completa
+
+### 2.1 O que é carga elétrica
+
+Todo átomo tem um núcleo com prótons (carga positiva) e nêutrons (sem carga), cercado por elétrons (carga negativa). Normalmente, o número de prótons é igual ao número de elétrons, e o átomo fica **neutro** — as cargas positivas e negativas se cancelam.
+
+Um corpo fica **eletrizado** quando esse equilíbrio é quebrado:
+- Se ele **perde elétrons**, sobram mais prótons → fica **positivo**.
+- Se ele **ganha elétrons**, sobram mais elétrons → fica **negativo**.
+
+Repare: quem se movimenta na eletrização quase sempre são os **elétrons** (são mais fracamente presos ao átomo), nunca os prótons. Isso é importante porque muita questão de vestibular tenta te confundir dizendo que "prótons foram transferidos" — isso fisicamente não acontece em fenômenos do dia a dia.
+
+A menor carga que existe na natureza é a carga do elétron (ou do próton, que tem o mesmo valor em módulo), chamada de **carga elementar**:
+
+**e = 1,6 × 10⁻¹⁹ C**
+
+Qualquer carga elétrica de um corpo é sempre um múltiplo inteiro dessa carga elementar:
+
+**Q = n · e**
+
+Onde:
+- **Q** é a carga total do corpo, em coulombs (C);
+- **n** é o número de elétrons a mais ou a menos (um número inteiro);
+- **e** é a carga elementar, 1,6 × 10⁻¹⁹ C.
+
+**Princípio da conservação das cargas:** em um sistema isolado, a carga elétrica total nunca é criada nem destruída — ela apenas se redistribui entre os corpos. Se dois corpos trocam carga, o que um ganha é exatamente o que o outro perde.
+
+### 2.2 Atração e repulsão
+
+**Cargas de mesmo sinal se repelem. Cargas de sinais opostos se atraem.** Essa é a regra mais básica e mais cobrada de toda a eletrostática — quase toda questão depende dela em algum momento.
+
+### 2.3 Condutores e isolantes
+
+- **Condutores** (metais, o corpo humano, água com sal): os elétrons mais externos se movem livremente pelo material. Se você eletriza um ponto de um condutor, a carga se espalha rapidamente por toda a superfície dele.
+- **Isolantes** (plástico, vidro, borracha, madeira seca): os elétrons ficam presos aos átomos. Se você eletriza um ponto, a carga fica ali, "grudada", sem se espalhar.
+
+Essa diferença é o motivo pelo qual você consegue eletrizar uma régua de plástico atritando-a na roupa (isolante — carga fica localizada), mas não consegue eletrizar uma barra de metal segurando-a com a mão (ela descarrega instantaneamente pelo seu corpo até o chão).
+
+### 2.4 Processos de eletrização
+
+Existem três formas clássicas de eletrizar um corpo:
+
+**a) Atrito:** dois corpos de materiais diferentes são esfregados um no outro. Elétrons migram de um material para o outro. No final, os dois corpos ficam eletrizados com **cargas de sinais opostos** e **mesmo módulo** (conservação da carga). Exemplo clássico: régua de plástico atritada em um pano de lã.
+
+**b) Contato:** um corpo eletrizado encosta em um corpo neutro (ou eletrizado com outra carga), e ambos ficam com o **mesmo sinal** de carga ao final. Se os dois corpos forem **condutores idênticos** (mesmo tamanho e formato), a carga total se divide **igualmente** entre eles:
+
+**Q_final (cada esfera) = (Q₁ + Q₂) / 2**
+
+Onde Q₁ e Q₂ são as cargas iniciais dos dois corpos (respeitando o sinal de cada uma — se uma for negativa, ela entra com sinal negativo na soma).
+
+**c) Indução:** aproxima-se um corpo eletrizado (o **indutor**) de um condutor neutro (o **induzido**), **sem tocar nele**. O campo elétrico do indutor empurra os elétrons livres do induzido: se o indutor é positivo, ele atrai elétrons para o lado mais próximo dele, deixando esse lado negativo e o lado mais distante positivo. Se você aterrar o induzido (ligando um fio até a terra) enquanto o indutor ainda está por perto, elétrons fluem entre o induzido e a terra; ao desconectar o aterramento e depois afastar o indutor, o induzido fica eletrizado com carga de sinal **oposto** ao do indutor.
+
+🎯 **Alerta INEP:** essa é a distinção mais cobrada da eletrostática básica. Contato → mesmo sinal. Indução (com aterramento) → sinal oposto. Muita questão descreve uma situação e pede para você identificar se foi contato ou indução baseado no sinal final da carga.
+
+### 2.5 Lei de Coulomb
+
+Charles Coulomb descobriu que a força elétrica entre duas cargas puntiformes (pontuais) depende do produto das cargas e da distância entre elas:
+
+**F = k · |Q₁| · |Q₂| / d²**
+
+Onde:
+- **F** é a intensidade da força elétrica entre as cargas, em newtons (N);
+- **k** é a constante eletrostática do meio (no vácuo ou no ar, k₀ = 9 × 10⁹ N·m²/C²);
+- **Q₁** e **Q₂** são os módulos das duas cargas envolvidas, em coulombs (C);
+- **d** é a distância entre as duas cargas, em metros (m).
+
+Repare que a distância está ao **quadrado**: se você dobra a distância entre duas cargas, a força cai para 1/4 do valor original — não para metade. Isso é um erro clássico de quem confunde essa lei com uma proporção linear simples.
+
+Essa força é sempre **atrativa** entre cargas opostas e **repulsiva** entre cargas de mesmo sinal — a fórmula te dá só o módulo (o "tamanho") da força; a direção você determina pela regra de atração/repulsão.
+
+### 2.6 Campo elétrico
+
+Pense assim: uma carga elétrica não precisa tocar em outra para "sentir" ela — ela cria ao redor de si uma espécie de "clima elétrico" invisível chamado **campo elétrico**. Qualquer outra carga colocada dentro desse campo vai sentir uma força.
+
+O campo elétrico gerado por uma carga puntiforme Q, a uma distância d dela, tem intensidade:
+
+**E = k · |Q| / d²**
+
+Onde:
+- **E** é a intensidade do campo elétrico, em newtons por coulomb (N/C);
+- **k** é a mesma constante eletrostática (9 × 10⁹ N·m²/C² no vácuo);
+- **Q** é o módulo da carga que gera o campo;
+- **d** é a distância até o ponto onde queremos saber o campo.
+
+O campo elétrico também pode ser entendido como "força por unidade de carga de prova":
+
+**E = F / q**
+
+Onde F é a força elétrica sentida por uma pequena carga de teste q colocada naquele ponto.
+
+O campo elétrico é uma grandeza **vetorial**: tem direção e sentido. Por convenção, o vetor campo elétrico **sai** de cargas positivas e **entra** em cargas negativas.
+
+**Linhas de força (ou linhas de campo)** são um jeito de desenhar o campo elétrico visualmente: são linhas imaginárias tangentes ao vetor campo elétrico em cada ponto. Regras importantes: elas nunca se cruzam; saem de cargas positivas e chegam a cargas negativas; quanto mais próximas umas das outras, mais intenso é o campo naquela região.
+
+🎯 **Alerta INEP:** campo elétrico (E) e potencial elétrico (V) são grandezas **diferentes**, com unidades diferentes (N/C contra volts). É comum a prova testar se você confunde uma com a outra — principalmente em questões sobre raios, onde o que causa a descarga é o campo elétrico atingir um valor crítico, não simplesmente "a carga ser grande".
+
+### 2.7 Condutor em equilíbrio eletrostático
+
+Esse é um dos fatos mais elegantes (e mais cobrados) da eletrostática: quando um condutor está em equilíbrio (carregado ou não, mas sem correntes fluindo), **o campo elétrico no seu interior é sempre zero**. Toda a carga em excesso se distribui na **superfície externa** do condutor, nunca no interior.
+
+Além disso, a carga se concentra mais intensamente onde a superfície é mais "pontiaguda" (maior curvatura) — por isso para-raios têm uma ponta fina: ali o campo elétrico fica tão intenso que ioniza o ar ao redor, criando um caminho seguro para a descarga do raio ir para a terra.
+
+Esse mesmo princípio explica a **blindagem eletrostática**, também chamada de **Gaiola de Faraday**: se você está dentro de uma estrutura metálica fechada (um carro, um elevador), o campo elétrico externo não penetra no interior — você fica protegido de descargas elétricas externas, mesmo que a carcaça esteja sendo atingida por um raio.
+
+### 2.8 Potencial elétrico e diferença de potencial (ddp)
+
+O potencial elétrico (V) mede o "nível de energia elétrica" em um ponto do espaço, criado por uma carga:
+
+**V = k · Q / d**
+
+Onde:
+- **V** é o potencial elétrico naquele ponto, em volts (V);
+- **k** é a constante eletrostática (9 × 10⁹ N·m²/C²);
+- **Q** é a carga que gera o potencial (com seu sinal);
+- **d** é a distância até o ponto considerado.
+
+O que realmente importa na prática, porém, é a **diferença de potencial** (ddp ou tensão, também representada por U) entre dois pontos. É essa diferença que "empurra" as cargas a se movimentarem — é o que faz uma corrente elétrica ou uma descarga (como um raio) acontecer. Uma nuvem de tempestade acumula carga e cria uma ddp enorme entre ela e o solo; quando essa ddp (e o campo elétrico associado) fica grande o suficiente para "quebrar" a resistência do ar, o raio acontece.
+
+### 2.9 Capacitores
+
+Um capacitor é um dispositivo feito para **armazenar carga elétrica** (e, com ela, energia elétrica) — pense nele como um "balde" que guarda cargas até serem usadas. Na forma mais simples, é formado por duas placas condutoras paralelas, separadas por um isolante, ligadas a uma fonte de tensão.
+
+A relação fundamental de um capacitor é:
+
+**Q = C · V**
+
+Onde:
+- **Q** é a carga elétrica armazenada, em coulombs (C);
+- **C** é a capacitância do capacitor (sua "capacidade de armazenar carga"), em farads (F);
+- **V** é a tensão (ddp) aplicada entre as placas, em volts (V).
+
+A energia elétrica armazenada em um capacitor carregado é dada por:
+
+**E = (C · V²) / 2**
+
+Onde:
+- **E** é a energia armazenada, em joules (J);
+- **C** é a capacitância, em farads (F);
+- **V** é a tensão entre as placas, em volts (V).
+
+Um capacitor de farad é enorme na prática — por isso capacitores reais costumam ser medidos em microfarads (μF = 10⁻⁶ F) ou até menores. Isso é importante: um erro clássico de prova é esquecer de converter μF para F antes de fazer a conta.
+
+Aplicação real: desfibriladores cardíacos usam um capacitor carregado com alta tensão para armazenar energia elétrica rapidamente e depois liberá-la de uma vez em um choque que reorganiza o ritmo do coração.
+
+## Tópicos-Chave para Revisão
+
+<div className="topico">
+
+Toda carga elétrica nasce de um desequilíbrio entre **prótons** e **elétrons** em um corpo; perder elétrons deixa o corpo **positivo**, ganhar elétrons deixa o corpo **negativo**, e a carga elementar do elétron vale **e = 1,6 × 10⁻¹⁹ C**, com a carga total de qualquer corpo sendo sempre um múltiplo dela, **Q = n · e**. O **princípio da conservação das cargas** garante que carga nunca é criada nem destruída, apenas transferida entre corpos.
+
+A regra mais básica de toda a eletrostática é: **cargas de mesmo sinal se repelem, cargas de sinais opostos se atraem**. Essa regra é usada para determinar a direção de qualquer força ou campo elétrico.
+
+**Condutores** deixam elétrons se moverem livremente e distribuem carga por toda a superfície; **isolantes** prendem a carga no local onde ela foi criada. Essa diferença explica por que certos materiais eletrizam facilmente por atrito e outros não.
+
+Os três **processos de eletrização** — **atrito** (materiais diferentes, cargas finais opostas e de mesmo módulo), **contato** (corpos ficam com carga de mesmo sinal, e em condutores idênticos a carga final se divide igualmente, **Q_final = (Q₁+Q₂)/2**) e **indução** (aproximação sem toque, seguida de aterramento, resultando em carga de sinal oposto ao indutor) — são a base de praticamente toda questão sobre "como um corpo ficou carregado".
+
+A **Lei de Coulomb**, **F = k · |Q₁| · |Q₂| / d²**, calcula a intensidade da força entre duas cargas puntiformes, com **k = 9 × 10⁹ N·m²/C²** no vácuo/ar; a força cai com o **quadrado** da distância, não linearmente.
+
+O **campo elétrico** é a "influência invisível" criada por uma carga ao redor de si, calculado por **E = k · |Q| / d²** ou, de forma mais geral, **E = F / q**; é representado visualmente por **linhas de força**, que saem de cargas positivas, entram em cargas negativas, nunca se cruzam, e ficam mais densas onde o campo é mais intenso.
+
+Um **condutor em equilíbrio eletrostático** tem **campo elétrico interno sempre igual a zero**, com toda a carga concentrada na superfície externa (mais intensamente em pontas), o que explica o funcionamento de **para-raios** e da **blindagem eletrostática (Gaiola de Faraday)**, que protege o interior de estruturas metálicas de campos elétricos externos.
+
+O **potencial elétrico**, **V = k · Q / d**, mede o nível de energia elétrica em um ponto; o que efetivamente causa movimento de cargas (como correntes ou descargas de raios) é a **diferença de potencial (ddp)** entre dois pontos, associada a um campo elétrico intenso o suficiente para ionizar o meio isolante (como o ar).
+
+**Capacitores** armazenam carga elétrica segundo a relação **Q = C · V**, e a energia armazenada é **E = (C · V²) / 2**; aplicações práticas incluem desfibriladores cardíacos, que usam essa energia armazenada para gerar um choque elétrico controlado.
+
+</div>
+
+## Teste de Fogo
+
+*Questões sem gabarito — resolva primeiro, depois confira com o professor ou com a IA.*
+
+**Questão 1 (ENEM PPL 2014)**
+
+Em museus de ciências, é comum encontrarem-se máquinas que eletrizam materiais e geram intensas descargas elétricas. O gerador de Van de Graaff (Figura 1) é um exemplo, como atestam as faíscas (Figura 2) que ele produz. O experimento fica mais interessante quando se aproxima do gerador em funcionamento, com a mão, uma lâmpada fluorescente (Figura 3). Quando a descarga atinge a lâmpada, mesmo desconectada da rede elétrica, ela brilha por breves instantes. Muitas pessoas pensam que é o fato de a descarga atingir a lâmpada que a faz brilhar.
+
+Contudo, se a lâmpada for aproximada dos corpos da situação (Figura 2), no momento em que a descarga ocorrer entre eles, a lâmpada também brilhará, apesar de não receber nenhuma descarga elétrica.
+
+A grandeza física associada ao brilho instantâneo da lâmpada fluorescente, por estar próxima a uma descarga elétrica, é o(a)
+
+A) carga elétrica.
+B) campo elétrico.
+C) corrente elétrica.
+D) capacitância elétrica.
+E) condutividade elétrica.
+
+---
+
+**Questão 2 (ENEM 2021 – Digital)**
+
+O desfibrilador salva vidas de pessoas que são acometidas por ataques cardíacos ou arritmias. Ele dispõe de um capacitor que pode ser carregado por uma fonte com uma alta tensão. Usando o desfibrilador, pode-se fornecer energia ao coração, por meio de um choque elétrico, para que ele volte a pulsar novamente em seu ritmo normal.
+
+Um socorrista dispõe de um desfibrilador com capacitor de 70 microfarads que pode armazenar cerca de 220 J de energia, quando conectado a uma tensão de 2.500 V.
+
+O valor da carga armazenada por esse desfibrilador, em coulomb, é de
+
+A) 0,015.
+B) 0,088.
+C) 0,175.
+D) 3,15.
+E) 11,4.
+
+---
+
+**Questão 3 (ENEM PPL 2022)**
+
+Para reduzir a poluição atmosférica gerada pela emissão de fumaça por grandes indústrias, utilizam-se precipitadores eletrostáticos. Sua função é suprimir os gases poluentes antes que sejam lançados para a atmosfera. A figura ilustra um precipitador constituído, basicamente, por uma entrada e uma saída de gases e por um fio grosso de cobre, conectado a uma fonte de tensão. O acúmulo de cargas no fio de cobre induz a polarização das partículas poluentes. Os gases poluídos são injetados pela entrada de gases, e os gases sem poluentes são lançados na atmosfera pela saída do precipitador.
+
+No precipitador eletrostático, as partículas poluentes são
+
+A) atraídas e se acumulam no fio carregado.
+B) decompostas em moléculas não poluentes.
+C) ionizadas e podem ser lançadas na atmosfera.
+D) repelidas pelo fio carregado e se acumulam na parede do tubo.
+E) induzidas a fazer ligações iônicas, formando íons não poluentes.
+
+---
+
+**Questão 4 (ENEM 2024)**
+
+Placas solares comuns dependem de dias ensolarados para gerar energia. Mas podemos gerar eletricidade com a ajuda de gotas de chuva, revestindo placas solares com uma fina camada de grafeno. Os íons dissociados a partir da água da chuva (Aᵐ⁺ e Bⁿ⁻) tornam a combinação grafeno e água da chuva um par perfeito para geração de energia. O processo requer apenas uma camada de grafeno para que grande quantidade de elétrons (e⁻) se movimente ao longo da superfície.
+
+TANG, Q. et al. A Solar Cell that is Triggered by Sun and Rain. Angewandte Chemie International Edition, n. 55, 2016 (adaptado).
+
+Ao produzir eletricidade em dias chuvosos, o grafeno
+
+A) oxida os cátions dissolvidos na água da chuva.
+B) impede a difusão da água através das placas solares.
+C) diminui a energia de ativação da reação no pseudocapacitor.
+D) forma um compósito não metálico com os íons na água da chuva.
+E) gera uma diferença de potencial pela interação dos elétrons com os cátions.
+
+---
+
+**Questão 5 (ENEM PPL 2016)**
+
+Durante a formação de uma tempestade, são observadas várias descargas elétricas, os raios, que podem ocorrer: das nuvens para o solo (descarga descendente), do solo para as nuvens (descarga ascendente) ou entre uma nuvem e outra. As descargas ascendentes e descendentes podem ocorrer por causa do acúmulo de cargas elétricas positivas ou negativas, que induz uma polarização oposta no solo.
+
+Essas descargas elétricas ocorrem devido ao aumento da intensidade do(a)
+
+A) campo magnético da Terra.
+B) corrente elétrica gerada dentro das nuvens.
+C) resistividade elétrica do ar entre as nuvens e o solo.
+D) campo elétrico entre as nuvens e a superfície da Terra.
+E) força eletromotriz induzida nas cargas acumuladas no solo.

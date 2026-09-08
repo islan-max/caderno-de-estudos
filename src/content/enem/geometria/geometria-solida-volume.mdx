@@ -1,0 +1,145 @@
+---
+title: "Geometria Sólida (Volume)"
+subject: "Geometria"
+order: 2
+relevance: >
+  Volume é a quantidade de espaço tridimensional que um sólido ocupa. Enquanto a Geometria Plana mede
+  área (superfícies em 2D), a Geometria Espacial mede volume (ocupação em 3D) — a diferença central é
+  que agora existe uma terceira dimensão, geralmente chamada de altura ou profundidade. Esse tema é
+  extremamente relevante: geometria espacial representa cerca de 15% das questões de Matemática do
+  Enem, e quase sempre aparece contextualizada em situações do cotidiano — caixas-d'água,
+  reservatórios, embalagens, latas, esculturas, rolos de papel.
+quickSummary: >
+  A fórmula universal para prismas e cilindros é V = A_base × h. Toda vez que você vir um sólido
+  "reto" (paredes verticais, duas bases paralelas idênticas), pense primeiro em identificar a forma da
+  base e calcular sua área, depois multiplique pela altura.
+---
+
+## Aula Teórica Completa
+
+### 2.1 A ideia central: volume = "quantas fatias iguais cabem empilhadas"
+
+Para a maioria dos sólidos "retos" (prisma reto, cilindro reto), existe uma lógica unificadora: pegue a área da base (uma figura plana, 2D) e multiplique pela altura. Isso porque você está empilhando infinitas cópias idênticas da base, uma sobre a outra, até atingir a altura total. Essa é a fórmula-mãe:
+
+**V = A_base × h**, onde V = volume, A_base = área da figura plana que forma a base do sólido, h = altura do sólido (distância entre as duas bases, medida perpendicularmente).
+
+Essa fórmula funciona para *qualquer* prisma reto (base triangular, quadrada, hexagonal, etc.) e para o cilindro. A única coisa que muda de sólido para sólido é a fórmula da área da base — o resto é sempre "área da base vezes altura".
+
+### 2.2 Cubo
+
+O cubo é o caso mais simples: todas as arestas são iguais.
+
+**V = a³**, onde V = volume, a = medida da aresta (lado) do cubo.
+
+Isso é só a aplicação da fórmula-mãe: a base é um quadrado de lado a (área = a²), e a altura também vale a, então V = a² × a = a³.
+
+### 2.3 Paralelepípedo reto-retângulo (caixa retangular)
+
+**V = a × b × c**, onde V = volume, a = comprimento, b = largura, c = altura (as três dimensões da caixa).
+
+De novo, é a fórmula-mãe: a base é um retângulo de área a × b, multiplicada pela altura c.
+
+### 2.4 Prisma reto (caso geral, incluindo o hexagonal)
+
+**V = A_base × h**, onde V = volume, A_base = área do polígono que forma a base (pode ser triângulo, hexágono, etc.), h = altura do prisma.
+
+Quando a base é um hexágono regular de lado L, você precisa primeiro calcular a área do hexágono: **A_hex = (3√3/2) × L²**, onde A_hex = área do hexágono, L = medida do lado do hexágono, √3 ≈ 1,7 (valor que o Enem costuma fornecer). Essa fórmula vem do fato de que um hexágono regular é formado por 6 triângulos equiláteros idênticos.
+
+### 2.5 Cilindro
+
+**V = π × r² × h**, onde V = volume, π ≈ 3,14 (ou 3, ou 3,1, dependendo do que a questão pedir para usar), r = raio da base circular, h = altura do cilindro.
+
+Aqui mora a pegadinha mais comum do Enem: o enunciado quase sempre dá o **diâmetro**, não o raio. Diâmetro é o dobro do raio (d = 2r), então antes de aplicar a fórmula você precisa dividir o diâmetro por 2.
+
+### 2.6 Esfera
+
+**V = (4/3) × π × R³**, onde V = volume, π ≈ 3,14, R = raio da esfera.
+
+### 2.7 Sólido "vazado" (tubo, cano, rolo, caixa oca)
+
+Quando um sólido tem um buraco no meio (como um rolo de papel higiênico, um cano, ou uma caixa de madeira oca), o volume do material é: **V = V_externo − V_interno**, onde V_externo é o volume do sólido "cheio" (como se não tivesse buraco) e V_interno é o volume do espaço vazio. Essa é a técnica de subtração de volumes coaxiais, e ela reaparece o tempo todo em Química (cálculo de recipientes) e Física (deslocamento de fluidos).
+
+## Tópicos-Chave para Revisão
+
+<div className="topico">
+
+A fórmula universal para prismas e cilindros é **V = A_base × h**. Toda vez que você vir um sólido "reto" (paredes verticais, duas bases paralelas idênticas), pense primeiro em identificar a forma da base e calcular sua área, depois multiplique pela altura.
+
+Para o **cubo**, a fórmula é **V = a³**, onde a é a aresta. É o caso particular mais simples do paralelepípedo, quando todas as dimensões são iguais.
+
+Para o **paralelepípedo reto-retângulo**, a fórmula é **V = a × b × c**, multiplicando as três dimensões diretamente.
+
+Para o **prisma de base hexagonal regular**, primeiro calcule a área da base com **A_hex = (3√3/2) × L²**, e só depois multiplique pela altura.
+
+Para o **cilindro**, a fórmula é **V = π × r² × h**. O erro mais comum e mais cobrado pelo Enem é confundir raio com diâmetro — sempre confira se o enunciado deu um ou outro antes de substituir na fórmula.
+
+Para a **esfera**, a fórmula é **V = (4/3) × π × R³**. Aparece com frequência em comparações "esfera versus cilindro" ou em problemas de empacotamento (quantas esferas cabem em uma caixa).
+
+Quando o sólido tem um **buraco ou cavidade** (rolo de papel, tubo, caixa oca, escultura perfurada), a lógica é sempre **volume do material = volume externo menos volume interno**, calculando cada parte separadamente antes de subtrair.
+
+Em problemas de **empacotamento** (esferas dentro de uma caixa cúbica, por exemplo), a armadilha típica é tentar usar o volume da esfera e do cubo diretamente numa divisão simples. O caminho correto é sempre pensar em quantas esferas cabem **por dimensão** (comprimento, largura, altura), usando o diâmetro da esfera como unidade de medida ao longo de cada aresta, e só depois multiplicar as três quantidades.
+
+## 4. Armadilhas Típicas do INEP neste Tema
+
+**Confusão raio × diâmetro**: o enunciado fornece o diâmetro, e o aluno substitui esse valor diretamente como se fosse o raio na fórmula V = πr²h. Como o raio está ao quadrado, esse erro não dobra o resultado — ele quadruplica, levando a uma alternativa "armadilha" que o Enem sempre inclui entre as opções.
+
+**Esquecer a raiz ao isolar uma variável**: quando a questão pede para isolar r (ou outra variável) a partir de V = πr²h, é comum parar em r² = V/(πh) e marcar essa expressão sem quadrado como resposta final, esquecendo de tirar a raiz quadrada.
+
+**Confundir "volume do todo" com "volume do buraco"** em sólidos vazados: às vezes o aluno calcula certo os dois volumes, mas soma em vez de subtrair, ou subtrai na ordem errada.
+
+**Em empacotamento de esferas numa caixa**: usar o raio em vez do diâmetro para "medir quantas cabem" ao longo de uma aresta — isso faz o aluno superestimar a quantidade de esferas.
+
+**Em comparações entre sólidos** (como caneca hexagonal vs. cilíndrica, ou frasco esférico vs. cilíndrico): calcular apenas um dos dois volumes e responder com esse valor, sem comparar de fato qual é maior, quando a pergunta pede a capacidade do sólido *escolhido*.
+
+---
+
+</div>
+
+## Teste de Fogo
+
+*Questões sem gabarito — resolva primeiro, depois confira com o professor ou com a IA.*
+
+**Questão 1 (Enem 2009, 2º dia)**
+Uma empresa que fabrica esferas de aço, de 6 cm de raio, utiliza caixas de madeira, na forma de um cubo, para transportá-las. Sabendo que a capacidade da caixa é de 13.824 cm³, então o número máximo de esferas que podem ser transportadas em uma caixa é igual a:
+
+a) 4
+b) 8
+c) 16
+d) 24
+e) 32
+
+**Questão 2 (Enem PPL 2022, 2º dia)**
+Uma indústria planeja produzir caixa-d'água, em formato cilíndrico, com 1 m de altura, capaz de armazenar 0,4 m³ de água. A medida do raio da base dessa caixa-d'água, em metro, deve ser:
+
+a) 0,2/π
+b) 0,4/π
+c) √(0,2/π)
+d) √(0,4/π)
+e) √(1,2/π)
+
+**Questão 3 (Enem PPL 2022, 2º dia)**
+Um novo produto, denominado bolo de caneca no micro-ondas, foi lançado no mercado com o objetivo de atingir ao público que não tem muito tempo para cozinhar. Para prepará-lo, uma pessoa tem à sua disposição duas opções de canecas. A caneca A tem formato de um prisma reto regular hexagonal de lado L = 4 cm, e a caneca B tem formato de um cilindro circular reto de diâmetro d = 6 cm. Sabe-se que ambas têm a mesma altura h = 10 cm, e que essa pessoa escolherá a caneca com maior capacidade. Considere π = 3,1 e √3 = 1,7. A medida da capacidade, em centímetro cúbico, da caneca escolhida é:
+
+a) 186
+b) 279
+c) 408
+d) 816
+e) 1116
+
+**Questão 4 (Enem PPL 2023)**
+Um rolo de papel higiênico tradicional é representado por um cilindro circular reto retirando-se outro cilindro circular reto interior, de mesmo eixo de simetria, mesma altura e diâmetro menor. Considere um rolo de papel higiênico com 12 cm de diâmetro externo, 4 cm de diâmetro interno e 10 cm de altura. O volume, em centímetro cúbico, desse rolo é:
+
+a) 80π
+b) 160π
+c) 320π
+d) 640π
+e) 1280π
+
+**Questão 5 (Enem 2016, 2ª aplicação)**
+Uma indústria de perfumes embala seus produtos, atualmente, em frascos esféricos de raio R, com volume dado por (4/3)πR³. Observou-se que haverá redução de custos se forem utilizados frascos cilíndricos com raio da base R/3, cujo volume será dado por π(R/3)²h, sendo h a altura da nova embalagem. Para que seja mantida a mesma capacidade do frasco esférico, a altura do frasco cilíndrico (em termos de R) deverá ser igual a:
+
+a) 2R
+b) 4R
+c) 6R
+d) 9R
+e) 12R

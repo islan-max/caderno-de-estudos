@@ -1,0 +1,267 @@
+---
+title: "Probabilidade Simples"
+subject: "Estatística e Probabilidade"
+order: 5
+relevance: >
+  Probabilidade é a matemática que mede o quão provável é algo acontecer, num número entre 0
+  (impossível) e 1 (certo). É um dos temas mais frequentes da prova: aparece praticamente todo ano,
+  entre 2 e 4 questões, quase sempre embrulhado num contexto do dia a dia (sorteio, bingo, urna,
+  senha, controle de qualidade, promoção de loja). A conta em si é fácil; o difícil é traduzir o texto
+  para "quantos casos me interessam / quantos casos existem". ---
+quickSummary: >
+  Probabilidade é uma fração de contagem: P(A) = n(A)/n(Ω), em que n(A) são os casos favoráveis (o que
+  eu quero) e n(Ω) é o espaço amostral (tudo o que pode acontecer). A fórmula só é válida quando os
+  resultados são equiprováveis, condição que o enunciado sinaliza com as palavras "aleatoriamente" ou
+  "ao acaso". Para converter o resultado, use porcentagem = [n(A)/n(Ω)] × 100.
+---
+
+## Aula Teórica Completa
+
+### 2.1 A ideia da criança: a pizza
+
+Imagine uma pizza cortada em **8 fatias iguais**. Três fatias são de calabresa. Se você pegar uma fatia de olhos fechados, qual a chance de ser calabresa?
+
+3 fatias que te interessam, de 8 possíveis → **3/8**.
+
+Probabilidade é exatamente isso: **uma fração**. Em cima, o que você quer. Embaixo, tudo que pode acontecer.
+
+A única exigência é que as fatias sejam **iguais** (mesma chance). Se uma fatia fosse gigante e outra minúscula, a conta simples não valeria. No ENEM, quando o enunciado diz "aleatoriamente", "ao acaso", "todas as regiões são congruentes", ele está te avisando: **as fatias são iguais, pode usar a fração**.
+
+### 2.2 O vocabulário oficial (só 3 palavras)
+
+**Experimento aleatório**: qualquer ação cujo resultado você não controla. Jogar um dado, sortear um nome, tirar uma bola de uma urna.
+
+**Espaço amostral (Ω)**: a lista de **tudo** que pode acontecer. No dado de 6 faces: Ω = &#123;1, 2, 3, 4, 5, 6&#125;.
+
+**Evento (A)**: o pedaço do espaço amostral que te interessa. "Sair número par" → A = &#123;2, 4, 6&#125;.
+
+### 2.3 A fórmula-mãe
+
+**P(A) = (n(A)) / (n())**
+
+Destrinchando cada símbolo:
+
+- **P(A)** = a probabilidade do evento A acontecer (o resultado, um número entre 0 e 1).
+- **n(A)** = o **número de casos favoráveis**, ou seja, quantos resultados fazem o evento A acontecer.
+- **n(Ω)** = o **número de casos possíveis**, ou seja, o total de resultados que existem.
+
+Exemplo do dado, evento "sair par": n(A) = 3 (o 2, o 4, o 6) e n(Ω) = 6. Logo P = 3/6 = 1/2 = 50%.
+
+### 2.4 Traduzindo o resultado
+
+O resultado sai em fração, mas o ENEM pode pedir em decimal ou porcentagem. É a mesma coisa vestida de roupa diferente:
+
+**porcentagem = (n(A)) / (n()) × 100**
+
+- **porcentagem** = o valor da probabilidade em "por cento".
+- A fração é o valor puro; **×100** só muda a unidade.
+
+3/8 = 0,375 = 37,5%. **Truque de prova**: se as alternativas estão em fração, não perca tempo dividindo. Se estão em porcentagem, divida e multiplique por 100.
+
+### 2.5 Os limites que denunciam erro
+
+**0 ≤ P(A) ≤ 1**
+
+- **0** = evento impossível (tirar 7 num dado de 6 faces).
+- **1** = evento certo (tirar um número menor que 7 num dado de 6 faces).
+
+Se você calculou algo como 5/3 ou 1,4, **errou**. Provavelmente inverteu numerador e denominador. Isso é um autochecagem grátis em toda questão.
+
+### 2.6 A técnica que mais economiza tempo: o evento complementar
+
+Às vezes contar o que você quer é horrível, mas contar o que você **não** quer é fácil. Como só existem dois destinos (acontece ou não acontece), as duas probabilidades somam o bolo inteiro:
+
+**P(A) + P(Ā) = 1**
+
+Isolando:
+
+**P(A) = 1 - P(Ā)**
+
+- **P(A)** = probabilidade do evento acontecer.
+- **P(Ā)** (lê-se "A barra") = probabilidade do evento **não** acontecer, chamado de **evento complementar**.
+- **1** = o total, o "bolo inteiro" (100%).
+
+Exemplo: numa locadora com 120 carros, 16 são vermelhos e o cliente **odeia** vermelho. Em vez de contar todas as outras cores, faça: P(vermelho) = 16/120. Logo P(não vermelho) = 1 − 16/120 = 104/120.
+
+**Gatilho de leitura**: sempre que aparecer "**pelo menos um**", "**no mínimo um**" ou "**nenhum**", pense imediatamente em complementar. Calcular "pelo menos um acerto" direto exige somar vários casos; calcular "nenhum acerto" e subtrair de 1 é uma conta só.
+
+### 2.7 Contando o espaço amostral: o Princípio Multiplicativo
+
+Muitas questões não te dão o total pronto; você precisa **calcular** n(Ω). A regra: se uma escolha tem várias etapas independentes, **multiplique** as possibilidades de cada etapa.
+
+**n() = n₁ × n₂ × n₃ × … × n_k**
+
+- **n(Ω)** = total de resultados possíveis.
+- **n₁, n₂, …, n_k** = número de opções disponíveis em cada etapa da escolha.
+- **k** = quantidade de etapas.
+
+Exemplo: uma senha de 2 dígitos, algarismos de 0 a 9, **podendo repetir**: 10 × 10 = 100 senhas. Se os dígitos precisam ser **distintos**: a primeira casa tem 10 opções, a segunda só 9 (uma já foi usada) → 10 × 9 = 90 senhas. A chance de acertar de primeira é 1/90.
+
+Repare como a palavrinha "**distintos**" mudou o denominador. Isso é um clássico da prova.
+
+### 2.8 Dois eventos: "E" versus "OU"
+
+**Quando a questão pede que duas coisas aconteçam juntas ("E"), multiplique:**
+
+**P(A B) = P(A) × P(B)**
+
+- **P(A ∩ B)** = probabilidade de A **e** B acontecerem (o símbolo ∩ significa "interseção", os dois juntos).
+- **P(A)** = probabilidade do primeiro evento.
+- **P(B)** = probabilidade do segundo evento.
+
+Atenção: isso só vale se os eventos forem **independentes**, ou seja, um não afeta o outro (dois lançamentos de moeda, dois semáforos separados).
+
+Se o primeiro evento **muda** o cenário do segundo (retirar uma bola e **não devolver**), use:
+
+**P(A B) = P(A) × P(B|A)**
+
+- **P(B|A)** = probabilidade de B acontecer **sabendo que A já aconteceu** (chamada probabilidade condicional).
+
+Exemplo prático: urna com 3 bolas pretas e 3 brancas. Tirar duas pretas seguidas **sem reposição**: a primeira é 3/6; agora sobraram 5 bolas, sendo 2 pretas, então a segunda é 2/5. Resultado: 3/6 × 2/5 = 6/30 = 1/5.
+
+**Trap clássica do INEP**: o aluno faz 3/6 × 3/6 e erra. A frase "**sem reposição**" ou "**sucessivamente**" obriga você a diminuir tanto o numerador quanto o denominador na segunda etapa.
+
+**Quando a questão pede que uma coisa OU outra aconteça, some:**
+
+**P(A B) = P(A) + P(B) - P(A B)**
+
+- **P(A ∪ B)** = probabilidade de acontecer A **ou** B (o símbolo ∪ significa "união", pelo menos um dos dois).
+- **P(A) + P(B)** = a soma direta das duas.
+- **− P(A ∩ B)** = você **desconta** o pedaço que pertence aos dois ao mesmo tempo, porque senão ele seria contado duas vezes.
+
+Se os eventos são **mutuamente exclusivos** (não podem acontecer juntos, como "sair cara" e "sair coroa" no mesmo lançamento), então P(A ∩ B) = 0 e a fórmula vira simplesmente:
+
+**P(A B) = P(A) + P(B)**
+
+Exemplo do desconto: rifa de 1 a 100, evento "número maior que 40 **ou** número par". Existem 60 números maiores que 40 e 50 pares, mas 30 números são as duas coisas (42, 44, …, 100). Então P = 60/100 + 50/100 − 30/100 = 80/100 = 80%. Quem esquece de subtrair marca 110% e não percebe que passou de 1.
+
+### 2.9 Os padrões de armadilha do INEP
+
+**Numerador e denominador trocados.** A alternativa com a fração invertida está sempre lá esperando. Confira: o denominador é o **total**, sempre o maior número.
+
+**Distratores "quase certos".** Se o total são 120 carros e 16 são vermelhos, as alternativas trazem 16/120 (o que você **não** quer), 104/120 (o correto) e variações. O erro não é de conta, é de **leitura de qual evento foi pedido**.
+
+**Trocar "E" por "OU".** Multiplicar quando devia somar, ou vice-versa. Diagnóstico rápido: se as duas coisas precisam acontecer na mesma jogada, multiplique; se basta uma das duas, some.
+
+**Ignorar "sem reposição".** Já detalhado acima. Circule essa expressão no enunciado.
+
+**Confundir "distintos" com "podem repetir"** na contagem do espaço amostral.
+
+**Excesso de texto.** O ENEM enche a questão de contexto irrelevante (regras de um jogo, história da empresa). Sua tarefa é achar duas coisas: **quantos casos me interessam** e **quantos casos existem**. O resto é ruído.
+
+---
+
+## Tópicos-Chave para Revisão
+
+<div className="topico">
+
+Probabilidade é uma **fração de contagem**: **P(A) = n(A)/n(Ω)**, em que **n(A)** são os **casos favoráveis** (o que eu quero) e **n(Ω)** é o **espaço amostral** (tudo o que pode acontecer). A fórmula só é válida quando os resultados são **equiprováveis**, condição que o enunciado sinaliza com as palavras "aleatoriamente" ou "ao acaso". Para converter o resultado, use **porcentagem = [n(A)/n(Ω)] × 100**.
+
+Todo resultado obedece a **0 ≤ P(A) ≤ 1**. Esse é seu **teste de sanidade**: valor maior que 1 significa fração invertida ou soma sem descontar interseção.
+
+O **evento complementar** é o atalho de ouro: **P(A) + P(Ā) = 1**, logo **P(A) = 1 − P(Ā)**. Os gatilhos que exigem essa ferramenta são "**pelo menos um**", "**no mínimo**" e "**nenhum**" — contar o oposto é sempre mais rápido do que somar todos os casos favoráveis.
+
+Quando o total não vem pronto, monte-o pelo **princípio multiplicativo**: **n(Ω) = n₁ × n₂ × … × n_k**, multiplicando as opções de cada etapa. A palavra "**distintos**" reduz uma opção a cada etapa seguinte (10 × 9 em vez de 10 × 10).
+
+Para dois eventos simultâneos ("**E**"), multiplique: **P(A ∩ B) = P(A) × P(B)** se forem **independentes**, e **P(A ∩ B) = P(A) × P(B|A)** se houver **dependência**, caso das retiradas **sem reposição**, em que numerador e denominador encolhem juntos na segunda etapa.
+
+Para eventos alternativos ("**OU**"), some descontando a sobreposição: **P(A ∪ B) = P(A) + P(B) − P(A ∩ B)**. Se os eventos forem **mutuamente exclusivos**, a interseção vale zero e sobra **P(A ∪ B) = P(A) + P(B)**.
+
+As **armadilhas recorrentes do INEP** são a **fração invertida**, o distrator que responde ao **evento complementar em vez do pedido**, a troca entre **soma e produto**, o esquecimento do "**sem reposição**" e a confusão entre elementos **distintos** e **repetíveis**. Em todas elas, o erro é de **interpretação do enunciado**, não de cálculo.
+
+---
+
+</div>
+
+## Teste de Fogo
+
+*Questões sem gabarito — resolva primeiro, depois confira com o professor ou com a IA.*
+
+**Questão 1 — (Enem PPL 2019)**
+
+Uma locadora possui disponíveis 120 veículos da categoria que um cliente pretende locar. Desses, 20% são da cor branca, 40% são da cor cinza, 16 veículos são da cor vermelha e o restante, de outras cores. O cliente não gosta da cor vermelha e ficaria contente com qualquer outra cor, mas o sistema de controle disponibiliza os veículos sem levar em conta a escolha da cor pelo cliente.
+
+Disponibilizando aleatoriamente, qual é a probabilidade de o cliente ficar contente com a cor do veículo?
+
+A) 16/120
+B) 32/120
+C) 72/120
+D) 101/120
+E) 104/120
+
+---
+
+**Questão 2 — (Enem PPL 2021)**
+
+A senha de um cofre é uma sequência formada por oito dígitos, que são algarismos escolhidos de 0 a 9. Ao inseri-la, o usuário se esqueceu dos dois últimos dígitos que formam essa senha, lembrando somente que esses dígitos são distintos.
+
+Digitando ao acaso os dois dígitos esquecidos, a probabilidade de que o usuário acerte a senha na primeira tentativa é
+
+A) 2/8
+B) 1/90
+C) 2/90
+D) 1/100
+E) 2/100
+
+---
+
+**Questão 3 — (Enem Digital 2020)**
+
+Um apostador deve escolher uma entre cinco moedas ao acaso e lançá-la sobre uma mesa, tentando acertar qual resultado (cara ou coroa) sairá na face superior da moeda.
+
+Suponha que as cinco moedas que ele pode escolher sejam diferentes:
+
+• duas delas têm "cara" nas duas faces;
+• uma delas tem "coroa" nas duas faces;
+• duas delas são normais (cara em uma face e coroa na outra).
+
+Nesse jogo, qual é a probabilidade de o apostador obter uma face "cara" no lado superior da moeda lançada por ele?
+
+A) 1/8
+B) 2/5
+C) 3/5
+D) 3/4
+E) 4/5
+
+---
+
+**Questão 4 — (Enem PPL 2022)**
+
+Sete países americanos — Argentina, Brasil, Canadá, Chile, Estados Unidos, Paraguai e Uruguai — e sete países europeus — Portugal, Espanha, França, Inglaterra, Itália, Alemanha e Suíça — decidem criar uma comissão com representantes de oito desses países, objetivando criar políticas de incentivo e regulação do turismo entre eles. Na hipótese de criação da comissão, serão escolhidos aleatoriamente quatro representantes de países das Américas e quatro representantes de países europeus, não podendo estar na comissão dois representantes de um mesmo país.
+
+Qual é a probabilidade de o Brasil e a França pertencerem a essa comissão?
+
+A) 1/182
+B) 1/49
+C) 1/4
+D) 1/13
+E) 16/49
+
+---
+
+**Questão 5 — (Enem 2018)**
+
+Para ganhar um prêmio, uma pessoa deverá retirar, sucessivamente e sem reposição, duas bolas pretas de uma mesma urna.
+
+Inicialmente, as quantidades e cores das bolas são como descritas a seguir:
+
+• Urna A – Possui três bolas brancas, duas bolas pretas e uma bola verde;
+• Urna B – Possui seis bolas brancas, três bolas pretas e uma bola verde;
+• Urna C – Possui duas bolas pretas e duas bolas verdes;
+• Urna D – Possui três bolas brancas e três bolas pretas.
+
+A pessoa deve escolher uma entre as cinco opções apresentadas:
+
+• Opção 1 – Retirar, aleatoriamente, duas bolas da urna A;
+• Opção 2 – Retirar, aleatoriamente, duas bolas da urna B;
+• Opção 3 – Passar, aleatoriamente, uma bola da urna C para a urna A; após isso, retirar, aleatoriamente, duas bolas da urna A;
+• Opção 4 – Passar, aleatoriamente, uma bola da urna D para a urna C; após isso, retirar, aleatoriamente, duas bolas da urna C;
+• Opção 5 – Passar, aleatoriamente, uma bola da urna C para a urna D; após isso, retirar, aleatoriamente, duas bolas da urna D.
+
+Com o objetivo de obter a maior probabilidade possível de ganhar o prêmio, a pessoa deve escolher a opção:
+
+A) 1
+B) 2
+C) 3
+D) 4
+E) 5

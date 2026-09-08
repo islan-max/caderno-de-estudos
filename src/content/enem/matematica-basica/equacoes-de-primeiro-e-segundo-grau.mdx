@@ -1,0 +1,168 @@
+---
+title: "Equações de Primeiro e Segundo Grau"
+subject: "Matemática Básica"
+order: 3
+relevance: >
+  Equações são frases matemáticas com uma incógnita (uma letra, geralmente x, que representa um valor
+  desconhecido). Resolver uma equação é descobrir qual número faz aquela frase ser verdadeira. Esse é,
+  sem exagero, o assunto mais transversal da prova. O ENEM quase nunca cobra "resolva a equação 2x + 3
+  = 7" isoladamente — ele esconde a equação dentro de um problema do cotidiano (preço de um serviço,
+  lucro de uma empresa, formato de um terreno, altura de uma construção) e espera que você monte a
+  equação sozinho antes de resolvê-la.
+quickSummary: >
+  A equação do 1º grau tem a forma ax + b = 0, com a ≠ 0. Ela representa qualquer situação de
+  proporção direta e constante: um custo fixo somado a um custo por unidade, uma cobrança por hora, um
+  valor que cresce sempre na mesma taxa. Para resolver, isole os termos com x de um lado e os números
+  do outro, sempre fazendo a mesma operação nos dois lados da "balança".
+---
+
+## Aula Teórica Completa
+
+### Analogia inicial: a equação como uma balança
+
+Imagine uma balança de dois pratos, perfeitamente equilibrada. Tudo o que está escrito à esquerda do sinal de igual (=) pesa exatamente o mesmo que está à direita. Se você tira ou adiciona algo de um lado, precisa fazer a mesma coisa do outro lado para a balança continuar equilibrada. Essa é a regra de ouro para resolver qualquer equação: **o que você faz de um lado, tem que fazer do outro**.
+
+### Parte A — Equação do 1º grau
+
+Uma equação do 1º grau é aquela em que a incógnita aparece apenas com expoente 1 (sem x², sem raiz de x). A forma geral é:
+
+**ax + b = 0**
+
+Aqui: **a** é o coeficiente que multiplica x (a ≠ 0, senão x desaparece), **b** é o termo independente (o número "solto"), **x** é a incógnita que queremos descobrir.
+
+Passo a passo para resolver, usando o exemplo 3x + 6 = 21:
+
+1. Isole os termos com x de um lado e os números do outro: 3x = 21 − 6
+2. Simplifique: 3x = 15
+3. Divida os dois lados pelo coeficiente de x: x = 15/3 = 5
+
+O grande desafio do ENEM aqui não é resolver a equação — é **montar** ela a partir de um texto. Para isso, você precisa traduzir palavras em símbolos:
+
+| Frase em português | Tradução matemática |
+|---|---|
+| "o dobro de um número" | 2x |
+| "um valor fixo mais um valor por unidade" | b + a·x |
+| "a soma é igual a" | ... + ... = |
+| "no mínimo" / "pelo menos" | ≥ |
+| "no máximo" | ≤ |
+
+Muitas questões do ENEM, na verdade, pedem uma **inequação** (desigualdade) em vez de uma igualdade exata — "para que a empresa Y cobre no máximo tanto quanto a empresa X". A lógica de montagem é idêntica à da equação; só no final você trabalha com ≤, ≥, &lt; ou > em vez de =.
+
+### Parte B — Equação do 2º grau
+
+Uma equação do 2º grau é aquela em que a incógnita aparece elevada ao quadrado. A forma geral é:
+
+**ax² + bx + c = 0**
+
+Aqui: **a** é o coeficiente do termo x² (a ≠ 0, senão a equação deixa de ser de 2º grau), **b** é o coeficiente do termo x, **c** é o termo independente.
+
+**Método 1 — Fórmula de Bhaskara** (o mais usado e mais seguro)
+
+Primeiro calculamos o **discriminante**:
+
+**Δ = b² − 4ac**
+
+O Δ (delta) nos diz quantas soluções reais a equação tem: se Δ > 0, duas raízes reais diferentes; se Δ = 0, uma única raiz (raiz dupla); se Δ &lt; 0, nenhuma raiz real.
+
+Depois, aplicamos a fórmula de Bhaskara:
+
+**x = (−b ± √Δ) / (2a)**
+
+Aqui: **x** são as duas raízes possíveis (uma usando + e outra usando −), **b** é o mesmo coeficiente de bx com o sinal trocado, **Δ** é o discriminante calculado acima, **a** é o coeficiente de x², multiplicado por 2 no denominador.
+
+Exemplo: x² − 4x + 3 = 0. Aqui a=1, b=−4, c=3.
+Δ = (−4)² − 4(1)(3) = 16 − 12 = 4
+x = (4 ± √4) / 2 = (4 ± 2) / 2 → x = 3 ou x = 1
+
+**Método 2 — Soma e Produto** (mais rápido quando as raízes são "bonitas")
+
+Se você já sabe que a soma das raízes é −b/a e o produto das raízes é c/a, pode simplesmente pensar em dois números que somados e multiplicados deem esses resultados. No exemplo acima: soma = 4, produto = 3 → os números são 3 e 1. Bate com o resultado da fórmula.
+
+**Aplicação central no ENEM: a parábola e o vértice**
+
+Toda equação do 2º grau está associada a uma parábola (y = ax² + bx + c). Isso é ouro para o ENEM porque muitas questões pedem o **valor máximo ou mínimo** de uma situação (lucro máximo, altura máxima, área máxima). Esse ponto é o **vértice** da parábola, calculado por:
+
+**xV = −b / (2a)** e **yV = −Δ / (4a)**
+
+Aqui: **xV** é o valor de x onde ocorre o máximo/mínimo, **yV** é o valor máximo (se a&lt;0, parábola "de boca para baixo") ou mínimo (se a>0) da função, **b, a e Δ** são os mesmos coeficientes e discriminante de antes.
+
+### Armadilhas típicas do INEP neste tema
+
+O INEP adora testar se você sabe **montar** a equação a partir do texto — o erro mais comum não é de cálculo, é de interpretação (por exemplo, trocar "área" por "perímetro", ou esquecer de multiplicar preço por quantidade para achar receita). Outro erro clássico é confundir a pergunta: a questão pode pedir o valor de x, mas o "valor final" pedido é y (ex: pedem a altura H, que é o valor da função, não a raiz da equação). Fique atento também a **intervalos** — muitas questões de 1º grau viram inequações disfarçadas de equações, e a resposta certa é um intervalo de valores, não um único número.
+
+## Tópicos-Chave para Revisão
+
+<div className="topico">
+
+A **equação do 1º grau** tem a forma **ax + b = 0**, com a ≠ 0. Ela representa qualquer situação de proporção direta e constante: um custo fixo somado a um custo por unidade, uma cobrança por hora, um valor que cresce sempre na mesma taxa. Para resolver, isole os termos com x de um lado e os números do outro, sempre fazendo a mesma operação nos dois lados da "balança". No ENEM, o desafio real é traduzir o enunciado (valor fixo + valor variável, "no mínimo", "no máximo") para a linguagem matemática antes mesmo de calcular.
+
+A **equação do 2º grau** tem a forma **ax² + bx + c = 0**, com a ≠ 0. O **discriminante Δ = b² − 4ac** informa quantas soluções reais existem (duas se Δ>0, uma se Δ=0, nenhuma se Δ&lt;0). A **fórmula de Bhaskara, x = (−b ± √Δ) / (2a)**, resolve qualquer equação desse tipo. Quando as raízes são números "redondos", o **método da soma e produto** (soma = −b/a, produto = c/a) é mais rápido.
+
+O **vértice da parábola**, dado por **xV = −b/(2a)** e **yV = −Δ/(4a)**, é a chave das questões de "máximo" ou "mínimo": lucro máximo, altura máxima, receita máxima. Sempre que o enunciado pedir o "melhor" valor de alguma grandeza modelada por uma função quadrática, pense automaticamente no vértice.
+
+Problemas de **contexto financeiro e comercial** (preço × quantidade = receita, custo fixo + custo variável) são o cenário favorito do ENEM para aplicar tanto equações do 1º quanto do 2º grau — muitas vezes a mesma situação (preço de um produto) pode gerar uma equação linear (custo) ou quadrática (receita = preço × quantidade vendida, quando a quantidade também depende do preço).
+
+Fique atento à diferença entre **resolver uma equação** (encontrar x) e **encontrar um intervalo** (quando o enunciado usa "no mínimo", "no máximo", "não pode ultrapassar") — nesses casos, a equação vira inequação e a resposta é uma faixa de valores, não um número isolado.
+
+</div>
+
+## Teste de Fogo
+
+*Questões sem gabarito — resolva primeiro, depois confira com o professor ou com a IA.*
+
+**Questão 1 (ENEM PPL 2020)**
+Provedores de conteúdos postam anúncios de empresas em seus websites. O provedor A cobra R$ 0,10 por clique feito no anúncio, além do pagamento de uma taxa de contratação de R$ 50,00. O provedor B cobra uma taxa de contratação por anúncio mais atrativa, no valor de R$ 20,00, mais um valor por clique feito no anúncio. Para um anúncio que receberá 100 cliques, o provedor B fixará uma proposta com um valor a ser cobrado por clique, de modo que venha a receber, pelo menos, o mesmo total que receberia o provedor A. O gerente do provedor B deve avaliar os valores por clique a serem fixados.
+
+O valor mínimo que o gerente do provedor B deverá escolher é
+
+a) R$ 0,11
+b) R$ 0,14
+c) R$ 0,30
+d) R$ 0,40
+e) R$ 0,41
+
+**Questão 2 (ENEM PPL 2023)**
+Duas empresas do mercado de pequenos reparos domésticos determinam o valor de seus serviços a partir de um valor fixo acrescido de um valor cobrado por hora. A empresa X cobra R$ 60,00 de valor fixo mais R$ 18,00 por hora de serviço prestado. A empresa Y cobra R$ 24,00 de valor fixo e está definindo um novo valor a ser cobrado por hora. Sua estratégia de mercado prevê que, em relação à empresa X, o custo total do serviço deve ser menor ou igual para trabalhos de até duas horas de duração.
+
+Qual é o valor máximo, em real, que a empresa Y poderá cobrar por hora de serviço prestado a fim de atender à sua estratégia de mercado?
+
+a) 18
+b) 36
+c) 48
+d) 54
+e) 78
+
+**Questão 3 (ENEM Digital 2020)**
+Uma empresa de chocolates consultou o gerente de produção e verificou que existem cinco tipos diferentes de barras de chocolate que podem ser produzidas, com os seguintes preços no mercado: Barra I: R$ 2,00; Barra II: R$ 3,50; Barra III: R$ 4,00; Barra IV: R$ 7,00; Barra V: R$ 8,00. Analisando as tendências do mercado, que incluem a quantidade vendida e a procura pelos consumidores, o gerente de vendas da empresa verificou que o lucro L com a venda de barras de chocolate é expresso pela função L(x) = −x² + 14x − 45, em que x representa o preço da barra de chocolate. A empresa decide investir na fabricação da barra de chocolate cujo preço praticado no mercado renderá o maior lucro.
+
+Nessas condições, a empresa deverá investir na produção da barra
+
+a) I
+b) II
+c) III
+d) IV
+e) V
+
+**Questão 4 (ENEM 2017)**
+A Igreja de São Francisco de Assis, obra arquitetônica modernista de Oscar Niemeyer, localizada na Lagoa da Pampulha, em Belo Horizonte, possui abóbadas parabólicas. A entrada principal da capela tem o formato de uma parábola com concavidade voltada para baixo, que toca o solo em dois pontos simétricos, distantes 10 metros um do outro (isto é, 5 metros para cada lado do eixo central). Considerando um sistema de coordenadas em que o solo é o eixo x e o eixo de simetria da parábola é o eixo y, essa parábola passa também pelo ponto (4, 3) — ou seja, a 4 metros do centro, a altura da abóbada é de 3 metros.
+
+Qual a medida da altura H, em metro, indicada no eixo de simetria (ponto mais alto da abóbada)?
+
+a) 16/3
+b) 31/5
+c) 25/4
+d) 25/3
+e) 75/2
+
+*(Observação: reconstruí os dados numéricos da figura original — que não posso reproduzir por ser protegida por direitos autorais — de forma equivalente, preservando a geometria e os valores usados na resolução oficial.)*
+
+**Questão 5 (ENEM 2015)**
+Uma padaria vende, em média, 100 pães especiais por dia e arrecada com essas vendas, em média, R$ 300,00. Constatou-se que a quantidade de pães especiais vendidos diariamente aumenta, caso o preço seja reduzido, de acordo com a equação q = 400 − 100p, na qual q representa a quantidade de pães especiais vendidos diariamente e p, o seu preço em reais. A fim de aumentar o fluxo de clientes, o gerente da padaria decidiu fazer uma promoção. Para tanto, modificará o preço do pão especial de modo que a quantidade a ser vendida diariamente seja a maior possível, sem diminuir a média de arrecadação diária na venda desse produto.
+
+O preço p, em reais, do pão especial nessa promoção deverá estar no intervalo
+
+a) R$ 0,50 ≤ p &lt; R$ 1,50
+b) R$ 1,50 ≤ p &lt; R$ 2,50
+c) R$ 2,50 ≤ p &lt; R$ 3,50
+d) R$ 3,50 ≤ p &lt; R$ 4,50
+e) R$ 4,50 ≤ p &lt; R$ 5,50

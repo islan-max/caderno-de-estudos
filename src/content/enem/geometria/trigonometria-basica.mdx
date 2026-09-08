@@ -1,0 +1,274 @@
+---
+title: "Trigonometria Básica"
+subject: "Geometria"
+order: 5
+relevance: >
+  Trigonometria básica é a ferramenta que permite descobrir distâncias e alturas impossíveis de medir
+  com trena usando apenas um ângulo e uma medida conhecida. Altura de um prédio, distância de um barco
+  até a praia, inclinação de uma rampa, altura de um balão. No ENEM aparecem tipicamente 2 a 4
+  questões por prova, quase sempre disfarçadas: o enunciado fala de arquitetura, engenharia, navegação
+  ou astronomia, e cabe a você enxergar o triângulo retângulo escondido na figura. ---
+quickSummary: >
+  O triângulo retângulo tem um ângulo de 90°, e o lado de frente para ele é a hipotenusa, sempre o
+  maior. Os outros dois lados são os catetos. Em relação a um ângulo agudo θ escolhido, o cateto que
+  encosta nele é o adjacente e o que fica de frente é o oposto. Trocar de ângulo troca os papéis de
+  oposto e adjacente, mas nunca muda a hipotenusa.
+---
+
+## Aula Teórica Completa
+
+### 2.1. O terreno de jogo: o triângulo retângulo
+
+Um triângulo retângulo é um triângulo que tem **um ângulo de exatamente 90°** (o "canto de quadrado", indicado por um quadradinho na figura).
+
+Ele tem três lados com nomes específicos:
+
+**Hipotenusa** — o lado que fica *de frente* para o ângulo de 90°. É sempre o **maior lado** do triângulo. Pense nela como a "rampa", a "escada encostada", a "linha de visão".
+
+**Catetos** — os dois lados que *formam* o ângulo de 90°. São os lados "encostados" no cantinho reto.
+
+Repare que os dois ângulos que não são o de 90° são sempre **agudos** (menores que 90°), e a soma deles dá exatamente 90°, porque a soma dos três ângulos de qualquer triângulo é 180°.
+
+### 2.2. A parte que mais derruba gente: oposto vs. adjacente
+
+Os catetos não têm nome fixo. O nome deles **depende de qual ângulo você está olhando**. Isso é a fonte número 1 de erro.
+
+Escolha um dos ângulos agudos. Chame ele de θ (theta). Então:
+
+**Cateto oposto a θ** — é o cateto que está *do outro lado*, que não toca o ângulo θ. Faça o teste: coloque o dedo no vértice do ângulo θ. O lado que o seu dedo *não* está tocando (e que não é a hipotenusa) é o oposto.
+
+**Cateto adjacente a θ** — é o cateto que *encosta* no ângulo θ. "Adjacente" quer dizer "vizinho", "grudado".
+
+Analogia: imagine que você está parado no vértice do ângulo θ, olhando para dentro do triângulo. O cateto adjacente é o chão embaixo dos seus pés. O cateto oposto é a parede lá na frente. A hipotenusa é a sua linha de visão até o topo da parede.
+
+Se você trocar de ângulo (for para o outro vértice agudo), **chão e parede trocam de papel**. Oposto vira adjacente e vice-versa. A hipotenusa nunca muda.
+
+### 2.3. Por que as razões funcionam (a intuição da semelhança)
+
+Imagine uma rampa de 30° de inclinação. Agora imagine uma rampa gigante, também de 30°. Elas têm tamanhos diferentes, mas o **formato é o mesmo** — uma é a foto ampliada da outra.
+
+Quando você amplia uma figura, os lados crescem todos na mesma proporção. Então, se você dividir "altura ÷ rampa" na pequena e na gigante, **dá o mesmo número**. A divisão cancela o tamanho e sobra só o formato.
+
+Conclusão poderosa: essa razão **só depende do ângulo**. É por isso que existe uma tabela fixa de valores. O ângulo de 30° tem "seno 1/2" em qualquer triângulo retângulo do universo.
+
+### 2.4. As três razões
+
+**Seno:**
+
+**sen θ = cateto opostohipotenusa**
+
+Onde: θ = o ângulo agudo escolhido; cateto oposto = o lado que não toca θ; hipotenusa = o lado de frente para os 90°.
+
+**Cosseno:**
+
+**θ = cateto adjacentehipotenusa**
+
+Onde: θ = o ângulo agudo escolhido; cateto adjacente = o lado que encosta em θ; hipotenusa = o maior lado.
+
+**Tangente:**
+
+**tg θ = cateto opostocateto adjacente**
+
+Onde: θ = o ângulo agudo escolhido; cateto oposto = lado de frente para θ; cateto adjacente = lado que encosta em θ. Repare: **a tangente não usa a hipotenusa**.
+
+Macete de memorização — **SOH-CAH-TOA**:
+- **S**eno = **O**posto sobre **H**ipotenusa
+- **C**osseno = **A**djacente sobre **H**ipotenusa
+- **T**angente = **O**posto sobre **A**djacente
+
+### 2.5. Como escolher qual razão usar (o método de 4 passos)
+
+Este é o algoritmo que resolve 90% das questões do ENEM:
+
+**Passo 1** — Desenhe (ou identifique na figura) o triângulo retângulo. Se a figura mostra um prédio e uma sombra, o triângulo é: prédio (vertical) + sombra (horizontal) + linha de visão (diagonal).
+
+**Passo 2** — Marque o ângulo que o enunciado deu.
+
+**Passo 3** — Nomeie os três lados *em relação àquele ângulo*: quem é oposto, quem é adjacente, quem é hipotenusa.
+
+**Passo 4** — Veja quais dois lados aparecem no problema (um que você conhece + um que você quer descobrir) e escolha a razão que conecta exatamente esses dois:
+- Oposto e hipotenusa → **seno**
+- Adjacente e hipotenusa → **cosseno**
+- Oposto e adjacente → **tangente**
+
+Exemplo concreto: uma escada de 10 m encostada na parede formando 60° com o chão. Qual altura ela alcança?
+A escada é a hipotenusa (10 m). A altura na parede é o cateto oposto aos 60°. Oposto + hipotenusa → seno.
+sen 60° = altura / 10 → altura = 10 × (√3/2) = 5√3 ≈ 8,65 m.
+
+### 2.6. Os ângulos notáveis (decorar é obrigatório)
+
+| θ | sen θ | cos θ | tg θ |
+|---|---|---|---|
+| 30° | 1/2 | √3/2 | √3/3 |
+| 45° | √2/2 | √2/2 | 1 |
+| 60° | √3/2 | 1/2 | √3 |
+
+Como memorizar sem decorar bruto: nos senos, escreva 1/2, √2/2, √3/2 na ordem crescente (30°, 45°, 60°). Os cossenos são a **mesma lista de trás para frente**. A tangente é sempre seno dividido por cosseno.
+
+Valores aproximados úteis: √2 ≈ 1,41; √3 ≈ 1,73; então tg 30° ≈ 0,58 e tg 60° ≈ 1,73.
+
+Repare no 45°: seno e cosseno são iguais, e a tangente vale exatamente 1. Isso faz sentido, porque num triângulo de 45° os dois catetos têm o mesmo tamanho.
+
+### 2.7. As três relações que fecham o assunto
+
+**Relação fundamental:**
+
+**sen²θ + ²θ = 1**
+
+Onde: sen²θ significa (sen θ) elevado ao quadrado; cos²θ significa (cos θ) ao quadrado; θ = qualquer ângulo. Serve para: você sabe o seno e quer o cosseno (ou vice-versa) sem saber o ângulo.
+
+**Relação da tangente:**
+
+**tg θ = sen θθ**
+
+Onde: sen θ = seno do ângulo; cos θ = cosseno do ângulo. Válida sempre que cos θ ≠ 0.
+
+**Ângulos complementares:**
+
+**sen α = (90° - α)**
+
+Onde: α = um dos ângulos agudos; (90° − α) = o outro ângulo agudo do mesmo triângulo. Ou seja, o seno de um é o cosseno do outro — faz sentido, porque o oposto de um é o adjacente do outro.
+
+### 2.8. Teorema de Pitágoras (o irmão mais velho)
+
+**a² = b² + c²**
+
+Onde: a = hipotenusa; b = um cateto; c = o outro cateto.
+
+Use quando o problema dá **dois lados e pede o terceiro**, sem nenhum ângulo envolvido. Se o problema envolve ângulo, use trigonometria.
+
+### 2.9. Quando o triângulo NÃO é retângulo
+
+Aparece com menos frequência, mas cai.
+
+**Lei dos senos:**
+
+**asen A = bsen B = csen C**
+
+Onde: a, b, c = medidas dos lados; A, B, C = os ângulos **opostos** a esses lados respectivamente (o ângulo A fica de frente para o lado a). Use quando você conhece dois ângulos e um lado, ou dois lados e o ângulo oposto a um deles.
+
+**Lei dos cossenos:**
+
+**a² = b² + c² - 2 · b · c · A**
+
+Onde: a = lado que você quer descobrir; b e c = os dois lados conhecidos; A = o ângulo **entre** b e c. Use quando conhece dois lados e o ângulo formado entre eles. Repare: se A = 90°, cos 90° = 0 e a fórmula vira Pitágoras.
+
+### 2.10. Armadilhas do INEP
+
+**Trocar oposto por adjacente.** A pegadinha clássica. O gabarito errado é sempre o resultado de ter usado cosseno onde era seno. Antídoto: sempre marque o ângulo *antes* de nomear os lados.
+
+**Ângulo medido a partir da vertical, não da horizontal.** Questões de arquitetura e de raios solares frequentemente dizem "faz 30° com a posição a pino" ou "15° com a vertical". Isso inverte quem é oposto e quem é adjacente. Leia a preposição com atenção: *com a vertical* ≠ *com o solo*.
+
+**Dado extra inútil.** O enunciado fornece seno, cosseno e tangente do ângulo, mas você só precisa de um. Não force o uso dos três.
+
+**Confundir a distância pedida.** "Menor distância até o ponto P" quase nunca é o lado do triângulo — é a **perpendicular** (a altura). Você precisa de um passo a mais depois de achar o lado.
+
+**Unidade e aproximação.** O enunciado manda usar √3 = 1,7 ou tg 15° = 0,26. Use exatamente o valor dado, senão o resultado cai fora do intervalo das alternativas.
+
+**Ângulo de elevação vs. ângulo de depressão.** Elevação é medido de baixo para cima a partir da horizontal; depressão, de cima para baixo. Numericamente são iguais (ângulos alternos internos), mas mudam onde fica o triângulo.
+
+---
+
+## Tópicos-Chave para Revisão
+
+<div className="topico">
+
+O triângulo retângulo tem um **ângulo de 90°**, e o lado de frente para ele é a **hipotenusa**, sempre o maior. Os outros dois lados são os **catetos**. Em relação a um ângulo agudo θ escolhido, o cateto que **encosta** nele é o **adjacente** e o que fica **de frente** é o **oposto**. Trocar de ângulo troca os papéis de oposto e adjacente, mas nunca muda a hipotenusa.
+
+As razões são constantes para cada ângulo porque triângulos **semelhantes** (mesmo formato, tamanhos diferentes) têm lados proporcionais, e a divisão cancela a escala. Daí as três definições: **sen θ = cateto oposto / hipotenusa**, **cos θ = cateto adjacente / hipotenusa** e **tg θ = cateto oposto / cateto adjacente**. Mnemônico **SOH-CAH-TOA**. A tangente é a única que **não usa a hipotenusa**.
+
+A escolha da razão sai do par de lados envolvidos: **oposto + hipotenusa → seno**; **adjacente + hipotenusa → cosseno**; **oposto + adjacente → tangente**. O método é sempre: achar o triângulo, marcar o ângulo, nomear os lados, escolher a razão.
+
+Os **ângulos notáveis** precisam estar na memória: **sen 30° = 1/2, cos 30° = √3/2, tg 30° = √3/3**; **sen 45° = √2/2, cos 45° = √2/2, tg 45° = 1**; **sen 60° = √3/2, cos 60° = 1/2, tg 60° = √3**. Aproximações: **√2 ≈ 1,41** e **√3 ≈ 1,73**.
+
+As relações auxiliares são a **fundamental, sen²θ + cos²θ = 1**, que converte seno em cosseno sem saber o ângulo; a **relação da tangente, tg θ = sen θ / cos θ**; e a dos **complementares, sen α = cos(90° − α)**, que vale porque o oposto de um ângulo agudo é o adjacente do outro.
+
+Quando não há ângulo no problema, mas há dois lados conhecidos, use **Pitágoras: a² = b² + c²**, com **a = hipotenusa** e **b, c = catetos**.
+
+Se o triângulo **não for retângulo**, use a **lei dos senos, a/sen A = b/sen B = c/sen C**, com cada letra minúscula sendo o lado oposto ao ângulo maiúsculo correspondente; ou a **lei dos cossenos, a² = b² + c² − 2·b·c·cos A**, quando você tem **dois lados e o ângulo entre eles**.
+
+As armadilhas do INEP concentram-se em **inverter oposto e adjacente**, em ângulos medidos **a partir da vertical** em vez da horizontal, em pedir a **menor distância** (que é a perpendicular, não o lado), e em fornecer **valores aproximados obrigatórios** que precisam ser usados exatamente como dados.
+
+---
+
+</div>
+
+## Teste de Fogo
+
+*Questões sem gabarito — resolva primeiro, depois confira com o professor ou com a IA.*
+
+As figuras originais são protegidas por direito autoral, então reconstruí os esquemas com os dados numéricos embutidos. Use este painel junto com os enunciados abaixo.
+
+**Questão 1 — (ENEM 2017)**
+
+Raios de luz solar estão atingindo a superfície de um lago formando um ângulo x com a sua superfície.
+
+Em determinadas condições, pode-se supor que a intensidade luminosa desses raios, na superfície do lago, seja dada aproximadamente por I(x) = k · sen(x), sendo k uma constante, e supondo-se que x está entre 0° e 90°.
+
+Quando x = 30°, a intensidade luminosa se reduz a qual percentual de seu valor máximo?
+
+A) 33%
+B) 50%
+C) 57%
+D) 70%
+E) 86%
+
+---
+
+**Questão 2 — (ENEM 2010)**
+
+Um balão atmosférico, lançado em Bauru (343 quilômetros a Noroeste de São Paulo), na noite do último domingo, caiu nesta segunda-feira em Cuiabá Paulista, na região de Presidente Prudente, assustando agricultores da região. O artefato faz parte do programa Projeto Hibiscus, desenvolvido por Brasil, França, Argentina, Inglaterra e Itália, para a medição do comportamento da camada de ozônio, e sua descida se deu após o cumprimento do tempo previsto de medição.
+
+Na data do acontecido, duas pessoas avistaram o balão. Uma estava a 1,8 km da posição vertical do balão e o avistou sob um ângulo de 60°; a outra estava a 5,5 km da posição vertical do balão, alinhada com a primeira, e no mesmo sentido, e o avistou sob um ângulo de 30°.
+
+Qual a altura aproximada em que se encontrava o balão?
+
+A) 1,8 km
+B) 1,9 km
+C) 3,1 km
+D) 3,7 km
+E) 5,5 km
+
+---
+
+**Questão 3 — (ENEM 2013)**
+
+As torres Puerta de Europa são duas torres inclinadas uma contra a outra, construídas numa avenida de Madri, na Espanha. A inclinação das torres é de 15° com a vertical e elas têm, cada uma, uma altura de 114 m (a altura é indicada na figura como o segmento AB). Estas torres são um bom exemplo de um prisma oblíquo de base quadrada.
+
+Utilizando 0,26 como valor aproximado para a tangente de 15° e duas casas decimais nas operações, descobre-se que a área da base desse prédio ocupa na avenida um espaço
+
+A) menor que 100 m²
+B) entre 100 m² e 300 m²
+C) entre 300 m² e 500 m²
+D) entre 500 m² e 700 m²
+E) maior que 700 m²
+
+---
+
+**Questão 4 — (ENEM 2011)**
+
+Para determinar a distância de um barco até a praia, um navegante utilizou o seguinte procedimento: a partir de um ponto A, mediu o ângulo visual α fazendo mira em um ponto fixo P da praia. Mantendo o barco no mesmo sentido, ele seguiu até um ponto B de modo que fosse possível ver o mesmo ponto P da praia, no entanto sob um ângulo visual 2α.
+
+Suponha que o navegante tenha medido o ângulo α = 30° e ao chegar ao ponto B, verificou que o barco havia percorrido a distância AB = 2 000 m. Com base nesses dados e mantendo a mesma trajetória, a menor distância do barco até o ponto fixo P será
+
+A) 1 000 m
+B) 1 000√3 m
+C) (2 000√3)/3 m
+D) 2 000 m
+E) 2 000√3 m
+
+---
+
+**Questão 5 — (ENEM 2020)**
+
+Pergolado é o nome que se dá a um tipo de cobertura projetada por arquitetos, comumente em praças e jardins, para criar um ambiente para pessoas ou plantas, no qual há uma quebra da quantidade de luz, dependendo da posição do sol. É feito como um estrado de vigas iguais, postas paralelas e perfeitamente em fila.
+
+Um arquiteto projeta um pergolado com vãos de 30 cm de distância entre suas vigas, de modo que, no solstício de verão, a trajetória do sol durante o dia seja realizada num plano perpendicular à direção das vigas, e que o sol da tarde, no momento em que seus raios fizerem 30° com a posição a pino, gere a metade da luz que passa no pergolado ao meio-dia.
+
+Para atender à proposta do projeto elaborado pelo arquiteto, as vigas do pergolado devem ser construídas de maneira que a altura, em centímetro, seja a mais próxima possível de
+
+A) 9
+B) 15
+C) 26
+D) 52
+E) 60

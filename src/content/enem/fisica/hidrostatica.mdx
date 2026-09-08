@@ -1,0 +1,164 @@
+---
+title: "Hidrostática"
+subject: "Física"
+order: 7
+relevance: >
+  Hidrostática estuda fluidos (líquidos e gases) parados, em equilíbrio. É um dos temas mais
+  recorrentes de Física no ENEM — aparece quase todo ano, geralmente em 1 a 2 questões. O ENEM adora
+  contextualizar: mergulhadores, navios, seringas, canudinhos, torneiras, elevadores de carro.
+  Raramente pede a fórmula pura; ele testa se você entende por que o fenômeno acontece.
+quickSummary: >
+  Pressão é força dividida por área (P = F/A); a mesma força pode gerar pressões bem diferentes
+  dependendo de quão espalhada ela está — essa é a base para entender por que uma agulha fina fura e
+  uma superfície larga não.
+---
+
+## Aula Teórica Completa
+
+**Pressão — a ideia central**
+
+Pressão é força espalhada sobre uma área. A fórmula:
+
+P = F / A
+
+- P = pressão (Pascal, Pa)
+- F = força aplicada perpendicularmente (Newton, N)
+- A = área sobre a qual a força age (m²)
+
+Imagine pisar na neve com uma bota normal versus com um esqui. A força (seu peso) é a mesma, mas o esqui espalha essa força numa área maior, então a pressão em cada ponto da neve é menor — você não afunda. Isso já mostra a lógica que o ENEM cobra: pressão depende de força E área, nunca só uma das duas.
+
+**Pressão hidrostática — quanto mais fundo, mais pressão**
+
+Dentro de um líquido, existe uma pressão extra causada pelo peso do próprio líquido acima do ponto que você está analisando. Fórmula (Lei de Stevin):
+
+P = ρ · g · h
+
+- P = pressão hidrostática (Pa)
+- ρ (rô) = densidade do líquido (kg/m³)
+- g = aceleração da gravidade (m/s²)
+- h = altura (profundidade) da coluna de líquido acima do ponto (m)
+
+Detalhe crucial: essa pressão **não depende do formato do recipiente**, nem da quantidade total de líquido. Só depende de três coisas: densidade do líquido, gravidade e profundidade. Um copo fino e uma piscina, na mesma profundidade h e com a mesma água, têm exatamente a mesma pressão hidrostática naquele ponto.
+
+**Pressão total — somando a atmosfera**
+
+Se o líquido está exposto ao ar (como um copo aberto, uma piscina, o mar), o ar também empurra a superfície do líquido com a pressão atmosférica. Então a pressão total num ponto dentro do líquido é:
+
+P_total = P_atm + ρ · g · h
+
+- P_atm = pressão atmosférica (aproximadamente 10⁵ Pa ao nível do mar)
+
+Isso aparece direto em questões de mergulhadores e tubulações.
+
+**Princípio de Pascal — a base dos elevadores hidráulicos**
+
+Se você aumenta a pressão em qualquer ponto de um fluido fechado (dentro de um recipiente confinado), esse aumento se transmite **integralmente** para todos os pontos do fluido e para as paredes do recipiente.
+
+Isso é o que permite o elevador hidráulico e o macaco de carro: você aplica uma força pequena numa área pequena, e como a pressão se transmite igual para o outro lado (que tem área grande), a força que sai do outro lado é muito maior.
+
+F₁ / A₁ = F₂ / A₂
+
+- F₁ = força aplicada no pistão pequeno
+- A₁ = área do pistão pequeno
+- F₂ = força resultante no pistão grande
+- A₂ = área do pistão grande
+
+Pense assim: a pressão (F/A) é igual dos dois lados, então se a área do lado 2 é 5 vezes maior que a do lado 1, a força no lado 2 também será 5 vezes maior. Você "multiplica" a força trocando por deslocamento — não ganha energia de graça, é só uma troca de força por distância percorrida (mas o ENEM raramente cobra esse detalhe de trabalho, foca na relação de forças).
+
+**Princípio de Arquimedes — empuxo e flutuação**
+
+Todo corpo mergulhado (total ou parcialmente) num fluido recebe uma força para cima chamada empuxo, igual ao peso do fluido que esse corpo deslocou.
+
+E = ρ_fluido · V_deslocado · g
+
+- E = empuxo (N)
+- ρ_fluido = densidade do fluido (não do corpo!)
+- V_deslocado = volume de fluido deslocado (igual ao volume da parte submersa do corpo)
+- g = aceleração da gravidade
+
+**Condição de flutuação:**
+- Se o corpo flutua em equilíbrio (parado, boiando), o empuxo é exatamente igual ao peso do corpo: E = P.
+- Se o peso for maior que o empuxo máximo possível, o corpo afunda.
+
+Armadilha clássica: pensar que "objeto pesado sempre afunda". Errado — um navio petroleiro pesa milhares de toneladas e flutua, porque o que importa é a **densidade média** do conjunto (casco + ar interno) comparada à densidade da água, não o peso absoluto.
+
+## Tópicos-Chave para Revisão
+
+<div className="topico">
+
+Pressão é força dividida por área (P = F/A); a mesma força pode gerar pressões bem diferentes dependendo de quão espalhada ela está — essa é a base para entender por que uma agulha fina fura e uma superfície larga não.
+
+A pressão hidrostática (P = ρ·g·h) cresce com a profundidade e depende apenas de densidade do líquido, gravidade e altura da coluna — nunca do formato ou volume total do recipiente. Essa independência do formato é um dos erros mais cobrados pelo ENEM.
+
+Quando o líquido está em contato com a atmosfera, some a pressão atmosférica à pressão hidrostática para achar a pressão total num ponto (P_total = P_atm + ρgh); questões de mergulhador e tubulação dependem disso.
+
+O Princípio de Pascal (F₁/A₁ = F₂/A₂) explica como elevadores hidráulicos e macacos de carro multiplicam força: a pressão aplicada se transmite igual em todo o fluido confinado, e como a área do êmbolo maior é maior, a força de saída também é maior, na mesma proporção da razão entre as áreas.
+
+O Princípio de Arquimedes (E = ρ_fluido·V_deslocado·g) diz que o empuxo depende da densidade do **fluido** e do volume **deslocado**, nunca da densidade ou do peso do corpo diretamente; um corpo flutua quando consegue deslocar fluido suficiente para que o empuxo se iguale ao seu peso, o que explica por que objetos pesados como navios flutuam.
+
+Cuidado com confundir massa, peso, densidade e volume nas alternativas: o ENEM adora criar distratores que trocam "peso do corpo" por "peso do fluido deslocado", ou "volume do corpo" por "volume submerso" — a diferença entre essas grandezas é frequentemente o que decide a questão.
+
+</div>
+
+## Teste de Fogo
+
+*Questões sem gabarito — resolva primeiro, depois confira com o professor ou com a IA.*
+
+**Questão 1 (ENEM 2018)**
+
+Talvez você já tenha bebido suco usando dois canudinhos iguais. Entretanto, pode-se verificar que, se colocar um canudo imerso no suco e outro do lado de fora do líquido, fazendo a sucção simultaneamente em ambos, você terá dificuldade em bebê-lo. Essa dificuldade ocorre porque o(a)
+
+A) força necessária para a sucção do ar e do suco simultaneamente dobra de valor.
+B) densidade do ar é menor que a do suco, portanto, o volume de ar aspirado é muito maior que o volume de suco.
+C) velocidade com que o suco sobe deve ser constante nos dois canudos, o que é impossível com um dos canudos de fora.
+D) peso da coluna de suco é consideravelmente maior que o peso da coluna de ar, o que dificulta a sucção do líquido.
+E) pressão no interior da boca assume praticamente o mesmo valor daquela que atua sobre o suco.
+
+**Questão 2 (ENEM PPL 2016)**
+
+Um navio petroleiro é capaz de transportar milhares de toneladas de carga. Neste caso, uma grande quantidade de massa consegue flutuar. Nesta situação, o empuxo é
+
+A) maior que a força peso do petroleiro.
+B) igual à força peso do petroleiro.
+C) maior que a força peso da água deslocada.
+D) igual à força peso do volume submerso do navio.
+E) igual à massa da água deslocada.
+
+**Questão 3 (ENEM PPL 2010)**
+
+Um brinquedo chamado ludião consiste em um pequeno frasco de vidro, parcialmente preenchido com água, que é emborcado (virado com a boca para baixo) dentro de uma garrafa PET cheia de água e tampada. Nessa situação, o frasco fica na parte superior da garrafa, conforme mostra a FIGURA 1. Quando a garrafa é pressionada, o frasco se desloca para baixo, como mostrado na FIGURA 2.
+
+*(Figura 1: frasco de vidro invertido flutuando no topo da garrafa PET fechada, cheia de água. Figura 2: mesma garrafa sendo apertada pelas laterais por uma mão, com o frasco agora afundado próximo ao fundo.)*
+
+Ao apertar a garrafa, o movimento de descida do frasco ocorre porque
+
+A) diminui a força para baixo que a água aplica no frasco.
+B) aumenta a pressão na parte pressionada da garrafa.
+C) aumenta a quantidade de água que fica dentro do frasco.
+D) diminui a força de resistência da água sobre o frasco.
+E) diminui a pressão que a água aplica na base do frasco.
+
+**Questão 4 (ENEM PPL 2015)**
+
+No manual de uma torneira elétrica são fornecidas instruções básicas de instalação para que o produto funcione corretamente:
+- Se a torneira for conectada à caixa-d'água domiciliar, a pressão da água na entrada da torneira deve ser no mínimo 18 kPa e no máximo 38 kPa.
+- Para pressões da água entre 38 kPa e 75 kPa ou água proveniente diretamente da rede pública, é necessário utilizar o redutor de pressão que acompanha o produto.
+- Essa torneira elétrica pode ser instalada em um prédio ou em uma casa.
+
+Considere a massa específica da água 1 000 kg/m³ e a aceleração da gravidade 10 m/s². Para que a torneira funcione corretamente, sem o uso do redutor de pressão, quais deverão ser a mínima e a máxima altura entre a torneira e a caixa-d'água?
+
+A) 1,8 m e 3,8 m
+B) 1,8 m e 7,5 m
+C) 3,8 m e 7,5 m
+D) 18 m e 38 m
+E) 18 m e 75 m
+
+**Questão 5 (ENEM 2013)**
+
+Para oferecer acessibilidade aos portadores de dificuldade de locomoção, é utilizado, em ônibus e automóveis, o elevador hidráulico. Nesse dispositivo é usada uma bomba elétrica, para forçar um fluido a passar de uma tubulação estreita para outra mais larga, e dessa forma acionar um pistão que movimenta a plataforma. Considere um elevador hidráulico cuja área da cabeça do pistão seja cinco vezes maior do que a área da tubulação que sai da bomba. Desprezando o atrito e considerando uma aceleração gravitacional de 10 m/s², deseja-se elevar uma pessoa de 65 kg em uma cadeira de rodas de 15 kg sobre a plataforma de 20 kg. Qual deve ser a força exercida pelo motor da bomba sobre o fluido, para que o cadeirante seja elevado com velocidade constante?
+
+A) 20 N
+B) 100 N
+C) 200 N
+D) 1 000 N
+E) 5 000 N

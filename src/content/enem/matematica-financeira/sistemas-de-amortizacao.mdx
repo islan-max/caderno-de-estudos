@@ -1,0 +1,135 @@
+---
+title: "Sistemas de Amortização"
+subject: "Matemática Financeira"
+order: 4
+relevance: >
+  Sistemas de amortização descrevem como uma dívida (financiamento, empréstimo) é paga ao longo do
+  tempo. O ENEM não costuma pedir para você decorar nomes de sistemas (SAC, Price, SAM, Sistema
+  Alemão) — ele testa se você entende a lógica interna: como o saldo devedor, a amortização e os juros
+  se relacionam mês a mês. É um dos temas mais recorrentes de Matemática Financeira, aparecendo quase
+  todo ano, geralmente em questões de nível médio a difícil, envolvendo interpretação de enunciado +
+  uma conta de juros compostos ou uma progressão.
+quickSummary: >
+  O saldo devedor é o valor que falta pagar da dívida. A cada prestação, ele diminui exatamente pela
+  parte de amortização daquela prestação — não pelo valor total da prestação. Todo cálculo de
+  amortização começa identificando: qual é o saldo antes do pagamento, quanto dele é juro, e quanto é
+  abatimento real da dívida.
+---
+
+## Aula Teórica Completa
+
+**A ideia central:** toda vez que você paga uma prestação de um financiamento, esse valor pago se divide em duas partes:
+
+**Prestação = Amortização + Juros**
+
+- **Amortização**: a parte que realmente diminui a dívida (o "abatimento" do saldo devedor).
+- **Juros**: a parte que é o "aluguel do dinheiro", cobrada sobre o saldo devedor que ainda falta pagar.
+
+O **saldo devedor** é quanto você ainda deve ao banco. Ele diminui a cada mês, exatamente na quantidade que foi amortizada naquele mês.
+
+**Sistema de Amortização Constante (SAC):**
+Aqui, a amortização é **sempre o mesmo valor**, todo mês. Como o saldo devedor vai diminuindo, e os juros incidem sobre esse saldo (que fica menor), os juros diminuem mês a mês. Logo, a prestação (amortização fixa + juros decrescentes) também diminui ao longo do tempo. A prestação começa alta e termina baixa.
+
+Fórmula da amortização constante:
+**A = (V) / (n)**
+onde $V$ = valor total financiado, $n$ = número de parcelas. Esse $A$ é fixo todo mês.
+
+A prestação do mês $k$ é:
+**P_k = A + J_k**
+onde J_k = juros do mês $k$, calculados como i × Saldo devedor antes do pagamento, sendo $i$ a taxa de juros mensal.
+
+**Sistema Price (ou Sistema Francês):**
+Aqui é o contrário: a **prestação é sempre igual** (fixa), do início ao fim. Só que, internamente, a composição muda: no começo, a maior parte da prestação é juros (porque o saldo devedor ainda é alto) e pouco é amortização. Perto do fim, a maior parte já é amortização (o saldo é pequeno, então os juros são pequenos), e a amortização cresce.
+
+Fórmula da prestação fixa no sistema Price:
+**P = (V · i · (1+i)^n) / ((1+i)^n - 1)**
+onde: $V$ = valor financiado, $i$ = taxa de juros mensal (em decimal), $n$ = número de parcelas, $P$ = valor da prestação fixa.
+
+**Comparação SAC x Price (armadilha clássica do ENEM):**
+Para o mesmo valor financiado, mesma taxa e mesmo prazo, o **SAC sempre gera menos juros totais pagos** que o Price. Isso porque no SAC o saldo devedor "some" mais rápido no início (amortização constante desde o primeiro mês), reduzindo a base sobre a qual os juros incidem. No Price, o saldo devedor demora mais para cair, porque no início quase tudo que você paga é juro.
+
+**Padrão de como o ENEM cobra isso:**
+- Dá o enunciado com uma regra de cálculo (ex: "a prestação é R$ 500 + 1% do saldo devedor") e pede o valor de uma prestação específica → você precisa simular mês a mês (é basicamente SAC disfarçado, sem usar o nome).
+- Dá um gráfico do saldo devedor crescendo (dívida não paga) e pede para identificar se o crescimento é linear (juros simples) ou exponencial (juros compostos).
+- Pede a taxa de juros embutida em um financiamento parcelado, exigindo montar uma equação de valor presente (trazer parcelas futuras para "hoje" e igualar ao preço à vista).
+- Usa a fórmula de prestação fixa do Price com logaritmo, para achar o número de parcelas.
+
+**Armadilha mais comum:** confundir "aumento percentual total" com "taxa de juros mensal". Se uma loja aumenta o preço em 20% para parcelar em 3x, isso **não** significa que a taxa mensal é 20% ÷ 3. Como há entrada (parte já é paga no ato da compra), o valor efetivamente emprestado é menor que o preço total, e a taxa real de juros compostos é sempre maior do que essa divisão simples sugere.
+
+## Tópicos-Chave para Revisão
+
+<div className="topico">
+
+O saldo devedor é o valor que falta pagar da dívida. A cada prestação, ele diminui exatamente pela parte de **amortização** daquela prestação — não pelo valor total da prestação. Todo cálculo de amortização começa identificando: qual é o saldo antes do pagamento, quanto dele é juro, e quanto é abatimento real da dívida.
+
+No **SAC**, a amortização $A = V/n$ é fixa todo mês. Os juros incidem sobre o saldo devedor decrescente, então os juros caem mês a mês, e a prestação (amortização fixa + juros decrescentes) também cai ao longo do tempo — começa alta, termina baixa.
+
+No **Price**, a prestação P = (V · i · (1+i)^n) / ((1+i)^n - 1) é fixa do início ao fim. Internamente, a proporção muda: juros altos e amortização baixa no começo, invertendo gradualmente até o fim do contrato.
+
+Comparando os dois sistemas nas mesmas condições (mesmo valor, taxa e prazo), o SAC sempre resulta em menos juros pagos no total, porque o saldo devedor cai mais rápido logo nas primeiras parcelas.
+
+A armadilha mais frequente é achar que uma taxa de acréscimo total (ex: 20% sobre o valor à vista, dividido em parcelas) equivale à taxa de juros mensal composta. Quando existe uma entrada (parcela paga no ato), o valor real financiado é menor que o preço total, e resolver corretamente exige montar uma equação de valor presente — trazer cada parcela futura a valor de hoje usando (1+i)^-t e igualar ao valor à vista.
+
+Gráficos de saldo devedor que crescem de forma não linear (curva, não reta) indicam capitalização composta — os juros incidem sobre um saldo que já inclui juros anteriores, tornando a parcela mensal de juros variável (crescente), não constante.
+
+</div>
+
+## Teste de Fogo
+
+*Questões sem gabarito — resolva primeiro, depois confira com o professor ou com a IA.*
+
+**Questão 1 (ENEM 2015):**
+Um casal realiza um financiamento imobiliário de R$ 180.000,00, a ser pago em 360 prestações mensais, com taxa de juros efetiva de 1% ao mês. A primeira prestação é paga um mês após a liberação dos recursos e o valor da prestação mensal é de R$ 500,00 mais juro de 1% sobre o saldo devedor (valor devido antes do pagamento). Observe que, a cada pagamento, o saldo devedor se reduz em R$ 500,00 e considere que não há prestação em atraso.
+
+Efetuando o pagamento dessa forma, o valor, em reais, a ser pago ao banco na décima prestação é de:
+A) 2.075,00
+B) 2.093,00
+C) 2.138,00
+D) 2.255,00
+E) 2.300,00
+
+**Questão 2 (ENEM 2019):**
+Uma pessoa se interessou em adquirir um produto anunciado em uma loja. Negociou com o gerente e conseguiu comprá-lo a uma taxa de juros compostos de 1% ao mês. O primeiro pagamento será um mês após a aquisição do produto, e no valor de R$ 202,00. O segundo pagamento será efetuado um mês após o primeiro, e terá o valor de R$ 204,02. Para concretizar a compra, o gerente emitirá uma nota fiscal com o valor do produto à vista negociado com o cliente, correspondendo ao financiamento aprovado.
+
+O valor à vista, em real, que deverá constar na nota fiscal é de:
+A) 398,02
+B) 400,00
+C) 401,94
+D) 404,00
+E) 406,02
+
+**Questão 3 (ENEM 2023):**
+Uma loja vende seus produtos de duas formas: à vista ou financiado em três parcelas mensais iguais. Para definir o valor dessas parcelas nas vendas financiadas, a loja aumenta em 20% o valor do produto à vista e divide esse novo valor por 3. A primeira parcela deve ser paga no ato da compra, e as duas últimas, em 30 e 60 dias após a compra. Um cliente da loja decidiu comprar, de forma financiada, um produto cujo valor à vista é R$ 1.500,00. Utilize 5,29 como aproximação para √28.
+
+A taxa mensal de juros compostos praticada nesse financiamento é de:
+A) 6,7%
+B) 10%
+C) 20%
+D) 21,5%
+E) 23,3%
+
+**Questão 4 (ENEM PPL 2013):**
+Um trabalhador possui um cartão de crédito que, em determinado mês, apresenta o saldo devedor a pagar no vencimento do cartão, mas não contém parcelamentos a acrescentar em futuras faturas. Nesse mesmo mês, o trabalhador é demitido. Durante o período de desemprego, o trabalhador deixa de utilizar o cartão de crédito e também não tem como pagar as faturas, nem a atual nem as próximas, mesmo sabendo que, a cada mês, incidirão taxas de juros e encargos por conta do não pagamento da dívida. Ao conseguir um novo emprego, já completados 6 meses de não pagamento das faturas, o trabalhador procura renegociar sua dívida.
+
+*(Descrição do gráfico, já que a imagem original não pode ser reproduzida: o gráfico mostra o saldo devedor no eixo vertical e o tempo em meses no eixo horizontal. O saldo devedor parte de R$ 500,00 no mês 0, e a curva sobe de forma não linear — cada vez mais inclinada — terminando, no mês 6, em um valor visivelmente acima de R$ 885,78.)*
+
+Com base no gráfico, podemos constatar que o saldo devedor inicial, a parcela mensal de juros e a taxa de juros são:
+A) R$ 500,00; constante e inferior a 10% ao mês.
+B) R$ 560,00; variável e inferior a 10% ao mês.
+C) R$ 500,00; variável e superior a 10% ao mês.
+D) R$ 560,00; constante e superior a 10% ao mês.
+E) R$ 500,00; variável e inferior a 10% ao mês.
+
+**Questão 5 (ENEM 2017):**
+Para realizar a viagem dos sonhos, uma pessoa precisava fazer um empréstimo no valor de R$ 5.000,00. Para pagar as prestações, dispõe de, no máximo, R$ 400,00 mensais. Para esse valor de empréstimo, o valor da prestação (P) é calculado em função do número de prestações (n) segundo a fórmula:
+
+**P = 65 · (1,013)^n(1,013)^n - 1**
+
+Se necessário, utilize 0,005 como aproximação para log 1,013; 2,602 como aproximação para log 400; 2,525 como aproximação para log 335.
+
+De acordo com a fórmula dada, o menor número de parcelas cujos valores não comprometem o limite definido pela pessoa é:
+A) 12
+B) 14
+C) 15
+D) 16
+E) 17

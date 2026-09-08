@@ -1,0 +1,283 @@
+---
+title: "Análise Combinatória"
+subject: "Estatística e Probabilidade"
+order: 2
+relevance: >
+  Análise combinatória é a arte de contar sem contar um por um. Em vez de listar todas as
+  possibilidades e depois somar, você descobre um atalho matemático que dá o total direto. No ENEM, o
+  tema aparece em todas as provas desde 2009, geralmente com 1 a 3 questões, quase sempre junto com
+  Probabilidade (porque para calcular probabilidade você precisa contar casos). A dificuldade quase
+  nunca está na conta — ela é simples. Está na interpretação: descobrir se a ordem importa, se pode
+  repetir, e se o enunciado quer o número final ou apenas a expressão. ---
+quickSummary: >
+  O Princípio Fundamental da Contagem é a base de tudo: quando uma tarefa é dividida em etapas
+  encadeadas, o total é o produto das opções de cada etapa, ou seja, N = m₁ · m₂ · m₃ · … · m_k. A
+  palavra "E" sinaliza multiplicação; a palavra "OU" exclusiva sinaliza o princípio aditivo, que é
+  soma.
+---
+
+## Aula Teórica Completa
+
+### 2.1 O ponto de partida: o Princípio Fundamental da Contagem (PFC)
+
+Imagine que você vai se vestir. Tem **3 calças** e **4 camisetas**. Quantos looks diferentes?
+
+Pense assim: para **cada** calça escolhida, você ainda tem 4 camisetas disponíveis. Então:
+
+- Calça 1 → 4 looks
+- Calça 2 → 4 looks
+- Calça 3 → 4 looks
+
+Total: 4 + 4 + 4 = 12. Ou, mais rápido: **3 × 4 = 12**.
+
+Essa é a ideia inteira. Quando uma tarefa é feita em **etapas encadeadas**, você multiplica o número de opções de cada etapa.
+
+**Fórmula do PFC:**
+
+**N = m₁ · m₂ · m₃ · … · m_k**
+
+Onde:
+- **N** = número total de possibilidades
+- **m₁** = número de opções na 1ª etapa
+- **m₂** = número de opções na 2ª etapa
+- **m₃** = número de opções na 3ª etapa
+- **m_k** = número de opções na última etapa (a k-ésima)
+
+### 2.2 O sinal secreto: "E" multiplica, "OU" soma
+
+Esse é o detector que resolve metade das questões.
+
+- Se a tarefa exige fazer uma coisa **E** outra (uma calça **e** uma camiseta) → **multiplica**.
+- Se a tarefa oferece uma coisa **OU** outra, sem poder fazer as duas (viajar de ônibus **ou** de avião) → **soma**.
+
+**Princípio Aditivo:** se há 5 ônibus e 3 aviões para a mesma viagem, existem 5 + 3 = 8 formas de viajar. Você não vai de ônibus *e* de avião ao mesmo tempo.
+
+### 2.3 Repetição: pode ou não pode?
+
+Essa é a segunda pergunta obrigatória.
+
+**Caso 1 — pode repetir.** Uma senha de 3 dígitos (0 a 9), podendo repetir:
+- 1ª posição: 10 opções
+- 2ª posição: 10 opções (o dígito usado voltou para o "estoque")
+- 3ª posição: 10 opções
+
+Total: 10 × 10 × 10 = **1000**.
+
+**Caso 2 — não pode repetir.** Mesma senha, mas com **algarismos distintos**:
+- 1ª posição: 10 opções
+- 2ª posição: 9 opções (uma já foi gasta)
+- 3ª posição: 8 opções
+
+Total: 10 × 9 × 8 = **720**.
+
+Perceba: quando não pode repetir, o número **cai de um em um**. Essa única palavra ("distintos") muda a resposta inteira. O INEP adora esconder essa palavra no meio do texto.
+
+### 2.4 Fatorial: a ferramenta de compressão
+
+Quando você multiplica um número por todos os seus antecessores até o 1, isso tem um nome: **fatorial**, escrito com um ponto de exclamação.
+
+**n! = n · (n-1) · (n-2) · … · 2 · 1**
+
+Onde:
+- **n** = o número inteiro positivo de partida
+- **n!** = o produto dele por todos os inteiros menores até 1
+
+Exemplos: 5! = 5·4·3·2·1 = 120. 3! = 3·2·1 = 6. 
+
+Regra que parece estranha mas é convenção obrigatória: **0! = 1** e **1! = 1**.
+
+**Truque de simplificação (essencial para o ENEM):** você não precisa calcular fatoriais gigantes. Note que 10! = 10 · 9 · 8!. Então:
+
+**(10!) / (8!) = (10 · 9 · 8!) / (8!) = 10 · 9 = 90**
+
+Sempre "abra" o fatorial maior até encontrar o menor e corte.
+
+### 2.5 Permutação: embaralhar TODO mundo
+
+Permutação é o caso em que você usa **todos** os elementos e só muda a **ordem** deles.
+
+Quantas filas diferentes 4 pessoas podem formar? 4 opções para o 1º lugar, 3 para o 2º, 2 para o 3º, 1 para o último: 4·3·2·1 = 24. Isso é exatamente 4!.
+
+**P_n = n!**
+
+Onde:
+- **P_n** = número de permutações (ordenações) possíveis
+- **n** = quantidade total de elementos sendo embaralhados
+
+**Palavra-chave no enunciado:** *anagrama*, *fila*, *ordenar*, *sequência com todos*.
+
+**Permutação com elementos repetidos.** E se alguns elementos forem iguais? Na palavra ARARA, trocar um "A" por outro "A" não gera palavra nova. Você precisa **descontar** essas repetições dividindo:
+
+**P_n^α, β, γ = (n!) / (α! · β! · γ!)**
+
+Onde:
+- **n** = número total de letras (ou elementos)
+- **α** (alfa) = quantas vezes o 1º elemento se repete
+- **β** (beta) = quantas vezes o 2º elemento se repete
+- **γ** (gama) = quantas vezes o 3º elemento se repete
+
+Em ARARA: n = 5, com 3 letras A e 2 letras R → 5!/(3!·2!) = 120/12 = **10** anagramas.
+
+### 2.6 A pergunta que decide tudo: a ordem importa?
+
+Aqui está o coração da matéria. Quando você seleciona **parte** de um grupo (p elementos de um total de n), existem dois cenários:
+
+**Cenário A — a ordem MUDA o resultado.** Eleger presidente e vice entre 5 pessoas: "João presidente, Maria vice" é diferente de "Maria presidente, João vice". Isso é **ARRANJO**.
+
+**Cenário B — a ordem NÃO muda nada.** Escolher 2 pessoas para uma dupla de vôlei: "João e Maria" é a mesma dupla que "Maria e João". Isso é **COMBINAÇÃO**.
+
+**Fórmula do Arranjo:**
+
+**A_n,p = (n!) / ((n-p)!)**
+
+Onde:
+- **A_n,p** = número de arranjos (grupos ordenados)
+- **n** = total de elementos disponíveis
+- **p** = quantos elementos serão escolhidos
+- **(n − p)!** = fatorial do que sobrou, que serve para "cortar" a multiplicação no ponto certo
+
+**Fórmula da Combinação:**
+
+**C_n,p = (n!) / (p! · (n-p)!)**
+
+Onde:
+- **C_n,p** = número de combinações (grupos sem ordem)
+- **n** = total de elementos disponíveis
+- **p** = quantos elementos serão escolhidos
+- **p!** = o divisor extra, que elimina as repetições causadas pela troca de ordem
+- **(n − p)!** = fatorial dos elementos não escolhidos
+
+**A relação entre elas:** a combinação é o arranjo dividido por p!. Faz sentido: o arranjo contou cada grupo p! vezes (uma para cada ordem possível), e a combinação corrige isso.
+
+**Teste prático de 3 segundos:** troque dois elementos de posição. Se virou algo diferente → Arranjo. Se continua a mesma coisa → Combinação.
+
+Cargos, senhas, pódios, filas, dígitos → **Arranjo** (ordem importa).
+Comissões, duplas, times, saladas de frutas, apertos de mão → **Combinação** (ordem não importa).
+
+### 2.7 Duas técnicas que o ENEM cobra direto
+
+**Técnica 1 — Complementar ("pelo menos", "não pode").** Quando o enunciado proíbe algo, muitas vezes é mais rápido contar tudo e subtrair o proibido:
+
+**Casos válidos = Total sem restrição - Casos proibidos**
+
+Exemplo real (ENEM 2016): 10 tenistas, 4 canhotos, escolher uma dupla que **não** seja formada por dois canhotos. Resposta: C₁₀,₂ − C₄,₂. Total de duplas menos as duplas de dois canhotos.
+
+**Técnica 2 — "Colar" elementos que devem ficar juntos.** Se o enunciado exige que certos elementos fiquem grudados, trate o bloco como **uma peça só**, permute as peças, e depois permute o miolo do bloco (se a ordem interna puder variar).
+
+### 2.8 Armadilhas do INEP
+
+**Armadilha 1 — Pedir a expressão, não o número.** Muitas questões dão alternativas como "10!/(2!·8!) − 4!/(2!·2!)". Se você calcular tudo e chegar em 39, vai procurar "39" e não achar. **Leia sempre a última linha do enunciado.** Se pede "uma expressão que representa", não calcule.
+
+**Armadilha 2 — Trocar arranjo por combinação.** É o erro mais comum da prova. A alternativa errada existe justamente para quem confundiu. A_n,p sempre dá um número **maior** que C_n,p.
+
+**Armadilha 3 — Esconder a palavra "distintos".** Sem ela, pode repetir. Com ela, os números caem de um em um.
+
+**Armadilha 4 — Contar o zero como opção válida.** Em questões de números/placas, o zero muitas vezes não pode ocupar a primeira posição (não existe número "0247" de 4 algarismos). Isso reduz as opções da primeira etapa de 10 para 9.
+
+**Armadilha 5 — Confundir "e" com "ou".** Alternativas erradas frequentemente somam onde deveria multiplicar, ou vice-versa.
+
+**Armadilha 6 — Dupla contagem em torneios.** "Cada time joga contra todos os outros" com 20 times não é 20 × 19 = 380 (isso conta Flamengo×Vasco e Vasco×Flamengo como jogos diferentes). Em turno único é C₂₀,₂ = 190. Se houver dois turnos (ida e volta), aí sim são 380.
+
+---
+
+## Tópicos-Chave para Revisão
+
+<div className="topico">
+
+O **Princípio Fundamental da Contagem** é a base de tudo: quando uma tarefa é dividida em **etapas encadeadas**, o total é o **produto** das opções de cada etapa, ou seja, **N = m₁ · m₂ · m₃ · … · m_k**. A palavra **"E"** sinaliza multiplicação; a palavra **"OU"** exclusiva sinaliza o **princípio aditivo**, que é soma. Antes de qualquer fórmula, desenhe as **casinhas** das etapas e preencha cada uma com seu número de opções.
+
+A segunda pergunta obrigatória é sobre **repetição**. Se os elementos **podem repetir**, todas as casinhas recebem o mesmo número. Se o enunciado diz **"distintos"**, o número cai de **um em um** a cada casinha, porque o elemento usado sai do estoque. Essa única palavra reescreve a questão inteira.
+
+O **fatorial** comprime essa multiplicação decrescente: **n! = n · (n−1) · (n−2) · … · 2 · 1**, com as convenções **0! = 1** e **1! = 1**. Nunca calcule fatoriais grandes por inteiro: **abra o maior até encontrar o menor e simplifique**, como em 10!/8! = 10 · 9 = 90.
+
+**Permutação** é embaralhar **todos** os elementos, e vale **P_n = n!**. Quando há elementos **repetidos**, é preciso descontar as trocas invisíveis dividindo pelos fatoriais das repetições: **P_n^(α,β,γ) = n! / (α! · β! · γ!)**. As palavras-gatilho são **anagrama**, **fila** e **ordenar**.
+
+Quando você escolhe apenas **parte** do grupo, tudo depende de uma pergunta: **a ordem importa?** Se importa, é **arranjo**, dado por **A_n,p = n! / (n − p)!**, típico de **cargos, senhas, pódios e sequências**. Se não importa, é **combinação**, dada por **C_n,p = n! / [p! · (n − p)!]**, típica de **comissões, duplas, times e seleções**. A relação entre elas é direta: a combinação é o arranjo dividido por **p!**, porque o arranjo contou cada grupo uma vez para cada ordenação possível.
+
+Duas técnicas resolvem os casos difíceis. A **técnica do complementar** vale para enunciados com **"pelo menos"** ou **"não pode"**: conte o **total sem restrição** e **subtraia os casos proibidos**, como em **C₁₀,₂ − C₄,₂**. A **técnica de colar** vale quando elementos devem ficar **juntos**: trate o bloco como **uma peça única**, permute as peças e depois permute o **interior do bloco**.
+
+As armadilhas recorrentes do INEP são: pedir a **expressão** e não o número calculado, oferecer **arranjo como distrator da combinação** (e vice-versa), esconder a palavra **"distintos"**, proibir o **zero na primeira posição** de números, trocar **"e"** por **"ou"**, e induzir à **dupla contagem** em torneios, onde turno único é **C_n,2** e ida-e-volta é **n · (n−1)**.
+
+---
+
+</div>
+
+## Teste de Fogo
+
+*Questões sem gabarito — resolva primeiro, depois confira com o professor ou com a IA.*
+
+**Questão 1 — (ENEM PPL 2019)**
+
+Uma pessoa comprou um aparelho sem fio para transmitir músicas a partir do seu computador para o rádio de seu quarto. Esse aparelho possui quatro chaves seletoras e cada uma pode estar na posição 0 ou 1. Cada escolha das posições dessas chaves corresponde a uma frequência diferente de transmissão.
+
+A quantidade de frequências diferentes que esse aparelho pode transmitir é determinada por
+
+a) 6.
+b) 8.
+c) 12.
+d) 16.
+e) 24.
+
+---
+
+**Questão 2 — (ENEM 2012)**
+
+O diretor de uma escola convidou os 280 alunos de terceiro ano a participarem de uma brincadeira. Suponha que existem 5 objetos e 6 personagens numa casa de 9 cômodos; um dos personagens esconde um dos objetos em um dos cômodos da casa. O objetivo da brincadeira é adivinhar qual objeto foi escondido por qual personagem e em qual cômodo da casa o objeto foi escondido.
+
+Todos os alunos decidiram participar. A cada vez um aluno é sorteado e dá a sua resposta. As respostas devem ser sempre distintas das anteriores, e um mesmo aluno não pode ser sorteado mais de uma vez. Se a resposta do aluno estiver correta, ele é declarado vencedor e a brincadeira é encerrada.
+
+O diretor sabe que algum aluno acertará a resposta porque há
+
+a) 10 alunos a mais do que possíveis respostas distintas.
+b) 20 alunos a mais do que possíveis respostas distintas.
+c) 119 alunos a mais do que possíveis respostas distintas.
+d) 260 alunos a mais do que possíveis respostas distintas.
+e) 270 alunos a mais do que possíveis respostas distintas.
+
+---
+
+**Questão 3 — (ENEM PPL 2020)**
+
+A prefeitura de uma cidade está renovando os canteiros de flores de suas praças. Entre as possíveis variedades que poderiam ser plantadas, foram escolhidas cinco: amor-perfeito, cravina, petúnia, margarida e lírio. Em cada um dos canteiros, todos com composições diferentes, serão utilizadas somente três variedades distintas, não importando como elas serão dispostas.
+
+Um funcionário deve determinar os trios de variedades de flores que irão compor cada canteiro.
+
+De acordo com o disposto, a quantidade de trios possíveis é dada por
+
+a) 5
+b) 5 · 3
+c) 5! / (5 − 3)!
+d) 5! / [(5 − 3)! · 2!]
+e) 5! / [(5 − 3)! · 3!]
+
+---
+
+**Questão 4 — (ENEM PPL 2020)**
+
+Um determinado campeonato de futebol, composto por 20 times, é disputado no sistema de pontos corridos. Nesse sistema, cada time joga contra todos os demais times em dois turnos, isto é, cada time joga duas partidas com cada um dos outros times, sendo que cada jogo pode terminar empatado ou haver um vencedor.
+
+Sabendo-se que, nesse campeonato, ocorreram 126 empates, o número de jogos em que houve ganhador é igual a
+
+a) 64.
+b) 74.
+c) 254.
+d) 274.
+e) 634.
+
+---
+
+**Questão 5 — (ENEM Digital 2020)**
+
+Eduardo deseja criar um e-mail utilizando um anagrama exclusivamente com as sete letras que compõem o seu nome, antes do símbolo @.
+
+O e-mail terá a forma \*\*\*\*\*\*\*@site.com.br e será de tal modo que as três letras "edu" apareçam sempre juntas e exatamente nessa ordem.
+
+Ele sabe que o e-mail eduardo@site.com.br já foi criado por outro usuário e que qualquer outro agrupamento das letras do seu nome forma um e-mail que ainda não foi cadastrado.
+
+De quantas maneiras Eduardo pode criar um e-mail desejado?
+
+a) 59
+b) 60
+c) 118
+d) 119
+e) 120
