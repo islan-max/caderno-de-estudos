@@ -1,148 +1,181 @@
 ---
-title: "Trabalho e Energia: Trabalho Mecânico, Energia Cinética e Potencial"
+title: "Trabalho e Energia"
 subject: "Física"
 order: 3
 relevance: >
-  Trabalho e energia conectam mecânica com situações práticas de engenharia, esportes e geração de
-  energia — um tema que aparece com frequência regular no ENEM, sempre associado às Leis de
-  Newton, já estudadas anteriormente.
+  Energia é a capacidade de realizar transformações, e trabalho é o nome que a Física dá à
+  transferência de energia feita por uma força. Este é, disparado, um dos temas mais cobrados do ENEM
+  em Física: aparece todo ano, muitas vezes em mais de uma questão, porque conecta física com matriz
+  energética brasileira, usinas hidrelétricas e eólicas, eficiência de aparelhos, consumo de energia
+  elétrica em kWh na conta de luz e sustentabilidade. O formato preferido do INEP é o texto-base com
+  dados numéricos simples pedindo potência, rendimento ou energia dissipada, além de questões
+  conceituais sobre conservação e degradação da energia.
 quickSummary: >
-  Trabalho mecânico mede a energia transferida por uma força ao longo de um deslocamento
-  (T = F·d·cosθ). A energia cinética é a energia do movimento (Ec = m·v²/2), e a energia potencial
-  gravitacional é a energia armazenada pela posição de um corpo em relação a uma referência
-  (Ep = m·g·h). A energia mecânica total (Ec + Ep) se conserva na ausência de forças dissipativas.
-resources:
-  conteudoComplementar:
-    conteudo: "Impulso e Momento (Física)"
-    comoAjuda: "Depois de energia, o próximo conceito fundamental da mecânica é o impulso e a quantidade de movimento, usados para analisar colisões e variações bruscas de velocidade."
-questions:
-  - question: >
-      Uma força de 50 N é aplicada, na mesma direção do deslocamento, sobre um corpo que se move
-      4 metros. O trabalho realizado por essa força é de:
-    options:
-      - "12,5 J"
-      - "54 J"
-      - "100 J"
-      - "200 J"
-      - "400 J"
-    correctIndex: 2
-    explanation: >
-      T = F·d·cosθ — T é o trabalho, F a força (50 N), d o deslocamento (4 m), θ o ângulo entre
-      força e deslocamento (0°, pois estão na mesma direção, cos 0° = 1). T = 50 × 4 × 1 = 200 J.
-    source: "Questão autoral, estilo ENEM"
-  - question: >
-      Um corpo de massa 2 kg se move com velocidade de 10 m/s. Sua energia cinética é de:
-    options:
-      - "20 J"
-      - "50 J"
-      - "100 J"
-      - "200 J"
-      - "1000 J"
-    correctIndex: 2
-    explanation: >
-      Ec = m·v²/2 — Ec é a energia cinética, m a massa (2 kg), v a velocidade (10 m/s).
-      Ec = 2 × 10² ÷ 2 = 2 × 100 ÷ 2 = 100 J.
-    source: "Questão autoral, estilo ENEM"
-  - question: >
-      Um objeto de massa 5 kg está a uma altura de 4 metros do solo. Considerando g = 10 m/s², sua
-      energia potencial gravitacional em relação ao solo é de:
-    options:
-      - "20 J"
-      - "50 J"
-      - "100 J"
-      - "200 J"
-      - "500 J"
-    correctIndex: 3
-    explanation: >
-      Ep = m·g·h — Ep é a energia potencial gravitacional, m a massa (5 kg), g a aceleração da
-      gravidade (10 m/s²), h a altura (4 m). Ep = 5 × 10 × 4 = 200 J.
-    source: "Questão autoral, estilo ENEM"
-  - question: >
-      Um corpo cai livremente, sem resistência do ar, de uma certa altura. Ao longo da queda, é
-      correto afirmar que:
-    options:
-      - "A energia mecânica total aumenta continuamente, pois a energia cinética aumenta sem qualquer compensação."
-      - "A energia potencial gravitacional se transforma em energia cinética, mantendo a energia mecânica total aproximadamente constante, na ausência de forças dissipativas como o atrito do ar."
-      - "A energia potencial gravitacional permanece constante durante toda a queda."
-      - "A energia cinética permanece igual a zero durante toda a queda."
-      - "Toda a energia do corpo desaparece ao longo da queda."
-    correctIndex: 1
-    explanation: >
-      Na ausência de forças dissipativas (como resistência do ar), a energia mecânica total
-      (Ec + Ep) se conserva: à medida que a altura diminui (Ep diminui), a velocidade aumenta
-      (Ec aumenta), na mesma proporção.
-    source: "Questão autoral, estilo ENEM"
-  - question: >
-      Uma força é aplicada perpendicularmente à direção do deslocamento de um corpo (ângulo de 90°
-      entre força e deslocamento). Nessas condições, o trabalho realizado por essa força é:
-    options:
-      - "Máximo, igual ao produto F·d."
-      - "Zero, pois cos 90° = 0, independentemente da intensidade da força ou do deslocamento."
-      - "Negativo, sempre que a força for aplicada perpendicularmente."
-      - "Igual à energia cinética do corpo, sempre."
-      - "Impossível de calcular sem informações adicionais."
-    correctIndex: 1
-    explanation: >
-      T = F·d·cosθ, e cos 90° = 0. Portanto, uma força perpendicular ao deslocamento não realiza
-      trabalho algum — essa é uma pegadinha clássica, testada por exemplo na força normal em
-      trajetórias horizontais.
-    source: "Questão autoral, estilo ENEM"
+  Trabalho é a transferência de energia realizada por uma força ao longo de um deslocamento, e a
+  energia total nunca é criada nem destruída — apenas transformada de uma forma em outra.
 ---
 
 ## Aula Teórica Completa
 
-Trabalho e energia são conceitos centrais da mecânica que conectam **força**, **deslocamento** e a
-capacidade de um corpo realizar transformações — seja se movendo, seja mudando de posição.
+**O que é trabalho.** No dia a dia, "trabalho" é esforço. Na Física, o significado é bem mais estreito: trabalho é a **energia transferida por uma força quando ela desloca um corpo**. Sem deslocamento, não há trabalho, por mais cansativo que seja o esforço. Segurar uma mochila parada no ombro por dez minutos é exaustivo, mas o trabalho realizado pela força que a segura é exatamente zero, porque a mochila não se deslocou.
 
-### Trabalho mecânico: quando uma força "trabalha"
+Quando a força tem a mesma direção e o mesmo sentido do deslocamento, a conta é simples:
 
-O **trabalho mecânico** mede a energia transferida por uma força ao longo de um deslocamento. A
-fórmula é **T = F·d·cosθ**, onde **T** é o trabalho realizado (em Joules, J), **F** é a intensidade
-da força aplicada (em Newtons), **d** é o deslocamento do corpo (em metros) e **θ** é o ângulo
-entre a direção da força e a direção do deslocamento. Quando a força tem a mesma direção do
-deslocamento (θ = 0°), o trabalho é máximo. Quando a força é **perpendicular** ao deslocamento
-(θ = 90°), o trabalho é **zero**, porque cos 90° = 0 — mesmo que a força tenha grande intensidade.
+trabalho = força × deslocamento, ou W = F · d
 
-### Energia cinética: a energia do movimento
+A unidade de trabalho é o joule (J): 1 joule é o trabalho de uma força de 1 newton que desloca o corpo por 1 metro. Como trabalho é energia transferida, energia também se mede em joules.
 
-A **energia cinética** é a energia associada ao movimento de um corpo. Sua fórmula é
-**Ec = m·v²/2**, onde **Ec** é a energia cinética (em Joules), **m** é a massa do corpo (em
-quilogramas) e **v** é a velocidade (em metros por segundo). Note que a velocidade aparece ao
-quadrado: dobrar a velocidade **quadruplica** a energia cinética, não apenas dobra.
+**Quando o trabalho é nulo ou negativo.** Três casos precisam ficar claros, porque o ENEM cobra cada um deles.
 
-### Energia potencial gravitacional: a energia da posição
+O trabalho é **positivo** (chamado de motor) quando a força aponta no mesmo sentido do deslocamento. Ela está *entregando* energia ao corpo, que tende a ganhar velocidade. É o caso da força do motor sobre o carro que arranca.
 
-A **energia potencial gravitacional** é a energia armazenada por um corpo devido à sua posição em
-relação a uma referência (geralmente o solo). Sua fórmula é **Ep = m·g·h**, onde **Ep** é a energia
-potencial (em Joules), **m** é a massa (em quilogramas), **g** é a aceleração da gravidade
-(aproximadamente 10 m/s² na Terra, para fins de cálculo no ENEM) e **h** é a altura em relação à
-referência (em metros).
+O trabalho é **negativo** (resistente) quando a força aponta no sentido contrário ao deslocamento. Ela está *retirando* energia do corpo. É o caso do atrito, sempre, e o caso da força peso enquanto o corpo sobe.
 
-### Conservação da energia mecânica
+O trabalho é **nulo** em duas situações: quando não há deslocamento (a mochila parada) e quando a força é **perpendicular** ao deslocamento. Esse segundo caso é o mais cobrado: carregar uma caixa andando na horizontal não realiza trabalho pela força vertical que a sustenta, porque força e deslocamento formam ângulo reto. Pela mesma razão, a força normal e a força centrípeta em uma curva nunca realizam trabalho.
 
-A energia mecânica total de um sistema é a soma da energia cinética e da energia potencial
-(Em = Ec + Ep). Na ausência de forças dissipativas (como atrito ou resistência do ar), essa
-energia mecânica total se **conserva**: o que se perde em energia potencial (o corpo desce, perde
-altura) se transforma exatamente em energia cinética (o corpo ganha velocidade), e vice-versa. É o
-que acontece, por exemplo, em uma queda livre ideal ou em um pêndulo sem atrito.
+**Energia cinética: a energia do movimento.** Todo corpo em movimento carrega energia por estar se movendo. Ela vale
+
+energia cinética = (massa × velocidade²) ÷ 2, ou Ec = (m · v²) ÷ 2
+
+com massa em kg, velocidade em m/s e resultado em joules. O detalhe que muda tudo: a velocidade está **ao quadrado**. Dobrar a velocidade de um carro multiplica por quatro sua energia cinética — e é por isso que uma colisão a 100 km/h é muito mais que "o dobro" de uma colisão a 50 km/h. Esse mesmo raciocínio explica por que a distância de frenagem cresce com o quadrado da velocidade: toda essa energia precisa ser retirada pelo atrito dos freios.
+
+**Teorema do trabalho e da energia cinética.** O trabalho da força resultante sobre um corpo é igual à variação da energia cinética dele:
+
+trabalho da resultante = Ec(final) − Ec(inicial)
+
+Em português: transferir energia por meio de trabalho é o mesmo que mudar a velocidade do corpo. Trabalho positivo acelera, trabalho negativo freia. Esse teorema é o atalho preferido para calcular a força de frenagem de um veículo ou a força que uma parede faz para parar um projétil.
+
+**Energia potencial gravitacional: a energia da altura.** É a energia "guardada" por um corpo por estar em uma certa altura em relação a um nível de referência que você escolhe (normalmente o chão):
+
+energia potencial gravitacional = massa × gravidade × altura, ou Ep = m · g · h
+
+Um tijolo no alto de um andaime não está se movendo, mas tem energia armazenada: se soltar, ela vira movimento. Note que a altura é sempre *relativa* ao nível escolhido — o que importa nas contas é a **variação** de altura, nunca um valor absoluto.
+
+**Energia potencial elástica: a energia da deformação.** Molas, elásticos e arcos guardam energia quando são deformados:
+
+energia potencial elástica = (constante elástica × deformação²) ÷ 2, ou Epe = (k · x²) ÷ 2
+
+Aqui, k é a constante elástica da mola (em N/m), que mede quão "dura" ela é, e x é o quanto ela foi comprimida ou esticada a partir do tamanho natural, em metros. De novo o quadrado: comprimir a mola duas vezes mais guarda quatro vezes mais energia.
+
+**Energia mecânica e sua conservação.** Energia mecânica é a soma da energia cinética com as energias potenciais:
+
+energia mecânica = Ec + Ep
+
+O princípio da conservação da energia mecânica diz: **se só forças conservativas atuam (peso e força elástica), a energia mecânica total permanece constante**. Ela não some — apenas troca de forma. Na montanha-russa, no ponto mais alto o carrinho quase não tem velocidade, mas tem muita energia potencial; ao descer, essa potencial vira cinética, e o carrinho ganha velocidade. Ao subir de novo, a cinética volta a virar potencial. Numa situação ideal, sem atrito, a soma é a mesma em qualquer ponto do trajeto, e é por isso que nenhum morro seguinte de uma montanha-russa pode ser mais alto que o primeiro.
+
+Consequência prática cobrada em prova: se um corpo é abandonado de uma altura h e não há atrito, toda a energia potencial vira cinética ao chegar ao chão, ou seja, m · g · h = (m · v²) ÷ 2. Cancelando a massa dos dois lados, sobra v² = 2 · g · h — a velocidade de chegada **não depende da massa**.
+
+**Forças dissipativas e degradação da energia.** No mundo real existe atrito, resistência do ar, deformação permanente. Essas forças são chamadas dissipativas: elas retiram energia mecânica do sistema e a transformam em energia térmica (calor) e sonora, que se espalha pelo ambiente e não volta mais para o movimento. Quando há atrito, a energia mecânica **não se conserva**, e a energia dissipada é exatamente a diferença:
+
+energia dissipada = energia mecânica inicial − energia mecânica final
+
+Atenção ao ponto conceitual mais importante da aula: a energia mecânica pode diminuir, mas a **energia total do universo nunca diminui**. Ela não é criada nem destruída, só transformada — esse é o princípio da conservação da energia. O que acontece com o atrito é a *degradação*: a energia continua existindo, mas passa para uma forma mais espalhada e desorganizada (calor difuso), da qual é praticamente impossível extrair trabalho útil de novo. Dizer que "a energia se perdeu" é errado; o correto é que ela se dissipou.
+
+**Potência: energia por tempo.** Potência mede a **rapidez** com que a energia é transferida ou transformada:
+
+potência = energia (ou trabalho) ÷ tempo, ou P = W ÷ Δt
+
+A unidade é o watt (W): 1 watt é 1 joule por segundo. Um chuveiro de 5 500 W consome 5 500 joules a cada segundo de banho. Duas máquinas podem realizar exatamente o mesmo trabalho e ter potências muito diferentes: a mais potente simplesmente faz isso em menos tempo. Há ainda uma forma muito útil quando a velocidade é constante: potência = força × velocidade.
+
+**O quilowatt-hora e a conta de luz.** A concessionária não cobra por potência, e sim por energia consumida, medida em quilowatt-hora (kWh). Um kWh é a energia gasta por um aparelho de 1 000 W ligado durante 1 hora. A conta é sempre a mesma:
+
+energia em kWh = (potência em watts ÷ 1 000) × (tempo de uso em horas)
+
+E o custo é essa energia multiplicada pela tarifa em reais por kWh. Exemplo: um chuveiro de 5 500 W usado 30 minutos por dia gasta 5,5 × 0,5 = 2,75 kWh por dia, ou 82,5 kWh em 30 dias. Cuidado com a armadilha de unidade: kWh é unidade de **energia**, não de potência, e "kWh por mês" não é "kW por hora".
+
+**Rendimento (eficiência).** Nenhuma máquina real aproveita 100% da energia que recebe: parte sempre vira calor indesejado. Rendimento é a fração aproveitada:
+
+rendimento = energia útil ÷ energia total fornecida
+
+Multiplicando por 100, tem-se o rendimento em porcentagem. Uma lâmpada incandescente com 5% de rendimento transforma em luz apenas 5% da energia elétrica que recebe; os outros 95% viram calor. Uma lâmpada de LED chega a rendimentos muito maiores, e é por isso que ela ilumina igual gastando bem menos. Motores de carro a combustão ficam tipicamente entre 20% e 30%. A energia não aproveitada não sumiu: virou calor.
+
+**Usinas e matriz energética.** Toda usina elétrica é, no fundo, um conversor de energia. Na **hidrelétrica**, a água represada tem energia potencial gravitacional, que ao cair vira cinética, gira a turbina (energia mecânica) e o gerador a converte em elétrica; a energia disponível depende da altura da queda e da vazão. Na **termelétrica**, a energia química do combustível (carvão, gás, diesel, biomassa) é liberada como calor na queima, aquece água, o vapor gira a turbina e o gerador produz eletricidade — é o tipo com maior emissão de gases e, em geral, menor rendimento. Na **eólica**, a energia cinética do vento gira as pás. Na **nuclear**, a energia liberada na fissão aquece água, e daí para a frente é igual a uma termelétrica. Na **fotovoltaica**, a luz do Sol é convertida diretamente em elétrica pelas células, sem passar por turbina.
+
+O ENEM costuma pedir três coisas nesse contexto: identificar a **sequência correta de transformações** de energia; comparar fontes quanto a renovabilidade e emissão de CO2; e calcular potência ou energia gerada a partir de dados de vazão, altura ou rendimento.
+
+**Armadilhas típicas do INEP:** (1) achar que segurar um peso parado ou carregar uma caixa andando na horizontal realiza trabalho, quando nos dois casos o trabalho é nulo; (2) esquecer que o trabalho do atrito é sempre negativo e que ele retira energia mecânica do sistema; (3) confundir energia com potência, tratando watt como se fosse energia acumulada ou kWh como se fosse potência; (4) dizer que a energia "se perde" no atrito, quando o correto é que ela se transforma em calor e se degrada, sem nunca desaparecer; (5) esquecer que a energia cinética depende do **quadrado** da velocidade, subestimando o efeito de dobrar a velocidade; (6) supor que corpos mais pesados chegam ao chão com mais velocidade em queda sem atrito, quando a massa se cancela na conta; (7) trocar rendimento por energia útil, respondendo em joules o que a questão pediu em porcentagem, ou vice-versa.
 
 ## Tópicos-Chave para Revisão
 
 <div className="topico">
 
-**Trabalho mecânico: T = F·d·cosθ** — T é o trabalho, F a força, d o deslocamento, θ o ângulo entre
-força e deslocamento. Se θ = 90°, o trabalho é **zero** (pegadinha recorrente).
+Trabalho é a energia transferida por uma força ao deslocar um corpo, W = F · d, medido em joules. Ele é positivo (motor) quando a força acompanha o deslocamento, negativo (resistente) quando se opõe a ele — o caso do atrito — e nulo quando não há deslocamento ou quando a força é perpendicular ao deslocamento, motivo pelo qual normal e força centrípeta nunca realizam trabalho.
 
-**Energia cinética: Ec = m·v²/2** — Ec é a energia do movimento, m a massa, v a velocidade. A
-velocidade aparece ao quadrado: dobrar v quadruplica Ec.
+Energia cinética é Ec = (m · v²) ÷ 2 e depende do quadrado da velocidade: dobrar a velocidade quadruplica a energia, o que explica a gravidade das colisões em alta velocidade e o crescimento da distância de frenagem.
 
-**Energia potencial gravitacional: Ep = m·g·h** — Ep é a energia da posição, m a massa, g a
-aceleração da gravidade, h a altura em relação à referência.
+Teorema do trabalho e da energia cinética: o trabalho da força resultante é igual à variação da energia cinética, Ec final menos Ec inicial. Trabalho positivo acelera o corpo e trabalho negativo o freia; é o atalho para calcular forças de frenagem e de impacto.
 
-A **energia mecânica total (Em = Ec + Ep)** se **conserva** na ausência de forças dissipativas
-(atrito, resistência do ar) — o que se perde de Ep vira Ec, e vice-versa.
+Energia potencial gravitacional é Ep = m · g · h, energia armazenada por causa da altura em relação a um nível de referência escolhido, e o que importa nas contas é sempre a variação de altura. Energia potencial elástica é Epe = (k · x²) ÷ 2, guardada na deformação de molas e elásticos, também dependente de um quadrado.
 
-Uma força **perpendicular** ao deslocamento nunca realiza trabalho, independentemente de sua
-intensidade — atenção especial a esse detalhe em questões sobre forças normais e trajetórias.
+Energia mecânica é a soma da cinética com as potenciais e se conserva quando só atuam forças conservativas: na montanha-russa ideal, potencial vira cinética na descida e cinética vira potencial na subida, e por isso nenhum morro pode ser mais alto que o primeiro. Em queda sem atrito, m · g · h = (m · v²) ÷ 2 leva a v² = 2 · g · h, resultado independente da massa.
+
+Forças dissipativas como atrito e resistência do ar transformam energia mecânica em calor e som; a energia dissipada é a energia mecânica inicial menos a final. A energia total nunca é criada nem destruída: ela se degrada, passando a formas espalhadas das quais não se extrai trabalho útil, e por isso dizer que a energia "se perdeu" é incorreto.
+
+Potência é energia dividida por tempo, P = W ÷ Δt, medida em watts (1 W = 1 J/s), e vale também potência = força × velocidade quando a velocidade é constante; máquinas de mesma energia e potências diferentes se distinguem apenas pelo tempo que levam.
+
+Quilowatt-hora é unidade de energia, não de potência: energia em kWh igual a potência em watts dividida por 1 000, multiplicada pelo tempo de uso em horas; o custo na conta de luz é esse valor multiplicado pela tarifa por kWh.
+
+Rendimento é energia útil dividida pela energia total fornecida, expresso em porcentagem; a parcela não aproveitada vira calor, o que explica a diferença entre lâmpadas incandescentes e de LED e o baixo rendimento de motores a combustão.
+
+Toda usina é um conversor de energia: hidrelétrica converte potencial gravitacional em cinética, mecânica e elétrica; termelétrica e nuclear convertem calor em vapor, mecânica e elétrica; eólica parte da energia cinética do vento; fotovoltaica converte luz diretamente em eletricidade. O ENEM cobra a sequência de transformações, a comparação entre fontes quanto a emissão e renovabilidade, e cálculos de potência com rendimento.
 
 </div>
+
+## Teste de Fogo
+
+*Questões sem gabarito — resolva primeiro, depois confira com o professor ou com a IA.*
+
+**Questão 1 (estilo ENEM — autoral)**
+Um chuveiro elétrico de 5 400 W é utilizado, em média, 20 minutos por dia em uma residência. A concessionária local cobra 0,80 real por quilowatt-hora consumido.
+
+Considerando um mês de 30 dias, o custo aproximado do uso desse chuveiro será de
+
+a) 14,40 reais
+b) 28,80 reais
+c) 43,20 reais
+d) 54,00 reais
+e) 86,40 reais
+
+**Questão 2 (estilo ENEM — autoral)**
+Em uma pequena central hidrelétrica, a água represada cai de uma altura de 20 m e, na base, gira uma turbina acoplada a um gerador. A vazão é de 500 kg de água por segundo, a aceleração da gravidade vale 10 m/s² e o conjunto turbina-gerador tem rendimento de 80%.
+
+A potência elétrica fornecida por essa central é de aproximadamente
+
+a) 20 kW
+b) 80 kW
+c) 100 kW
+d) 125 kW
+e) 800 kW
+
+**Questão 3 (estilo ENEM — autoral)**
+Um carrinho de montanha-russa parte do repouso do ponto mais alto do percurso, a 45 m de altura, e desce por um trilho. Considere g = 10 m/s² e despreze o atrito e a resistência do ar.
+
+A velocidade do carrinho ao passar pelo ponto mais baixo do percurso, ao nível do solo, será de
+
+a) 15 m/s
+b) 20 m/s
+c) 30 m/s
+d) 45 m/s
+e) 90 m/s
+
+**Questão 4 (estilo ENEM — autoral)**
+Um trabalhador segura uma caixa de 15 kg apoiada nos braços, mantendo-a sempre à mesma altura, e caminha com ela 12 m em linha reta por um corredor horizontal, com velocidade constante.
+
+Sobre o trabalho realizado pela força vertical que o trabalhador exerce para sustentar a caixa nesse trajeto, é correto afirmar que ele é
+
+a) nulo, porque essa força é perpendicular ao deslocamento.
+b) nulo, porque a velocidade da caixa é constante e não há aceleração.
+c) igual a 180 J, pois corresponde ao produto da massa pelo deslocamento.
+d) igual a 1 800 J, pois corresponde ao produto do peso pelo deslocamento.
+e) negativo, pois a força se opõe ao peso da caixa.
+
+**Questão 5 (estilo ENEM — autoral)**
+Uma lâmpada incandescente de 60 W converte cerca de 5% da energia elétrica recebida em luz visível, enquanto uma lâmpada de LED de 9 W converte cerca de 33% da energia recebida em luz visível, produzindo aproximadamente a mesma iluminação.
+
+Comparando as duas situações, a substituição da lâmpada incandescente pela de LED implica
+
+a) aumento da energia total consumida, já que o rendimento do LED é maior.
+b) redução da energia elétrica consumida e da parcela de energia convertida em calor.
+c) eliminação completa da dissipação de energia sob a forma de calor.
+d) manutenção da energia consumida, com aumento apenas da potência luminosa.
+e) redução da potência luminosa emitida, compensada pela economia na conta.

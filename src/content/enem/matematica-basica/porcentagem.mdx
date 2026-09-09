@@ -1,149 +1,128 @@
 ---
-title: "Porcentagem: Descontos, Acréscimos e Variações Sucessivas"
+title: "Porcentagem"
 subject: "Matemática Básica"
 order: 2
 relevance: >
-  Porcentagem é o tópico de matemática que mais aparece no ENEM, quase sempre disfarçado em
-  situações reais: desconto de loja, aumento de salário, taxa de juros, crescimento populacional.
-  Dominar isso destrava questões de várias matérias, não só de matemática.
+  Porcentagem é uma forma padronizada de comparar: em vez de dizer "18 de 40", dizemos "45%", porque
+  todo mundo entende imediatamente quanto isso representa. É o conteúdo mais presente na prova de
+  Matemática do ENEM — dificilmente existe uma edição com menos de 5 questões que dependem de
+  porcentagem, seja no cálculo direto, seja escondida dentro de gráficos, tabelas, juros, estatística
+  ou química. O INEP quase nunca pede "calcule 20% de 300"; ele pede desconto sobre desconto, aumento
+  seguido de queda, comparação entre variação percentual e ponto percentual, e leitura de gráfico com
+  porcentagens que precisam virar quantidade absoluta.
 quickSummary: >
-  Porcentagem é uma fração de denominador 100: 25% = 25/100 = 0,25. Para dar um desconto de 25%,
-  multiplique por 0,75; para um acréscimo de 25%, multiplique por 1,25. Aumentos e descontos
-  sucessivos se multiplicam — nunca se somam.
-resources:
-  conteudoComplementar:
-    conteudo: "Matemática Financeira (juros simples e compostos)"
-    comoAjuda: "Juros são porcentagem aplicada ao longo do tempo — é o passo seguinte natural depois de dominar acréscimos sucessivos."
-questions:
-  - question: >
-      Uma blusa que custa R$ 80,00 está com 25% de desconto. Qual é o preço final?
-    options:
-      - "R$ 55,00"
-      - "R$ 60,00"
-      - "R$ 65,00"
-      - "R$ 75,00"
-      - "R$ 20,00"
-    correctIndex: 1
-    explanation: >
-      Um desconto de 25% deixa o preço em 75% do original: 80 × 0,75 = 60. (Também dá para fazer
-      25% de 80 = 20 e subtrair: 80 − 20 = 60.)
-    source: "Questão autoral, estilo ENEM"
-  - question: >
-      O preço de um produto sofreu dois aumentos sucessivos: primeiro de 10%, depois de 20%. Qual
-      foi o aumento total percentual?
-    options:
-      - "30%"
-      - "32%"
-      - "15%"
-      - "200%"
-      - "2%"
-    correctIndex: 1
-    explanation: >
-      Aumentos sucessivos multiplicam os fatores: 1,10 × 1,20 = 1,32, ou seja, +32%. Somar 10% + 20%
-      = 30% é a pegadinha clássica — só valeria se fosse sobre o mesmo valor de base, o que não é o
-      caso no segundo aumento.
-    source: "Questão autoral, estilo ENEM"
-  - question: >
-      Numa turma de 40 alunos, 30% faltaram num dia. Quantos alunos compareceram?
-    options:
-      - "12"
-      - "28"
-      - "30"
-      - "24"
-      - "36"
-    correctIndex: 1
-    explanation: >
-      Faltaram 30% de 40 = 12. Compareceram os outros 70%: 40 × 0,70 = 28 (ou 40 − 12 = 28).
-    source: "Questão autoral, estilo ENEM"
-  - question: >
-      Um tênis custava R$ 200,00 e passou a custar R$ 150,00. Qual foi o percentual de desconto?
-    options:
-      - "50%"
-      - "25%"
-      - "30%"
-      - "15%"
-      - "75%"
-    correctIndex: 1
-    explanation: >
-      O desconto em reais foi 200 − 150 = 50. O percentual é sempre sobre o valor ORIGINAL:
-      50 ÷ 200 = 0,25 = 25%.
-    source: "Questão autoral, estilo ENEM"
-  - question: >
-      Um valor sofreu um aumento de 20% e, em seguida, um desconto de 20%. Em relação ao valor
-      inicial, o valor final ficou:
-    options:
-      - "igual ao inicial"
-      - "4% menor que o inicial"
-      - "4% maior que o inicial"
-      - "40% menor que o inicial"
-      - "20% menor que o inicial"
-    correctIndex: 1
-    explanation: >
-      1,20 × 0,80 = 0,96, ou seja, 96% do valor inicial — uma perda de 4%. Aumentar e depois
-      descontar a mesma porcentagem NÃO volta ao valor original, porque o desconto incide sobre um
-      valor já maior.
-    source: "Questão autoral, estilo ENEM"
+  Por cento significa "dividido por cem": 25% é o mesmo que 25/100 e que 0,25. Todo problema de
+  porcentagem fica mais rápido com fator multiplicativo — aumento de p por cento multiplica por
+  (1 + p/100) e desconto de p por cento multiplica por (1 − p/100).
 ---
 
 ## Aula Teórica Completa
 
-Porcentagem é só um jeito prático de falar de frações com denominador 100. Quando você lê "25%",
-leia mentalmente "25 em cada 100", ou seja, a fração 25/100, que na forma decimal é 0,25. Essa
-tradução — **de porcentagem para decimal** — é o que destrava quase toda questão do tema.
+**O que porcentagem realmente significa.** O símbolo % quer dizer literalmente "por cento", ou seja, "dividido por cem". Escrever 25% é escrever a fração 25/100, que na forma decimal é 0,25. As três escritas são a mesma coisa: 25% = 25/100 = 0,25. Trocar entre elas é a habilidade mais importante desse conteúdo, e a regra é simples: para ir de porcentagem para decimal, divida por 100 (ande com a vírgula duas casas para a esquerda); para voltar, multiplique por 100. Assim, 7% = 0,07; 130% = 1,30; 0,5% = 0,005.
 
-### Calcular uma porcentagem de um valor
+**Calcular a parte.** "Calcular p por cento de um valor" é multiplicar esse valor pelo decimal correspondente. Quinze por cento de 240 é 0,15 × 240 = 36. Nada de regra de três aqui: multiplicação direta é mais rápida e erra menos. Vale a fórmula geral parte = (p ÷ 100) × todo, em que "todo" é o valor de referência, aquele que representa 100%.
 
-Para achar uma porcentagem de um número, transforme a porcentagem em decimal e multiplique.
+**Calcular a porcentagem.** Se você tem a parte e o todo e quer saber quanto por cento a parte representa, divida a parte pelo todo e multiplique por 100: p = (parte ÷ todo) × 100. Se 36 alunos de uma escola de 240 alunos foram premiados, então 36 ÷ 240 = 0,15, que multiplicado por 100 dá 15%. Repare que é a mesma equação da linha anterior, apenas isolando outra letra.
 
-**Exemplo:** 30% de 40 = 0,30 × 40 = 12. É só isso: "de" em matemática quase sempre vira
-multiplicação.
+**Calcular o todo.** Esse é o caso que mais derruba gente. Se 36 é 15% de um total desconhecido, então 0,15 × todo = 36, logo todo = 36 ÷ 0,15 = 240. Sempre que o enunciado der um valor e disser que ele "corresponde a tantos por cento", você vai DIVIDIR pelo decimal, nunca multiplicar.
 
-### Descontos e acréscimos com fator multiplicativo
+**Fator multiplicativo: a ferramenta que resolve quase tudo.** Aumentar um valor em 10% é somar a ele 10% dele mesmo. Em vez de calcular a parte e depois somar, faça em um passo só: o valor final é 100% + 10% = 110% do original, ou seja, multiplique por 1,10. Do mesmo modo, dar 10% de desconto deixa 100% − 10% = 90% do valor, ou seja, multiplique por 0,90. Esses números (1,10 e 0,90) são chamados de fatores multiplicativos, ou fatores de aumento e de desconto.
 
-Em vez de calcular a porcentagem e depois somar ou subtrair, use um atalho que evita erro: o
-**fator multiplicativo**.
+A regra geral: aumento de p por cento tem fator 1 + p/100; desconto de p por cento tem fator 1 − p/100. Alguns exemplos para gravar o formato: aumento de 5% dá fator 1,05; aumento de 25% dá 1,25; aumento de 100% dá 2,00 (dobrar); desconto de 5% dá 0,95; desconto de 25% dá 0,75; desconto de 40% dá 0,60.
 
-- Desconto de 25% → sobra 75% → multiplique por **0,75**.
-- Acréscimo de 25% → vira 125% → multiplique por **1,25**.
+Um salário de R$ 2.000,00 com reajuste de 8% passa a valer 2.000 × 1,08 = R$ 2.160,00. Uma calça de R$ 180,00 com 30% de desconto sai por 180 × 0,70 = R$ 126,00.
 
-Assim, uma blusa de R$ 80 com 25% de desconto custa 80 × 0,75 = R$ 60 num passo só.
+**Variações sucessivas: por que os fatores se multiplicam.** Quando um valor sofre duas mudanças percentuais seguidas, a segunda incide sobre o resultado da primeira, não sobre o valor original. Por isso as porcentagens NÃO se somam — os fatores se multiplicam.
 
-### Variações sucessivas: multiplique os fatores
+Veja o caso mais cobrado da prova. Um produto de R$ 100,00 sofre aumento de 10% e, depois, desconto de 10%. Passo a passo: 100 × 1,10 = 110; depois 110 × 0,90 = 99. O valor final é R$ 99,00, e não R$ 100,00. Perdeu-se 1%. A explicação em palavras: o aumento de 10% foi calculado sobre 100 (valeu R$ 10,00), mas o desconto de 10% foi calculado sobre 110 (valeu R$ 11,00). Como o desconto foi tirado de uma base maior, ele "pesa" mais. Em fatores: 1,10 × 0,90 = 0,99, isto é, 99% do original, uma perda de 1%.
 
-Este é o ponto que o ENEM mais explora. Quando há mais de uma variação em sequência, os fatores se
-**multiplicam** — eles nunca se somam.
+O mesmo raciocínio vale para dois aumentos: um aumento de 20% seguido de outro de 30% não dá 50%, e sim 1,20 × 1,30 = 1,56, ou seja, 56% de aumento acumulado. E para dois descontos: 20% seguido de 10% dá 0,80 × 0,90 = 0,72, ou seja, o cliente paga 72% do preço, o que corresponde a um desconto único equivalente de 28% — e não de 30%. Loja que anuncia "30% + 10%" está oferecendo 37% de desconto real, porque 0,70 × 0,90 = 0,63.
 
-Um aumento de 10% seguido de um de 20% dá 1,10 × 1,20 = 1,32, isto é, +32% no total (e não 30%).
-E um aumento de 20% seguido de um desconto de 20% dá 1,20 × 0,80 = 0,96, ou seja, o valor fica 4%
-**menor** que o original — porque o desconto incide sobre um valor que já tinha crescido.
+**Desfazer uma variação.** Para voltar ao valor original depois de um aumento de 25%, o desconto necessário não é de 25%. Como o fator de ida foi 1,25, o fator de volta tem que ser 1 ÷ 1,25 = 0,80, ou seja, um desconto de 20%. Da mesma forma, se um produto foi vendido por R$ 102,00 após 15% de desconto, o preço original era 102 ÷ 0,85 = R$ 120,00. Divida pelo fator para desfazer; multiplique pelo fator para fazer.
 
-### Calculando o percentual de variação a partir de dois valores
+**Variação percentual.** Para medir quanto uma grandeza mudou, use variação percentual = ((valor final − valor inicial) ÷ valor inicial) × 100. O detalhe que quase todo mundo esquece: o denominador é sempre o valor INICIAL, o ponto de partida. Se o preço foi de 80 para 100, a variação é ((100 − 80) ÷ 80) × 100 = (20 ÷ 80) × 100 = 25% de aumento. Se depois voltar de 100 para 80, a variação é ((80 − 100) ÷ 100) × 100 = −20%, uma queda de 20%. Subir 25% e cair 20% levam ao mesmo lugar porque as bases de comparação são diferentes. Resultado negativo significa queda; positivo, aumento.
 
-Quando você já sabe o valor inicial e o valor final e precisa descobrir o percentual de variação,
-a fórmula é sempre: **variação percentual = (diferença ÷ valor original) × 100**. É essencial
-dividir pelo valor **original** (o de partida), nunca pelo valor final — esse é um erro recorrente.
+**Ponto percentual não é porcentagem.** Quando a própria grandeza já é um percentual (taxa de desemprego, participação de mercado, índice de aprovação), existem duas maneiras corretas e diferentes de descrever a mudança, e o ENEM cobra exatamente essa distinção. Se o desemprego passou de 12% para 9%: a queda em pontos percentuais é a subtração simples, 12 − 9 = 3 pontos percentuais; a queda percentual (relativa) é (3 ÷ 12) × 100 = 25%. As duas afirmações estão certas e dizem coisas diferentes: caiu 3 pontos percentuais, o que representa uma redução de 25% no nível de desemprego. Ponto percentual se subtrai; porcentagem se divide pelo valor inicial.
+
+**Porcentagem em gráficos.** Gráfico de setores mostra a repartição de um todo, e a soma de todas as fatias é obrigatoriamente 100%. Para transformar fatia em quantidade, multiplique pelo total: 45% de 3.600 pessoas são 0,45 × 3.600 = 1.620 pessoas. Para comparar duas fatias, você pode trabalhar só com os percentuais: uma fatia de 36% é o dobro de uma de 18%, independentemente do total. E para achar a diferença absoluta entre duas fatias, subtraia os percentuais primeiro e só depois multiplique pelo total — dá menos conta e menos erro.
+
+**Armadilhas típicas do INEP:** (1) somar porcentagens sucessivas em vez de multiplicar os fatores, respondendo 30% quando o correto é 28%, ou "voltou ao valor original" quando houve perda de 1%; (2) confundir ponto percentual com variação percentual em questões de desemprego, inflação e pesquisa eleitoral; (3) usar o valor final como base da variação percentual, quando a base correta é sempre o valor inicial; (4) multiplicar quando deveria dividir no caso "tal valor corresponde a p por cento do total" — para achar o todo, divide-se; (5) responder o valor do desconto (quanto se economizou) quando a pergunta pedia o valor pago, ou vice-versa; (6) esquecer que porcentagens acima de 100% são possíveis e significam mais do que o todo original, com fator maior que 2 quando o aumento passa de 100%.
 
 ## Tópicos-Chave para Revisão
 
 <div className="topico">
 
-Toda porcentagem é uma fração de 100: **x% = x/100**. Traduza para decimal (dividindo por 100) antes
-de calcular — é o que evita a maioria dos erros.
+Por cento significa "dividido por cem": 25% é o mesmo que 25/100 e que 0,25. Todo problema de porcentagem fica mais rápido com fator multiplicativo — aumento de p por cento multiplica por (1 + p/100) e desconto de p por cento multiplica por (1 − p/100).
 
-Para achar uma **porcentagem de um valor**, multiplique o valor pelo decimal correspondente
-(30% de 40 = 0,30 × 40 = 12). A palavra "de" vira multiplicação.
+As três relações básicas saem da mesma fórmula parte = (p ÷ 100) × todo: para achar a parte, multiplique o todo pelo decimal; para achar o percentual, divida a parte pelo todo e multiplique por 100; para achar o todo, divida a parte pelo decimal.
 
-Use o **fator multiplicativo**: desconto de p% → multiplique por (1 − p/100); acréscimo de p% →
-multiplique por (1 + p/100). Um passo, sem somas extras.
+Fatores mais usados: 1,05 e 0,95 para 5%, 1,10 e 0,90 para 10%, 1,25 e 0,75 para 25%, 1,50 e 0,50 para 50%, 2,00 para aumento de 100%. Multiplicar pelo fator aplica a variação; dividir pelo fator desfaz a variação, e por isso desfazer um aumento de 25% exige desconto de 20%, já que 1 ÷ 1,25 = 0,80.
 
-**Variações sucessivas se multiplicam, nunca se somam.** Dois aumentos de 10% e 20% dão 1,10 × 1,20
-= 1,32 (+32%), não 30%.
+Variações sucessivas multiplicam fatores e nunca somam percentuais: 10% de aumento seguido de 10% de desconto dá 1,10 × 0,90 = 0,99, uma perda de 1%, porque o desconto incidiu sobre uma base maior do que a do aumento. Do mesmo modo, 20% mais 30% de aumento acumulam 56% (1,20 × 1,30 = 1,56) e 20% mais 10% de desconto equivalem a um desconto único de 28% (0,80 × 0,90 = 0,72).
 
-Aumentar e depois descontar a **mesma** porcentagem **não** volta ao valor inicial: 1,20 × 0,80 =
-0,96, uma perda de 4%. O percentual é sempre calculado sobre o valor de referência (na maioria dos
-casos, o valor original).
+Variação percentual é ((valor final − valor inicial) ÷ valor inicial) × 100, com o valor inicial sempre no denominador; resultado positivo indica aumento e negativo indica queda. É por isso que subir de 80 para 100 é um aumento de 25%, mas cair de 100 para 80 é uma queda de 20%.
 
-Para calcular variação percentual entre dois valores: **(diferença ÷ valor original) × 100** —
-sempre divida pelo valor **original**, nunca pelo valor final.
+Ponto percentual é a diferença por subtração entre dois percentuais, enquanto variação percentual é essa diferença dividida pelo percentual inicial: de 12% para 9% houve queda de 3 pontos percentuais, que corresponde a uma redução relativa de 25%.
+
+Em gráficos de setores, as fatias somam 100%; para converter fatia em quantidade multiplique o percentual em decimal pelo total, e para comparar duas fatias basta trabalhar com os percentuais, subtraindo antes de multiplicar pelo total.
 
 </div>
+
+## Teste de Fogo
+
+*Questões sem gabarito — resolva primeiro, depois confira com o professor ou com a IA.*
+
+**Questão 1 (estilo ENEM — autoral)**
+Uma loja de departamentos anuncia uma promoção em que todas as peças de vestuário têm 20% de desconto sobre o preço de etiqueta. Além disso, o cliente que pagar em dinheiro recebe um desconto adicional de 10% sobre o valor já promocional.
+
+Um cliente escolheu uma jaqueta cujo preço de etiqueta é R$ 200,00 e pagou em dinheiro. O valor pago por ele, em reais, foi
+
+a) 140,00
+b) 144,00
+c) 150,00
+d) 160,00
+e) 170,00
+
+**Questão 2 (estilo ENEM — autoral)**
+Um instituto de pesquisa divulgou que a taxa de desemprego de determinada região passou de 12%, no primeiro trimestre, para 9%, no último trimestre do mesmo ano. Um jornal noticiou o dado com a manchete: "Desemprego cai 25% na região".
+
+A manchete está correta porque a queda de
+
+a) 3 pontos percentuais equivale a uma redução de 25% em relação à taxa inicial.
+b) 3 pontos percentuais equivale a uma redução de 25% em relação à taxa final.
+c) 25 pontos percentuais foi convertida em porcentagem pelo jornal.
+d) 3% na taxa foi somada aos 12% iniciais e depois dividida por 100.
+e) 21 pontos percentuais foi dividida pelo número de trimestres do ano.
+
+**Questão 3 (estilo ENEM — autoral)**
+Em uma farmácia, um medicamento de uso contínuo está sendo vendido com desconto de 15% sobre o preço de tabela. Uma pessoa que comprou uma caixa desse medicamento pagou R$ 102,00.
+
+O preço de tabela dessa caixa, em reais, é
+
+a) 86,70
+b) 117,00
+c) 117,30
+d) 120,00
+e) 130,00
+
+**Questão 4 (estilo ENEM — autoral)**
+A conta de energia elétrica de uma residência sofreu dois reajustes ao longo de um ano: em janeiro, um aumento de 25% sobre o valor cobrado em dezembro do ano anterior; em julho, um novo aumento de 20% sobre o valor que já vinha sendo cobrado desde janeiro.
+
+Considerando o mesmo consumo mensal em todos os meses, o aumento percentual acumulado da conta entre dezembro e agosto foi de
+
+a) 5%
+b) 22,5%
+c) 45%
+d) 50%
+e) 500%
+
+**Questão 5 (estilo ENEM — autoral)**
+Uma pesquisa de opinião ouviu 4.800 moradores de um município sobre qual obra pública deveria ser prioridade no orçamento. Do total de entrevistados, 35% escolheram a construção de um hospital, 20% escolheram a reforma das escolas, 30% escolheram o saneamento básico e os demais escolheram outras obras.
+
+A diferença entre o número de moradores que escolheram o hospital e o número dos que escolheram a reforma das escolas é
+
+a) 15
+b) 150
+c) 720
+d) 960
+e) 1.680

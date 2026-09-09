@@ -1,155 +1,149 @@
 ---
-title: "Estatística: Média, Mediana e Moda"
+title: "Média, Mediana e Moda"
 subject: "Estatística e Probabilidade"
 order: 1
 relevance: >
-  As medidas de tendência central são o tema de estatística mais recorrente no ENEM, quase sempre
-  associadas a gráficos ou tabelas de dados reais (salários, notas, idades), exigindo interpretação
-  além do simples cálculo.
+  Média, mediana e moda são as três maneiras de resumir um monte de números em um só valor que
+  represente o conjunto. Elas se chamam medidas de tendência central porque tentam apontar o "centro"
+  dos dados. É um dos temas mais frequentes do ENEM, com 2 a 4 questões por prova, quase sempre a partir
+  de uma tabela de frequência, de um gráfico de barras ou de uma lista de notas, salários e tempos. O
+  INEP gosta especialmente de duas coisas: fazer você calcular a partir de tabela de frequência, sem
+  listar os dados um a um, e perguntar qual das três medidas representa melhor a situação quando existe
+  um valor muito fora do padrão.
 quickSummary: >
-  Média é a soma dos valores dividida pela quantidade de valores. Mediana é o valor central de um
-  conjunto ordenado (ou a média dos dois centrais, se a quantidade for par). Moda é o valor que mais
-  se repete. Cada medida "resume" os dados de forma diferente, e a escolha errada pode distorcer a
-  interpretação de um conjunto de dados.
-resources:
-  conteudoComplementar:
-    conteudo: "Análise de Gráficos e Tabelas"
-    comoAjuda: "As medidas de tendência central são frequentemente extraídas diretamente de gráficos e tabelas — dominar a leitura desses recursos visuais é o complemento direto deste tema."
-questions:
-  - question: >
-      Os salários de 5 funcionários de uma pequena empresa são: R$ 1.500, R$ 1.800, R$ 2.000,
-      R$ 2.200 e R$ 2.500. Qual é a média salarial desse grupo?
-    options:
-      - "R$ 1.800,00"
-      - "R$ 2.000,00"
-      - "R$ 2.100,00"
-      - "R$ 2.200,00"
-      - "R$ 10.000,00"
-    correctIndex: 1
-    explanation: >
-      Média = soma dos valores ÷ quantidade de valores. Soma: 1500+1800+2000+2200+2500 = 10.000.
-      Média = 10.000 ÷ 5 = R$ 2.000,00.
-    source: "Questão autoral, estilo ENEM"
-  - question: >
-      Considerando o mesmo grupo de 5 salários (R$ 1.500, R$ 1.800, R$ 2.000, R$ 2.200, R$ 2.500,
-      já em ordem crescente), qual é a mediana desse conjunto?
-    options:
-      - "R$ 1.500,00"
-      - "R$ 1.800,00"
-      - "R$ 2.000,00"
-      - "R$ 2.200,00"
-      - "R$ 2.500,00"
-    correctIndex: 2
-    explanation: >
-      Com 5 valores (quantidade ímpar), a mediana é o valor central, na posição 3 (dos 5), depois de
-      ordenados: R$ 2.000,00 — que, nesse caso, coincide com a média.
-    source: "Questão autoral, estilo ENEM"
-  - question: >
-      Agora considere 6 salários ordenados: R$ 1.200, R$ 1.500, R$ 1.800, R$ 2.200, R$ 2.500,
-      R$ 9.000 (um diretor com salário muito acima dos demais). Qual medida de tendência central
-      melhor representa o "salário típico" desse grupo, evitando distorção pelo valor extremo?
-    options:
-      - "A média, pois é sempre a medida mais representativa em qualquer conjunto de dados."
-      - "A mediana, pois não é distorcida por valores extremos (outliers) como o salário do diretor."
-      - "A moda, pois necessariamente existe um valor que se repete nesse conjunto."
-      - "A soma total dos salários, dividida por 2."
-      - "Não é possível calcular nenhuma medida de tendência central nesse caso."
-    correctIndex: 1
-    explanation: >
-      Valores extremos (outliers), como o salário muito acima da média nesse grupo, distorcem
-      fortemente a média. A mediana é mais robusta a esse tipo de distorção, representando melhor
-      o "valor típico" do conjunto.
-    source: "Questão autoral, estilo ENEM"
-  - question: >
-      Em uma pesquisa sobre o número de filhos de 10 famílias, os valores obtidos foram: 1, 2, 2,
-      2, 3, 3, 4, 1, 2, 5. Qual é a moda desse conjunto de dados?
-    options:
-      - "1"
-      - "2"
-      - "3"
-      - "4"
-      - "5"
-    correctIndex: 1
-    explanation: >
-      Moda é o valor que mais aparece no conjunto. Contando as repetições: o valor 2 aparece 4
-      vezes, mais que qualquer outro valor — logo, a moda é 2.
-    source: "Questão autoral, estilo ENEM"
-  - question: >
-      Um conjunto de dados em que a média, a mediana e a moda apresentam valores muito diferentes
-      entre si geralmente indica que:
-    options:
-      - "Houve um erro de cálculo, já que as três medidas deveriam ser sempre idênticas."
-      - "A distribuição dos dados provavelmente não é simétrica, podendo conter valores extremos (outliers) ou grande dispersão, exigindo mais de uma medida para uma interpretação completa."
-      - "O conjunto de dados não pode ser analisado estatisticamente."
-      - "A moda deixa de existir nesse tipo de conjunto."
-      - "A mediana sempre será igual a zero nesses casos."
-    correctIndex: 1
-    explanation: >
-      Quando média, mediana e moda divergem bastante, isso é um sinal de assimetria na distribuição
-      dos dados (possivelmente com outliers) — por isso é importante analisar mais de uma medida,
-      e não confiar isoladamente na média.
-    source: "Questão autoral, estilo ENEM"
+  Média é a soma dos valores dividida pela quantidade deles, mediana é o valor do meio depois de ordenar
+  os dados, e moda é o valor que mais se repete. Valores extremos puxam a média, mas quase não afetam a
+  mediana.
 ---
 
 ## Aula Teórica Completa
 
-As **medidas de tendência central** resumem um conjunto de dados em um único valor que representa,
-de alguma forma, o "centro" ou o "típico" daquele conjunto. As três principais são média, mediana e
-moda — e cada uma "resume" os dados de um jeito diferente.
+**Para que servem essas medidas.** Quando você tem muitos números — as notas de uma turma, os salários de uma empresa, o tempo de espera numa fila —, é impraticável olhar todos. Medidas de tendência central resumem o conjunto em um único valor representativo. As três mais cobradas são média, mediana e moda, e cada uma responde a uma pergunta diferente.
 
-### Média: a soma dividida pela quantidade
+**Média aritmética simples.** É a mais conhecida: some todos os valores e divida pela quantidade de valores.
 
-A **média aritmética** é calculada somando todos os valores do conjunto e dividindo pelo número de
-valores. É a medida mais conhecida, mas tem uma fraqueza importante: é muito sensível a **valores
-extremos** (outliers) — um único valor muito alto ou muito baixo pode distorcer bastante a média,
-fazendo com que ela não represente bem o "valor típico" do grupo.
+média = (soma de todos os valores) ÷ (quantidade de valores)
 
-### Mediana: o valor do meio
+Se um aluno tirou 5, 7, 7, 8 e 10, a soma é 37 e a quantidade é 5, então a média é 37 ÷ 5 = 7,4. A média significa "quanto cada um teria se tudo fosse repartido igualmente". Por isso ela não precisa ser um valor que exista no conjunto: uma média de 2,3 filhos por família é perfeitamente válida, mesmo que ninguém tenha 2,3 filhos.
 
-A **mediana** é o valor que fica exatamente no meio do conjunto, depois de todos os dados serem
-**ordenados** (do menor para o maior). Se a quantidade de valores for **ímpar**, a mediana é o
-valor central único. Se for **par**, a mediana é a **média dos dois valores centrais**. A grande
-vantagem da mediana é que ela **não é distorcida** por valores extremos, sendo mais representativa
-em conjuntos com grande dispersão ou outliers (como um grupo de salários com um diretor ganhando
-muito mais que os demais).
+Uma consequência útil dessa fórmula, muito cobrada: soma total = média × quantidade. Sabendo a média de uma turma de 20 alunos, você recupera a soma das notas multiplicando por 20 — e isso resolve as questões do tipo "qual será a nova média se um valor for corrigido ou se entrar mais alguém no grupo".
 
-### Moda: o valor mais frequente
+**Média ponderada.** Nem sempre todos os valores têm a mesma importância. Peso é um número que indica a importância relativa de cada valor. Na média ponderada, multiplica-se cada valor pelo seu peso, soma-se tudo e divide-se pela SOMA DOS PESOS (não pela quantidade de valores).
 
-A **moda** é simplesmente o valor que aparece com **maior frequência** no conjunto de dados. Um
-conjunto pode ter uma moda, mais de uma moda (bimodal, trimodal) ou nenhuma moda (se todos os
-valores aparecerem com a mesma frequência).
+média ponderada = (soma de valor × peso) ÷ (soma dos pesos)
 
-### Escolhendo a medida certa para cada situação
+Exemplo: numa disciplina, a primeira prova tem peso 2 e a segunda, peso 3. O aluno tirou 6,0 e 8,0. A média é (6 × 2 + 8 × 3) ÷ (2 + 3) = (12 + 24) ÷ 5 = 36 ÷ 5 = 7,2. Repare que o resultado ficou mais próximo do 8, porque a prova de nota 8 pesava mais. Dividir por 2 em vez de 5 é o erro clássico aqui.
 
-Não existe uma medida "melhor" em absoluto — a escolha depende do tipo de dado e do objetivo da
-análise. Para dados numéricos sem outliers relevantes, a média costuma ser suficiente. Quando há
-valores extremos que poderiam distorcer a interpretação (como salários muito discrepantes), a
-mediana é mais indicada. Para identificar o valor mais comum (como o tamanho de roupa mais vendido
-em uma loja), a moda é a medida certa.
+**Mediana.** Mediana é o valor que ocupa a posição central depois que os dados são colocados em ordem crescente. Ordenar é obrigatório e é a etapa que mais gente pula.
 
-### O que a diferença entre as três medidas revela
+Se a quantidade de valores (chamada de n) for ímpar, a mediana é o valor que está exatamente no meio, na posição (n + 1) ÷ 2. Em 19, 21, 22, 24, 26 (n = 5), a posição central é (5 + 1) ÷ 2 = 3, então a mediana é 22.
 
-Quando média, mediana e moda de um conjunto são muito próximas, isso geralmente indica uma
-distribuição de dados relativamente **simétrica**. Quando elas divergem bastante, é sinal de que
-os dados estão **assimétricos**, possivelmente com outliers — um alerta para não confiar
-cegamente em uma única medida na hora de interpretar um conjunto de dados.
+Se n for par, não existe um único valor no meio: existem dois. A mediana é a média aritmética desses dois valores centrais, que ocupam as posições n ÷ 2 e n ÷ 2 + 1. Em 180, 190, 195, 205, 210, 220, 230, 240 (n = 8), os centrais são o quarto e o quinto, ou seja, 205 e 210, e a mediana é (205 + 210) ÷ 2 = 207,5. Note que, nesse caso, a mediana pode não ser um valor da lista.
+
+A mediana divide o conjunto ao meio: metade dos dados está abaixo dela e metade acima.
+
+**Moda.** Moda é o valor que aparece com maior frequência, ou seja, o que mais se repete. Em 5, 7, 7, 8, 10, a moda é 7. Um conjunto pode ter uma moda (unimodal), duas ou mais (bimodal ou multimodal, quando há empate na maior frequência) ou nenhuma (amodal, quando todos os valores aparecem o mesmo número de vezes). A moda é a única das três que funciona com dados não numéricos: dá para falar na cor mais vendida, no meio de transporte mais usado, no candidato mais citado — mas não faz sentido calcular a média de cores.
+
+**O efeito dos valores extremos.** Valor extremo, ou outlier, é um dado muito distante dos demais. A média é sensível a ele porque todo valor entra na soma; a mediana é resistente porque só a posição importa.
+
+Veja os salários mensais de cinco funcionários de uma pequena empresa: R$ 1.500,00; R$ 1.600,00; R$ 1.700,00; R$ 1.800,00 e R$ 20.000,00 (o dono). A soma é R$ 26.600,00 e a média é 26.600 ÷ 5 = R$ 5.320,00. Só que nenhum funcionário ganha algo próximo disso: quatro dos cinco ganham menos de R$ 1.900,00. A mediana, por outro lado, é o terceiro valor da lista ordenada, R$ 1.700,00, que descreve muito melhor a realidade de quem trabalha ali.
+
+Conclusão que o ENEM cobra em texto, sem conta nenhuma: quando existem valores extremos, a mediana representa melhor o conjunto do que a média. Quando os dados são bem distribuídos, sem extremos, a média é uma boa representação. E quando a pergunta é sobre o mais comum, o mais vendido, o mais frequente, a resposta é a moda.
+
+**Calcular a partir de uma tabela de frequência.** Frequência é o número de vezes que cada valor aparece. Em vez de listar 20 dados, a tabela informa cada valor e quantas vezes ele ocorreu. Considere o número de gols marcados por um time em 20 jogos: 0 gol em 5 jogos, 1 gol em 8 jogos, 2 gols em 4 jogos e 3 gols em 3 jogos.
+
+Para a média, é uma média ponderada em que os pesos são as frequências: (0 × 5 + 1 × 8 + 2 × 4 + 3 × 3) ÷ (5 + 8 + 4 + 3) = (0 + 8 + 8 + 9) ÷ 20 = 25 ÷ 20 = 1,25 gol por jogo.
+
+Para a moda, basta olhar a maior frequência: 8 é a maior, e corresponde ao valor 1 gol. A moda é 1.
+
+Para a mediana, use a frequência acumulada, que é a soma das frequências até cada linha. Acumulando: até 0 gol temos 5 jogos; até 1 gol temos 5 + 8 = 13 jogos; até 2 gols temos 17; até 3 gols temos 20. Como n = 20 é par, a mediana é a média das posições 10 e 11. As posições de 6 a 13 correspondem ao valor 1 gol, então tanto a décima quanto a décima primeira valem 1, e a mediana é (1 + 1) ÷ 2 = 1.
+
+Cuidado importante: nesse tipo de tabela, a média NÃO é a soma dos valores da primeira coluna dividida pelo número de linhas. Ignorar as frequências é o erro mais comum do tema.
+
+**Armadilhas típicas do INEP:** (1) calcular a mediana sem ordenar os dados, pegando o valor que está fisicamente no meio da lista dada; (2) esquecer que, com quantidade par de dados, a mediana é a média dos DOIS valores centrais; (3) na média ponderada, dividir pela quantidade de notas em vez de dividir pela soma dos pesos; (4) em tabela de frequência, tratar cada linha como um único dado e ignorar quantas vezes o valor ocorreu; (5) confundir a frequência (quantas vezes ocorreu) com o próprio valor da variável — a moda é o valor, não a frequência dele; (6) escolher a média em situações com valores extremos, quando o comando pede a medida que melhor representa o conjunto; (7) supor que a moda é sempre única, quando pode haver empate ou nenhuma moda.
 
 ## Tópicos-Chave para Revisão
 
 <div className="topico">
 
-**Média** = soma de todos os valores ÷ quantidade de valores — é sensível a **valores extremos**
-(outliers), que podem distorcer sua representatividade.
+Média é a soma dos valores dividida pela quantidade deles, mediana é o valor do meio depois de ordenar os dados, e moda é o valor que mais se repete. Valores extremos puxam a média, mas quase não afetam a mediana.
 
-**Mediana** = valor central do conjunto **ordenado** (ou a média dos dois centrais, se a quantidade
-for par) — não é distorcida por outliers, sendo mais robusta em conjuntos assimétricos.
+Da fórmula da média sai a relação soma total = média × quantidade, que resolve todas as questões em que a média muda porque um valor foi corrigido, retirado ou acrescentado ao conjunto. A média também não precisa ser um valor existente no conjunto, como uma média de 2,3 filhos por família.
 
-**Moda** = valor que mais se repete no conjunto — pode haver mais de uma moda ou nenhuma moda.
+Média ponderada usa pesos que indicam a importância de cada valor: multiplique cada valor pelo seu peso, some e divida pela soma dos pesos, nunca pela quantidade de valores. Com notas 6,0 de peso 2 e 8,0 de peso 3, a média é (12 + 24) ÷ 5 = 7,2.
 
-A escolha da medida ideal depende do contexto: **média** para dados sem grande dispersão, **mediana**
-quando há outliers relevantes, **moda** para identificar o valor mais comum/frequente.
+Mediana exige ordenar os dados antes de qualquer coisa. Com quantidade n ímpar, é o valor da posição (n + 1) ÷ 2; com n par, é a média aritmética dos dois valores centrais, das posições n ÷ 2 e n ÷ 2 + 1, e nesse caso pode não pertencer ao conjunto. Metade dos dados fica abaixo e metade acima da mediana.
 
-Quando média, mediana e moda **divergem muito** entre si, isso indica assimetria na distribuição
-dos dados — sinal de alerta para não confiar isoladamente na média em uma análise.
+Moda é o valor de maior frequência e é a única medida aplicável a dados não numéricos, como cor preferida ou meio de transporte. Um conjunto pode ser unimodal, bimodal ou multimodal (quando há empate na maior frequência) ou amodal (quando não há repetição predominante).
+
+Valores extremos, ou outliers, puxam a média na sua direção porque entram na soma, enquanto a mediana é resistente porque depende apenas da posição: em salários de 1.500, 1.600, 1.700, 1.800 e 20.000, a média é 5.320 e a mediana é 1.700, e é a mediana que descreve a realidade da maioria.
+
+A escolha da medida depende da pergunta: média quando os dados são equilibrados e se quer repartir igualmente, mediana quando há valores extremos ou distribuição desigual, moda quando interessa o mais frequente, o mais vendido ou o mais escolhido.
+
+Em tabela de frequência, a média é ponderada pelas frequências, somando valor × frequência e dividindo pela soma das frequências; a moda é o valor associado à maior frequência; e a mediana é localizada pela frequência acumulada, procurando em qual valor caem as posições centrais.
 
 </div>
+
+## Teste de Fogo
+
+*Questões sem gabarito — resolva primeiro, depois confira com o professor ou com a IA.*
+
+**Questão 1 (estilo ENEM — autoral)**
+Uma família registrou o consumo mensal de energia elétrica, em quilowatt-hora, ao longo de oito meses consecutivos, obtendo os seguintes valores, na ordem em que ocorreram: 180, 210, 195, 240, 205, 230, 190 e 220.
+
+A mediana desses consumos, em quilowatt-hora, é
+
+a) 195,0
+b) 205,0
+c) 207,5
+d) 208,75
+e) 210,0
+
+**Questão 2 (estilo ENEM — autoral)**
+Em uma disciplina de um curso técnico, a nota final é a média ponderada de três avaliações, com pesos 2, 3 e 5, respectivamente. Um estudante obteve 6,0 na primeira avaliação e 7,0 na segunda, e precisa que sua nota final seja exatamente 7,0 para ser aprovado.
+
+A nota que esse estudante precisa obter na terceira avaliação é
+
+a) 6,5
+b) 7,0
+c) 7,4
+d) 8,0
+e) 8,5
+
+**Questão 3 (estilo ENEM — autoral)**
+Um técnico registrou o número de gols marcados por um time de futebol em cada um dos 20 jogos de um campeonato, conforme a tabela.
+
+Nenhum gol: 5 jogos
+Um gol: 8 jogos
+Dois gols: 4 jogos
+Três gols: 3 jogos
+
+O número médio de gols marcados por esse time, por jogo, nesse campeonato, foi de
+
+a) 1,00
+b) 1,25
+c) 1,50
+d) 2,00
+e) 5,00
+
+**Questão 4 (estilo ENEM — autoral)**
+Uma pequena empresa tem cinco funcionários, cujos salários mensais, em reais, são 1.500,00; 1.600,00; 1.700,00; 1.800,00 e 20.000,00, sendo este último o salário do proprietário. Ao divulgar dados sobre remuneração, um representante da empresa afirmou que "o salário médio dos funcionários é de R$ 5.320,00".
+
+Um analista contestou a afirmação, argumentando que ela não descreve a realidade da maioria dos trabalhadores da empresa. A medida estatística que representaria melhor a remuneração típica desse grupo, bem como seu valor, é
+
+a) a média, igual a R$ 1.700,00.
+b) a mediana, igual a R$ 1.700,00.
+c) a mediana, igual a R$ 5.320,00.
+d) a moda, igual a R$ 20.000,00.
+e) a moda, igual a R$ 1.500,00.
+
+**Questão 5 (estilo ENEM — autoral)**
+Em uma turma de 20 alunos, a média das notas de uma prova foi 6,0. Ao revisar a correção, a professora percebeu que a nota de um dos alunos havia sido registrada como 4,0, quando o valor correto era 9,0. Todas as demais notas estavam corretas.
+
+Após a correção do registro, a nova média das notas dessa turma passou a ser
+
+a) 6,05
+b) 6,25
+c) 6,50
+d) 7,00
+e) 8,50

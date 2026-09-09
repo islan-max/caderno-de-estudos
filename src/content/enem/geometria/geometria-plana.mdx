@@ -1,152 +1,150 @@
 ---
-title: "Geometria Plana: Área e Perímetro das Figuras Mais Cobradas"
+title: "Geometria Plana"
 subject: "Geometria"
 order: 1
 relevance: >
-  Geometria plana aparece no ENEM quase sempre em contextos práticos — cálculo de área de um
-  terreno, quantidade de material para revestir um piso, dimensionamento de uma horta — exigindo
-  reconhecer a figura certa e aplicar a fórmula correta de área ou perímetro.
+  Geometria plana é o estudo das figuras desenhadas numa superfície lisa: quadrados, retângulos,
+  triângulos, círculos e as figuras compostas que aparecem em plantas de casas, terrenos e embalagens.
+  As duas medidas centrais são o perímetro (o contorno da figura) e a área (a superfície que ela ocupa).
+  É um dos blocos mais volumosos do ENEM: planta de imóvel, cálculo de quantidade de piso ou de tinta,
+  área plantada, terreno a ser cercado, projeto de reforma. O INEP raramente entrega a figura pronta com
+  todas as medidas; ele costuma dar um desenho composto que precisa ser decomposto, ou uma medida em
+  unidade diferente da pedida na resposta. Aparecem 3 a 5 questões por prova.
 quickSummary: >
-  Perímetro é a soma de todos os lados de uma figura (o "contorno"); área é a medida da superfície
-  interna. Cada figura plana tem sua fórmula própria de área: retângulo (base × altura), triângulo
-  (base × altura ÷ 2), círculo (π × raio²), entre outras.
-resources:
-  conteudoComplementar:
-    conteudo: "Geometria Espacial (Volume)"
-    comoAjuda: "Depois de dominar área de figuras planas, o próximo passo natural é aprender a calcular o volume de sólidos geométricos, que frequentemente usa a área da base como parte da fórmula."
-questions:
-  - question: >
-      Um terreno retangular tem 15 metros de largura e 20 metros de comprimento. Qual é a área
-      desse terreno?
-    options:
-      - "35 m²"
-      - "70 m²"
-      - "150 m²"
-      - "300 m²"
-      - "600 m²"
-    correctIndex: 3
-    explanation: >
-      A = b × h — A é a área, b a base/largura (15 m), h a altura/comprimento (20 m).
-      A = 15 × 20 = 300 m².
-    source: "Questão autoral, estilo ENEM"
-  - question: >
-      Considerando o mesmo terreno retangular de 15 m de largura por 20 m de comprimento, qual é o
-      seu perímetro (o total de cerca necessária para contorná-lo)?
-    options:
-      - "35 m"
-      - "70 m"
-      - "150 m"
-      - "300 m"
-      - "600 m"
-    correctIndex: 1
-    explanation: >
-      P = 2 × (b + h) — P é o perímetro, b a largura (15 m), h o comprimento (20 m).
-      P = 2 × (15 + 20) = 2 × 35 = 70 m.
-    source: "Questão autoral, estilo ENEM"
-  - question: >
-      Um terreno triangular tem base de 12 metros e altura de 8 metros (medida perpendicularmente à
-      base). Qual é a área desse terreno?
-    options:
-      - "20 m²"
-      - "48 m²"
-      - "96 m²"
-      - "192 m²"
-      - "24 m²"
-    correctIndex: 1
-    explanation: >
-      A = (b × h) ÷ 2 — A é a área do triângulo, b a base (12 m), h a altura (8 m).
-      A = (12 × 8) ÷ 2 = 96 ÷ 2 = 48 m².
-    source: "Questão autoral, estilo ENEM"
-  - question: >
-      Uma piscina circular tem raio de 5 metros. Considerando π ≈ 3, qual é, aproximadamente, a
-      área dessa piscina?
-    options:
-      - "15 m²"
-      - "30 m²"
-      - "45 m²"
-      - "75 m²"
-      - "150 m²"
-    correctIndex: 3
-    explanation: >
-      A = π × r² — A é a área do círculo, π a constante (aproximadamente 3, para simplificar o
-      cálculo), r o raio (5 m). A = 3 × 5² = 3 × 25 = 75 m².
-    source: "Questão autoral, estilo ENEM"
-  - question: >
-      Ao calcular a área de uma figura composta (formada pela junção de um retângulo e um
-      triângulo, por exemplo), a estratégia mais eficiente é:
-    options:
-      - "Somar diretamente os perímetros das duas figuras, ignorando completamente o cálculo de área."
-      - "Dividir a figura composta em figuras geométricas conhecidas (retângulo, triângulo, círculo), calcular a área de cada uma separadamente e somar (ou subtrair, se for o caso de um recorte) os resultados."
-      - "Multiplicar o perímetro total pela altura da figura, sem qualquer decomposição."
-      - "Calcular apenas a área da maior figura, ignorando as demais partes da composição."
-      - "É impossível calcular a área de qualquer figura composta."
-    correctIndex: 1
-    explanation: >
-      A estratégia central para figuras compostas é decompô-las em figuras geométricas conhecidas,
-      calcular a área de cada parte separadamente, e somar (ou subtrair, no caso de recortes/vazios)
-      os resultados para obter a área total.
-    source: "Questão autoral, estilo ENEM"
+  Perímetro é a soma dos lados, medido em unidades de comprimento; área é a superfície ocupada, medida em
+  unidades quadradas. Toda figura complicada se resolve decompondo em retângulos e triângulos, somando ou
+  subtraindo pedaços.
 ---
 
 ## Aula Teórica Completa
 
-Geometria plana estuda figuras em duas dimensões — largura e comprimento, sem profundidade. Os dois
-conceitos mais cobrados no ENEM são **perímetro** e **área**, e é essencial não confundi-los.
+**Perímetro e área não são a mesma coisa.** Perímetro é o comprimento do contorno da figura, ou seja, a soma de todos os lados. É o que interessa quando se compra tela para cercar um terreno, rodapé para uma sala ou fita para contornar um quadro. A unidade é de comprimento: metro (m), centímetro (cm), quilômetro (km).
 
-### Perímetro: a medida do contorno
+Área é a medida da superfície que a figura ocupa, isto é, quantos quadradinhos de um determinado tamanho cabem dentro dela. É o que interessa quando se compra piso, grama, tinta ou terra para plantio. A unidade é quadrada: metro quadrado (m²), centímetro quadrado (cm²), quilômetro quadrado (km²). O símbolo elevado a dois na unidade existe justamente porque a área nasce da multiplicação de duas medidas de comprimento.
 
-**Perímetro** é a soma de todos os lados de uma figura — é, na prática, "a volta" completa em torno
-dela. Pense em cercar um terreno: a quantidade de cerca necessária é o perímetro. Para qualquer
-polígono, basta somar o comprimento de todos os lados; para um retângulo, a fórmula simplificada é
-**P = 2 × (b + h)**, onde **P** é o perímetro, **b** é a base/largura e **h** é a altura/comprimento.
+Duas figuras podem ter o mesmo perímetro e áreas completamente diferentes. Um retângulo de 1 m por 9 m e um quadrado de 5 m de lado têm ambos perímetro de 20 m, mas o primeiro tem área de 9 m² e o segundo, de 25 m². Isso já foi cobrado diretamente no ENEM.
 
-### Área: a medida da superfície
+**Fórmulas essenciais.** Em todas elas, use as medidas na MESMA unidade antes de multiplicar.
 
-**Área** mede o "espaço interno" de uma figura — quanto de superfície ela ocupa. Pense em quanto
-piso é necessário para cobrir um cômodo: essa quantidade é a área. Cada figura tem sua própria
-fórmula de área.
+Quadrado, de lado L: perímetro P = 4 × L; área A = L × L, que se escreve L².
 
-### Fórmulas de área das figuras mais cobradas
+Retângulo, de base b e altura h: perímetro P = 2 × (b + h); área A = b × h.
 
-Para o **retângulo**: **A = b × h**, onde **A** é a área, **b** é a base e **h** é a altura. Para o
-**triângulo**: **A = (b × h) ÷ 2**, onde **A** é a área, **b** é a base e **h** é a altura medida
-perpendicularmente à base (o triângulo é "metade" de um retângulo de mesma base e altura). Para o
-**círculo**: **A = π × r²**, onde **A** é a área, **π** (pi) é uma constante (aproximadamente 3,14,
-frequentemente simplificada para 3 em cálculos do ENEM) e **r** é o raio (a distância do centro até
-a borda do círculo).
+Paralelogramo (quadrilátero com lados opostos paralelos, tipo um retângulo "entortado"), de base b e altura h: área A = b × h. Atenção: h é a altura, ou seja, a distância perpendicular entre as duas bases paralelas, e não a medida do lado inclinado.
 
-### Figuras compostas: decompor para calcular
+Triângulo, de base b e altura h: área A = (b × h) ÷ 2. É metade de um retângulo de mesma base e mesma altura. De novo, a altura é a distância perpendicular da base até o vértice oposto, e pode até cair fora do triângulo em figuras muito inclinadas.
 
-Muitas questões do ENEM apresentam figuras "compostas" — formadas pela junção de duas ou mais
-figuras conhecidas (um retângulo com um triângulo em cima, por exemplo, formando o desenho de uma
-casa). A estratégia central é **decompor** a figura composta em partes conhecidas, calcular a área
-de cada parte separadamente e depois **somar** (ou **subtrair**, se houver um recorte/vazio na
-figura) os resultados para chegar à área total.
+Trapézio (quadrilátero com apenas dois lados paralelos), de base maior B, base menor b e altura h: área A = ((B + b) × h) ÷ 2. Em palavras: some as duas bases paralelas, multiplique pela altura e divida por dois. Exemplo: B = 10 m, b = 6 m e h = 4 m dão A = ((10 + 6) × 4) ÷ 2 = (16 × 4) ÷ 2 = 32 m².
 
-### O erro mais comum: confundir área com perímetro
+Losango (quadrilátero de quatro lados iguais), de diagonal maior D e diagonal menor d: área A = (D × d) ÷ 2. Diagonais são os segmentos que ligam vértices opostos. Com D = 12 cm e d = 8 cm, a área é (12 × 8) ÷ 2 = 48 cm².
 
-O erro mais frequente em questões de geometria plana é confundir os dois conceitos — usar a fórmula
-de área quando a pergunta pede perímetro, ou vice-versa. Sempre releia o enunciado: se ele fala em
-"cercar", "contornar" ou "quantidade de fio/cerca", é perímetro; se fala em "cobrir", "revestir" ou
-"quantidade de piso/tinta", é área.
+Círculo, de raio r (a distância do centro até a borda): o contorno, chamado de comprimento da circunferência, é C = 2 × π × r; a área é A = π × r², ou seja, π multiplicado pelo raio ao quadrado. O símbolo π (pi) é um número fixo, aproximadamente 3,14, e o ENEM sempre informa o valor a usar. O diâmetro é o dobro do raio, então, quando o enunciado der o diâmetro, divida por 2 antes de aplicar as fórmulas. Com r = 5 m: comprimento = 2 × 3,14 × 5 = 31,4 m e área = 3,14 × 25 = 78,5 m².
+
+**Conversão de unidades de área.** Esta é a etapa que mais elimina candidatos, porque o instinto é errado. Como 1 m = 100 cm, ao elevar ao quadrado temos 1 m² = 100 × 100 = 10.000 cm². Não é 100. A regra é: quando o fator de conversão de comprimento é 10, o de área é 100; quando o de comprimento é 100, o de área é 10.000; quando o de comprimento é 1.000, o de área é 1.000.000.
+
+Os números que caem: 1 m² = 10.000 cm²; 1 km² = 1.000.000 m²; 1 cm² = 100 mm².
+
+Em contextos rurais aparece o hectare (símbolo ha), que é a área de um quadrado de 100 m de lado: 1 hectare = 10.000 m². Assim, um terreno retangular de 250 m por 180 m tem área de 45.000 m², que corresponde a 45.000 ÷ 10.000 = 4,5 hectares.
+
+**Decompor figuras compostas.** Plantas de imóveis e terrenos quase nunca são retângulos perfeitos. A técnica é sempre uma de duas.
+
+Somar: corte a figura em retângulos e triângulos, calcule a área de cada pedaço e some tudo.
+
+Subtrair: enxergue a figura como um retângulo grande do qual foi retirado um pedaço, calcule a área do retângulo cheio e desconte a do pedaço removido. Uma planta em forma de L com 12 m por 9 m no total, tendo um recorte de 5 m por 4 m em um dos cantos, tem área 12 × 9 − 5 × 4 = 108 − 20 = 88 m².
+
+O mesmo vale para áreas com furos: um jardim quadrado de 10 m de lado com um chafariz circular de raio 2 m no meio tem área ajardinada 10 × 10 − 3,14 × 2 × 2 = 100 − 12,56 = 87,44 m².
+
+**Cuidado com o perímetro em figuras compostas.** Perímetro não se decompõe do mesmo jeito. Ao cortar a figura em pedaços, surgem lados internos que não fazem parte do contorno real. Para o perímetro, percorra a borda externa com o dedo e some apenas o que você efetivamente percorre.
+
+**O efeito da escala sobre a área.** Se todas as medidas lineares de uma figura são multiplicadas por um número k, a área fica multiplicada por k × k, ou seja, por k². Um terreno de 20 m por 30 m tem 600 m²; dobrando os dois lados, vira 40 m por 60 m, com 2.400 m², que é 4 vezes a área original, e não 2. Triplicar os lados multiplica a área por 9. Reduzir os lados à metade reduz a área a um quarto. Essa é uma das perguntas favoritas do INEP, tanto em plantas quanto em mapas: numa escala 1:100, cada centímetro quadrado do papel representa 10.000 cm² reais, ou seja, 1 m².
+
+**Aplicações que caem na prova.**
+
+Quantidade de piso: divida a área do cômodo pela área de uma peça, ambas na mesma unidade, e acrescente a perda prevista. Uma sala de 5 m por 4,8 m tem 24 m². Uma peça de 0,40 m por 0,40 m tem 0,16 m². São necessárias 24 ÷ 0,16 = 150 peças. Se o enunciado pedir 10% a mais para recortes e quebras, o total vira 150 × 1,10 = 165 peças.
+
+Quantidade de tinta: calcule a área a pintar, multiplique pelo número de demãos e divida pelo rendimento informado (em metros quadrados por litro). Uma área de 45 m² com duas demãos exige cobrir 90 m²; com rendimento de 10 m² por litro, são 9 litros. Se a lata tem 3,6 litros, 9 ÷ 3,6 = 2,5, e como não se compra meia lata, são necessárias 3 latas — arredondamento sempre para cima.
+
+Área plantada e produtividade: multiplique a área pela produção por unidade de área, cuidando para que as unidades combinem (toneladas por hectare exigem a área em hectares).
+
+**Armadilhas típicas do INEP:** (1) converter área como se fosse comprimento, trocando 1 m² por 100 cm² em vez de 10.000 cm²; (2) usar o lado inclinado do paralelogramo ou do trapézio como se fosse a altura — altura é sempre perpendicular; (3) confundir raio com diâmetro no círculo, o que faz a área ficar quatro vezes maior ou menor do que deveria; (4) responder o perímetro quando se pediu a área, ou somar lados internos ao contorno de uma figura composta; (5) esquecer o acréscimo percentual de perdas em pisos e azulejos, ou arredondar para baixo o número de latas e caixas, quando o correto é sempre para cima; (6) supor que dobrar as dimensões dobra a área, quando na verdade quadruplica; (7) esquecer de multiplicar pelo número de demãos no cálculo de tinta.
 
 ## Tópicos-Chave para Revisão
 
 <div className="topico">
 
-**Perímetro** é a soma de todos os lados de uma figura (o "contorno"); para o retângulo,
-**P = 2 × (b + h)** — P é o perímetro, b a base, h a altura.
+Perímetro é a soma dos lados, medido em unidades de comprimento; área é a superfície ocupada, medida em unidades quadradas. Toda figura complicada se resolve decompondo em retângulos e triângulos, somando ou subtraindo pedaços.
 
-**Área** mede a superfície interna de uma figura. Retângulo: **A = b × h**. Triângulo:
-**A = (b × h) ÷ 2**. Círculo: **A = π × r²** (π ≈ 3 ou 3,14).
+Fórmulas de área dos quadriláteros: quadrado A = L²; retângulo A = base × altura; paralelogramo A = base × altura, com altura perpendicular e nunca o lado inclinado; trapézio A = ((base maior + base menor) × altura) ÷ 2; losango A = (diagonal maior × diagonal menor) ÷ 2.
 
-Para **figuras compostas**, a estratégia é **decompor** em figuras conhecidas, calcular a área de
-cada parte e **somar** (ou subtrair, em caso de recorte) os resultados.
+Triângulo tem área A = (base × altura) ÷ 2, exatamente metade do retângulo de mesma base e mesma altura, com a altura sempre medida perpendicularmente à base escolhida.
 
-O erro mais comum é **confundir área com perímetro** — releia o enunciado: "cercar/contornar" pede
-perímetro; "cobrir/revestir" pede área.
+No círculo, o raio r é a distância do centro à borda e o diâmetro é o dobro do raio; o comprimento da circunferência é C = 2 × π × r e a área é A = π × r², com π aproximadamente 3,14 e sempre informado pela prova. Se o enunciado der o diâmetro, divida por dois antes de calcular.
 
-Sempre confira as **unidades de medida** (metros, centímetros) antes de aplicar qualquer fórmula —
-inconsistência de unidade é outra fonte comum de erro.
+Conversão de unidades de área eleva ao quadrado o fator de comprimento: 1 m² = 10.000 cm², 1 km² = 1.000.000 m², 1 cm² = 100 mm². Em contexto rural, 1 hectare = 10.000 m², de modo que 45.000 m² equivalem a 4,5 hectares.
+
+Figuras compostas se resolvem somando as áreas dos pedaços ou subtraindo a parte recortada de um retângulo maior; já o perímetro exige percorrer apenas a borda externa, ignorando os lados internos criados pela decomposição.
+
+Multiplicar todas as medidas lineares por um fator k multiplica a área por k², de modo que dobrar as dimensões quadruplica a área e triplicá-las multiplica a área por nove. O mesmo raciocínio vale para escalas de plantas e mapas.
+
+Em problemas de piso, divida a área do cômodo pela área de uma peça na mesma unidade e acrescente o percentual de perdas; em problemas de tinta, multiplique a área pelo número de demãos e divida pelo rendimento em metros quadrados por litro, arredondando o número de latas sempre para cima.
 
 </div>
+
+## Teste de Fogo
+
+*Questões sem gabarito — resolva primeiro, depois confira com o professor ou com a IA.*
+
+**Questão 1 (estilo ENEM — autoral)**
+Um pedreiro vai assentar piso cerâmico em uma sala retangular de 5 m de comprimento por 4,8 m de largura. As peças cerâmicas escolhidas são quadradas, com 0,40 m de lado. O fabricante recomenda comprar 10% de peças a mais do que o estritamente necessário, para cobrir recortes e quebras.
+
+O número mínimo de peças que esse pedreiro deve comprar é
+
+a) 60
+b) 150
+c) 165
+d) 240
+e) 1.500
+
+**Questão 2 (estilo ENEM — autoral)**
+A planta de um salão comercial tem a forma da letra L. Ela pode ser vista como um retângulo de 12 m por 9 m do qual foi retirado, em um dos cantos, um retângulo de 5 m por 4 m, correspondente a uma área ocupada por uma escada externa.
+
+A área do piso desse salão comercial, em metros quadrados, é
+
+a) 68
+b) 88
+c) 96
+d) 108
+e) 128
+
+**Questão 3 (estilo ENEM — autoral)**
+Um morador vai pintar as paredes internas de um quarto. Descontadas a porta e as janelas, a área total a ser pintada é de 45 m². A tinta escolhida tem rendimento de 10 metros quadrados por litro e é vendida apenas em latas de 3,6 litros. O fabricante recomenda a aplicação de duas demãos.
+
+O número mínimo de latas que esse morador deve comprar é
+
+a) 2
+b) 3
+c) 5
+d) 9
+e) 13
+
+**Questão 4 (estilo ENEM — autoral)**
+Um agricultor comprou um terreno retangular que mede 250 m de comprimento por 180 m de largura e pretende plantar milho em toda a sua extensão. A produtividade média esperada para a variedade escolhida é de 8 toneladas por hectare, sendo 1 hectare igual a 10.000 m².
+
+A produção esperada nesse terreno, em toneladas, é de
+
+a) 3,6
+b) 4,5
+c) 36,0
+d) 45,0
+e) 360,0
+
+**Questão 5 (estilo ENEM — autoral)**
+Uma praça possui um canteiro de flores com formato quadrado, de 4 m de lado. A prefeitura aprovou um projeto de ampliação em que o canteiro continuará quadrado, mas com o lado triplicado em relação ao atual.
+
+Em relação à área do canteiro atual, a área do novo canteiro será
+
+a) a mesma
+b) o dobro
+c) o triplo
+d) seis vezes maior
+e) nove vezes maior

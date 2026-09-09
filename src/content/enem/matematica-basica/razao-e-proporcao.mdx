@@ -1,145 +1,132 @@
 ---
-title: "Razão e Proporção: A Base da Regra de Três"
+title: "Razão e Proporção"
 subject: "Matemática Básica"
 order: 1
 relevance: >
-  Razão e proporção são a base lógica por trás da regra de três, das escalas em mapas, das receitas
-  culinárias e de boa parte das questões de porcentagem e matemática financeira — praticamente
-  todo ano o ENEM cobra esse raciocínio, direta ou indiretamente.
+  Razão é o nome matemático para "comparar duas quantidades dividindo uma pela outra", e proporção é
+  dizer que duas dessas comparações valem o mesmo. Parece pouco, mas é a base de quase metade da prova
+  de Matemática do ENEM: escala de mapa e de planta, densidade demográfica, receita de cozinha,
+  velocidade média, consumo por quilômetro, leitura de gráfico em porcentagem e a famosa regra de três
+  saem todos daqui. O INEP raramente pergunta "o que é uma proporção"; ele entrega uma situação real com
+  números e espera que você monte a proporção sozinho. Aparecem, em média, 3 a 5 questões por prova que
+  dependem direta ou indiretamente desse raciocínio.
 quickSummary: >
-  Razão é a comparação entre duas grandezas por meio de uma divisão (a/b). Proporção é a igualdade
-  entre duas razões (a/b = c/d). Grandezas diretamente proporcionais aumentam juntas na mesma
-  proporção; grandezas inversamente proporcionais se comportam de forma oposta — uma aumenta
-  enquanto a outra diminui, na mesma proporção.
-resources:
-  conteudoComplementar:
-    conteudo: "Porcentagem"
-    comoAjuda: "Porcentagem é, na prática, um tipo específico de razão (uma razão de denominador 100) — dominar razão e proporção facilita muito o entendimento de porcentagem."
-questions:
-  - question: >
-      A razão entre o número de meninos (12) e o número de meninas (18) em uma sala de aula é:
-    options:
-      - "12/18, que simplificado é 2/3"
-      - "18/12, que simplificado é 2/3"
-      - "12/30, que simplificado é 2/5"
-      - "18/30, que simplificado é 3/5"
-      - "1/1, pois as quantidades são iguais"
-    correctIndex: 0
-    explanation: >
-      Razão entre meninos e meninas é meninos ÷ meninas = 12/18. Simplificando (dividindo por 6):
-      12/18 = 2/3.
-    source: "Questão autoral, estilo ENEM"
-  - question: >
-      Numa receita, para fazer 20 pães são necessários 4 kg de farinha. Mantendo a mesma proporção,
-      quantos quilos de farinha são necessários para fazer 35 pães?
-    options:
-      - "5 kg"
-      - "6 kg"
-      - "7 kg"
-      - "8 kg"
-      - "9 kg"
-    correctIndex: 2
-    explanation: >
-      Montando a proporção: 20/4 = 35/x (pães sobre farinha, mantendo a mesma razão). Resolvendo:
-      20·x = 4·35 → 20x = 140 → x = 7 kg.
-    source: "Questão autoral, estilo ENEM"
-  - question: >
-      Uma obra é concluída por 6 pedreiros em 12 dias, trabalhando no mesmo ritmo. Se o número de
-      pedreiros dobrasse para 12, mantendo o mesmo ritmo individual de trabalho, em quantos dias a
-      obra seria concluída?
-    options:
-      - "24 dias"
-      - "18 dias"
-      - "12 dias"
-      - "6 dias"
-      - "3 dias"
-    correctIndex: 3
-    explanation: >
-      Pedreiros e dias são grandezas inversamente proporcionais: mais pedreiros, menos dias, na
-      mesma proporção. 6 × 12 = 12 × x → 72 = 12x → x = 6 dias.
-    source: "Questão autoral, estilo ENEM"
-  - question: >
-      Um mapa está desenhado na escala 1:50.000 (1 cm no mapa equivale a 50.000 cm na realidade).
-      Uma distância de 3 cm medida no mapa corresponde, na realidade, a quantos quilômetros?
-    options:
-      - "0,15 km"
-      - "1,5 km"
-      - "15 km"
-      - "150 km"
-      - "1500 km"
-    correctIndex: 2
-    explanation: >
-      3 cm no mapa × 50.000 = 150.000 cm na realidade. Convertendo para km (1 km = 100.000 cm):
-      150.000 ÷ 100.000 = 1,5 km. Atenção: o valor correto é 1,5 km, não 15 km — confira sempre a
-      conversão de unidades.
-    source: "Questão autoral, estilo ENEM"
-  - question: >
-      Duas grandezas são consideradas diretamente proporcionais quando:
-    options:
-      - "Uma aumenta enquanto a outra diminui, mantendo o produto entre elas constante."
-      - "O quociente entre elas permanece constante — ao aumentar uma, a outra aumenta na mesma proporção."
-      - "Não existe nenhuma relação matemática entre as duas grandezas."
-      - "Uma delas é sempre igual a zero."
-      - "A soma entre elas permanece sempre constante."
-    correctIndex: 1
-    explanation: >
-      Grandezas diretamente proporcionais mantêm o quociente (razão) constante entre si — se uma
-      dobra, a outra também dobra, mantendo a mesma razão.
-    source: "Questão autoral, estilo ENEM"
+  Razão é a divisão de uma grandeza por outra (a/b) e proporção é a igualdade entre duas razões
+  (a/b = c/d). Numa proporção vale sempre o produto dos meios igual ao produto dos extremos:
+  a × d = b × c.
 ---
 
 ## Aula Teórica Completa
 
-**Razão** é simplesmente a comparação entre duas grandezas por meio de uma divisão. Se você tem 12
-meninos e 18 meninas numa sala, a razão entre meninos e meninas é **12/18**, que pode ser
-simplificada (dividindo os dois números pelo mesmo valor) para **2/3**. Ler "razão de a para b" é o
-mesmo que calcular a fração **a/b**.
+**O que é razão.** Razão entre dois números a e b (com b diferente de zero) é simplesmente o resultado da divisão a ÷ b, que também escrevemos como a/b. Lemos "a está para b". Aqui, a é chamado de antecedente (vem antes) e b de consequente (vem depois). Se numa sala há 12 meninas e 18 meninos, a razão entre meninas e meninos é 12/18, que simplificando (dividindo os dois números por 6) vira 2/3. Isso significa: para cada 2 meninas existem 3 meninos. Perceba que a razão não diz quantas pessoas há na sala — ela diz o formato da comparação.
 
-### Proporção: uma igualdade entre razões
+**Razão não é a mesma coisa que fração.** Uma fração normalmente compara uma parte com o todo. A razão compara duas quantidades quaisquer, inclusive de tipos diferentes. Quando dividimos grandezas de tipos diferentes, nasce uma grandeza nova, com nome próprio e unidade própria. Velocidade é a razão distância ÷ tempo (km/h). Densidade é massa ÷ volume (g/cm³). Densidade demográfica é população ÷ área (habitantes por km²). Consumo de um carro é distância ÷ combustível (km/L). Sempre que o ENEM escreve uma unidade com barra ou com a palavra "por", ele está falando de uma razão.
 
-**Proporção** é a igualdade entre duas razões: **a/b = c/d**. Essa é a base da famosa **regra de
-três**: você monta duas razões equivalentes e descobre o valor desconhecido através da
-**multiplicação cruzada** — a·d = b·c.
+Exemplo concreto: uma cidade tem 3.000.000 de habitantes e 1.500 km² de área. A densidade demográfica é 3.000.000 ÷ 1.500 = 2.000 habitantes por km². Isso não quer dizer que em todo km² moram exatamente 2.000 pessoas; quer dizer que, se espalhássemos todo mundo igualmente, seriam 2.000 por km². Média é sempre esse "e se fosse tudo igual".
 
-### Grandezas diretamente proporcionais: crescem juntas
+**O que é proporção.** Proporção é a igualdade entre duas razões: a/b = c/d. Lemos "a está para b assim como c está para d". Os números das pontas (a e d) são chamados de extremos; os de dentro (b e c) são os meios. Se você escrever a proporção 12/18 = 2/3, os extremos são 12 e 3, e os meios são 18 e 2.
 
-Duas grandezas são **diretamente proporcionais** quando o quociente entre elas se mantém
-constante: se uma aumenta, a outra aumenta na mesma proporção (se dobra, dobra; se triplica,
-triplica). Exemplo clássico: quantidade de ingredientes de uma receita e número de porções — mais
-porções exigem proporcionalmente mais ingredientes.
+**A propriedade fundamental das proporções.** Numa proporção, o produto dos meios é igual ao produto dos extremos: a × d = b × c. Conferindo no exemplo acima: extremos 12 × 3 = 36; meios 18 × 2 = 36. Bate. Essa propriedade é o motor de tudo, porque permite descobrir um número que você não conhece. Se 3/5 = x/20, então 5 × x = 3 × 20, ou seja, 5x = 60, logo x = 12. É exatamente isso que a escola chama de "multiplicar cruzado".
 
-### Grandezas inversamente proporcionais: uma sobe, a outra desce
+**Regra de três é só isso com outro nome.** Numa receita, 2 ovos acompanham 300 g de farinha. Quantos gramas de farinha para 5 ovos? Monte a proporção mantendo o mesmo tipo de grandeza em cada lado da divisão: 2/300 = 5/x. Multiplicando cruzado: 2 × x = 300 × 5, ou seja, 2x = 1500, logo x = 750 g de farinha. O único cuidado real da regra de três é a organização: ovos embaixo de ovos, farinha embaixo de farinha, e a mesma unidade dos dois lados (não misture gramas com quilos).
 
-Duas grandezas são **inversamente proporcionais** quando o **produto** entre elas se mantém
-constante: se uma aumenta, a outra diminui na mesma proporção. Exemplo clássico: número de
-trabalhadores e tempo para concluir uma obra — mais trabalhadores (mantendo o mesmo ritmo
-individual) significa menos tempo necessário.
+**Grandezas diretamente proporcionais.** Duas grandezas são diretamente proporcionais quando, ao multiplicar uma por um número, a outra fica multiplicada pelo mesmo número: dobra uma, dobra a outra; divide uma por 3, a outra também é dividida por 3. O sinal disso é que a razão entre elas é constante. Chamamos essa constante de k (constante de proporcionalidade): y ÷ x = k, o que é o mesmo que y = k × x. Se 5 kg de farinha rendem 20 pães, então k = 20 ÷ 5 = 4 pães por quilo, e 8 kg rendem 8 × 4 = 32 pães.
 
-### Como montar a regra de três corretamente
+**Grandezas inversamente proporcionais.** Duas grandezas são inversamente proporcionais quando, ao multiplicar uma por um número, a outra fica dividida por esse mesmo número: dobra uma, a outra cai pela metade. O sinal disso é que o produto delas é constante: x × y = k. Exemplo clássico: 3 pedreiros levam 12 dias para levantar um muro. Como o trabalho total é fixo, o produto pedreiros × dias é constante: 3 × 12 = 36 "dias de pedreiro". Com 4 pedreiros, o tempo é 36 ÷ 4 = 9 dias. Repare que aqui NÃO se multiplica cruzado direto — primeiro é preciso inverter uma das razões, ou, mais seguro, usar o produto constante.
 
-O passo mais importante — e onde mora o erro mais comum — é identificar **antes de tudo** se as
-grandezas envolvidas são diretamente ou inversamente proporcionais. Se forem diretamente
-proporcionais, as razões são montadas na mesma "ordem" (multiplicação cruzada direta). Se forem
-inversamente proporcionais, você deve **inverter** uma das razões antes de resolver — ignorar esse
-passo é a causa mais comum de erro em problemas de regra de três.
+**Como decidir se é direta ou inversa sem decorar.** Use o teste do exagero: imagine um valor absurdamente grande em uma das grandezas e pergunte o que acontece com a outra. Mil pedreiros construindo o muro: o tempo despenca, então é inversa. Mil quilos de farinha: o número de pães explode, então é direta. Esse teste de dois segundos resolve praticamente todas as questões de regra de três do ENEM.
+
+**Regra de três composta.** Quando há três ou mais grandezas envolvidas, a saída mais segura não é montar tabelas com setinhas, e sim achar a taxa unitária. Se 3 máquinas trabalhando 8 horas por dia durante 5 dias produzem 600 peças, então o total de "máquina-horas" foi 3 × 8 × 5 = 120, e cada máquina-hora produz 600 ÷ 120 = 5 peças. Agora responda qualquer variação: 4 máquinas, 6 horas por dia, 10 dias dão 4 × 6 × 10 = 240 máquina-horas, ou seja, 240 × 5 = 1.200 peças.
+
+**Divisão proporcional.** Dividir uma quantia em partes proporcionais a certos números significa repartir de modo que as partes fiquem na mesma razão que esses números. Para dividir R$ 120,00 em partes proporcionais a 2, 3 e 5: some os números (2 + 3 + 5 = 10), descubra a constante k dividindo o total pela soma (120 ÷ 10 = 12) e multiplique k por cada número. As partes são 2 × 12 = 24, 3 × 12 = 36 e 5 × 12 = 60. Confira somando: 24 + 36 + 60 = 120. Esse "confira somando" deve ser automático.
+
+Para dividir em partes INVERSAMENTE proporcionais a 2, 3 e 5, troque cada número pelo seu inverso (1/2, 1/3, 1/5) e faça a divisão direta com esses inversos. Situação típica: repartir prêmio dando mais a quem cometeu menos faltas.
+
+**Escala.** Escala é a razão entre a medida no desenho e a medida real correspondente, com as duas na mesma unidade: escala = medida no desenho ÷ medida real. Uma escala 1:50.000 (lê-se "um para cinquenta mil") significa que 1 unidade de comprimento no papel equivale a 50.000 unidades iguais no mundo real. Se você mede 8 cm num mapa de escala 1:25.000, a distância real é 8 × 25.000 = 200.000 cm. Converta: 200.000 cm ÷ 100 = 2.000 m, e 2.000 m ÷ 1.000 = 2 km. A conversão no final é onde a maioria erra, então faça sempre em duas etapas visíveis.
+
+Escala grande e escala pequena confundem: quanto MAIOR o número depois dos dois-pontos, MENOR o desenho em relação ao real e menos detalhes ele mostra. Um mapa 1:1.000.000 cobre um país inteiro; uma planta 1:50 cobre um apartamento.
+
+**Proporção em gráficos e tabelas.** Muita questão do ENEM não pede conta nenhuma: ela mostra um gráfico de setores ou de barras e pergunta qual razão está correta, ou pede a parte correspondente a uma fatia. A ferramenta é a mesma: parte ÷ total. Se um setor representa 25% de um total de 8.400 pessoas, a parte é 0,25 × 8.400 = 2.100 pessoas. E se dois setores valem 30% e 10%, a razão entre eles é 30/10 = 3, ou seja, o primeiro é o triplo do segundo — mesmo sem saber o total.
+
+**Armadilhas típicas do INEP:** (1) inverter a ordem da razão, respondendo "meninos para meninas" quando foi pedido "meninas para meninos" — sublinhe a ordem no enunciado; (2) tratar como diretamente proporcional algo que é inversamente proporcional (torneiras enchendo um tanque, operários numa obra, velocidade e tempo de viagem); (3) esquecer de converter unidades antes de montar a proporção, misturando minutos com horas, gramas com quilos ou centímetros com metros; (4) em escala, parar a conta em centímetros quando a resposta é pedida em metros ou quilômetros; (5) confundir razão entre duas partes com razão de uma parte para o todo — se há 2 meninas para 3 meninos, as meninas são 2/5 do total, não 2/3.
 
 ## Tópicos-Chave para Revisão
 
 <div className="topico">
 
-**Razão** é a divisão entre duas grandezas (a/b); **proporção** é a igualdade entre duas razões
-(a/b = c/d), resolvida por multiplicação cruzada (a·d = b·c).
+Razão é a divisão de uma grandeza por outra (a/b) e proporção é a igualdade entre duas razões (a/b = c/d). Numa proporção vale sempre o produto dos meios igual ao produto dos extremos: a × d = b × c.
 
-Grandezas **diretamente proporcionais** mantêm o **quociente** constante: se uma aumenta, a outra
-aumenta na mesma proporção (ex.: ingredientes e porções de uma receita).
+Razões entre grandezas de tipos diferentes criam grandezas novas com unidade composta e a palavra "por" no nome: velocidade (km/h) é distância por tempo, densidade (g/cm³) é massa por volume, densidade demográfica (hab/km²) é população por área, consumo (km/L) é distância por combustível.
 
-Grandezas **inversamente proporcionais** mantêm o **produto** constante: se uma aumenta, a outra
-diminui na mesma proporção (ex.: número de trabalhadores e tempo de obra).
+Grandezas diretamente proporcionais mantêm a razão constante, y = k × x: dobrar uma dobra a outra. Grandezas inversamente proporcionais mantêm o produto constante, x × y = k: dobrar uma reduz a outra à metade. O teste do exagero (imaginar um valor absurdo em uma delas) identifica o tipo em segundos.
 
-Antes de montar qualquer regra de três, **identifique se a relação é direta ou inversa** — esse é
-o passo que evita o erro mais comum do tema.
+Regra de três simples é a propriedade fundamental aplicada: alinhe grandezas iguais na mesma posição, use as mesmas unidades e multiplique cruzado; se as grandezas forem inversamente proporcionais, use o produto constante em vez do produto cruzado.
 
-Escalas de mapas (ex.: 1:50.000) são um caso prático de razão e proporção — sempre confira a
-**conversão de unidades** (cm para km, por exemplo) ao final do cálculo.
+Regra de três composta se resolve com segurança pela taxa unitária: multiplique todas as grandezas de "esforço" (máquinas × horas × dias) para achar o total de unidades de trabalho, divida a produção por esse total e depois refaça a multiplicação com os novos valores.
+
+Divisão proporcional a números dados: some os números, divida o total por essa soma para achar a constante k e multiplique k por cada número; confira somando as partes. Para divisão inversamente proporcional, substitua cada número pelo seu inverso e faça a divisão direta.
+
+Escala é medida no desenho dividida pela medida real, com as duas na mesma unidade; em 1:25.000, cada centímetro do mapa vale 25.000 cm reais, que viram metros dividindo por 100 e quilômetros dividindo por mais 1.000. Quanto maior o número da escala, menor e menos detalhado é o desenho em relação ao real.
+
+Em gráficos, parte ÷ total resolve quase tudo: uma fatia de p por cento de um total T vale (p ÷ 100) × T, e a razão entre duas fatias percentuais dispensa conhecer o total.
 
 </div>
+
+## Teste de Fogo
+
+*Questões sem gabarito — resolva primeiro, depois confira com o professor ou com a IA.*
+
+**Questão 1 (estilo ENEM — autoral)**
+A receita original de um bolo caseiro, que serve 8 pessoas, utiliza 3 ovos, 450 g de farinha de trigo e 200 mL de leite. Para uma festa de aniversário, um confeiteiro precisa produzir a mesma receita, com o mesmo sabor, para servir 20 pessoas.
+
+A quantidade de farinha de trigo, em gramas, que ele deverá utilizar é
+
+a) 462,5
+b) 900,0
+c) 1.125,0
+d) 1.200,0
+e) 3.600,0
+
+**Questão 2 (estilo ENEM — autoral)**
+Uma equipe de manutenção da prefeitura mediu, numa planta de um bairro desenhada na escala 1:2.500, o comprimento de uma avenida que será recapeada. No desenho, a avenida mede 14 cm.
+
+O comprimento real da avenida, em quilômetros, é
+
+a) 0,035
+b) 0,35
+c) 3,5
+d) 35,0
+e) 350,0
+
+**Questão 3 (estilo ENEM — autoral)**
+Um município do interior tem população de 84.000 habitantes distribuída em uma área de 350 km². Um plano diretor prevê que, mantida a mesma área, a população chegará a 105.000 habitantes em dez anos.
+
+O aumento da densidade demográfica do município, em habitantes por quilômetro quadrado, previsto para esse período, será de
+
+a) 30
+b) 60
+c) 240
+d) 300
+e) 21.000
+
+**Questão 4 (estilo ENEM — autoral)**
+Uma pequena gráfica dispõe de 6 impressoras iguais que, funcionando 5 horas por dia durante 4 dias, produzem 60.000 folhas impressas. Por causa de um pedido urgente, a gráfica passará a operar com 8 impressoras iguais às primeiras, funcionando 9 horas por dia durante 5 dias.
+
+Nessas novas condições, o número de folhas impressas produzidas será de
+
+a) 60.000
+b) 90.000
+c) 135.000
+d) 180.000
+e) 216.000
+
+**Questão 5 (estilo ENEM — autoral)**
+Três sócios investiram em um pequeno negócio, aplicando R$ 15.000,00, R$ 25.000,00 e R$ 60.000,00, respectivamente. Ao final do primeiro ano, o lucro obtido foi de R$ 30.000,00 e o contrato prevê que ele seja repartido em partes diretamente proporcionais ao valor investido por cada sócio.
+
+A quantia, em reais, que caberá ao sócio que investiu R$ 25.000,00 é
+
+a) 4.500,00
+b) 7.500,00
+c) 9.000,00
+d) 10.000,00
+e) 18.000,00

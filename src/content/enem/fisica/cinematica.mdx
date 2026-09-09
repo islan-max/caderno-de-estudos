@@ -1,154 +1,169 @@
 ---
-title: "Cinemática: Velocidade, Aceleração e Movimento Uniformemente Variado"
+title: "Cinemática"
 subject: "Física"
 order: 1
 relevance: >
-  Cinemática é a porta de entrada da Física no ENEM: aparece em quase toda edição, associada a
-  situações concretas como trânsito, esportes e transporte, e é pré-requisito direto para entender
-  as Leis de Newton.
+  Cinemática é a parte da Física que descreve o movimento sem se preocupar com a causa dele: onde o
+  corpo está, quão rápido ele vai e quão rápido essa velocidade muda. É a porta de entrada de toda a
+  Física e a base de quase tudo que vem depois. No ENEM ela aparece praticamente todo ano, quase
+  sempre disfarçada de situação real: velocidade média em viagens, radares e limites de velocidade,
+  distância de frenagem, tempo de reação do motorista, queda de objetos. O formato preferido do INEP
+  é o gráfico (posição × tempo ou velocidade × tempo) acompanhado de um texto curto, exigindo leitura
+  correta de eixos e interpretação de inclinação e área — muito mais do que decoreba de fórmula.
 quickSummary: >
-  Cinemática estuda o movimento sem se preocupar com suas causas. As grandezas centrais são
-  velocidade (variação de posição no tempo) e aceleração (variação de velocidade no tempo). O
-  Movimento Retilíneo Uniforme (MRU) tem velocidade constante; o Movimento Retilíneo
-  Uniformemente Variado (MRUV) tem aceleração constante.
-resources:
-  conteudoComplementar:
-    conteudo: "Leis de Newton"
-    comoAjuda: "A cinemática descreve COMO um corpo se move; as Leis de Newton explicam POR QUE ele se move daquela forma — é o passo natural seguinte."
-questions:
-  - question: >
-      Um carro percorre 180 km em 3 horas, mantendo velocidade aproximadamente constante. A
-      velocidade média desse carro é de:
-    options:
-      - "40 km/h"
-      - "60 km/h"
-      - "90 km/h"
-      - "180 km/h"
-      - "540 km/h"
-    correctIndex: 1
-    explanation: >
-      v = ΔS ÷ Δt — v é a velocidade média, ΔS o deslocamento (180 km), Δt o intervalo de tempo
-      (3 h). v = 180 ÷ 3 = 60 km/h.
-    source: "Questão autoral, estilo ENEM"
-  - question: >
-      Um objeto parte do repouso (v₀ = 0) e atinge uma velocidade de 20 m/s após 4 segundos, com
-      aceleração constante. O valor dessa aceleração é:
-    options:
-      - "2 m/s²"
-      - "5 m/s²"
-      - "10 m/s²"
-      - "20 m/s²"
-      - "80 m/s²"
-    correctIndex: 1
-    explanation: >
-      a = (v − v₀) ÷ Δt — a é a aceleração, v a velocidade final (20 m/s), v₀ a velocidade inicial
-      (0), Δt o intervalo de tempo (4 s). a = (20 − 0) ÷ 4 = 5 m/s².
-    source: "Questão autoral, estilo ENEM"
-  - question: >
-      No Movimento Retilíneo Uniforme (MRU), a característica fundamental é que:
-    options:
-      - "A velocidade é constante e a aceleração é nula, já que não há variação de velocidade."
-      - "A aceleração é constante e diferente de zero, aumentando a velocidade a cada instante."
-      - "A velocidade varia de forma aleatória, sem qualquer padrão previsível."
-      - "O objeto está sempre em repouso, sem se deslocar."
-      - "A trajetória é sempre circular, nunca retilínea."
-    correctIndex: 0
-    explanation: >
-      No MRU, a velocidade é constante — logo, não há variação de velocidade, e a aceleração é
-      igual a zero. É o movimento mais simples da cinemática.
-    source: "Questão autoral, estilo ENEM"
-  - question: >
-      Um veículo em Movimento Retilíneo Uniformemente Variado (MRUV) parte com velocidade inicial
-      de 10 m/s e aceleração constante de 2 m/s². Qual será sua velocidade após 5 segundos?
-    options:
-      - "10 m/s"
-      - "12 m/s"
-      - "15 m/s"
-      - "20 m/s"
-      - "50 m/s"
-    correctIndex: 3
-    explanation: >
-      v = v₀ + a·t — v é a velocidade final, v₀ a velocidade inicial (10 m/s), a a aceleração
-      (2 m/s²), t o tempo (5 s). v = 10 + 2 × 5 = 20 m/s.
-    source: "Questão autoral, estilo ENEM"
-  - question: >
-      Em um gráfico de velocidade x tempo de um movimento com aceleração constante e diferente de
-      zero, a curva representada será:
-    options:
-      - "Uma reta horizontal, indicando velocidade constante."
-      - "Uma reta inclinada (não horizontal), cuja inclinação representa o valor da aceleração."
-      - "Uma curva parabólica, sempre que a velocidade for constante."
-      - "Um ponto único, sem variação ao longo do tempo."
-      - "Uma reta vertical, indicando tempo constante."
-    correctIndex: 1
-    explanation: >
-      No gráfico v x t, uma reta inclinada indica aceleração constante e diferente de zero — a
-      inclinação (coeficiente angular) da reta é numericamente igual ao valor da aceleração.
-    source: "Questão autoral, estilo ENEM"
+  Todo movimento só existe em relação a um referencial; velocidade média é deslocamento dividido pelo
+  tempo, e aceleração é a variação da velocidade dividida pelo tempo.
 ---
 
 ## Aula Teórica Completa
 
-Cinemática é a parte da Física que descreve **como** um corpo se move — sua posição, velocidade e
-aceleração ao longo do tempo — sem se preocupar com **por que** ele se move daquela forma (isso é
-tarefa da Dinâmica, estudada nas Leis de Newton).
+**Referencial: nada se move sozinho.** Antes de dizer que algo "está se movendo", você precisa dizer *em relação a quê*. Esse "em relação a quê" se chama referencial. Um passageiro sentado num ônibus está parado em relação ao banco, mas está a 60 km/h em relação ao poste da calçada. As duas afirmações estão certas ao mesmo tempo, porque cada uma usa um referencial diferente. O ENEM adora essa ideia: sempre que uma questão falar de dois observadores diferentes vendo a mesma cena, ela está testando referencial.
 
-### Velocidade: a taxa de variação da posição
+Junto com o referencial vem a ideia de **ponto material**: quando o tamanho do objeto não importa para o problema (um carro numa estrada de 200 km, por exemplo), tratamos ele como um pontinho. Quando o tamanho importa (um trem passando por um túnel), ele é um **corpo extenso** e o comprimento entra na conta.
 
-A velocidade média é definida pela fórmula **v = ΔS ÷ Δt**, onde **v** é a velocidade média, **ΔS**
-é o deslocamento (variação de posição) e **Δt** é o intervalo de tempo gasto nesse deslocamento.
-Em palavras simples: velocidade é "quanto espaço você percorre, dividido pelo tempo que você
-gastou para percorrê-lo".
+**Posição, deslocamento e distância percorrida.** Posição (usamos a letra s ou x) é o "endereço" do corpo numa trajetória, medido a partir de um ponto zero que você escolhe. Deslocamento é a variação da posição:
 
-### Aceleração: a taxa de variação da velocidade
+Δs = s(final) − s(inicial)
 
-A aceleração média é definida pela fórmula **a = (v − v₀) ÷ Δt**, onde **a** é a aceleração média,
-**v** é a velocidade final, **v₀** é a velocidade inicial e **Δt** é o intervalo de tempo. Em
-palavras simples: aceleração mede "o quanto a velocidade mudou, dividido pelo tempo que essa
-mudança levou para acontecer".
+O símbolo Δ, lido "delta", sempre significa "variação", isto é, "valor final menos valor inicial".
 
-### Movimento Retilíneo Uniforme (MRU): velocidade constante
+Aqui mora a pegadinha mais clássica da cinemática: **deslocamento não é a mesma coisa que distância percorrida**. Deslocamento só olha para onde você começou e onde você terminou, em linha reta, e tem sinal (pode ser negativo se você andou no sentido contrário ao que escolheu como positivo). Distância percorrida soma tudo o que o velocímetro registrou, sem se importar com o sentido, e nunca é negativa. Se você sai de casa, anda 3 km até a padaria e volta os mesmos 3 km, sua distância percorrida foi 6 km, mas seu deslocamento foi zero — você terminou exatamente onde começou.
 
-No MRU, a velocidade **não muda** ao longo do tempo — logo, a aceleração é sempre igual a zero. A
-posição do objeto varia de forma constante e previsível, seguindo a equação **S = S₀ + v·t**, onde
-**S** é a posição final, **S₀** é a posição inicial, **v** é a velocidade (constante) e **t** é o
-tempo decorrido.
+**Velocidade média.** É o quanto o corpo se desloca dividido pelo tempo que ele levou:
 
-### Movimento Retilíneo Uniformemente Variado (MRUV): aceleração constante
+velocidade média = Δs ÷ Δt
 
-No MRUV, é a **aceleração** que permanece constante, enquanto a velocidade muda de forma regular
-ao longo do tempo. A velocidade em qualquer instante pode ser calculada pela **função horária da
-velocidade**: **v = v₀ + a·t**, onde **v** é a velocidade final, **v₀** é a velocidade inicial,
-**a** é a aceleração constante e **t** é o tempo decorrido.
+Se a questão usa distância percorrida em vez de deslocamento (o caso mais comum em problemas de viagem), o resultado é chamado de velocidade escalar média — na prática do ENEM, o cálculo é o mesmo: distância total dividida pelo tempo total.
 
-### Leitura de gráficos: a pegadinha mais comum do ENEM
+Atenção a um detalhe que derruba muita gente: velocidade média **não é a média das velocidades**. Se você vai a 40 km/h na ida e a 60 km/h na volta pelo mesmo caminho, a velocidade média da viagem inteira não é 50 km/h, porque você passou mais tempo andando devagar. O jeito certo é sempre somar todas as distâncias e dividir pela soma de todos os tempos.
 
-O ENEM adora cobrar cinemática através de gráficos. No gráfico **posição x tempo**, uma reta
-inclinada indica velocidade constante (MRU); uma curva (parábola) indica velocidade variando
-(MRUV). Já no gráfico **velocidade x tempo**, uma reta horizontal indica velocidade constante (logo,
-aceleração zero); uma reta inclinada indica aceleração constante, e sua inclinação é numericamente
-igual ao valor da aceleração.
+**Conversão km/h ↔ m/s.** Um quilômetro tem 1000 metros e uma hora tem 3600 segundos, então 1 km/h equivale a 1000 ÷ 3600 = 1/3,6 m/s. Na prática:
+
+de km/h para m/s: divida por 3,6
+
+de m/s para km/h: multiplique por 3,6
+
+Exemplo: 72 km/h ÷ 3,6 = 20 m/s. Faça essa conversão *antes* de qualquer conta, sempre que o problema misturar unidades — é um dos erros mais comuns em prova.
+
+**Aceleração.** Aceleração é a variação da velocidade dividida pelo tempo:
+
+aceleração = Δv ÷ Δt, com Δv = v(final) − v(inicial)
+
+A unidade é m/s², que se lê "metro por segundo, por segundo": uma aceleração de 2 m/s² significa que a cada segundo a velocidade aumenta 2 m/s. Aceleração negativa (às vezes chamada de desaceleração ou retardamento) significa que a velocidade está diminuindo *se* o corpo estiver indo no sentido positivo. Cuidado: aceleração negativa não é sinônimo de "freando" — o que define se o movimento acelera ou freia é se a velocidade e a aceleração têm o mesmo sinal (acelera) ou sinais opostos (freia).
+
+**MRU: movimento retilíneo uniforme.** É o movimento em linha reta com velocidade constante, ou seja, aceleração zero. Só existe uma equação:
+
+s = s(inicial) + v · t
+
+Aqui s é a posição em um instante t, s(inicial) é a posição no instante zero e v é a velocidade constante. Se v é positiva, o corpo se afasta do zero no sentido positivo; se é negativa, ele volta.
+
+**MRUV: movimento retilíneo uniformemente variado.** É o movimento em linha reta com aceleração constante — a velocidade muda sempre na mesma "taxa". Três equações dão conta de tudo:
+
+Equação horária da velocidade: v = v(inicial) + a · t
+
+Equação horária da posição: s = s(inicial) + v(inicial) · t + (a · t²) ÷ 2
+
+Equação de Torricelli: v² = v(inicial)² + 2 · a · Δs
+
+A grande utilidade da equação de Torricelli é que ela **não tem tempo**. Sempre que o problema não dá o tempo e não pede o tempo — o caso típico da distância de frenagem —, ela é o caminho mais curto.
+
+**Gráfico posição × tempo (s × t).** Nesse gráfico, o eixo vertical é a posição e o horizontal é o tempo. A informação principal está na **inclinação** da linha: a inclinação do gráfico s × t é a velocidade. Linha reta horizontal significa posição que não muda, ou seja, corpo parado. Reta inclinada para cima significa velocidade positiva e constante (MRU); quanto mais "em pé" a reta, maior a velocidade. Reta inclinada para baixo significa velocidade negativa (o corpo está voltando). Curva (parábola) significa que a inclinação está mudando, ou seja, que a velocidade está mudando: há aceleração.
+
+**Gráfico velocidade × tempo (v × t).** Agora o eixo vertical é a velocidade. Duas leituras importam. Primeira: a **inclinação** do gráfico v × t é a aceleração — reta horizontal significa velocidade constante e aceleração zero; reta inclinada significa aceleração constante. Segunda, e é essa que o ENEM mais cobra: a **área** entre a linha e o eixo do tempo é o deslocamento. Se a figura formada for um retângulo, o deslocamento é base × altura, isto é, tempo × velocidade. Se for um triângulo, é base × altura ÷ 2. Se for um trapézio, some as duas bases, divida por 2 e multiplique pela altura — ou simplesmente quebre a figura em retângulos e triângulos e some. Área abaixo do eixo (velocidade negativa) conta como deslocamento negativo.
+
+Uma dica prática: quando a questão mostra um gráfico v × t e pergunta "qual a distância percorrida", ela está pedindo área. Quando pergunta "qual a aceleração", está pedindo inclinação. Reconhecer isso resolve metade das questões de gráfico sem nenhuma conta difícil.
+
+**Queda livre.** Perto da superfície da Terra, todo corpo abandonado cai com a mesma aceleração, chamada aceleração da gravidade, g, de aproximadamente 10 m/s² nas provas (o valor mais exato é 9,8 m/s², e o ENEM costuma informar qual usar). Queda livre é apenas um MRUV com a = g, então as três equações continuam valendo, trocando s por altura h.
+
+O ponto que mais confunde: na queda livre ideal, desprezando a resistência do ar, **a massa não influencia**. Uma pena e uma bola de boliche soltas juntas no vácuo chegam ao chão ao mesmo tempo. No ar real, a pena cai mais devagar não por ser leve, mas porque a resistência do ar é grande em comparação com o peso dela. Quando a resistência do ar cresce até igualar o peso, a força resultante vira zero e o corpo passa a cair com velocidade constante — a chamada velocidade limite ou velocidade terminal, que é o que acontece com um paraquedista de paraquedas aberto.
+
+**Lançamentos.** No lançamento vertical para cima, o corpo sobe perdendo 10 m/s de velocidade a cada segundo, chega ao ponto mais alto com velocidade **zero** (mas com aceleração ainda igual a g, apontando para baixo — a aceleração nunca zera) e volta pelo mesmo caminho, gastando o mesmo tempo na subida e na descida e chegando ao ponto de partida com o mesmo valor de velocidade, só que no sentido contrário.
+
+No lançamento horizontal e no lançamento oblíquo (uma bola chutada em diagonal), o movimento é decomposto em duas partes independentes que acontecem ao mesmo tempo: na horizontal, o movimento é uniforme (velocidade constante, porque não há força horizontal se desprezarmos o ar); na vertical, é queda livre. A consequência mais cobrada dessa independência: uma bala disparada horizontalmente e uma bala simplesmente solta da mesma altura, no mesmo instante, **chegam ao chão juntas** — a velocidade horizontal não atrasa nem adianta a queda.
+
+**Aplicação de trânsito: distância de frenagem.** A distância total para parar um carro tem duas partes. A primeira é a **distância de reação**: o intervalo entre ver o obstáculo e efetivamente pisar no freio (tipicamente 0,5 a 1,5 segundo); nesse tempo o carro segue em MRU, então essa distância é simplesmente velocidade × tempo de reação. A segunda é a **distância de frenagem** propriamente dita, já com o freio acionado, um MRUV que se calcula por Torricelli com v final igual a zero. Rearranjando Torricelli, a distância de frenagem é proporcional ao **quadrado** da velocidade: dobrar a velocidade multiplica por quatro a distância necessária para parar. Essa é a conclusão que o ENEM mais gosta de fazer o aluno tirar, porque é o argumento físico por trás dos limites de velocidade e das campanhas de segurança viária. Álcool e celular aumentam o tempo de reação, e pista molhada reduz o atrito, aumentando a distância de frenagem — os dois efeitos se somam.
+
+**Armadilhas típicas do INEP:** (1) confundir deslocamento com distância percorrida, principalmente em trajetos de ida e volta, em que o deslocamento é zero mas a distância não; (2) calcular velocidade média fazendo a média aritmética das velocidades, em vez de dividir a distância total pelo tempo total; (3) esquecer de converter km/h em m/s (ou o contrário) quando o enunciado mistura as unidades, o que costuma gerar respostas 3,6 vezes maiores ou menores — e essas respostas erradas *estão* entre as alternativas; (4) trocar as leituras do gráfico, procurando deslocamento na inclinação do v × t ou aceleração na área, quando é o contrário: no v × t, inclinação é aceleração e área é deslocamento; (5) achar que no ponto mais alto de um lançamento vertical a aceleração é zero porque a velocidade é zero — a velocidade zera, a aceleração continua valendo g; (6) supor que a distância de frenagem dobra quando a velocidade dobra, quando na verdade ela quadruplica.
 
 ## Tópicos-Chave para Revisão
 
 <div className="topico">
 
-Cinemática descreve **como** um corpo se move (posição, velocidade, aceleração), sem se preocupar
-com as causas do movimento — isso é papel da Dinâmica.
+Todo movimento só existe em relação a um referencial: o mesmo corpo pode estar parado para um observador e em movimento para outro, e as duas descrições são igualmente corretas. Quando o tamanho do objeto não interessa ao problema, ele é tratado como ponto material.
 
-**Velocidade média: v = ΔS ÷ Δt** — v é a velocidade, ΔS o deslocamento, Δt o intervalo de tempo.
+Deslocamento é Δs = posição final menos posição inicial, tem sinal e mede só o efeito líquido do movimento; distância percorrida soma todo o caminho andado, é sempre positiva e, em trajetos de ida e volta, é maior que o deslocamento, que pode até ser zero.
 
-**Aceleração média: a = (v − v₀) ÷ Δt** — a é a aceleração, v a velocidade final, v₀ a velocidade
-inicial, Δt o intervalo de tempo.
+Velocidade média é Δs ÷ Δt, ou seja, distância total dividida pelo tempo total — nunca a média aritmética das velocidades. Conversão obrigatória antes de qualquer conta: de km/h para m/s divide-se por 3,6; de m/s para km/h multiplica-se por 3,6.
 
-No **MRU**, a velocidade é **constante** e a aceleração é **zero** — posição varia conforme
-**S = S₀ + v·t**.
+Aceleração é Δv ÷ Δt, medida em m/s², e indica quantos m/s de velocidade o corpo ganha ou perde por segundo. O movimento acelera quando velocidade e aceleração têm o mesmo sinal e freia quando têm sinais opostos; aceleração negativa sozinha não significa frenagem.
 
-No **MRUV**, a aceleração é **constante** e a velocidade varia conforme **v = v₀ + a·t** — v é a
-velocidade final, v₀ a inicial, a a aceleração, t o tempo.
+MRU tem aceleração zero e uma única equação, s = s(inicial) + v · t. MRUV tem aceleração constante e três equações: v = v(inicial) + a · t (horária da velocidade), s = s(inicial) + v(inicial) · t + (a · t²) ÷ 2 (horária da posição) e v² = v(inicial)² + 2 · a · Δs (Torricelli), esta última usada exatamente quando o tempo não é dado nem pedido.
 
-Em gráficos **v x t**: reta horizontal = velocidade constante (aceleração zero); reta inclinada =
-aceleração constante, cujo valor é a inclinação da reta — leitura de gráfico é a pegadinha mais
-recorrente do tema.
+No gráfico posição × tempo, a inclinação da linha é a velocidade: reta horizontal é corpo parado, reta inclinada é MRU e curva é movimento acelerado. No gráfico velocidade × tempo, a inclinação é a aceleração e a área entre a linha e o eixo do tempo é o deslocamento — retângulo é base × altura, triângulo é base × altura ÷ 2, e área abaixo do eixo conta como deslocamento negativo.
+
+Queda livre é MRUV com aceleração g de aproximadamente 10 m/s²; desprezando o ar, a massa não influencia e todos os corpos caem juntos. Com resistência do ar, a queda tende a uma velocidade limite constante, quando a resistência iguala o peso. No lançamento vertical, o ponto mais alto tem velocidade zero, mas aceleração ainda igual a g, e os tempos de subida e descida são iguais.
+
+Em lançamento horizontal e oblíquo, os movimentos horizontal (uniforme) e vertical (queda livre) são independentes e simultâneos, de modo que um corpo lançado horizontalmente e outro simplesmente solto da mesma altura tocam o chão ao mesmo tempo.
+
+A distância total de parada de um veículo é a distância de reação (velocidade × tempo de reação, em MRU) somada à distância de frenagem (MRUV, calculada por Torricelli). Como a frenagem depende do quadrado da velocidade, dobrar a velocidade quadruplica a distância de frenagem — base física dos limites de velocidade, do efeito do álcool sobre o tempo de reação e do risco em pista molhada.
 
 </div>
+
+## Teste de Fogo
+
+*Questões sem gabarito — resolva primeiro, depois confira com o professor ou com a IA.*
+
+**Questão 1 (estilo ENEM — autoral)**
+Campanhas de segurança viária destacam que a distância necessária para parar um veículo é composta por duas parcelas: a distância percorrida durante o tempo de reação do motorista, em que o veículo mantém velocidade constante, e a distância percorrida durante a frenagem propriamente dita. Um carro trafega a 72 km/h em uma via retilínea quando o motorista avista um obstáculo. O tempo de reação é de 0,8 s e, após acionar os freios, o veículo desacelera uniformemente a 5 m/s² até parar.
+
+A distância total percorrida pelo veículo, desde o instante em que o motorista avista o obstáculo até a parada completa, é de aproximadamente
+
+a) 16 m
+b) 24 m
+c) 40 m
+d) 56 m
+e) 72 m
+
+**Questão 2 (estilo ENEM — autoral)**
+Um ciclista percorre uma pista retilínea e um aplicativo registra sua velocidade em função do tempo. Nos primeiros 10 s, a velocidade cresce uniformemente de 0 a 8 m/s. Entre 10 s e 40 s, ele mantém a velocidade de 8 m/s. Entre 40 s e 60 s, a velocidade cai uniformemente de 8 m/s até 0.
+
+A distância total percorrida pelo ciclista nesse intervalo de 60 s foi de
+
+a) 240 m
+b) 320 m
+c) 360 m
+d) 400 m
+e) 480 m
+
+**Questão 3 (estilo ENEM — autoral)**
+Uma torneira mal fechada goteja de uma altura de 1,25 m acima da pia. Um estudante quer estimar o tempo de queda de cada gota e a velocidade com que ela atinge a pia, desprezando a resistência do ar e adotando g = 10 m/s².
+
+Considerando que a gota parte do repouso, o tempo de queda e a velocidade de chegada valem, respectivamente,
+
+a) 0,25 s e 2,5 m/s
+b) 0,50 s e 5,0 m/s
+c) 0,50 s e 12,5 m/s
+d) 1,25 s e 12,5 m/s
+e) 2,50 s e 25,0 m/s
+
+**Questão 4 (estilo ENEM — autoral)**
+Dois trens partem simultaneamente de estações separadas por 300 km, deslocando-se em sentidos opostos por uma mesma via de mão dupla. O trem A viaja a 80 km/h e o trem B, a 70 km/h, ambos com velocidade constante.
+
+O tempo decorrido até que os dois trens se cruzem é de
+
+a) 1 h
+b) 1 h 30 min
+c) 2 h
+d) 2 h 30 min
+e) 4 h
+
+**Questão 5 (estilo ENEM — autoral)**
+Um sensor registra a posição de um elevador de carga em função do tempo. Entre 0 s e 5 s, o gráfico posição × tempo é uma reta horizontal na posição 0 m. Entre 5 s e 15 s, é uma reta que sobe de 0 m até 20 m. Entre 15 s e 25 s, é novamente uma reta horizontal em 20 m.
+
+Sobre o movimento do elevador nesse intervalo, é correto afirmar que ele
+
+a) permaneceu parado o tempo todo, pois a posição final é diferente de zero.
+b) subiu com velocidade constante de 2 m/s entre 5 s e 15 s, permanecendo em repouso nos demais trechos.
+c) subiu com aceleração constante entre 5 s e 15 s, pois a posição aumentou.
+d) subiu com velocidade constante de 20 m/s entre 5 s e 15 s.
+e) desceu entre 15 s e 25 s, pois a reta é horizontal nesse trecho.

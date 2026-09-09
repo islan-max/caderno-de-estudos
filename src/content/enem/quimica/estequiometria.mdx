@@ -1,155 +1,177 @@
 ---
-title: "Estequiometria: Calculando Quantidades em Reações Químicas"
+title: "Estequiometria"
 subject: "Química"
 order: 3
 relevance: >
-  Estequiometria é o tema de Química mais aplicado no ENEM em contextos industriais e ambientais
-  (produção de medicamentos, poluição, combustíveis), pois permite calcular quantidades exatas de
-  reagentes e produtos em uma reação química.
+  Estequiometria é a matemática das reações químicas: dada uma quantidade de reagente, quanto de
+  produto se forma? É o conteúdo mais cobrado de química no ENEM, presente em praticamente todas
+  as edições, geralmente em 2 a 4 questões. O INEP quase nunca pede a conta pela conta: ele
+  embrulha o cálculo em um contexto industrial ou ambiental — quantas toneladas de CO2 uma frota
+  emite, quanto de princípio ativo há em um comprimido, quanta cal é preciso para tratar um
+  efluente — e espera que você monte a proporção correta a partir da equação balanceada.
 quickSummary: >
-  Estequiometria usa a proporção fixa entre as quantidades de reagentes e produtos em uma equação
-  química balanceada (em mols) para calcular massas, volumes ou quantidades de substâncias
-  envolvidas em uma reação — sempre partindo da equação balanceada e da regra de três química.
-resources:
-  conteudoComplementar:
-    conteudo: "Estrutura Atômica"
-    comoAjuda: "Cálculos estequiométricos dependem diretamente da massa atômica e molar dos elementos, conceitos construídos a partir do entendimento da estrutura atômica."
-questions:
-  - question: >
-      Na equação química balanceada 2H₂ + O₂ → 2H₂O, a proporção em número de mols entre gás
-      hidrogênio (H₂) e água (H₂O) formada é de:
-    options:
-      - "1 mol de H₂ para 1 mol de H₂O"
-      - "2 mol de H₂ para 2 mol de H₂O, ou seja, proporção de 1:1"
-      - "2 mol de H₂ para 1 mol de H₂O"
-      - "1 mol de H₂ para 2 mol de H₂O"
-      - "Não há nenhuma proporção fixa entre reagentes e produtos."
-    correctIndex: 1
-    explanation: >
-      Os coeficientes da equação balanceada (2 e 2) indicam a proporção em mols: 2 mol de H₂
-      produzem 2 mol de H₂O — uma proporção de 1 mol de H₂ para 1 mol de H₂O.
-    source: "Questão autoral, estilo ENEM"
-  - question: >
-      Considerando a equação balanceada 2H₂ + O₂ → 2H₂O e a massa molar da água igual a 18 g/mol,
-      qual é a massa de água formada a partir de 4 mol de H₂ (proporção completa com O₂)?
-    options:
-      - "18 g"
-      - "36 g"
-      - "72 g"
-      - "144 g"
-      - "4 g"
-    correctIndex: 2
-    explanation: >
-      Pela proporção da equação, 2 mol de H₂ formam 2 mol de H₂O (proporção 1:1). Logo, 4 mol de
-      H₂ formam 4 mol de H₂O. Massa = número de mols × massa molar = 4 × 18 = 72 g.
-    source: "Questão autoral, estilo ENEM"
-  - question: >
-      O primeiro passo obrigatório antes de qualquer cálculo estequiométrico é:
-    options:
-      - "Calcular diretamente a massa dos produtos, sem necessidade de balancear a equação."
-      - "Balancear corretamente a equação química, garantindo que o número de átomos de cada elemento seja igual nos reagentes e nos produtos."
-      - "Converter todas as substâncias para o estado gasoso, independentemente do estado real."
-      - "Ignorar os coeficientes estequiométricos da equação."
-      - "Determinar a cor da reação antes de qualquer cálculo."
-    correctIndex: 1
-    explanation: >
-      Sem uma equação balanceada, os coeficientes (que representam a proporção em mols) estariam
-      incorretos, invalidando qualquer cálculo estequiométrico posterior.
-    source: "Questão autoral, estilo ENEM"
-  - question: >
-      Em uma reação com reagentes em quantidades desproporcionais à equação balanceada, o reagente
-      que se esgota primeiro, limitando a quantidade de produto formado, é chamado de:
-    options:
-      - "Reagente em excesso"
-      - "Reagente limitante"
-      - "Catalisador"
-      - "Produto secundário"
-      - "Reagente inerte"
-    correctIndex: 1
-    explanation: >
-      O reagente limitante é aquele que se esgota primeiro na reação, determinando a quantidade
-      máxima de produto que pode ser formada — o outro reagente, que sobra, é chamado de reagente
-      em excesso.
-    source: "Questão autoral, estilo ENEM"
-  - question: >
-      Uma indústria precisa calcular quantos quilogramas de gás carbônico (CO₂) são liberados na
-      queima completa de determinada massa de combustível. Esse é um exemplo prático de aplicação
-      de:
-    options:
-      - "Estequiometria, pois calcula quantidades de produtos formados a partir de reagentes conhecidos, usando a proporção da equação balanceada."
-      - "Genética, pois trata de herança de características."
-      - "Cinemática, pois envolve cálculo de velocidade e tempo."
-      - "Termodinâmica exclusivamente, sem qualquer relação com estequiometria."
-      - "Geometria, pois envolve cálculo de volume apenas."
-    correctIndex: 0
-    explanation: >
-      Calcular a quantidade de produto (CO₂) formada a partir de uma quantidade conhecida de
-      reagente (combustível), usando a proporção estabelecida pela equação química balanceada, é a
-      definição central de um cálculo estequiométrico.
-    source: "Questão autoral, estilo ENEM"
+  Toda estequiometria é uma regra de três montada sobre os coeficientes da equação balanceada,
+  que dizem a proporção em mols entre as substâncias. A conta só funciona depois de converter
+  tudo para mol.
 ---
 
 ## Aula Teórica Completa
 
-Estequiometria é a parte da Química que permite calcular **quantidades exatas** de reagentes e
-produtos envolvidos em uma reação química — em massa, volume ou número de mols. Toda a
-estequiometria se baseia em um princípio simples: os **coeficientes** de uma equação química
-balanceada representam a **proporção em mols** entre as substâncias envolvidas.
+**O problema que o mol resolve.** Átomos são pequenos demais para serem contados um a um, mas as reações químicas acontecem por unidade: um átomo reage com outro átomo, uma molécula com outra molécula. Precisamos então de uma forma de contar átomos usando algo que possamos medir, que é a massa. A solução foi criar uma unidade de contagem gigante, do mesmo jeito que "dúzia" significa 12 e "resma" significa 500. Essa unidade é o **mol**.
 
-### O primeiro passo: balancear a equação
+Um mol é um pacote com 6,02 × 10²³ unidades. Esse número se chama **constante de Avogadro**. Um mol de átomos de ferro são 6,02 × 10²³ átomos de ferro; um mol de moléculas de água são 6,02 × 10²³ moléculas de água. O número parece arbitrário, mas foi escolhido justamente para que a conta a seguir fique fácil.
 
-Antes de qualquer cálculo, é obrigatório garantir que a equação química esteja **balanceada** — ou
-seja, que o número de átomos de cada elemento seja o mesmo dos dois lados da equação (reagentes e
-produtos), respeitando a Lei de Conservação da Massa (a matéria não se cria nem se destrói em uma
-reação química comum). Sem uma equação balanceada, os coeficientes não representam a proporção
-correta, e qualquer cálculo posterior estaria errado.
+**Massa molar: a ponte entre gramas e mols.** A **massa molar** é a massa, em gramas, de um mol da substância, e sua unidade é g/mol. O truque é que a massa molar de um elemento é exatamente o número decimal que aparece no quadrinho da tabela periódica, só que lido em gramas por mol: hidrogênio 1 g/mol, carbono 12 g/mol, nitrogênio 14 g/mol, oxigênio 16 g/mol, sódio 23 g/mol, enxofre 32 g/mol, cloro 35,5 g/mol, cálcio 40 g/mol, ferro 56 g/mol.
 
-### Lendo a proporção em mols
+Para uma substância composta, some as massas dos átomos da fórmula. A água, H2O, tem dois hidrogênios (2 × 1 = 2) e um oxigênio (16), totalizando 18 g/mol. O gás carbônico, CO2, tem 12 + 2 × 16 = 44 g/mol. O carbonato de cálcio, CaCO3, tem 40 + 12 + 3 × 16 = 100 g/mol.
 
-Na equação balanceada **2H₂ + O₂ → 2H₂O**, os números antes de cada substância (os coeficientes)
-indicam a proporção em **mols**: 2 mol de H₂ reagem com 1 mol de O₂ para formar 2 mol de H₂O. Essa
-proporção é fixa e permite montar uma **regra de três** para calcular quantidades desconhecidas a
-partir de quantidades conhecidas.
+Com isso, a fórmula mais usada de toda a química quantitativa:
 
-### Convertendo mols em massa
+número de mols = massa (em gramas) ÷ massa molar (em g/mol)
 
-Para transformar a quantidade em mols em massa (em gramas), basta multiplicar pelo valor da
-**massa molar** da substância (a massa de 1 mol dela, em g/mol, calculada a partir das massas
-atômicas dos elementos envolvidos). A fórmula é: **massa = número de mols × massa molar**.
+E, na direção contrária: massa = número de mols × massa molar. Aqui, número de mols é quantos "pacotes" de 6,02 × 10²³ unidades você tem, massa é o que a balança marca e massa molar é quantos gramas pesa um pacote.
 
-### Reagente limitante: quando um reagente acaba primeiro
+**Volume molar dos gases.** Para gases existe um atalho: nas **CNTP** (condições normais de temperatura e pressão, ou seja, 0 grau Celsius e 1 atmosfera), um mol de qualquer gás ocupa sempre 22,4 litros. Esse valor é o **volume molar**. Então:
 
-Em reações reais, os reagentes nem sempre estão disponíveis exatamente na proporção da equação
-balanceada. Quando isso acontece, um dos reagentes se esgota **antes** do outro — esse é o
-**reagente limitante**, e é ele quem determina a quantidade máxima de produto que pode ser
-formada. O reagente que sobra é chamado de **reagente em excesso**. Identificar corretamente o
-reagente limitante é essencial antes de calcular a quantidade final de produto.
+número de mols de gás = volume (em litros) ÷ 22,4 L/mol
 
-### Aplicações práticas: da indústria ao meio ambiente
+Atenção: esse 22,4 vale só nas CNTP. Se o enunciado disser outra condição, como 25 graus Celsius e 1 atm, ele vai fornecer o volume molar correspondente (nesse caso, aproximadamente 24,5 L/mol). Sempre use o valor que a questão der.
 
-Estequiometria é usada, por exemplo, para calcular a quantidade de gás carbônico liberado na queima
-de um combustível, a quantidade de medicamento produzida a partir de determinada matéria-prima, ou
-a quantidade de poluente gerado por um processo industrial — sempre partindo da mesma lógica: a
-proporção fixa estabelecida pela equação química balanceada.
+**Balanceamento: por que ele vem antes de tudo.** Numa reação química, átomos não são criados nem destruídos, apenas rearranjados — é a lei da conservação das massas, de Lavoisier. Por isso a equação precisa ter o mesmo número de átomos de cada elemento nos dois lados. Os números colocados na frente das fórmulas para conseguir isso são os **coeficientes estequiométricos**.
+
+Veja a combustão do metano. Escrita sem balancear, ficaria CH4 + O2 → CO2 + H2O, o que está errado: do lado esquerdo há 4 hidrogênios e do direito apenas 2. Colocando 2 na frente da água, os hidrogênios se acertam, mas agora há 4 oxigênios do lado direito (2 no CO2 e 2 nas duas águas) contra 2 do esquerdo; colocando 2 na frente do O2, tudo fecha:
+
+CH4 + 2 O2 → CO2 + 2 H2O
+
+Método prático para balancear rapidamente: comece pelo carbono, depois ajuste o hidrogênio e deixe o oxigênio por último, porque ele costuma aparecer em vários compostos.
+
+**O que os coeficientes realmente significam.** Este é o coração da estequiometria. Os coeficientes indicam a **proporção em mols** entre as substâncias — nunca a proporção em massa. Na equação acima, lemos: 1 mol de CH4 reage com 2 mols de O2 produzindo 1 mol de CO2 e 2 mols de H2O. Se você dobrar tudo, a proporção se mantém: 5 mols de metano exigem 10 mols de oxigênio e geram 5 mols de gás carbônico.
+
+Para gases, e só para gases nas mesmas condições, a proporção em mols também vale como proporção em volume. Mas para massa, nunca: 1 mol de CH4 pesa 16 g enquanto 2 mols de O2 pesam 64 g, e a proporção 1 para 2 dos coeficientes não corresponde à proporção de massa 16 para 64.
+
+**O roteiro que resolve qualquer questão de estequiometria.** Sempre os mesmos quatro passos:
+
+Passo 1 — escreva e balanceie a equação química.
+
+Passo 2 — converta o dado que a questão forneceu para mols (dividindo massa pela massa molar, ou volume por 22,4 L/mol, ou dividindo o número de partículas por 6,02 × 10²³).
+
+Passo 3 — use os coeficientes numa regra de três para achar quantos mols da substância pedida estão envolvidos.
+
+Passo 4 — converta o resultado de volta para a unidade que a questão pede, seja gramas, litros ou número de partículas.
+
+Um exemplo completo. Quantos gramas de CO2 são liberados ao queimar 80 g de metano? Passo 1: CH4 + 2 O2 → CO2 + 2 H2O. Passo 2: a massa molar do CH4 é 12 + 4 = 16 g/mol, então 80 ÷ 16 = 5 mols de metano. Passo 3: a proporção é 1 mol de CH4 para 1 mol de CO2, logo formam-se 5 mols de CO2. Passo 4: a massa molar do CO2 é 44 g/mol, então 5 × 44 = 220 g de gás carbônico.
+
+**Reagente limitante e reagente em excesso.** Quando a questão dá as quantidades de **dois** reagentes ao mesmo tempo, ela está pedindo isto. A analogia é a de montar sanduíches: com 10 fatias de pão e 20 fatias de queijo, e cada sanduíche exigindo 2 pães e 1 queijo, você faz 5 sanduíches e o pão acaba primeiro. O pão é o **reagente limitante** (ele limita o quanto de produto se forma) e o queijo é o **reagente em excesso** (sobra).
+
+Como descobrir qual é o limitante: converta os dois reagentes para mols, divida o número de mols de cada um pelo seu próprio coeficiente na equação, e o menor resultado indica o limitante. Todo o cálculo do produto deve ser feito a partir do limitante — usar o reagente em excesso é o erro mais frequente do tema.
+
+**Pureza.** Matéria-prima industrial quase nunca é pura. Se um enunciado diz "200 g de calcário com 80% de pureza em CaCO3", isso significa que só 80% daquela massa é realmente carbonato de cálcio: 200 × 0,80 = 160 g. A parte impura não reage e deve ser descartada da conta. A pureza se aplica **antes** de qualquer cálculo, sobre o reagente.
+
+**Rendimento.** Na prática, a reação raramente converte tudo. O **rendimento** compara o que se obteve de verdade com o máximo teoricamente possível:
+
+rendimento (em porcentagem) = (massa real obtida ÷ massa teórica calculada) × 100
+
+Se o rendimento é dado no enunciado, calcule primeiro a massa teórica pelo roteiro normal e depois multiplique pelo rendimento em forma decimal. Um rendimento de 75% sobre 220 g teóricos dá 220 × 0,75 = 165 g. O rendimento se aplica **depois** de todo o cálculo, sobre o produto. Em questões que combinam os dois, a ordem é: corrija a pureza no início, calcule normalmente, e aplique o rendimento no final.
+
+**Armadilhas típicas do INEP:** (1) usar os coeficientes como proporção de massa — eles são proporção de mols, e só viram proporção de volume no caso de gases nas mesmas condições; (2) esquecer de balancear a equação e montar a regra de três com proporção errada; (3) diante de dois reagentes com quantidades dadas, calcular pelo reagente errado em vez de identificar o limitante; (4) misturar unidades, deixando massa em quilogramas ou toneladas na hora de dividir pela massa molar em g/mol; (5) usar 22,4 L/mol quando o enunciado especificou outra condição de temperatura e pressão e forneceu outro volume molar; (6) aplicar a pureza no produto e o rendimento no reagente, invertendo a ordem correta; (7) responder o número de mols quando a questão pediu massa, ou vice-versa — o INEP costuma colocar as duas possibilidades entre as alternativas.
 
 ## Tópicos-Chave para Revisão
 
 <div className="topico">
 
-Estequiometria calcula **quantidades** de reagentes e produtos usando a proporção em **mols**
-estabelecida pelos coeficientes de uma equação química **balanceada**.
+Toda estequiometria é uma regra de três montada sobre os coeficientes da equação balanceada, que dizem a proporção em mols entre as substâncias. A conta só funciona depois de converter tudo para mol.
 
-O primeiro passo obrigatório é sempre **balancear a equação**, garantindo o mesmo número de átomos
-de cada elemento nos reagentes e nos produtos (Lei de Conservação da Massa).
+Mol é uma unidade de contagem que vale 6,02 × 10²³ unidades, valor conhecido como constante de Avogadro, e serve para contar átomos e moléculas por meio de algo mensurável, que é a massa.
 
-A proporção em mols é lida diretamente dos **coeficientes** da equação — permite montar uma
-**regra de três química** para descobrir quantidades desconhecidas.
+Massa molar é a massa de um mol em gramas por mol e coincide com o número da tabela periódica, somando-se os átomos no caso de compostos (H2O dá 18 g/mol, CO2 dá 44 g/mol, CaCO3 dá 100 g/mol); a conversão fundamental é número de mols = massa ÷ massa molar, e no sentido inverso massa = número de mols × massa molar.
 
-Para converter mols em massa: **massa = número de mols × massa molar** — a massa molar é calculada
-a partir das massas atômicas dos elementos envolvidos.
+Para gases nas CNTP, ou seja, a 0 grau Celsius e 1 atmosfera, um mol de qualquer gás ocupa 22,4 litros, de modo que número de mols = volume em litros ÷ 22,4; fora das CNTP, o enunciado fornece o volume molar correto e é ele que deve ser usado.
 
-O **reagente limitante** é o que se esgota primeiro, determinando a quantidade máxima de produto
-formado; o que sobra é o **reagente em excesso** — identificar qual é qual é essencial antes de
-calcular o produto final.
+Balancear é garantir o mesmo número de átomos de cada elemento nos dois lados, conforme a lei de conservação das massas de Lavoisier, ajustando os coeficientes estequiométricos e começando pelo carbono, depois o hidrogênio e por último o oxigênio, como em CH4 + 2 O2 → CO2 + 2 H2O.
+
+Os coeficientes representam proporção em mols e, apenas para gases nas mesmas condições, também proporção em volume, jamais proporção em massa; o roteiro de resolução é balancear, converter o dado para mols, aplicar a regra de três dos coeficientes e converter o resultado para a unidade pedida.
+
+Quando o enunciado fornece as quantidades de dois reagentes, é preciso identificar o reagente limitante dividindo os mols de cada reagente pelo seu próprio coeficiente e escolhendo o menor resultado; o produto se calcula sempre a partir do limitante, e o outro reagente é o que está em excesso e sobra.
+
+Pureza se aplica no reagente e antes do cálculo, multiplicando a massa bruta pela porcentagem de substância útil, enquanto rendimento se aplica no produto e depois do cálculo, multiplicando a massa teórica pela porcentagem obtida, conforme rendimento = (massa real ÷ massa teórica) × 100.
 
 </div>
+
+## Teste de Fogo
+
+*Questões sem gabarito — resolva primeiro, depois confira com o professor ou com a IA.*
+
+**Questão 1 (estilo ENEM — autoral)**
+A queima de combustíveis fósseis é a principal fonte antrópica de gás carbônico na atmosfera. O octano, C8H18, é um dos componentes da gasolina, e sua combustão completa pode ser representada pela equação química balanceada:
+
+2 C8H18 + 25 O2 → 16 CO2 + 18 H2O
+
+Considere as massas molares, em g/mol: C8H18 igual a 114 e CO2 igual a 44.
+
+A massa de gás carbônico lançada na atmosfera pela queima completa de 1.140 g de octano, em gramas, é mais próxima de
+
+a) 440.
+b) 1.140.
+c) 1.760.
+d) 3.520.
+e) 7.040.
+
+**Questão 2 (estilo ENEM — autoral)**
+Uma indústria de fertilizantes produz amônia pelo processo de Haber-Bosch, em que nitrogênio e hidrogênio gasosos reagem segundo a equação:
+
+N2 + 3 H2 → 2 NH3
+
+Em um reator, foram introduzidos 14 kg de N2 e 6 kg de H2. Considere as massas molares, em g/mol: N2 igual a 28, H2 igual a 2 e NH3 igual a 17.
+
+Nessas condições, a massa máxima de amônia que pode ser obtida, em quilogramas, é
+
+a) 8,5.
+b) 17,0.
+c) 25,5.
+d) 34,0.
+e) 51,0.
+
+**Questão 3 (estilo ENEM — autoral)**
+Efluentes industriais contendo ácido sulfúrico precisam ser neutralizados antes do descarte em corpos d'água. Uma estação de tratamento utiliza cal hidratada para essa finalidade, conforme a reação:
+
+H2SO4 + Ca(OH)2 → CaSO4 + 2 H2O
+
+Um lote de efluente contém 490 kg de H2SO4. Considere as massas molares, em g/mol: H2SO4 igual a 98 e Ca(OH)2 igual a 74.
+
+A massa mínima de cal hidratada necessária para neutralizar completamente esse lote, em quilogramas, é
+
+a) 74.
+b) 148.
+c) 370.
+d) 490.
+e) 740.
+
+**Questão 4 (estilo ENEM — autoral)**
+O carbonato de cálcio é decomposto termicamente em fornos industriais para a produção de cal virgem, matéria-prima da construção civil, segundo a equação:
+
+CaCO3 → CaO + CO2
+
+Uma indústria processou 500 kg de calcário com 80% de pureza em CaCO3. O processo apresentou rendimento de 90%. Considere as massas molares, em g/mol: CaCO3 igual a 100 e CaO igual a 56.
+
+A massa de cal virgem efetivamente obtida, em quilogramas, é mais próxima de
+
+a) 202.
+b) 224.
+c) 252.
+d) 280.
+e) 400.
+
+**Questão 5 (estilo ENEM — autoral)**
+Um comprimido efervescente contém bicarbonato de sódio, que em meio ácido libera gás carbônico, responsável pelas bolhas. A reação pode ser representada de forma simplificada por:
+
+NaHCO3 + HCl → NaCl + H2O + CO2
+
+Um comprimido contém 4,2 g de NaHCO3, cuja massa molar é 84 g/mol. Considere que todo o bicarbonato reage e que o gás liberado é medido nas CNTP, em que o volume molar é 22,4 L/mol.
+
+O volume de gás carbônico liberado por um comprimido, em litros, é
+
+a) 0,56.
+b) 1,12.
+c) 2,24.
+d) 4,48.
+e) 22,4.
