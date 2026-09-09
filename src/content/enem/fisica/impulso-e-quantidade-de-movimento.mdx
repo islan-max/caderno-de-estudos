@@ -2,6 +2,22 @@
 title: "Impulso e Quantidade de Movimento"
 subject: "Física"
 order: 4
+gabarito:
+  - correta: 0
+    porque: >
+      A velocidade de chegada é raiz de (2gh) = 10 m/s, então a quantidade de movimento vale 25 kg.m/s. A força média é 25/0,5 = 50 N, e o peso de um tijolo é 25 N. Logo, 50/25 = 2 tijolos.
+  - correta: 3
+    porque: >
+      O impulso aplicado é F.dt = 250 x 0,10 = 25 N.s, e ele equivale à variação da quantidade de movimento, dm.v = 200.v. Daí v = 25/200 = 0,125 m/s.
+  - correta: 1
+    porque: >
+      Colisão perfeitamente inelástica: m1.v1 = (m1 + m2).v. Com v1 = 0,40 m/s e v = 0,15 m/s, vem 150 x 0,40 = (150 + m2) x 0,15, logo m2 = 250 g.
+  - correta: 0
+    porque: >
+      Sem inclinação na subida não há componente do peso ao longo do movimento, então o impulso resultante é nulo e a velocidade não muda. É a ideia que vira a lei da inércia.
+  - correta: 0
+    porque: >
+      O ar soprado contra a própria vela devolve à vela a mesma quantidade de movimento que a ventoinha tirou do carro: as forças internas se cancelam e o carro A fica parado. No carro B o ar sai do sistema, e só aí há impulso externo.
 relevance: >
   Impulso e quantidade de movimento são as ferramentas que a Física usa para analisar colisões,
   choques e qualquer situação em que uma força atua durante um curto intervalo de tempo: batidas de
@@ -98,7 +114,7 @@ Nas **colisões inelásticas**, os corpos ficam grudados e seguem juntos com vel
 
 ## Teste de Fogo
 
-*Questões sem gabarito: resolva primeiro, depois confira com o professor ou com a IA.*
+*Marque uma alternativa em cada questão e confira tudo de uma vez no botão do fim.*
 
 **Questão 1 (ENEM 2019)**
 Em qualquer obra de construção civil é fundamental a utilização de equipamentos de proteção individual, tal como capacetes. Por exemplo, a queda livre de um tijolo de massa 2,5 kg de uma altura de 5 m, cujo impacto contra um capacete pode durar até 0,5 s, resulta em uma força impulsiva média maior do que o peso do tijolo. Suponha que a aceleração gravitacional seja 10 m/s² e que o efeito de resistência do ar seja desprezível.
@@ -124,6 +140,32 @@ E) 0,500
 
 **Questão 3 (ENEM 2016)**
 O trilho de ar é um dispositivo utilizado em laboratórios de física para analisar movimentos em que corpos de prova (carrinhos) podem se mover com atrito desprezível. A figura ilustra um trilho horizontal com dois carrinhos (1 e 2) em que se realiza um experimento para obter a massa do carrinho 2. No instante em que o carrinho 1, de massa 150,0 g, passa a se mover com velocidade escalar constante, o carrinho 2 está em repouso. No momento em que o carrinho 1 se choca com o carrinho 2, ambos passam a se movimentar juntos com velocidade escalar constante. Os sensores eletrônicos distribuídos ao longo do trilho determinam as posições e registram os instantes associados à passagem de cada carrinho, gerando os dados do experimento (o carrinho 1, antes da colisão, tinha velocidade constante superior à velocidade constante do conjunto após a colisão).
+
+<figure class="figura">
+  <svg viewBox="0 0 460 200" role="img" aria-labelledby="fig-trilho-t fig-trilho-d">
+    <title id="fig-trilho-t">Trilho de ar com dois carrinhos e os dados dos sensores</title>
+    <desc id="fig-trilho-d">Antes da colisão, o carrinho 1, de 150 gramas, percorre 20 centímetros em 0,50 segundo, o que dá 0,40 metro por segundo. O carrinho 2 está parado. Depois da colisão os dois seguem juntos e percorrem 15 centímetros em 1,00 segundo, o que dá 0,15 metro por segundo.</desc>
+    <line x1="20" y1="70" x2="440" y2="70" class="traco" />
+    <rect x="60" y="46" width="46" height="24" rx="3" class="traco preenche" />
+    <text x="83" y="62" class="rotulo" text-anchor="middle">1</text>
+    <rect x="250" y="46" width="46" height="24" rx="3" class="traco" />
+    <text x="273" y="62" class="rotulo" text-anchor="middle">2</text>
+    <path d="M116 34 L176 34" class="traco" />
+    <path d="M166 29 L176 34 L166 39" class="traco" />
+    <text x="146" y="26" class="rotulo-fraco" text-anchor="middle">v₁</text>
+    <text x="273" y="34" class="rotulo-fraco" text-anchor="middle">repouso</text>
+    <text x="20" y="108" class="rotulo">Antes da colisão</text>
+    <text x="20" y="126" class="rotulo-fraco">carrinho 1: 150,0 g percorre 20 cm em 0,50 s → v₁ = 0,40 m/s</text>
+    <text x="20" y="142" class="rotulo-fraco">carrinho 2: em repouso</text>
+    <text x="20" y="166" class="rotulo">Depois da colisão</text>
+    <text x="20" y="184" class="rotulo-fraco">conjunto (1 + 2): percorre 15 cm em 1,00 s → v = 0,15 m/s</text>
+  </svg>
+  <figcaption>
+    <b>Dados dos sensores.</b> Registros de posição e tempo antes e depois do
+    choque, com os carrinhos seguindo juntos após a colisão.
+  </figcaption>
+</figure>
+
 
 Com base nos dados experimentais, o valor da massa do carrinho 2 é igual a
 
