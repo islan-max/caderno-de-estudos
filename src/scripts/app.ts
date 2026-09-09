@@ -176,7 +176,7 @@ function refletirProgresso() {
     if (texto) texto.textContent = `${feitas} de ${ids.length}`;
     const barra = el.querySelector<HTMLElement>('[data-progresso-barra]');
     if (barra) {
-      barra.style.width = `${pct}%`;
+      barra.style.transform = `scaleX(${pct / 100})`;
       barra.parentElement?.setAttribute('aria-valuenow', String(pct));
     }
     el.dataset.completo = String(feitas === ids.length && ids.length > 0);
@@ -432,7 +432,7 @@ function montarProgresso() {
         anel.querySelector('span')!.textContent = `${pct}%`;
       }
       alvo.querySelectorAll<HTMLElement>('.prog-barra i').forEach((b) => {
-        b.style.width = `${b.dataset.largura}%`;
+        b.style.transform = `scaleX(${Number(b.dataset.largura) / 100})`;
       });
     });
   });
@@ -584,29 +584,54 @@ function ligarAtalhos() {
   });
 }
 
+/* --------------------------------------------------------- blocos retráteis */
+
+const CHAVE_DOBRAS = 'cdt:dobras';
+
+function ligarDobras() {
+  const dobras = ler<Record<string, boolean>>(CHAVE_DOBRAS, {});
+  document.querySelectorAll<HTMLDetailsElement>('details[data-dobra]').forEach((el) => {
+    const chave = el.dataset.dobra!;
+    if (chave in dobras) el.open = dobras[chave];
+    el.addEventListener('toggle', () => {
+      const atual = ler<Record<string, boolean>>(CHAVE_DOBRAS, {});
+      atual[chave] = el.open;
+      gravar(CHAVE_DOBRAS, atual);
+    });
+  });
+}
+
 /* ----------------------------------------------------- rolagem / cabeçalho */
 
 function ligarRolagem() {
-  const cabecalho = document.querySelector<HTMLElement>('[data-cabecalho]');
   const barra = document.querySelector<HTMLElement>('[data-leitura]');
-  if (!cabecalho && !barra) return;
+  if (!barra) return;
+
+  // A altura do documento é medida fora do laço de rolagem. Lê-la a cada
+  // quadro forçava o navegador a recalcular o layout no meio da rolagem —
+  // era leitura de layout síncrona, e aparecia como engasgo.
+  let total = 0;
+  const medir = () => {
+    total = document.documentElement.scrollHeight - window.innerHeight;
+  };
 
   let ticking = false;
   const aoRolar = () => {
     if (ticking) return;
     ticking = true;
     requestAnimationFrame(() => {
-      const y = window.scrollY;
-      if (cabecalho) cabecalho.dataset.rolado = String(y > 12);
-      if (barra) {
-        const total = document.documentElement.scrollHeight - window.innerHeight;
-        barra.style.transform = `scaleX(${total > 0 ? Math.min(y / total, 1) : 0})`;
-      }
+      barra.style.transform = `scaleX(${total > 0 ? Math.min(window.scrollY / total, 1) : 0})`;
       ticking = false;
     });
   };
-  window.addEventListener('scroll', aoRolar, { passive: true });
+
+  medir();
   aoRolar();
+  window.addEventListener('scroll', aoRolar, { passive: true });
+  window.addEventListener('resize', () => {
+    medir();
+    aoRolar();
+  });
 }
 
 /* ------------------------------------------- marcação automática da aula */
@@ -650,6 +675,7 @@ function iniciar() {
   refletirProgresso();
   montarHub();
   ligarAtalhos();
+  ligarDobras();
   ligarRolagem();
   ligarAulaAtual();
 }

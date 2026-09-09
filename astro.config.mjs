@@ -12,6 +12,13 @@ export default defineConfig({
 
   integrations: [mdx()],
 
+  // Baixa a próxima página assim que o link entra na tela. Com o ClientRouter,
+  // a navegação passa a usar o HTML já em cache em vez de esperar a rede.
+  prefetch: {
+    prefetchAll: true,
+    defaultStrategy: 'viewport',
+  },
+
   vite: {
     plugins: [tailwindcss()]
   }

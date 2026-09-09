@@ -236,10 +236,12 @@ for (const a of aulas) {
   .materia__trilho span {
     display: block;
     height: 100%;
-    width: 0;
+    width: 100%;
     border-radius: 999px;
     background: var(--cor);
-    transition: width 0.75s var(--ease);
+    transform: scaleX(0);
+    transform-origin: 0 50%;
+    transition: transform 0.75s var(--ease);
   }
   .materia[data-completo='true'] .materia__trilho span {
     background: var(--color-ok);

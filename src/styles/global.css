@@ -107,17 +107,32 @@ html[data-texto="maior"] body {
 
 @layer base {
   html {
+    background-color: var(--color-paper);
     scroll-behavior: smooth;
     scroll-padding-top: 6rem;
+    transition: background-color 0.35s var(--ease);
   }
 
   body {
-    background-color: var(--color-paper);
     color: var(--color-ink);
     font-family: var(--font-body);
     font-optical-sizing: auto;
-    /* A pauta do caderno. background-attachment: local mantém as linhas
-       coladas ao conteúdo quando a página rola. */
+    transition: color 0.35s var(--ease);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* A pauta do caderno vive numa camada fixa própria.
+     Antes ela era o background-image do <body> com background-attachment:
+     local — o que obrigava o navegador a repintar a página inteira a cada
+     quadro de rolagem (origem do travamento) e fazia a pauta "correr" junto
+     com o conteúdo. Como camada fixa ela é pintada uma vez, fica imóvel na
+     tela, e rolar volta a ser trabalho só do compositor. */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
     background-image: repeating-linear-gradient(
       to bottom,
       transparent,
@@ -126,9 +141,6 @@ html[data-texto="maior"] body {
       var(--color-line) var(--rule)
     );
     background-position: 0 var(--rule-offset);
-    background-attachment: local;
-    transition: background-color 0.35s var(--ease), color 0.35s var(--ease);
-    -webkit-font-smoothing: antialiased;
   }
 
   h1,
@@ -191,6 +203,12 @@ html[data-texto="maior"] body {
   --tw-prose-code: var(--color-ink);
   font-family: var(--font-body);
   line-height: 1.75;
+}
+/* Nunito é uma sans arredondada: o 600 padrão do typography quase não
+   destacava do texto corrido. As palavras-chave voltam a saltar em 800. */
+.prose-tema :is(strong, b) {
+  font-weight: 800;
+  color: var(--color-ink);
 }
 .prose-tema :is(h2, h3, h4) {
   font-family: var(--font-display);
@@ -276,7 +294,7 @@ html[data-texto="maior"] body {
 @keyframes surgir {
   from {
     opacity: 0;
-    transform: translateY(12px);
+    transform: translateY(8px);
   }
   to {
     opacity: 1;
@@ -284,8 +302,10 @@ html[data-texto="maior"] body {
   }
 }
 [data-surgir] {
-  animation: surgir 0.5s var(--ease) both;
-  animation-delay: calc(var(--i, 0) * 55ms);
+  animation: surgir 0.32s var(--ease) both;
+  /* O escalonamento satura em 6 posições: numa lista de 20 aulas, esperar
+     20 x atraso fazia a página parecer lenta em vez de fluida. */
+  animation-delay: calc(min(var(--i, 0), 6) * 28ms);
 }
 
 @media (prefers-reduced-motion: reduce) {

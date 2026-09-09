@@ -43,45 +43,52 @@ const { aulas, accent = 'enem' } = Astro.props;
     padding: 0;
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 0.75rem;
     counter-reset: aula;
   }
 
   .trilha__item {
     position: relative;
+    isolation: isolate;
   }
-  /* Fio ligando os passos da trilha. */
+  /* Fio ligando os passos da trilha.
+     z-index 0 contra z-index 1 do cartão: o fio passa POR TRÁS do cartão e só
+     aparece no vão entre um passo e o outro. Antes ele cruzava o cartão inteiro
+     por cima, porque o fundo do cartão era semitransparente. */
   .trilha__item:not(:last-child)::before {
     content: '';
     position: absolute;
-    left: 1.28rem;
-    top: 2.9rem;
-    bottom: -0.5rem;
+    z-index: 0;
+    left: calc(1.825rem - 1px);
+    top: 1rem;
+    bottom: -0.75rem;
     width: 2px;
+    border-radius: 2px;
     background: var(--color-line);
-    opacity: 0.7;
   }
-  @media (min-width: 640px) {
-    .trilha__item:not(:last-child)::before {
-      left: 1.53rem;
-    }
+  /* O fio acompanha o progresso: verde no trecho já concluído. */
+  .trilha__item[data-vista='true']:not(:last-child)::before {
+    background: color-mix(in srgb, var(--color-ok) 65%, var(--color-line));
   }
 
   .trilha__link {
     position: relative;
+    z-index: 1;
     display: flex;
     align-items: flex-start;
     gap: 0.9rem;
     padding: 0.85rem 0.9rem;
     border: 1px solid var(--color-line);
     border-radius: 0.7rem;
-    background: color-mix(in srgb, var(--color-paper-dark) 22%, transparent);
+    /* Fundo opaco (mistura com a folha, não com transparente) para o cartão
+       cobrir o fio da trilha em vez de deixá-lo transparecer. */
+    background: color-mix(in srgb, var(--color-paper-dark) 22%, var(--color-surface));
     text-decoration: none;
     color: var(--color-ink);
   }
   .trilha__link:hover {
     border-color: var(--accent);
-    background: color-mix(in srgb, var(--accent) 7%, transparent);
+    background: color-mix(in srgb, var(--accent) 7%, var(--color-surface));
     transform: translateX(3px);
     box-shadow: var(--shadow-soft);
   }
@@ -172,7 +179,7 @@ const { aulas, accent = 'enem' } = Astro.props;
      Sutil: o cartão perde saturação, o número vira check verde e um filete
      na lateral confirma a conclusão. Nada de tachado ou cinza berrante. */
   .trilha__item[data-vista='true'] .trilha__link {
-    background: transparent;
+    background: var(--color-surface);
     border-color: color-mix(in srgb, var(--color-ok) 28%, var(--color-line));
   }
   .trilha__item[data-vista='true'] .trilha__link::after {
