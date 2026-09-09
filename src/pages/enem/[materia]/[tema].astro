@@ -2,6 +2,7 @@
 import Tema from '../../../layouts/Tema.astro';
 import { getCollection, render } from 'astro:content';
 import { u } from '../../../lib/url';
+import { vizinhas } from '../../../lib/aulas';
 
 export async function getStaticPaths() {
   const aulas = await getCollection('enem');
@@ -17,6 +18,7 @@ const entry = entries.find((aula) => aula.id === `${materia}/${tema}`);
 if (!entry) return Astro.redirect(u('/enem'));
 const Content = (await render(entry)).Content;
 const subjectLabel = entry.data.subject;
+const posicao = await vizinhas(materia!, tema!);
 ---
 
 <Tema
@@ -26,6 +28,9 @@ const subjectLabel = entry.data.subject;
   quickSummary={entry.data.quickSummary}
   resources={entry.data.resources}
   active="enem"
+  aulaId={`enem/${materia}/${tema}`}
+  vizinhas={posicao}
+  materiaHref={u(`/enem/${materia}/`)}
   breadcrumb={[
     { label: 'ENEM', href: u('/enem') },
     { label: subjectLabel, href: u(`/enem/${materia}/`) },

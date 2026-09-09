@@ -1,81 +1,559 @@
 ---
 import Base from '../layouts/Base.astro';
-import HelpTip from '../components/HelpTip.astro';
+import Icone from '../components/Icone.astro';
 import { u } from '../lib/url';
+import { ENEM_AREAS } from '../lib/enemAreas';
+import { indiceEnem } from '../lib/aulas';
+import { SECOES_VISIVEIS } from '../lib/secoes';
 
-const categories = [
-  {
-    href: '/enem',
-    key: 'enem',
-    label: 'ENEM',
-    color: 'var(--color-enem)',
-    soft: 'var(--color-enem-soft)',
-    description:
-      'Conteúdo focado no que o INEP cobra: teoria direta, pegadinhas mapeadas e questões oficiais para treinar.',
-    meta: 'por área e matéria',
-  },
-  {
-    href: '/escolar',
-    key: 'escolar',
-    label: 'Escolar',
-    color: 'var(--color-escolar)',
-    soft: 'var(--color-escolar-soft)',
-    description:
-      'O conteúdo passado em sala de aula, organizado por matéria, bimestre e semana — para quem faltou ou quer revisar.',
-    meta: 'por bimestre e semana',
-  },
-  {
-    href: '/ds',
-    key: 'ds',
-    label: 'DS',
-    color: 'var(--color-ds)',
-    soft: 'var(--color-ds-soft)',
-    description:
-      'Material do curso técnico, em linguagem simples, para reforçar o que foi visto em aula.',
-    meta: 'por bimestre e semana',
-  },
-];
+const aulas = await indiceEnem();
+const total = aulas.length;
+const todosIds = aulas.map((a) => a.id).join(' ');
+
+const porArea = ENEM_AREAS.map((area) => {
+  const ids = aulas.filter((a) => a.areaCurto === area.labelCurto).map((a) => a.id);
+  return { ...area, ids, total: ids.length };
+}).filter((a) => a.total > 0);
+
+const materiasComAula = new Set(aulas.map((a) => a.materia)).size;
 ---
 
-<Base title="Início" active="hub" description="Aulas organizadas por objetivo de estudo">
-  <section class="mb-12 md:mb-16">
-    <div class="flex items-center gap-2 mb-3">
-      <p class="font-mono text-xs uppercase tracking-widest text-ink-soft">hub principal</p>
-      <HelpTip title="Como usar este hub">
-        Este é o painel central: cada card abaixo leva para uma categoria de conteúdo. Use as abas
-        no topo para trocar de categoria a qualquer momento, ou os botões de seta para voltar e
-        avançar entre páginas já visitadas.
-      </HelpTip>
-    </div>
-    <h1 class="font-display text-3xl md:text-5xl font-bold text-ink leading-tight mb-4 max-w-2xl">
-      Todas as suas aulas, num lugar só.
-    </h1>
-    <p class="font-body text-ink-soft max-w-xl leading-relaxed">
-      Escolha uma categoria abaixo. Cada uma organiza o conteúdo de um jeito diferente, mas toda
-      aula reúne uma explicação clara, contexto e materiais complementares quando disponíveis.
-    </p>
-  </section>
+<Base title="Início" active="hub" description="Seu painel de estudos: progresso, busca e trilhas por área">
+  <div data-hub>
+    <!-- ------------------------------------------------------------- hero -->
+    <section class="hero" data-surgir>
+      <p class="hero__kicker"><Icone nome="compass" /> Painel de estudos</p>
+      <h1 class="hero__h1">Todas as suas aulas, num lugar só.</h1>
+      <p class="hero__texto">
+        {total} aulas em {materiasComAula} matérias, organizadas na ordem de aprendizado. O caderno
+        lembra o que você já viu — direto no seu navegador, sem conta e sem cadastro.
+      </p>
 
-  <section class="grid md:grid-cols-3 gap-5">
-    {categories.map((cat) => (
-      <a
-        href={u(cat.href)}
-        class="group block rounded-lg border-2 p-6 transition-transform hover:-translate-y-1"
-        style={`border-color: ${cat.color}; background-color: ${cat.soft};`}
-      >
-        <p class="font-mono text-[11px] uppercase tracking-widest mb-3" style={`color: ${cat.color}`}>
-          {cat.meta}
-        </p>
-        <h2 class="font-display text-2xl font-bold text-ink mb-3">{cat.label}</h2>
-        <p class="font-body text-sm text-ink leading-relaxed mb-4">{cat.description}</p>
-        <span
-          class="font-mono text-xs font-bold uppercase tracking-wide inline-flex items-center gap-1"
-          style={`color: ${cat.color}`}
-        >
-          Entrar
-          <span class="transition-transform group-hover:translate-x-1">→</span>
+      <button type="button" class="busca-grande" data-acao="busca">
+        <Icone nome="magnifying-glass" class="busca-grande__lupa" />
+        <span class="busca-grande__texto">Buscar uma aula, matéria ou área…</span>
+        <kbd class="busca-grande__atalho">Ctrl K</kbd>
+      </button>
+    </section>
+
+    <!-- ---------------------------------------------------- continuar -->
+    <section class="continuar" data-continuar hidden data-surgir style="--i: 1">
+      <span class="continuar__selo"><Icone nome="play" /> Continuar de onde parou</span>
+      <a class="continuar__link" data-continuar-link href={u('/enem')}>
+        <span class="continuar__corpo">
+          <span class="continuar__titulo" data-continuar-titulo></span>
+          <span class="continuar__meta" data-continuar-meta></span>
         </span>
+        <span class="continuar__seta"><Icone nome="arrow-right" /></span>
       </a>
-    ))}
-  </section>
+    </section>
+
+    <!-- ------------------------------------------------------ progresso -->
+    <section class="painel-progresso" data-progresso-de={todosIds} data-surgir style="--i: 2">
+      <div class="painel-progresso__esq">
+        <span class="painel-progresso__rotulo"><Icone nome="chart-simple" /> Progresso geral</span>
+        <p class="painel-progresso__numero">
+          <span data-progresso-texto>0 de {total}</span>
+          <span class="painel-progresso__unidade">aulas vistas</span>
+        </p>
+        <div class="painel-progresso__trilho" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-label="Progresso geral">
+          <span data-progresso-barra></span>
+        </div>
+      </div>
+      <div class="painel-progresso__acoes">
+        <button type="button" class="acao-rapida" data-abre="progresso">
+          <Icone nome="list-check" /> Ver detalhes
+        </button>
+        <button type="button" class="acao-rapida" data-acao="sortear">
+          <Icone nome="dice" /> Sortear aula
+        </button>
+        <button type="button" class="acao-rapida" data-acao="tema">
+          <Icone nome="moon" /> <span data-rotulo>Escuro</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- ----------------------------------------------------------- áreas -->
+    <section class="secao" data-surgir style="--i: 3">
+      <header class="secao__cabeca">
+        <h2 class="secao__titulo"><Icone nome="layer-group" duo cor="var(--color-ink)" /> Trilhas por área</h2>
+        <a href={u('/enem')} class="secao__link">Ver todas as matérias <Icone nome="arrow-right" /></a>
+      </header>
+
+      <ul class="areas">
+        {porArea.map((area) => (
+          <li>
+            <a href={u('/enem')} class="area-card" style={`--cor: ${area.cor}`} data-progresso-de={area.ids.join(' ')}>
+              <Icone nome={area.icone} duo cor={area.cor} class="area-card__icone" />
+              <span class="area-card__nome">{area.labelCurto}</span>
+              <span class="area-card__meta">
+                <span>{area.total} {area.total === 1 ? 'aula' : 'aulas'}</span>
+                <span aria-hidden="true">·</span>
+                <span data-progresso-texto>0 de {area.total}</span>
+              </span>
+              <span class="area-card__trilho"><span data-progresso-barra></span></span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <!-- --------------------------------------------------------- recentes -->
+    <section class="secao" data-recentes hidden data-surgir style="--i: 4">
+      <header class="secao__cabeca">
+        <h2 class="secao__titulo"><Icone nome="clock" duo cor="var(--color-ink)" /> Vistas recentemente</h2>
+        <button type="button" class="secao__link secao__link--botao" data-abre="progresso">
+          Meu progresso <Icone nome="arrow-right" />
+        </button>
+      </header>
+      <ul class="recentes" data-recentes-lista></ul>
+    </section>
+
+    <!-- ------------------------------------------------------------ ajuda -->
+    <section class="secao" data-surgir style="--i: 5">
+      <h2 class="secao__titulo secao__titulo--solo">
+        <Icone nome="lightbulb" duo cor="var(--color-ink)" /> Como este caderno funciona
+      </h2>
+      <ul class="dicas">
+        <li class="dica">
+          <Icone nome="signs-post" duo cor="var(--color-escolar)" class="dica__icone" />
+          <p><strong>Ordem de aprendizado.</strong> Dentro de cada matéria as aulas descem na sequência certa. Comece pela primeira e siga a trilha.</p>
+        </li>
+        <li class="dica">
+          <Icone nome="circle-check" duo cor="var(--color-ok)" class="dica__icone" />
+          <p><strong>Marcação automática.</strong> Ao terminar de ler, a aula é marcada como vista. Dá para marcar e desmarcar na mão também.</p>
+        </li>
+        <li class="dica">
+          <Icone nome="keyboard" duo cor="var(--color-enem)" class="dica__icone" />
+          <p><strong>Atalhos.</strong> <kbd>Ctrl</kbd>+<kbd>K</kbd> abre a busca; as setas <kbd>←</kbd> <kbd>→</kbd> trocam de aula dentro da matéria.</p>
+        </li>
+        <li class="dica">
+          <Icone nome="database" duo cor="var(--color-ink-soft)" class="dica__icone" />
+          <p><strong>Só no seu aparelho.</strong> O progresso fica no armazenamento local do navegador. Nada é enviado para servidor nenhum.</p>
+        </li>
+      </ul>
+    </section>
+
+    {SECOES_VISIVEIS.length < 2 && (
+      <p class="aviso-secoes" data-surgir style="--i: 6">
+        <Icone nome="hourglass-half" />
+        As trilhas <strong>Escolar</strong> e <strong>Desenvolvimento de Sistemas</strong> estão
+        temporariamente fora do ar enquanto o material é revisado.
+      </p>
+    )}
+  </div>
 </Base>
+
+<style>
+  /* ------------------------------------------------------------------ hero */
+  .hero {
+    margin-bottom: 2rem;
+  }
+  .hero__kicker {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-family: var(--font-display);
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--color-ink-soft);
+    margin: 0 0 0.7rem;
+  }
+  .hero__h1 {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 1.1rem + 3.6vw, 3.2rem);
+    font-weight: 800;
+    letter-spacing: -0.035em;
+    line-height: 1.06;
+    margin: 0 0 0.9rem;
+    max-width: 15ch;
+  }
+  .hero__texto {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--color-ink-soft);
+    max-width: 38rem;
+    margin: 0 0 1.5rem;
+  }
+
+  .busca-grande {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    width: min(100%, 32rem);
+    padding: 0.8rem 0.7rem 0.8rem 1rem;
+    border: 1px solid var(--color-line);
+    border-radius: 0.8rem;
+    background: color-mix(in srgb, var(--color-paper-dark) 30%, transparent);
+    color: var(--color-ink-soft);
+    font-family: var(--font-display);
+    font-size: 0.9rem;
+    cursor: pointer;
+    text-align: left;
+  }
+  .busca-grande:hover {
+    border-color: color-mix(in srgb, var(--color-ink) 32%, var(--color-line));
+    background: var(--color-paper-dark);
+    color: var(--color-ink);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-soft);
+  }
+  .busca-grande__texto {
+    flex: 1;
+  }
+  .busca-grande__lupa {
+    font-size: 0.85rem;
+  }
+  .busca-grande__atalho {
+    font-family: var(--font-display);
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    padding: 0.24rem 0.45rem;
+    border: 1px solid var(--color-line);
+    border-radius: 6px;
+    background: var(--color-surface);
+  }
+  @media (max-width: 480px) {
+    .busca-grande__atalho {
+      display: none;
+    }
+  }
+
+  /* ------------------------------------------------------------ continuar */
+  .continuar {
+    position: relative;
+    margin-bottom: 1.25rem;
+    padding: 1rem;
+    border: 1px solid color-mix(in srgb, var(--color-enem) 35%, var(--color-line));
+    border-radius: 0.85rem;
+    background: color-mix(in srgb, var(--color-enem) 7%, transparent);
+  }
+  .continuar__selo {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: var(--font-display);
+    font-size: 0.64rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--color-enem);
+    margin-bottom: 0.6rem;
+  }
+  .continuar__link {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    text-decoration: none;
+    color: var(--color-ink);
+  }
+  .continuar__corpo {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    min-width: 0;
+    flex: 1;
+  }
+  .continuar__titulo {
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    font-weight: 700;
+    line-height: 1.25;
+  }
+  .continuar__meta {
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    color: var(--color-ink-soft);
+  }
+  .continuar__seta {
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    width: 2.4rem;
+    height: 2.4rem;
+    border-radius: 999px;
+    background: var(--color-enem);
+    color: var(--color-paper);
+    font-size: 0.8rem;
+    transition: transform 0.24s var(--ease);
+  }
+  .continuar__link:hover .continuar__seta {
+    transform: translateX(4px);
+  }
+
+  /* ------------------------------------------------------------ progresso */
+  .painel-progresso {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.25rem;
+    margin-bottom: 2.5rem;
+    padding: 1.1rem 1.15rem;
+    border: 1px solid var(--color-line);
+    border-radius: 0.85rem;
+    background: color-mix(in srgb, var(--color-paper-dark) 26%, transparent);
+  }
+  .painel-progresso[data-completo='true'] {
+    border-color: color-mix(in srgb, var(--color-ok) 45%, transparent);
+  }
+  .painel-progresso__esq {
+    flex: 1 1 15rem;
+    min-width: 0;
+  }
+  .painel-progresso__rotulo {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-family: var(--font-display);
+    font-size: 0.66rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--color-ink-soft);
+  }
+  .painel-progresso__numero {
+    display: flex;
+    align-items: baseline;
+    gap: 0.45rem;
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin: 0.35rem 0 0.6rem;
+  }
+  .painel-progresso__unidade {
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--color-ink-soft);
+  }
+  .painel-progresso__trilho {
+    height: 7px;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--color-ink) 10%, transparent);
+    overflow: hidden;
+  }
+  .painel-progresso__trilho span {
+    display: block;
+    height: 100%;
+    width: 0;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--color-enem), var(--color-ok));
+    transition: width 0.8s var(--ease);
+  }
+  .painel-progresso__acoes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+  .acao-rapida {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.5rem 0.85rem;
+    border: 1px solid var(--color-line);
+    border-radius: 999px;
+    background: var(--color-surface);
+    color: var(--color-ink-soft);
+    font-family: var(--font-display);
+    font-size: 0.76rem;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .acao-rapida:hover {
+    color: var(--color-ink);
+    border-color: color-mix(in srgb, var(--color-ink) 32%, var(--color-line));
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-soft);
+  }
+
+  /* --------------------------------------------------------------- seções */
+  .secao {
+    margin-bottom: 2.5rem;
+  }
+  .secao__cabeca {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem 1rem;
+    margin-bottom: 1rem;
+  }
+  .secao__titulo {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: -0.015em;
+    margin: 0;
+  }
+  .secao__titulo--solo {
+    margin-bottom: 1rem;
+  }
+  .secao__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-family: var(--font-display);
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--color-ink-soft);
+    text-decoration: none;
+  }
+  .secao__link--botao {
+    border: none;
+    background: none;
+    cursor: pointer;
+    padding: 0;
+  }
+  .secao__link:hover {
+    color: var(--color-ink);
+  }
+
+  .areas {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0.7rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  @media (min-width: 760px) {
+    .areas {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+  .area-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    height: 100%;
+    padding: 1rem 0.9rem;
+    border: 1px solid var(--color-line);
+    border-radius: 0.8rem;
+    background: color-mix(in srgb, var(--cor) 6%, transparent);
+    text-decoration: none;
+    color: var(--color-ink);
+  }
+  .area-card:hover {
+    border-color: var(--cor);
+    background: color-mix(in srgb, var(--cor) 13%, transparent);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-soft);
+  }
+  .area-card__icone {
+    font-size: 1rem;
+    margin-bottom: 0.35rem;
+  }
+  .area-card__nome {
+    font-family: var(--font-display);
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+  .area-card__meta {
+    display: flex;
+    gap: 0.28rem;
+    flex-wrap: wrap;
+    font-family: var(--font-display);
+    font-size: 0.68rem;
+    color: var(--color-ink-soft);
+  }
+  .area-card__trilho {
+    display: block;
+    height: 4px;
+    margin-top: 0.5rem;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--color-ink) 10%, transparent);
+    overflow: hidden;
+  }
+  .area-card__trilho span {
+    display: block;
+    height: 100%;
+    width: 0;
+    border-radius: 999px;
+    background: var(--cor);
+    transition: width 0.8s var(--ease);
+  }
+
+  /* ------------------------------------------------------------- recentes */
+  .recentes {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  /* ---------------------------------------------------------------- dicas */
+  .dicas {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0.7rem;
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 640px) {
+    .dicas {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  .dica {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 0.85rem 0.95rem;
+    border: 1px solid var(--color-line);
+    border-radius: 0.7rem;
+    background: color-mix(in srgb, var(--color-paper-dark) 20%, transparent);
+  }
+  .dica__icone {
+    flex-shrink: 0;
+    font-size: 0.85rem;
+    margin-top: 0.05rem;
+  }
+  .dica p {
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: var(--color-ink-soft);
+    margin: 0;
+  }
+  .dica strong {
+    font-family: var(--font-display);
+    font-weight: 700;
+    color: var(--color-ink);
+  }
+  .dica kbd {
+    display: inline-block;
+    padding: 0.02rem 0.28rem;
+    border: 1px solid var(--color-line);
+    border-radius: 4px;
+    font-family: var(--font-display);
+    font-size: 0.72em;
+  }
+
+  .aviso-secoes {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 0.75rem 0.95rem;
+    border: 1px dashed var(--color-line);
+    border-radius: 0.7rem;
+    font-family: var(--font-body);
+    font-size: 0.82rem;
+    color: var(--color-ink-soft);
+    margin: 0;
+  }
+  .aviso-secoes strong {
+    color: var(--color-ink);
+    font-weight: 700;
+  }
+</style>

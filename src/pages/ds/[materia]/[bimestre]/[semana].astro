@@ -1,10 +1,13 @@
 ---
+import { secaoVisivel } from '../../../../lib/secoes';
 import Tema from '../../../../layouts/Tema.astro';
 import { getCollection, render } from 'astro:content';
 import { bimestreLabel as bimLabelFn } from '../../../../lib/slug';
 import { u } from '../../../../lib/url';
 
 export async function getStaticPaths() {
+  // Seção oculta (src/lib/secoes.ts): nenhuma rota é gerada.
+  if (!secaoVisivel('ds')) return [];
   const aulas = await getCollection('ds');
   return aulas.map((aula) => {
     const [materia, bimestre, semana] = aula.id.split('/');
@@ -28,7 +31,7 @@ const subjectLabel = entry.data.subject;
   resources={entry.data.resources}
   active="ds"
   breadcrumb={[
-    { label: 'DS', href: u('/ds') },
+    { label: 'Desenvolvimento de Sistemas', href: u('/ds') },
     { label: subjectLabel, href: u(`/ds/${materia}/`) },
     { label: bimLabelFn(bimestre ?? ''), href: u(`/ds/${materia}/${bimestre}/`) },
     { label: entry.data.title },

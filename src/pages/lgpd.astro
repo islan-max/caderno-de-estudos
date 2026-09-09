@@ -1,0 +1,105 @@
+---
+import Documento from '../layouts/Documento.astro';
+import { u } from '../lib/url';
+---
+
+<Documento
+  title="Conformidade com a LGPD"
+  subtitle="Como o Caderno de Estudos se posiciona frente à Lei nº 13.709/2018 — a Lei Geral de Proteção de Dados."
+  icone="scale-balanced"
+  atualizado="9 de setembro de 2026"
+  description="Conformidade do Caderno de Estudos com a LGPD (Lei 13.709/2018): ausência de tratamento de dados pessoais e direitos do titular."
+>
+  <div class="destaque">
+    <p>
+      <strong>Posição do projeto:</strong> o Caderno de Estudos não realiza tratamento de dados
+      pessoais na acepção do art. 5º, X da LGPD. Não há coleta, registro, armazenamento em servidor,
+      compartilhamento ou qualquer outra operação com dados que identifiquem uma pessoa natural.
+    </p>
+  </div>
+
+  <h2>1. Por que não há tratamento de dados pessoais</h2>
+  <p>
+    O site é <strong>estático</strong>: todas as páginas são geradas antes da publicação e servidas
+    como arquivos prontos. Não existe servidor de aplicação, banco de dados, formulário, sistema de
+    login ou API que receba informações do visitante.
+  </p>
+  <p>
+    As preferências de estudo (aulas vistas, tema e tamanho de texto) ficam exclusivamente no
+    <strong>localStorage</strong> do navegador do próprio usuário. Elas permanecem sob controle
+    exclusivo dele, não trafegam pela rede e não são acessíveis ao mantenedor do projeto — o que
+    afasta a figura do controlador em relação a esses dados.
+  </p>
+
+  <h2>2. Agentes de tratamento</h2>
+  <ul>
+    <li>
+      <strong>Controlador:</strong> não aplicável, pela ausência de tratamento de dados pessoais
+      pelo projeto.
+    </li>
+    <li>
+      <strong>Operador de infraestrutura:</strong> GitHub, Inc., responsável pela hospedagem
+      (GitHub Pages). Registros técnicos de acesso porventura mantidos pelo servidor seguem as
+      políticas do próprio GitHub.
+    </li>
+    <li>
+      <strong>Encarregado (DPO):</strong> não há encarregado formalmente designado, por se tratar de
+      projeto pessoal sem tratamento de dados. O canal de contato são os perfis públicos no rodapé.
+    </li>
+  </ul>
+
+  <h2>3. Registros de acesso de aplicação</h2>
+  <p>
+    O Marco Civil da Internet (Lei nº 12.965/2014, art. 15) trata da guarda de registros de acesso
+    a aplicações. Este projeto não mantém tais registros; eventuais logs de servidor são de
+    responsabilidade da hospedagem, conforme item 2.
+  </p>
+
+  <h2>4. Direitos do titular</h2>
+  <p>
+    O art. 18 da LGPD assegura ao titular, entre outros, os direitos de confirmação da existência de
+    tratamento, acesso, correção, anonimização, portabilidade e eliminação dos dados. Como não há
+    base de dados pessoais neste projeto:
+  </p>
+  <ul>
+    <li>
+      <strong>Confirmação e acesso:</strong> a resposta é sempre negativa — não há dados pessoais
+      seus armazenados por este projeto.
+    </li>
+    <li>
+      <strong>Eliminação:</strong> os dados locais podem ser apagados por você a qualquer momento,
+      sem intermediários, pelo botão <strong>Zerar progresso</strong> em "Meu progresso" ou pela
+      limpeza dos dados do site no navegador.
+    </li>
+    <li>
+      <strong>Portabilidade:</strong> as chaves guardadas são legíveis no próprio navegador
+      (ferramentas de desenvolvedor, aba Application → Local Storage), em formato JSON simples.
+    </li>
+    <li>
+      <strong>Revogação de consentimento:</strong> não é solicitado consentimento, pois não há
+      tratamento que dependa dele.
+    </li>
+  </ul>
+
+  <h2>5. Segurança da informação</h2>
+  <ul>
+    <li>Todo o tráfego é servido por conexão criptografada (HTTPS/TLS).</li>
+    <li>Não há dependências carregadas de CDNs externas — fontes e scripts são servidos pelo próprio domínio.</li>
+    <li>O código-fonte é público e auditável, o que permite verificar as afirmações desta página.</li>
+    <li>Não há superfície de ataque para vazamento de dados pessoais, pela inexistência de base de dados.</li>
+  </ul>
+
+  <h2>6. Incidentes de segurança</h2>
+  <p>
+    Não havendo tratamento de dados pessoais, não se aplica a comunicação de incidente prevista no
+    art. 48 da LGPD. Ainda assim, qualquer vulnerabilidade identificada no site pode ser reportada
+    pelos canais de contato, e será corrigida e divulgada publicamente no repositório.
+  </p>
+
+  <h2>7. Documentos relacionados</h2>
+  <p>
+    Veja também a <a href={u('/privacidade')}>Política de Privacidade</a>, os
+    <a href={u('/termos')}>Termos de Uso</a> e a página sobre
+    <a href={u('/uso-de-ia')}>Uso de IA e o EU AI Act</a>.
+  </p>
+</Documento>

@@ -1,0 +1,138 @@
+---
+// Barra de ferramentas do cabeçalho.
+// Substitui a antiga frase solta por quatro funções de verdade:
+// buscar aula, ver progresso, trocar o tema e ajustar o tamanho do texto.
+import Icone from './Icone.astro';
+---
+
+<div class="ferramentas" role="group" aria-label="Ferramentas do caderno">
+  <button type="button" class="ferramenta ferramenta--busca" data-acao="busca" title="Buscar aula (Ctrl + K)">
+    <Icone nome="magnifying-glass" />
+    <span class="ferramenta__texto">Buscar aula</span>
+    <kbd class="ferramenta__atalho">Ctrl K</kbd>
+  </button>
+
+  <button type="button" class="ferramenta" data-abre="progresso" title="Meu progresso">
+    <Icone nome="chart-simple" />
+    <span class="ferramenta__texto ferramenta__texto--md">Progresso</span>
+  </button>
+
+  <button type="button" class="ferramenta" data-acao="texto" title="Tamanho do texto" data-nivel="normal">
+    <Icone nome="font" />
+    <span class="sr-only">Alternar tamanho do texto</span>
+  </button>
+
+  <button type="button" class="ferramenta" data-acao="tema" aria-pressed="false" title="Usar o tema escuro">
+    <Icone nome="moon" />
+    <span class="ferramenta__texto ferramenta__texto--md" data-rotulo>Escuro</span>
+  </button>
+</div>
+
+<style>
+  .ferramentas {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+  }
+
+  .ferramenta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    height: 2.35rem;
+    min-width: 2.35rem;
+    padding: 0 0.6rem;
+    border-radius: 999px;
+    border: 1px solid var(--color-line);
+    background: color-mix(in srgb, var(--color-surface) 75%, transparent);
+    color: var(--color-ink-soft);
+    font-family: var(--font-display);
+    font-size: 0.8rem;
+    font-weight: 600;
+    line-height: 1;
+    cursor: pointer;
+    backdrop-filter: blur(6px);
+  }
+  .ferramenta:hover {
+    color: var(--color-ink);
+    border-color: color-mix(in srgb, var(--color-ink) 35%, var(--color-line));
+    background: var(--color-surface);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-soft);
+  }
+  .ferramenta:active {
+    transform: translateY(0);
+  }
+  .ferramenta[aria-pressed='true'] {
+    color: var(--color-ink);
+    border-color: color-mix(in srgb, var(--color-ink) 40%, var(--color-line));
+  }
+
+  /* A busca é a ação principal: ganha largura e vira um campo falso. */
+  .ferramenta--busca {
+    padding-right: 0.4rem;
+    padding-left: 0.85rem;
+  }
+  .ferramenta__texto {
+    display: none;
+  }
+  .ferramenta__atalho {
+    display: none;
+    font-family: var(--font-display);
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    padding: 0.24rem 0.42rem;
+    border-radius: 6px;
+    border: 1px solid var(--color-line);
+    background: color-mix(in srgb, var(--color-paper-dark) 55%, transparent);
+    color: var(--color-ink-soft);
+  }
+
+  /* Escala do "Aa": o botão indica visualmente o nível ativo. */
+  .ferramenta[data-nivel='grande'] {
+    font-size: 0.88rem;
+    color: var(--color-ink);
+  }
+  .ferramenta[data-nivel='maior'] {
+    font-size: 0.96rem;
+    color: var(--color-ink);
+    border-color: color-mix(in srgb, var(--color-ink) 40%, var(--color-line));
+  }
+
+  @media (min-width: 640px) {
+    .ferramentas {
+      gap: 0.45rem;
+    }
+    .ferramenta--busca {
+      min-width: 12.5rem;
+      justify-content: flex-start;
+    }
+    .ferramenta--busca .ferramenta__texto {
+      display: inline;
+      flex: 1;
+      text-align: left;
+    }
+    .ferramenta__atalho {
+      display: inline-block;
+    }
+  }
+  @media (min-width: 1024px) {
+    .ferramenta__texto--md {
+      display: inline;
+    }
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+</style>

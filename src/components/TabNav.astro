@@ -1,33 +1,44 @@
 ---
 import { u } from '../lib/url';
+import { SECOES_VISIVEIS } from '../lib/secoes';
+import Icone from './Icone.astro';
 
 interface Props {
   active?: 'hub' | 'enem' | 'escolar' | 'ds' | null;
 }
 const { active = null } = Astro.props;
 
+// Seções ocultas (ver src/lib/secoes.ts) somem da navegação sem quebrar nada:
+// as rotas delas também deixam de ser geradas no build.
 const tabs = [
-  { key: 'hub', label: 'Início', href: '/', color: 'var(--color-ink)', soft: 'var(--color-paper-dark)' },
-  { key: 'enem', label: 'ENEM', href: '/enem', color: 'var(--color-enem)', soft: 'var(--color-enem-soft)' },
-  { key: 'escolar', label: 'Escolar', href: '/escolar', color: 'var(--color-escolar)', soft: 'var(--color-escolar-soft)' },
-  { key: 'ds', label: 'DS', href: '/ds', color: 'var(--color-ds)', soft: 'var(--color-ds-soft)' },
+  { key: 'hub', label: 'Início', href: '/', color: 'var(--color-ink)', soft: 'var(--color-paper-dark)', icone: 'house' },
+  ...SECOES_VISIVEIS.map((s) => ({
+    key: s.chave,
+    label: s.label,
+    href: s.href,
+    color: s.cor,
+    soft: s.corSuave,
+    icone: s.icone,
+  })),
 ];
 ---
 
 <!-- z-index: a folha (.paper-sheet, z 5) cobre a base das abas inativas (z 1-4),
      como divisórias coladas nas folhas de trás; só a aba ativa (z 30) fica na frente. -->
-<nav class="flex items-end gap-1.5 md:gap-2 px-3 md:px-10 flex-wrap" aria-label="Categorias">
+<nav class="flex items-end gap-1.5 md:gap-2 px-3 sm:px-4 md:px-10 flex-wrap" aria-label="Categorias">
   <div class="flex gap-1.5 md:gap-2 flex-wrap">
     {tabs.map((tab, i) => {
       const isActive = active === tab.key;
       return (
         <a
           href={u(tab.href)}
-          class="tab font-display font-bold text-xs sm:text-sm md:text-base uppercase tracking-wide px-3.5 sm:px-5 md:px-7 py-2.5 md:py-3 rounded-t-lg transition-all"
+          class="tab font-display font-bold text-xs sm:text-sm md:text-base uppercase tracking-wide px-3.5 sm:px-5 md:px-7 py-2.5 md:py-3 rounded-t-lg"
           style={`--tab-color: ${tab.color}; --tab-soft: ${tab.soft}; z-index: ${isActive ? 30 : 4 - i};`}
           data-active={isActive}
+          aria-current={isActive ? 'page' : undefined}
         >
-          {tab.label}
+          <Icone nome={tab.icone} class="tab__icone" />
+          <span>{tab.label}</span>
         </a>
       );
     })}
@@ -36,24 +47,44 @@ const tabs = [
 
 <style>
   .tab {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
     background: var(--tab-soft);
     color: var(--tab-color);
     border: 2px solid var(--tab-color);
     border-bottom: none;
     margin-top: 10px;
     transform: translateY(6px);
-    opacity: 0.7;
+    opacity: 0.72;
+    transition: transform 0.24s var(--ease), opacity 0.24s var(--ease), background-color 0.24s var(--ease),
+      box-shadow 0.24s var(--ease);
+  }
+  .tab__icone {
+    font-size: 0.85em;
+    opacity: 0.75;
+    transition: transform 0.24s var(--ease), opacity 0.24s var(--ease);
   }
   .tab:hover {
-    transform: translateY(3px);
+    transform: translateY(2px);
     opacity: 1;
+    box-shadow: 0 -6px 18px -12px var(--tab-color);
+  }
+  .tab:hover .tab__icone {
+    opacity: 1;
+    transform: translateY(-1px);
   }
   .tab[data-active='true'] {
     margin-top: 0;
     transform: none;
     opacity: 1;
   }
-  @media (prefers-reduced-motion: reduce) {
-    .tab { transition: none; }
+  .tab[data-active='true'] .tab__icone {
+    opacity: 1;
+  }
+  @media (max-width: 400px) {
+    .tab__icone {
+      display: none;
+    }
   }
 </style>

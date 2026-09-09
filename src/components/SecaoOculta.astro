@@ -1,0 +1,92 @@
+---
+// Página mostrada quando uma seção está temporariamente fora do ar
+// (ver `visivel` em src/lib/secoes.ts). A rota continua existindo para não
+// quebrar links antigos, mas some da navegação e não gera páginas internas.
+import Icone from './Icone.astro';
+import { u } from '../lib/url';
+
+interface Props {
+  nome: string;
+}
+const { nome } = Astro.props;
+---
+
+<div class="oculta">
+  <Icone nome="hourglass-half" duo cor="var(--color-ink-soft)" class="oculta__icone" />
+  <h1 class="oculta__h1">{nome} está em revisão</h1>
+  <p class="oculta__texto">
+    Esta seção foi despublicada temporariamente enquanto o material é reorganizado. O conteúdo não
+    foi apagado — ele volta assim que a revisão terminar.
+  </p>
+  <div class="oculta__acoes">
+    <a href={u('/')} class="oculta__botao oculta__botao--primario">
+      <Icone nome="house" /> Voltar ao início
+    </a>
+    <a href={u('/enem')} class="oculta__botao">
+      <Icone nome="graduation-cap" /> Ver as aulas do ENEM
+    </a>
+  </div>
+</div>
+
+<style>
+  .oculta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 2rem 0 3rem;
+    max-width: 34rem;
+  }
+  .oculta__icone {
+    font-size: 1.4rem;
+    margin-bottom: 1.25rem;
+  }
+  .oculta__h1 {
+    font-family: var(--font-display);
+    font-size: clamp(1.6rem, 1.1rem + 2vw, 2.3rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.12;
+    margin: 0 0 0.85rem;
+  }
+  .oculta__texto {
+    font-family: var(--font-body);
+    font-size: 0.98rem;
+    line-height: 1.7;
+    color: var(--color-ink-soft);
+    margin: 0 0 1.75rem;
+  }
+  .oculta__acoes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .oculta__botao {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1.05rem;
+    border: 1px solid var(--color-line);
+    border-radius: 999px;
+    font-family: var(--font-display);
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--color-ink-soft);
+    text-decoration: none;
+  }
+  .oculta__botao:hover {
+    color: var(--color-ink);
+    border-color: color-mix(in srgb, var(--color-ink) 32%, var(--color-line));
+    background: var(--color-paper-dark);
+    transform: translateY(-1px);
+  }
+  .oculta__botao--primario {
+    background: var(--color-ink);
+    border-color: var(--color-ink);
+    color: var(--color-paper);
+  }
+  .oculta__botao--primario:hover {
+    background: var(--color-ink);
+    color: var(--color-paper);
+    opacity: 0.88;
+  }
+</style>

@@ -1,14 +1,28 @@
 ---
 import '../styles/global.css';
+import { ClientRouter, fade } from 'astro:transitions';
 import TabNav from '../components/TabNav.astro';
+import Ferramentas from '../components/Ferramentas.astro';
+import Paineis from '../components/Paineis.astro';
+import Rodape from '../components/Rodape.astro';
+import Icone from '../components/Icone.astro';
 import { u } from '../lib/url';
 
 interface Props {
   title: string;
   active?: 'hub' | 'enem' | 'escolar' | 'ds' | null;
   description?: string;
+  /** Botão explícito de "voltar" no topo da folha, sempre um nível acima. */
+  voltar?: { href: string; label: string };
+  /** Esconde a folha pautada (usado por páginas de texto puro). */
+  larga?: boolean;
 }
-const { title, active = null, description = 'Aulas organizadas para estudar no seu ritmo' } = Astro.props;
+const {
+  title,
+  active = null,
+  description = 'Aulas organizadas para estudar no seu ritmo',
+  voltar,
+} = Astro.props;
 
 // A borda da folha segue a cor da aba ativa (o hub usa o mesmo "preto" da aba Início).
 const accentByTab: Record<string, string> = {
@@ -21,7 +35,7 @@ const borderColor = active ? accentByTab[active] : 'var(--color-line)';
 ---
 
 <!doctype html>
-<html lang="pt-BR">
+<html lang="pt-BR" data-base={u('/') || '/'}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -30,87 +44,247 @@ const borderColor = active ? accentByTab[active] : 'var(--color-line)';
     <link rel="icon" type="image/svg+xml" href={u('/favicon.svg')} />
     <link rel="icon" href={u('/favicon.ico')} sizes="32x32" />
     <link rel="apple-touch-icon" href={u('/apple-touch-icon.png')} />
-    <meta name="theme-color" content="#1f2a44" />
+    <meta name="theme-color" content="#edeadf" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Caderno de Estudos" />
     <meta property="og:title" content={`${title} · Caderno de Estudos`} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={u('/icon-512.png')} />
     <meta name="twitter:card" content="summary" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Literata:opsz,wght@6..72,400;6..72,500;6..72,600&family=JetBrains+Mono:wght@400;600&display=swap"
-      rel="stylesheet"
-    />
+    <ClientRouter />
     <script is:inline>
-      // Aplica tema/fonte salvos ANTES do primeiro paint (sem flash).
+      // Aplica tema e tamanho de texto salvos ANTES do primeiro paint (sem flash).
       (function () {
         try {
-          var tema = localStorage.getItem('cdt:tema');
-          var fonte = localStorage.getItem('cdt:fonte');
-          if (tema === 'escuro') document.documentElement.dataset.tema = 'escuro';
-          if (fonte === 'moderna') document.documentElement.dataset.fonte = 'moderna';
+          var raiz = document.documentElement;
+          var tema = JSON.parse(localStorage.getItem('cdt:tema') || '""');
+          var texto = JSON.parse(localStorage.getItem('cdt:texto') || '""');
+          if (tema === 'escuro') {
+            raiz.dataset.tema = 'escuro';
+            var meta = document.querySelector('meta[name="theme-color"]');
+            if (meta) meta.setAttribute('content', '#171a21');
+          }
+          if (texto === 'grande' || texto === 'maior') raiz.dataset.texto = texto;
         } catch (e) {}
       })();
     </script>
   </head>
   <body class="min-h-screen flex flex-col">
-    <header class="pt-6 sm:pt-8 md:pt-12">
-      <div class="px-3 sm:px-4 md:px-10 flex items-center justify-between gap-3 max-w-5xl mx-auto w-full">
-        <div class="flex items-center gap-2 sm:gap-3">
-          <div class="flex items-center gap-1" role="group" aria-label="Navegação do histórico">
-            <button type="button" class="hist-btn" onclick="history.back()" aria-label="Voltar">←</button>
-            <button type="button" class="hist-btn" onclick="history.forward()" aria-label="Avançar">→</button>
-          </div>
-          <a href={u('/')} class="font-display font-bold text-base sm:text-lg md:text-xl text-black no-underline">
-            Caderno de Estudos<span style="color: var(--color-enem)">.</span>
-          </a>
-        </div>
-        <span class="font-mono text-xs text-ink-soft hidden md:inline">Aulas abertas para estudar no seu ritmo</span>
+    <!-- Barra fina de progresso de leitura, no topo da janela. -->
+    <div class="leitura" aria-hidden="true"><i data-leitura></i></div>
+
+    <a href="#conteudo" class="pular">Pular para o conteúdo</a>
+
+    <!-- O topo troca sem animar: cruzar duas versões da marca e das abas
+         deixaria um "fantasma" durante a transição. -->
+    <header class="cabecalho" data-cabecalho transition:animate="none">
+      <div class="cabecalho__linha">
+        <a href={u('/')} class="marca">
+          Caderno de Estudos<span class="marca__ponto">.</span>
+        </a>
+        <Ferramentas />
       </div>
+
       <div class="max-w-5xl mx-auto w-full mt-5 sm:mt-6">
         <TabNav active={active} />
       </div>
     </header>
 
-    <main class="flex-1 max-w-5xl mx-auto w-full px-3 sm:px-4 md:px-10">
+    <main
+      class="flex-1 max-w-5xl mx-auto w-full px-3 sm:px-4 md:px-10"
+      id="conteudo"
+      transition:animate={fade({ duration: '0.24s' })}
+    >
       <div
         class="paper-sheet min-h-[60vh] p-4 pl-10 sm:p-6 sm:pl-12 md:p-10 md:pl-16 -mt-[2px]"
-        style={`border-color: ${borderColor}; background-color: color-mix(in srgb, var(--color-paper) 92%, white);`}
+        style={`border-color: ${borderColor};`}
       >
+        {voltar && (
+          <a href={voltar.href} class="voltar" data-pager="anterior">
+            <span class="voltar__seta"><Icone nome="arrow-left" /></span>
+            <span class="voltar__texto">
+              <span class="voltar__rotulo">Voltar para</span>
+              <span class="voltar__destino">{voltar.label}</span>
+            </span>
+          </a>
+        )}
         <slot />
       </div>
     </main>
 
-    <footer class="max-w-5xl mx-auto w-full px-3 sm:px-4 md:px-10 py-8 sm:py-10 mt-6 flex flex-wrap items-baseline justify-between gap-2">
-      <p class="font-mono text-xs text-ink-soft">
-        Consulte sempre um professor em caso de dúvidas.
-      </p>
-      <p class="font-mono text-xs text-ink-soft">Caderno de Estudos</p>
-    </footer>
+    <Rodape transition:animate="none" />
+
+    <div id="toasts" transition:persist aria-live="polite"></div>
+    <Paineis />
+
+    <script>
+      import '../scripts/app';
+    </script>
 
     <style>
-      .hist-btn {
+      /* ------------------------------------------------------------ topo */
+      .leitura {
+        position: fixed;
+        inset: 0 0 auto 0;
+        height: 3px;
+        z-index: 80;
+        pointer-events: none;
+      }
+      .leitura i {
+        display: block;
+        height: 100%;
+        background: linear-gradient(90deg, var(--color-enem), var(--color-escolar));
+        transform: scaleX(0);
+        transform-origin: 0 50%;
+        transition: transform 0.12s linear;
+      }
+
+      .pular {
+        position: absolute;
+        left: -999px;
+        top: 0;
+        z-index: 100;
+        padding: 0.6rem 1rem;
+        background: var(--color-ink);
+        color: var(--color-paper);
+        font-family: var(--font-display);
+        font-size: 0.8rem;
+        border-radius: 0 0 0.5rem 0;
+      }
+      .pular:focus {
+        left: 0;
+      }
+
+      /* ---------------------------------------------------------- cabeçalho
+         O padding-top é fixo e casado com --rule-offset (global.css) para que
+         a linha de base da marca caia exatamente sobre uma linha da pauta —
+         a marca fica "escrita" sobre o papel, não atravessada por ele. */
+      .cabecalho {
+        padding-top: 56px;
+        transition: padding-top 0.3s var(--ease);
+      }
+      .cabecalho__linha {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.75rem;
+        max-width: 64rem;
+        margin: 0 auto;
+        width: 100%;
+        padding-inline: 0.75rem;
+      }
+      /* Em telas estreitas a marca sozinha já ocupa a linha: as ferramentas
+         descem para a linha de baixo em vez de espremer ou vazar. */
+      @media (max-width: 559px) {
+        .cabecalho__linha {
+          flex-wrap: wrap;
+          justify-content: flex-start;
+          row-gap: 0;
+        }
+        .cabecalho__linha > :global(.ferramentas) {
+          width: 100%;
+          margin-bottom: 0.5rem;
+        }
+      }
+      @media (min-width: 640px) {
+        .cabecalho__linha {
+          padding-inline: 1rem;
+        }
+      }
+      @media (min-width: 768px) {
+        .cabecalho__linha {
+          padding-inline: 2.5rem;
+        }
+      }
+
+      .marca {
+        font-family: var(--font-display);
+        font-weight: 800;
+        letter-spacing: -0.03em;
+        color: var(--color-ink);
+        text-decoration: none;
+        white-space: nowrap;
+        /* Caixa de linha com altura de 2 pautas: a marca ocupa a pauta certa. */
+        font-size: 26px;
+        line-height: 70px;
+        display: inline-block;
+        transition: color 0.2s var(--ease), opacity 0.2s var(--ease);
+      }
+      .marca:hover {
+        opacity: 0.78;
+      }
+      .marca__ponto {
+        color: var(--color-enem);
+      }
+      @media (min-width: 640px) {
+        .marca {
+          font-size: 32px;
+        }
+      }
+      @media (min-width: 768px) {
+        .marca {
+          font-size: 38px;
+        }
+      }
+
+      /* Encolhe o topo quando a página rola, sem sumir com nada. */
+      .cabecalho[data-rolado='true'] {
+        padding-top: 21px;
+      }
+
+      /* -------------------------------------------------------- botão voltar */
+      .voltar {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.65rem;
+        margin-bottom: 1.5rem;
+        padding: 0.45rem 0.95rem 0.45rem 0.5rem;
+        border: 1px solid var(--color-line);
+        border-radius: 999px;
+        text-decoration: none;
+        color: var(--color-ink-soft);
+        background: color-mix(in srgb, var(--color-paper-dark) 40%, transparent);
+      }
+      .voltar:hover {
+        color: var(--color-ink);
+        border-color: color-mix(in srgb, var(--color-ink) 30%, var(--color-line));
+        background: var(--color-paper-dark);
+      }
+      .voltar__seta {
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        width: 2.25rem;
-        height: 2.25rem;
-        border-radius: 9999px;
+        width: 1.6rem;
+        height: 1.6rem;
+        border-radius: 999px;
+        background: var(--color-surface);
         border: 1px solid var(--color-line);
-        background: var(--color-paper);
-        color: var(--color-ink-soft);
-        font-family: var(--font-mono);
-        font-size: 0.75rem;
-        transition: background-color 0.15s, color 0.15s;
+        font-size: 0.7rem;
+        transition: transform 0.22s var(--ease);
       }
-      .hist-btn:hover {
-        background: var(--color-paper-dark);
-        color: var(--color-ink);
+      .voltar:hover .voltar__seta {
+        transform: translateX(-3px);
+      }
+      .voltar__texto {
+        display: flex;
+        flex-direction: column;
+        line-height: 1.15;
+      }
+      .voltar__rotulo {
+        font-family: var(--font-display);
+        font-size: 0.6rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        opacity: 0.7;
+      }
+      .voltar__destino {
+        font-family: var(--font-display);
+        font-size: 0.85rem;
+        font-weight: 600;
       }
 
-      /* Folha estilo fichário: borda na cor da aba ativa e furos perfurados na
+      /* ------------------------------------------------------------- folha
+         Folha estilo fichário: borda na cor da aba ativa e furos perfurados na
          margem esquerda. z-index 5 deixa a folha na frente das abas inativas
          (que ficam "coladas" nas folhas de trás) e atrás da aba ativa (z 30). */
       .paper-sheet {
@@ -119,6 +293,10 @@ const borderColor = active ? accentByTab[active] : 'var(--color-line)';
         border-width: 2px;
         border-style: solid;
         border-radius: 0 0.6rem 0.6rem 0;
+        background-color: var(--color-surface);
+        box-shadow: var(--shadow-soft);
+        transition: background-color 0.35s var(--ease), border-color 0.35s var(--ease),
+          box-shadow 0.35s var(--ease);
       }
       /* Furos: recuados 12px do topo/base pra nunca encostar na borda;
          background-repeat "space" distribui furos inteiros, sem cortar nenhum.
@@ -134,37 +312,17 @@ const borderColor = active ? accentByTab[active] : 'var(--color-line)';
         pointer-events: none;
         background-image:
           radial-gradient(circle 5px at 9px 20px, var(--color-paper) 99%, transparent 100%),
-          radial-gradient(circle 6px at 9px 18.5px, rgba(31, 42, 68, 0.38) 99%, transparent 100%),
-          radial-gradient(circle 6px at 9px 21.5px, rgba(255, 255, 255, 0.85) 99%, transparent 100%);
+          radial-gradient(circle 6px at 9px 18.5px, rgba(31, 42, 68, 0.32) 99%, transparent 100%),
+          radial-gradient(circle 6px at 9px 21.5px, rgba(255, 255, 255, 0.8) 99%, transparent 100%);
         background-size: 18px 40px;
         background-repeat: no-repeat space;
       }
+      :global(html[data-tema='escuro']) .paper-sheet::before {
+        background-image:
+          radial-gradient(circle 5px at 9px 20px, var(--color-paper) 99%, transparent 100%),
+          radial-gradient(circle 6px at 9px 18.5px, rgba(0, 0, 0, 0.55) 99%, transparent 100%),
+          radial-gradient(circle 6px at 9px 21.5px, rgba(255, 255, 255, 0.07) 99%, transparent 100%);
+      }
     </style>
-
-    <script>
-      document.addEventListener('click', (e) => {
-        const target = e.target;
-        if (!(target instanceof Element)) return;
-
-        const trigger = target.closest('[data-help-target]');
-        if (trigger) {
-          const id = trigger.getAttribute('data-help-target');
-          const dialog = id ? document.getElementById(id) : null;
-          if (dialog instanceof HTMLDialogElement) dialog.showModal();
-          return;
-        }
-
-        const closeBtn = target.closest('[data-help-close]');
-        if (closeBtn) {
-          const dialog = closeBtn.closest('dialog');
-          if (dialog instanceof HTMLDialogElement) dialog.close();
-          return;
-        }
-
-        if (target.tagName === 'DIALOG') {
-          (target as HTMLDialogElement).close();
-        }
-      });
-    </script>
   </body>
 </html>

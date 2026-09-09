@@ -1,4 +1,5 @@
 ---
+import { secaoVisivel } from '../../../../lib/secoes';
 import Base from '../../../../layouts/Base.astro';
 import { getCollection } from 'astro:content';
 import { buildMateriaBimestreTree, splitSlug, semanaLabel } from '../../../../lib/slug';
@@ -6,6 +7,8 @@ import { u } from '../../../../lib/url';
 import { listarEntradas } from '../../../../lib/lessonsRepo';
 
 export async function getStaticPaths() {
+  // Seção oculta (src/lib/secoes.ts): nenhuma rota é gerada.
+  if (!secaoVisivel('ds')) return [];
   const aulas = await getCollection('ds');
   return [...new Set(aulas.map((aula) => aula.id.split('/').slice(0, 2).join('/')))].map((path) => {
     const [materia, bimestre] = path.split('/');
@@ -25,7 +28,7 @@ const semanas = bim.semanas;
 
 <Base title={`${materiaLabel} · ${bimestreLabel}`} active="ds" description={`Semanas de ${materiaLabel}, ${bimestreLabel}`}>
   <nav class="font-mono text-xs text-ink-soft mb-4 flex flex-wrap gap-1">
-    <a href={u('/ds')} class="hover:text-ink underline underline-offset-2">DS</a>
+    <a href={u('/ds')} class="hover:text-ink underline underline-offset-2">Desenvolvimento de Sistemas</a>
     <span>/</span>
     <a href={u(`/ds/${materia}/`)} class="hover:text-ink underline underline-offset-2">{materiaLabel}</a>
     <span>/</span>

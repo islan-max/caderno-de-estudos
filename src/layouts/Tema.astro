@@ -1,6 +1,9 @@
 ---
 import Base from './Base.astro';
 import Recursos from '../components/Recursos.astro';
+import PaginacaoAula from '../components/PaginacaoAula.astro';
+import Icone from '../components/Icone.astro';
+import type { AulaIndexada } from '../lib/aulas';
 
 interface Crumb {
   label: string;
@@ -14,6 +17,15 @@ interface Props {
   resources?: any;
   active: 'enem' | 'escolar' | 'ds';
   breadcrumb: Crumb[];
+  /** Identificador da aula no progresso local, ex.: "enem/fisica/optica". */
+  aulaId?: string;
+  vizinhas?: {
+    anterior: AulaIndexada | null;
+    proxima: AulaIndexada | null;
+    posicao: number;
+    total: number;
+  };
+  materiaHref?: string;
 }
 const {
   title,
@@ -23,11 +35,21 @@ const {
   resources,
   active,
   breadcrumb,
+  aulaId,
+  vizinhas,
+  materiaHref,
 } = Astro.props;
+
+const pai = [...breadcrumb].reverse().find((b) => b.href);
 ---
 
-<Base title={title} active={active} description={relevance}>
-  <nav class="font-mono text-xs text-ink-soft mb-4 flex flex-wrap gap-x-1 gap-y-1">
+<Base
+  title={title}
+  active={active}
+  description={relevance}
+  voltar={pai ? { href: pai.href!, label: pai.label } : undefined}
+>
+  <nav class="font-mono text-xs text-ink-soft mb-4 flex flex-wrap gap-x-1 gap-y-1" aria-label="Você está aqui">
     {breadcrumb.map((b, i) => (
       <Fragment>
         {i > 0 && <span aria-hidden="true">/</span>}
@@ -40,27 +62,55 @@ const {
     ))}
   </nav>
 
-  <p class="font-mono text-xs uppercase tracking-widest mb-2" style={`color: var(--color-${active})`}>
+  <p class="font-mono text-xs uppercase tracking-widest mb-2 flex items-center gap-2" style={`color: var(--color-${active})`}>
+    <Icone nome="bookmark" />
     {subject}
+    {vizinhas && <span class="opacity-60">· aula {vizinhas.posicao} de {vizinhas.total}</span>}
   </p>
-  <h1 class="font-display text-3xl md:text-4xl font-bold text-ink mb-6 leading-tight">
-    {title}
-  </h1>
+
+  <h1 class="titulo-aula" data-surgir>{title}</h1>
+
+  {aulaId && (
+    <div class="acoes-aula not-prose" data-surgir style="--i: 1">
+      <button
+        type="button"
+        class="acao acao--vista"
+        data-acao="marcar-aula"
+        data-aula={aulaId}
+        data-titulo={title}
+        data-materia={subject}
+        aria-pressed="false"
+      >
+        <Icone nome="circle" />
+        <span data-rotulo>Marcar como vista</span>
+      </button>
+      <button type="button" class="acao" data-acao="copiar-link">
+        <Icone nome="link" /> Copiar link
+      </button>
+      <button type="button" class="acao acao--so-icone" data-acao="texto" data-nivel="normal" title="Tamanho do texto">
+        <Icone nome="font" />
+      </button>
+    </div>
+  )}
 
   {quickSummary && (
-    <section class="mb-6 rounded-lg p-4" style={`background-color: var(--color-${active}-soft);`}>
-      <p class="font-mono text-[11px] uppercase tracking-wide mb-1.5" style={`color: var(--color-${active})`}>
-        ⚡ Resumo Rápido
+    <section
+      class="resumo-rapido"
+      style={`--accent: var(--color-${active}); --accent-soft: var(--color-${active}-soft); --i: 2;`}
+      data-surgir
+    >
+      <p class="resumo-rapido__rotulo">
+        <Icone nome="bolt" duo cor={`var(--color-${active})`} /> Resumo rápido
       </p>
-      <p class="font-body text-sm text-ink leading-relaxed">{quickSummary}</p>
+      <p class="resumo-rapido__texto">{quickSummary}</p>
     </section>
   )}
 
-  <section class="mb-10 border-l-4 pl-5" style={`border-color: var(--color-${active})`}>
-    <p class="font-mono text-[11px] uppercase tracking-wide text-ink-soft mb-2">
-      Visão Geral e Relevância
+  <section class="relevancia" style={`--accent: var(--color-${active})`} data-surgir>
+    <p class="relevancia__rotulo">
+      <Icone nome="bullseye" /> Visão geral e relevância
     </p>
-    <p class="font-body text-ink leading-relaxed">{relevance}</p>
+    <p class="relevancia__texto">{relevance}</p>
   </section>
 
   <article class="prose prose-tema max-w-none">
@@ -68,4 +118,119 @@ const {
   </article>
 
   <Recursos resources={resources} accent={active} />
+
+  <span data-fim-da-aula aria-hidden="true"></span>
+
+  {vizinhas && materiaHref && (
+    <PaginacaoAula
+      anterior={vizinhas.anterior}
+      proxima={vizinhas.proxima}
+      posicao={vizinhas.posicao}
+      total={vizinhas.total}
+      materiaHref={materiaHref}
+      materiaLabel={subject}
+      accent={active}
+    />
+  )}
 </Base>
+
+<style>
+  .titulo-aula {
+    font-family: var(--font-display);
+    font-size: clamp(1.85rem, 1.2rem + 2.6vw, 2.85rem);
+    font-weight: 800;
+    letter-spacing: -0.028em;
+    line-height: 1.12;
+    color: var(--color-ink);
+    margin: 0 0 1.25rem;
+    max-width: 22ch;
+  }
+
+  /* ------------------------------------------------------------- ações */
+  .acoes-aula {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    margin-bottom: 1.75rem;
+  }
+  .acao {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.45rem 0.85rem;
+    border-radius: 999px;
+    border: 1px solid var(--color-line);
+    background: transparent;
+    color: var(--color-ink-soft);
+    font-family: var(--font-display);
+    font-size: 0.76rem;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .acao:hover {
+    color: var(--color-ink);
+    border-color: color-mix(in srgb, var(--color-ink) 32%, var(--color-line));
+    background: var(--color-paper-dark);
+  }
+  .acao--so-icone {
+    padding-inline: 0.6rem;
+  }
+  .acao--vista[data-vista='true'] {
+    color: var(--color-ok);
+    border-color: color-mix(in srgb, var(--color-ok) 55%, transparent);
+    background: color-mix(in srgb, var(--color-ok) 10%, transparent);
+  }
+
+  /* ------------------------------------------------------- resumo rápido */
+  .resumo-rapido {
+    margin-bottom: 1.5rem;
+    padding: 1rem 1.15rem;
+    border-radius: 0.75rem;
+    background: var(--accent-soft);
+    border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent);
+  }
+  .resumo-rapido__rotulo {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: var(--font-display);
+    font-size: 0.66rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.11em;
+    color: var(--accent);
+    margin: 0 0 0.5rem;
+  }
+  .resumo-rapido__texto {
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    line-height: 1.65;
+    color: var(--color-ink);
+    margin: 0;
+  }
+
+  /* ---------------------------------------------------------- relevância */
+  .relevancia {
+    margin-bottom: 2.5rem;
+    padding-left: 1.15rem;
+    border-left: 4px solid var(--accent);
+  }
+  .relevancia__rotulo {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: var(--font-display);
+    font-size: 0.66rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.11em;
+    color: var(--color-ink-soft);
+    margin: 0 0 0.5rem;
+  }
+  .relevancia__texto {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    line-height: 1.7;
+    margin: 0;
+  }
+</style>

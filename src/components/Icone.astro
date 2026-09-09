@@ -1,0 +1,55 @@
+---
+// Ícone Font Awesome 7 Free servido localmente.
+//
+// `duo` liga a camada duotone (disco de fundo + glifo por cima). O Duotone
+// oficial do Font Awesome é exclusivo da licença Pro, então o efeito é
+// reproduzido em CSS com os glifos gratuitos — ver .fa-duo em fonts.css.
+interface Props {
+  nome: string;
+  duo?: boolean;
+  marca?: boolean;
+  regular?: boolean;
+  class?: string;
+  /** Cor do glifo principal; o disco herda a mesma cor por padrão. */
+  cor?: string;
+  /** Cor do disco de fundo, quando precisa destoar do glifo. */
+  corFundo?: string;
+  /** Texto para leitores de tela. Sem ele, o ícone é decorativo. */
+  label?: string;
+  style?: string;
+}
+
+const {
+  nome,
+  duo = false,
+  marca = false,
+  regular = false,
+  class: klass = '',
+  cor,
+  corFundo,
+  label,
+  style = '',
+  ...resto
+} = Astro.props;
+// `resto` carrega o data-astro-cid-* que o componente pai injeta: sem repassá-lo,
+// os estilos com escopo do pai não alcançariam o <i> renderizado aqui.
+
+const familia = marca ? 'fa-brands' : regular ? 'fa-regular' : 'fa-solid';
+const classes = [familia, `fa-${nome}`, duo ? 'fa-duo' : '', klass].filter(Boolean).join(' ');
+const estilo = [
+  cor ? `--fa-primary-color: ${cor}; color: ${cor};` : '',
+  corFundo ? `--fa-secondary-color: ${corFundo};` : '',
+  style,
+]
+  .filter(Boolean)
+  .join(' ');
+---
+
+<i
+  {...resto}
+  class={classes}
+  style={estilo || undefined}
+  aria-hidden={label ? undefined : 'true'}
+  role={label ? 'img' : undefined}
+  aria-label={label}
+></i>

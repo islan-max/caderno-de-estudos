@@ -1,0 +1,219 @@
+---
+// Navegação explícita entre aulas, no fim do conteúdo.
+// Substitui as antigas setas de histórico do cabeçalho: aqui o usuário vê
+// PARA ONDE está indo — nome da aula anterior e da próxima, na ordem de
+// aprendizado da matéria — em vez de um "voltar" cego do navegador.
+import type { AulaIndexada } from '../lib/aulas';
+import Icone from './Icone.astro';
+
+interface Props {
+  anterior: AulaIndexada | null;
+  proxima: AulaIndexada | null;
+  posicao: number;
+  total: number;
+  materiaHref: string;
+  materiaLabel: string;
+  accent: string;
+}
+const { anterior, proxima, posicao, total, materiaHref, materiaLabel, accent } = Astro.props;
+---
+
+<nav class="pager not-prose" aria-label="Navegação entre aulas" style={`--accent: var(--color-${accent});`}>
+  <div class="pager__trilho">
+    <span class="pager__contagem">
+      Aula <strong>{posicao}</strong> de {total} · {materiaLabel}
+    </span>
+    <a href={materiaHref} class="pager__indice">
+      <Icone nome="list-ol" /> Ver todas
+    </a>
+  </div>
+
+  <div class="pager__pares">
+    {anterior ? (
+      <a href={anterior.href} class="pager__card pager__card--ant" data-pager="anterior" rel="prev">
+        <span class="pager__seta"><Icone nome="arrow-left" /></span>
+        <span class="pager__texto">
+          <span class="pager__rotulo">Aula anterior</span>
+          <span class="pager__titulo">{anterior.titulo}</span>
+        </span>
+      </a>
+    ) : (
+      <span class="pager__card pager__card--vazio">
+        <span class="pager__seta"><Icone nome="flag-checkered" /></span>
+        <span class="pager__texto">
+          <span class="pager__rotulo">Começo da matéria</span>
+          <span class="pager__titulo">Esta é a primeira aula</span>
+        </span>
+      </span>
+    )}
+
+    {proxima ? (
+      <a href={proxima.href} class="pager__card pager__card--prox" data-pager="proxima" rel="next">
+        <span class="pager__texto">
+          <span class="pager__rotulo">Próxima aula</span>
+          <span class="pager__titulo">{proxima.titulo}</span>
+        </span>
+        <span class="pager__seta"><Icone nome="arrow-right" /></span>
+      </a>
+    ) : (
+      <span class="pager__card pager__card--vazio pager__card--prox">
+        <span class="pager__texto">
+          <span class="pager__rotulo">Fim da matéria</span>
+          <span class="pager__titulo">Você chegou na última aula</span>
+        </span>
+        <span class="pager__seta"><Icone nome="trophy" /></span>
+      </span>
+    )}
+  </div>
+
+  <p class="pager__dica">
+    <Icone nome="keyboard" /> Dica: use as setas <kbd>←</kbd> e <kbd>→</kbd> do teclado para trocar de aula.
+  </p>
+</nav>
+
+<style>
+  .pager {
+    margin-top: 3rem;
+    padding-top: 1.75rem;
+    border-top: 2px solid var(--color-line);
+  }
+
+  .pager__trilho {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem 1rem;
+    margin-bottom: 1rem;
+  }
+  .pager__contagem {
+    font-family: var(--font-display);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    color: var(--color-ink-soft);
+  }
+  .pager__contagem strong {
+    color: var(--accent);
+    font-weight: 700;
+  }
+  .pager__indice {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: var(--font-display);
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--color-ink-soft);
+    text-decoration: none;
+    padding: 0.3rem 0.7rem;
+    border-radius: 999px;
+    border: 1px solid var(--color-line);
+  }
+  .pager__indice:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+
+  .pager__pares {
+    display: grid;
+    gap: 0.75rem;
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 640px) {
+    .pager__pares {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  .pager__card {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    padding: 0.9rem 1rem;
+    border: 1px solid var(--color-line);
+    border-radius: 0.75rem;
+    background: color-mix(in srgb, var(--color-paper-dark) 30%, transparent);
+    text-decoration: none;
+    color: var(--color-ink);
+    min-height: 4.25rem;
+  }
+  a.pager__card:hover {
+    border-color: var(--accent);
+    background: color-mix(in srgb, var(--accent) 8%, transparent);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-soft);
+  }
+  .pager__card--prox {
+    text-align: right;
+    justify-content: flex-end;
+  }
+  .pager__card--vazio {
+    opacity: 0.55;
+    border-style: dashed;
+  }
+
+  .pager__seta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 2.1rem;
+    height: 2.1rem;
+    border-radius: 999px;
+    border: 1px solid var(--color-line);
+    background: var(--color-surface);
+    color: var(--accent);
+    font-size: 0.78rem;
+    transition: transform 0.24s var(--ease), background-color 0.24s var(--ease);
+  }
+  a.pager__card--ant:hover .pager__seta {
+    transform: translateX(-4px);
+  }
+  a.pager__card--prox:hover .pager__seta {
+    transform: translateX(4px);
+  }
+
+  .pager__texto {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    min-width: 0;
+  }
+  .pager__rotulo {
+    font-family: var(--font-display);
+    font-size: 0.62rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-ink-soft);
+  }
+  .pager__titulo {
+    font-family: var(--font-display);
+    font-size: 0.92rem;
+    font-weight: 600;
+    line-height: 1.3;
+  }
+
+  .pager__dica {
+    display: none;
+    align-items: center;
+    gap: 0.45rem;
+    margin: 1rem 0 0;
+    font-family: var(--font-display);
+    font-size: 0.7rem;
+    color: var(--color-ink-soft);
+  }
+  .pager__dica kbd {
+    display: inline-block;
+    padding: 0.05rem 0.3rem;
+    border: 1px solid var(--color-line);
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 0.68rem;
+  }
+  @media (min-width: 768px) and (pointer: fine) {
+    .pager__dica {
+      display: flex;
+    }
+  }
+</style>

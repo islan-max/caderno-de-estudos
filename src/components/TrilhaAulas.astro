@@ -1,0 +1,208 @@
+---
+// Lista de aulas em ordem de aprendizado, de cima para baixo.
+//
+// O número à esquerda é a posição na trilha; quando a aula já foi vista ele
+// vira um "check" e o item recebe data-vista="true" (aplicado em JS a partir
+// do armazenamento local). A diferença é discreta de propósito: o item
+// continua legível e clicável, só perde o destaque de "pendente".
+import type { AulaIndexada } from '../lib/aulas';
+import Icone from './Icone.astro';
+
+interface Props {
+  aulas: AulaIndexada[];
+  accent?: string;
+}
+const { aulas, accent = 'enem' } = Astro.props;
+---
+
+<ol class="trilha" style={`--accent: var(--color-${accent});`}>
+  {aulas.map((aula, i) => (
+    <li class="trilha__item" data-aula-id={aula.id} style={`--i: ${i}`} data-surgir>
+      <a href={aula.href} class="trilha__link">
+        <span class="trilha__marca" aria-hidden="true">
+          <span class="trilha__numero">{String(i + 1).padStart(2, '0')}</span>
+          <Icone nome="check" class="trilha__check" />
+        </span>
+        <span class="trilha__corpo">
+          <span class="trilha__titulo">{aula.titulo}</span>
+          <span class="trilha__resumo">{aula.resumo}</span>
+        </span>
+        <span class="trilha__ir">
+          <span class="trilha__ir-texto">Abrir</span>
+          <Icone nome="arrow-right" />
+        </span>
+      </a>
+    </li>
+  ))}
+</ol>
+
+<style>
+  .trilha {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    counter-reset: aula;
+  }
+
+  .trilha__item {
+    position: relative;
+  }
+  /* Fio ligando os passos da trilha. */
+  .trilha__item:not(:last-child)::before {
+    content: '';
+    position: absolute;
+    left: 1.28rem;
+    top: 2.9rem;
+    bottom: -0.5rem;
+    width: 2px;
+    background: var(--color-line);
+    opacity: 0.7;
+  }
+  @media (min-width: 640px) {
+    .trilha__item:not(:last-child)::before {
+      left: 1.53rem;
+    }
+  }
+
+  .trilha__link {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.9rem;
+    padding: 0.85rem 0.9rem;
+    border: 1px solid var(--color-line);
+    border-radius: 0.7rem;
+    background: color-mix(in srgb, var(--color-paper-dark) 22%, transparent);
+    text-decoration: none;
+    color: var(--color-ink);
+  }
+  .trilha__link:hover {
+    border-color: var(--accent);
+    background: color-mix(in srgb, var(--accent) 7%, transparent);
+    transform: translateX(3px);
+    box-shadow: var(--shadow-soft);
+  }
+
+  .trilha__marca {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    width: 1.85rem;
+    height: 1.85rem;
+    border-radius: 999px;
+    border: 1px solid var(--color-line);
+    background: var(--color-surface);
+    font-family: var(--font-display);
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--color-ink-soft);
+    transition: background-color 0.3s var(--ease), color 0.3s var(--ease), border-color 0.3s var(--ease);
+  }
+  .trilha__marca > * {
+    grid-area: 1 / 1;
+  }
+  .trilha__check {
+    font-size: 0.72rem;
+    opacity: 0;
+    transform: scale(0.6);
+    transition: opacity 0.25s var(--ease), transform 0.25s var(--ease);
+  }
+  .trilha__numero {
+    transition: opacity 0.2s var(--ease);
+  }
+
+  .trilha__corpo {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    min-width: 0;
+    flex: 1;
+    padding-top: 0.1rem;
+  }
+  .trilha__titulo {
+    font-family: var(--font-display);
+    font-size: 0.98rem;
+    font-weight: 650;
+    line-height: 1.3;
+  }
+  .trilha__resumo {
+    font-family: var(--font-body);
+    font-size: 0.82rem;
+    line-height: 1.5;
+    color: var(--color-ink-soft);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .trilha__ir {
+    display: none;
+    align-items: center;
+    gap: 0.4rem;
+    align-self: center;
+    flex-shrink: 0;
+    font-family: var(--font-display);
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    opacity: 0;
+    transform: translateX(-6px);
+    transition: opacity 0.24s var(--ease), transform 0.24s var(--ease);
+  }
+  .trilha__link:hover .trilha__ir,
+  .trilha__link:focus-visible .trilha__ir {
+    opacity: 1;
+    transform: none;
+  }
+  @media (min-width: 700px) {
+    .trilha__ir {
+      display: inline-flex;
+    }
+  }
+
+  /* ------------------------------------------------------------- vista
+     Sutil: o cartão perde saturação, o número vira check verde e um filete
+     na lateral confirma a conclusão. Nada de tachado ou cinza berrante. */
+  .trilha__item[data-vista='true'] .trilha__link {
+    background: transparent;
+    border-color: color-mix(in srgb, var(--color-ok) 28%, var(--color-line));
+  }
+  .trilha__item[data-vista='true'] .trilha__link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.6rem;
+    bottom: 0.6rem;
+    width: 3px;
+    border-radius: 0 3px 3px 0;
+    background: var(--color-ok);
+    opacity: 0.75;
+  }
+  .trilha__item[data-vista='true'] .trilha__titulo {
+    color: var(--color-ink-soft);
+    font-weight: 600;
+  }
+  .trilha__item[data-vista='true'] .trilha__resumo {
+    opacity: 0.75;
+  }
+  .trilha__item[data-vista='true'] .trilha__marca {
+    background: color-mix(in srgb, var(--color-ok) 16%, var(--color-surface));
+    border-color: color-mix(in srgb, var(--color-ok) 45%, transparent);
+    color: var(--color-ok);
+  }
+  .trilha__item[data-vista='true'] .trilha__numero {
+    opacity: 0;
+  }
+  .trilha__item[data-vista='true'] .trilha__check {
+    opacity: 1;
+    transform: none;
+  }
+</style>

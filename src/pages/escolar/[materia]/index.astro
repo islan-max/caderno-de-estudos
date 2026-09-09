@@ -1,4 +1,5 @@
 ---
+import { secaoVisivel } from '../../../lib/secoes';
 import Base from '../../../layouts/Base.astro';
 import { getCollection } from 'astro:content';
 import { buildMateriaBimestreTree } from '../../../lib/slug';
@@ -6,6 +7,8 @@ import { u } from '../../../lib/url';
 import { listarEntradas } from '../../../lib/lessonsRepo';
 
 export async function getStaticPaths() {
+  // Seção oculta (src/lib/secoes.ts): nenhuma rota é gerada.
+  if (!secaoVisivel('escolar')) return [];
   const aulas = await getCollection('escolar');
   return [...new Set(aulas.map((aula) => aula.id.split('/')[0]))].map((materia) => ({ params: { materia } }));
 }

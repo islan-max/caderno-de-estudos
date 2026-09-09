@@ -1,9 +1,12 @@
 ---
 import Base from '../../../layouts/Base.astro';
+import TrilhaAulas from '../../../components/TrilhaAulas.astro';
+import Icone from '../../../components/Icone.astro';
 import { getCollection } from 'astro:content';
 import { splitSlug } from '../../../lib/slug';
 import { u } from '../../../lib/url';
-import { listarEntradas } from '../../../lib/lessonsRepo';
+import { aulasDaMateria } from '../../../lib/aulas';
+import { areaDaMateria, iconeDaMateria } from '../../../lib/enemAreas';
 
 export async function getStaticPaths() {
   const aulas = await getCollection('enem');
@@ -11,33 +14,146 @@ export async function getStaticPaths() {
 }
 
 const { materia } = Astro.params;
-const entries = await listarEntradas('enem');
-const temas = entries
-  .filter((e) => splitSlug(e.id)[0] === materia)
-  .sort((a, b) => a.data.order - b.data.order);
+// Já vem na ordem de aprendizado (posição da matéria + `order` do frontmatter).
+const temas = await aulasDaMateria(materia!);
 if (temas.length === 0) return Astro.redirect(u('/enem'));
-const subjectLabel = temas[0]?.data.subject ?? materia;
+
+const subjectLabel = temas[0].materiaLabel;
+const area = areaDaMateria(materia!);
+const ids = temas.map((t) => t.id).join(' ');
 ---
 
-<Base title={subjectLabel} active="enem" description={`Temas de ${subjectLabel} para o ENEM`}>
-  <nav class="font-mono text-xs text-ink-soft mb-4">
+<Base
+  title={subjectLabel}
+  active="enem"
+  description={`Temas de ${subjectLabel} para o ENEM, na ordem de aprendizado`}
+  voltar={{ href: u('/enem'), label: 'Matérias do ENEM' }}
+>
+  <nav class="font-mono text-xs text-ink-soft mb-4" aria-label="Você está aqui">
     <a href={u('/enem')} class="hover:text-ink underline underline-offset-2">ENEM</a>
     <span> / </span>
     <span class="text-ink">{subjectLabel}</span>
   </nav>
-  <h1 class="font-display text-3xl md:text-4xl font-bold text-ink mb-8">{subjectLabel}</h1>
 
-  <ul class="flex flex-col gap-3 list-none p-0 m-0">
-    {temas.map((t) => (
-      <li>
-        <a
-          href={u(`/enem/${materia}/${splitSlug(t.id)[1]}/`)}
-          class="flex items-center justify-between gap-4 rounded-md border border-paper-dark px-5 py-4 hover:border-enem transition-colors bg-white/50"
-        >
-          <span class="font-body text-ink font-medium">{t.data.title}</span>
-          <span class="font-mono text-xs text-ink-soft shrink-0">Abrir aula →</span>
-        </a>
-      </li>
-    ))}
-  </ul>
+  <header class="materia-topo" data-surgir>
+    <div class="materia-topo__titulo">
+      <Icone nome={iconeDaMateria(materia!)} duo cor="var(--color-enem)" class="materia-topo__icone" />
+      <div>
+        {area && <p class="materia-topo__area">{area.label}</p>}
+        <h1 class="materia-topo__h1">{subjectLabel}</h1>
+      </div>
+    </div>
+
+    <div class="materia-progresso" data-progresso-de={ids}>
+      <div class="materia-progresso__cabeca">
+        <span class="materia-progresso__rotulo">
+          <Icone nome="list-check" /> Seu progresso nesta matéria
+        </span>
+        <span class="materia-progresso__num"><span data-progresso-texto>0 de {temas.length}</span></span>
+      </div>
+      <div class="materia-progresso__trilho" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-label={`Progresso em ${subjectLabel}`}>
+        <span data-progresso-barra></span>
+      </div>
+    </div>
+  </header>
+
+  <p class="materia-dica" data-surgir style="--i: 1">
+    <Icone nome="signs-post" />
+    As aulas estão na ordem de aprendizado: comece pela primeira e desça a lista.
+  </p>
+
+  <TrilhaAulas aulas={temas} accent="enem" />
 </Base>
+
+<style>
+  .materia-topo {
+    margin-bottom: 1.75rem;
+  }
+  .materia-topo__titulo {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    margin-bottom: 1.35rem;
+  }
+  .materia-topo__icone {
+    font-size: 1.15rem;
+    flex-shrink: 0;
+  }
+  .materia-topo__area {
+    font-family: var(--font-display);
+    font-size: 0.64rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--color-ink-soft);
+    margin: 0 0 0.2rem;
+  }
+  .materia-topo__h1 {
+    font-family: var(--font-display);
+    font-size: clamp(1.75rem, 1.2rem + 2.2vw, 2.6rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    margin: 0;
+  }
+
+  .materia-progresso {
+    padding: 0.85rem 1rem;
+    border: 1px solid var(--color-line);
+    border-radius: 0.7rem;
+    background: color-mix(in srgb, var(--color-paper-dark) 28%, transparent);
+  }
+  .materia-progresso[data-completo='true'] {
+    border-color: color-mix(in srgb, var(--color-ok) 45%, transparent);
+    background: color-mix(in srgb, var(--color-ok) 8%, transparent);
+  }
+  .materia-progresso__cabeca {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 0.55rem;
+  }
+  .materia-progresso__rotulo {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-family: var(--font-display);
+    font-size: 0.68rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-ink-soft);
+  }
+  .materia-progresso__num {
+    font-family: var(--font-display);
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--color-ink);
+    white-space: nowrap;
+  }
+  .materia-progresso__trilho {
+    height: 7px;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--color-ink) 10%, transparent);
+    overflow: hidden;
+  }
+  .materia-progresso__trilho span {
+    display: block;
+    height: 100%;
+    width: 0;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--color-enem), var(--color-ok));
+    transition: width 0.75s var(--ease);
+  }
+
+  .materia-dica {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-body);
+    font-size: 0.82rem;
+    color: var(--color-ink-soft);
+    margin: 0 0 1rem;
+  }
+</style>

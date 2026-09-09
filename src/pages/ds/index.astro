@@ -1,19 +1,29 @@
 ---
+import SecaoOculta from '../../components/SecaoOculta.astro';
+import { secaoVisivel } from '../../lib/secoes';
 import Base from '../../layouts/Base.astro';
 import HelpTip from '../../components/HelpTip.astro';
 import { buildMateriaBimestreTree } from '../../lib/slug';
 import { u } from '../../lib/url';
 import { listarEntradas } from '../../lib/lessonsRepo';
 
+// Seção oculta (src/lib/secoes.ts): a rota continua existindo (links antigos não
+// quebram), mas some da navegação e não gera nenhuma página interna.
+const oculta = !secaoVisivel('ds');
+
 const entries = await listarEntradas('ds');
 const tree = buildMateriaBimestreTree(entries);
 const materias = [...tree.values()].sort((a, b) => a.label.localeCompare(b.label));
 ---
 
-<Base title="DS" active="ds" description="Material do curso DS, por matéria">
+<Base title="Desenvolvimento de Sistemas" active="ds" description="Material do curso de Desenvolvimento de Sistemas, por matéria">
+  {oculta ? (
+    <SecaoOculta nome="Desenvolvimento de Sistemas" />
+  ) : (
+  <Fragment>
   <div class="flex items-center gap-2 mb-2">
-    <p class="font-mono text-xs uppercase tracking-widest" style="color: var(--color-ds)">ds</p>
-    <HelpTip title="Como funciona a aba DS">
+    <p class="font-mono text-xs uppercase tracking-widest" style="color: var(--color-ds)">desenvolvimento de sistemas</p>
+    <HelpTip title="Como funciona a aba de Desenvolvimento de Sistemas">
       Material do curso técnico, organizado por matéria, bimestre e semana, com explicações em
       linguagem simples.
     </HelpTip>
@@ -42,5 +52,7 @@ const materias = [...tree.values()].sort((a, b) => a.label.localeCompare(b.label
         </li>
       ))}
     </ul>
+  )}
+</Fragment>
   )}
 </Base>

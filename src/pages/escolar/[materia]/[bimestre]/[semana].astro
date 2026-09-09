@@ -1,10 +1,13 @@
 ---
+import { secaoVisivel } from '../../../../lib/secoes';
 import Tema from '../../../../layouts/Tema.astro';
 import { getCollection, render } from 'astro:content';
 import { bimestreLabel as bimLabelFn } from '../../../../lib/slug';
 import { u } from '../../../../lib/url';
 
 export async function getStaticPaths() {
+  // Seção oculta (src/lib/secoes.ts): nenhuma rota é gerada.
+  if (!secaoVisivel('escolar')) return [];
   const aulas = await getCollection('escolar');
   return aulas.map((aula) => {
     const [materia, bimestre, semana] = aula.id.split('/');

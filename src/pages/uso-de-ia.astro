@@ -1,0 +1,101 @@
+---
+import Documento from '../layouts/Documento.astro';
+import { u } from '../lib/url';
+---
+
+<Documento
+  title="Uso de Inteligência Artificial"
+  subtitle="Transparência sobre como a IA participa da produção deste material, em linha com o EU AI Act (Regulamento UE 2024/1689)."
+  icone="robot"
+  atualizado="9 de setembro de 2026"
+  description="Declaração de transparência sobre o uso de inteligência artificial no Caderno de Estudos, conforme o EU AI Act."
+>
+  <div class="destaque">
+    <p>
+      <strong>Declaração de transparência:</strong> parte substancial do conteúdo textual deste site
+      foi <strong>gerada ou assistida por sistemas de inteligência artificial generativa</strong> e
+      posteriormente revisada por uma pessoa. O site não é, ele próprio, um sistema de IA: não há
+      modelo rodando aqui, nem geração de conteúdo em tempo real a partir do que você faz.
+    </p>
+  </div>
+
+  <h2>1. Onde a IA é usada</h2>
+  <ul>
+    <li>
+      <strong>Redação das aulas.</strong> Os resumos, explicações e seções "visão geral e
+      relevância" são produzidos a partir de instruções padronizadas enviadas a modelos de
+      linguagem, e depois revisados manualmente antes da publicação.
+    </li>
+    <li>
+      <strong>Organização do material.</strong> A sequência de aprendizado e a classificação por
+      área e matéria contam com apoio de IA na proposta inicial, com decisão final humana.
+    </li>
+    <li>
+      <strong>Código do site.</strong> Parte da implementação foi escrita com auxílio de
+      assistentes de programação.
+    </li>
+  </ul>
+
+  <h2>2. Onde a IA NÃO é usada</h2>
+  <ul>
+    <li>Não há chatbot, tutor automático ou geração de respostas em tempo real.</li>
+    <li>Não há recomendação personalizada, pontuação ou avaliação automatizada de estudantes.</li>
+    <li>Não há reconhecimento de emoções, biometria, categorização de pessoas ou perfilamento.</li>
+    <li>Nenhum dado seu — inclusive o progresso salvo localmente — é enviado a modelos de IA.</li>
+  </ul>
+
+  <h2>3. Classificação sob o EU AI Act</h2>
+  <p>
+    O Regulamento (UE) 2024/1689 organiza sistemas de IA por nível de risco. Este site
+    <strong>não opera um sistema de IA</strong>: ele publica conteúdo estático que foi produzido com
+    auxílio de IA fora do site. Não se enquadra, portanto, nas categorias de risco inaceitável nem
+    de alto risco — incluindo o Anexo III, ponto 3, que trata de sistemas usados para
+    <em>determinar acesso, admissão, avaliação de resultados de aprendizagem ou monitoramento de
+    estudantes durante provas</em>. Nada disso acontece aqui.
+  </p>
+  <p>
+    Ainda assim, esta página cumpre voluntariamente o espírito do <strong>artigo 50</strong> do
+    regulamento — obrigações de transparência para conteúdo sintético — deixando explícito que o
+    material foi gerado com apoio de IA, para que ninguém seja induzido a erro sobre sua origem.
+  </p>
+
+  <h2>4. Supervisão humana</h2>
+  <p>
+    Todo o conteúdo publicado passa por leitura e revisão humana antes de entrar no site. A decisão
+    sobre o que é publicado, corrigido ou removido é sempre de uma pessoa — nunca automática.
+  </p>
+
+  <h2>5. Limitações que você precisa conhecer</h2>
+  <ul>
+    <li>
+      Modelos de linguagem podem produzir afirmações erradas com aparência de certeza
+      ("alucinações"), especialmente em datas, números, citações e legislação.
+    </li>
+    <li>
+      O conteúdo reflete o conhecimento disponível no momento da geração e pode desatualizar,
+      sobretudo em atualidades e temas normativos.
+    </li>
+    <li>
+      Pode haver simplificações didáticas que não substituem a fonte primária de cada disciplina.
+    </li>
+  </ul>
+  <p>
+    Por isso a recomendação é a mesma de qualquer material de apoio: confira informações críticas em
+    fontes oficiais e converse com o professor responsável.
+  </p>
+
+  <h2>6. Como reportar um erro</h2>
+  <p>
+    Encontrou uma informação incorreta? Abra uma issue no
+    <a href="https://github.com/islan-max" target="_blank" rel="noopener noreferrer">repositório do projeto no GitHub</a>
+    ou avise pelo <a href="https://instagram.com/islan.max" target="_blank" rel="noopener noreferrer">Instagram</a>.
+    Correções entram no histórico público de alterações do repositório.
+  </p>
+
+  <h2>7. Documentos relacionados</h2>
+  <p>
+    Veja também a <a href={u('/privacidade')}>Política de Privacidade</a>, os
+    <a href={u('/termos')}>Termos de Uso</a> e a página de
+    <a href={u('/lgpd')}>Conformidade com a LGPD</a>.
+  </p>
+</Documento>

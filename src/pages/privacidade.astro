@@ -1,0 +1,99 @@
+---
+import Documento from '../layouts/Documento.astro';
+import { u } from '../lib/url';
+---
+
+<Documento
+  title="Política de Privacidade"
+  subtitle="O que este site faz — e não faz — com dados. Resumo honesto: ele não coleta nada sobre você."
+  icone="user-shield"
+  atualizado="9 de setembro de 2026"
+  description="Política de Privacidade do Caderno de Estudos: site estático, sem cadastro, sem rastreadores e sem coleta de dados pessoais."
+>
+  <div class="destaque">
+    <p>
+      <strong>Em uma frase:</strong> o Caderno de Estudos é um site estático sem cadastro, sem
+      cookies de rastreamento e sem banco de dados. As únicas informações guardadas — quais aulas
+      você marcou como vistas, o tema e o tamanho do texto — ficam no armazenamento local do seu
+      próprio navegador e nunca são enviadas a lugar nenhum.
+    </p>
+  </div>
+
+  <h2>1. Quem é o responsável</h2>
+  <p>
+    O Caderno de Estudos é um projeto pessoal, independente e sem fins lucrativos, mantido por
+    <strong>Islan Max</strong>. Não há empresa, CNPJ nem vínculo com instituição de ensino por trás
+    dele. O contato é feito pelos perfis públicos indicados no rodapé do site.
+  </p>
+
+  <h2>2. Dados que o site NÃO coleta</h2>
+  <ul>
+    <li>Não há cadastro, login, conta de usuário ou formulário de contato.</li>
+    <li>Não pedimos nome, e-mail, telefone, CPF, data de nascimento ou qualquer identificador.</li>
+    <li>Não usamos cookies de análise, publicidade, remarketing ou perfilamento.</li>
+    <li>Não usamos Google Analytics, pixels de redes sociais ou ferramentas equivalentes.</li>
+    <li>Não vendemos, compartilhamos ou cedemos dados a terceiros — não há dados para ceder.</li>
+  </ul>
+
+  <h2>3. Dados guardados no seu navegador</h2>
+  <p>
+    Para o site funcionar como um caderno de verdade, algumas preferências ficam salvas no
+    <strong>localStorage</strong> do navegador que você está usando. Elas nunca saem do aparelho:
+  </p>
+  <ul>
+    <li><strong>cdt:progresso</strong> — a lista de aulas marcadas como vistas, com a data da marcação.</li>
+    <li><strong>cdt:ultima</strong> — a última aula aberta, usada no card "continuar de onde parou".</li>
+    <li><strong>cdt:tema</strong> — se você prefere o tema claro ou escuro.</li>
+    <li><strong>cdt:texto</strong> — o tamanho de texto escolhido.</li>
+  </ul>
+  <p>
+    Esses registros não identificam você, não são sincronizados entre aparelhos e podem ser apagados
+    a qualquer momento: use o botão <strong>Zerar progresso</strong> no painel "Meu progresso" ou
+    limpe os dados do site nas configurações do navegador.
+  </p>
+
+  <h2>4. Hospedagem e registros técnicos</h2>
+  <p>
+    O site é publicado no <strong>GitHub Pages</strong> (GitHub, Inc.). Como em qualquer site da
+    internet, o servidor de hospedagem pode registrar dados técnicos de acesso — endereço IP,
+    horário e tipo de navegador — para operar a infraestrutura e proteger contra abusos. Esses
+    registros são controlados pelo GitHub, não por este projeto, e seguem a
+    <a href="https://docs.github.com/pt/site-policy/privacy-policies/github-privacy-statement" target="_blank" rel="noopener noreferrer">
+      Declaração de Privacidade do GitHub</a>.
+  </p>
+
+  <h2>5. Fontes e recursos de terceiros</h2>
+  <p>
+    As fontes tipográficas (Inter, Nunito e Font Awesome) são <strong>servidas pelo próprio
+    site</strong>, e não por CDNs externas. Isso significa que abrir uma página não dispara nenhuma
+    requisição a servidores de terceiros.
+  </p>
+  <p>
+    Algumas aulas indicam materiais complementares hospedados em outros serviços (vídeos, cursos
+    gratuitos, PDFs). Ao clicar nesses links você sai do Caderno de Estudos e passa a valer a
+    política de privacidade do site de destino. Não temos controle sobre o que esses serviços
+    coletam.
+  </p>
+
+  <h2>6. Menores de idade</h2>
+  <p>
+    O conteúdo é voltado a estudantes do ensino médio e técnico, incluindo adolescentes. Como o site
+    não coleta dados pessoais nem exige cadastro, não há tratamento de dados de crianças e
+    adolescentes na forma do art. 14 da LGPD.
+  </p>
+
+  <h2>7. Seus direitos</h2>
+  <p>
+    Como não há coleta de dados pessoais, não existe base de dados sobre você para acessar,
+    corrigir ou excluir. Ainda assim, você pode exercer controle total sobre as informações locais:
+    apagando-as pelo próprio site ou pelo navegador. Os direitos previstos na LGPD estão detalhados
+    na página <a href={u('/lgpd')}>Conformidade com a LGPD</a>.
+  </p>
+
+  <h2>8. Mudanças nesta política</h2>
+  <p>
+    Se o funcionamento do site mudar de forma a afetar privacidade, esta página será atualizada e a
+    data de "última atualização" no topo refletirá a alteração. O histórico completo de mudanças é
+    público no repositório do projeto no GitHub.
+  </p>
+</Documento>

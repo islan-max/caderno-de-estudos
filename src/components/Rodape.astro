@@ -1,0 +1,281 @@
+---
+import { u } from '../lib/url';
+import Icone from './Icone.astro';
+import { SECOES_VISIVEIS } from '../lib/secoes';
+
+const ano = new Date().getFullYear();
+
+// Selos: só afirmações verificáveis sobre este site. Nada de certificação
+// de terceiro que o projeto não possua de fato.
+const selos = [
+  { icone: 'lock', texto: 'HTTPS/TLS', detalhe: 'Todo o tráfego é servido por conexão criptografada.' },
+  { icone: 'fingerprint', texto: 'Sem rastreadores', detalhe: 'Nenhum cookie de análise, publicidade ou perfilamento.' },
+  { icone: 'database', texto: 'Dados locais', detalhe: 'Seu progresso fica no seu navegador e nunca é enviado a servidores.' },
+  { icone: 'code', texto: 'Código aberto', detalhe: 'Licença MIT, auditável por qualquer pessoa no GitHub.' },
+];
+
+const legais = [
+  { href: '/privacidade', label: 'Política de Privacidade', icone: 'user-shield' },
+  { href: '/termos', label: 'Termos de Uso', icone: 'file-contract' },
+  { href: '/lgpd', label: 'Conformidade com a LGPD', icone: 'scale-balanced' },
+  { href: '/uso-de-ia', label: 'Uso de IA e EU AI Act', icone: 'robot' },
+];
+---
+
+<footer class="rodape">
+  <div class="rodape__conteudo">
+    <div class="rodape__grade">
+      <!-- Institucional -->
+      <section class="rodape__bloco rodape__bloco--marca">
+        <p class="rodape__marca">
+          Caderno de Estudos<span style="color: var(--color-enem)">.</span>
+        </p>
+        <p class="rodape__descricao">
+          Biblioteca de estudo aberta e gratuita, mantida de forma independente por <strong>Islan
+          Max</strong>. Reúne material de apoio para o ENEM e para o ensino técnico, organizado em
+          ordem de aprendizado.
+        </p>
+        <p class="rodape__aviso">
+          <Icone nome="circle-info" /> Material de apoio, sem vínculo com o INEP, o MEC ou qualquer
+          instituição de ensino. Não substitui a orientação de um professor responsável.
+        </p>
+      </section>
+
+      <!-- Navegação -->
+      <nav class="rodape__bloco" aria-label="Navegação do rodapé">
+        <h2 class="rodape__titulo">Navegar</h2>
+        <ul class="rodape__lista">
+          <li><a href={u('/')}>Início</a></li>
+          {SECOES_VISIVEIS.map((s) => (
+            <li><a href={u(s.href)}>{s.label}</a></li>
+          ))}
+          <li><button type="button" data-acao="busca" class="rodape__botao">Buscar aula</button></li>
+          <li><button type="button" data-abre="progresso" class="rodape__botao">Meu progresso</button></li>
+        </ul>
+      </nav>
+
+      <!-- Legal -->
+      <nav class="rodape__bloco" aria-label="Documentos legais">
+        <h2 class="rodape__titulo">Política e termos</h2>
+        <ul class="rodape__lista">
+          {legais.map((l) => (
+            <li>
+              <a href={u(l.href)}>
+                <Icone nome={l.icone} class="rodape__icone" />
+                {l.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+
+      <!-- Redes -->
+      <nav class="rodape__bloco" aria-label="Redes sociais">
+        <h2 class="rodape__titulo">Onde me achar</h2>
+        <ul class="rodape__lista">
+          <li>
+            <a href="https://github.com/islan-max" target="_blank" rel="noopener noreferrer me">
+              <Icone nome="github" marca class="rodape__icone" />
+              @islan-max
+              <Icone nome="up-right-from-square" class="rodape__externo" />
+            </a>
+          </li>
+          <li>
+            <a href="https://instagram.com/islan.max" target="_blank" rel="noopener noreferrer me">
+              <Icone nome="instagram" marca class="rodape__icone" />
+              @islan.max
+              <Icone nome="up-right-from-square" class="rodape__externo" />
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+
+    <!-- Selos -->
+    <ul class="rodape__selos">
+      {selos.map((s) => (
+        <li class="selo" title={s.detalhe}>
+          <Icone nome={s.icone} duo cor="var(--color-ink-soft)" class="selo__icone" />
+          <span>{s.texto}</span>
+        </li>
+      ))}
+    </ul>
+
+    <div class="rodape__base">
+      <p>© {ano} Caderno de Estudos · Islan Max. Conteúdo educacional sob licença MIT.</p>
+      <p>
+        Feito em Astro, publicado no GitHub Pages. Site estático, sem coleta de dados pessoais.
+      </p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .rodape {
+    margin-top: 3rem;
+    border-top: 1px solid var(--color-line);
+    background: color-mix(in srgb, var(--color-surface) 60%, transparent);
+    backdrop-filter: blur(2px);
+  }
+  .rodape__conteudo {
+    max-width: 64rem;
+    margin: 0 auto;
+    width: 100%;
+    padding: 2.5rem 0.75rem 2rem;
+  }
+  @media (min-width: 640px) {
+    .rodape__conteudo {
+      padding-inline: 1rem;
+    }
+  }
+  @media (min-width: 768px) {
+    .rodape__conteudo {
+      padding: 3rem 2.5rem 2.25rem;
+    }
+  }
+
+  .rodape__grade {
+    display: grid;
+    gap: 2rem 1.5rem;
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 560px) {
+    .rodape__grade {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  @media (min-width: 900px) {
+    .rodape__grade {
+      grid-template-columns: 1.7fr 1fr 1.2fr 1fr;
+      gap: 2.5rem;
+    }
+  }
+
+  .rodape__marca {
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin: 0 0 0.6rem;
+  }
+  .rodape__descricao {
+    font-family: var(--font-body);
+    font-size: 0.83rem;
+    line-height: 1.65;
+    color: var(--color-ink-soft);
+    margin: 0 0 0.9rem;
+    max-width: 30rem;
+  }
+  .rodape__descricao strong {
+    color: var(--color-ink);
+    font-weight: 700;
+  }
+  .rodape__aviso {
+    display: flex;
+    gap: 0.5rem;
+    font-family: var(--font-body);
+    font-size: 0.76rem;
+    line-height: 1.55;
+    color: var(--color-ink-soft);
+    margin: 0;
+    padding: 0.65rem 0.8rem;
+    border-left: 2px solid var(--color-line);
+    border-radius: 0 0.4rem 0.4rem 0;
+    background: color-mix(in srgb, var(--color-paper-dark) 45%, transparent);
+    max-width: 30rem;
+  }
+
+  .rodape__titulo {
+    font-family: var(--font-display);
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--color-ink);
+    margin: 0 0 0.85rem;
+  }
+  .rodape__lista {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+  }
+  .rodape__lista a,
+  .rodape__botao {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-body);
+    font-size: 0.83rem;
+    color: var(--color-ink-soft);
+    text-decoration: none;
+    border: none;
+    background: none;
+    padding: 0;
+    cursor: pointer;
+    text-align: left;
+  }
+  .rodape__lista a:hover,
+  .rodape__botao:hover {
+    color: var(--color-ink);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .rodape__icone {
+    font-size: 0.82em;
+    opacity: 0.7;
+    width: 1.1em;
+  }
+  .rodape__externo {
+    font-size: 0.62em;
+    opacity: 0.45;
+  }
+
+  .rodape__selos {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 2.25rem 0 0;
+    padding: 1.5rem 0 0;
+    border-top: 1px dashed var(--color-line);
+  }
+  .selo {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.32rem 0.7rem 0.32rem 0.4rem;
+    border: 1px solid var(--color-line);
+    border-radius: 999px;
+    font-family: var(--font-display);
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--color-ink-soft);
+    cursor: help;
+    transition: color 0.2s var(--ease), border-color 0.2s var(--ease);
+  }
+  .selo:hover {
+    color: var(--color-ink);
+    border-color: color-mix(in srgb, var(--color-ink) 30%, var(--color-line));
+  }
+  .selo__icone {
+    font-size: 0.7rem;
+  }
+
+  .rodape__base {
+    margin-top: 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.4rem 1.5rem;
+  }
+  .rodape__base p {
+    font-family: var(--font-display);
+    font-size: 0.7rem;
+    color: var(--color-ink-soft);
+    margin: 0;
+  }
+</style>

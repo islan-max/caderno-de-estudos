@@ -1,0 +1,104 @@
+---
+import Documento from '../layouts/Documento.astro';
+import { u } from '../lib/url';
+---
+
+<Documento
+  title="Termos de Uso"
+  subtitle="As regras de uso do Caderno de Estudos: o que você pode fazer com o conteúdo e o que este site não promete."
+  icone="file-contract"
+  atualizado="9 de setembro de 2026"
+  description="Termos de Uso do Caderno de Estudos: material educacional gratuito, licença MIT e limites de responsabilidade."
+>
+  <div class="destaque">
+    <p>
+      <strong>Em uma frase:</strong> use, copie e adapte o conteúdo à vontade para estudar — mas ele
+      é material de apoio, produzido com auxílio de inteligência artificial, e não substitui a aula
+      de um professor nem fonte oficial.
+    </p>
+  </div>
+
+  <h2>1. Aceitação</h2>
+  <p>
+    Ao acessar o Caderno de Estudos você concorda com estes Termos de Uso e com a
+    <a href={u('/privacidade')}>Política de Privacidade</a>. Se não concordar com algum ponto, basta
+    não utilizar o site.
+  </p>
+
+  <h2>2. O que o site é</h2>
+  <p>
+    Uma biblioteca de estudo aberta e gratuita, mantida de forma independente por Islan Max. Reúne
+    resumos, explicações e indicações de material complementar para o ENEM e para o ensino técnico,
+    organizados em ordem de aprendizado.
+  </p>
+
+  <h2>3. O que o site não é</h2>
+  <ul>
+    <li>
+      <strong>Não é fonte oficial.</strong> Não há vínculo, patrocínio ou endosso do INEP, do MEC,
+      de secretarias de educação ou de qualquer instituição de ensino.
+    </li>
+    <li>
+      <strong>Não substitui aula nem professor.</strong> É material de apoio e revisão. Em caso de
+      dúvida sobre conteúdo, consulte o professor responsável pela disciplina.
+    </li>
+    <li>
+      <strong>Não é curso certificado.</strong> O site não emite certificados, diplomas nem
+      declarações de conclusão.
+    </li>
+  </ul>
+
+  <h2>4. Precisão do conteúdo</h2>
+  <p>
+    O material é revisado com cuidado, mas é produzido com auxílio de ferramentas de inteligência
+    artificial e pode conter imprecisões, simplificações ou informações desatualizadas — sobretudo
+    em temas ligados a legislação, atualidades e dados estatísticos. Sempre confira informações
+    críticas em fontes oficiais. Os detalhes sobre o uso de IA estão em
+    <a href={u('/uso-de-ia')}>Uso de IA</a>.
+  </p>
+
+  <h2>5. Licença e uso do conteúdo</h2>
+  <p>
+    O código e o conteúdo deste projeto são distribuídos sob a <strong>licença MIT</strong>. Você
+    pode copiar, adaptar, imprimir, redistribuir e usar o material para estudo pessoal ou em sala de
+    aula, inclusive com modificações, desde que mantenha o aviso de licença e a atribuição ao autor
+    original.
+  </p>
+  <p>
+    Marcas, logotipos e materiais de terceiros eventualmente citados permanecem de seus respectivos
+    titulares e não são cobertos por essa licença.
+  </p>
+
+  <h2>6. Links externos</h2>
+  <p>
+    Algumas aulas indicam vídeos, cursos gratuitos e materiais hospedados por terceiros. Esses links
+    são oferecidos como conveniência: não controlamos o conteúdo, a disponibilidade nem as práticas
+    de privacidade desses serviços, e não nos responsabilizamos por eles.
+  </p>
+
+  <h2>7. Disponibilidade</h2>
+  <p>
+    O site é oferecido "como está", sem garantia de disponibilidade contínua. Seções podem ser
+    despublicadas temporariamente para revisão, e o projeto pode ser descontinuado a qualquer
+    momento — nesse caso, o conteúdo permanece disponível no repositório público do GitHub.
+  </p>
+
+  <h2>8. Limitação de responsabilidade</h2>
+  <p>
+    Na máxima extensão permitida pela lei, o autor não se responsabiliza por prejuízos decorrentes
+    do uso ou da impossibilidade de uso do site, incluindo decisões acadêmicas tomadas com base
+    exclusivamente neste material.
+  </p>
+
+  <h2>9. Conduta esperada</h2>
+  <p>
+    Não é permitido usar o site para atividades ilícitas, tentar comprometer a hospedagem, ou
+    redistribuir o conteúdo apresentando-o como material oficial de qualquer instituição.
+  </p>
+
+  <h2>10. Legislação aplicável</h2>
+  <p>
+    Estes termos são regidos pela legislação brasileira, em especial pelo Marco Civil da Internet
+    (Lei nº 12.965/2014) e pela Lei Geral de Proteção de Dados (Lei nº 13.709/2018).
+  </p>
+</Documento>

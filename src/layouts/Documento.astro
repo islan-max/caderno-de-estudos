@@ -1,0 +1,205 @@
+---
+import Base from './Base.astro';
+import Icone from '../components/Icone.astro';
+import { u } from '../lib/url';
+
+interface Props {
+  title: string;
+  subtitle: string;
+  icone: string;
+  atualizado: string;
+  description: string;
+}
+const { title, subtitle, icone, atualizado, description } = Astro.props;
+
+const documentos = [
+  { href: '/privacidade', label: 'Privacidade', icone: 'user-shield' },
+  { href: '/termos', label: 'Termos de Uso', icone: 'file-contract' },
+  { href: '/lgpd', label: 'LGPD', icone: 'scale-balanced' },
+  { href: '/uso-de-ia', label: 'Uso de IA', icone: 'robot' },
+];
+const atual = Astro.url.pathname.replace(/\/+$/, '');
+---
+
+<Base title={title} description={description} voltar={{ href: u('/'), label: 'Início' }}>
+  <nav class="doc-abas" aria-label="Documentos legais">
+    {documentos.map((d) => (
+      <a href={u(d.href)} class="doc-aba" data-atual={atual.endsWith(d.href)}>
+        <Icone nome={d.icone} /> {d.label}
+      </a>
+    ))}
+  </nav>
+
+  <header class="doc-topo" data-surgir>
+    <Icone nome={icone} duo cor="var(--color-escolar)" class="doc-topo__icone" />
+    <h1 class="doc-topo__h1">{title}</h1>
+    <p class="doc-topo__sub">{subtitle}</p>
+    <p class="doc-topo__data">
+      <Icone nome="clock" /> Última atualização: {atualizado}
+    </p>
+  </header>
+
+  <article class="doc" data-surgir style="--i: 1">
+    <slot />
+  </article>
+
+  <footer class="doc-rodape">
+    <p>
+      <Icone nome="envelope" /> Dúvidas sobre este documento? Fale comigo pelo
+      <a href="https://github.com/islan-max" target="_blank" rel="noopener noreferrer">GitHub (@islan-max)</a>
+      ou pelo
+      <a href="https://instagram.com/islan.max" target="_blank" rel="noopener noreferrer">Instagram (@islan.max)</a>.
+    </p>
+  </footer>
+</Base>
+
+<style>
+  .doc-abas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    margin-bottom: 2rem;
+  }
+  .doc-aba {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.4rem 0.8rem;
+    border: 1px solid var(--color-line);
+    border-radius: 999px;
+    font-family: var(--font-display);
+    font-size: 0.74rem;
+    font-weight: 600;
+    color: var(--color-ink-soft);
+    text-decoration: none;
+  }
+  .doc-aba:hover {
+    color: var(--color-ink);
+    border-color: color-mix(in srgb, var(--color-ink) 32%, var(--color-line));
+    background: var(--color-paper-dark);
+  }
+  .doc-aba[data-atual='true'] {
+    color: var(--color-paper);
+    background: var(--color-ink);
+    border-color: var(--color-ink);
+  }
+
+  .doc-topo {
+    margin-bottom: 2.25rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 2px solid var(--color-line);
+  }
+  .doc-topo__icone {
+    font-size: 1.2rem;
+    margin-bottom: 0.75rem;
+  }
+  .doc-topo__h1 {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 1.2rem + 2.4vw, 2.6rem);
+    font-weight: 800;
+    letter-spacing: -0.032em;
+    line-height: 1.1;
+    margin: 0 0 0.6rem;
+  }
+  .doc-topo__sub {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    line-height: 1.65;
+    color: var(--color-ink-soft);
+    max-width: 42rem;
+    margin: 0 0 0.9rem;
+  }
+  .doc-topo__data {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: var(--font-display);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-ink-soft);
+    margin: 0;
+  }
+
+  .doc :global(h2) {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 700;
+    letter-spacing: -0.015em;
+    margin: 2.25rem 0 0.75rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--color-line);
+  }
+  .doc :global(h2:first-child) {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: none;
+  }
+  .doc :global(h3) {
+    font-family: var(--font-display);
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin: 1.5rem 0 0.5rem;
+  }
+  .doc :global(p),
+  .doc :global(li) {
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    line-height: 1.75;
+    color: var(--color-ink);
+  }
+  .doc :global(p) {
+    margin: 0 0 0.9rem;
+    max-width: 46rem;
+  }
+  .doc :global(ul),
+  .doc :global(ol) {
+    margin: 0 0 1.1rem;
+    padding-left: 1.3rem;
+    max-width: 46rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+  .doc :global(strong) {
+    font-weight: 700;
+  }
+  .doc :global(a) {
+    color: var(--color-escolar);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .doc :global(.destaque) {
+    display: flex;
+    gap: 0.7rem;
+    padding: 0.95rem 1.1rem;
+    margin: 1.25rem 0;
+    border-left: 3px solid var(--color-escolar);
+    border-radius: 0 0.5rem 0.5rem 0;
+    background: var(--color-escolar-soft);
+    max-width: 46rem;
+  }
+  .doc :global(.destaque p) {
+    margin: 0;
+    font-size: 0.9rem;
+  }
+
+  .doc-rodape {
+    margin-top: 2.5rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--color-line);
+  }
+  .doc-rodape p {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    align-items: center;
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    color: var(--color-ink-soft);
+    margin: 0;
+  }
+  .doc-rodape a {
+    color: var(--color-escolar);
+  }
+</style>

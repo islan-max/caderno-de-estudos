@@ -1,13 +1,20 @@
 @import "tailwindcss";
+@import "./fonts.css";
 @plugin "@tailwindcss/typography";
 
+/* ---------------------------------------------------------------------------
+ * Tokens
+ * Inter  -> títulos, rótulos, navegação, números (tudo que é "interface")
+ * Nunito -> texto corrido, resumos, conteúdo das aulas
+ * ------------------------------------------------------------------------- */
 @theme {
-  --font-display: "Space Grotesk", sans-serif;
-  --font-body: "Literata", Georgia, serif;
-  --font-mono: "JetBrains Mono", monospace;
+  --font-display: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Nunito", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Inter", ui-sans-serif, system-ui, sans-serif;
 
   --color-paper: #edeadf;
   --color-paper-dark: #ded9c4;
+  --color-surface: #f4f2ea;
   --color-ink: #1f2a44;
   --color-ink-soft: #5b6478;
 
@@ -19,54 +26,143 @@
   --color-ds-soft: #dbebe0;
 
   --color-line: #c9c2a8;
+  --color-ok: #3f7d58;
+
+  /* Altura da pauta do caderno. Toda a métrica vertical é múltipla disso. */
+  --rule: 35px;
 }
 
-/* Tema escuro: "caderno à noite". Aplicado via data-attribute no <html>
-   (definido por um script inline no <head> antes do primeiro paint). */
-html[data-tema='escuro'] {
+:root {
+  /* Deslocamento da pauta.
+     A marca do topo tem tamanho fixo por breakpoint e caixa de linha de 2
+     pautas (70px), então a posição da sua linha de base é determinística.
+     Deslocamos a pauta inteira em alguns pixels para que essa linha de base
+     caia exatamente sobre uma linha do papel — a marca fica "escrita" sobre
+     o caderno em vez de atravessada por ele. Os valores abaixo foram medidos
+     no navegador; se o tamanho da marca mudar, precisam ser remedidos. */
+  --rule-offset: -4px;
+  --shadow-soft: 0 1px 2px rgba(31, 42, 68, 0.05), 0 8px 24px -12px rgba(31, 42, 68, 0.18);
+  --shadow-lift: 0 2px 4px rgba(31, 42, 68, 0.06), 0 18px 40px -18px rgba(31, 42, 68, 0.3);
+  --ease: cubic-bezier(0.22, 0.68, 0.32, 1);
+}
+@media (min-width: 640px) {
+  :root {
+    --rule-offset: -2px;
+  }
+}
+@media (min-width: 768px) {
+  :root {
+    --rule-offset: 1px;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+ * Tema escuro: "caderno à noite".
+ * Papel virando ardósia quente, tinta cor de giz. Contraste alto o bastante
+ * para ler por horas, sem branco puro (que estoura) nem preto puro (que vibra).
+ * Aplicado via data-attribute no <html>, definido antes do primeiro paint.
+ * ------------------------------------------------------------------------- */
+html[data-tema="escuro"] {
   color-scheme: dark;
-  --color-paper: #23262f;
-  --color-paper-dark: #31354a;
-  --color-ink: #e8e6df;
-  --color-ink-soft: #a7a9b3;
-  --color-line: #3a3e52;
-  --color-enem-soft: #4a2b24;
-  --color-escolar-soft: #26374d;
-  --color-ds-soft: #25402f;
-}
-/* Os utilitários bg-white/* do Tailwind são literais — no escuro viram um
-   véu clarinho sobre a folha. */
-html[data-tema='escuro'] :is(.bg-white\/40, .bg-white\/50, .bg-white\/60, .bg-white\/80) {
-  background-color: rgb(255 255 255 / 0.05) !important;
-}
-html[data-tema='escuro'] .text-black {
-  color: var(--color-ink) !important;
+
+  --color-paper: #171a21;
+  --color-paper-dark: #262b36;
+  --color-surface: #1e222b;
+  --color-ink: #e7e4da;
+  --color-ink-soft: #9ba3b2;
+  --color-line: #2e3542;
+
+  --color-enem: #e58a70;
+  --color-enem-soft: #3a2621;
+  --color-escolar: #85b2e2;
+  --color-escolar-soft: #1f2f42;
+  --color-ds: #7fc79b;
+  --color-ds-soft: #1e3328;
+  --color-ok: #7fc79b;
+
+  --shadow-soft: 0 1px 2px rgba(0, 0, 0, 0.4), 0 8px 24px -12px rgba(0, 0, 0, 0.6);
+  --shadow-lift: 0 2px 4px rgba(0, 0, 0, 0.45), 0 18px 40px -18px rgba(0, 0, 0, 0.75);
 }
 
-/* Fonte do corpo: "moderna" troca a serifada pela sans já carregada. */
-html[data-fonte='moderna'] {
-  --font-body: 'Space Grotesk', sans-serif;
+/* Utilitários bg-white/* do Tailwind são literais: no escuro viram um véu
+   claro sobre a folha em vez de um bloco branco. */
+html[data-tema="escuro"] :is(.bg-white\/40, .bg-white\/50, .bg-white\/60, .bg-white\/80) {
+  background-color: rgb(255 255 255 / 0.04);
+}
+html[data-tema="escuro"] .text-black {
+  color: var(--color-ink);
+}
+
+/* Conforto de leitura: 3 níveis, guardados no navegador. */
+html[data-texto="grande"] {
+  --escala-texto: 1.09;
+}
+html[data-texto="maior"] {
+  --escala-texto: 1.2;
+}
+html[data-texto="grande"] body,
+html[data-texto="maior"] body {
+  font-size: calc(1rem * var(--escala-texto));
 }
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 6rem;
+  }
+
   body {
     background-color: var(--color-paper);
     color: var(--color-ink);
     font-family: var(--font-body);
+    font-optical-sizing: auto;
+    /* A pauta do caderno. background-attachment: local mantém as linhas
+       coladas ao conteúdo quando a página rola. */
     background-image: repeating-linear-gradient(
       to bottom,
       transparent,
-      transparent 34px,
-      var(--color-line) 34px,
-      var(--color-line) 35px
+      transparent calc(var(--rule) - 1px),
+      var(--color-line) calc(var(--rule) - 1px),
+      var(--color-line) var(--rule)
     );
+    background-position: 0 var(--rule-offset);
     background-attachment: local;
+    transition: background-color 0.35s var(--ease), color 0.35s var(--ease);
+    -webkit-font-smoothing: antialiased;
   }
-  h1, h2, h3, h4 {
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-family: var(--font-display);
+    letter-spacing: -0.018em;
   }
+
+  /* Rótulos/kickers herdam de .font-mono no markup — em Inter, o que dá
+     "interface" é o tracking largo, não a largura fixa. */
+  .font-mono {
+    letter-spacing: 0.06em;
+  }
+
   ::selection {
     background-color: var(--color-enem-soft);
+    color: var(--color-ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-escolar);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  a,
+  button {
+    transition: color 0.2s var(--ease), background-color 0.2s var(--ease),
+      border-color 0.2s var(--ease), transform 0.2s var(--ease), box-shadow 0.2s var(--ease),
+      opacity 0.2s var(--ease);
   }
 }
 
@@ -74,8 +170,15 @@ html[data-fonte='moderna'] {
   .no-lines {
     background-image: none;
   }
+  /* Bloco que ocupa um número inteiro de pautas. */
+  .rule-block {
+    min-height: calc(var(--rule) * 2);
+  }
 }
 
+/* ---------------------------------------------------------------------------
+ * Conteúdo da aula
+ * ------------------------------------------------------------------------- */
 .prose-tema {
   --tw-prose-body: var(--color-ink);
   --tw-prose-headings: var(--color-ink);
@@ -83,7 +186,14 @@ html[data-fonte='moderna'] {
   --tw-prose-links: var(--color-escolar);
   --tw-prose-bullets: var(--color-ink-soft);
   --tw-prose-hr: var(--color-line);
+  --tw-prose-quotes: var(--color-ink);
+  --tw-prose-quote-borders: var(--color-line);
+  --tw-prose-code: var(--color-ink);
   font-family: var(--font-body);
+  line-height: 1.75;
+}
+.prose-tema :is(h2, h3, h4) {
+  font-family: var(--font-display);
 }
 .prose-tema h2 {
   border-top: 2px solid var(--color-line);
@@ -91,10 +201,102 @@ html[data-fonte='moderna'] {
   margin-top: 2.5rem;
 }
 .prose-tema .topico p {
-  background: color-mix(in srgb, white 55%, var(--color-paper));
+  background: color-mix(in srgb, var(--color-surface) 70%, var(--color-paper));
   border-left: 3px solid var(--color-line);
   padding: 0.85rem 1.1rem;
   border-radius: 0 0.375rem 0.375rem 0;
   margin: 0 0 0.9rem 0;
+  transition: border-color 0.25s var(--ease), background-color 0.25s var(--ease);
+}
+.prose-tema .topico p:hover {
+  border-left-color: currentColor;
 }
 
+/* ---------------------------------------------------------------------------
+ * Feedback rápido (toasts)
+ * ------------------------------------------------------------------------- */
+#toasts {
+  position: fixed;
+  z-index: 90;
+  left: 50%;
+  bottom: 1.25rem;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  gap: 0.5rem;
+  width: max-content;
+  max-width: min(92vw, 26rem);
+  pointer-events: none;
+}
+.toast {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.6rem 0.95rem;
+  border-radius: 999px;
+  border: 1px solid var(--color-line);
+  background: var(--color-surface);
+  color: var(--color-ink);
+  box-shadow: var(--shadow-lift);
+  font-family: var(--font-display);
+  font-size: 0.82rem;
+  font-weight: 600;
+  line-height: 1.25;
+  animation: toast-in 0.32s var(--ease) both;
+}
+.toast[data-saindo="true"] {
+  animation: toast-out 0.28s var(--ease) both;
+}
+.toast .fa,
+.toast .fa-solid,
+.toast .fa-regular {
+  color: var(--color-escolar);
+}
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes toast-out {
+  to {
+    opacity: 0;
+    transform: translateY(6px) scale(0.97);
+  }
+}
+
+/* ---------------------------------------------------------------------------
+ * Entrada suave dos blocos de conteúdo
+ * ------------------------------------------------------------------------- */
+@keyframes surgir {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+[data-surgir] {
+  animation: surgir 0.5s var(--ease) both;
+  animation-delay: calc(var(--i, 0) * 55ms);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms;
+    animation-iteration-count: 1;
+    transition-duration: 0.001ms;
+  }
+}

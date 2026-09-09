@@ -11,12 +11,12 @@ const id = `help-${title
   .replace(/(^-|-$)/g, '')}`;
 ---
 
-<button type="button" class="help-btn" data-help-target={id} aria-label={`Ajuda: ${title}`}>
+<button type="button" class="help-btn" data-abre={id} aria-label={`Ajuda: ${title}`}>
   ?
 </button>
 
-<dialog id={id} class="help-dialog">
-  <button type="button" class="help-close" data-help-close aria-label="Fechar ajuda">×</button>
+<dialog id={id} class="help-dialog painel-ajuda">
+  <button type="button" class="help-close" data-fecha aria-label="Fechar ajuda">×</button>
   <h3 class="font-display text-lg font-bold text-ink mb-2">{title}</h3>
   <div class="font-body text-sm text-ink-soft leading-relaxed">
     <slot />

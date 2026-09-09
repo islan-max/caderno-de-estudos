@@ -1,109 +1,259 @@
 ---
 import Base from '../../layouts/Base.astro';
-import HelpTip from '../../components/HelpTip.astro';
-import { splitSlug } from '../../lib/slug';
+import Icone from '../../components/Icone.astro';
 import { u } from '../../lib/url';
-import { listarEntradas } from '../../lib/lessonsRepo';
+import { ENEM_AREAS } from '../../lib/enemAreas';
+import { indiceEnem } from '../../lib/aulas';
 
-// As 4 áreas oficiais do ENEM. Toda matéria listada aqui aparece na página,
-// mesmo sem conteúdo publicado ainda (estado vazio padronizado).
-const ENEM_AREAS = [
-  {
-    label: 'Ciências da Natureza e suas Tecnologias',
-    subjects: [
-      { slug: 'biologia', label: 'Biologia' },
-      { slug: 'fisica', label: 'Física' },
-      { slug: 'quimica', label: 'Química' },
-    ],
-  },
-  {
-    label: 'Ciências Humanas e suas Tecnologias',
-    subjects: [
-      { slug: 'historia', label: 'História' },
-      { slug: 'geografia', label: 'Geografia' },
-      { slug: 'filosofia', label: 'Filosofia' },
-      { slug: 'sociologia', label: 'Sociologia' },
-    ],
-  },
-  {
-    label: 'Linguagens, Códigos e suas Tecnologias',
-    subjects: [
-      { slug: 'lingua-portuguesa', label: 'Língua Portuguesa e Literatura' },
-      { slug: 'lingua-estrangeira', label: 'Língua Estrangeira (Inglês/Espanhol)' },
-      { slug: 'artes', label: 'Artes' },
-      { slug: 'educacao-fisica', label: 'Educação Física' },
-      { slug: 'tic', label: 'Tecnologias da Informação e Comunicação' },
-    ],
-  },
-  {
-    label: 'Matemática e suas Tecnologias',
-    subjects: [
-      { slug: 'matematica-basica', label: 'Matemática Básica' },
-      { slug: 'matematica-financeira', label: 'Matemática Financeira' },
-      { slug: 'geometria', label: 'Geometria' },
-      { slug: 'estatistica-e-probabilidade', label: 'Estatística e Probabilidade' },
-      { slug: 'funcoes', label: 'Funções' },
-    ],
-  },
-];
+// Toda matéria das 4 áreas aparece na página, mesmo sem conteúdo publicado
+// ainda (estado vazio padronizado).
+const aulas = await indiceEnem();
 
-const entries = await listarEntradas('enem');
-const countBySlug = new Map<string, number>();
-for (const e of entries) {
-  const [materiaSlug] = splitSlug(e.id);
-  countBySlug.set(materiaSlug, (countBySlug.get(materiaSlug) ?? 0) + 1);
+const porMateria = new Map<string, string[]>();
+for (const a of aulas) {
+  porMateria.set(a.materia, [...(porMateria.get(a.materia) ?? []), a.id]);
 }
 ---
 
-<Base title="ENEM" active="enem" description="Matérias do ENEM organizadas pelas 4 áreas do conhecimento">
-  <div class="flex items-center gap-2 mb-2">
-    <p class="font-mono text-xs uppercase tracking-widest" style="color: var(--color-enem)">enem</p>
-    <HelpTip title="Como funciona a aba ENEM">
-      O conteúdo é organizado pelas 4 áreas oficiais da prova. Clique numa matéria para ver os
-      temas disponíveis. Matérias sem material ainda aparecem na lista, só avisando que o conteúdo
-      está a caminho.
-    </HelpTip>
-  </div>
-  <h1 class="font-display text-3xl md:text-4xl font-bold text-ink mb-3">Matérias por área</h1>
-  <p class="font-body text-ink-soft max-w-lg mb-10 leading-relaxed">
-    Conteúdo direto ao ponto, pensado para o que o INEP realmente cobra. Sem bimestre, sem semana —
-    só o tema e o treino.
-  </p>
+<Base
+  title="ENEM"
+  active="enem"
+  description="Matérias do ENEM organizadas pelas 4 áreas do conhecimento"
+  voltar={{ href: u('/'), label: 'Início' }}
+>
+  <header class="topo" data-surgir>
+    <p class="topo__kicker"><Icone nome="graduation-cap" /> Enem</p>
+    <h1 class="topo__h1">Matérias por área</h1>
+    <p class="topo__texto">
+      Conteúdo direto ao ponto, pensado para o que o INEP realmente cobra. Cada matéria abre uma
+      trilha de aulas na ordem de aprendizado — sem bimestre, sem semana, só o tema e o treino.
+    </p>
+  </header>
 
-  <div class="flex flex-col gap-10">
-    {ENEM_AREAS.map((area) => (
-      <section>
-        <h2 class="font-display text-lg font-bold text-ink mb-4 pb-2 border-b-2 border-line">
-          {area.label}
-        </h2>
-        <ul class="grid sm:grid-cols-2 gap-4 list-none p-0 m-0">
-          {area.subjects.map((s) => {
-            const count = countBySlug.get(s.slug) ?? 0;
-            const hasContent = count > 0;
-            return (
-              <li>
-                {hasContent ? (
-                  <a
-                    href={u(`/enem/${s.slug}/`)}
-                    class="block rounded-lg border-2 p-5 hover:-translate-y-0.5 transition-transform"
-                    style="border-color: var(--color-enem); background-color: var(--color-enem-soft);"
-                  >
-                    <h3 class="font-display text-lg font-bold text-ink mb-1">{s.label}</h3>
-                    <p class="font-mono text-xs text-ink-soft">
-                      {count} {count === 1 ? 'tema' : 'temas'}
-                    </p>
-                  </a>
-                ) : (
-                  <div class="block rounded-lg border-2 border-dashed border-paper-dark p-5 opacity-70">
-                    <h3 class="font-display text-lg font-bold text-ink mb-1">{s.label}</h3>
-                    <p class="font-mono text-xs text-ink-soft">Material ainda não compartilhado</p>
-                  </div>
-                )}
-              </li>
-            );
-          })}
-        </ul>
-      </section>
-    ))}
+  <div class="areas">
+    {ENEM_AREAS.map((area, ai) => {
+      const idsDaArea = area.subjects.flatMap((s) => porMateria.get(s.slug) ?? []);
+      return (
+        <section class="area" style={`--cor: ${area.cor}; --i: ${ai}`} data-surgir>
+          <header class="area__cabeca">
+            <h2 class="area__titulo">
+              <Icone nome={area.icone} duo cor={area.cor} class="area__icone" />
+              {area.label}
+            </h2>
+            {idsDaArea.length > 0 && (
+              <span class="area__contador" data-progresso-de={idsDaArea.join(' ')}
+                ><span data-progresso-texto>0 de {idsDaArea.length}</span> vistas</span
+              >
+            )}
+          </header>
+
+          <ul class="area__lista">
+            {area.subjects.map((s) => {
+              const ids = porMateria.get(s.slug) ?? [];
+              const count = ids.length;
+              return (
+                <li>
+                  {count > 0 ? (
+                    <a href={u(`/enem/${s.slug}/`)} class="materia" data-progresso-de={ids.join(' ')}>
+                      <Icone nome={s.icone} duo cor={area.cor} class="materia__icone" />
+                      <span class="materia__corpo">
+                        <span class="materia__nome">{s.label}</span>
+                        <span class="materia__meta">
+                          <span>{count} {count === 1 ? 'aula' : 'aulas'}</span>
+                          <span aria-hidden="true">·</span>
+                          <span><span data-progresso-texto>0 de {count}</span> vistas</span>
+                        </span>
+                        <span class="materia__trilho">
+                          <span data-progresso-barra></span>
+                        </span>
+                      </span>
+                      <Icone nome="arrow-right" class="materia__seta" />
+                    </a>
+                  ) : (
+                    <div class="materia materia--vazia">
+                      <Icone nome="hourglass-half" class="materia__icone" />
+                      <span class="materia__corpo">
+                        <span class="materia__nome">{s.label}</span>
+                        <span class="materia__meta">Material ainda não compartilhado</span>
+                      </span>
+                    </div>
+                  )}
+                </li>
+              );
+            })}
+          </ul>
+        </section>
+      );
+    })}
   </div>
 </Base>
+
+<style>
+  .topo {
+    margin-bottom: 2.5rem;
+  }
+  .topo__kicker {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-family: var(--font-display);
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--color-enem);
+    margin: 0 0 0.6rem;
+  }
+  .topo__h1 {
+    font-family: var(--font-display);
+    font-size: clamp(1.9rem, 1.2rem + 2.6vw, 2.75rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.08;
+    margin: 0 0 0.85rem;
+  }
+  .topo__texto {
+    font-family: var(--font-body);
+    font-size: 0.98rem;
+    line-height: 1.7;
+    color: var(--color-ink-soft);
+    max-width: 40rem;
+    margin: 0;
+  }
+
+  .areas {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+  .area__cabeca {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem 1rem;
+    padding-bottom: 0.7rem;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid color-mix(in srgb, var(--cor) 35%, var(--color-line));
+  }
+  .area__titulo {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    margin: 0;
+  }
+  .area__icone {
+    font-size: 0.9rem;
+    flex-shrink: 0;
+  }
+  .area__contador {
+    font-family: var(--font-display);
+    font-size: 0.68rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    color: var(--color-ink-soft);
+    white-space: nowrap;
+  }
+  .area__contador[data-completo='true'] {
+    color: var(--color-ok);
+  }
+
+  .area__lista {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0.6rem;
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 620px) {
+    .area__lista {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  .materia {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    height: 100%;
+    padding: 0.8rem 0.9rem;
+    border: 1px solid var(--color-line);
+    border-radius: 0.7rem;
+    background: color-mix(in srgb, var(--cor) 5%, transparent);
+    text-decoration: none;
+    color: var(--color-ink);
+  }
+  a.materia:hover {
+    border-color: var(--cor);
+    background: color-mix(in srgb, var(--cor) 11%, transparent);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-soft);
+  }
+  .materia--vazia {
+    opacity: 0.55;
+    border-style: dashed;
+    background: transparent;
+  }
+  .materia__icone {
+    font-size: 0.9rem;
+    flex-shrink: 0;
+    color: var(--color-ink-soft);
+  }
+  .materia__corpo {
+    display: flex;
+    flex-direction: column;
+    gap: 0.22rem;
+    min-width: 0;
+    flex: 1;
+  }
+  .materia__nome {
+    font-family: var(--font-display);
+    font-size: 0.9rem;
+    font-weight: 650;
+    line-height: 1.25;
+  }
+  .materia__meta {
+    font-family: var(--font-display);
+    font-size: 0.68rem;
+    color: var(--color-ink-soft);
+    display: flex;
+    gap: 0.28rem;
+  }
+  .materia__trilho {
+    display: block;
+    height: 4px;
+    margin-top: 0.15rem;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--color-ink) 10%, transparent);
+    overflow: hidden;
+  }
+  .materia__trilho span {
+    display: block;
+    height: 100%;
+    width: 0;
+    border-radius: 999px;
+    background: var(--cor);
+    transition: width 0.75s var(--ease);
+  }
+  .materia[data-completo='true'] .materia__trilho span {
+    background: var(--color-ok);
+  }
+  .materia__seta {
+    flex-shrink: 0;
+    font-size: 0.72rem;
+    color: var(--cor);
+    opacity: 0;
+    transform: translateX(-5px);
+    transition: opacity 0.22s var(--ease), transform 0.22s var(--ease);
+  }
+  a.materia:hover .materia__seta {
+    opacity: 1;
+    transform: none;
+  }
+</style>

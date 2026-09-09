@@ -1,0 +1,410 @@
+---
+// Diálogos globais: paleta de busca e painel de progresso.
+// Ficam no fim do <body> e são reaproveitados por todas as páginas.
+import Icone from './Icone.astro';
+---
+
+<!-- ------------------------------------------------------------ busca -->
+<dialog id="busca" class="painel painel--busca" aria-label="Buscar aula">
+  <form method="dialog" class="painel__fechar-form">
+    <button class="painel__fechar" data-fecha aria-label="Fechar busca"><Icone nome="xmark" /></button>
+  </form>
+
+  <div class="busca__campo">
+    <Icone nome="magnifying-glass" class="busca__lupa" />
+    <input
+      type="search"
+      data-busca-campo
+      placeholder="Buscar por aula, matéria ou área…"
+      autocomplete="off"
+      spellcheck="false"
+      aria-label="Buscar aula"
+    />
+  </div>
+
+  <p class="busca__contador" data-busca-contador>Sugestões do que ainda falta ver</p>
+
+  <ul class="busca__lista" data-busca-lista></ul>
+
+  <p class="busca__vazio" data-busca-vazio hidden>
+    <Icone nome="circle-info" /> Nenhuma aula encontrada com esse termo.
+  </p>
+
+  <footer class="busca__rodape">
+    <span><kbd>↑</kbd><kbd>↓</kbd> navegar</span>
+    <span><kbd>Enter</kbd> abrir</span>
+    <span><kbd>Esc</kbd> fechar</span>
+  </footer>
+</dialog>
+
+<!-- -------------------------------------------------------- progresso -->
+<dialog id="progresso" class="painel" aria-label="Meu progresso">
+  <form method="dialog" class="painel__fechar-form">
+    <button class="painel__fechar" data-fecha aria-label="Fechar progresso"><Icone nome="xmark" /></button>
+  </form>
+
+  <h2 class="painel__titulo"><Icone nome="chart-simple" duo cor="var(--color-escolar)" /> Meu progresso</h2>
+  <p class="painel__sub">
+    Fica salvo só neste navegador, no seu aparelho. Nada é enviado para servidor nenhum.
+  </p>
+
+  <div data-painel-progresso>
+    <p class="painel__carregando">Carregando…</p>
+  </div>
+
+  <footer class="painel__rodape">
+    <button type="button" class="painel__botao" data-acao="sortear">
+      <Icone nome="dice" /> Sortear uma aula
+    </button>
+    <button type="button" class="painel__botao painel__botao--perigo" data-acao="zerar-progresso">
+      <Icone nome="rotate-left" /> Zerar progresso
+    </button>
+  </footer>
+</dialog>
+
+<style>
+  .painel {
+    /* Sem position própria: o `position: fixed; inset: 0; margin: auto` do
+       navegador é o que centraliza o diálogo modal na tela. */
+    margin: auto;
+    border: 1px solid var(--color-line);
+    border-radius: 1rem;
+    padding: 1.5rem 1.25rem 1.1rem;
+    width: min(38rem, calc(100vw - 1.5rem));
+    max-height: min(80vh, 46rem);
+    background: var(--color-surface);
+    color: var(--color-ink);
+    box-shadow: var(--shadow-lift);
+    overflow: hidden auto;
+    overscroll-behavior: contain;
+  }
+  .painel[open] {
+    animation: painel-entra 0.28s var(--ease) both;
+  }
+  .painel::backdrop {
+    background: color-mix(in srgb, #0c0f14 62%, transparent);
+    backdrop-filter: blur(5px);
+    animation: fade 0.28s var(--ease) both;
+  }
+  @keyframes painel-entra {
+    from {
+      opacity: 0;
+      transform: translateY(14px) scale(0.985);
+    }
+  }
+  @keyframes fade {
+    from {
+      opacity: 0;
+    }
+  }
+
+  .painel__fechar-form {
+    position: absolute;
+    top: 0.6rem;
+    right: 0.7rem;
+    margin: 0;
+    z-index: 2;
+  }
+  .painel__fechar {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 999px;
+    border: none;
+    background: transparent;
+    color: var(--color-ink-soft);
+    cursor: pointer;
+  }
+  .painel__fechar:hover {
+    background: var(--color-paper-dark);
+    color: var(--color-ink);
+  }
+
+  .painel__titulo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin: 0 0 0.3rem;
+  }
+  .painel__sub {
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    color: var(--color-ink-soft);
+    margin: 0 0 1.25rem;
+    max-width: 30rem;
+  }
+  .painel__carregando {
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    color: var(--color-ink-soft);
+  }
+  .painel__rodape {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1.25rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--color-line);
+  }
+  .painel__botao {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.5rem 0.9rem;
+    border-radius: 999px;
+    border: 1px solid var(--color-line);
+    background: transparent;
+    color: var(--color-ink-soft);
+    font-family: var(--font-display);
+    font-size: 0.78rem;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .painel__botao:hover {
+    color: var(--color-ink);
+    border-color: color-mix(in srgb, var(--color-ink) 35%, var(--color-line));
+    background: var(--color-paper-dark);
+  }
+  .painel__botao--perigo:hover {
+    color: var(--color-enem);
+    border-color: var(--color-enem);
+    background: var(--color-enem-soft);
+  }
+
+  /* ----------------------------------------------------------- busca */
+  /* O display só vale com [open]: sem isso o `display: flex` sobrescreve o
+     `display: none` que o navegador aplica a <dialog> fechado. */
+  .painel--busca {
+    padding-top: 1.1rem;
+  }
+  .painel--busca[open] {
+    display: flex;
+    flex-direction: column;
+  }
+  .busca__campo {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.15rem 2.4rem 0.85rem 0.2rem;
+    border-bottom: 1px solid var(--color-line);
+  }
+  .busca__lupa {
+    color: var(--color-ink-soft);
+  }
+  .busca__campo input {
+    flex: 1;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: var(--color-ink);
+    font-family: var(--font-display);
+    font-size: 1.02rem;
+    font-weight: 500;
+    min-width: 0;
+  }
+  .busca__campo input::placeholder {
+    color: var(--color-ink-soft);
+    font-weight: 400;
+  }
+  .busca__campo input::-webkit-search-cancel-button {
+    appearance: none;
+  }
+
+  .busca__contador {
+    font-family: var(--font-display);
+    font-size: 0.66rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-ink-soft);
+    margin: 0.9rem 0 0.5rem;
+  }
+  .busca__lista {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    overflow-y: auto;
+    flex: 1;
+    min-height: 0;
+  }
+  .busca__vazio {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-body);
+    font-size: 0.88rem;
+    color: var(--color-ink-soft);
+    padding: 1.5rem 0.4rem;
+  }
+  .busca__rodape {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.9rem;
+    margin-top: 0.85rem;
+    padding-top: 0.7rem;
+    border-top: 1px solid var(--color-line);
+    font-family: var(--font-display);
+    font-size: 0.68rem;
+    color: var(--color-ink-soft);
+  }
+  .busca__rodape kbd {
+    display: inline-block;
+    padding: 0.1rem 0.32rem;
+    margin-right: 0.15rem;
+    border: 1px solid var(--color-line);
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 0.66rem;
+  }
+</style>
+
+<!-- Estilos dos itens da busca ficam globais: a lista é montada em JS. -->
+<style is:global>
+  .busca-item {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    padding: 0.5rem 0.6rem;
+    border-radius: 0.6rem;
+    text-decoration: none;
+    color: var(--color-ink);
+    border: 1px solid transparent;
+  }
+  .busca-item[data-ativo='true'],
+  .busca-item:hover {
+    background: var(--color-paper-dark);
+    border-color: color-mix(in srgb, var(--color-ink) 12%, var(--color-line));
+  }
+  .busca-item__icone {
+    flex-shrink: 0;
+    font-size: 0.82rem;
+    color: var(--color-escolar);
+  }
+  .busca-item__texto {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+    min-width: 0;
+    flex: 1;
+  }
+  .busca-item__titulo {
+    font-family: var(--font-display);
+    font-size: 0.9rem;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .busca-item__meta {
+    font-family: var(--font-body);
+    font-size: 0.74rem;
+    color: var(--color-ink-soft);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .busca-item__marca {
+    flex-shrink: 0;
+    font-size: 0.72rem;
+    color: var(--color-ink-soft);
+    opacity: 0.5;
+  }
+  .busca-item[data-vista='true'] .busca-item__marca {
+    color: var(--color-ok);
+    opacity: 1;
+  }
+  .busca-item[data-vista='true'] .busca-item__titulo {
+    color: var(--color-ink-soft);
+  }
+
+  /* Painel de progresso montado em JS */
+  .prog-resumo {
+    display: flex;
+    align-items: center;
+    gap: 1.1rem;
+    padding: 1rem;
+    border-radius: 0.85rem;
+    background: var(--color-paper-dark);
+    margin-bottom: 1.1rem;
+  }
+  .prog-anel {
+    --tamanho: 4.6rem;
+    position: relative;
+    width: var(--tamanho);
+    height: var(--tamanho);
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: conic-gradient(var(--color-ok) calc(var(--pct) * 1%), color-mix(in srgb, var(--color-ink) 12%, transparent) 0);
+    display: grid;
+    place-items: center;
+    transition: background 0.6s var(--ease);
+  }
+  .prog-anel::after {
+    content: '';
+    position: absolute;
+    inset: 7px;
+    border-radius: 50%;
+    background: var(--color-paper-dark);
+  }
+  .prog-anel span {
+    position: relative;
+    z-index: 1;
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    font-weight: 700;
+  }
+  .prog-resumo__texto strong {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 1rem;
+    margin-bottom: 0.15rem;
+  }
+  .prog-resumo__texto span {
+    font-family: var(--font-body);
+    font-size: 0.82rem;
+    color: var(--color-ink-soft);
+  }
+  .prog-lista {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+  }
+  .prog-linha {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 0.25rem 0.75rem;
+    align-items: baseline;
+  }
+  .prog-linha__nome {
+    font-family: var(--font-display);
+    font-size: 0.82rem;
+    font-weight: 600;
+  }
+  .prog-linha__num {
+    font-family: var(--font-display);
+    font-size: 0.72rem;
+    color: var(--color-ink-soft);
+  }
+  .prog-barra {
+    grid-column: 1 / -1;
+    height: 6px;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--color-ink) 10%, transparent);
+    overflow: hidden;
+  }
+  .prog-barra i {
+    display: block;
+    height: 100%;
+    border-radius: 999px;
+    background: var(--cor, var(--color-ok));
+    width: 0;
+    transition: width 0.7s var(--ease);
+  }
+</style>

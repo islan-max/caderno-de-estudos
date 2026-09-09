@@ -1,4 +1,5 @@
 ---
+import { secaoVisivel } from '../../../lib/secoes';
 import Base from '../../../layouts/Base.astro';
 import { getCollection } from 'astro:content';
 import { buildMateriaBimestreTree } from '../../../lib/slug';
@@ -6,6 +7,8 @@ import { u } from '../../../lib/url';
 import { listarEntradas } from '../../../lib/lessonsRepo';
 
 export async function getStaticPaths() {
+  // Seção oculta (src/lib/secoes.ts): nenhuma rota é gerada.
+  if (!secaoVisivel('ds')) return [];
   const aulas = await getCollection('ds');
   return [...new Set(aulas.map((aula) => aula.id.split('/')[0]))].map((materia) => ({ params: { materia } }));
 }
@@ -19,7 +22,7 @@ const bimestres = [...materia.bimestres.values()].sort((a, b) => a.slug.localeCo
 
 <Base title={materia.label} active="ds" description={`Bimestres de ${materia.label}`}>
   <nav class="font-mono text-xs text-ink-soft mb-4">
-    <a href={u('/ds')} class="hover:text-ink underline underline-offset-2">DS</a>
+    <a href={u('/ds')} class="hover:text-ink underline underline-offset-2">Desenvolvimento de Sistemas</a>
     <span> / </span>
     <span class="text-ink">{materia.label}</span>
   </nav>

@@ -1,9 +1,15 @@
 ---
+import SecaoOculta from '../../components/SecaoOculta.astro';
+import { secaoVisivel } from '../../lib/secoes';
 import Base from '../../layouts/Base.astro';
 import HelpTip from '../../components/HelpTip.astro';
 import { buildMateriaBimestreTree } from '../../lib/slug';
 import { u } from '../../lib/url';
 import { listarEntradas } from '../../lib/lessonsRepo';
+
+// Seção oculta (src/lib/secoes.ts): a rota continua existindo (links antigos não
+// quebram), mas some da navegação e não gera nenhuma página interna.
+const oculta = !secaoVisivel('escolar');
 
 const entries = await listarEntradas('escolar');
 const tree = buildMateriaBimestreTree(entries);
@@ -11,6 +17,10 @@ const materias = [...tree.values()].sort((a, b) => a.label.localeCompare(b.label
 ---
 
 <Base title="Escolar" active="escolar" description="Conteúdo de sala de aula, por matéria">
+  {oculta ? (
+    <SecaoOculta nome="A trilha Escolar" />
+  ) : (
+  <Fragment>
   <div class="flex items-center gap-2 mb-2">
     <p class="font-mono text-xs uppercase tracking-widest" style="color: var(--color-escolar)">escolar</p>
     <HelpTip title="Como funciona a aba Escolar">
@@ -42,5 +52,7 @@ const materias = [...tree.values()].sort((a, b) => a.label.localeCompare(b.label
         </li>
       ))}
     </ul>
+  )}
+</Fragment>
   )}
 </Base>
