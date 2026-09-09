@@ -6,7 +6,7 @@ relevance: >
   O desvio padrão é uma medida de dispersão: ele diz o quanto os valores de um conjunto de dados se
   afastam, em média, da média aritmética desse conjunto. Duas turmas podem ter a mesma média de notas,
   mas uma pode ser "regular" (notas próximas umas das outras) e outra "instável" (notas muito
-  diferentes entre si) — é o desvio padrão que revela essa diferença, que a média sozinha esconde. O
+  diferentes entre si): é o desvio padrão que revela essa diferença, que a média sozinha esconde. O
   ENEM cobra esse tema quase todo ano em Matemática, geralmente sem exigir a conta completa: a banca
   prefere testar se você entende o conceito (o que significa um desvio padrão maior ou menor) e se
   você consegue aplicá-lo em contextos como esportes, agricultura, medicina, indústria e finanças.
@@ -22,13 +22,13 @@ Imagine dois times de vôlei. Ambos têm jogadores com altura média de 1,80 m. 
 
 Para calcular o desvio padrão, seguimos um caminho em quatro etapas, e cada uma delas tem um porquê.
 
-**Etapa 1 — Calcular a média.** Some todos os valores e divida pela quantidade deles. Isso é o "centro" do conjunto de dados, o ponto de referência a partir do qual vamos medir os afastamentos.
+**Etapa 1: Calcular a média.** Some todos os valores e divida pela quantidade deles. Isso é o "centro" do conjunto de dados, o ponto de referência a partir do qual vamos medir os afastamentos.
 
-**Etapa 2 — Calcular os desvios e elevá-los ao quadrado.** Para cada valor do conjunto, subtraia a média: valor − média. Esse número (positivo se o valor for maior que a média, negativo se for menor) é o "desvio" daquele elemento. Aqui mora uma pegadinha importante: se você simplesmente somasse todos os desvios, o resultado sempre daria zero — os valores positivos e negativos se cancelariam. Por isso, elevamos cada desvio ao quadrado: isso transforma tudo em número positivo (não importa se o desvio era negativo, o quadrado sempre é positivo) e ainda dá mais peso aos valores muito distantes da média.
+**Etapa 2: Calcular os desvios e elevá-los ao quadrado.** Para cada valor do conjunto, subtraia a média: valor − média. Esse número (positivo se o valor for maior que a média, negativo se for menor) é o "desvio" daquele elemento. Aqui mora uma pegadinha importante: se você simplesmente somasse todos os desvios, o resultado sempre daria zero, os valores positivos e negativos se cancelariam. Por isso, elevamos cada desvio ao quadrado: isso transforma tudo em número positivo (não importa se o desvio era negativo, o quadrado sempre é positivo) e ainda dá mais peso aos valores muito distantes da média.
 
-**Etapa 3 — Calcular a variância.** Some todos os quadrados dos desvios e divida pela quantidade de valores (n). Esse resultado é chamado de **variância**. Ela já mede a dispersão, mas tem um problema prático: como elevamos tudo ao quadrado na etapa anterior, a unidade de medida também fica "ao quadrado". Se os dados originais eram em quilogramas, a variância sai em quilogramas², o que não tem interpretação física direta.
+**Etapa 3: Calcular a variância.** Some todos os quadrados dos desvios e divida pela quantidade de valores (n). Esse resultado é chamado de **variância**. Ela já mede a dispersão, mas tem um problema prático: como elevamos tudo ao quadrado na etapa anterior, a unidade de medida também fica "ao quadrado". Se os dados originais eram em quilogramas, a variância sai em quilogramas², o que não tem interpretação física direta.
 
-**Etapa 4 — Extrair a raiz quadrada.** Para voltar à unidade original (kg, minutos, reais, anos etc.), tiramos a raiz quadrada da variância. O resultado é o **desvio padrão**, geralmente representado por σ (letra grega sigma, quando falamos da população toda) ou por *s* (quando falamos de uma amostra).
+**Etapa 4: Extrair a raiz quadrada.** Para voltar à unidade original (kg, minutos, reais, anos etc.), tiramos a raiz quadrada da variância. O resultado é o **desvio padrão**, geralmente representado por σ (letra grega sigma, quando falamos da população toda) ou por *s* (quando falamos de uma amostra).
 
 A fórmula fica assim:
 
@@ -38,23 +38,23 @@ Onde: **σ** é o desvio padrão (o que queremos encontrar); **Σ** é o símbol
 
 E a relação entre as duas medidas é simplesmente: **variância = σ² = desvio padrão elevado ao quadrado.**
 
-Um ponto conceitual que o ENEM adora explorar: quanto **menor** o desvio padrão, mais **regular**, **homogêneo** ou **previsível** é o conjunto de dados. Quanto **maior**, mais **disperso**, **instável** ou **heterogêneo**. Quando a questão pede para comparar "quem foi mais regular" ou "qual grupo é mais uniforme", você não precisa calcular nada — basta comparar os desvios padrão já fornecidos e escolher o menor.
+Um ponto conceitual que o ENEM adora explorar: quanto **menor** o desvio padrão, mais **regular**, **homogêneo** ou **previsível** é o conjunto de dados. Quanto **maior**, mais **disperso**, **instável** ou **heterogêneo**. Quando a questão pede para comparar "quem foi mais regular" ou "qual grupo é mais uniforme", você não precisa calcular nada: basta comparar os desvios padrão já fornecidos e escolher o menor.
 
 Outra ferramenta relacionada é o **coeficiente de variação (CV)**, útil quando você quer comparar a dispersão de dois conjuntos que têm médias muito diferentes (por exemplo, peso de coelhos versus peso de elefantes). Ele é definido por:
 
 CV = s / x̄
 
-Onde **CV** é o coeficiente de variação; **s** é o desvio padrão; **x̄** é a média. Quanto menor o CV, relativamente mais homogêneo é o conjunto — mesmo que o desvio padrão "bruto" seja grande em valor absoluto.
+Onde **CV** é o coeficiente de variação; **s** é o desvio padrão; **x̄** é a média. Quanto menor o CV, relativamente mais homogêneo é o conjunto: mesmo que o desvio padrão "bruto" seja grande em valor absoluto.
 
 **Pegadinhas do INEP nesse tema:**
 
-Primeira: a banca costuma dar o desvio padrão pronto, dentro de uma tabela, e pedir só para você *interpretar* — não calcular. Muita gente perde tempo tentando refazer a conta quando a resposta já está ali, bastando comparar os valores.
+Primeira: a banca costuma dar o desvio padrão pronto, dentro de uma tabela, e pedir só para você *interpretar*, não calcular. Muita gente perde tempo tentando refazer a conta quando a resposta já está ali, bastando comparar os valores.
 
-Segunda: confundir variância com desvio padrão. Se a questão pede a variância e te dá o desvio padrão (ou vice-versa), lembre-se: variância é o desvio padrão ao quadrado, e desvio padrão é a raiz quadrada da variância. Esquecer essa relação — ou aplicá-la ao contrário — é o erro mais comum.
+Segunda: confundir variância com desvio padrão. Se a questão pede a variância e te dá o desvio padrão (ou vice-versa), lembre-se: variância é o desvio padrão ao quadrado, e desvio padrão é a raiz quadrada da variância. Esquecer essa relação (ou aplicá-la ao contrário) é o erro mais comum.
 
-Terceira: mudança de unidade. Quando o desvio padrão vem em uma unidade (kg/talhão, por exemplo) e a pergunta quer a variância em outra unidade (sacas/hectare), é preciso primeiro converter o próprio desvio padrão para a nova unidade e só depois elevá-lo ao quadrado — nunca converter a variância diretamente sem passar pelo desvio padrão.
+Terceira: mudança de unidade. Quando o desvio padrão vem em uma unidade (kg/talhão, por exemplo) e a pergunta quer a variância em outra unidade (sacas/hectare), é preciso primeiro converter o próprio desvio padrão para a nova unidade e só depois elevá-lo ao quadrado: nunca converter a variância diretamente sem passar pelo desvio padrão.
 
-Quarta: interpretar erroneamente o que uma medida de tendência central (média, mediana, moda) garante sozinha. Média ou moda igual a um valor central, isoladamente, não garante que os dados estejam concentrados perto desse valor — só o desvio padrão baixo garante isso com certeza.
+Quarta: interpretar erroneamente o que uma medida de tendência central (média, mediana, moda) garante sozinha. Média ou moda igual a um valor central, isoladamente, não garante que os dados estejam concentrados perto desse valor: só o desvio padrão baixo garante isso com certeza.
 
 ## Tópicos-Chave para Revisão
 
@@ -64,17 +64,17 @@ O desvio padrão mede a dispersão dos dados em relação à média: quanto meno
 
 O cálculo segue quatro etapas encadeadas: média → desvios elevados ao quadrado → variância (média dos quadrados dos desvios) → raiz quadrada da variância. Elevar ao quadrado existe justamente para evitar que desvios positivos e negativos se cancelem ao somar.
 
-A fórmula fundamental é σ = √[ Σ(xᵢ − x̄)² / n ], e a relação-chave para decorar é variância = σ². Toda vez que uma questão pede conversão entre as duas, é essa relação que resolve — e é preciso ter cuidado ao mudar unidades antes de elevar ao quadrado.
+A fórmula fundamental é σ = √[ Σ(xᵢ − x̄)² / n ], e a relação-chave para decorar é variância = σ². Toda vez que uma questão pede conversão entre as duas, é essa relação que resolve, e é preciso ter cuidado ao mudar unidades antes de elevar ao quadrado.
 
 O coeficiente de variação, CV = s / x̄, serve para comparar a dispersão relativa de conjuntos com médias muito diferentes entre si; quanto menor o CV, relativamente mais homogêneo é o grupo.
 
-Nas questões do ENEM, o desvio padrão quase sempre aparece pronto em uma tabela ou gráfico — a tarefa exigida é interpretação e comparação, não recálculo do zero. Um desvio padrão baixo combinado com uma média específica é a única combinação de dados que garante concentração de valores num intervalo; média, mediana ou moda sozinhas nunca garantem isso.
+Nas questões do ENEM, o desvio padrão quase sempre aparece pronto em uma tabela ou gráfico: a tarefa exigida é interpretação e comparação, não recálculo do zero. Um desvio padrão baixo combinado com uma média específica é a única combinação de dados que garante concentração de valores num intervalo; média, mediana ou moda sozinhas nunca garantem isso.
 
 </div>
 
 ## Teste de Fogo
 
-*Questões sem gabarito — resolva primeiro, depois confira com o professor ou com a IA.*
+*Questões sem gabarito: resolva primeiro, depois confira com o professor ou com a IA.*
 
 **Questão 1 (ENEM 2010, 2º dia, prova azul)**
 
@@ -107,9 +107,9 @@ E) 0,25.
 
 Um fiscal de certa empresa de ônibus registra o tempo, em minuto, que um motorista novato gasta para completar certo percurso. No Quadro 1 figuram os tempos gastos pelo motorista ao realizar o mesmo percurso sete vezes. O Quadro 2 apresenta uma classificação para a variabilidade do tempo, segundo o valor do desvio padrão.
 
-Quadro 1 — Tempos (min): 48, 54, 50, 46, 44, 52, 49
+Quadro 1: Tempos (min): 48, 54, 50, 46, 44, 52, 49
 
-Quadro 2 — Classificação:
+Quadro 2: Classificação:
 Extremamente baixa: 0 &lt; σ ≤ 2
 Baixa: 2 &lt; σ ≤ 4
 Moderada: 4 &lt; σ ≤ 6
@@ -142,7 +142,7 @@ Em um estudo clínico, 55 mulheres foram distribuídas, aleatoriamente, em 5 gru
 |---|---|---|
 | 1 | Média = 25 | Desvio padrão = 10 |
 | 2 | Mediana = 25 | Desvio padrão = 9 |
-| 3 | Moda = 25 | — |
+| 3 | Moda = 25 |: |
 | 4 | Média = 25 | Desvio padrão = 1 |
 | 5 | Idade mínima = 20 | Idade máxima = 35 |
 

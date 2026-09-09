@@ -5,13 +5,13 @@ order: 4
 relevance: >
   Sistemas de amortização descrevem como uma dívida (financiamento, empréstimo) é paga ao longo do
   tempo. O ENEM não costuma pedir para você decorar nomes de sistemas (SAC, Price, SAM, Sistema
-  Alemão) — ele testa se você entende a lógica interna: como o saldo devedor, a amortização e os juros
+  Alemão): ele testa se você entende a lógica interna: como o saldo devedor, a amortização e os juros
   se relacionam mês a mês. É um dos temas mais recorrentes de Matemática Financeira, aparecendo quase
   todo ano, geralmente em questões de nível médio a difícil, envolvendo interpretação de enunciado +
   uma conta de juros compostos ou uma progressão.
 quickSummary: >
   O saldo devedor é o valor que falta pagar da dívida. A cada prestação, ele diminui exatamente pela
-  parte de amortização daquela prestação — não pelo valor total da prestação. Todo cálculo de
+  parte de amortização daquela prestação: não pelo valor total da prestação. Todo cálculo de
   amortização começa identificando: qual é o saldo antes do pagamento, quanto dele é juro, e quanto é
   abatimento real da dívida.
 ---
@@ -60,23 +60,23 @@ Para o mesmo valor financiado, mesma taxa e mesmo prazo, o **SAC sempre gera men
 
 <div className="topico">
 
-O saldo devedor é o valor que falta pagar da dívida. A cada prestação, ele diminui exatamente pela parte de **amortização** daquela prestação — não pelo valor total da prestação. Todo cálculo de amortização começa identificando: qual é o saldo antes do pagamento, quanto dele é juro, e quanto é abatimento real da dívida.
+O saldo devedor é o valor que falta pagar da dívida. A cada prestação, ele diminui exatamente pela parte de **amortização** daquela prestação: não pelo valor total da prestação. Todo cálculo de amortização começa identificando: qual é o saldo antes do pagamento, quanto dele é juro, e quanto é abatimento real da dívida.
 
-No **SAC**, a amortização $A = V/n$ é fixa todo mês. Os juros incidem sobre o saldo devedor decrescente, então os juros caem mês a mês, e a prestação (amortização fixa + juros decrescentes) também cai ao longo do tempo — começa alta, termina baixa.
+No **SAC**, a amortização $A = V/n$ é fixa todo mês. Os juros incidem sobre o saldo devedor decrescente, então os juros caem mês a mês, e a prestação (amortização fixa + juros decrescentes) também cai ao longo do tempo: começa alta, termina baixa.
 
 No **Price**, a prestação P = (V · i · (1+i)^n) / ((1+i)^n - 1) é fixa do início ao fim. Internamente, a proporção muda: juros altos e amortização baixa no começo, invertendo gradualmente até o fim do contrato.
 
 Comparando os dois sistemas nas mesmas condições (mesmo valor, taxa e prazo), o SAC sempre resulta em menos juros pagos no total, porque o saldo devedor cai mais rápido logo nas primeiras parcelas.
 
-A armadilha mais frequente é achar que uma taxa de acréscimo total (ex: 20% sobre o valor à vista, dividido em parcelas) equivale à taxa de juros mensal composta. Quando existe uma entrada (parcela paga no ato), o valor real financiado é menor que o preço total, e resolver corretamente exige montar uma equação de valor presente — trazer cada parcela futura a valor de hoje usando (1+i)^-t e igualar ao valor à vista.
+A armadilha mais frequente é achar que uma taxa de acréscimo total (ex: 20% sobre o valor à vista, dividido em parcelas) equivale à taxa de juros mensal composta. Quando existe uma entrada (parcela paga no ato), o valor real financiado é menor que o preço total, e resolver corretamente exige montar uma equação de valor presente: trazer cada parcela futura a valor de hoje usando (1+i)^-t e igualar ao valor à vista.
 
-Gráficos de saldo devedor que crescem de forma não linear (curva, não reta) indicam capitalização composta — os juros incidem sobre um saldo que já inclui juros anteriores, tornando a parcela mensal de juros variável (crescente), não constante.
+Gráficos de saldo devedor que crescem de forma não linear (curva, não reta) indicam capitalização composta: os juros incidem sobre um saldo que já inclui juros anteriores, tornando a parcela mensal de juros variável (crescente), não constante.
 
 </div>
 
 ## Teste de Fogo
 
-*Questões sem gabarito — resolva primeiro, depois confira com o professor ou com a IA.*
+*Questões sem gabarito: resolva primeiro, depois confira com o professor ou com a IA.*
 
 **Questão 1 (ENEM 2015):**
 Um casal realiza um financiamento imobiliário de R$ 180.000,00, a ser pago em 360 prestações mensais, com taxa de juros efetiva de 1% ao mês. A primeira prestação é paga um mês após a liberação dos recursos e o valor da prestação mensal é de R$ 500,00 mais juro de 1% sobre o saldo devedor (valor devido antes do pagamento). Observe que, a cada pagamento, o saldo devedor se reduz em R$ 500,00 e considere que não há prestação em atraso.
@@ -111,7 +111,7 @@ E) 23,3%
 **Questão 4 (ENEM PPL 2013):**
 Um trabalhador possui um cartão de crédito que, em determinado mês, apresenta o saldo devedor a pagar no vencimento do cartão, mas não contém parcelamentos a acrescentar em futuras faturas. Nesse mesmo mês, o trabalhador é demitido. Durante o período de desemprego, o trabalhador deixa de utilizar o cartão de crédito e também não tem como pagar as faturas, nem a atual nem as próximas, mesmo sabendo que, a cada mês, incidirão taxas de juros e encargos por conta do não pagamento da dívida. Ao conseguir um novo emprego, já completados 6 meses de não pagamento das faturas, o trabalhador procura renegociar sua dívida.
 
-*(Descrição do gráfico, já que a imagem original não pode ser reproduzida: o gráfico mostra o saldo devedor no eixo vertical e o tempo em meses no eixo horizontal. O saldo devedor parte de R$ 500,00 no mês 0, e a curva sobe de forma não linear — cada vez mais inclinada — terminando, no mês 6, em um valor visivelmente acima de R$ 885,78.)*
+*(Descrição do gráfico, já que a imagem original não pode ser reproduzida: o gráfico mostra o saldo devedor no eixo vertical e o tempo em meses no eixo horizontal. O saldo devedor parte de R$ 500,00 no mês 0, e a curva sobe de forma não linear (cada vez mais inclinada) terminando, no mês 6, em um valor visivelmente acima de R$ 885,78.)*
 
 Com base no gráfico, podemos constatar que o saldo devedor inicial, a parcela mensal de juros e a taxa de juros são:
 A) R$ 500,00; constante e inferior a 10% ao mês.

@@ -5,7 +5,7 @@ order: 3
 relevance: >
   Função exponencial é qualquer função em que a variável aparece no expoente de uma potência (não na
   base). É o modelo matemático que descreve tudo que cresce ou diminui proporcionalmente ao que já
-  existe — juros compostos, crescimento de bactérias, decaimento radioativo, desvalorização de carros,
+  existe: juros compostos, crescimento de bactérias, decaimento radioativo, desvalorização de carros,
   propagação de doenças. Aparece em praticamente todas as edições do ENEM, geralmente em Matemática (1
   a 2 questões) e frequentemente cruzada com Química (radioatividade, meia-vida) e Biologia
   (crescimento populacional). É considerada uma das funções mais rentáveis para estudar, porque o
@@ -45,25 +45,25 @@ Esse é o formato favorito do ENEM: "aumento de 3% ao ano", "desvalorização de
 - Se decresce X% ao período: b = 1 − (X/100). Exemplo: desvalorização de 10% → b = 1 − 0,10 = 0,90.
 - Se **dobra**: b = 2. Se **triplica**: b = 3. Se **reduz à metade**: b = 1/2 = 0,5.
 
-### Passo 4: Meia-vida — um caso especialíssimo (e certo no ENEM)
+### Passo 4: Meia-vida, um caso especialíssimo (e certo no ENEM)
 
-Meia-vida é o tempo necessário para uma quantidade **cair pela metade**. Sempre que o enunciado der uma meia-vida "t½" e pedir o valor após um tempo T, o caminho mais rápido — e o que o ENEM espera — é:
+Meia-vida é o tempo necessário para uma quantidade **cair pela metade**. Sempre que o enunciado der uma meia-vida "t½" e pedir o valor após um tempo T, o caminho mais rápido (e o que o ENEM espera) é:
 
 1. Descobrir quantas meias-vidas cabem no tempo total: n = T / t½.
 2. Dividir a quantidade inicial por 2, n vezes: quantidade final = inicial × (1/2)ⁿ.
 
-**Armadilha nº 2 (fatal e recorrente)**: usar regra de três simples (linear) em problemas de meia-vida. Se algo perde metade em 8 dias, **não** significa que perde tudo em 16 dias — perde apenas 1/4 do que tinha, porque o decaimento é sempre "pela metade do que restou", não "pela metade do valor original a cada intervalo igual". Nunca aplique proporcionalidade direta aqui.
+**Armadilha nº 2 (fatal e recorrente)**: usar regra de três simples (linear) em problemas de meia-vida. Se algo perde metade em 8 dias, **não** significa que perde tudo em 16 dias: perde apenas 1/4 do que tinha, porque o decaimento é sempre "pela metade do que restou", não "pela metade do valor original a cada intervalo igual". Nunca aplique proporcionalidade direta aqui.
 
 ### Passo 5: A notação com "e" (número de Euler)
 
-Às vezes a fórmula aparece como N(t) = N₀ · eᵏᵗ, onde "e" é a constante de Euler (≈ 2,718) e k é uma constante (positiva = crescimento, negativa = decaimento). Não se assuste: é a mesma lógica de f(x) = a·bˣ, só que a base é substituída por "e" elevado a uma constante. O ENEM costuma dar informação suficiente (como "triplicou em 1 hora") para você descobrir o valor de eᵏ substituindo diretamente na equação, sem precisar calcular k isoladamente — depois é só usar as propriedades de potência (eᵏᵗ = (eᵏ)ᵗ).
+Às vezes a fórmula aparece como N(t) = N₀ · eᵏᵗ, onde "e" é a constante de Euler (≈ 2,718) e k é uma constante (positiva = crescimento, negativa = decaimento). Não se assuste: é a mesma lógica de f(x) = a·bˣ, só que a base é substituída por "e" elevado a uma constante. O ENEM costuma dar informação suficiente (como "triplicou em 1 hora") para você descobrir o valor de eᵏ substituindo diretamente na equação, sem precisar calcular k isoladamente: depois é só usar as propriedades de potência (eᵏᵗ = (eᵏ)ᵗ).
 
 ### Passo 6: Propriedades de potência que você vai usar o tempo todo
 
 - aᵐ · aⁿ = aᵐ⁺ⁿ
 - (aᵐ)ⁿ = aᵐ·ⁿ
 - a⁻ⁿ = 1/aⁿ
-- Se aᵐ = aⁿ, então m = n (quando a > 0 e a ≠ 1) — essa propriedade resolve equações exponenciais "escondendo" a variável no expoente igualando as bases.
+- Se aᵐ = aⁿ, então m = n (quando a > 0 e a ≠ 1): essa propriedade resolve equações exponenciais "escondendo" a variável no expoente igualando as bases.
 
 ### Padrões de armadilha do INEP nesse tópico
 
@@ -81,19 +81,19 @@ Função exponencial tem a forma **f(x) = a · bˣ**, onde a é o **valor inicia
 
 Para transformar uma **porcentagem de crescimento ou decaimento** em base b, use: cresce X% → b = 1 + X/100; decresce X% → b = 1 − X/100. Casos especiais: dobrar é b=2, triplicar é b=3, reduzir à metade é b=0,5.
 
-**Meia-vida** é o tempo para uma grandeza cair pela metade. O cálculo correto é sempre por **meias-vidas sucessivas**: número de meias-vidas n = tempo total / meia-vida, e quantidade final = inicial × (1/2)ⁿ. Nunca use regra de três linear aqui — esse é o erro mais comum e mais punido pelo INEP.
+**Meia-vida** é o tempo para uma grandeza cair pela metade. O cálculo correto é sempre por **meias-vidas sucessivas**: número de meias-vidas n = tempo total / meia-vida, e quantidade final = inicial × (1/2)ⁿ. Nunca use regra de três linear aqui: esse é o erro mais comum e mais punido pelo INEP.
 
 A notação com o número de Euler, **N(t) = N₀·eᵏᵗ**, segue a mesma lógica: N₀ é o valor inicial, k é a constante de crescimento (positiva) ou decaimento (negativa). Informações do tipo "triplicou em 1 hora" servem para descobrir o valor de eᵏ diretamente, sem precisar isolar k.
 
 As **propriedades de potência** (aᵐ·aⁿ=aᵐ⁺ⁿ, (aᵐ)ⁿ=aᵐⁿ, a⁻ⁿ=1/aⁿ, e a regra "bases iguais implicam expoentes iguais") são a ferramenta operacional para resolver qualquer equação exponencial que o ENEM apresentar.
 
-O ENEM nunca cobra função exponencial isolada de contexto: ela sempre está embutida em situações de **modelagem real** — juros, radioatividade, medicamentos, população, depreciação de bens. Reconhecer o padrão verbal ("aumenta X% ao ano", "reduz à metade a cada Y horas", "triplica em Z horas") é o que te leva direto à base b correta.
+O ENEM nunca cobra função exponencial isolada de contexto: ela sempre está embutida em situações de **modelagem real**, juros, radioatividade, medicamentos, população, depreciação de bens. Reconhecer o padrão verbal ("aumenta X% ao ano", "reduz à metade a cada Y horas", "triplica em Z horas") é o que te leva direto à base b correta.
 
 </div>
 
 ## Teste de Fogo
 
-*Questões sem gabarito — resolva primeiro, depois confira com o professor ou com a IA.*
+*Questões sem gabarito: resolva primeiro, depois confira com o professor ou com a IA.*
 
 **Questão 1 (ENEM 2016, 2ª aplicação)**
 

@@ -29,6 +29,7 @@ const posicao = await vizinhas(materia!, tema!);
   resources={entry.data.resources}
   active="enem"
   aulaId={`enem/${materia}/${tema}`}
+  gabarito={entry.data.gabarito}
   vizinhas={posicao}
   materiaHref={u(`/enem/${materia}/`)}
   breadcrumb={[

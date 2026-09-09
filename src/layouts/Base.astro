@@ -91,11 +91,19 @@ const borderColor = active ? accentByTab[active] : 'var(--color-line)';
 
     <a href="#conteudo" class="pular">Pular para o conteúdo</a>
 
+    <!-- Miniatura da marca: entra quando a marca grande sai da tela e sai
+         quando ela volta. Quem controla é um IntersectionObserver, não a
+         posição de rolagem — assim não há cálculo por quadro. -->
+    <a href={u('/')} class="marca-mini" data-marca-mini aria-hidden="true" tabindex="-1">
+      <span class="marca-mini__texto">CE</span>
+      <span class="marca-mini__ponto">.</span>
+    </a>
+
     <!-- O topo troca sem animar: cruzar duas versões da marca e das abas
          deixaria um "fantasma" durante a transição. -->
     <header class="cabecalho" data-cabecalho transition:animate="none">
       <div class="cabecalho__linha">
-        <a href={u('/')} class="marca">
+        <a href={u('/')} class="marca" data-marca>
           Caderno de Estudos<span class="marca__ponto">.</span>
         </a>
         <Ferramentas />
@@ -109,6 +117,7 @@ const borderColor = active ? accentByTab[active] : 'var(--color-line)';
     <main
       class="flex-1 max-w-5xl mx-auto w-full px-3 sm:px-4 md:px-10"
       id="conteudo"
+      aria-label="Conteúdo principal"
       transition:animate={fade({ duration: '0.12s' })}
     >
       <div
@@ -153,6 +162,46 @@ const borderColor = active ? accentByTab[active] : 'var(--color-line)';
         transform: scaleX(0);
         transform-origin: 0 50%;
         transition: transform 0.12s linear;
+      }
+
+      /* ------------------------------------------------ miniatura da marca */
+      .marca-mini {
+        position: fixed;
+        top: 0.85rem;
+        left: 0.85rem;
+        z-index: 70;
+        display: inline-flex;
+        align-items: baseline;
+        gap: 1px;
+        padding: 0.4rem 0.7rem;
+        border: 1px solid var(--color-line);
+        border-radius: 999px;
+        background: var(--color-surface);
+        box-shadow: var(--shadow-soft);
+        color: var(--color-ink);
+        font-family: var(--font-display);
+        font-size: 0.85rem;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        line-height: 1;
+        text-decoration: none;
+        /* Estado de repouso: escondida. Só opacity e transform mudam, então a
+           entrada e a saída são feitas pelo compositor. */
+        opacity: 0;
+        transform: translateY(-8px) scale(0.94);
+        pointer-events: none;
+        transition: opacity 0.22s var(--ease), transform 0.22s var(--ease);
+      }
+      .marca-mini[data-visivel='true'] {
+        opacity: 1;
+        transform: none;
+        pointer-events: auto;
+      }
+      .marca-mini:hover {
+        border-color: color-mix(in srgb, var(--color-ink) 35%, var(--color-line));
+      }
+      .marca-mini__ponto {
+        color: var(--color-enem);
       }
 
       .pular {

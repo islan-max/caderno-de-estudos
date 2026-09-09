@@ -26,7 +26,7 @@ const materiasComAula = new Set(aulas.map((a) => a.materia)).size;
       <h1 class="hero__h1">Todas as suas aulas, num lugar só.</h1>
       <p class="hero__texto">
         {total} aulas em {materiasComAula} matérias, organizadas na ordem de aprendizado. O caderno
-        lembra o que você já viu — direto no seu navegador, sem conta e sem cadastro.
+        lembra o que você já viu, direto no seu navegador, sem conta e sem cadastro.
       </p>
 
       <button type="button" class="busca-grande" data-acao="busca">
@@ -61,14 +61,10 @@ const materiasComAula = new Set(aulas.map((a) => a.materia)).size;
         </div>
       </div>
       <div class="painel-progresso__acoes">
-        <button type="button" class="acao-rapida" data-abre="progresso">
-          <Icone nome="list-check" /> Ver detalhes
-        </button>
+        <!-- "Ver detalhes" e a troca de tema saíram: as duas já vivem na barra
+             de ferramentas do topo, presente em todas as páginas. -->
         <button type="button" class="acao-rapida" data-acao="sortear">
           <Icone nome="dice" /> Sortear aula
-        </button>
-        <button type="button" class="acao-rapida" data-acao="tema">
-          <Icone nome="moon" /> <span data-rotulo>Escuro</span>
         </button>
       </div>
     </section>
@@ -91,7 +87,7 @@ const materiasComAula = new Set(aulas.map((a) => a.materia)).size;
                 <span aria-hidden="true">·</span>
                 <span data-progresso-texto>0 de {area.total}</span>
               </span>
-              <span class="area-card__trilho"><span data-progresso-barra></span></span>
+              <span class="area-card__trilho" aria-hidden="true"><span data-progresso-barra></span></span>
             </a>
           </li>
         ))}
@@ -144,7 +140,7 @@ const materiasComAula = new Set(aulas.map((a) => a.materia)).size;
           <strong class="aviso-secoes__titulo">Duas trilhas estão em revisão</strong>
           <span class="aviso-secoes__corpo">
             <b>Escolar</b> e <b>Desenvolvimento de Sistemas</b> saíram do ar temporariamente
-            enquanto o material é reorganizado. Nada foi apagado — elas voltam assim que a revisão
+            enquanto o material é reorganizado. Nada foi apagado: elas voltam assim que a revisão
             terminar.
           </span>
         </span>

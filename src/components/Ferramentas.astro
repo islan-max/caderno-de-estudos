@@ -12,17 +12,22 @@ import Icone from './Icone.astro';
     <kbd class="ferramenta__atalho">Ctrl K</kbd>
   </button>
 
-  <button type="button" class="ferramenta" data-abre="progresso" title="Meu progresso">
+  <button type="button" class="ferramenta" data-abre="progresso" title="Meu progresso" aria-label="Meu progresso">
     <Icone nome="chart-simple" />
     <span class="ferramenta__texto ferramenta__texto--md">Progresso</span>
   </button>
 
-  <button type="button" class="ferramenta" data-acao="texto" title="Tamanho do texto" data-nivel="normal">
-    <Icone nome="font" />
-    <span class="sr-only">Alternar tamanho do texto</span>
+  <button
+    type="button"
+    class="ferramenta"
+    data-acao="acessibilidade"
+    title="Acessibilidade"
+    aria-label="Opções de acessibilidade"
+  >
+    <Icone nome="universal-access" />
   </button>
 
-  <button type="button" class="ferramenta" data-acao="tema" aria-pressed="false" title="Usar o tema escuro">
+  <button type="button" class="ferramenta" data-acao="tema" aria-pressed="false" title="Usar o tema escuro" aria-label="Alternar entre tema claro e escuro">
     <Icone nome="moon" />
     <span class="ferramenta__texto ferramenta__texto--md" data-rotulo>Escuro</span>
   </button>

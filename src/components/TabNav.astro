@@ -74,10 +74,25 @@ const tabs = [
     opacity: 1;
     transform: translateY(-1px);
   }
+  /* A aba ativa é a MESMA folha, não um adesivo colado nela: usa o fundo da
+     folha e avança 2px por cima da borda superior dela. O resultado é a
+     lacuna de um fichário de verdade — a linha do topo se abre exatamente na
+     largura da aba, mostrando a que divisória a página aberta pertence. */
   .tab[data-active='true'] {
     margin-top: 0;
     transform: none;
     opacity: 1;
+    background: var(--color-surface);
+    padding-bottom: calc(0.625rem + 3px);
+    margin-bottom: -3px;
+  }
+  @media (min-width: 768px) {
+    .tab[data-active='true'] {
+      padding-bottom: calc(0.75rem + 3px);
+    }
+  }
+  .tab[data-active='true']:hover {
+    box-shadow: none;
   }
   .tab[data-active='true'] .tab__icone {
     opacity: 1;

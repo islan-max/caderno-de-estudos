@@ -36,6 +36,16 @@ const resourcesSchema = z.object({
     .optional(),
 });
 
+// Gabarito do "Teste de Fogo".
+// As questões continuam escritas em markdown no corpo da aula; aqui fica só a
+// resposta certa de cada uma (índice 0-4 = alternativas a-e) e, quando vale a
+// pena, uma linha explicando o porquê. O quiz é montado no navegador a partir
+// do HTML já renderizado, então adicionar gabarito não exige reescrever aula.
+const gabaritoSchema = z.object({
+  correta: z.number().min(0).max(4),
+  porque: z.string().optional(),
+});
+
 // Schema compartilhado pelas 3 coleções (enem, escolar, ds).
 const lessonSchema = z.object({
   title: z.string(),
@@ -43,6 +53,7 @@ const lessonSchema = z.object({
   relevance: z.string(),
   quickSummary: z.string().optional(), // resumo rápido de 2-4 linhas, direto ao ponto
   order: z.number().default(1),
+  gabarito: z.array(gabaritoSchema).optional(),
   resources: resourcesSchema.optional(),
 });
 

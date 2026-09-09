@@ -7,6 +7,8 @@
  * Nada sai do dispositivo — o progresso vive só no localStorage do usuário.
  * ------------------------------------------------------------------------- */
 
+import { montarQuiz } from './quiz';
+
 const CHAVE_TEMA = 'cdt:tema';
 const CHAVE_TEXTO = 'cdt:texto';
 const CHAVE_PROGRESSO = 'cdt:progresso';
@@ -130,6 +132,7 @@ function aplicarTexto(nivel: NivelTexto) {
     btn.setAttribute('title', `Tamanho do texto: ${nivel}`);
     btn.dataset.nivel = nivel;
   });
+  marcarNivelTexto();
 }
 
 function avancarTexto() {
@@ -177,7 +180,12 @@ function refletirProgresso() {
     const barra = el.querySelector<HTMLElement>('[data-progresso-barra]');
     if (barra) {
       barra.style.transform = `scaleX(${pct / 100})`;
-      barra.parentElement?.setAttribute('aria-valuenow', String(pct));
+      // Só anuncia em quem de fato é um progressbar. As barras decorativas
+      // são aria-hidden: o número já está escrito ao lado, em texto.
+      const trilho = barra.parentElement;
+      if (trilho?.getAttribute('role') === 'progressbar') {
+        trilho.setAttribute('aria-valuenow', String(pct));
+      }
     }
     el.dataset.completo = String(feitas === ids.length && ids.length > 0);
   });
@@ -545,6 +553,11 @@ function ligarAtalhos() {
           });
           return;
         }
+        case 'acessibilidade': {
+          const dlg = document.getElementById('acessibilidade');
+          if (dlg instanceof HTMLDialogElement) dlg.showModal();
+          return;
+        }
         case 'topo':
           window.scrollTo({ top: 0, behavior: 'smooth' });
           return;
@@ -556,6 +569,20 @@ function ligarAtalhos() {
           return;
         }
       }
+    }
+
+    const chave = alvo.closest<HTMLElement>('[data-a11y]');
+    if (chave) {
+      alternarA11y(chave.dataset.a11y!);
+      return;
+    }
+
+    const nivel = alvo.closest<HTMLElement>('[data-texto-nivel]');
+    if (nivel) {
+      const valor = nivel.dataset.textoNivel as NivelTexto;
+      aplicarTexto(valor);
+      gravar(CHAVE_TEXTO, valor);
+      return;
     }
 
     // Painéis (progresso, ajuda) e diálogos.
@@ -581,6 +608,72 @@ function ligarAtalhos() {
 
   document.addEventListener('input', (e) => {
     if ((e.target as HTMLElement)?.matches?.('[data-busca-campo]')) filtrarBusca();
+  });
+}
+
+/* ------------------------------------------------------ miniatura da marca */
+
+let observadorMarca: IntersectionObserver | null = null;
+
+function ligarMarcaMini() {
+  const marca = document.querySelector('[data-marca]');
+  const mini = document.querySelector<HTMLElement>('[data-marca-mini]');
+  if (!marca || !mini) return;
+
+  observadorMarca?.disconnect();
+  observadorMarca = new IntersectionObserver(
+    ([entrada]) => {
+      const escondida = !entrada.isIntersecting;
+      mini.dataset.visivel = String(escondida);
+      // Fora de vista, a miniatura também sai da ordem de leitura e de foco.
+      mini.setAttribute('aria-hidden', String(!escondida));
+      mini.tabIndex = escondida ? 0 : -1;
+    },
+    { threshold: 0 }
+  );
+  observadorMarca.observe(marca);
+}
+
+/* ------------------------------------------------------- acessibilidade */
+
+const CHAVE_A11Y = 'cdt:a11y';
+type Preferencias = Record<string, boolean>;
+
+function preferencias(): Preferencias {
+  return ler<Preferencias>(CHAVE_A11Y, {});
+}
+
+/** Cada preferência vira um data-attribute no <html>; o CSS faz o resto. */
+function aplicarA11y(p: Preferencias) {
+  const raiz = document.documentElement;
+  for (const chave of ['espacamento', 'contraste', 'movimento', 'links']) {
+    if (p[chave]) raiz.dataset[chave] = 'sim';
+    else delete raiz.dataset[chave];
+  }
+  document.querySelectorAll<HTMLElement>('[data-a11y]').forEach((btn) => {
+    btn.setAttribute('aria-checked', String(Boolean(p[btn.dataset.a11y!])));
+  });
+}
+
+function alternarA11y(chave: string) {
+  const p = preferencias();
+  p[chave] = !p[chave];
+  gravar(CHAVE_A11Y, p);
+  aplicarA11y(p);
+
+  const nomes: Record<string, string> = {
+    espacamento: 'Espaçamento de leitura',
+    contraste: 'Alto contraste',
+    movimento: 'Animações reduzidas',
+    links: 'Links sublinhados',
+  };
+  toast(`${nomes[chave]}: ${p[chave] ? 'ligado' : 'desligado'}`, 'universal-access');
+}
+
+function marcarNivelTexto() {
+  const atual = document.documentElement.dataset.texto ?? 'normal';
+  document.querySelectorAll<HTMLElement>('[data-texto-nivel]').forEach((btn) => {
+    btn.setAttribute('aria-pressed', String(btn.dataset.textoNivel === atual));
   });
 }
 
@@ -672,12 +765,15 @@ function ligarAulaAtual() {
 function iniciar() {
   aplicarTema(temaAtual());
   aplicarTexto((document.documentElement.dataset.texto ?? 'normal') as NivelTexto);
+  aplicarA11y(preferencias());
   refletirProgresso();
   montarHub();
   ligarAtalhos();
   ligarDobras();
+  ligarMarcaMini();
   ligarRolagem();
   ligarAulaAtual();
+  montarQuiz();
 }
 
 document.addEventListener('astro:page-load', iniciar);

@@ -19,6 +19,8 @@ interface Props {
   breadcrumb: Crumb[];
   /** Identificador da aula no progresso local, ex.: "enem/fisica/optica". */
   aulaId?: string;
+  /** Respostas certas do "Teste de Fogo" (índice 0-4 = alternativas a-e). */
+  gabarito?: { correta: number; porque?: string }[];
   vizinhas?: {
     anterior: AulaIndexada | null;
     proxima: AulaIndexada | null;
@@ -36,6 +38,7 @@ const {
   active,
   breadcrumb,
   aulaId,
+  gabarito,
   vizinhas,
   materiaHref,
 } = Astro.props;
@@ -113,7 +116,11 @@ const pai = [...breadcrumb].reverse().find((b) => b.href);
     <p class="relevancia__texto">{relevance}</p>
   </section>
 
-  <article class="prose prose-tema max-w-none">
+  <article
+    class="prose prose-tema max-w-none"
+    data-conteudo-aula
+    data-gabarito={gabarito ? JSON.stringify(gabarito) : undefined}
+  >
     <slot />
   </article>
 

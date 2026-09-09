@@ -4,7 +4,7 @@ subject: "Matemática Financeira"
 order: 2
 relevance: >
   Juros compostos são o regime em que o juro de cada período passa a fazer parte do capital e, no
-  período seguinte, também rende juro — é o famoso "juro sobre juro". Praticamente todo dinheiro do
+  período seguinte, também rende juro: é o famoso "juro sobre juro". Praticamente todo dinheiro do
   mundo real funciona assim: poupança, CDB, financiamento de carro e de imóvel, cheque especial e o
   rotativo do cartão de crédito. O ENEM cobra esse tema quase sempre fornecendo uma tabela de potências
   na própria prova, justamente porque não quer testar sua habilidade de multiplicar muitas vezes, e sim
@@ -20,7 +20,7 @@ quickSummary: >
 
 **A diferença que muda tudo.** Em juros simples, a taxa é sempre aplicada sobre o capital inicial, então cada período rende exatamente o mesmo valor. Em juros compostos, ao final de cada período o juro ganho é incorporado ao capital, e o período seguinte rende sobre esse total já aumentado. Por isso o juro cresce a cada período: é juro sobre juro, também chamado de capitalização composta.
 
-**Construindo a fórmula do zero.** Chame de C o capital inicial (o valor aplicado ou emprestado no começo) e de i a taxa por período, em forma decimal (5% vira 0,05). Ao final do primeiro período, o montante é o capital mais o juro: C + C × i, que colocando C em evidência fica C × (1 + i). O número (1 + i) é o fator de capitalização — exatamente o mesmo fator multiplicativo de aumento que você já usa em porcentagem.
+**Construindo a fórmula do zero.** Chame de C o capital inicial (o valor aplicado ou emprestado no começo) e de i a taxa por período, em forma decimal (5% vira 0,05). Ao final do primeiro período, o montante é o capital mais o juro: C + C × i, que colocando C em evidência fica C × (1 + i). O número (1 + i) é o fator de capitalização: exatamente o mesmo fator multiplicativo de aumento que você já usa em porcentagem.
 
 No segundo período, esse novo valor é multiplicado de novo pelo mesmo fator: C × (1 + i) × (1 + i). No terceiro, de novo. Depois de t períodos, o capital foi multiplicado t vezes pelo fator, e escrevemos:
 
@@ -32,7 +32,7 @@ O juro total não tem fórmula própria: é a diferença J = M − C.
 
 **Um exemplo passo a passo.** Aplique R$ 1.000,00 a 10% ao mês por 3 meses. Primeiro mês: 1.000 × 1,10 = 1.100 (rendeu 100). Segundo mês: 1.100 × 1,10 = 1.210 (rendeu 110, mais que o primeiro). Terceiro mês: 1.210 × 1,10 = 1.331 (rendeu 121). Pela fórmula, M = 1.000 × (1,10 elevado a 3) = 1.000 × 1,331 = R$ 1.331,00, e o juro total foi J = 1.331 − 1.000 = R$ 331,00. Repare que os rendimentos mensais foram crescendo: 100, 110, 121.
 
-**Crescimento exponencial contra crescimento linear.** Em juros simples o montante cresce somando sempre a mesma parcela, o que desenha uma reta. Em juros compostos, o montante é multiplicado sempre pelo mesmo fator, o que desenha uma curva que sobe cada vez mais depressa — crescimento exponencial. A comparação em números: R$ 1.000,00 a 10% por período, ao longo de 10 períodos, viram 1.000 × (1 + 0,10 × 10) = R$ 2.000,00 em juros simples, mas 1.000 × (1,10 elevado a 10) = 1.000 × 2,5937 = R$ 2.593,70 em juros compostos. No primeiro período os dois regimes empatam; a partir do segundo, o composto abre vantagem, e essa vantagem cresce cada vez mais rápido.
+**Crescimento exponencial contra crescimento linear.** Em juros simples o montante cresce somando sempre a mesma parcela, o que desenha uma reta. Em juros compostos, o montante é multiplicado sempre pelo mesmo fator, o que desenha uma curva que sobe cada vez mais depressa: crescimento exponencial. A comparação em números: R$ 1.000,00 a 10% por período, ao longo de 10 períodos, viram 1.000 × (1 + 0,10 × 10) = R$ 2.000,00 em juros simples, mas 1.000 × (1,10 elevado a 10) = 1.000 × 2,5937 = R$ 2.593,70 em juros compostos. No primeiro período os dois regimes empatam; a partir do segundo, o composto abre vantagem, e essa vantagem cresce cada vez mais rápido.
 
 Consequência prática: quando você é o investidor, quer juros compostos e prazos longos. Quando você é o devedor, juros compostos e prazos longos são exatamente o que arruína o orçamento.
 
@@ -40,19 +40,19 @@ Consequência prática: quando você é o investidor, quer juros compostos e pra
 
 Exemplo: R$ 800,00 aplicados a 5% ao mês por 4 meses, com a tabela informando que 1,05 elevado a 4 vale 1,2155. Então M = 800 × 1,2155 = R$ 972,40, e o rendimento foi de R$ 172,40. O erro clássico aqui é pegar a linha do expoente errado por não ter contado direito quantos períodos se passaram.
 
-**Achar o tempo usando a tabela.** Questões do tipo "quantos meses são necessários para o capital dobrar" se resolvem pelo caminho inverso. Dobrar significa que o montante é 2 vezes o capital, ou seja, o fator acumulado precisa chegar a 2. Se a taxa é 5% ao mês, procure na tabela a partir de qual expoente o valor de 1,05 elevado a t passa de 2. Sabendo que 1,05 elevado a 14 vale aproximadamente 1,9799 e que 1,05 elevado a 15 vale aproximadamente 2,0789, a resposta é 15 meses — o menor número inteiro de períodos em que o objetivo é alcançado. Note que o capital some da conta: o tempo para dobrar não depende de quanto se aplicou.
+**Achar o tempo usando a tabela.** Questões do tipo "quantos meses são necessários para o capital dobrar" se resolvem pelo caminho inverso. Dobrar significa que o montante é 2 vezes o capital, ou seja, o fator acumulado precisa chegar a 2. Se a taxa é 5% ao mês, procure na tabela a partir de qual expoente o valor de 1,05 elevado a t passa de 2. Sabendo que 1,05 elevado a 14 vale aproximadamente 1,9799 e que 1,05 elevado a 15 vale aproximadamente 2,0789, a resposta é 15 meses: o menor número inteiro de períodos em que o objetivo é alcançado. Note que o capital some da conta: o tempo para dobrar não depende de quanto se aplicou.
 
 **Taxas equivalentes.** Em juros simples, converter taxa entre unidades de tempo é proporcional: basta dividir por 12 para passar de ano para mês. Em juros compostos isso é FALSO, e essa diferença cai na prova. Duas taxas são equivalentes quando, aplicadas ao mesmo capital pelo mesmo prazo total, produzem o mesmo montante. Como o crescimento é multiplicativo, a relação entre taxa mensal e taxa anual é:
 
 1 + taxa anual = (1 + taxa mensal) elevado a 12
 
-Exemplo: 1% ao mês não é 12% ao ano. O cálculo correto é 1,01 elevado a 12, que vale aproximadamente 1,1268, ou seja, 12,68% ao ano. A diferença parece pequena em um ano, mas se acumula em prazos longos. Do mesmo modo, 2% ao mês equivalem a 1,02 elevado a 3 por trimestre, que vale aproximadamente 1,0612, isto é, 6,12% ao trimestre — e não 6%.
+Exemplo: 1% ao mês não é 12% ao ano. O cálculo correto é 1,01 elevado a 12, que vale aproximadamente 1,1268, ou seja, 12,68% ao ano. A diferença parece pequena em um ano, mas se acumula em prazos longos. Do mesmo modo, 2% ao mês equivalem a 1,02 elevado a 3 por trimestre, que vale aproximadamente 1,0612, isto é, 6,12% ao trimestre, e não 6%.
 
 **Rotativo do cartão de crédito.** É o exemplo mais dramático e o preferido do ENEM. Uma taxa de 15% ao mês parece administrável, mas em um ano ela vira 1,15 elevado a 12, que vale aproximadamente 5,35. Ou seja, a dívida fica cerca de 5,35 vezes maior, o que corresponde a um juro de aproximadamente 435% ao ano. Uma dívida de R$ 1.000,00 não paga durante 12 meses vira cerca de R$ 5.350,00. É por isso que a mesma taxa "por mês" produz manchetes de centenas por cento "por ano".
 
 **Poupança e financiamento.** Na poupança, o rendimento é creditado mês a mês sobre o saldo, então é capitalização composta com taxa baixa; o efeito só fica visível em prazos longos. Em financiamentos com parcelas fixas, cada parcela paga uma parte de juro e uma parte de amortização (redução da dívida), e no início a maior fatia da parcela é juro. O ENEM não cobra o cálculo completo de financiamento com parcelas, mas cobra a leitura correta desse comportamento e o cálculo do valor total pago, que é o número de parcelas multiplicado pelo valor de cada uma.
 
-**Armadilhas típicas do INEP:** (1) dividir a taxa anual por 12 para achar a mensal em regime composto, quando o correto é usar a raiz do fator, ou seja, a relação 1 + taxa anual = (1 + taxa mensal) elevado a 12; (2) confundir o montante M com o juro J — a fórmula entrega o montante, e o juro exige subtrair o capital; (3) escolher a linha errada da tabela de potências por contar mal o número de períodos, especialmente quando o enunciado fala em "após 2 anos" e a taxa é mensal (são 24 períodos); (4) somar taxas de períodos diferentes, como se 3% ao mês por 4 meses fosse 12% acumulados — o acumulado é 1,03 elevado a 4, aproximadamente 12,55%; (5) aplicar juros compostos onde o enunciado diz juros simples, ou o contrário: a palavra-chave está sempre escrita no texto; (6) esquecer que, no primeiro período, os dois regimes dão exatamente o mesmo valor, o que torna errada qualquer alternativa que afirme diferença já no primeiro mês.
+**Armadilhas típicas do INEP:** (1) dividir a taxa anual por 12 para achar a mensal em regime composto, quando o correto é usar a raiz do fator, ou seja, a relação 1 + taxa anual = (1 + taxa mensal) elevado a 12; (2) confundir o montante M com o juro J, a fórmula entrega o montante, e o juro exige subtrair o capital; (3) escolher a linha errada da tabela de potências por contar mal o número de períodos, especialmente quando o enunciado fala em "após 2 anos" e a taxa é mensal (são 24 períodos); (4) somar taxas de períodos diferentes, como se 3% ao mês por 4 meses fosse 12% acumulados, o acumulado é 1,03 elevado a 4, aproximadamente 12,55%; (5) aplicar juros compostos onde o enunciado diz juros simples, ou o contrário: a palavra-chave está sempre escrita no texto; (6) esquecer que, no primeiro período, os dois regimes dão exatamente o mesmo valor, o que torna errada qualquer alternativa que afirme diferença já no primeiro mês.
 
 ## Tópicos-Chave para Revisão
 
@@ -78,9 +78,9 @@ O rotativo do cartão de crédito mostra o efeito exponencial no extremo: 15% ao
 
 ## Teste de Fogo
 
-*Questões sem gabarito — resolva primeiro, depois confira com o professor ou com a IA.*
+*Questões sem gabarito: resolva primeiro, depois confira com o professor ou com a IA.*
 
-**Questão 1 (estilo ENEM — autoral)**
+**Questão 1 (estilo ENEM: autoral)**
 Uma pessoa aplicou R$ 800,00 em um investimento que rende juros compostos à taxa de 5% ao mês e manteve o dinheiro aplicado por 4 meses, sem realizar depósitos ou retiradas.
 
 Utilize os valores aproximados: 1,05 elevado a 3 vale 1,1576 e 1,05 elevado a 4 vale 1,2155.
@@ -93,7 +93,7 @@ c) 972,40
 d) 1.000,00
 e) 1.215,50
 
-**Questão 2 (estilo ENEM — autoral)**
+**Questão 2 (estilo ENEM: autoral)**
 Um consumidor deixou de pagar a fatura do cartão de crédito e entrou no crédito rotativo, cuja taxa é de 10% ao mês, no regime de juros compostos. O valor não pago da fatura era de R$ 500,00, e ele permaneceu três meses sem quitar nada da dívida nem fazer novas compras.
 
 O valor dos juros acumulados nesses três meses, em reais, é
@@ -104,7 +104,7 @@ c) 500,00
 d) 650,00
 e) 665,50
 
-**Questão 3 (estilo ENEM — autoral)**
+**Questão 3 (estilo ENEM: autoral)**
 Um banco divulga que determinada aplicação rende 2% ao mês, no regime de juros compostos. Um cliente quer saber a que taxa trimestral essa aplicação corresponde, ou seja, qual taxa aplicada uma única vez a cada trimestre produziria o mesmo montante.
 
 Sabendo que 1,02 elevado a 3 vale aproximadamente 1,0612, a taxa trimestral equivalente é de aproximadamente
@@ -115,7 +115,7 @@ c) 6,00%
 d) 6,12%
 e) 8,00%
 
-**Questão 4 (estilo ENEM — autoral)**
+**Questão 4 (estilo ENEM: autoral)**
 Dois investidores aplicaram, cada um, R$ 10.000,00 pelo prazo de 5 meses, à mesma taxa de 4% ao mês. O primeiro escolheu uma aplicação em regime de juros simples e o segundo, uma aplicação em regime de juros compostos.
 
 Considere 1,04 elevado a 5 igual a 1,2167.
@@ -128,7 +128,7 @@ c) 400,00
 d) 2.000,00
 e) 2.167,00
 
-**Questão 5 (estilo ENEM — autoral)**
+**Questão 5 (estilo ENEM: autoral)**
 Uma cooperativa oferece a seus associados uma aplicação com rendimento de 5% ao mês, em regime de juros compostos. Um associado deseja saber em quantos meses, no mínimo, o valor aplicado terá dobrado, considerando que ele não fará novos depósitos nem retiradas.
 
 Considere os valores aproximados de 1,05 elevado a t indicados a seguir:

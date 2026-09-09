@@ -62,6 +62,108 @@ import Icone from './Icone.astro';
   </footer>
 </dialog>
 
+<!-- ---------------------------------------------------- acessibilidade -->
+<dialog id="acessibilidade" class="painel" aria-labelledby="a11y-titulo">
+  <form method="dialog" class="painel__fechar-form">
+    <button class="painel__fechar" data-fecha aria-label="Fechar acessibilidade"><Icone nome="xmark" /></button>
+  </form>
+
+  <h2 class="painel__titulo" id="a11y-titulo">
+    <Icone nome="universal-access" duo cor="var(--color-escolar)" /> Acessibilidade
+  </h2>
+  <p class="painel__sub">
+    Ajustes de leitura e navegação. Ficam salvos neste navegador e valem para
+    todas as páginas do caderno.
+  </p>
+
+  <div class="a11y">
+    <div class="a11y__linha">
+      <div class="a11y__info">
+        <span class="a11y__nome" id="a11y-texto">Tamanho do texto</span>
+        <span class="a11y__desc">Aumenta o corpo do texto sem quebrar o layout.</span>
+      </div>
+      <div class="a11y__opcoes" role="group" aria-labelledby="a11y-texto">
+        <button type="button" class="a11y__opcao" data-texto-nivel="normal">A</button>
+        <button type="button" class="a11y__opcao a11y__opcao--medio" data-texto-nivel="grande">A</button>
+        <button type="button" class="a11y__opcao a11y__opcao--grande" data-texto-nivel="maior">A</button>
+      </div>
+    </div>
+
+    <div class="a11y__linha">
+      <div class="a11y__info">
+        <span class="a11y__nome" id="a11y-espaco">Espaçamento de leitura</span>
+        <span class="a11y__desc">
+          Abre as entrelinhas e afasta as letras. Ajuda quem tem dislexia ou baixa visão.
+        </span>
+      </div>
+      <button
+        type="button"
+        class="a11y__chave"
+        data-a11y="espacamento"
+        role="switch"
+        aria-checked="false"
+        aria-labelledby="a11y-espaco"
+      ><span class="a11y__bolinha"></span></button>
+    </div>
+
+    <div class="a11y__linha">
+      <div class="a11y__info">
+        <span class="a11y__nome" id="a11y-contraste">Alto contraste</span>
+        <span class="a11y__desc">Reforça bordas e escurece o texto para leitura em tela clara demais.</span>
+      </div>
+      <button
+        type="button"
+        class="a11y__chave"
+        data-a11y="contraste"
+        role="switch"
+        aria-checked="false"
+        aria-labelledby="a11y-contraste"
+      ><span class="a11y__bolinha"></span></button>
+    </div>
+
+    <div class="a11y__linha">
+      <div class="a11y__info">
+        <span class="a11y__nome" id="a11y-movimento">Reduzir animações</span>
+        <span class="a11y__desc">
+          Desliga transições e entradas animadas. Já vem ligado se o sistema pedir menos movimento.
+        </span>
+      </div>
+      <button
+        type="button"
+        class="a11y__chave"
+        data-a11y="movimento"
+        role="switch"
+        aria-checked="false"
+        aria-labelledby="a11y-movimento"
+      ><span class="a11y__bolinha"></span></button>
+    </div>
+
+    <div class="a11y__linha">
+      <div class="a11y__info">
+        <span class="a11y__nome" id="a11y-links">Sublinhar todos os links</span>
+        <span class="a11y__desc">Deixa de depender só da cor para indicar o que é clicável.</span>
+      </div>
+      <button
+        type="button"
+        class="a11y__chave"
+        data-a11y="links"
+        role="switch"
+        aria-checked="false"
+        aria-labelledby="a11y-links"
+      ><span class="a11y__bolinha"></span></button>
+    </div>
+  </div>
+
+  <h3 class="a11y__subtitulo"><Icone nome="keyboard" /> Atalhos de teclado</h3>
+  <ul class="a11y__atalhos">
+    <li><kbd>Tab</kbd> percorre os controles da página</li>
+    <li><kbd>Ctrl</kbd> + <kbd>K</kbd> ou <kbd>/</kbd> abre a busca</li>
+    <li><kbd>&larr;</kbd> <kbd>&rarr;</kbd> trocam de aula dentro da matéria</li>
+    <li><kbd>Esc</kbd> fecha qualquer painel aberto</li>
+    <li>No quiz, <kbd>&uarr;</kbd> <kbd>&darr;</kbd> escolhem a alternativa</li>
+  </ul>
+</dialog>
+
 <style>
   .painel {
     /* Sem position própria: o `position: fixed; inset: 0; margin: auto` do
@@ -174,6 +276,139 @@ import Icone from './Icone.astro';
     color: var(--color-enem);
     border-color: var(--color-enem);
     background: var(--color-enem-soft);
+  }
+
+  /* --------------------------------------------------- acessibilidade */
+  .a11y {
+    display: flex;
+    flex-direction: column;
+  }
+  .a11y__linha {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.9rem 0;
+    border-bottom: 1px solid var(--color-line);
+  }
+  .a11y__linha:first-child {
+    padding-top: 0;
+  }
+  .a11y__info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    min-width: 0;
+  }
+  .a11y__nome {
+    font-family: var(--font-display);
+    font-size: 0.88rem;
+    font-weight: 700;
+  }
+  .a11y__desc {
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    line-height: 1.5;
+    color: var(--color-ink-soft);
+    max-width: 26rem;
+  }
+
+  .a11y__opcoes {
+    display: flex;
+    gap: 0.3rem;
+    flex-shrink: 0;
+  }
+  .a11y__opcao {
+    display: grid;
+    place-items: center;
+    width: 2.1rem;
+    height: 2.1rem;
+    border: 1px solid var(--color-line);
+    border-radius: 0.5rem;
+    background: transparent;
+    color: var(--color-ink-soft);
+    font-family: var(--font-display);
+    font-size: 0.75rem;
+    font-weight: 700;
+    cursor: pointer;
+  }
+  .a11y__opcao--medio { font-size: 0.95rem; }
+  .a11y__opcao--grande { font-size: 1.15rem; }
+  .a11y__opcao:hover {
+    color: var(--color-ink);
+    border-color: color-mix(in srgb, var(--color-ink) 35%, var(--color-line));
+  }
+  .a11y__opcao[aria-pressed='true'] {
+    background: var(--color-ink);
+    border-color: var(--color-ink);
+    color: var(--color-paper);
+  }
+
+  /* Interruptor: é um <button role="switch">, então teclado e leitor de tela
+     já entendem o estado por aria-checked. O visual só acompanha. */
+  .a11y__chave {
+    position: relative;
+    flex-shrink: 0;
+    width: 3rem;
+    height: 1.7rem;
+    padding: 0;
+    border: 1px solid var(--color-line);
+    border-radius: 999px;
+    background: var(--color-paper-dark);
+    cursor: pointer;
+    transition: background-color 0.2s var(--ease), border-color 0.2s var(--ease);
+  }
+  .a11y__bolinha {
+    position: absolute;
+    top: 50%;
+    left: 3px;
+    width: 1.2rem;
+    height: 1.2rem;
+    border-radius: 999px;
+    background: var(--color-surface);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+    transform: translateY(-50%);
+    transition: transform 0.2s var(--ease);
+  }
+  .a11y__chave[aria-checked='true'] {
+    background: var(--color-ok);
+    border-color: var(--color-ok);
+  }
+  .a11y__chave[aria-checked='true'] .a11y__bolinha {
+    transform: translate(1.3rem, -50%);
+  }
+
+  .a11y__subtitulo {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-family: var(--font-display);
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.11em;
+    color: var(--color-ink-soft);
+    margin: 1.5rem 0 0.7rem;
+  }
+  .a11y__atalhos {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+    font-family: var(--font-body);
+    font-size: 0.82rem;
+    color: var(--color-ink-soft);
+  }
+  .a11y__atalhos kbd {
+    display: inline-block;
+    padding: 0.08rem 0.35rem;
+    border: 1px solid var(--color-line);
+    border-radius: 4px;
+    font-family: var(--font-display);
+    font-size: 0.72rem;
+    color: var(--color-ink);
   }
 
   /* ----------------------------------------------------------- busca */

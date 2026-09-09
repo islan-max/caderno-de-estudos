@@ -7,7 +7,7 @@ relevance: >
   possibilidades e depois somar, você descobre um atalho matemático que dá o total direto. No ENEM, o
   tema aparece em todas as provas desde 2009, geralmente com 1 a 3 questões, quase sempre junto com
   Probabilidade (porque para calcular probabilidade você precisa contar casos). A dificuldade quase
-  nunca está na conta — ela é simples. Está na interpretação: descobrir se a ordem importa, se pode
+  nunca está na conta: ela é simples. Está na interpretação: descobrir se a ordem importa, se pode
   repetir, e se o enunciado quer o número final ou apenas a expressão. ---
 quickSummary: >
   O Princípio Fundamental da Contagem é a base de tudo: quando uma tarefa é dividida em etapas
@@ -56,14 +56,14 @@ Esse é o detector que resolve metade das questões.
 
 Essa é a segunda pergunta obrigatória.
 
-**Caso 1 — pode repetir.** Uma senha de 3 dígitos (0 a 9), podendo repetir:
+**Caso 1: pode repetir.** Uma senha de 3 dígitos (0 a 9), podendo repetir:
 - 1ª posição: 10 opções
 - 2ª posição: 10 opções (o dígito usado voltou para o "estoque")
 - 3ª posição: 10 opções
 
 Total: 10 × 10 × 10 = **1000**.
 
-**Caso 2 — não pode repetir.** Mesma senha, mas com **algarismos distintos**:
+**Caso 2: não pode repetir.** Mesma senha, mas com **algarismos distintos**:
 - 1ª posição: 10 opções
 - 2ª posição: 9 opções (uma já foi gasta)
 - 3ª posição: 8 opções
@@ -122,9 +122,9 @@ Em ARARA: n = 5, com 3 letras A e 2 letras R → 5!/(3!·2!) = 120/12 = **10** a
 
 Aqui está o coração da matéria. Quando você seleciona **parte** de um grupo (p elementos de um total de n), existem dois cenários:
 
-**Cenário A — a ordem MUDA o resultado.** Eleger presidente e vice entre 5 pessoas: "João presidente, Maria vice" é diferente de "Maria presidente, João vice". Isso é **ARRANJO**.
+**Cenário A: a ordem MUDA o resultado.** Eleger presidente e vice entre 5 pessoas: "João presidente, Maria vice" é diferente de "Maria presidente, João vice". Isso é **ARRANJO**.
 
-**Cenário B — a ordem NÃO muda nada.** Escolher 2 pessoas para uma dupla de vôlei: "João e Maria" é a mesma dupla que "Maria e João". Isso é **COMBINAÇÃO**.
+**Cenário B: a ordem NÃO muda nada.** Escolher 2 pessoas para uma dupla de vôlei: "João e Maria" é a mesma dupla que "Maria e João". Isso é **COMBINAÇÃO**.
 
 **Fórmula do Arranjo:**
 
@@ -156,27 +156,27 @@ Comissões, duplas, times, saladas de frutas, apertos de mão → **Combinação
 
 ### 2.7 Duas técnicas que o ENEM cobra direto
 
-**Técnica 1 — Complementar ("pelo menos", "não pode").** Quando o enunciado proíbe algo, muitas vezes é mais rápido contar tudo e subtrair o proibido:
+**Técnica 1: Complementar ("pelo menos", "não pode").** Quando o enunciado proíbe algo, muitas vezes é mais rápido contar tudo e subtrair o proibido:
 
 **Casos válidos = Total sem restrição - Casos proibidos**
 
 Exemplo real (ENEM 2016): 10 tenistas, 4 canhotos, escolher uma dupla que **não** seja formada por dois canhotos. Resposta: C₁₀,₂ − C₄,₂. Total de duplas menos as duplas de dois canhotos.
 
-**Técnica 2 — "Colar" elementos que devem ficar juntos.** Se o enunciado exige que certos elementos fiquem grudados, trate o bloco como **uma peça só**, permute as peças, e depois permute o miolo do bloco (se a ordem interna puder variar).
+**Técnica 2: "Colar" elementos que devem ficar juntos.** Se o enunciado exige que certos elementos fiquem grudados, trate o bloco como **uma peça só**, permute as peças, e depois permute o miolo do bloco (se a ordem interna puder variar).
 
 ### 2.8 Armadilhas do INEP
 
-**Armadilha 1 — Pedir a expressão, não o número.** Muitas questões dão alternativas como "10!/(2!·8!) − 4!/(2!·2!)". Se você calcular tudo e chegar em 39, vai procurar "39" e não achar. **Leia sempre a última linha do enunciado.** Se pede "uma expressão que representa", não calcule.
+**Armadilha 1: Pedir a expressão, não o número.** Muitas questões dão alternativas como "10!/(2!·8!) − 4!/(2!·2!)". Se você calcular tudo e chegar em 39, vai procurar "39" e não achar. **Leia sempre a última linha do enunciado.** Se pede "uma expressão que representa", não calcule.
 
-**Armadilha 2 — Trocar arranjo por combinação.** É o erro mais comum da prova. A alternativa errada existe justamente para quem confundiu. A_n,p sempre dá um número **maior** que C_n,p.
+**Armadilha 2: Trocar arranjo por combinação.** É o erro mais comum da prova. A alternativa errada existe justamente para quem confundiu. A_n,p sempre dá um número **maior** que C_n,p.
 
-**Armadilha 3 — Esconder a palavra "distintos".** Sem ela, pode repetir. Com ela, os números caem de um em um.
+**Armadilha 3: Esconder a palavra "distintos".** Sem ela, pode repetir. Com ela, os números caem de um em um.
 
-**Armadilha 4 — Contar o zero como opção válida.** Em questões de números/placas, o zero muitas vezes não pode ocupar a primeira posição (não existe número "0247" de 4 algarismos). Isso reduz as opções da primeira etapa de 10 para 9.
+**Armadilha 4: Contar o zero como opção válida.** Em questões de números/placas, o zero muitas vezes não pode ocupar a primeira posição (não existe número "0247" de 4 algarismos). Isso reduz as opções da primeira etapa de 10 para 9.
 
-**Armadilha 5 — Confundir "e" com "ou".** Alternativas erradas frequentemente somam onde deveria multiplicar, ou vice-versa.
+**Armadilha 5: Confundir "e" com "ou".** Alternativas erradas frequentemente somam onde deveria multiplicar, ou vice-versa.
 
-**Armadilha 6 — Dupla contagem em torneios.** "Cada time joga contra todos os outros" com 20 times não é 20 × 19 = 380 (isso conta Flamengo×Vasco e Vasco×Flamengo como jogos diferentes). Em turno único é C₂₀,₂ = 190. Se houver dois turnos (ida e volta), aí sim são 380.
+**Armadilha 6: Dupla contagem em torneios.** "Cada time joga contra todos os outros" com 20 times não é 20 × 19 = 380 (isso conta Flamengo×Vasco e Vasco×Flamengo como jogos diferentes). Em turno único é C₂₀,₂ = 190. Se houver dois turnos (ida e volta), aí sim são 380.
 
 ---
 
@@ -204,9 +204,9 @@ As armadilhas recorrentes do INEP são: pedir a **expressão** e não o número 
 
 ## Teste de Fogo
 
-*Questões sem gabarito — resolva primeiro, depois confira com o professor ou com a IA.*
+*Questões sem gabarito: resolva primeiro, depois confira com o professor ou com a IA.*
 
-**Questão 1 — (ENEM PPL 2019)**
+**Questão 1: (ENEM PPL 2019)**
 
 Uma pessoa comprou um aparelho sem fio para transmitir músicas a partir do seu computador para o rádio de seu quarto. Esse aparelho possui quatro chaves seletoras e cada uma pode estar na posição 0 ou 1. Cada escolha das posições dessas chaves corresponde a uma frequência diferente de transmissão.
 
@@ -220,7 +220,7 @@ e) 24.
 
 ---
 
-**Questão 2 — (ENEM 2012)**
+**Questão 2: (ENEM 2012)**
 
 O diretor de uma escola convidou os 280 alunos de terceiro ano a participarem de uma brincadeira. Suponha que existem 5 objetos e 6 personagens numa casa de 9 cômodos; um dos personagens esconde um dos objetos em um dos cômodos da casa. O objetivo da brincadeira é adivinhar qual objeto foi escondido por qual personagem e em qual cômodo da casa o objeto foi escondido.
 
@@ -236,7 +236,7 @@ e) 270 alunos a mais do que possíveis respostas distintas.
 
 ---
 
-**Questão 3 — (ENEM PPL 2020)**
+**Questão 3: (ENEM PPL 2020)**
 
 A prefeitura de uma cidade está renovando os canteiros de flores de suas praças. Entre as possíveis variedades que poderiam ser plantadas, foram escolhidas cinco: amor-perfeito, cravina, petúnia, margarida e lírio. Em cada um dos canteiros, todos com composições diferentes, serão utilizadas somente três variedades distintas, não importando como elas serão dispostas.
 
@@ -252,7 +252,7 @@ e) 5! / [(5 − 3)! · 3!]
 
 ---
 
-**Questão 4 — (ENEM PPL 2020)**
+**Questão 4: (ENEM PPL 2020)**
 
 Um determinado campeonato de futebol, composto por 20 times, é disputado no sistema de pontos corridos. Nesse sistema, cada time joga contra todos os demais times em dois turnos, isto é, cada time joga duas partidas com cada um dos outros times, sendo que cada jogo pode terminar empatado ou haver um vencedor.
 
@@ -266,7 +266,7 @@ e) 634.
 
 ---
 
-**Questão 5 — (ENEM Digital 2020)**
+**Questão 5: (ENEM Digital 2020)**
 
 Eduardo deseja criar um e-mail utilizando um anagrama exclusivamente com as sete letras que compõem o seu nome, antes do símbolo @.
 

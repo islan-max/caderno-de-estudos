@@ -7,7 +7,7 @@ relevance: >
   simples, esse preço é sempre calculado sobre o valor emprestado no início, nunca sobre o que já foi
   acumulado. É o regime mais fácil de calcular e o mais comum em situações de curto prazo: multa de
   atraso, empréstimo entre pessoas, carnê de loja, desconto por pagamento antecipado. No ENEM, juros
-  simples aparecem quase sempre em duas formas — uma conta direta com carnê ou empréstimo, ou uma
+  simples aparecem quase sempre em duas formas: uma conta direta com carnê ou empréstimo, ou uma
   comparação com juros compostos para mostrar que os dois regimes só coincidem no primeiro período.
   Costuma haver 1 a 2 questões de matemática financeira por prova.
 quickSummary: >
@@ -28,7 +28,7 @@ Tempo (t) é a quantidade de períodos durante os quais o dinheiro ficou emprest
 
 Juro (J) é o valor pago pelo uso do dinheiro, em reais. Montante (M) é o total no final: o capital de volta mais o juro, ou seja, M = C + J. O montante também é chamado de valor futuro ou valor de resgate.
 
-**A ideia de juros simples.** No regime de juros simples, todo período rende exatamente o mesmo juro, porque a taxa é sempre aplicada sobre o capital inicial C — e não sobre o valor que já foi acumulado. Se você empresta R$ 1.000,00 a 5% ao mês, ganha R$ 50,00 no primeiro mês, R$ 50,00 no segundo, R$ 50,00 no terceiro, e assim por diante, para sempre. O juro de cada mês é 0,05 × 1.000 = 50, e nunca muda.
+**A ideia de juros simples.** No regime de juros simples, todo período rende exatamente o mesmo juro, porque a taxa é sempre aplicada sobre o capital inicial C, e não sobre o valor que já foi acumulado. Se você empresta R$ 1.000,00 a 5% ao mês, ganha R$ 50,00 no primeiro mês, R$ 50,00 no segundo, R$ 50,00 no terceiro, e assim por diante, para sempre. O juro de cada mês é 0,05 × 1.000 = 50, e nunca muda.
 
 Como cada período rende C × i, em t períodos o juro total é essa parcela repetida t vezes:
 
@@ -46,13 +46,13 @@ Nas duas fórmulas, C é o capital inicial em reais, i é a taxa em forma decima
 
 Primeiro caminho: converter o tempo para anos. Oito meses são 8/12 de ano, ou seja, 2/3 de ano. Então J = 6.000 × 0,15 × (8/12) = 6.000 × 0,10 = 600 reais.
 
-Segundo caminho: converter a taxa para o mês. Em juros simples, taxas de períodos diferentes são proporcionais: basta dividir ou multiplicar. Uma taxa de 15% ao ano equivale a 15 ÷ 12 = 1,25% ao mês. Então J = 6.000 × 0,0125 × 8 = 600 reais. Mesmo valor. Essa proporcionalidade direta entre taxas só vale em juros simples — em juros compostos ela é falsa.
+Segundo caminho: converter a taxa para o mês. Em juros simples, taxas de períodos diferentes são proporcionais: basta dividir ou multiplicar. Uma taxa de 15% ao ano equivale a 15 ÷ 12 = 1,25% ao mês. Então J = 6.000 × 0,0125 × 8 = 600 reais. Mesmo valor. Essa proporcionalidade direta entre taxas só vale em juros simples: em juros compostos ela é falsa.
 
 **Isolar qualquer uma das letras.** Como J = C × i × t tem quatro letras, conhecendo três você descobre a quarta. Para achar a taxa: i = J ÷ (C × t). Se um empréstimo de R$ 800,00 gerou R$ 144,00 de juros em 4 meses, então i = 144 ÷ (800 × 4) = 144 ÷ 3.200 = 0,045, ou seja, 4,5% ao mês. Para achar o tempo: t = J ÷ (C × i). Para achar o capital: C = J ÷ (i × t). Não é preciso decorar quatro fórmulas, só saber isolar.
 
-**Crescimento linear.** Como o juro por período é fixo, os montantes formam uma sequência em que se soma sempre o mesmo valor — uma progressão aritmética. Num gráfico com o tempo no eixo horizontal e o montante no eixo vertical, os juros simples desenham uma reta. Aliás, M = C × (1 + i × t) pode ser reescrito como M = C + (C × i) × t, que é exatamente o formato de uma função afim: valor inicial C mais uma taxa constante de variação (C × i) multiplicada pelo tempo. Reconhecer esse formato é útil, porque o ENEM adora dar um gráfico e pedir para identificar qual curva corresponde a qual regime.
+**Crescimento linear.** Como o juro por período é fixo, os montantes formam uma sequência em que se soma sempre o mesmo valor: uma progressão aritmética. Num gráfico com o tempo no eixo horizontal e o montante no eixo vertical, os juros simples desenham uma reta. Aliás, M = C × (1 + i × t) pode ser reescrito como M = C + (C × i) × t, que é exatamente o formato de uma função afim: valor inicial C mais uma taxa constante de variação (C × i) multiplicada pelo tempo. Reconhecer esse formato é útil, porque o ENEM adora dar um gráfico e pedir para identificar qual curva corresponde a qual regime.
 
-**Comparação com juros compostos.** Em juros compostos, cada período rende sobre o montante já acumulado, e não sobre o capital inicial — é o "juro sobre juro". Compare R$ 1.000,00 a 10% por período durante 3 períodos.
+**Comparação com juros compostos.** Em juros compostos, cada período rende sobre o montante já acumulado, e não sobre o capital inicial: é o "juro sobre juro". Compare R$ 1.000,00 a 10% por período durante 3 períodos.
 
 Em juros simples: cada período rende sempre 100 reais, então o montante final é 1.000 × (1 + 0,10 × 3) = 1.000 × 1,3 = R$ 1.300,00.
 
@@ -62,7 +62,7 @@ Três conclusões que o ENEM cobra: no primeiro período os dois regimes dão ex
 
 **Aplicação típica: compra à vista contra compra parcelada.** O ENEM adora a situação em que a loja oferece um preço à vista e um plano em parcelas. O raciocínio é sempre o mesmo: some tudo o que será pago no plano parcelado (entrada mais todas as parcelas), compare com o preço à vista e veja quanto se pagou a mais. Se uma televisão custa R$ 1.500,00 à vista, ou entrada de R$ 300,00 mais 3 parcelas de R$ 420,00, o total a prazo é 300 + 3 × 420 = 300 + 1.260 = R$ 1.560,00. Pagou-se R$ 60,00 a mais. Esse acréscimo pode ser lido de duas maneiras: 60 ÷ 1.500 = 0,04, ou seja, 4% a mais que o preço à vista; ou 60 ÷ 1.200 = 0,05, ou seja, 5% sobre o valor efetivamente financiado (o preço à vista menos a entrada). Leia com atenção qual das duas o comando pede.
 
-**Armadilhas típicas do INEP:** (1) usar a taxa em porcentagem em vez de decimal, multiplicando por 2 no lugar de 0,02 e chegando a valores cem vezes maiores; (2) esquecer de compatibilizar taxa e tempo, aplicando uma taxa anual a um número de meses; (3) responder o juro J quando a pergunta pediu o montante M, ou o contrário — o comando costuma dizer "quanto pagará no total" (montante) ou "quanto pagará de juros" (juro); (4) calcular o acréscimo percentual do parcelamento sobre a base errada, usando o preço à vista quando o pedido é sobre o valor financiado; (5) aplicar a proporcionalidade de taxas (dividir a taxa anual por 12) em questões que dizem explicitamente "juros compostos", onde essa conversão não vale; (6) supor que a entrada rende juros — a entrada é paga na hora e por isso é abatida do valor financiado.
+**Armadilhas típicas do INEP:** (1) usar a taxa em porcentagem em vez de decimal, multiplicando por 2 no lugar de 0,02 e chegando a valores cem vezes maiores; (2) esquecer de compatibilizar taxa e tempo, aplicando uma taxa anual a um número de meses; (3) responder o juro J quando a pergunta pediu o montante M, ou o contrário, o comando costuma dizer "quanto pagará no total" (montante) ou "quanto pagará de juros" (juro); (4) calcular o acréscimo percentual do parcelamento sobre a base errada, usando o preço à vista quando o pedido é sobre o valor financiado; (5) aplicar a proporcionalidade de taxas (dividir a taxa anual por 12) em questões que dizem explicitamente "juros compostos", onde essa conversão não vale; (6) supor que a entrada rende juros, a entrada é paga na hora e por isso é abatida do valor financiado.
 
 ## Tópicos-Chave para Revisão
 
@@ -88,9 +88,9 @@ Em compras a prazo, o total pago é a entrada mais a soma de todas as parcelas; 
 
 ## Teste de Fogo
 
-*Questões sem gabarito — resolva primeiro, depois confira com o professor ou com a IA.*
+*Questões sem gabarito: resolva primeiro, depois confira com o professor ou com a IA.*
 
-**Questão 1 (estilo ENEM — autoral)**
+**Questão 1 (estilo ENEM: autoral)**
 Um trabalhador tomou um empréstimo de R$ 1.200,00 em uma cooperativa de crédito, que cobra juros simples de 2,5% ao mês. Ficou combinado que ele quitaria toda a dívida, de uma única vez, ao final de 6 meses.
 
 O valor total, em reais, que ele deverá pagar à cooperativa ao final desse prazo é
@@ -101,7 +101,7 @@ c) 1.392,00
 d) 1.500,00
 e) 1.800,00
 
-**Questão 2 (estilo ENEM — autoral)**
+**Questão 2 (estilo ENEM: autoral)**
 Uma pessoa emprestou R$ 800,00 a um amigo, no regime de juros simples, e recebeu de volta, ao final de 4 meses, o valor emprestado acrescido de R$ 144,00 de juros.
 
 A taxa mensal de juros cobrada nesse empréstimo foi de
@@ -112,7 +112,7 @@ c) 4,5%
 d) 18,0%
 e) 45,0%
 
-**Questão 3 (estilo ENEM — autoral)**
+**Questão 3 (estilo ENEM: autoral)**
 Um pequeno produtor rural obteve um financiamento de R$ 6.000,00 para a compra de sementes, no regime de juros simples, à taxa de 15% ao ano. O contrato prevê a quitação integral após 8 meses.
 
 O valor dos juros, em reais, que esse produtor pagará ao final do contrato é
@@ -123,7 +123,7 @@ c) 600,00
 d) 900,00
 e) 7.200,00
 
-**Questão 4 (estilo ENEM — autoral)**
+**Questão 4 (estilo ENEM: autoral)**
 Duas instituições financeiras oferecem aplicações para um mesmo capital de R$ 2.000,00, pelo prazo de 3 meses, ambas com taxa de 10% ao mês. A instituição A remunera o capital no regime de juros simples e a instituição B, no regime de juros compostos.
 
 A diferença entre os montantes obtidos nas duas instituições ao final dos 3 meses, em reais, é
@@ -134,7 +134,7 @@ c) 66,00
 d) 262,00
 e) 662,00
 
-**Questão 5 (estilo ENEM — autoral)**
+**Questão 5 (estilo ENEM: autoral)**
 Uma loja de eletrodomésticos anuncia uma televisão por R$ 1.500,00 à vista. Como alternativa, oferece o pagamento em um plano com entrada de R$ 300,00 no ato da compra e mais 3 parcelas mensais iguais de R$ 420,00.
 
 O acréscimo do valor total pago no plano parcelado, em relação ao preço à vista, corresponde a
