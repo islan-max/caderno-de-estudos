@@ -270,7 +270,17 @@ def ler_itens(ano):
     texto = bruto.decode("utf-8") if bruto[:3] == b"\xef\xbb\xbf" or _eh_utf8(bruto) else bruto.decode("latin-1")
     texto = texto.lstrip("﻿")
     sep = ";" if texto.split("\n", 1)[0].count(";") > texto.split("\n", 1)[0].count(",") else ","
-    return list(csv.DictReader(io.StringIO(texto), delimiter=sep))
+    linhas = list(csv.DictReader(io.StringIO(texto), delimiter=sep))
+    # 2017 numera CO_POSICAO dentro de cada área (1-45; LC 1-50 com inglês 1-5 e
+    # espanhol 6-10). Converte para o número da questão no caderno.
+    if linhas and max(int(l["CO_POSICAO"]) for l in linhas) <= 50:
+        inicio = {"LC": 1, "CH": 46, "CN": 91, "MT": 136} if ano >= 2017 else {"CH": 1, "CN": 46, "LC": 91, "MT": 136}
+        for l in linhas:
+            p, area = int(l["CO_POSICAO"]), l["SG_AREA"]
+            if area == "LC" and p > 5:
+                p = p - 5
+            l["CO_POSICAO"] = str(inicio[area] + p - 1)
+    return linhas
 
 
 def _eh_utf8(b):
@@ -494,7 +504,7 @@ FAIXA = re.compile(
 )
 COMPARTILHADO = re.compile(r"(?i)(para as|responda [àa]s) quest(õ|o)es( de)?\s+0?(?P<de>\d+)\s+(a|e)\s+0?(?P<ate>\d+)")
 FIM = re.compile(r"(?i)(proposta de reda|instru[çc][õo]es para a reda|^rascunho|folha de rascunho|^reda[çc][ãa]o$)")
-FONTE_LETRA = re.compile(r"(?i)bundesbahn|segoeui-bold|pi-?std")
+FONTE_LETRA = re.compile(r"(?i)bundesbahn|segoeui-bold|pi-?std|circled")
 
 
 def linhas_da_pagina(pagina):
@@ -516,7 +526,7 @@ def linhas_da_pagina(pagina):
             # rodapé: número de página, código de barras, "dia | caderno"; o resto fica
             # (a alternativa E das provas antigas encosta na borda de baixo)
             if y1 > 0.955 * h and (y0 > 0.985 * h or re.fullmatch(r"\d{1,3}|\*.*\*", t)
-                                   or re.search(r"(?i)dia\s*\|?\s*caderno|p[áa]gina\s*\d+|^caderno\s*\d+", t)):
+                                   or re.search(r"(?i)dia\s*\|?\s*caderno|p[áa]gina\s*\d+|^caderno\s*\d+|^(CH|CN|LC|MT)\s*[–-]\s*\d|^ENEM\s*\d{4}$", t)):
                 continue
             saida.append({"x0": x0, "y0": y0, "x1": x1, "y1": y1, "texto": texto.strip(),
                           "fonte": spans[0]["font"], "tam": spans[0]["size"]})
@@ -561,8 +571,10 @@ def segmentos(doc):
         linhas = linhas_da_pagina(pagina)
         w = pagina.rect.width
         meio = w / 2
-        duas = any(CABECALHO.match(l["texto"]) and l["x0"] > meio - 5 for l in linhas) or \
-            sum(1 for l in linhas if l["x0"] > meio + 5) > 0.3 * max(1, len(linhas))
+        # duas colunas: cabeçalho de questão na metade direita (em 2009 "Questão" e o
+        # número vêm em pedaços separados) ou boa parte das linhas começando lá
+        duas = any(re.match(r"(?i)quest[ãa]o", l["texto"]) and l["x0"] > meio - 5 for l in linhas) or \
+            sum(1 for l in linhas if l["x0"] > meio - 5) > 0.15 * max(1, len(linhas))
         colunas = [(0, meio), (meio, w)] if duas else [(0, w)]
         for ci, (a, b) in enumerate(colunas):
             dentro = [l for l in linhas if (a - 2 <= l["x0"] < b - 5) and (not duas or ci == 1 or l["x0"] < meio - 2)]
