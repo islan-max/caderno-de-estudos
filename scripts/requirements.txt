@@ -1,0 +1,4 @@
+# Banco de questões do INEP (scripts/banco_inep.py). Instalar numa venv em .cache/venv:
+#   python -m venv .cache/venv && .cache/venv/Scripts/python -m pip install -r scripts/requirements.txt
+pymupdf==1.28.2
+openpyxl==3.1.5

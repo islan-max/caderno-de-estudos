@@ -25,3 +25,7 @@ pnpm-debug.log*
 
 # vercel build output
 .vercel/
+
+# ferramentas das aulas do ENEM (banco de questões do INEP, venv, dependências)
+.cache/
+scripts/node_modules/
