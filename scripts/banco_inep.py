@@ -378,7 +378,7 @@ def cobre_o_dia(c, gab):
 def obter_gabarito(c):
     """Gabarito oficial do caderno: o PDF da página; se faltar ou for de outro dia
     (há links trocados na página do INEP), o PDF que vem no zip dos microdados."""
-    gab, lingua = ler_gabarito(arquivo_pdf(c, "gabarito"))
+    gab, lingua = ler_gabarito(arquivo_pdf(c, "gabarito"), c["cor"])
     if cobre_o_dia(c, {**gab, **lingua}):
         return gab, lingua, "pagina"
     zipado = arquivo_pdf(c, "gabarito-zip")
@@ -657,7 +657,8 @@ def ler_gabarito(pdf, cor=None):
     # tabela com as quatro cores lado a lado (2009): lê só a faixa da cor do caderno.
     # Sem isso, o leitor pegava a primeira coluna (amarelo) para qualquer caderno.
     faixas = None
-    for p in doc:
+    misturada = max(Counter(f for f in fichas if re.fullmatch(r"\d{2,3}", f)).values(), default=0) > 2
+    for p in (doc if misturada else []):
         palavras = p.get_text("words")
         cabecalho = {}
         for w in palavras:
