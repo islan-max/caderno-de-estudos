@@ -50,6 +50,7 @@ export const ENEM_AREAS: AreaEnem[] = [
     icone: 'pen-nib',
     subjects: [
       { slug: 'lingua-portuguesa', label: 'Língua Portuguesa e Literatura', icone: 'book' },
+      { slug: 'redacao', label: 'Redação', icone: 'pen-to-square' },
       { slug: 'lingua-estrangeira', label: 'Língua Estrangeira (Inglês/Espanhol)', icone: 'spell-check' },
       { slug: 'artes', label: 'Artes', icone: 'palette' },
       { slug: 'educacao-fisica', label: 'Educação Física', icone: 'award' },

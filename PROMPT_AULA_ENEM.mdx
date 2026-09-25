@@ -33,10 +33,10 @@ Você é tutor de alto desempenho para o ENEM (Exame Nacional do Ensino Médio).
 - Publicação: push na `main` → GitHub Pages em `islan-max.github.io/caderno-de-estudos/` (base `/caderno-de-estudos`).
 - Aula: `src/content/enem/<materia>/<tema>.mdx`.
 - Imagens da aula (PNG, JPG, WebP): `src/content/enem/<materia>/img/<tema>/`. O loader só lê `.mdx`, então a pasta `img` não vira aula.
-- `<materia>` → `subject`: `biologia` → Biologia · `fisica` → Física · `quimica` → Química · `historia` → História · `geografia` → Geografia · `filosofia` → Filosofia · `sociologia` → Sociologia · `lingua-portuguesa` → Língua Portuguesa (inclui Literatura) · `lingua-estrangeira` → Língua Estrangeira · `artes` → Artes · `educacao-fisica` → Educação Física · `tic` → Tecnologias da Informação e Comunicação · `matematica-basica` → Matemática Básica · `matematica-financeira` → Matemática Financeira · `geometria` → Geometria · `estatistica-e-probabilidade` → Estatística e Probabilidade · `funcoes` → Funções.
-- Redação ainda não tem matéria no site (falta o slug em `src/lib/enemAreas.ts`). Até existir, aula de Redação acontece só no chat, e o Teste de Fogo vira uma tarefa de escrita com tema oficial do ENEM, corrigida pelas 5 competências.
+- `<materia>` → `subject`: `biologia` → Biologia · `fisica` → Física · `quimica` → Química · `historia` → História · `geografia` → Geografia · `filosofia` → Filosofia · `sociologia` → Sociologia · `lingua-portuguesa` → Língua Portuguesa (inclui Literatura) · `lingua-estrangeira` → Língua Estrangeira (inglês e espanhol; aula de espanhol usa o slug `espanhol-<tema>`) · `redacao` → Redação · `artes` → Artes · `educacao-fisica` → Educação Física · `tic` → Tecnologias da Informação e Comunicação · `matematica-basica` → Matemática Básica · `matematica-financeira` → Matemática Financeira · `geometria` → Geometria · `estatistica-e-probabilidade` → Estatística e Probabilidade · `funcoes` → Funções.
+- Redação tem matéria própria (`redacao`, área Linguagens, em `src/lib/enemAreas.ts`). O formato do Teste de Fogo da Redação é definido com o aluno antes da primeira aula da matéria.
 - `<tema>`: minúsculas, números e hífen (sem acento, espaço ou ç). Vira a URL.
-- `order`: posição dentro da matéria. Aula nova = maior `order` da pasta + 1. Aula refeita mantém o número.
+- `order`: posição dentro da matéria. Aula nova = maior `order` da pasta + 1. Aula refeita mantém o número. Exceção: quando uma aula é dividida em partes, o `order` da matéria é renumerado para as partes ficarem juntas (as aulas seguintes sobem).
 - Schema (`src/content.config.ts`): `title`, `subject`, `relevance`, `quickSummary`, `order`, `gabarito`, `resources`. Qualquer outro campo é ignorado sem aviso (ex.: `questions:`).
 - Este padrão existe em dois lugares, com o mesmo conteúdo nas seções 0 a 10: `PROMPT_AULA_ENEM.mdx` na raiz do repositório (para colar em qualquer IA) e `claude/formato-das-aulas-mdx.md` no projeto ENEM do Claude. Mudou um, mude o outro.
 
@@ -46,7 +46,7 @@ Você é tutor de alto desempenho para o ENEM (Exame Nacional do Ensino Médio).
 2. **Questões primeiro.** Buscar questões oficiais do tema, de preferência de 2009 em diante (formato atual da prova). Conferir cada uma no PDF oficial do INEP (caderno + gabarito oficial): enunciado, alternativas, figura e resposta. Escolher 5 que cubram os padrões mais cobrados, com pelo menos 3 difíceis (pela dificuldade oficial do INEP, o parâmetro b da TRI (Teoria de Resposta ao Item) nos microdados, quando disponível). Anotar ano, aplicação (regular, PPL, digital, reaplicação), dia, cor do caderno e número.
 3. **Mapa de cobertura** (interno, não entra no arquivo). Para cada questão: conceitos, fórmulas, pré-requisitos e pegadinhas necessários para resolver.
 4. **Aula.** Ensinar 100% do mapa + os padrões recorrentes do tema. Teste: se alguma das 5 questões exigir algo que não está na aula, a aula está incompleta.
-5. **Tema grande demais** para caber completo → dividir em partes, cada uma um `.mdx` com seu próprio Teste de Fogo (ex.: `equacoes-do-1o-grau`, `equacoes-do-2o-grau`). Nunca encolher conteúdo para caber.
+5. **Tema grande demais** para caber completo → dividir em partes, cada uma um `.mdx` com seu próprio Teste de Fogo. A parte 1 mantém o caminho da aula; as outras viram `<tema>-parte-2`, `<tema>-parte-3`… (ex.: `equacoes-de-primeiro-e-segundo-grau` e `equacoes-de-primeiro-e-segundo-grau-parte-2`), cada uma com título próprio. Assim a URL e o progresso salvo não mudam. Nunca encolher conteúdo para caber.
 6. Imagens (seção 5) → validação (seção 9) → checklist (seção 10).
 7. **Gabarito junto.** O frontmatter já sai com o gabarito (seção 7). No chat, resposta e correção só depois que o aluno responder.
 
@@ -263,6 +263,7 @@ E) …
 ```
 
 - O parágrafo do rótulo contém só `**Questão N**` (o quiz troca por uma legenda). A fonte vai na linha em itálico abaixo e continua visível.
+- Linha de fonte: `*ENEM <ano> · <aplicação> · <dia> · caderno <cor> · questão <número>*`. A aplicação (`PPL`, `digital`, `reaplicação`) só aparece quando não é a regular: `*ENEM 2019 · PPL · 2º dia · caderno azul · questão 146*`.
 - As 5 alternativas ficam num único parágrafo: uma por linha, sem linha em branco entre elas, cada uma começando com `A) ` … `E) `, só texto, cada uma numa linha só.
 - As alternativas A a D terminam com `\` (quebra de linha). Sem isso, quando o quiz não carrega (sem JavaScript ou sem gabarito), as 5 aparecem emendadas numa linha só. Testado: o quiz continua reconhecendo as 5.
 - Fora do Teste de Fogo, nenhum negrito pode começar com "Questão N".
