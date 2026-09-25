@@ -19,8 +19,10 @@ Crie um arquivo `.mdx` na categoria adequada dentro de `src/content/`, mantendo 
 - `escolar/<materia>/<bimestre>/<semana>.mdx`
 - `ds/<materia>/<bimestre>/<semana>.mdx`
 
-Cada aula usa o frontmatter com `title`, `subject`, `relevance`, `quickSummary` (opcional), `order` e `resources` (opcional).
+Cada aula usa o frontmatter com `title`, `subject`, `relevance`, `quickSummary` (opcional), `order`, `gabarito` (opcional) e `resources` (opcional).
+
+As aulas do ENEM seguem o padrão descrito em `PROMPT_AULA_ENEM.mdx`: estrutura, imagens, marcação do Teste de Fogo e validação. Para gerar uma aula nova, cole esse arquivo numa conversa com uma IA e informe a matéria e o tema.
 
 ## Publicação
 
-Todo push para a branch `main` executa o build estático e publica o resultado no GitHub Pages. Para este repositório, a publicação usa a base `/proverbios/`.
+Todo push para a branch `main` executa o build estático e publica o resultado no GitHub Pages. Para este repositório, a publicação usa a base `/caderno-de-estudos/` (`islan-max.github.io/caderno-de-estudos/`).

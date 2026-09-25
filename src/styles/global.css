@@ -356,6 +356,13 @@ html[data-links="sim"] main a:not([class]) {
 }
 .figura .rotulo-fraco { fill: var(--color-ink-soft); font-family: var(--font-display); font-size: 10px; }
 
+/* Imagem de arquivo (recorte de prova, foto) dentro da figura. O markdown
+   embrulha a <img> num <p>: zera a margem dele e, dentro dos Tópicos-Chave,
+   impede que esse <p> ganhe o fundo e a borda de cartão. */
+.figura img { display: block; margin: 0 auto; max-width: 100%; height: auto; border-radius: 0.375rem; }
+.figura p { margin: 0; }
+.prose-tema .topico figure p { background: none; border: 0; padding: 0; }
+
 /* ---------------------------------------------------------------------------
  * Teste de Fogo (quiz)
  * A marcação é gerada em JS a partir do markdown da aula, então os estilos
