@@ -20,6 +20,7 @@ nunca é desligada.
 """
 
 import csv
+from collections import Counter
 import html
 import io
 import json
@@ -644,7 +645,8 @@ def ler_gabarito(pdf, cor=None):
 
     if not pdf or not Path(pdf).exists():
         return {}, {}
-    paginas = [p.get_text() for p in pymupdf.open(pdf)]
+    doc = pymupdf.open(pdf)
+    paginas = [p.get_text() for p in doc]
     if cor and len(paginas) > 1:
         da_cor = [t for t in paginas if cor[:4] in normalizar(t)]
         if da_cor and len(da_cor) < len(paginas):
@@ -652,6 +654,33 @@ def ler_gabarito(pdf, cor=None):
     fichas = []
     for t in paginas:
         fichas += [f for f in re.split(r"\s+", t) if f]
+    # tabela com as quatro cores lado a lado (2009): lê só a faixa da cor do caderno.
+    # Sem isso, o leitor pegava a primeira coluna (amarelo) para qualquer caderno.
+    faixas = None
+    for p in doc:
+        palavras = p.get_text("words")
+        cabecalho = {}
+        for w in palavras:
+            n = normalizar(w[4])
+            c = next((k for k in CORES if n == k[:len(n)] and len(n) >= 4 or n in (k, k[:-1] + "a")), None)
+            if c and c not in cabecalho:
+                cabecalho[c] = w[0]
+        if len(cabecalho) >= 2:
+            xs = sorted(cabecalho.values())
+            if cor not in cabecalho:
+                return {}, {}
+            x0 = cabecalho[cor] - 25
+            depois = [x for x in xs if x > cabecalho[cor]]
+            x1 = (depois[0] - 25) if depois else 10**6
+            faixas = (x0, x1)
+            break
+    if faixas:
+        fichas = []
+        for p in doc:
+            palavras = sorted(p.get_text("words"), key=lambda w: (round(w[1] / 3), w[0]))
+            fichas += [w[4] for w in palavras if faixas[0] <= w[0] < faixas[1]]
+    elif cor and len(fichas) and max(Counter(f for f in fichas if re.fullmatch(r"\d{2,3}", f)).values(), default=0) > 2:
+        return {}, {}  # vários gabaritos misturados e sem cabeçalho de cor: melhor nada que a cor errada
     simples, lingua = {}, {}
     i = 0
     while i < len(fichas):
@@ -837,7 +866,8 @@ def texto():
             partes = [q.get("context") or "", q.get("alternativesIntroduction") or ""]
             indice.append({"fonte": "enem.dev", "ano": ano, "numero_ref": q.get("index"), "lingua": q.get("language"),
                            "area": {"linguagens": "LC", "ciencias-humanas": "CH", "ciencias-natureza": "CN", "matematica": "MT"}.get(q.get("discipline")),
-                           "texto": " ".join(partes), "alternativas": [a.get("text") or "" for a in q.get("alternatives", [])]})
+                           "texto": " ".join(partes), "alternativas": [a.get("text") or "" for a in q.get("alternatives", [])],
+                           "gabarito": q.get("correctAlternative")})
     for ano in (2022, 2023, 2024):
         arq = TEXTO / f"maritaca-{ano}.jsonl"
         if not arq.exists():
@@ -853,7 +883,7 @@ def texto():
                 except (ValueError, SyntaxError):
                     alts = [alts]
             indice.append({"fonte": "maritaca", "ano": ano, "numero_ref": n, "lingua": None, "area": None,
-                           "texto": q["question"], "alternativas": alts})
+                           "texto": q["question"], "alternativas": alts, "gabarito": q.get("label")})
     gravar_json(TEXTO / "indice.json", indice)
     print(len(indice), "questões no índice de texto")
 
@@ -1013,6 +1043,32 @@ def conferir(n="10", semente="2026"):
         print(q["id"], "gabarito", q["gabarito"], "| micro", q["gabarito_microdados"], "| b", q["param_b"])
 
 
+def conferir_gabaritos():
+    """Compara o gabarito do banco (PDF do INEP) com o de terceiros (enem.dev, Maritaca),
+    casando as questões pelo texto. Não substitui o INEP: só acusa leitura errada
+    (ex.: coluna de outra cor), que a ligação com os microdados não pega."""
+    indice = [i for i in ler_json(TEXTO / "indice.json", []) if i.get("gabarito")]
+    por_ano = {}
+    for i in indice:
+        por_ano.setdefault(i["ano"], []).append((set(normalizar(i["texto"]).split()), i))
+    total = iguais = 0
+    for q in todas_do_banco():
+        if q["aplicacao"] != "regular" or q["ano"] not in por_ano or not q["gabarito"] or q["gabarito"] == "anulada":
+            continue
+        palavras = set(normalizar(q["texto"]).split())
+        if len(palavras) < 12:
+            continue
+        nota, melhor = max(((len(palavras & p) / max(1, len(palavras | p)), i) for p, i in por_ano[q["ano"]]), key=lambda x: x[0])
+        if nota < 0.6 or (q["lingua"] and melhor.get("lingua") and melhor["lingua"] != q["lingua"]):
+            continue
+        total += 1
+        if melhor["gabarito"] == q["gabarito"]:
+            iguais += 1
+        else:
+            print(f"DIFERE {q['id']}: INEP (banco) {q['gabarito']} x {melhor['fonte']} {melhor['gabarito']} (semelhança {nota:.2f})")
+    print(f"{iguais}/{total} gabaritos iguais aos de terceiros")
+
+
 def cobertura():
     por = {}
     for q in todas_do_banco():
@@ -1033,7 +1089,8 @@ def cobertura():
 def comando(nome):
     return {"catalogo": catalogo, "microdados": microdados, "baixar": baixar, "extrair": extrair,
             "texto": texto, "buscar": buscar, "localizar": localizar, "mostrar": mostrar,
-            "recortar": recortar, "pagina": pagina, "conferir": conferir, "cobertura": cobertura}.get(nome)
+            "recortar": recortar, "pagina": pagina, "conferir": conferir, "cobertura": cobertura,
+            "conferir-gabaritos": conferir_gabaritos}.get(nome)
 
 
 if __name__ == "__main__":

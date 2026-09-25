@@ -11,6 +11,7 @@ Status: `pendente`, `em andamento`, `concluída`, `bloqueada`. Questões: ids do
 - 25/09/2026 · Aula nova: `order` = maior da matéria + 1 (spec §1). Na Redação, as novas seguem a ordem do arquivo de categorias (1 a 8).
 - 25/09/2026 · Banco: aplicações regulares 2009-2024 via índice de texto (enem.dev 2009-2023, Maritaca 2022-2024) + `localizar`, que baixa o PDF oficial do ano e confere; PPL, digital, reaplicação, 2ª/3ª aplicação, Belém e 2025 extraídos dos PDFs. Resposta oficial sempre do PDF de gabarito do INEP (página ou zip dos microdados); microdados só confirmam e dão b/habilidade quando as respostas coincidem ≥ 90%.
 - 25/09/2026 · Lacunas do banco: PPL 2010 sem gabarito legível (só prova com respostas marcadas) → fora; PPL 2021 e 3ª aplicação 2014 com texto embaralhado (busca não acha; imagens servem); PPL 2011-2013, 2016, 2017, Belém 2025 e 2ª aplicação 2016 (D1) sem parâmetro b.
+- 25/09/2026 · Bug corrigido: o gabarito de 2009 traz as 4 cores numa tabela e o leitor pegava a coluna do amarelo (os microdados "confirmavam" porque ligavam ao código do amarelo). Agora lê a faixa da cor e, sem cabeçalho de cor, recusa tabela misturada. Conferência extra `banco_inep.py conferir-gabaritos` (INEP × enem.dev/Maritaca, casando pelo texto): 731/732 iguais; a diferença (2022 Q143) foi conferida na imagem do gabarito: o INEP diz D, igual ao banco.
 - 25/09/2026 · "Difícil" = parâmetro b no terço superior da mesma área e ano; questão sem b não conta como difícil.
 - 25/09/2026 · Nome da aplicação na linha de fonte: conferir a capa do caderno (ex.: o caderno 9 branco de 2016 listado como PPL é a "3ª aplicação").
 - 25/09/2026 · Direito autoral: reproduzir só texto do INEP, obra em domínio público (autor morto há mais de 70 anos, Lei 9.610/98, art. 41) e trecho curto de prosa com crédito; o resto remete à página do PDF oficial ou a questão é trocada.
@@ -33,7 +34,7 @@ Status: `pendente`, `em andamento`, `concluída`, `bloqueada`. Questões: ids do
 | geometria/semelhanca-de-triangulos | 2 | pendente |  |  |  |
 | geometria/teorema-de-pitagoras | 3 | pendente |  |  |  |
 | geometria/trigonometria-basica | 4 | pendente |  |  |  |
-| geometria/geometria-solida-volume | 5 | pendente |  |  | piloto |
+| geometria/geometria-solida-volume | 5 | em andamento | 2024-ppl-D2-azul-Q171, 2022-ppl-D2-azul-Q150, 2022-regular-D2-azul-Q153, 2023-ppl-D2-azul-Q159, 2009-regular-D2-azul-Q173 |  | piloto |
 | estatistica-e-probabilidade/analise-de-graficos-e-tabelas | 1 | pendente |  |  |  |
 | estatistica-e-probabilidade/medidas-de-tendencia-central | 2 | pendente |  |  |  |
 | estatistica-e-probabilidade/desvio-padrao | 3 | pendente |  |  |  |
