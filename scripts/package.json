@@ -1,0 +1,10 @@
+{
+  "name": "ferramentas-aulas-enem",
+  "private": true,
+  "type": "module",
+  "description": "Validador de aulas e checagem do quiz (fora do build do site).",
+  "dependencies": {
+    "jsdom": "^26.1.0",
+    "yaml": "^2.8.0"
+  }
+}
