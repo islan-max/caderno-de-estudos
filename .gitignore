@@ -29,3 +29,4 @@ pnpm-debug.log*
 # ferramentas das aulas do ENEM (banco de questões do INEP, venv, dependências)
 .cache/
 scripts/node_modules/
+scripts/__pycache__/
