@@ -3,130 +3,363 @@ title: "Razão e Proporção"
 subject: "Matemática Básica"
 order: 3
 relevance: >
-  Razão é o nome matemático para "comparar duas quantidades dividindo uma pela outra", e proporção é
-  dizer que duas dessas comparações valem o mesmo. Parece pouco, mas é a base de quase metade da prova
-  de Matemática do ENEM: escala de mapa e de planta, densidade demográfica, receita de cozinha,
-  velocidade média, consumo por quilômetro, leitura de gráfico em porcentagem e a famosa regra de três
-  saem todos daqui. O INEP raramente pergunta "o que é uma proporção"; ele entrega uma situação real com
-  números e espera que você monte a proporção sozinho. Aparecem, em média, 3 a 5 questões por prova que
-  dependem direta ou indiretamente desse raciocínio.
+  Razão é a comparação entre duas grandezas por divisão, e proporção é a igualdade entre duas razões.
+  O ENEM (Exame Nacional do Ensino Médio) usa essa ideia toda hora, mesmo sem citar a palavra "razão":
+  numa escala de mapa ou maquete, numa mistura, numa velocidade ou em qualquer situação em que uma
+  grandeza aumenta (ou diminui) junto com outra. A prova também gosta de misturar duas relações na
+  mesma questão, uma direta e outra inversa. Esse tema aparece com muita frequência na prova de
+  Matemática, quase sempre disfarçado dentro de um problema do dia a dia.
 quickSummary: >
-  Razão é a divisão de uma grandeza por outra (a/b) e proporção é a igualdade entre duas razões
-  (a/b = c/d). Numa proporção vale sempre o produto dos meios igual ao produto dos extremos:
-  a × d = b × c.
+  Uma razão é uma divisão entre duas grandezas, como a/b. Duas grandezas são diretamente proporcionais
+  quando uma cresce na mesma proporção que a outra (a razão entre elas é sempre a mesma constante k).
+  São inversamente proporcionais quando uma cresce enquanto a outra diminui na mesma proporção (o
+  produto das duas é sempre a mesma constante k). Escala é a razão entre uma medida no desenho e a
+  medida real.
+resources:
+  conteudoComplementar:
+    conteudo: "Regra de Três"
+    comoAjuda: "Regra de três é a ferramenta que resolve uma proporção quando falta um dos quatro valores; esta aula explica o que significa cada lado dela."
+gabarito:
+  - correta: 1
+    porque: >
+      Se o tempo de X é 25% do tempo de Y, então tempo de X = (1/4) × tempo de Y. Como a distância é
+      diretamente proporcional ao tempo (mesma velocidade), a razão entre as distâncias é a mesma
+      razão entre os tempos: 1/4.
+      Revisar: Aula Teórica › 2. Grandezas diretamente proporcionais
+  - correta: 1
+    porque: >
+      A área do desenho é 0,10 × 0,15 = 0,015 m². A razão entre as áreas é 0,015 ÷ 24 = 0,000625, e essa
+      razão é o quadrado da escala linear: escala² = 0,000625, então escala = 0,025, ou seja, 1 : 40.
+      Revisar: Aula Teórica › 4. Escala: a razão entre desenho e realidade
+  - correta: 0
+    porque: >
+      Pessoas × tempo é constante: 3 × 4 = 12. Com 2 pessoas, o grupo reduzido leva 12 ÷ 2 = 6 segundos.
+      Os quatro grupos trabalham ao mesmo tempo, então o tempo total da troca é o maior entre eles: 6 segundos.
+      Revisar: Aula Teórica › 3. Grandezas inversamente proporcionais
+  - correta: 4
+    porque: >
+      A proficiência (fator direto) aumenta 2%, multiplicando o Ideb por 1,02. O tempo de permanência
+      (fator inverso) diminui 2%, o que multiplica o Ideb por 1 ÷ 0,98 ≈ 1,0204. Juntando os dois:
+      1,02 × 1,0204 ≈ 1,0408, um aumento de 4,08%.
+      Revisar: Aula Teórica › 5. Combinando proporção direta e inversa
+  - correta: 0
+    porque: >
+      O volume real é 2 500 000 L = 2 500 000 000 cm³. A razão entre os volumes é 2 500 000 000 ÷ 2 500 =
+      1 000 000, e essa razão é o cubo da escala linear: escala³ = 1 000 000, então escala = 100, ou seja, 1 : 100.
+      Revisar: Aula Teórica › 6. Proporção com potências: a escala de um volume
 ---
 
-## Aula Teórica Completa
+<Accordion titulo="Palavras e siglas desta aula" dica="Consulte quando encontrar um termo novo" icone="spell-check">
 
-**O que é razão.** Razão entre dois números a e b (com b diferente de zero) é simplesmente o resultado da divisão a ÷ b, que também escrevemos como a/b. Lemos "a está para b". Aqui, a é chamado de antecedente (vem antes) e b de consequente (vem depois). Se numa sala há 12 meninas e 18 meninos, a razão entre meninas e meninos é 12/18, que simplificando (dividindo os dois números por 6) vira 2/3. Isso significa: para cada 2 meninas existem 3 meninos. Perceba que a razão não diz quantas pessoas há na sala: ela diz o formato da comparação.
+- **ENEM** (Exame Nacional do Ensino Médio): a prova nacional que dá acesso a faculdades e bolsas.
+- **INEP** (Instituto Nacional de Estudos e Pesquisas Educacionais Anísio Teixeira): o órgão do governo que faz o ENEM.
+- **Razão**: a comparação entre duas grandezas feita por divisão, como a razão de 3 para 5 (3/5).
+- **Proporção**: a igualdade entre duas razões, como 3/5 = 6/10.
+- **Grandeza**: tudo que se pode medir, como tempo, distância, velocidade ou quantidade.
+- **Constante de proporcionalidade**: o número fixo (k) que liga duas grandezas proporcionais.
+- **Escala**: a razão entre uma medida no desenho (ou maquete) e a medida real correspondente.
 
-**Razão não é a mesma coisa que fração.** Uma fração normalmente compara uma parte com o todo. A razão compara duas quantidades quaisquer, inclusive de tipos diferentes. Quando dividimos grandezas de tipos diferentes, nasce uma grandeza nova, com nome próprio e unidade própria. Velocidade é a razão distância ÷ tempo (km/h). Densidade é massa ÷ volume (g/cm³). Densidade demográfica é população ÷ área (habitantes por km²). Consumo de um carro é distância ÷ combustível (km/L). Sempre que o ENEM escreve uma unidade com barra ou com a palavra "por", ele está falando de uma razão.
+</Accordion>
 
-Exemplo concreto: uma cidade tem 3.000.000 de habitantes e 1.500 km² de área. A densidade demográfica é 3.000.000 ÷ 1.500 = 2.000 habitantes por km². Isso não quer dizer que em todo km² moram exatamente 2.000 pessoas; quer dizer que, se espalhássemos todo mundo igualmente, seriam 2.000 por km². Média é sempre esse "e se fosse tudo igual".
+## Antes de Começar
 
-**O que é proporção.** Proporção é a igualdade entre duas razões: a/b = c/d. Lemos "a está para b assim como c está para d". Os números das pontas (a e d) são chamados de extremos; os de dentro (b e c) são os meios. Se você escrever a proporção 12/18 = 2/3, os extremos são 12 e 3, e os meios são 18 e 2.
+**O que o ENEM cobra aqui.** A prova quase nunca usa a palavra "razão" ou "proporção" diretamente: ela testa se você reconhece a relação entre duas grandezas dentro de um problema real. Os temas que costumam aparecer são estes:
 
-**A propriedade fundamental das proporções.** Numa proporção, o produto dos meios é igual ao produto dos extremos: a × d = b × c. Conferindo no exemplo acima: extremos 12 × 3 = 36; meios 18 × 2 = 36. Bate. Essa propriedade é o motor de tudo, porque permite descobrir um número que você não conhece. Se 3/5 = x/20, então 5 × x = 3 × 20, ou seja, 5x = 60, logo x = 12. É exatamente isso que a escola chama de "multiplicar cruzado".
+- **Reconhecer se a proporção é direta ou inversa.**
+- **Calcular a escala** de um mapa, uma planta ou uma maquete.
+- **Combinar duas proporções**, uma direta e outra inversa, na mesma questão.
+- **Usar a proporção com potências**, quando a escala envolve área ou volume.
 
-**Regra de três é só isso com outro nome.** Numa receita, 2 ovos acompanham 300 g de farinha. Quantos gramas de farinha para 5 ovos? Monte a proporção mantendo o mesmo tipo de grandeza em cada lado da divisão: 2/300 = 5/x. Multiplicando cruzado: 2 × x = 300 × 5, ou seja, 2x = 1500, logo x = 750 g de farinha. O único cuidado real da regra de três é a organização: ovos embaixo de ovos, farinha embaixo de farinha, e a mesma unidade dos dois lados (não misture gramas com quilos).
+**O que você precisa saber antes.**
 
-**Grandezas diretamente proporcionais.** Duas grandezas são diretamente proporcionais quando, ao multiplicar uma por um número, a outra fica multiplicada pelo mesmo número: dobra uma, dobra a outra; divide uma por 3, a outra também é dividida por 3. O sinal disso é que a razão entre elas é constante. Chamamos essa constante de k (constante de proporcionalidade): y ÷ x = k, o que é o mesmo que y = k × x. Se 5 kg de farinha rendem 20 pães, então k = 20 ÷ 5 = 4 pães por quilo, e 8 kg rendem 8 × 4 = 32 pães.
+- **Frações e decimais.** Uma razão como 1/4 vale 0,25; revise a aula de Frações se ainda travar na conversão.
+- **Porcentagem como fração.** "25% de um valor" é o mesmo que 1/4 desse valor; "aumentar 2%" é multiplicar por 1,02.
+- **Potências e raízes.** Elevar ao quadrado e ao cubo, e as raízes que desfazem essas operações; revise a aula de Potências e Raízes se precisar.
 
-**Grandezas inversamente proporcionais.** Duas grandezas são inversamente proporcionais quando, ao multiplicar uma por um número, a outra fica dividida por esse mesmo número: dobra uma, a outra cai pela metade. O sinal disso é que o produto delas é constante: x × y = k. Exemplo clássico: 3 pedreiros levam 12 dias para levantar um muro. Como o trabalho total é fixo, o produto pedreiros × dias é constante: 3 × 12 = 36 "dias de pedreiro". Com 4 pedreiros, o tempo é 36 ÷ 4 = 9 dias. Repare que aqui NÃO se multiplica cruzado direto: primeiro é preciso inverter uma das razões, ou, mais seguro, usar o produto constante.
+## Aula Teórica
 
-**Como decidir se é direta ou inversa sem decorar.** Use o teste do exagero: imagine um valor absurdamente grande em uma das grandezas e pergunte o que acontece com a outra. Mil pedreiros construindo o muro: o tempo despenca, então é inversa. Mil quilos de farinha: o número de pães explode, então é direta. Esse teste de dois segundos resolve praticamente todas as questões de regra de três do ENEM.
+### 1. O que é razão e o que é proporção
 
-**Regra de três composta.** Quando há três ou mais grandezas envolvidas, a saída mais segura não é montar tabelas com setinhas, e sim achar a taxa unitária. Se 3 máquinas trabalhando 8 horas por dia durante 5 dias produzem 600 peças, então o total de "máquina-horas" foi 3 × 8 × 5 = 120, e cada máquina-hora produz 600 ÷ 120 = 5 peças. Agora responda qualquer variação: 4 máquinas, 6 horas por dia, 10 dias dão 4 × 6 × 10 = 240 máquina-horas, ou seja, 240 × 5 = 1.200 peças.
+Uma **razão** é a comparação entre duas grandezas feita por divisão. A razão entre 6 maçãs e 2 pessoas é 6/2 = 3, ou seja, 3 maçãs por pessoa.
 
-**Divisão proporcional.** Dividir uma quantia em partes proporcionais a certos números significa repartir de modo que as partes fiquem na mesma razão que esses números. Para dividir R$ 120,00 em partes proporcionais a 2, 3 e 5: some os números (2 + 3 + 5 = 10), descubra a constante k dividindo o total pela soma (120 ÷ 10 = 12) e multiplique k por cada número. As partes são 2 × 12 = 24, 3 × 12 = 36 e 5 × 12 = 60. Confira somando: 24 + 36 + 60 = 120. Esse "confira somando" deve ser automático.
+Uma **proporção** é a igualdade entre duas razões. Dizer que 2/3 = 8/12 é dizer que essas duas razões representam a mesma comparação.
 
-Para dividir em partes INVERSAMENTE proporcionais a 2, 3 e 5, troque cada número pelo seu inverso (1/2, 1/3, 1/5) e faça a divisão direta com esses inversos. Situação típica: repartir prêmio dando mais a quem cometeu menos faltas.
+<figure class="figura">
+  <svg viewBox="0 0 460 130" role="img" aria-labelledby="fig-razao-1-t fig-razao-1-d">
+    <title id="fig-razao-1-t">Razão e proporção</title>
+    <desc id="fig-razao-1-d">Duas razões escritas lado a lado, 2 sobre 3 e 8 sobre 12, ligadas por um sinal de igual, formando uma proporção.</desc>
+    <text x="150" y="65" class="rotulo" text-anchor="middle" font-size="24">2/3</text>
+    <text x="230" y="65" class="rotulo" text-anchor="middle" font-size="24">=</text>
+    <text x="310" y="65" class="rotulo" text-anchor="middle" font-size="24">8/12</text>
+    <text x="150" y="95" class="rotulo-fraco" text-anchor="middle">razão</text>
+    <text x="310" y="95" class="rotulo-fraco" text-anchor="middle">razão equivalente</text>
+    <text x="230" y="30" class="rotulo-fraco" text-anchor="middle">proporção</text>
+  </svg>
+</figure>
 
-**Escala.** Escala é a razão entre a medida no desenho e a medida real correspondente, com as duas na mesma unidade: escala = medida no desenho ÷ medida real. Uma escala 1:50.000 (lê-se "um para cinquenta mil") significa que 1 unidade de comprimento no papel equivale a 50.000 unidades iguais no mundo real. Se você mede 8 cm num mapa de escala 1:25.000, a distância real é 8 × 25.000 = 200.000 cm. Converta: 200.000 cm ÷ 100 = 2.000 m, e 2.000 m ÷ 1.000 = 2 km. A conversão no final é onde a maioria erra, então faça sempre em duas etapas visíveis.
+Numa proporção, "multiplicar em cruz" ajuda a resolver o que falta: se a/b = c/d, então a × d = b × c.
 
-Escala grande e escala pequena confundem: quanto MAIOR o número depois dos dois-pontos, MENOR o desenho em relação ao real e menos detalhes ele mostra. Um mapa 1:1.000.000 cobre um país inteiro; uma planta 1:50 cobre um apartamento.
+**Erro comum.** Trocar a ordem das grandezas na razão. A razão de "maçãs para pessoas" (6/2) é diferente da razão de "pessoas para maçãs" (2/6); a ordem do enunciado decide qual vem primeiro.
 
-**Proporção em gráficos e tabelas.** Muita questão do ENEM não pede conta nenhuma: ela mostra um gráfico de setores ou de barras e pergunta qual razão está correta, ou pede a parte correspondente a uma fatia. A ferramenta é a mesma: parte ÷ total. Se um setor representa 25% de um total de 8.400 pessoas, a parte é 0,25 × 8.400 = 2.100 pessoas. E se dois setores valem 30% e 10%, a razão entre eles é 30/10 = 3, ou seja, o primeiro é o triplo do segundo: mesmo sem saber o total.
+### 2. Grandezas diretamente proporcionais
 
-**Armadilhas típicas do INEP:** (1) inverter a ordem da razão, respondendo "meninos para meninas" quando foi pedido "meninas para meninos", sublinhe a ordem no enunciado; (2) tratar como diretamente proporcional algo que é inversamente proporcional (torneiras enchendo um tanque, operários numa obra, velocidade e tempo de viagem); (3) esquecer de converter unidades antes de montar a proporção, misturando minutos com horas, gramas com quilos ou centímetros com metros; (4) em escala, parar a conta em centímetros quando a resposta é pedida em metros ou quilômetros; (5) confundir razão entre duas partes com razão de uma parte para o todo, se há 2 meninas para 3 meninos, as meninas são 2/5 do total, não 2/3.
+Duas grandezas são **diretamente proporcionais** quando, ao multiplicar uma delas por um número, a outra fica multiplicada pelo mesmo número. Dobrar o tempo de viagem (com velocidade constante) dobra a distância percorrida.
+
+**Fórmula: grandezas diretamente proporcionais**
+
+**a/b = k, ou a = k × b**
+
+- **a, b**: as duas grandezas comparadas em cada situação.
+- **k**: a constante de proporcionalidade, sempre a mesma nas duas situações.
+- **Em palavras:** a razão entre as duas grandezas não muda; se uma cresce, a outra cresce na mesma proporção.
+- **Quando usar:** quando o problema disser que uma grandeza "é proporcional a" outra, ou quando dobrar uma dobra a outra.
+
+**Exemplo resolvido.** Uma receita usa 3 xícaras de farinha para render 12 pães. Quantas xícaras são precisas para render 20 pães, mantendo a proporção?
+
+1. Dados: 3 xícaras para 12 pães; quantas xícaras para 20 pães?
+2. Razão constante: farinha ÷ pães = 3/12 = 1/4.
+3. Fórmula: farinha = k × pães = 1/4 × 20.
+4. Calcular: 20 ÷ 4 = 5.
+5. Resposta: 5 xícaras.
+
+**Erro comum.** Somar em vez de manter a razão. Passar de 12 para 20 pães não é "somar 8 xícaras": é aplicar a mesma razão aos novos pães.
+
+### 3. Grandezas inversamente proporcionais
+
+Duas grandezas são **inversamente proporcionais** quando, ao multiplicar uma delas por um número, a outra fica dividida por esse mesmo número. Mais pessoas pintando uma parede (no mesmo ritmo) significa menos tempo para terminar.
+
+**Fórmula: grandezas inversamente proporcionais**
+
+**a × b = k**
+
+- **a, b**: as duas grandezas comparadas.
+- **k**: a constante de proporcionalidade, sempre a mesma nas duas situações.
+- **Em palavras:** o produto das duas grandezas não muda; se uma cresce, a outra diminui na mesma proporção.
+- **Quando usar:** quando o problema disser que uma grandeza "é inversamente proporcional" a outra, como pessoas e tempo de um trabalho, ou velocidade e tempo de um percurso.
+
+**Exemplo resolvido.** Com 4 pedreiros, um muro fica pronto em 9 dias. Trabalhando no mesmo ritmo, em quantos dias 6 pedreiros terminam o mesmo muro?
+
+1. Dados: 4 pedreiros, 9 dias; quantos dias com 6 pedreiros?
+2. Constante: pedreiros × dias = 4 × 9 = 36.
+3. Fórmula: 6 × dias = 36.
+4. Calcular: dias = 36 ÷ 6 = 6.
+5. Resposta: 6 dias.
+
+**Erro comum.** Aplicar a regra direta (multiplicar as duas grandezas pelo mesmo número) numa situação inversa. Mais pedreiros significa menos dias, não mais.
+
+Quando várias equipes fazem a mesma tarefa ao mesmo tempo, cada uma no seu próprio ritmo, o tempo total é o maior tempo entre elas, não a soma. As equipes trabalham juntas, não uma depois da outra.
+
+### 4. Escala: a razão entre desenho e realidade
+
+A **escala** é a razão entre uma medida no desenho (mapa, planta, maquete) e a medida real correspondente, sempre na mesma unidade. Uma escala de 1 : 100 quer dizer que cada 1 cm no desenho vale 100 cm (1 m) na realidade.
+
+**Fórmula: escala**
+
+**escala = medida no desenho ÷ medida real**
+
+- **medida no desenho**: o comprimento medido no mapa, na planta ou na maquete.
+- **medida real**: o comprimento correspondente na vida real, na mesma unidade da medida no desenho.
+- **Em palavras:** a escala é uma razão como qualquer outra, só que comparando comprimentos.
+- **Quando usar:** mapas, plantas de casas, maquetes, qualquer redução ou ampliação de um objeto real.
+
+**Exemplo resolvido.** Um terreno tem 30 m de frente. Numa planta, essa frente aparece com 6 cm. Qual a escala da planta?
+
+1. Dados: medida real 30 m = 3 000 cm; medida no desenho 6 cm.
+2. Fórmula: escala = 6 ÷ 3 000.
+3. Calcular: 6 ÷ 3 000 = 1 ÷ 500.
+4. Resposta: escala 1 : 500.
+
+**Erro comum.** Esquecer de deixar as duas medidas na mesma unidade antes de dividir (misturar metro com centímetro).
+
+Quando o problema dá a área (não o comprimento) do desenho e da realidade, a razão entre as áreas é o **quadrado** da escala. Para achar a escala, é preciso tirar a raiz quadrada dessa razão.
+
+### 5. Combinando proporção direta e inversa
+
+Alguns problemas mudam duas grandezas ao mesmo tempo, uma delas diretamente proporcional ao resultado final e a outra inversamente proporcional. Cada mudança percentual se aplica separadamente, multiplicando o resultado final.
+
+Se um fator **direto** aumenta p%, o resultado é multiplicado por (1 + p/100). Se um fator **inverso** diminui p%, o resultado é multiplicado por 1 ÷ (1 − p/100), porque dividir por um número menor aumenta o resultado.
+
+**Exemplo resolvido.** Um resultado é diretamente proporcional a A e inversamente proporcional a B. Se A aumenta 10% e B diminui 10%, o resultado fica multiplicado por quanto (aproximadamente)?
+
+1. Dados: A aumenta 10%: fator 1,10. B diminui 10%: fator 1 ÷ 0,90.
+2. Calcular o fator de B: 1 ÷ 0,90 ≈ 1,111.
+3. Multiplicar os dois fatores: 1,10 × 1,111.
+4. Calcular: 1,10 × 1,111 ≈ 1,222.
+5. Resposta: o resultado fica multiplicado por aproximadamente 1,222, um aumento de 22,2%.
+
+**Erro comum.** Somar as duas porcentagens direto (10% + 10% = 20%). Como as duas mudanças multiplicam o resultado, o total não é uma soma simples, principalmente no lado inverso.
+
+### 6. Proporção com potências: a escala de um volume
+
+Quando a proporção envolve área, a razão entre as áreas é o **quadrado** da escala linear. Quando envolve volume, a razão entre os volumes é o **cubo** da escala linear. Para voltar da razão de área (ou volume) até a escala, é preciso desfazer a potência com a raiz correspondente.
+
+**Fórmula: escala a partir de uma razão de volumes**
+
+**escala = raiz cúbica de (volume do modelo ÷ volume real)**
+
+- **volume do modelo** e **volume real**: na mesma unidade de volume.
+- **escala**: a razão entre um comprimento do modelo e o comprimento real correspondente.
+- **Em palavras:** ache a razão entre os volumes e tire a raiz cúbica dela para achar a escala linear.
+- **Quando usar:** quando o problema dá o volume (ou a capacidade) do modelo e do original, em vez de um comprimento.
+
+**Exemplo resolvido.** Uma miniatura de um caminhão-tanque tem 1 cm³ de volume interno. O tanque real tem 8 000 cm³. Qual a escala da miniatura?
+
+1. Dados: volume do modelo 1 cm³; volume real 8 000 cm³.
+2. Razão de volumes: 1 ÷ 8 000.
+3. Fórmula: escala = raiz cúbica de (1 ÷ 8 000).
+4. Calcular: a raiz cúbica de 8 000 é 20, então a razão é 1/20.
+5. Resposta: escala 1 : 20.
+
+**Erro comum.** Usar a razão de volumes como se já fosse a escala (achar que a escala é 1 : 1 000 000). A razão de volumes é o cubo da escala; é preciso tirar a raiz cúbica.
+
+### Armadilhas típicas do INEP
+
+1. **Inverter a ordem da razão.** "Razão de A para B" é A/B, não B/A; siga a ordem do enunciado.
+2. **Tratar uma relação inversa como direta**, ou o contrário. Leia com atenção se o enunciado diz "diretamente" ou "inversamente" proporcional.
+3. **Somar tempos de tarefas em paralelo**, quando o certo é usar o maior tempo entre elas.
+4. **Misturar unidades diferentes** ao calcular uma escala (metro com centímetro, litro com centímetro cúbico).
+5. **Confundir a razão de área com a escala**, sem tirar a raiz quadrada ou cúbica primeiro.
+6. **Somar duas porcentagens diretamente** quando elas se combinam por multiplicação, principalmente quando uma delas vem de uma relação inversa.
 
 ## Tópicos-Chave para Revisão
 
 <div className="topico">
 
-Razão é a divisão de uma grandeza por outra (a/b) e proporção é a igualdade entre duas razões (a/b = c/d). Numa proporção vale sempre o produto dos meios igual ao produto dos extremos: a × d = b × c.
+#### 1. Razão e proporção
 
-Razões entre grandezas de tipos diferentes criam grandezas novas com unidade composta e a palavra "por" no nome: velocidade (km/h) é distância por tempo, densidade (g/cm³) é massa por volume, densidade demográfica (hab/km²) é população por área, consumo (km/L) é distância por combustível.
+Uma **razão** compara duas grandezas por divisão, como a/b. Uma **proporção** é a igualdade entre duas razões, como 2/3 = 8/12. Numa proporção, multiplicar em cruz ajuda a achar o valor que falta.
 
-Grandezas diretamente proporcionais mantêm a razão constante, y = k × x: dobrar uma dobra a outra. Grandezas inversamente proporcionais mantêm o produto constante, x × y = k: dobrar uma reduz a outra à metade. O teste do exagero (imaginar um valor absurdo em uma delas) identifica o tipo em segundos.
+#### 2. Diretamente proporcionais
 
-Regra de três simples é a propriedade fundamental aplicada: alinhe grandezas iguais na mesma posição, use as mesmas unidades e multiplique cruzado; se as grandezas forem inversamente proporcionais, use o produto constante em vez do produto cruzado.
+Duas grandezas são **diretamente proporcionais** quando a razão entre elas é sempre a mesma: **a/b = k, ou a = k × b**. Se uma dobra, a outra dobra também.
 
-Regra de três composta se resolve com segurança pela taxa unitária: multiplique todas as grandezas de "esforço" (máquinas × horas × dias) para achar o total de unidades de trabalho, divida a produção por esse total e depois refaça a multiplicação com os novos valores.
+#### 3. Inversamente proporcionais
 
-Divisão proporcional a números dados: some os números, divida o total por essa soma para achar a constante k e multiplique k por cada número; confira somando as partes. Para divisão inversamente proporcional, substitua cada número pelo seu inverso e faça a divisão direta.
+Duas grandezas são **inversamente proporcionais** quando o produto delas é sempre o mesmo: **a × b = k**. Se uma dobra, a outra cai pela metade. Tarefas em **paralelo** somam pelo maior tempo, não pela soma.
 
-Escala é medida no desenho dividida pela medida real, com as duas na mesma unidade; em 1:25.000, cada centímetro do mapa vale 25.000 cm reais, que viram metros dividindo por 100 e quilômetros dividindo por mais 1.000. Quanto maior o número da escala, menor e menos detalhado é o desenho em relação ao real.
+#### 4. Escala
 
-Em gráficos, parte ÷ total resolve quase tudo: uma fatia de p por cento de um total T vale (p ÷ 100) × T, e a razão entre duas fatias percentuais dispensa conhecer o total.
+A **escala** é a razão entre desenho e realidade, na mesma unidade: **escala = medida no desenho ÷ medida real**. Com áreas, a razão é o **quadrado** da escala; é preciso tirar a raiz quadrada para achar a escala.
+
+#### 5. Direta e inversa juntas
+
+Um fator **direto** que aumenta p% multiplica o resultado por (1 + p/100); um fator **inverso** que diminui p% multiplica por 1 ÷ (1 − p/100). As duas mudanças se multiplicam, não se somam.
+
+#### 6. Escala e volume
+
+Com volumes, a razão entre eles é o **cubo** da escala linear: **escala = raiz cúbica de (volume do modelo ÷ volume real)**. É a raiz cúbica que desfaz esse cubo.
 
 </div>
 
-## Teste de Fogo
+## Questões do ENEM
 
-*Questões sem gabarito: resolva primeiro, depois confira com o professor ou com a IA.*
+*Marque uma alternativa em cada questão e confira tudo de uma vez no botão do fim.*
 
-**Questão 1 (estilo ENEM: autoral)**
-A receita original de um bolo caseiro, que serve 8 pessoas, utiliza 3 ovos, 450 g de farinha de trigo e 200 mL de leite. Para uma festa de aniversário, um confeiteiro precisa produzir a mesma receita, com o mesmo sabor, para servir 20 pessoas.
+**Questão 1**
 
-A quantidade de farinha de trigo, em gramas, que ele deverá utilizar é
+*ENEM 2017 · 2º dia · caderno azul · questão 164*
 
-a) 462,5
-b) 900,0
-c) 1.125,0
-d) 1.200,0
-e) 3.600,0
+A mensagem digitada no celular, enquanto você dirige, tira a sua atenção e, por isso, deve ser evitada. Pesquisas mostram que um motorista que dirige um carro a uma velocidade constante percorre "às cegas" (isto é, sem ter visão da pista) uma distância proporcional ao tempo gasto ao olhar para o celular durante a digitação da mensagem. Considere que isso de fato aconteça.
 
-**Questão 2 (estilo ENEM: autoral)**
-Uma equipe de manutenção da prefeitura mediu, numa planta de um bairro desenhada na escala 1:2.500, o comprimento de uma avenida que será recapeada. No desenho, a avenida mede 14 cm.
+Suponha que dois motoristas (X e Y) dirigem com a mesma velocidade constante e digitam a mesma mensagem em seus celulares. Suponha, ainda, que o tempo gasto pelo motorista X olhando para seu celular enquanto digita a mensagem corresponde a 25% do tempo gasto pelo motorista Y para executar a mesma tarefa.
 
-O comprimento real da avenida, em quilômetros, é
+A razão entre as distâncias percorridas às cegas por X e Y, nessa ordem, é igual a
 
-a) 0,035
-b) 0,35
-c) 3,5
-d) 35,0
-e) 350,0
+A) 5/4\
+B) 1/4\
+C) 4/3\
+D) 4/1\
+E) 3/4
 
-**Questão 3 (estilo ENEM: autoral)**
-Um município do interior tem população de 84.000 habitantes distribuída em uma área de 350 km². Um plano diretor prevê que, mantida a mesma área, a população chegará a 105.000 habitantes em dez anos.
+**Questão 2**
 
-O aumento da densidade demográfica do município, em habitantes por quilômetro quadrado, previsto para esse período, será de
+*ENEM 2024 · 2ª aplicação · 2º dia · caderno azul · questão 177*
 
-a) 30
-b) 60
-c) 240
-d) 300
-e) 21.000
+Na planta baixa de uma casa, um quarto retangular, cuja área é de 24 m², está representado por um retângulo com lados medindo 0,10 m e 0,15 m.
 
-**Questão 4 (estilo ENEM: autoral)**
-Uma pequena gráfica dispõe de 6 impressoras iguais que, funcionando 5 horas por dia durante 4 dias, produzem 60.000 folhas impressas. Por causa de um pedido urgente, a gráfica passará a operar com 8 impressoras iguais às primeiras, funcionando 9 horas por dia durante 5 dias.
+A escala dessa planta é
 
-Nessas novas condições, o número de folhas impressas produzidas será de
+A) 1 : 24.\
+B) 1 : 40.\
+C) 1 : 60.\
+D) 1 : 1 600.\
+E) 1 : 16 000.
 
-a) 60.000
-b) 90.000
-c) 135.000
-d) 180.000
-e) 216.000
+**Questão 3**
 
-**Questão 5 (estilo ENEM: autoral)**
-Três sócios investiram em um pequeno negócio, aplicando R$ 15.000,00, R$ 25.000,00 e R$ 60.000,00, respectivamente. Ao final do primeiro ano, o lucro obtido foi de R$ 30.000,00 e o contrato prevê que ele seja repartido em partes diretamente proporcionais ao valor investido por cada sócio.
+*ENEM 2021 · digital · 2º dia · caderno azul · questão 159*
 
-A quantia, em reais, que caberá ao sócio que investiu R$ 25.000,00 é
+Em uma corrida automobilística, os carros podem fazer paradas nos boxes para efetuar trocas de pneus. Nessas trocas, o trabalho é feito por um grupo de três pessoas em cada pneu. Considere que os grupos iniciam o trabalho no mesmo instante, trabalham à mesma velocidade e cada grupo trabalha em um único pneu. Com os quatro grupos completos, são necessários 4 segundos para que a troca seja efetuada. O tempo gasto por um grupo para trocar um pneu é inversamente proporcional ao número de pessoas trabalhando nele.
 
-a) 4.500,00
-b) 7.500,00
-c) 9.000,00
-d) 10.000,00
-e) 18.000,00
+<figure class="figura">
+  <svg viewBox="0 0 460 150" role="img" aria-labelledby="fig-razao-q3-t fig-razao-q3-d">
+    <title id="fig-razao-q3-t">Quatro grupos trocando pneus ao mesmo tempo</title>
+    <desc id="fig-razao-q3-d">Um carro com quatro pneus, cada um com um grupo de três pessoas trabalhando ao mesmo tempo, do mesmo instante inicial. Os quatro grupos terminam juntos em 4 segundos, quando todos têm três pessoas.</desc>
+    <rect x="140" y="50" width="180" height="60" rx="8" class="traco" />
+    <circle cx="150" cy="50" r="16" class="preenche" />
+    <circle cx="150" cy="50" r="16" class="traco" />
+    <circle cx="310" cy="50" r="16" class="preenche" />
+    <circle cx="310" cy="50" r="16" class="traco" />
+    <circle cx="150" cy="110" r="16" class="preenche" />
+    <circle cx="150" cy="110" r="16" class="traco" />
+    <circle cx="310" cy="110" r="16" class="preenche" />
+    <circle cx="310" cy="110" r="16" class="traco" />
+    <text x="150" y="30" class="rotulo" text-anchor="middle">3 pessoas</text>
+    <text x="310" y="30" class="rotulo" text-anchor="middle">3 pessoas</text>
+    <text x="150" y="140" class="rotulo" text-anchor="middle">3 pessoas</text>
+    <text x="310" y="140" class="rotulo" text-anchor="middle">3 pessoas</text>
+    <text x="405" y="76" class="rotulo" text-anchor="middle">4</text>
+    <text x="405" y="94" class="rotulo-fraco" text-anchor="middle">segundos</text>
+  </svg>
+</figure>
+
+Em uma dessas paradas, um dos trabalhadores passou mal, não pôde participar da troca e nem foi substituído, de forma que um dos quatro grupos de troca ficou reduzido.
+
+Nessa parada específica, com um dos grupos reduzido, qual foi o tempo gasto, em segundo, para trocar os quatro pneus?
+
+A) 6,0\
+B) 5,7\
+C) 5,0\
+D) 4,5\
+E) 4,4
+
+**Questão 4**
+
+*ENEM 2020 · digital · 2º dia · caderno azul · questão 161*
+
+O Índice de Desenvolvimento da Educação Básica (Ideb), criado para medir a qualidade do aprendizado do ensino básico no Brasil, é calculado a cada dois anos. No seu cálculo são combinados dois indicadores: o aprendizado e o fluxo escolar, obtidos a partir do Censo Escolar e das avaliações oficiais promovidas pelo Inep. O Ideb de uma escola numa dada série escolar é calculado a partir de N, a média da proficiência em língua portuguesa e matemática (obtida a partir do Sistema de Avaliação da Educação Básica, o Saeb), que varia de 0 a 10, e de P, um indicador de 0 a 1 que se refere ao fluxo escolar e considera as taxas de aprovação e reprovação, calculado a partir de T, o tempo médio de permanência dos alunos na série. O Ideb é diretamente proporcional a N e inversamente proporcional a T.
+
+<figure class="figura">
+  <svg viewBox="0 0 460 100" role="img" aria-labelledby="fig-razao-q4-t fig-razao-q4-d">
+    <title id="fig-razao-q4-t">As fórmulas do Ideb</title>
+    <desc id="fig-razao-q4-d">Ideb igual a N vezes P. P igual a 1 dividido por T.</desc>
+    <text x="140" y="45" class="rotulo" text-anchor="middle" font-size="20">Ideb = N × P</text>
+    <text x="140" y="75" class="rotulo-fraco" text-anchor="middle">N: proficiência · P: fluxo escolar</text>
+    <text x="360" y="45" class="rotulo" text-anchor="middle" font-size="20">P = 1/T</text>
+    <text x="360" y="75" class="rotulo-fraco" text-anchor="middle">T: tempo médio de permanência</text>
+  </svg>
+</figure>
+
+Uma escola apresentou no 9º ano do ensino fundamental, em 2017, um Ideb diferente daquele que havia apresentado nessa mesma série em 2015, pois o tempo médio de permanência dos alunos no 9º ano diminuiu 2%, enquanto a média de proficiência em língua portuguesa e matemática, nessa série, aumentou em 2%.
+
+Dessa forma, o Ideb do 9º ano do ensino fundamental dessa escola em 2017, em relação ao calculado em 2015,
+
+A) permaneceu inalterado, pois o aumento e a diminuição de 2% nos dois parâmetros anulam-se.\
+B) aumentou em 4%, pois o aumento de 2% na média da proficiência soma-se à diminuição de 2% no tempo médio de permanência dos alunos na série.\
+C) diminuiu em 4,04%, pois tanto o decrescimento do tempo médio de permanência dos alunos na série em 2% quanto o crescimento da média da proficiência em 2% implicam dois decréscimos consecutivos de 2% no valor do Ideb.\
+D) aumentou em 4,04%, pois tanto o decrescimento do tempo médio de permanência dos alunos na série em 2% quanto o crescimento da média da proficiência em 2% implicam dois acréscimos consecutivos de 2% no valor do Ideb.\
+E) aumentou em 4,08%, pois houve um acréscimo de 2% num parâmetro que é diretamente proporcional e um decréscimo de 2% num parâmetro que é inversamente proporcional ao Ideb.
+
+**Questão 5**
+
+*ENEM 2023 · 2ª aplicação · 2º dia · caderno azul · questão 171*
+
+Um professor de matemática desenvolveu uma atividade educacional relacionada aos Jogos Olímpicos e confeccionou uma maquete que representa uma piscina nas dimensões olímpicas. Admitiu que a piscina olímpica deve ter capacidade mínima de 2 500 000 litros e construiu sua maquete, referente a esse valor mínimo, na forma de paralelepípedo reto retângulo (uma caixa com todos os ângulos retos) com dimensões internas 2 cm, 25 cm e 50 cm, cujo volume é 2 500 cm³. Considere que 1 L = 10³ cm³.
+
+A maquete confeccionada pelo professor foi elaborada na escala
+
+A) 1 : 100.\
+B) 1 : 1 000.\
+C) 1 : 2 000.\
+D) 1 : 50 000.\
+E) 1 : 1 000 000.
