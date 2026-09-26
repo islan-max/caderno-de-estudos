@@ -361,6 +361,15 @@ html[data-links="sim"] main a:not([class]) {
   font-weight: 700;
   color: var(--materia, var(--color-ink));
 }
+/* O glossário abre o corpo da aula e fica logo abaixo do Raio-X do tema: os
+   dois retráteis formam um par, e a aula começa depois deles. */
+.raio-x:has(+ [data-conteudo-aula] > .acordeao:first-child) {
+  margin-bottom: 0.75rem;
+}
+.prose-tema > .acordeao:first-child {
+  margin-top: 0;
+  margin-bottom: 2.25rem;
+}
 .prose-tema :is(h2, h3, h4) {
   font-family: var(--font-display);
 }

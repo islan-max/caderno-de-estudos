@@ -58,6 +58,7 @@ const corDaMateria = materia ? `--materia: var(--color-${materia}); --materia-so
   active={active}
   description={relevance}
   voltar={pai ? { href: pai.href!, label: pai.label } : undefined}
+  cor={materia ? `var(--color-${materia})` : undefined}
 >
   <div class="aula" style={corDaMateria || undefined}>
   <nav class="font-mono text-xs text-ink-soft mb-4 flex flex-wrap gap-x-1 gap-y-1" aria-label="Você está aqui">

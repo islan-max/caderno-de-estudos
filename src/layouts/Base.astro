@@ -18,12 +18,15 @@ interface Props {
   voltar?: { href: string; label: string };
   /** Esconde a folha pautada (usado por páginas de texto puro). */
   larga?: boolean;
+  /** Cor da borda da folha e da aba ativa quando a página é de uma matéria (ex.: var(--color-historia)). */
+  cor?: string;
 }
 const {
   title,
   active = null,
   description = 'Aulas organizadas para estudar no seu ritmo',
   voltar,
+  cor,
 } = Astro.props;
 
 // A borda da folha segue a cor da aba ativa (o hub usa o mesmo "preto" da aba Início).
@@ -33,7 +36,9 @@ const accentByTab: Record<string, string> = {
   escolar: 'var(--color-escolar)',
   ds: 'var(--color-ds)',
 };
-const borderColor = active ? accentByTab[active] : 'var(--color-line)';
+// Nas páginas de uma matéria, a folha (e a aba) ganham a cor da matéria, como a
+// divisória colorida de um fichário.
+const borderColor = cor ?? (active ? accentByTab[active] : 'var(--color-line)');
 ---
 
 <!doctype html>
@@ -110,7 +115,7 @@ const borderColor = active ? accentByTab[active] : 'var(--color-line)';
       </div>
 
       <div class="max-w-5xl mx-auto w-full mt-5 sm:mt-6">
-        <TabNav active={active} />
+        <TabNav active={active} corAtiva={cor} />
       </div>
     </header>
 

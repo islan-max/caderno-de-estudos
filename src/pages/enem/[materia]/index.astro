@@ -28,6 +28,7 @@ const ids = temas.map((t) => t.id).join(' ');
   active="enem"
   description={`Temas de ${subjectLabel} para o ENEM, na ordem de aprendizado`}
   voltar={{ href: u('/enem'), label: 'Matérias do ENEM' }}
+  cor={`var(--color-${materia})`}
 >
   <div style={`--materia: var(--color-${materia});`}>
   <nav class="font-mono text-xs text-ink-soft mb-4" aria-label="Você está aqui">

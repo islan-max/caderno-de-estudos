@@ -111,6 +111,7 @@ function validar(arquivo) {
   });
   const titulos = h2.map((h) => h.titulo);
   const nomeQuestoes = SECAO_QUESTOES(materia);
+  const inicioSecoes = h2.length ? h2[0].i : corpo.length;
   const esperadas = [...SECOES, nomeQuestoes];
   if (JSON.stringify(titulos) !== JSON.stringify(esperadas)) erro(0, `as seções ## devem ser exatamente, nesta ordem: ${esperadas.join(' | ')}. Encontrado: ${titulos.join(' | ') || '(nenhuma)'}`);
   const secao = (nome) => {
@@ -140,7 +141,7 @@ function validar(arquivo) {
       if (!TAGS.has(tag)) erro(L(i), `tag <${m[1]}> não é permitida (§8)`);
       if (tag === 'div' && m[0].startsWith('<div') && !/className="topico"/.test(m[2])) erro(L(i), 'só <div className="topico"> é permitido');
       if (tag === 'figure' && m[0].startsWith('<figure') && !/class="figura"/.test(m[2])) erro(L(i), 'figura deve ser <figure class="figura">');
-      if (tag === 'accordion' && m[0].startsWith('<A') && !(i > antes.ini && i < antes.fim)) erro(L(i), '<Accordion> só em "Antes de Começar", no glossário');
+      if (tag === 'accordion' && m[0].startsWith('<A') && !(i < inicioSecoes)) erro(L(i), '<Accordion> só no topo do corpo, antes de "## Antes de Começar" (o glossário)');
       if (tag === 'textarea' && m[0].startsWith('<T')) {
         if (materia !== 'redacao') erro(L(i), '<Textarea /> só nas aulas de Redação');
         else if (!(i > teste.ini && teste.ini >= 0)) erro(L(i), `<Textarea /> fica em "${nomeQuestoes}", depois da questão 5`);
@@ -193,31 +194,32 @@ function validar(arquivo) {
       if (itens < 2) erro(L(antes.ini + iCobra), 'liste pelo menos 2 temas cobrados, um por linha, logo depois do parágrafo');
     }
   }
-  // glossário: dentro de <Accordion titulo="Palavras e siglas desta aula">; itens "- **Termo** …: …"
+  // glossário: no topo do corpo (antes de "## Antes de Começar"), dentro de
+  // <Accordion titulo="Palavras e siglas desta aula">; itens "- **Termo** …: …"
   const glossario = new Set();
   let termosComuns = 0;
-  const abreGl = antes.linhas.findIndex((l) => /^<Accordion\b/.test(l));
-  const fechaGl = antes.linhas.findIndex((l) => /^<\/Accordion>\s*$/.test(l));
-  if (antes.ini >= 0) {
-    if (abreGl < 0 || fechaGl < abreGl) erro(L(antes.ini), `o glossário fica dentro de <Accordion titulo="${TITULO_GLOSSARIO}" dica="…" icone="spell-check"> … </Accordion>`);
-    else {
-      if (!antes.linhas[abreGl].includes(`titulo="${TITULO_GLOSSARIO}"`)) erro(L(antes.ini + abreGl), `o <Accordion> do glossário tem titulo="${TITULO_GLOSSARIO}"`);
-      if (antes.linhas[abreGl + 1]?.trim() !== '') erro(L(antes.ini + abreGl + 1), 'linha em branco depois de <Accordion …>');
-      if (antes.linhas[fechaGl - 1]?.trim() !== '') erro(L(antes.ini + fechaGl), 'linha em branco antes de </Accordion>');
-      if (antes.linhas.filter((l) => /^<Accordion\b/.test(l)).length > 1) erro(L(antes.ini), 'só um <Accordion> por aula (o glossário)');
-    }
+  const topo = corpo.slice(0, inicioSecoes);
+  const abreGl = topo.findIndex((l) => /^<Accordion\b/.test(l));
+  const fechaGl = topo.findIndex((l) => /^<\/Accordion>\s*$/.test(l));
+  if (abreGl < 0 || fechaGl < abreGl) erro(L(0), `o glossário fica no topo do corpo, antes de "## Antes de Começar", dentro de <Accordion titulo="${TITULO_GLOSSARIO}" dica="…" icone="spell-check"> … </Accordion>`);
+  else {
+    if (!topo[abreGl].includes(`titulo="${TITULO_GLOSSARIO}"`)) erro(L(abreGl), `o <Accordion> do glossário tem titulo="${TITULO_GLOSSARIO}"`);
+    if (topo[abreGl + 1]?.trim() !== '') erro(L(abreGl + 1), 'linha em branco depois de <Accordion …>');
+    if (topo[fechaGl - 1]?.trim() !== '') erro(L(fechaGl), 'linha em branco antes de </Accordion>');
+    if (topo.filter((l) => /^<Accordion\b/.test(l)).length > 1) erro(L(abreGl), 'só um <Accordion> por aula (o glossário)');
+    if (topo.some((l, k) => l.trim() && (k < abreGl || k > fechaGl))) erro(L(0), 'antes de "## Antes de Começar" só vem o glossário');
   }
-  antes.linhas.forEach((l, k) => {
+  topo.forEach((l, k) => {
     if (!(k > abreGl && k < fechaGl) || !l.trim()) return;
     const m = l.match(/^- \*\*([^*]+)\*\*/);
-    if (!m || !/:/.test(l)) erro(L(antes.ini + k), 'item do glossário deve ser "- **Termo**: explicação" ou "- **SIGLA** (por extenso): explicação"');
+    if (!m || !/:/.test(l)) erro(L(k), 'item do glossário deve ser "- **Termo**: explicação" ou "- **SIGLA** (por extenso): explicação"');
     else {
       glossario.add(m[1].trim());
       if (!/^[A-ZÁÉÍÓÚÂÊÔÃÕÇ]{2,}[a-z]?$/.test(m[1].trim())) termosComuns++;
     }
   });
-  if (antes.ini >= 0 && glossario.size < 3) erro(L(antes.ini), 'glossário com menos de 3 termos');
-  if (termosComuns > 18) aviso(L(antes.ini + abreGl), `glossário com ${termosComuns} termos além das siglas (o padrão é até ~15): tire os óbvios ou explique no texto`);
+  if (glossario.size < 3) erro(L(0), 'glossário com menos de 3 termos');
+  if (termosComuns > 18) aviso(L(abreGl), `glossário com ${termosComuns} termos além das siglas (o padrão é até ~15): tire os óbvios ou explique no texto`);
 
   // -------------------------------------------------------------- siglas (§4)
   // Toda sigla (2+ maiúsculas) fora da seção de questões está no glossário. Vem

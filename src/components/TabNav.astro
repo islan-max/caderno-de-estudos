@@ -5,8 +5,10 @@ import Icone from './Icone.astro';
 
 interface Props {
   active?: 'hub' | 'enem' | 'escolar' | 'ds' | null;
+  /** Cor da aba ativa, quando a folha aberta é de uma matéria (segue a borda da folha). */
+  corAtiva?: string;
 }
-const { active = null } = Astro.props;
+const { active = null, corAtiva } = Astro.props;
 
 // Seções ocultas (ver src/lib/secoes.ts) somem da navegação sem quebrar nada:
 // as rotas delas também deixam de ser geradas no build.
@@ -33,7 +35,7 @@ const tabs = [
         <a
           href={u(tab.href)}
           class="tab font-display font-bold text-xs sm:text-sm md:text-base uppercase tracking-wide px-3.5 sm:px-5 md:px-7 py-2.5 md:py-3 rounded-t-lg"
-          style={`--tab-color: ${tab.color}; --tab-soft: ${tab.soft}; z-index: ${isActive ? 30 : 4 - i};`}
+          style={`--tab-color: ${isActive && corAtiva ? corAtiva : tab.color}; --tab-soft: ${tab.soft}; z-index: ${isActive ? 30 : 4 - i};`}
           data-active={isActive}
           aria-current={isActive ? 'page' : undefined}
         >
