@@ -27,9 +27,17 @@ import Icone from './Icone.astro';
     <Icone nome="universal-access" />
   </button>
 
-  <button type="button" class="ferramenta" data-acao="tema" aria-pressed="false" title="Usar o tema escuro" aria-label="Alternar entre tema claro e escuro">
-    <Icone nome="moon" />
-    <span class="ferramenta__texto ferramenta__texto--md" data-rotulo>Escuro</span>
+  <button
+    type="button"
+    class="tema-switch"
+    data-acao="tema"
+    aria-pressed="false"
+    title="Usar o tema escuro"
+    aria-label="Alternar entre tema claro e escuro"
+  >
+    <Icone nome="sun" class="tema-switch__icone tema-switch__icone--sol" />
+    <Icone nome="moon" class="tema-switch__icone tema-switch__icone--lua" />
+    <span class="tema-switch__bolha"></span>
   </button>
 </div>
 
@@ -138,5 +146,72 @@ import Icone from './Icone.astro';
     clip: rect(0, 0, 0, 0);
     white-space: nowrap;
     border: 0;
+  }
+
+  /* -------------------------------------------------------- interruptor de tema
+     Trilho com sol e lua nas pontas e uma bolha que desliza entre eles — o
+     mesmo gesto de um interruptor físico. Some as duas larguras (trilho e
+     bolha) e a folga (--inset) para o cálculo do deslocamento nunca destoar
+     do que está desenhado. */
+  .tema-switch {
+    --trilho-w: 3.5rem;
+    --trilho-h: 1.9rem;
+    --bolha: 1.5rem;
+    --inset: 0.2rem;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    width: var(--trilho-w);
+    min-width: var(--trilho-w);
+    height: var(--trilho-h);
+    padding: 0 0.5rem;
+    border-radius: 999px;
+    border: 1px solid var(--color-line);
+    background: color-mix(in srgb, var(--color-ink) 7%, var(--color-surface));
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+  .tema-switch:hover {
+    border-color: color-mix(in srgb, var(--color-ink) 35%, var(--color-line));
+    box-shadow: var(--shadow-soft);
+  }
+  .tema-switch__icone {
+    position: relative;
+    z-index: 1;
+    font-size: 0.76rem;
+    color: var(--color-ink-soft);
+    opacity: 0.55;
+    transition: color 0.25s var(--ease), opacity 0.25s var(--ease);
+  }
+  /* O sol é o lado "ligado" no tema claro; a lua, no escuro. O outro ícone
+     fica visível, só apagado — ninguém precisa adivinhar que ali tem um sol. */
+  .tema-switch[aria-pressed='false'] .tema-switch__icone--sol {
+    color: #b8860b;
+    opacity: 1;
+  }
+  .tema-switch[aria-pressed='true'] .tema-switch__icone--lua {
+    color: var(--color-escolar);
+    opacity: 1;
+  }
+  .tema-switch__bolha {
+    position: absolute;
+    left: var(--inset);
+    top: var(--inset);
+    width: var(--bolha);
+    height: var(--bolha);
+    border-radius: 999px;
+    background: var(--color-surface);
+    box-shadow: var(--shadow-soft);
+    transition: transform 0.32s var(--ease), background-color 0.32s var(--ease);
+  }
+  .tema-switch[aria-pressed='true'] .tema-switch__bolha {
+    transform: translateX(calc(var(--trilho-w) - var(--bolha) - 2 * var(--inset)));
+    background: var(--color-paper-dark);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .tema-switch__bolha {
+      transition: background-color 0.32s var(--ease);
+    }
   }
 </style>

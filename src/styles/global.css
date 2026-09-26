@@ -26,6 +26,11 @@
   --color-ds-soft: #dbebe0;
 
   --color-line: #c9c2a8;
+  /* Pauta do papel: mais fraca que --color-line de propósito (é fundo
+     decorativo, não divisória de componente). No claro as duas se confundem,
+     então usam o mesmo tom; no escuro a pauta guarda o tom antigo, discreto,
+     enquanto --color-line fica mais forte para bordas e divisórias. */
+  --color-pauta: var(--color-line);
   --color-ok: #3f7d58;
 
   /* Altura da pauta do caderno. Toda a métrica vertical é múltipla disso. */
@@ -138,12 +143,13 @@ html[data-tema="escuro"] {
 html[data-tema="escuro"] {
   color-scheme: dark;
 
-  --color-paper: #171a21;
-  --color-paper-dark: #262b36;
-  --color-surface: #1e222b;
+  --color-paper: #0d0f14;
+  --color-paper-dark: #212734;
+  --color-surface: #161b24;
   --color-ink: #e7e4da;
   --color-ink-soft: #9ba3b2;
-  --color-line: #2e3542;
+  --color-line: #606c88;
+  --color-pauta: #2b3140;
 
   --color-enem: #e58a70;
   --color-enem-soft: #3a2621;
@@ -153,8 +159,8 @@ html[data-tema="escuro"] {
   --color-ds-soft: #1e3328;
   --color-ok: #7fc79b;
 
-  --shadow-soft: 0 1px 2px rgba(0, 0, 0, 0.4), 0 8px 24px -12px rgba(0, 0, 0, 0.6);
-  --shadow-lift: 0 2px 4px rgba(0, 0, 0, 0.45), 0 18px 40px -18px rgba(0, 0, 0, 0.75);
+  --shadow-soft: 0 1px 2px rgba(0, 0, 0, 0.55), 0 8px 26px -12px rgba(0, 0, 0, 0.75);
+  --shadow-lift: 0 2px 4px rgba(0, 0, 0, 0.6), 0 20px 44px -16px rgba(0, 0, 0, 0.85);
 }
 
 /* Utilitários bg-white/* do Tailwind são literais: no escuro viram um véu
@@ -210,8 +216,8 @@ html[data-texto="maior"] body {
       to bottom,
       transparent,
       transparent calc(var(--rule) - 1px),
-      var(--color-line) calc(var(--rule) - 1px),
-      var(--color-line) var(--rule)
+      var(--color-pauta) calc(var(--rule) - 1px),
+      var(--color-pauta) var(--rule)
     );
     background-position: 0 var(--rule-offset);
   }

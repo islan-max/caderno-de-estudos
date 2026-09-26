@@ -93,17 +93,13 @@ function aplicarTema(tema: 'claro' | 'escuro') {
   if (tema === 'escuro') raiz.dataset.tema = 'escuro';
   else delete raiz.dataset.tema;
 
-  const cor = tema === 'escuro' ? '#171a21' : '#edeadf';
+  const cor = tema === 'escuro' ? '#0d0f14' : '#edeadf';
   document.querySelector('meta[name="theme-color"]')?.setAttribute('content', cor);
 
   document.querySelectorAll<HTMLElement>('[data-acao="tema"]').forEach((btn) => {
     const escuro = tema === 'escuro';
     btn.setAttribute('aria-pressed', String(escuro));
     btn.setAttribute('title', escuro ? 'Voltar para o tema claro' : 'Usar o tema escuro');
-    const icone = btn.querySelector('i');
-    if (icone) icone.className = `fa-solid fa-${escuro ? 'sun' : 'moon'}`;
-    const rotulo = btn.querySelector('[data-rotulo]');
-    if (rotulo) rotulo.textContent = escuro ? 'Claro' : 'Escuro';
   });
 }
 
