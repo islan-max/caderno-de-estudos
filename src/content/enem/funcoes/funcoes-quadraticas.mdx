@@ -3,118 +3,398 @@ title: "Funções Quadráticas"
 subject: "Funções"
 order: 2
 relevance: >
-  Função quadrática é toda função do tipo f(x) = ax² + bx + c, com a ≠ 0. Seu gráfico é sempre uma
-  parábola. O ENEM cobra esse tema quase todo ano, geralmente em contextos aplicados: trajetória de
-  projéteis, lucro máximo, área máxima, modelagem de fenômenos (epidemias, gastos públicos,
-  arquitetura). Raramente pede só "resolva a equação": o desafio é montar a função a partir de um
-  texto e depois extrair uma informação específica dela (raiz, vértice, valor máximo/mínimo).
+  Função quadrática é o modelo de tudo que sobe e depois desce (ou desce e depois sobe): a trajetória
+  de uma bola, um fio pendurado entre dois postes, o lucro que cresce com o preço até certo ponto e
+  depois cai. O ENEM (Exame Nacional do Ensino Médio) costuma perguntar pelo ponto mais alto ou
+  mais baixo dessa curva, ou pede para montar a função a partir de uma situação ou de uma tabela de
+  valores. Saber achar o vértice e usar a simetria da parábola resolve a maior parte dessas questões.
 quickSummary: >
-  Toda função quadrática tem a forma f(x) = ax² + bx + c, com a ≠ 0. O sinal de a define a
-  concavidade: a > 0 é mínimo (parábola para cima), a < 0 é máximo (parábola para baixo). c é sempre o
-  valor onde a parábola corta o eixo y.
+  Função quadrática é toda função do tipo f(x) = ax² + bx + c, com a diferente de zero. O gráfico é uma
+  parábola: aberta para cima quando a é positivo (tem ponto mínimo) e para baixo quando a é negativo
+  (tem ponto máximo). O vértice fica em x = −b ÷ (2a). A parábola é simétrica: dois valores de x com o
+  mesmo resultado ficam à mesma distância do vértice.
+resources:
+  conteudoComplementar:
+    conteudo: "Funções Exponenciais"
+    comoAjuda: "A próxima aula estuda outro tipo de crescimento, que não sobe e desce como a parábola, mas cresce cada vez mais rápido."
+gabarito:
+  - correta: 1
+    porque: >
+      Com Q = at² + bt + c: Q(0) = 1 dá c = 1; Q(1) = 4 dá a + b = 3; Q(2) = 6 dá 4a + 2b = 5. Dobrando a
+      segunda equação, 2a + 2b = 6; subtraindo da terceira, 2a = −1, então a = −0,5 e b = 3,5. Para t = 3:
+      Q = −0,5 × 9 + 3,5 × 3 + 1 = −4,5 + 10,5 + 1 = 7.
+      Revisar: Aula Teórica › 3. Achando a função a partir de pontos
+  - correta: 1
+    porque: >
+      O vértice de y = 0,02x² − 0,16x fica em x = 0,16 ÷ (2 × 0,02) = 4. Nesse ponto,
+      y = 0,02 × 16 − 0,16 × 4 = 0,32 − 0,64 = −0,32. O fio desce 0,32 m abaixo do topo dos postes, que
+      têm 6 m: a menor distância até o solo é 6 − 0,32 = 5,68 m.
+      Revisar: Aula Teórica › 4. O vértice: valor máximo ou mínimo
+  - correta: 2
+    porque: >
+      Com x% de desconto, cada bombom custa 2 × (1 − x ÷ 100). Comprando x bombons,
+      V = x × 2 × (1 − x ÷ 100) = 2x − 2x² ÷ 100 = 2x − x² ÷ 50.
+      Revisar: Aula Teórica › 2. Montando a função a partir de um problema
+  - correta: 2
+    porque: >
+      As regiões 2 e 4 têm a mesma produtividade (6 000 kg/ha) com Q = 100 e Q = 500. Pela simetria da
+      parábola, o vértice fica no meio desses dois valores: (100 + 500) ÷ 2 = 300 kg/ha. Como a produção
+      tem um máximo, esse é o ponto de produção máxima.
+      Revisar: Aula Teórica › 5. A simetria da parábola
+  - correta: 3
+    porque: >
+      Em y = −x² ÷ 6 − 7x ÷ 3 + 12, temos a = −1/6 e b = −7/3. O vértice fica em
+      x = −b ÷ (2a) = (7/3) ÷ (−1/3) = −7, e a altura máxima é y = −49/6 + 49/3 + 12 = 121/6 ≈ 20,17 m acima
+      do eixo x. Como o eixo x está 1,5 m acima do piso, a bola chega a cerca de 21,67 m. Os tetos de 17,
+      18, 19 e 21 m são mais baixos que isso; o de 40 m, não.
+      Revisar: Aula Teórica › 4. O vértice: valor máximo ou mínimo
 ---
 
-## Aula Teórica Completa
+<Accordion titulo="Palavras e siglas desta aula" dica="Consulte quando encontrar um termo novo" icone="spell-check">
 
-**Forma geral.** f(x) = ax² + bx + c. Os três coeficientes têm papel fixo: a controla a abertura e a orientação da parábola (nunca pode ser zero, senão vira função do 1º grau); b interfere na posição horizontal da parábola; c é o valor de f(0), ou seja, onde a parábola corta o eixo y.
+- **ENEM** (Exame Nacional do Ensino Médio): a prova nacional que dá acesso a faculdades e bolsas.
+- **INEP** (Instituto Nacional de Estudos e Pesquisas Educacionais Anísio Teixeira): o órgão do governo que faz o ENEM.
+- **Parábola**: a curva em forma de "U" (ou de "U" de cabeça para baixo) que é o gráfico de uma função quadrática.
+- **Vértice**: o ponto mais alto ou mais baixo da parábola.
+- **Concavidade**: o lado para onde a parábola abre, para cima ou para baixo.
+- **≤**: "menor ou igual a"; x ≤ 40 quer dizer que x pode ser 40 ou qualquer valor abaixo de 40.
+- **Abscissas**: o eixo horizontal (eixo x) do plano cartesiano.
+- **kg/ha** (quilograma por hectare): quantos quilogramas foram usados ou produzidos em cada hectare de terra; um hectare é um quadrado de 100 m por 100 m.
 
-**Concavidade.** Se a > 0, a parábola tem concavidade voltada para cima (formato de "sorriso"), e existe um ponto de mínimo. Se a &lt; 0, a concavidade é voltada para baixo (formato de "monte"), e existe um ponto de máximo. Isso é decidido olhando só o sinal de a: é a primeira coisa a checar em qualquer questão.
+</Accordion>
 
-**Raízes (zeros da função).** São os valores de x para os quais f(x) = 0, isto é, onde a parábola cruza o eixo x. Calculam-se pela fórmula de Bhaskara:
+## Antes de Começar
 
-x = (−b ± √Δ) / (2a)
+**O que o ENEM cobra aqui.** A prova raramente pede só "calcule f(2)": ela quer o ponto mais alto ou mais baixo de uma situação real, ou quer que você monte a função sozinho. Os temas que costumam aparecer são estes:
 
-onde x é a raiz procurada, b e a são os coeficientes da função, e Δ (delta) é o discriminante, calculado por:
+- **Montar a função** a partir de uma situação em que duas quantidades mudam ao mesmo tempo.
+- **Achar a função** a partir de uma tabela de pontos.
+- **Achar o vértice**, que dá o valor máximo ou mínimo.
+- **Usar a simetria** da parábola para achar o vértice sem fazer conta longa.
 
-Δ = b² − 4ac
+**O que você precisa saber antes.**
 
-sendo b e a e c os três coeficientes da função.
+- **Equações do 2º grau.** A forma ax² + bx + c e a fórmula do vértice já aparecem na aula de Equações; aqui elas viram ferramenta para situações reais.
+- **Função afim.** A ideia de "f(x) é o resultado quando a entrada é x" é a mesma; revise a aula de Função Afim se precisar.
+- **Frações e números negativos.** As contas com a e b costumam ter frações e sinais de menos. Por exemplo, em −x²/6 o número que multiplica x² é a = −1/6, e dividir por uma fração é multiplicar pelo inverso: 2 ÷ (1/3) = 2 × 3 = 6. Revise a aula de Frações se precisar.
+- **Porcentagem.** Dar p% de desconto é multiplicar o preço por (1 − p/100): 20% de desconto em R$ 50,00 dá 50 × (1 − 20/100) = 50 × 0,8 = R$ 40,00. Revise a aula de Porcentagem se precisar.
 
-**O que Δ revela.** Se Δ > 0, existem duas raízes reais diferentes (a parábola corta o eixo x em dois pontos). Se Δ = 0, existe uma raiz real dupla (a parábola toca o eixo x em um único ponto: é exatamente o vértice). Se Δ &lt; 0, não existem raízes reais (a parábola não toca o eixo x). Essa última situação é chave em muitas questões: "vértice sobre o eixo x" é sinônimo direto de Δ = 0.
+## Aula Teórica
 
-**Vértice da parábola.** É o ponto de máximo ou mínimo da função. Suas coordenadas são:
+### 1. O que é uma função quadrática
 
-xv = −b / (2a)
+Uma **função quadrática** tem um termo com x², e o gráfico dela é uma **parábola**. Os números a, b e c são os **coeficientes** da função. O lado para onde a parábola abre (para cima ou para baixo) se chama **concavidade**.
 
-yv = −Δ / (4a)
+**Fórmula: função quadrática**
 
-onde xv é a coordenada horizontal do vértice, yv é a coordenada vertical (o valor máximo ou mínimo da função), e a, b, Δ são os mesmos termos já definidos. Uma propriedade importante: xv é sempre a média aritmética das duas raízes, quando elas existem, isso evita ter que usar a fórmula quando você já tem as raízes.
+**f(x) = ax² + bx + c**
 
-**Forma fatorada.** Quando as raízes x₁ e x₂ são conhecidas, a função pode ser escrita como:
+- **x**: a entrada da função (tempo, preço, distância).
+- **a**: o número que multiplica x²; nunca é zero. O sinal dele decide para onde a parábola abre.
+- **b**: o número que multiplica x.
+- **c**: o termo sozinho; é o valor de f(x) quando x é 0.
+- **Em palavras:** o resultado é a × (x ao quadrado), mais b × x, mais c.
+- **Quando usar:** quando uma grandeza sobe e depois desce (ou o contrário), como uma trajetória, um lucro ou uma área.
 
-f(x) = a(x − x₁)(x − x₂)
+<figure class="figura">
+  <svg viewBox="0 0 460 170" role="img" aria-labelledby="fig-quad-1-t fig-quad-1-d">
+    <title id="fig-quad-1-t">Concavidade da parábola</title>
+    <desc id="fig-quad-1-d">À esquerda, uma parábola aberta para cima, com a positivo e o vértice no ponto mais baixo. À direita, uma parábola aberta para baixo, com a negativo e o vértice no ponto mais alto.</desc>
+    <path d="M 40 30 Q 120 190 200 30" class="traco" />
+    <circle cx="120" cy="110" r="4" class="preenche" />
+    <text x="120" y="130" class="rotulo-fraco" text-anchor="middle">mínimo</text>
+    <text x="120" y="160" class="rotulo" text-anchor="middle">a positivo</text>
+    <path d="M 260 130 Q 340 -30 420 130" class="traco" />
+    <circle cx="340" cy="50" r="4" class="preenche" />
+    <text x="340" y="40" class="rotulo-fraco" text-anchor="middle">máximo</text>
+    <text x="340" y="160" class="rotulo" text-anchor="middle">a negativo</text>
+  </svg>
+</figure>
 
-onde a é o coeficiente do termo x², e x₁, x₂ são as raízes. Essa forma é extremamente útil em questões de modelagem: se o enunciado te dá pontos onde a parábola "toca o chão", já se tem x₁ e x₂ de graça, e só falta descobrir a.
+**Exemplo resolvido.** Em f(x) = −2x² + 8x + 1, a parábola abre para cima ou para baixo? Quanto vale f(0)?
 
-**Montando a função a partir de um problema real.** Esse é o tipo de questão mais comum no ENEM. O procedimento padrão: identificar os pontos conhecidos (raízes, vértice, ou pontos quaisquer do gráfico), escolher a forma mais conveniente (geral, fatorada, ou pela fórmula do vértice), substituir os pontos e resolver o sistema para achar os coeficientes.
+1. Coeficientes: a = −2, b = 8, c = 1.
+2. Como a é negativo, a parábola abre para baixo e tem um ponto máximo.
+3. f(0) = −2 × 0² + 8 × 0 + 1 = 1, que é o próprio c.
+4. Resposta: abre para baixo; f(0) = 1.
 
-**Pegadinhas do INEP:**
-Confundir "vértice" com "raiz": o vértice é o ponto extremo, a raiz é onde f(x) = 0; eles só coincidem quando Δ = 0.
-Ignorar o domínio do problema: em contextos reais (tempo, quantidade de pessoas), x geralmente só pode ser um número natural ou estar num intervalo, e a resposta "matemática" pode não fazer sentido físico (ex: tempo negativo).
-Trocar concavidade: esquecer que a &lt; 0 dá máximo e a > 0 dá mínimo é um erro clássico sob pressão de tempo.
-Calcular raiz quando a pergunta pede o vértice (ou vice-versa): isso aparece com frequência disfarçado em textos longos sobre epidemias, lucro, trajetórias.
+**Erro comum.** Achar que a parábola abre para cima só porque b ou c são positivos. Quem decide a **concavidade** é apenas o sinal de a.
+
+### 2. Montando a função a partir de um problema
+
+Muitas funções quadráticas nascem de uma multiplicação: duas quantidades que dependem de x, multiplicadas entre si. Por exemplo, quantidade vezes preço, ou largura vezes comprimento.
+
+**Exemplo resolvido.** Com 40 m de tela, uma pessoa quer cercar um canteiro retangular. Se um dos lados mede x metros, qual é a área A em função de x?
+
+1. O perímetro é 40, então dois lados somam 20: se um lado é x, o outro é 20 − x.
+2. Área = lado × lado: A = x × (20 − x).
+3. Expandir: A = 20x − x².
+4. Resposta: A(x) = −x² + 20x, em metro quadrado.
+
+**Erro comum.** Somar as duas quantidades em vez de multiplicá-las. Área, valor arrecadado e produção total são **produtos**, e é o produto de duas expressões com x que gera o x².
+
+Quando um desconto ou um aumento depende de x, escreva primeiro o preço de uma unidade em função de x. Só depois multiplique pela quantidade.
+
+### 3. Achando a função a partir de pontos
+
+Uma função quadrática fica totalmente definida por três pontos. Com uma tabela de valores, dá para montar um sistema e achar a, b e c.
+
+**Exemplo resolvido.** Uma função quadrática tem f(0) = 3, f(1) = 5 e f(2) = 9. Quanto vale f(3)?
+
+1. f(0) = c, então c = 3.
+2. f(1) = a + b + 3 = 5, então a + b = 2.
+3. f(2) = 4a + 2b + 3 = 9, então 4a + 2b = 6.
+4. Dobrando a equação do passo 2: 2a + 2b = 4. Subtraindo do passo 3: 2a = 2, então a = 1 e b = 1.
+5. f(3) = 1 × 9 + 1 × 3 + 3 = 15.
+6. Resposta: 15.
+
+**Erro comum.** Esquecer que f(0) entrega o c de graça. Comece sempre pelo ponto em que x é 0: nele, a e b somem e sobra só o c.
+
+Com valores de x igualmente espaçados (0, 1, 2, 3...), há um atalho. As **diferenças** entre resultados vizinhos mudam sempre do mesmo tanto. No exemplo, 3 → 5 → 9 tem diferenças 2 e 4 (aumentam 2), então a próxima diferença é 6, e f(3) = 9 + 6 = 15.
+
+### 4. O vértice: valor máximo ou mínimo
+
+O **vértice** é o ponto mais alto (quando a é negativo) ou mais baixo (quando a é positivo) da parábola.
+
+**Fórmula: x do vértice**
+
+**x do vértice = −b ÷ (2a)**
+
+- **a, b**: os coeficientes de f(x) = ax² + bx + c.
+- **x do vértice**: a posição do ponto mais alto ou mais baixo. O valor máximo ou mínimo é f(x do vértice).
+- **Em palavras:** troque o sinal de b e divida por duas vezes a; depois coloque esse x na função.
+- **Quando usar:** sempre que o problema pedir o maior ou o menor valor possível de uma situação.
+
+**Exemplo resolvido.** Uma pedra é lançada para cima, e sua altura, em metro, depois de t segundos, é h(t) = −5t² + 30t. Qual é a altura máxima?
+
+1. Coeficientes: a = −5, b = 30.
+2. x do vértice: t = −30 ÷ (2 × (−5)) = −30 ÷ (−10) = 3 segundos.
+3. Altura nesse instante: h(3) = −5 × 9 + 30 × 3 = −45 + 90 = 45.
+4. Resposta: 45 metros.
+
+**Erro comum.** Parar no x do vértice e responder com ele. O x diz **quando** (ou onde) o máximo acontece; o valor máximo é o y, que se acha colocando esse x na função.
+
+Leia com atenção onde o problema colocou o eixo x. Se ele não está no chão, o y do vértice é medido a partir desse eixo, e é preciso somar ou subtrair a distância até o chão.
+
+**Exemplo resolvido.** Uma pista de skate em U tem o perfil y = x²/8 − 3x/2, em metro. O eixo x fica na altura da borda da pista, 5 m acima do chão, e y negativo quer dizer abaixo da borda. Qual é a altura do ponto mais baixo da pista em relação ao chão?
+
+1. Coeficientes em fração: a = 1/8 e b = −3/2. Como a é positivo, o vértice é um mínimo.
+2. x do vértice: −(−3/2) ÷ (2 × 1/8) = (3/2) ÷ (1/4) = (3/2) × 4 = 6.
+3. y nesse ponto: 36/8 − 3 × 6/2 = 4,5 − 9 = −4,5. O fundo fica 4,5 m abaixo da borda.
+4. A borda está 5 m acima do chão: 5 − 4,5 = 0,5.
+5. Resposta: 0,5 metro acima do chão.
+
+**Erro comum.** Responder −4,5 m ou 4,5 m. O y do vértice é medido a partir do eixo, não do chão; o último passo é sempre converter para a referência que a pergunta pediu.
+
+### 5. A simetria da parábola
+
+A parábola é **simétrica**: o lado esquerdo é o espelho do lado direito, e o espelho passa pelo vértice. Por isso, dois valores de x com o mesmo resultado ficam à mesma distância do vértice.
+
+**Fórmula: vértice pela simetria**
+
+**x do vértice = (x₁ + x₂) ÷ 2**
+
+- **x₁, x₂**: dois valores de x que dão o mesmo resultado na função (por exemplo, as duas raízes, os pontos em que a função vale zero).
+- **x do vértice**: o ponto exatamente no meio dos dois.
+- **Em palavras:** tire a média dos dois valores de x que têm o mesmo y.
+- **Quando usar:** quando o problema der dois pontos com o mesmo resultado; evita montar o sistema inteiro.
+
+<figure class="figura">
+  <svg viewBox="0 0 460 180" role="img" aria-labelledby="fig-quad-2-t fig-quad-2-d">
+    <title id="fig-quad-2-t">Simetria da parábola</title>
+    <desc id="fig-quad-2-d">Uma parábola aberta para baixo com dois pontos à mesma altura, um de cada lado. Uma linha tracejada vertical passa pelo vértice, exatamente no meio dos dois pontos.</desc>
+    <path d="M 60 170 Q 230 -70 400 170" class="traco" />
+    <line x1="230" y1="40" x2="230" y2="170" class="tracejado" />
+    <circle cx="230" cy="50" r="4" class="preenche" />
+    <circle cx="120" cy="100" r="4" class="preenche" />
+    <circle cx="340" cy="100" r="4" class="preenche" />
+    <line x1="120" y1="100" x2="340" y2="100" class="traco-fino" />
+    <text x="132" y="120" class="rotulo" text-anchor="middle">x₁</text>
+    <text x="328" y="120" class="rotulo" text-anchor="middle">x₂</text>
+    <text x="250" y="45" class="rotulo-fraco">vértice</text>
+  </svg>
+</figure>
+
+**Exemplo resolvido.** Uma função quadrática vale 12 tanto em x = 2 quanto em x = 20. Em que x fica o vértice?
+
+1. Os dois pontos têm o mesmo resultado (12).
+2. Fórmula: x do vértice = (2 + 20) ÷ 2.
+3. Calcular: 22 ÷ 2 = 11.
+4. Resposta: x = 11.
+
+**Erro comum.** Achar que o vértice está no meio da tabela inteira. A média só vale para dois pontos com o **mesmo resultado**, não para quaisquer dois pontos.
+
+### Armadilhas típicas do INEP
+
+1. **Decidir a concavidade** pelo sinal de b ou de c, e não pelo de a.
+2. **Responder com o x do vértice** quando a pergunta é o valor máximo ou mínimo (o y).
+3. **Esquecer o deslocamento do eixo**, quando o eixo x não está no chão.
+4. **Somar em vez de multiplicar** as duas quantidades que dependem de x.
+5. **Errar sinais nas frações** de a e b ao usar −b ÷ (2a).
+6. **Tirar a média de dois pontos quaisquer**, e não de dois pontos com o mesmo resultado.
 
 ## Tópicos-Chave para Revisão
 
 <div className="topico">
 
-Toda função quadrática tem a forma f(x) = ax² + bx + c, com a ≠ 0. O sinal de **a** define a concavidade: a > 0 é mínimo (parábola para cima), a &lt; 0 é máximo (parábola para baixo). **c** é sempre o valor onde a parábola corta o eixo y.
+#### 1. O que é uma função quadrática
 
-As raízes são os pontos onde a parábola cruza o eixo x, calculadas por x = (−b ± √Δ) / (2a), com Δ = b² − 4ac. O sinal de Δ determina quantas raízes reais existem: Δ > 0 duas raízes, Δ = 0 uma raiz (vértice sobre o eixo x), Δ &lt; 0 nenhuma raiz real.
+Uma **função quadrática** tem a forma **f(x) = ax² + bx + c**. O gráfico é uma **parábola**: aberta para cima se a é positivo (tem mínimo), para baixo se a é negativo (tem máximo).
 
-O vértice é o ponto de máximo ou mínimo da parábola, com xv = −b/(2a) e yv = −Δ/(4a). O xv também é a média das duas raízes: atalho útil quando as raízes já são conhecidas.
+#### 2. Montando a função
 
-A forma fatorada f(x) = a(x − x₁)(x − x₂) é a ferramenta certa quando o problema fornece diretamente os pontos onde a função vale zero, evitando montar sistemas maiores que o necessário.
+Uma função quadrática costuma nascer de um **produto** de duas quantidades que dependem de x. Escreva cada **quantidade** em função de x e multiplique.
 
-Em problemas de modelagem (trajetórias, lucro, epidemias, arquitetura), o primeiro passo é sempre traduzir o texto em pontos do plano cartesiano (raízes, vértice, ou pontos quaisquer) e só depois escolher a fórmula. A segunda etapa crítica é identificar exatamente o que a pergunta quer: o valor de x (quando algo acontece) ou o valor de y (quanto vale nesse momento), são coisas diferentes e o ENEM explora essa confusão.
+#### 3. Achando a função por pontos
+
+Três pontos definem a função: f(0) dá o **c** direto, e os outros dois dão um **sistema** para a e b. Com x igualmente espaçado, as **diferenças** entre valores vizinhos mudam sempre do mesmo tanto.
+
+#### 4. Vértice
+
+O ponto mais alto ou mais baixo fica em **x do vértice = −b ÷ (2a)**. O valor máximo ou mínimo é o **y**, calculado colocando esse x na função. Se o **eixo x** não está no chão, some ou subtraia a distância até o chão.
+
+#### 5. Simetria
+
+Dois pontos com o mesmo resultado ficam à mesma distância do vértice: **x do vértice = (x₁ + x₂) ÷ 2**. Use a **simetria** para achar o vértice sem montar o sistema.
 
 </div>
 
-## Teste de Fogo
+## Questões do ENEM
 
-*Questões sem gabarito: resolva primeiro, depois confira com o professor ou com a IA.*
+*Marque uma alternativa em cada questão e confira tudo de uma vez no botão do fim.*
 
-**Questão 1 (ENEM 2013)**
-A parte interior de uma taça foi gerada pela rotação de uma parábola em torno de um eixo z, conforme mostra a figura. A função real que expressa a parábola, no plano cartesiano da figura, é dada pela lei f(x) = 3/2 x² − 6x + C, onde C é a medida da altura do líquido contido na taça, em centímetros. Sabe-se que o ponto V, na figura, representa o vértice da parábola, localizado sobre o eixo x. Nessas condições, a altura do líquido contido na taça, em centímetros, é
+**Questão 1**
 
-a) 1
-b) 2
-c) 4
-d) 5
-e) 6
+*ENEM 2019 · 2ª aplicação · 2º dia · caderno azul · questão 143*
 
-**Questão 2 (ENEM 2017)**
-A Igreja de São Francisco de Assis, obra arquitetônica modernista de Oscar Niemeyer, localizada na Lagoa da Pampulha, em Belo Horizonte, possui abóbadas parabólicas. Considerando um sistema de coordenadas em que a base da abóbada é simétrica em relação ao eixo y, com as extremidades da base nos pontos (−5, 0) e (5, 0), e sabendo que o ponto (4, 3) pertence à parábola, qual a medida da altura H (o valor de y quando x = 0), em metro?
+No desenvolvimento de um novo remédio, pesquisadores monitoram a quantidade Q de uma substância circulando na corrente sanguínea de um paciente, ao longo do tempo t. Esses pesquisadores controlam o processo, observando que Q é uma função quadrática de t. Os dados coletados nas duas primeiras horas foram:
 
-a) 16/3
-b) 31/5
-c) 25/4
-d) 25/3
-e) 75/2
+<figure class="figura">
 
-**Questão 3 (ENEM 2018)**
-Um projétil é lançado por um canhão e atinge o solo a uma distância de 150 metros do ponto de partida. Ele percorre uma trajetória parabólica, e a altura máxima que atinge em relação ao solo é de 25 metros. Admita um sistema de coordenadas xy em que no eixo vertical y está representada a altura e no eixo horizontal x está representada a distância, ambas em metro. Considere que o canhão está no ponto (150; 0) e que o projétil atinge o solo no ponto (0; 0) do plano xy. A equação da parábola que representa a trajetória descrita pelo projétil é
+| t (hora) | 0 | 1 | 2 |
+|---|---|---|---|
+| Q (miligrama) | 1 | 4 | 6 |
 
-a) y = 150x − x²
-b) y = 3750x − 25x²
-c) 75y = 300x − 2x²
-d) 125y = 450x − 3x²
-e) 225y = 150x − x²
+</figure>
 
-**Questão 4 (ENEM 2020)**
-Em um ano, uma prefeitura apresentou o relatório de gastos públicos realizados pelo município. O documento mostra que foram gastos 72 mil reais no mês de janeiro (mês 1), que o maior gasto mensal ocorreu no mês de agosto (mês 8) e que a prefeitura gastou 105 mil reais no mês de dezembro (mês 12). A curva que modela esses gastos é a parábola y = T(x), com x sendo o número correspondente ao mês e T(x), em milhar de real. A expressão da função cujo gráfico é o da parábola descrita é
+Para decidir se devem interromper o processo, evitando riscos ao paciente, os pesquisadores querem saber, antecipadamente, a quantidade da substância que estará circulando na corrente sanguínea desse paciente após uma hora do último dado coletado.
 
-a) T(x) = −x² + 16x + 57
-b) T(x) = −11/16 x² + 11x + 72
-c) T(x) = 3/5 x² − 24/5 x + 381/5
-d) T(x) = −x² − 16x + 87
-e) T(x) = 11/16 x² − 11/2 x + 72
+Nas condições expostas, essa quantidade (em miligrama) será igual a
 
-**Questão 5 (ENEM 2022)**
-Ao analisar os dados de uma epidemia em uma cidade, peritos obtiveram um modelo que avalia a quantidade de pessoas infectadas a cada mês, ao longo de um ano. O modelo é dado por p(t) = −t² + 10t + 24, sendo t um número natural, variando de 1 a 12, que representa os meses do ano, e p(t) a quantidade de pessoas infectadas no mês t do ano. Para tentar diminuir o número de infectados no próximo ano, a Secretaria Municipal de Saúde decidiu intensificar a propaganda oficial sobre os cuidados com a epidemia. Foram apresentadas cinco propostas, com diferentes períodos de intensificação das propagandas: I: 1 ≤ t ≤ 2; II: 3 ≤ t ≤ 4; III: 5 ≤ t ≤ 6; IV: 7 ≤ t ≤ 9; V: 10 ≤ t ≤ 12. A sugestão dos peritos é que seja escolhida a proposta cujo período englobe o mês em que, segundo o modelo, há a maior quantidade de infectados. A proposta escolhida foi a
+A) 4.\
+B) 7.\
+C) 8.\
+D) 9.\
+E) 10.
 
-a) I
-b) II
-c) III
-d) IV
-e) V
+**Questão 2**
+
+*ENEM 2025 · 2ª aplicação · 2º dia · caderno azul · questão 172*
+
+O esquema apresenta dois postes de 6 metros de altura sobre um solo horizontal, com um fio elétrico passando pelos pontos A e B, distando 8 metros entre si, que representam os extremos superiores de cada poste.
+
+<figure class="figura">
+  <svg viewBox="0 0 460 210" role="img" aria-labelledby="fig-quad-q2-t fig-quad-q2-d">
+    <title id="fig-quad-q2-t">Fio entre dois postes</title>
+    <desc id="fig-quad-q2-d">Dois postes de 6 metros de altura, a 8 metros um do outro. Os topos são os pontos A e B, sobre o eixo x. Entre eles, o fio forma uma curva que desce um pouco abaixo do eixo. O eixo y passa por A. Figura redesenhada a partir da prova oficial, com os mesmos dados.</desc>
+    <line x1="30" y1="190" x2="430" y2="190" class="traco" />
+    <line x1="100" y1="60" x2="100" y2="190" class="traco" />
+    <line x1="340" y1="60" x2="340" y2="190" class="traco" />
+    <line x1="100" y1="60" x2="420" y2="60" class="traco-fino" />
+    <path d="M 100 60 Q 220 110 340 60" class="traco" />
+    <line x1="100" y1="60" x2="100" y2="8" class="traco-fino" />
+    <text x="108" y="14" class="rotulo-fraco">y</text>
+    <circle cx="100" cy="60" r="4" class="preenche" />
+    <circle cx="340" cy="60" r="4" class="preenche" />
+    <text x="92" y="52" class="rotulo" text-anchor="end">A</text>
+    <text x="348" y="52" class="rotulo">B</text>
+    <text x="428" y="52" class="rotulo-fraco">x</text>
+    <line x1="100" y1="28" x2="340" y2="28" class="tracejado" />
+    <text x="220" y="22" class="rotulo-fraco" text-anchor="middle">8 m</text>
+    <line x1="380" y1="70" x2="380" y2="188" class="tracejado" />
+    <text x="390" y="130" class="rotulo-fraco">6 m</text>
+  </svg>
+</figure>
+
+Considerando o ponto A como origem do plano cartesiano e o segmento AB contido no eixo horizontal desse plano, admita que a curva que o fio elétrico forma entre A e B seja modelada pela função quadrática y = 0,02x² − 0,16x, com x e y em metro.
+
+A menor distância, em metro, dessa parte do fio até o solo é
+
+A) 5,36.\
+B) 5,68.\
+C) 5,84.\
+D) 5,98.\
+E) 5,99.
+
+**Questão 3**
+
+*ENEM 2022 · 2ª aplicação · 2º dia · caderno azul · questão 171*
+
+O chocolate é um dos alimentos mais apreciados e desejados do mundo. Uma loja especializada nesse produto oferece uma promoção para os bombons, que custam R$ 2,00 cada. Cada cliente tem x% de desconto na compra de x bombons. A promoção é válida para a compra de até 40 bombons, ou seja, 40% é o desconto máximo possível. Queremos escrever uma expressão para V em função de x, com x ≤ 40.
+
+Qual é a expressão do valor V, em reais, na compra de x bombons da promoção, por cliente?
+
+A) V = (1/50)x²\
+B) V = 2 − (1/50)x\
+C) V = 2x − (1/50)x²\
+D) V = x − (1/100)x²\
+E) V = 2x − (1/100)x
+
+**Questão 4**
+
+*ENEM 2025 · 2ª aplicação · 2º dia · caderno azul · questão 147*
+
+A produtividade P de um tipo de semente depende da quantidade Q de fertilizante aplicada, ambas em quilograma por hectare. Foram realizados quatro experimentos em pequenas regiões, onde foi possível medir a produção para diferentes valores de Q para aquele tipo de solo, obtendo-se os seguintes resultados:
+
+- região 1: Q = 0 kg/ha resultou P = 1 000 kg/ha;
+- região 2: Q = 100 kg/ha resultou P = 6 000 kg/ha;
+- região 3: Q = 200 kg/ha resultou P = 9 000 kg/ha;
+- região 4: Q = 500 kg/ha resultou P = 6 000 kg/ha.
+
+A produtividade P é modelada por uma função quadrática na variável Q. O objetivo desses experimentos é obter a dosagem ideal de fertilizante que torne a produção máxima.
+
+Qual deve ser a dosagem de fertilizante a ser aplicada, em quilograma por hectare, para que a produção seja máxima?
+
+A) 200\
+B) 250\
+C) 300\
+D) 350\
+E) 500
+
+**Questão 5**
+
+*ENEM 2022 · 2º dia · caderno azul · questão 150*
+
+Em jogos de voleibol, um saque é invalidado se a bola atingir o teto do ginásio onde ocorre o jogo. Um jogador de uma equipe tem um saque que atinge uma grande altura. Seu recorde foi quando a batida do saque se iniciou a uma altura de 1,5 m do piso da quadra, e a trajetória da bola foi descrita pela parábola y = −x²/6 − 7x/3 + 12, em que y representa a altura da bola em relação ao eixo x (das abscissas) que está localizado a 1,5 m do piso da quadra, como representado na figura. Suponha que em todas as partidas algum saque desse jogador atinja a mesma altura do seu recorde.
+
+<figure class="figura">
+  <svg viewBox="0 0 460 200" role="img" aria-labelledby="fig-quad-q5-t fig-quad-q5-d">
+    <title id="fig-quad-q5-t">Trajetória do saque</title>
+    <desc id="fig-quad-q5-d">A trajetória da bola é uma parábola aberta para baixo que começa à esquerda, sobe até o ponto mais alto e desce do outro lado da quadra. O eixo x é uma linha horizontal 1,5 m acima do piso, e o eixo y é vertical, à direita do ponto mais alto. Figura redesenhada a partir da prova oficial, com os mesmos dados.</desc>
+    <line x1="20" y1="185" x2="440" y2="185" class="traco" />
+    <text x="440" y="198" class="rotulo-fraco" text-anchor="end">piso</text>
+    <line x1="20" y1="160" x2="440" y2="160" class="traco-fino" />
+    <text x="440" y="152" class="rotulo-fraco" text-anchor="end">x</text>
+    <line x1="260" y1="185" x2="260" y2="10" class="traco-fino" />
+    <text x="268" y="18" class="rotulo-fraco">y</text>
+    <path d="M 40 160 Q 175 -80 309 160" class="tracejado" />
+    <line x1="30" y1="162" x2="30" y2="183" class="traco-fino" />
+    <text x="36" y="178" class="rotulo-fraco">1,5 m</text>
+  </svg>
+</figure>
+
+A equipe desse jogador participou de um torneio de voleibol no qual jogou cinco partidas, cada uma delas em um ginásio diferente. As alturas dos tetos desses ginásios, em relação aos pisos das quadras, são:
+
+- ginásio I: 17 m;
+- ginásio II: 18 m;
+- ginásio III: 19 m;
+- ginásio IV: 21 m;
+- ginásio V: 40 m.
+
+O saque desse atleta foi invalidado
+
+A) apenas no ginásio I.\
+B) apenas nos ginásios I e II.\
+C) apenas nos ginásios I, II e III.\
+D) apenas nos ginásios I, II, III e IV.\
+E) em todos os ginásios.
