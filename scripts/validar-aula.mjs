@@ -217,7 +217,7 @@ function validar(arquivo) {
     }
   });
   if (antes.ini >= 0 && glossario.size < 3) erro(L(antes.ini), 'glossário com menos de 3 termos');
-  if (termosComuns > 14) aviso(L(antes.ini + abreGl), `glossário com ${termosComuns} termos além das siglas (o padrão é até ~12): tire os óbvios`);
+  if (termosComuns > 18) aviso(L(antes.ini + abreGl), `glossário com ${termosComuns} termos além das siglas (o padrão é até ~15): tire os óbvios ou explique no texto`);
 
   // -------------------------------------------------------------- siglas (§4)
   // Toda sigla (2+ maiúsculas) fora da seção de questões está no glossário. Vem

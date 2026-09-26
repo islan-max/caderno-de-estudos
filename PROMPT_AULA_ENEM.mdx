@@ -174,7 +174,7 @@ E) …
 - Escrever para quem nunca viu o assunto: frases curtas (até ~20 palavras), uma ideia por frase, palavras do dia a dia.
 - Analogia concreta antes do termo técnico.
 - Todo termo técnico: definido na primeira aparição, no próprio texto.
-- "Palavras e siglas desta aula" é para consulta rápida, recolhido no site: todas as siglas da aula e só os termos que um aluno comum não conhece (técnicos, da época, das alternativas). Nada óbvio ou de conhecimento geral (ex.: "Constituição", "Bolsa de Valores", "ditadura", letras de fórmula, "área", "porcentagem"). Até ~12 termos além das siglas.
+- "Palavras e siglas desta aula" é para consulta rápida, recolhido no site. Entram: todas as siglas (da aula e dos textos das questões) e toda palavra difícil dos enunciados e das alternativas que o texto da aula não explica. Termo técnico já definido no texto da aula não precisa entrar. Nada óbvio ou de conhecimento geral (ex.: "Constituição", "Bolsa de Valores", "ditadura", letras de fórmula, "área", "porcentagem"). Em geral, até ~15 termos além das siglas: se passar disso, explique mais termos no próprio texto.
 - Toda sigla: no glossário e, por extenso entre parênteses, na primeira aparição do Raio-X (`quickSummary` e depois `relevance`) e de novo na primeira aparição dentro da Aula Teórica: "DIP (Departamento de Imprensa e Propaganda)". Inclui as da prova (ENEM, INEP, PPL = Pessoas Privadas de Liberdade) e as do conteúdo (DNA, pH, PIB, IDH, ONU…).
 - Todo símbolo: explicado no texto na primeira aparição, como se lê e o que significa ("≥ (maior ou igual a)"), ou na lista de letras do cartão de fórmula. Não há tabela de símbolos.
 - Negrito é destaque de palavra-chave (sai na cor da matéria). Nunca frase inteira em negrito, fora os rótulos do padrão (**O que o ENEM cobra aqui.**, **Fórmula: …**, **Exemplo resolvido.**, **Erro comum.**).
@@ -225,7 +225,7 @@ Sem legenda: nada de `<figcaption>` com "Figura N" e título, nem "Versão compa
 
 - Linha em branco antes e depois do `![…](…)` é obrigatória (sem ela o MDX não processa o markdown dentro da figura).
 - Nomes: `q<N>.png`, `q<N>-alternativas.png`, `fig-<n>-<assunto>.png`.
-- Recorte: PyMuPDF, `page.get_pixmap(dpi=200, clip=retângulo)` (`scripts/banco_inep.py recortar`). Só a figura: sem texto do enunciado, sem cabeçalho da página. O script apara o branco em volta e devolve a figura centrada, com a mesma margem nos quatro lados; conferir o PNG antes de usar. Largura máxima 1600 px.
+- Recorte: PyMuPDF, `page.get_pixmap(dpi=200, clip=retângulo)` (`scripts/banco_inep.py recortar`). Só a figura: sem texto do enunciado, sem cabeçalho da página. O script apara o branco em volta e devolve a figura centrada, com a mesma margem nos quatro lados; conferir o PNG antes de usar. Largura máxima 1600 px; figura pequena sai com até 300 dpi (mais que isso só borra).
 - Sem recorte possível: redesenhar em SVG com todos os dados do original; o `<desc>` termina com "Figura redesenhada a partir da prova oficial, com os mesmos dados." Sem isso também: trocar a questão.
 - Crédito Commons, como legenda: `<figcaption>Imagem: <autor>, <licença>, via Wikimedia Commons.</figcaption>`
 - **Alternativas em imagem:** o quiz só lê o texto das alternativas. Colocar uma figura com as 5 opções (letras visíveis, recortada do PDF) logo antes das alternativas, e escrever as alternativas em texto: `A) Gráfico A` … `E) Gráfico E`.

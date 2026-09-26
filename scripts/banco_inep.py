@@ -1024,9 +1024,9 @@ def recortar(qid, *args):
     ret = pymupdf.Rect(*bbox) + (-4, -4, 4, 4)  # folga para o traço não encostar na borda
     if "--sem-aparar" not in resto:
         ret = aparar(doc[pagina - 1], ret)
-    # 200 dpi; figura pequena ganha resolução para sair com pelo menos ~560 px de largura
+    # 200 dpi; figura pequena ganha até 300 dpi (mais que isso só borra imagem de baixa resolução)
     polegadas = ret.width / 72
-    dpi = int(min(1600 / polegadas, max(200, 560 / polegadas)))
+    dpi = int(min(1600 / polegadas, max(200, min(300, 560 / polegadas))))
     saida.parent.mkdir(parents=True, exist_ok=True)
     doc[pagina - 1].get_pixmap(dpi=dpi, clip=ret).save(saida)
     print("recorte salvo:", saida, f"({dpi} dpi)")
