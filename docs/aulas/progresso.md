@@ -106,7 +106,7 @@ Status: `pendente`, `em andamento`, `concluída`, `bloqueada`. Questões: ids do
 | historia/brasil-imperio | 4 | pendente |  |  |  |
 | historia/republica | 5 | pendente |  |  |  |
 | historia/guerras-mundiais | 6 | pendente |  |  |  |
-| historia/era-vargas | 7 | pendente |  |  | piloto |
+| historia/era-vargas | 7 | concluída | 2012-regular-D1-azul-Q041, 2022-regular-D1-azul-Q081, 2025-reaplicacao-D1-azul-Q057, 2024-ppl-D1-azul-Q082, 2017-regular-D1-azul-Q081 | 2e0855d | piloto; revisor: PASS na 2ª leitura; data do DIP: a questão 2 imprime 1937 (erro da prova), a aula ensina 1939; sem divisão |
 | historia/guerra-fria | 8 | pendente |  |  |  |
 | historia/ditadura-militar | 9 | pendente |  |  |  |
 | historia/movimentos-sociais | 10 | pendente |  |  |  |
