@@ -531,7 +531,8 @@ def linhas_da_pagina(pagina):
                 if tam_normal is None:
                     tam_normal = s["size"]
                 if s["size"] < tam_normal * 0.85:
-                    if not em_expoente:
+                    # pontuação ou espaço em fonte menor ("."; "–") não é expoente
+                    if not em_expoente and re.search(r"\w", s["text"]):
                         partes.append("^")
                         em_expoente = True
                 else:
@@ -647,9 +648,15 @@ def separar_alternativas(linhas):
                 atual = [re.sub(r"^[A-E](\s|\t)*", "", l["texto"]).strip()]
                 textos.append(atual)
                 esperado += 1
-                x_letra = l["x0"]
-            elif atual is not None and l["x0"] > x_letra + 3 and esperado <= 6:
+                x_letra, y_ref = l["x0"], l["y0"]
+            # Continuação da alternativa: mais à direita da letra e logo abaixo dela. Um salto
+            # para cima (outra coluna ou página) ou um vão grande é texto de outra coisa: sem
+            # isso, a última alternativa de uma questão que ocupa as duas colunas engolia a
+            # tabela da questão vizinha.
+            elif atual is not None and l["x0"] > x_letra + 3 and esperado <= 6 \
+                    and y_ref - 15 <= l["y0"] < y_ref + 60:
                 atual.append(l["texto"])
+                y_ref = max(y_ref, l["y0"])
         if len(textos) == 5:
             # Fração digitada em duas linhas empilhadas (numerador em cima, denominador embaixo)
             # vira "8 3" em vez de "8/3": junta com "/" quando a alternativa inteira são só
