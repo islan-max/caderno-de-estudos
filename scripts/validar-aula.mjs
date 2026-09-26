@@ -25,7 +25,12 @@ const SECOES = ['Antes de Começar', 'Aula Teórica Completa', 'Tópicos-Chave p
 const INSTRUCAO_TESTE = '*Marque uma alternativa em cada questão e confira tudo de uma vez no botão do fim.*';
 const TAGS_SVG = ['svg', 'g', 'line', 'rect', 'circle', 'ellipse', 'path', 'polyline', 'polygon', 'text', 'tspan', 'title', 'desc', 'defs', 'marker'];
 const TAGS = new Set(['div', 'figure', 'figcaption', 'b', ...TAGS_SVG]);
-const APLICACOES = { ppl: 'ppl', digital: 'digital', 'reaplicação': 'reaplicacao', '2ª aplicação': 'segunda-aplicacao', '3ª aplicação': 'terceira-aplicacao', 'belém': 'belem' };
+// nome da capa do caderno -> aplicações do banco (o site do INEP chama de "Reaplicação/PPL"
+// o caderno que na capa diz "2ª aplicação"; em 2016 a PPL foi a "3ª aplicação")
+const APLICACOES = {
+  ppl: ['ppl'], digital: ['digital'], 'reaplicação': ['reaplicacao', 'ppl'], '2ª aplicação': ['segunda-aplicacao', 'ppl'],
+  '3ª aplicação': ['terceira-aplicacao', 'ppl'], 'belém': ['belem'],
+};
 const CORES = ['azul', 'amarelo', 'branco', 'rosa', 'cinza', 'laranja', 'verde', 'roxo'];
 const ROMANOS = /^(I{1,3}|IV|V|VI{0,3}|IX|X{1,3}|XI{1,3}|XIV|XV|XVI{0,3}|XIX|XX{0,3}I{0,3}|XXI)$/;
 
@@ -406,8 +411,9 @@ function validar(arquivo) {
       if (!q.oficial) return;
       const [, ano, apl, dia, cor, num, lingua] = q.oficial;
       if (!CORES.includes(cor)) erro(q.linhaFonte, `cor de caderno desconhecida: ${cor}`);
-      const aplicacao = apl ? APLICACOES[apl.toLowerCase()] : 'regular';
-      const achadas = lista.filter((b) => b.ano === Number(ano) && b.aplicacao === aplicacao && b.dia === Number(dia) && b.cor === cor
+      const aplicacoes = apl ? APLICACOES[apl.toLowerCase()] : ['regular'];
+      const aplicacao = aplicacoes.join('/');
+      const achadas = lista.filter((b) => b.ano === Number(ano) && aplicacoes.includes(b.aplicacao) && b.dia === Number(dia) && b.cor === cor
         && b.numero === Number(num) && (!lingua || b.lingua === lingua.replace('ê', 'e')));
       if (!achadas.length) {
         erro(q.linhaFonte, `questão ${q.n}: não está no banco do INEP (${ano} ${aplicacao} D${dia} ${cor} Q${num}${lingua ? ' ' + lingua : ''}). Use \`banco_inep.py localizar\` ou corrija a fonte`);
@@ -425,10 +431,17 @@ function validar(arquivo) {
         erro(q.linhaFonte, `questão ${q.n} (${b.id}): gabarito da aula é ${'ABCDE'[fm.gabarito[j].correta]}, o oficial do INEP é ${b.gabarito}`);
       }
       if (b.alternativas?.length === 5 && !b.alternativas_em_imagem && b.texto_ilegivel < 0.02 && q.alternativas) {
-        q.alternativas.forEach((a, y) => {
-          const s = semelhanca(a, b.alternativas[y]);
-          if (s < 0.75) erro(q.linhaFonte, `questão ${q.n}, alternativa ${'ABCDE'[y]} difere da prova (${Math.round(s * 100)}%): prova diz "${b.alternativas[y].slice(0, 90)}"`);
-        });
+        const falhas = q.alternativas.map((a, y) => [y, semelhanca(a, b.alternativas[y])]).filter(([, s]) => s < 0.75);
+        // frações e expressões saem da prova com numerador e denominador fora de ordem;
+        // aí compara o conjunto das 5 alternativas e deixa a ordem para o revisor (na imagem)
+        const conjunto = semelhanca(q.alternativas.join(' '), b.alternativas.join(' '));
+        if (falhas.length >= 2 && conjunto >= 0.75) {
+          aviso(q.linhaFonte, `questão ${q.n}: alternativas não batem uma a uma com o texto extraído (${Math.round(conjunto * 100)}% no conjunto); conferir na imagem da prova`);
+        } else {
+          for (const [y, s] of falhas) erro(q.linhaFonte, `questão ${q.n}, alternativa ${'ABCDE'[y]} difere da prova (${Math.round(s * 100)}%): prova diz "${b.alternativas[y].slice(0, 90)}"`);
+        }
+      } else if (q.alternativas && (!b.alternativas?.length || b.texto_ilegivel >= 0.02)) {
+        aviso(q.linhaFonte, `questão ${q.n}: o banco não tem o texto das alternativas; conferir na imagem da prova`);
       }
       if (b.figuras?.length && !q.temFigura && !q.remeteProva) erro(q.linhaFonte, `questão ${q.n} (${b.id}) tem figura na prova, mas não na aula`);
       if (b.alternativas_em_imagem && !q.temFigura) erro(q.linhaFonte, `questão ${q.n}: alternativas em imagem na prova; coloque a figura com as 5 opções antes das alternativas (§5)`);
