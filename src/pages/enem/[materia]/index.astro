@@ -29,6 +29,7 @@ const ids = temas.map((t) => t.id).join(' ');
   description={`Temas de ${subjectLabel} para o ENEM, na ordem de aprendizado`}
   voltar={{ href: u('/enem'), label: 'Matérias do ENEM' }}
 >
+  <div style={`--materia: var(--color-${materia});`}>
   <nav class="font-mono text-xs text-ink-soft mb-4" aria-label="Você está aqui">
     <a href={u('/enem')} class="hover:text-ink underline underline-offset-2">ENEM</a>
     <span> / </span>
@@ -37,7 +38,7 @@ const ids = temas.map((t) => t.id).join(' ');
 
   <header class="materia-topo" data-surgir>
     <div class="materia-topo__titulo">
-      <Icone nome={iconeDaMateria(materia!)} duo cor="var(--color-enem)" class="materia-topo__icone" />
+      <Icone nome={iconeDaMateria(materia!)} duo cor={`var(--color-${materia})`} class="materia-topo__icone" />
       <div>
         {area && <p class="materia-topo__area">{area.label}</p>}
         <h1 class="materia-topo__h1">{subjectLabel}</h1>
@@ -62,7 +63,8 @@ const ids = temas.map((t) => t.id).join(' ');
     As aulas estão na ordem de aprendizado: comece pela primeira e desça a lista.
   </p>
 
-  <TrilhaAulas aulas={temas} accent="enem" />
+  <TrilhaAulas aulas={temas} accent={materia} />
+  </div>
 </Base>
 
 <style>
@@ -143,7 +145,7 @@ const ids = temas.map((t) => t.id).join(' ');
     height: 100%;
     width: 100%;
     border-radius: 999px;
-    background: linear-gradient(90deg, var(--color-enem), var(--color-ok));
+    background: linear-gradient(90deg, var(--materia, var(--color-enem)), var(--color-ok));
     transform: scaleX(0);
     transform-origin: 0 50%;
     transition: transform 0.75s var(--ease);

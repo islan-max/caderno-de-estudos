@@ -36,7 +36,7 @@ const resourcesSchema = z.object({
     .optional(),
 });
 
-// Gabarito do "Teste de Fogo".
+// Gabarito das questões da aula ("Questões do ENEM" ou, na Redação, "Questões e escrita").
 // As questões continuam escritas em markdown no corpo da aula; aqui fica só a
 // resposta certa de cada uma (índice 0-4 = alternativas a-e) e, quando vale a
 // pena, uma linha explicando o porquê. O quiz é montado no navegador a partir

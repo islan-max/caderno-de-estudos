@@ -1,5 +1,5 @@
 /* ---------------------------------------------------------------------------
- * "Teste de Fogo": transforma as questões escritas em markdown num quiz
+ * Questões da aula ("Questões do ENEM"): transforma as questões escritas em markdown num quiz
  * respondível, sem tocar no conteúdo das aulas.
  *
  * As questões continuam sendo prosa no MDX. Este módulo lê o HTML já

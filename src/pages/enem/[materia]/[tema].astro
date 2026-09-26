@@ -3,6 +3,8 @@ import Tema from '../../../layouts/Tema.astro';
 import { getCollection, render } from 'astro:content';
 import { u } from '../../../lib/url';
 import { vizinhas } from '../../../lib/aulas';
+import Accordion from '../../../components/Accordion.astro';
+import Textarea from '../../../components/Textarea.astro';
 
 export async function getStaticPaths() {
   const aulas = await getCollection('enem');
@@ -32,11 +34,13 @@ const posicao = await vizinhas(materia!, tema!);
   gabarito={entry.data.gabarito}
   vizinhas={posicao}
   materiaHref={u(`/enem/${materia}/`)}
+  materia={materia}
   breadcrumb={[
     { label: 'ENEM', href: u('/enem') },
     { label: subjectLabel, href: u(`/enem/${materia}/`) },
     { label: entry.data.title },
   ]}
 >
-  {Content && <Content />}
+  {/* Componentes que o MDX da aula usa sem import. */}
+  {Content && <Content components={{ Accordion, Textarea }} />}
 </Tema>

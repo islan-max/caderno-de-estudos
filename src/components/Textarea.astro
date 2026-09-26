@@ -1,0 +1,384 @@
+---
+// Folha de redação das aulas de Redação.
+//
+// Imita a folha oficial: linhas pautadas e numeradas de 1 a 30, com a marca
+// do mínimo de 7 linhas. Conta palavras e linhas enquanto o aluno escreve e
+// guarda o rascunho só neste navegador (localStorage), para ele não perder o
+// texto ao recarregar. A correção ainda não existe: o botão fica visível e
+// desabilitado, avisando que vem depois.
+//
+// No MDX chega pelo mapa de componentes de [tema].astro, sem import:
+//
+//   <Textarea id="proposta-de-intervencao" titulo="Escreva sua proposta de intervenção" />
+//
+// A contagem de linhas é aproximada: depende da largura da tela, e a folha
+// do ENEM tem largura fixa.
+import Icone from './Icone.astro';
+
+interface Props {
+  /** Nome único na aula: vira a chave do rascunho guardado. */
+  id: string;
+  titulo?: string;
+  /** Uma linha curta sob o título, dizendo o que escrever. */
+  dica?: string;
+  linhas?: number;
+  minimo?: number;
+}
+const {
+  id,
+  titulo = 'Sua redação',
+  dica = 'Escreva aqui. O rascunho fica guardado neste navegador.',
+  linhas = 30,
+  minimo = 7,
+} = Astro.props;
+const campo = `redacao-${id}`;
+---
+
+<section class="folha not-prose" data-folha={id} data-linhas={linhas} data-minimo={minimo} style={`--linhas: ${linhas};`}>
+  <header class="folha__cabeca">
+    <span class="folha__icone"><Icone nome="feather-pointed" duo cor="var(--folha-tinta)" /></span>
+    <span class="folha__textos">
+      <label class="folha__titulo" for={campo}>{titulo}</label>
+      <span class="folha__dica" id={`${campo}-dica`}>{dica}</span>
+    </span>
+  </header>
+
+  <div class="folha__papel">
+    <ol class="folha__numeros" aria-hidden="true">
+      {Array.from({ length: linhas }, (_, i) => (
+        <li class:list={{ 'folha__numero--minimo': i + 1 === minimo }}>{i + 1}</li>
+      ))}
+    </ol>
+    <textarea
+      id={campo}
+      class="folha__campo"
+      rows={linhas}
+      spellcheck="true"
+      autocomplete="off"
+      aria-describedby={`${campo}-dica ${campo}-contagem`}
+      placeholder="Comece pelo primeiro parágrafo…"
+    ></textarea>
+  </div>
+
+  <footer class="folha__rodape">
+    <p class="folha__contagem" id={`${campo}-contagem`}>
+      <span data-folha-linhas>0 de {linhas} linhas</span>
+      <span class="folha__ponto" aria-hidden="true">·</span>
+      <span data-folha-palavras>0 palavras</span>
+      <span class="folha__estado" data-folha-estado></span>
+    </p>
+    <div class="folha__acoes">
+      <button type="button" class="folha__botao" data-folha-limpar>
+        <Icone nome="rotate-left" /> Limpar
+      </button>
+      <button type="button" class="folha__botao folha__botao--principal" disabled title="A correção automática ainda está sendo construída">
+        <Icone nome="wand-magic-sparkles" /> Enviar para correção
+        <span class="folha__selo">em breve</span>
+      </button>
+    </div>
+  </footer>
+</section>
+
+<script>
+  const CHAVE = 'cdt:redacao:';
+
+  function lerRascunho(id: string): string {
+    try {
+      return localStorage.getItem(CHAVE + location.pathname + ':' + id) ?? '';
+    } catch {
+      return '';
+    }
+  }
+  function guardarRascunho(id: string, texto: string): boolean {
+    try {
+      const k = CHAVE + location.pathname + ':' + id;
+      if (texto) localStorage.setItem(k, texto);
+      else localStorage.removeItem(k);
+      return true;
+    } catch {
+      return false;
+    }
+  }
+
+  function montar(folha: HTMLElement) {
+    if (folha.dataset.pronta === 'true') return;
+    folha.dataset.pronta = 'true';
+    const id = folha.dataset.folha!;
+    const total = Number(folha.dataset.linhas);
+    const minimo = Number(folha.dataset.minimo);
+    const campo = folha.querySelector<HTMLTextAreaElement>('textarea')!;
+    const rotLinhas = folha.querySelector<HTMLElement>('[data-folha-linhas]')!;
+    const rotPalavras = folha.querySelector<HTMLElement>('[data-folha-palavras]')!;
+    const estado = folha.querySelector<HTMLElement>('[data-folha-estado]')!;
+    const limpar = folha.querySelector<HTMLButtonElement>('[data-folha-limpar]')!;
+    let espera = 0;
+
+    // Linhas ocupadas = altura do texto / altura de uma linha. Para medir, o
+    // campo encolhe por um instante; depois volta a ter no mínimo as 30 linhas
+    // da folha e cresce se o aluno passar delas.
+    function medir() {
+      const estilo = getComputedStyle(campo);
+      const lh = parseFloat(estilo.lineHeight);
+      const pad = parseFloat(estilo.paddingTop) + parseFloat(estilo.paddingBottom);
+      campo.style.minHeight = '0px';
+      campo.style.height = '0px';
+      const conteudo = campo.scrollHeight - pad;
+      campo.style.minHeight = '';
+      const usadas = campo.value.trim() ? Math.max(1, Math.round(conteudo / lh)) : 0;
+      campo.style.height = Math.max(total, usadas) * lh + pad + 'px';
+
+      const palavras = campo.value.trim() ? campo.value.trim().split(/\s+/).length : 0;
+      rotLinhas.textContent = usadas + ' de ' + total + ' linhas';
+      rotPalavras.textContent = palavras + (palavras === 1 ? ' palavra' : ' palavras');
+      folha.dataset.situacao = usadas === 0 ? 'vazia' : usadas < minimo ? 'curta' : usadas > total ? 'longa' : 'ok';
+    }
+
+    campo.value = lerRascunho(id);
+    medir();
+
+    campo.addEventListener('input', () => {
+      medir();
+      estado.textContent = 'salvando…';
+      clearTimeout(espera);
+      espera = window.setTimeout(() => {
+        estado.textContent = guardarRascunho(id, campo.value) ? 'rascunho salvo' : '';
+      }, 500);
+    });
+
+    limpar.addEventListener('click', () => {
+      if (campo.value.trim() && !confirm('Apagar o texto desta folha?')) return;
+      campo.value = '';
+      guardarRascunho(id, '');
+      estado.textContent = '';
+      medir();
+      campo.focus();
+    });
+
+    window.addEventListener('resize', medir);
+  }
+
+  function iniciar() {
+    document.querySelectorAll<HTMLElement>('[data-folha]').forEach(montar);
+  }
+  iniciar();
+  document.addEventListener('astro:page-load', iniciar);
+</script>
+
+<style>
+  .folha {
+    --folha-tinta: var(--materia, var(--color-enem));
+    --folha-linha: 2rem;
+    margin: 2rem 0 0;
+    border: 1px solid color-mix(in srgb, var(--folha-tinta) 28%, var(--color-line));
+    border-radius: 0.85rem;
+    background: color-mix(in srgb, var(--folha-tinta) 5%, var(--color-surface));
+    box-shadow: var(--shadow-soft);
+    overflow: hidden;
+  }
+
+  .folha__cabeca {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0.9rem 1rem 0.8rem 0.9rem;
+  }
+  .folha__icone {
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    width: 2.1rem;
+    height: 2.1rem;
+    font-size: 0.9rem;
+  }
+  .folha__textos {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+    min-width: 0;
+  }
+  .folha__titulo {
+    font-family: var(--font-display);
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.11em;
+    color: var(--folha-tinta);
+  }
+  .folha__dica {
+    font-family: var(--font-body);
+    font-size: 0.86rem;
+    line-height: 1.4;
+    color: var(--color-ink-soft);
+  }
+
+  /* ------------------------------------------------------------- o papel */
+  .folha__papel {
+    position: relative;
+    display: flex;
+    margin: 0 0.75rem;
+    border: 1px solid var(--color-line);
+    border-radius: 0.5rem;
+    background: var(--color-surface);
+    overflow: hidden;
+  }
+  .folha__papel:focus-within {
+    border-color: var(--folha-tinta);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--folha-tinta) 18%, transparent);
+  }
+
+  .folha__numeros {
+    flex-shrink: 0;
+    width: 2.4rem;
+    margin: 0;
+    padding: 0.5rem 0;
+    list-style: none;
+    border-right: 2px solid color-mix(in srgb, var(--folha-tinta) 35%, transparent);
+    background: color-mix(in srgb, var(--color-paper-dark) 22%, var(--color-surface));
+    overflow: hidden;
+  }
+  .folha__numeros li {
+    height: var(--folha-linha);
+    line-height: var(--folha-linha);
+    padding-right: 0.45rem;
+    text-align: right;
+    font-family: var(--font-display);
+    font-size: 0.66rem;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    color: var(--color-ink-soft);
+    opacity: 0.8;
+  }
+  /* Linha 7: o mínimo para a redação não ser zerada. */
+  .folha__numeros li.folha__numero--minimo {
+    color: var(--folha-tinta);
+    opacity: 1;
+    font-weight: 800;
+  }
+
+  .folha__campo {
+    flex: 1;
+    min-width: 0;
+    display: block;
+    min-height: calc(var(--linhas) * var(--folha-linha) + 1rem);
+    margin: 0;
+    padding: 0.5rem 0.9rem;
+    border: 0;
+    outline: none;
+    resize: none;
+    overflow: hidden;
+    background-color: transparent;
+    /* Pauta: uma linha a cada --folha-linha, rolando junto com o texto. */
+    background-image: repeating-linear-gradient(
+      to bottom,
+      transparent 0,
+      transparent calc(var(--folha-linha) - 1px),
+      color-mix(in srgb, var(--color-line) 75%, transparent) calc(var(--folha-linha) - 1px),
+      color-mix(in srgb, var(--color-line) 75%, transparent) var(--folha-linha)
+    );
+    background-position: 0 0.5rem;
+    background-attachment: local;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    line-height: var(--folha-linha);
+    color: var(--color-ink);
+    caret-color: var(--folha-tinta);
+  }
+  .folha__campo::placeholder {
+    color: var(--color-ink-soft);
+    opacity: 0.7;
+  }
+
+  /* ------------------------------------------------------------- rodapé */
+  .folha__rodape {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.6rem 1rem;
+    padding: 0.8rem 1rem 0.95rem;
+  }
+  .folha__contagem {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.4rem;
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--color-ink-soft);
+  }
+  .folha[data-situacao='curta'] [data-folha-linhas] {
+    color: var(--color-enem);
+  }
+  .folha[data-situacao='ok'] [data-folha-linhas] {
+    color: var(--color-ok);
+  }
+  .folha[data-situacao='longa'] [data-folha-linhas] {
+    color: var(--color-enem);
+  }
+  .folha__estado {
+    font-weight: 500;
+    font-style: italic;
+    opacity: 0.8;
+  }
+  .folha__estado:not(:empty)::before {
+    content: '·';
+    margin-right: 0.4rem;
+    font-style: normal;
+  }
+
+  .folha__acoes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .folha__botao {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.55rem 1rem;
+    border-radius: 999px;
+    border: 1px solid var(--color-line);
+    background: transparent;
+    color: var(--color-ink-soft);
+    font-family: var(--font-display);
+    font-size: 0.8rem;
+    font-weight: 700;
+    cursor: pointer;
+  }
+  .folha__botao:hover:not(:disabled) {
+    color: var(--color-ink);
+    border-color: color-mix(in srgb, var(--color-ink) 35%, var(--color-line));
+    background: var(--color-paper-dark);
+  }
+  .folha__botao--principal {
+    border-color: color-mix(in srgb, var(--folha-tinta) 45%, var(--color-line));
+    color: var(--folha-tinta);
+  }
+  .folha__botao:disabled {
+    cursor: not-allowed;
+    opacity: 0.75;
+  }
+  .folha__selo {
+    padding: 0.1rem 0.45rem;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--folha-tinta) 14%, transparent);
+    font-size: 0.62rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  @media (max-width: 480px) {
+    .folha__papel {
+      margin: 0 0.4rem;
+    }
+    .folha__numeros {
+      width: 1.8rem;
+    }
+    .folha__campo {
+      padding-inline: 0.6rem;
+    }
+  }
+</style>

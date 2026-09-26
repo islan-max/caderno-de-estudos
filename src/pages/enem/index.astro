@@ -55,7 +55,7 @@ for (const a of aulas) {
                 <li>
                   {count > 0 ? (
                     <a href={u(`/enem/${s.slug}/`)} class="materia" data-progresso-de={ids.join(' ')}>
-                      <Icone nome={s.icone} duo cor={area.cor} class="materia__icone" />
+                      <Icone nome={s.icone} duo cor={`var(--color-${s.slug})`} class="materia__icone" />
                       <span class="materia__corpo">
                         <span class="materia__nome">{s.label}</span>
                         <span class="materia__meta">

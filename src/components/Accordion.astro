@@ -1,0 +1,185 @@
+---
+// Seção retrátil das aulas ("sanfona").
+//
+// É um <details>/<summary> nativo: abre e fecha pelo teclado, é anunciado
+// como "recolhido/expandido" pelos leitores de tela e funciona sem JS. Usado
+// pelo layout da aula (o "Raio-X do tema") e dentro do MDX, onde chega pelo
+// mapa de componentes de [tema].astro — por isso a aula não precisa de import:
+//
+//   <Accordion titulo="Palavras e siglas desta aula" icone="spell-check">
+//
+//   - **Termo**: explicação.
+//
+//   </Accordion>
+//
+// A cor de destaque vem de --acordeao-cor, se o pai definir; senão é a da
+// matéria (--materia), com a do ENEM de reserva.
+import Icone from './Icone.astro';
+
+interface Props {
+  titulo: string;
+  /** Linha curta ao lado do título, dizendo o que há dentro. */
+  dica?: string;
+  icone?: string;
+  aberto?: boolean;
+  class?: string;
+}
+const { titulo, dica, icone = 'layer-group', aberto = false, class: klass = '' } = Astro.props;
+---
+
+<details class:list={['acordeao', klass]} open={aberto}>
+  <summary class="acordeao__cabeca not-prose">
+    <span class="acordeao__icone"><Icone nome={icone} duo cor="var(--acordeao-tinta)" /></span>
+    <span class="acordeao__textos">
+      <span class="acordeao__titulo">{titulo}</span>
+      {dica && <span class="acordeao__dica">{dica}</span>}
+    </span>
+    <span class="acordeao__seta" aria-hidden="true"><Icone nome="chevron-down" /></span>
+  </summary>
+  <div class="acordeao__corpo">
+    <slot />
+  </div>
+</details>
+
+<style>
+  .acordeao {
+    --acordeao-tinta: var(--acordeao-cor, var(--materia, var(--color-enem)));
+    margin: 1.5rem 0;
+    border: 1px solid color-mix(in srgb, var(--acordeao-tinta) 28%, var(--color-line));
+    border-radius: 0.85rem;
+    background: color-mix(in srgb, var(--acordeao-tinta) 5%, var(--color-surface));
+    box-shadow: var(--shadow-soft);
+    overflow: hidden;
+    transition: border-color 0.25s var(--ease), background-color 0.25s var(--ease);
+    /* Abertura suave onde o navegador sabe animar até "auto". */
+    interpolate-size: allow-keywords;
+  }
+  .acordeao::details-content {
+    block-size: 0;
+    overflow: clip;
+    transition: block-size 0.3s var(--ease), content-visibility 0.3s var(--ease) allow-discrete;
+  }
+  .acordeao[open]::details-content {
+    block-size: auto;
+  }
+  .acordeao[open] {
+    border-color: color-mix(in srgb, var(--acordeao-tinta) 45%, var(--color-line));
+  }
+
+  .acordeao__cabeca {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0.85rem 1rem 0.85rem 0.9rem;
+    cursor: pointer;
+    list-style: none;
+    user-select: none;
+    border-radius: 0.85rem;
+  }
+  .acordeao__cabeca::-webkit-details-marker {
+    display: none;
+  }
+  .acordeao__cabeca:hover {
+    background: color-mix(in srgb, var(--acordeao-tinta) 7%, transparent);
+  }
+  .acordeao__cabeca:focus-visible {
+    outline: 2px solid var(--acordeao-tinta);
+    outline-offset: -2px;
+  }
+
+  .acordeao__icone {
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    width: 2.1rem;
+    height: 2.1rem;
+    font-size: 0.9rem;
+  }
+
+  .acordeao__textos {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+    min-width: 0;
+    flex: 1;
+  }
+  .acordeao__titulo {
+    font-family: var(--font-display);
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.11em;
+    color: var(--acordeao-tinta);
+  }
+  .acordeao__dica {
+    font-family: var(--font-body);
+    font-size: 0.86rem;
+    line-height: 1.4;
+    color: var(--color-ink-soft);
+  }
+
+  .acordeao__seta {
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    width: 1.9rem;
+    height: 1.9rem;
+    border-radius: 999px;
+    border: 1px solid var(--color-line);
+    background: var(--color-surface);
+    color: var(--color-ink-soft);
+    font-size: 0.7rem;
+    transition: transform 0.3s var(--ease), color 0.2s var(--ease), border-color 0.2s var(--ease);
+  }
+  .acordeao__cabeca:hover .acordeao__seta {
+    color: var(--acordeao-tinta);
+    border-color: color-mix(in srgb, var(--acordeao-tinta) 45%, var(--color-line));
+  }
+  .acordeao[open] .acordeao__seta {
+    transform: rotate(180deg);
+    color: var(--acordeao-tinta);
+  }
+
+  .acordeao__corpo {
+    margin: 0 1rem;
+    padding: 0.9rem 0.15rem 1rem;
+    border-top: 1px dashed color-mix(in srgb, var(--acordeao-tinta) 30%, var(--color-line));
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    line-height: 1.7;
+  }
+  .acordeao__corpo > :global(:first-child) {
+    margin-top: 0;
+  }
+  .acordeao__corpo > :global(:last-child) {
+    margin-bottom: 0;
+  }
+  /* Glossário: cada item é uma linha de consulta rápida, com o termo na cor
+     da matéria e a explicação logo depois. */
+  .acordeao__corpo :global(ul) {
+    padding-left: 0;
+    list-style: none;
+    margin: 0;
+  }
+  .acordeao__corpo :global(ul > li) {
+    padding: 0.45rem 0;
+    margin: 0;
+    border-bottom: 1px solid color-mix(in srgb, var(--color-line) 60%, transparent);
+  }
+  .acordeao__corpo :global(ul > li:last-child) {
+    border-bottom: 0;
+  }
+  .acordeao__corpo :global(ul > li)::marker {
+    content: '';
+  }
+
+  @media print {
+    .acordeao::details-content {
+      block-size: auto;
+      content-visibility: visible;
+    }
+    .acordeao__seta {
+      display: none;
+    }
+  }
+</style>

@@ -3,6 +3,7 @@ import Base from './Base.astro';
 import Recursos from '../components/Recursos.astro';
 import PaginacaoAula from '../components/PaginacaoAula.astro';
 import Icone from '../components/Icone.astro';
+import Accordion from '../components/Accordion.astro';
 import type { AulaIndexada } from '../lib/aulas';
 
 interface Crumb {
@@ -19,7 +20,7 @@ interface Props {
   breadcrumb: Crumb[];
   /** Identificador da aula no progresso local, ex.: "enem/fisica/optica". */
   aulaId?: string;
-  /** Respostas certas do "Teste de Fogo" (índice 0-4 = alternativas a-e). */
+  /** Respostas certas das questões da aula (índice 0-4 = alternativas a-e). */
   gabarito?: { correta: number; porque?: string }[];
   vizinhas?: {
     anterior: AulaIndexada | null;
@@ -28,6 +29,8 @@ interface Props {
     total: number;
   };
   materiaHref?: string;
+  /** Slug da matéria (pasta da aula). Dá à página a cor fixa da matéria. */
+  materia?: string;
 }
 const {
   title,
@@ -41,9 +44,13 @@ const {
   gabarito,
   vizinhas,
   materiaHref,
+  materia,
 } = Astro.props;
 
 const pai = [...breadcrumb].reverse().find((b) => b.href);
+// Cor de destaque da página: a da matéria, quando houver; senão a da seção.
+const destaque = materia ?? active;
+const corDaMateria = materia ? `--materia: var(--color-${materia}); --materia-soft: var(--color-${materia}-soft);` : '';
 ---
 
 <Base
@@ -52,6 +59,7 @@ const pai = [...breadcrumb].reverse().find((b) => b.href);
   description={relevance}
   voltar={pai ? { href: pai.href!, label: pai.label } : undefined}
 >
+  <div class="aula" style={corDaMateria || undefined}>
   <nav class="font-mono text-xs text-ink-soft mb-4 flex flex-wrap gap-x-1 gap-y-1" aria-label="Você está aqui">
     {breadcrumb.map((b, i) => (
       <Fragment>
@@ -65,7 +73,7 @@ const pai = [...breadcrumb].reverse().find((b) => b.href);
     ))}
   </nav>
 
-  <p class="font-mono text-xs uppercase tracking-widest mb-2 flex items-center gap-2" style={`color: var(--color-${active})`}>
+  <p class="font-mono text-xs uppercase tracking-widest mb-2 flex items-center gap-2" style={`color: var(--color-${destaque})`}>
     <Icone nome="bookmark" />
     {subject}
     {vizinhas && <span class="opacity-60">· aula {vizinhas.posicao} de {vizinhas.total}</span>}
@@ -96,25 +104,26 @@ const pai = [...breadcrumb].reverse().find((b) => b.href);
     </div>
   )}
 
-  {quickSummary && (
-    <section
-      class="resumo-rapido"
-      style={`--accent: var(--color-${active}); --accent-soft: var(--color-${active}-soft); --i: 2;`}
-      data-surgir
+  <!-- Raio-X do tema: o resumo e a relevância, juntos e recolhidos, para a
+       aula começar direto no conteúdo sem perder essas duas informações. -->
+  <div class="raio-x" style={`--acordeao-cor: var(--color-${destaque}); --i: 2;`} data-surgir>
+    <Accordion
+      titulo="Raio-X do tema"
+      dica={active === 'enem' ? 'O essencial em poucas linhas e por que o tema cai no ENEM' : 'O essencial em poucas linhas e por que o tema importa'}
+      icone="magnifying-glass"
     >
-      <p class="resumo-rapido__rotulo">
-        <Icone nome="bolt" duo cor={`var(--color-${active})`} /> Resumo rápido
-      </p>
-      <p class="resumo-rapido__texto">{quickSummary}</p>
-    </section>
-  )}
-
-  <section class="relevancia" style={`--accent: var(--color-${active})`} data-surgir>
-    <p class="relevancia__rotulo">
-      <Icone nome="bullseye" /> Visão geral e relevância
-    </p>
-    <p class="relevancia__texto">{relevance}</p>
-  </section>
+      {quickSummary && (
+        <div class="raio-x__bloco">
+          <p class="raio-x__rotulo"><Icone nome="bolt" /> O essencial</p>
+          <p class="raio-x__texto">{quickSummary}</p>
+        </div>
+      )}
+      <div class="raio-x__bloco">
+        <p class="raio-x__rotulo"><Icone nome="bullseye" /> {active === 'enem' ? 'Por que cai na prova' : 'Por que importa'}</p>
+        <p class="raio-x__texto">{relevance}</p>
+      </div>
+    </Accordion>
+  </div>
 
   <article
     class="prose prose-tema max-w-none"
@@ -124,7 +133,7 @@ const pai = [...breadcrumb].reverse().find((b) => b.href);
     <slot />
   </article>
 
-  <Recursos resources={resources} accent={active} />
+  <Recursos resources={resources} accent={destaque} />
 
   <span data-fim-da-aula aria-hidden="true"></span>
 
@@ -136,9 +145,10 @@ const pai = [...breadcrumb].reverse().find((b) => b.href);
       total={vizinhas.total}
       materiaHref={materiaHref}
       materiaLabel={subject}
-      accent={active}
+      accent={destaque}
     />
   )}
+  </div>
 </Base>
 
 <style>
@@ -188,41 +198,19 @@ const pai = [...breadcrumb].reverse().find((b) => b.href);
     background: color-mix(in srgb, var(--color-ok) 10%, transparent);
   }
 
-  /* ------------------------------------------------------- resumo rápido */
-  .resumo-rapido {
-    margin-bottom: 1.5rem;
-    padding: 1rem 1.15rem;
-    border-radius: 0.75rem;
-    background: var(--accent-soft);
-    border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent);
+  /* ------------------------------------------------------- raio-x do tema */
+  .raio-x {
+    margin-bottom: 2.25rem;
   }
-  .resumo-rapido__rotulo {
-    display: flex;
-    align-items: center;
-    gap: 0.4rem;
-    font-family: var(--font-display);
-    font-size: 0.66rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.11em;
-    color: var(--accent);
-    margin: 0 0 0.5rem;
-  }
-  .resumo-rapido__texto {
-    font-family: var(--font-body);
-    font-size: 0.95rem;
-    line-height: 1.65;
-    color: var(--color-ink);
+  .raio-x :global(.acordeao) {
     margin: 0;
   }
-
-  /* ---------------------------------------------------------- relevância */
-  .relevancia {
-    margin-bottom: 2.5rem;
-    padding-left: 1.15rem;
-    border-left: 4px solid var(--accent);
+  .raio-x__bloco + .raio-x__bloco {
+    margin-top: 0.95rem;
+    padding-top: 0.95rem;
+    border-top: 1px solid color-mix(in srgb, var(--color-line) 70%, transparent);
   }
-  .relevancia__rotulo {
+  .raio-x__rotulo {
     display: flex;
     align-items: center;
     gap: 0.4rem;
@@ -232,12 +220,13 @@ const pai = [...breadcrumb].reverse().find((b) => b.href);
     text-transform: uppercase;
     letter-spacing: 0.11em;
     color: var(--color-ink-soft);
-    margin: 0 0 0.5rem;
+    margin: 0 0 0.4rem;
   }
-  .relevancia__texto {
+  .raio-x__texto {
     font-family: var(--font-body);
-    font-size: 1rem;
+    font-size: 0.97rem;
     line-height: 1.7;
+    color: var(--color-ink);
     margin: 0;
   }
 </style>
