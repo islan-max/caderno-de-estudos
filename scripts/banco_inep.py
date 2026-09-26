@@ -9,7 +9,7 @@ Uso (sempre pela venv: .cache/venv/Scripts/python scripts/banco_inep.py ...):
   buscar TERMOS         procura no banco e no índice de texto
   localizar ID          acha no PDF oficial uma questão do índice de texto
   mostrar ID            mostra uma questão do banco
-  recortar ID ...       recorta uma região da página em PNG a 200 dpi
+  recortar ID ...       recorta uma região da página em PNG a 200 dpi, aparada e centrada
   pagina ID             renderiza a(s) página(s) da questão em PNG (para o revisor)
   conferir              sorteia 10 questões e gera as imagens para conferência
   cobertura             resume o que existe no banco por ano
@@ -988,8 +988,26 @@ def mostrar(qid):
     print(json.dumps(questao(qid), ensure_ascii=False, indent=1))
 
 
+def aparar(pag, ret, margem=6):
+    """Encolhe o retângulo até a tinta e devolve com a mesma margem (em pt) nos quatro lados,
+    para a figura sair centrada no PNG em vez de colada num canto com branco sobrando no outro."""
+    import pymupdf
+
+    pix = pag.get_pixmap(dpi=144, clip=ret, colorspace=pymupdf.csGRAY, alpha=False)
+    w, h, st, a = pix.width, pix.height, pix.stride, pix.samples
+    tinta = 235  # abaixo disto o pixel não é papel
+    ys = [y for y in range(h) if min(a[y * st:y * st + w]) < tinta]
+    xs = [x for x in range(w) if min(a[x:h * st:st]) < tinta]
+    if not ys or not xs:
+        return ret
+    k = 72 / 144
+    justo = pymupdf.Rect(ret.x0 + xs[0] * k, ret.y0 + ys[0] * k, ret.x0 + (xs[-1] + 1) * k, ret.y0 + (ys[-1] + 1) * k)
+    return (justo + (-margem, -margem, margem, margem)) & pag.rect
+
+
 def recortar(qid, *args):
-    """recortar ID saida.png [--figura N | --regiao pagina x0 y0 x1 y1]: PNG a 200 dpi, até 1600 px."""
+    """recortar ID saida.png [--figura N | --regiao pagina x0 y0 x1 y1] [--sem-aparar]: PNG a 200 dpi,
+    até 1600 px, aparado e centrado (mesma margem nos quatro lados)."""
     import pymupdf
 
     q = questao(qid)
@@ -1004,7 +1022,11 @@ def recortar(qid, *args):
         pagina, bbox = fig["pagina"], fig["bbox"]
     doc = pymupdf.open(RAIZ / q["pdf"])
     ret = pymupdf.Rect(*bbox) + (-4, -4, 4, 4)  # folga para o traço não encostar na borda
-    dpi = min(200, int(1600 / (ret.width / 72)))
+    if "--sem-aparar" not in resto:
+        ret = aparar(doc[pagina - 1], ret)
+    # 200 dpi; figura pequena ganha resolução para sair com pelo menos ~560 px de largura
+    polegadas = ret.width / 72
+    dpi = int(min(1600 / polegadas, max(200, 560 / polegadas)))
     saida.parent.mkdir(parents=True, exist_ok=True)
     doc[pagina - 1].get_pixmap(dpi=dpi, clip=ret).save(saida)
     print("recorte salvo:", saida, f"({dpi} dpi)")

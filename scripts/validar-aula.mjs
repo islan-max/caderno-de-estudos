@@ -1,4 +1,4 @@
-// Validador mecânico das aulas do ENEM (docs/aulas/formato-das-aulas-mdx.md, §3 e §5–§8).
+// Validador mecânico das aulas do ENEM (docs/aulas/formato-das-aulas-mdx.md, §3 a §8).
 //
 // Uso: node scripts/validar-aula.mjs <aula.mdx | pasta> [...]
 //   Sai com código 1 se houver erro. Avisos não reprovam.
@@ -21,10 +21,13 @@ const MATERIAS = {
   'matematica-financeira': 'Matemática Financeira', geometria: 'Geometria',
   'estatistica-e-probabilidade': 'Estatística e Probabilidade', funcoes: 'Funções',
 };
-const SECOES = ['Antes de Começar', 'Aula Teórica Completa', 'Tópicos-Chave para Revisão', 'Teste de Fogo'];
+const SECOES = ['Antes de Começar', 'Aula Teórica', 'Tópicos-Chave para Revisão'];
+const SECAO_QUESTOES = (materia) => (materia === 'redacao' ? 'Questões e escrita' : 'Questões do ENEM');
+const TITULO_GLOSSARIO = 'Palavras e siglas desta aula';
+const TEMAS_COBRADOS = 'Os temas que costumam aparecer são estes:';
 const INSTRUCAO_TESTE = '*Marque uma alternativa em cada questão e confira tudo de uma vez no botão do fim.*';
 const TAGS_SVG = ['svg', 'g', 'line', 'rect', 'circle', 'ellipse', 'path', 'polyline', 'polygon', 'text', 'tspan', 'title', 'desc', 'defs', 'marker'];
-const TAGS = new Set(['div', 'figure', 'figcaption', 'b', ...TAGS_SVG]);
+const TAGS = new Set(['div', 'figure', 'figcaption', 'accordion', 'textarea', ...TAGS_SVG]);
 // nome da capa do caderno -> aplicações do banco (o site do INEP chama de "Reaplicação/PPL"
 // o caderno que na capa diz "2ª aplicação"; em 2016 a PPL foi a "3ª aplicação")
 const APLICACOES = {
@@ -107,7 +110,9 @@ function validar(arquivo) {
     if (m) h2.push({ titulo: m[1].trim(), i });
   });
   const titulos = h2.map((h) => h.titulo);
-  if (JSON.stringify(titulos) !== JSON.stringify(SECOES)) erro(0, `as seções ## devem ser exatamente, nesta ordem: ${SECOES.join(' | ')}. Encontrado: ${titulos.join(' | ') || '(nenhuma)'}`);
+  const nomeQuestoes = SECAO_QUESTOES(materia);
+  const esperadas = [...SECOES, nomeQuestoes];
+  if (JSON.stringify(titulos) !== JSON.stringify(esperadas)) erro(0, `as seções ## devem ser exatamente, nesta ordem: ${esperadas.join(' | ')}. Encontrado: ${titulos.join(' | ') || '(nenhuma)'}`);
   const secao = (nome) => {
     const k = h2.findIndex((h) => h.titulo === nome);
     if (k < 0) return { ini: -1, fim: -1, linhas: [] };
@@ -116,9 +121,9 @@ function validar(arquivo) {
     return { ini, fim, linhas: corpo.slice(ini, fim) };
   };
   const antes = secao('Antes de Começar');
-  const teoria = secao('Aula Teórica Completa');
+  const teoria = secao('Aula Teórica');
   const topicos = secao('Tópicos-Chave para Revisão');
-  const teste = secao('Teste de Fogo');
+  const teste = secao(nomeQuestoes);
 
   // ------------------------------------------------------ regras de MDX (§8)
   corpo.forEach((l, i) => {
@@ -135,11 +140,20 @@ function validar(arquivo) {
       if (!TAGS.has(tag)) erro(L(i), `tag <${m[1]}> não é permitida (§8)`);
       if (tag === 'div' && m[0].startsWith('<div') && !/className="topico"/.test(m[2])) erro(L(i), 'só <div className="topico"> é permitido');
       if (tag === 'figure' && m[0].startsWith('<figure') && !/class="figura"/.test(m[2])) erro(L(i), 'figura deve ser <figure class="figura">');
+      if (tag === 'accordion' && m[0].startsWith('<A') && !(i > antes.ini && i < antes.fim)) erro(L(i), '<Accordion> só em "Antes de Começar", no glossário');
+      if (tag === 'textarea' && m[0].startsWith('<T')) {
+        if (materia !== 'redacao') erro(L(i), '<Textarea /> só nas aulas de Redação');
+        else if (!(i > teste.ini && teste.ini >= 0)) erro(L(i), `<Textarea /> fica em "${nomeQuestoes}", depois da questão 5`);
+        if (!/\/>\s*$/.test(l) || !/\bid="[a-z0-9-]+"/.test(l)) erro(L(i), '<Textarea id="<tema>" titulo="…" dica="…" /> numa linha só, fechada com />');
+      }
+      if (tag === 'figcaption' && m[0].startsWith('<figcaption') && !/<figcaption>Imagem: [^<]+<\/figcaption>/.test(l)) erro(L(i), 'legenda só para crédito de imagem de terceiros: <figcaption>Imagem: autor, licença, via Wikimedia Commons.</figcaption> (sem "Figura N")');
     }
+    if (/Como o ENEM cobra isso/.test(l)) erro(L(i), '"Como o ENEM cobra isso" saiu do padrão: troque por uma frase ligada ao assunto da seção ou remova');
+    if (/\bFiguras? \d/.test(l) && (i < teste.ini || teste.ini < 0) && !/^\s*</.test(l)) erro(L(i), 'o texto não cita figura por número: use a posição ("o esquema abaixo")');
     // "<" solto no texto (fora de tag)
     const semTags = l.replace(/<\/?[a-zA-Z][^>]*>/g, '');
     if (/</.test(semTags)) erro(L(i), '"<" no texto deve ser &lt;');
-    if (/^\s*\*\*Quest[ãa]o\s+\d+/.test(l) && (i < teste.ini || teste.ini < 0)) erro(L(i), 'negrito começando com "Questão N" fora do Teste de Fogo confunde o quiz');
+    if (/^\s*\*\*Quest[ãa]o\s+\d+/.test(l) && (i < teste.ini || teste.ini < 0)) erro(L(i), `negrito começando com "Questão N" fora de "${nomeQuestoes}" confunde o quiz`);
   });
   // linha em branco entre tag e markdown
   const ehTag = (l) => /^\s*<\/?[a-zA-Z]/.test(l);
@@ -154,7 +168,7 @@ function validar(arquivo) {
   }
   // ### só na teoria, #### só nos tópicos
   corpo.forEach((l, i) => {
-    if (/^### /.test(l) && !(i >= teoria.ini && i < teoria.fim)) erro(L(i), '### só dentro da Aula Teórica Completa');
+    if (/^### /.test(l) && !(i >= teoria.ini && i < teoria.fim)) erro(L(i), '### só dentro da Aula Teórica');
     if (/^#### /.test(l) && !(i >= topicos.ini && i < topicos.fim)) erro(L(i), '#### só dentro dos Tópicos-Chave');
     if (/^#{5,} |^# /.test(l)) erro(L(i), 'nível de título não usado no padrão');
   });
@@ -163,54 +177,74 @@ function validar(arquivo) {
   const txtAntes = antes.linhas.join('\n');
   if (antes.ini >= 0) {
     if (!/^\*\*O que o ENEM cobra aqui\.\*\*/m.test(txtAntes)) erro(L(antes.ini), 'falta "**O que o ENEM cobra aqui.**"');
-    if (!/^\*\*Palavras e siglas desta aula\*\*$/m.test(txtAntes)) erro(L(antes.ini), 'falta "**Palavras e siglas desta aula**"');
-    if (!/^\*\*Símbolos desta aula\*\*$/m.test(txtAntes)) erro(L(antes.ini), 'falta "**Símbolos desta aula**"');
-    if (!/^\| Símbolo \| Como se lê \| O que significa \| Exemplo \|$/m.test(txtAntes)) erro(L(antes.ini), 'falta a tabela de símbolos com o cabeçalho | Símbolo | Como se lê | O que significa | Exemplo |');
+    if (/Símbolos desta aula|^\| Símbolo \|/m.test(txtAntes)) erro(L(antes.ini), 'a tabela "Símbolos desta aula" saiu do padrão: explique cada símbolo no texto, na primeira aparição');
     if (!/^\*\*O que você precisa saber antes\.\*\*/m.test(txtAntes)) erro(L(antes.ini), 'falta "**O que você precisa saber antes.**"');
+    // temas cobrados: frase fixa no fim do parágrafo + lista com o tema em negrito
+    const iCobra = antes.linhas.findIndex((l) => /^\*\*O que o ENEM cobra aqui\.\*\*/.test(l));
+    if (iCobra >= 0) {
+      if (!antes.linhas[iCobra].trimEnd().endsWith(TEMAS_COBRADOS)) erro(L(antes.ini + iCobra), `o parágrafo "O que o ENEM cobra aqui." termina com "${TEMAS_COBRADOS}" e a lista vem logo abaixo`);
+      let j = iCobra + 1;
+      while (j < antes.linhas.length && !antes.linhas[j].trim()) j++;
+      let itens = 0;
+      for (; j < antes.linhas.length && /^- /.test(antes.linhas[j]); j++) {
+        itens++;
+        if (!/^- \*\*[^*]+\*\*/.test(antes.linhas[j])) erro(L(antes.ini + j), 'cada tema cobrado começa em negrito: "- **Tema** complemento curto."');
+      }
+      if (itens < 2) erro(L(antes.ini + iCobra), 'liste pelo menos 2 temas cobrados, um por linha, logo depois do parágrafo');
+    }
   }
-  // glossário: itens "- **Termo** …: …"
+  // glossário: dentro de <Accordion titulo="Palavras e siglas desta aula">; itens "- **Termo** …: …"
   const glossario = new Set();
-  let noGlossario = false;
+  let termosComuns = 0;
+  const abreGl = antes.linhas.findIndex((l) => /^<Accordion\b/.test(l));
+  const fechaGl = antes.linhas.findIndex((l) => /^<\/Accordion>\s*$/.test(l));
+  if (antes.ini >= 0) {
+    if (abreGl < 0 || fechaGl < abreGl) erro(L(antes.ini), `o glossário fica dentro de <Accordion titulo="${TITULO_GLOSSARIO}" dica="…" icone="spell-check"> … </Accordion>`);
+    else {
+      if (!antes.linhas[abreGl].includes(`titulo="${TITULO_GLOSSARIO}"`)) erro(L(antes.ini + abreGl), `o <Accordion> do glossário tem titulo="${TITULO_GLOSSARIO}"`);
+      if (antes.linhas[abreGl + 1]?.trim() !== '') erro(L(antes.ini + abreGl + 1), 'linha em branco depois de <Accordion …>');
+      if (antes.linhas[fechaGl - 1]?.trim() !== '') erro(L(antes.ini + fechaGl), 'linha em branco antes de </Accordion>');
+      if (antes.linhas.filter((l) => /^<Accordion\b/.test(l)).length > 1) erro(L(antes.ini), 'só um <Accordion> por aula (o glossário)');
+    }
+  }
   antes.linhas.forEach((l, k) => {
-    if (/^\*\*Palavras e siglas desta aula\*\*/.test(l)) { noGlossario = true; return; }
-    if (noGlossario && /^\*\*/.test(l)) noGlossario = false;
-    if (noGlossario && /^- /.test(l)) {
-      const m = l.match(/^- \*\*([^*]+)\*\*/);
-      if (!m || !/:/.test(l)) erro(L(antes.ini + k), 'item do glossário deve ser "- **Termo**: explicação" ou "- **SIGLA** (por extenso): explicação"');
-      else glossario.add(m[1].trim());
+    if (!(k > abreGl && k < fechaGl) || !l.trim()) return;
+    const m = l.match(/^- \*\*([^*]+)\*\*/);
+    if (!m || !/:/.test(l)) erro(L(antes.ini + k), 'item do glossário deve ser "- **Termo**: explicação" ou "- **SIGLA** (por extenso): explicação"');
+    else {
+      glossario.add(m[1].trim());
+      if (!/^[A-ZÁÉÍÓÚÂÊÔÃÕÇ]{2,}[a-z]?$/.test(m[1].trim())) termosComuns++;
     }
   });
   if (antes.ini >= 0 && glossario.size < 3) erro(L(antes.ini), 'glossário com menos de 3 termos');
-  // tabela de símbolos
-  const simbolos = new Set();
-  let naTabela = false;
-  antes.linhas.forEach((l) => {
-    if (/^\| Símbolo \|/.test(l)) { naTabela = true; return; }
-    if (naTabela && /^\|---/.test(l)) return;
-    if (naTabela && /^\|/.test(l)) simbolos.add(l.split('|')[1].trim());
-    else naTabela = false;
-  });
-  if (antes.ini >= 0 && simbolos.size < 1) erro(L(antes.ini), 'tabela de símbolos sem linhas');
+  if (termosComuns > 14) aviso(L(antes.ini + abreGl), `glossário com ${termosComuns} termos além das siglas (o padrão é até ~12): tire os óbvios`);
 
   // -------------------------------------------------------------- siglas (§4)
-  // Toda sigla (2+ maiúsculas) fora do Teste de Fogo: no glossário e, na primeira
-  // aparição (quickSummary → relevance → corpo), seguida da forma por extenso entre parênteses.
-  const textoOrdem = [
-    ['quickSummary', fm.quickSummary || '', 0],
-    ['relevance', fm.relevance || '', 0],
-    ...corpo.map((l, i) => ['corpo', i < teste.ini || teste.ini < 0 ? l : '', L(i)]),
+  // Toda sigla (2+ maiúsculas) fora da seção de questões está no glossário. Vem
+  // seguida do nome por extenso entre parênteses na primeira aparição do Raio-X
+  // (quickSummary → relevance) e de novo na primeira aparição da Aula Teórica.
+  const escopos = [
+    ['Raio-X', [['quickSummary', fm.quickSummary || '', 0], ['relevance', fm.relevance || '', 0]]],
+    ['Aula Teórica', teoria.linhas.map((l, k) => ['Aula Teórica', /^\s*[#<]/.test(l) ? '' : l, L(teoria.ini + k)])],
+    ['resto', corpo.map((l, i) => ['corpo', (i < teste.ini || teste.ini < 0) && !(i >= teoria.ini && i < teoria.fim) ? l : '', L(i)])],
   ];
-  const vistas = new Set();
-  for (const [onde, t, n] of textoOrdem) {
-    const limpo = t.replace(/<[^>]+>/g, ' ').replace(/\]\([^)]*\)/g, ']').replace(/\*\*/g, '');
-    for (const m of limpo.matchAll(/(?<![\p{L}\d₀-₉⁰-⁹])([A-ZÁÉÍÓÚÂÊÔÃÕÇ]{2,}[a-z]?)(?![\p{L}\d₀-₉⁰-⁹])/gu)) {
-      const s = m[1];
-      if (ROMANOS.test(s) || vistas.has(s)) continue;
-      vistas.add(s);
-      const depois = limpo.slice(m.index + s.length, m.index + s.length + 4);
-      const antesDe = limpo.slice(Math.max(0, m.index - 2), m.index);
-      if (!/^\s?\(/.test(depois) && !/\($/.test(antesDe)) erro(n, `sigla ${s} na primeira aparição (${onde}) sem o nome por extenso entre parênteses`);
-      if (!glossario.has(s)) erro(n, `sigla ${s} não está em "Palavras e siglas desta aula"`);
+  const noGlossario = new Set();
+  for (const [escopo, textos] of escopos) {
+    const vistas = new Set();
+    for (const [onde, t, n] of textos) {
+      const limpo = t.replace(/<[^>]+>/g, ' ').replace(/\]\([^)]*\)/g, ']').replace(/\*\*/g, '');
+      for (const m of limpo.matchAll(/(?<![\p{L}\d₀-₉⁰-⁹])([A-ZÁÉÍÓÚÂÊÔÃÕÇ]{2,}[a-z]?)(?![\p{L}\d₀-₉⁰-⁹])/gu)) {
+        const s = m[1];
+        if (ROMANOS.test(s) || vistas.has(s)) continue;
+        vistas.add(s);
+        const depois = limpo.slice(m.index + s.length, m.index + s.length + 4);
+        const antesDe = limpo.slice(Math.max(0, m.index - 2), m.index);
+        if (escopo !== 'resto' && !/^\s?\(/.test(depois) && !/\($/.test(antesDe)) erro(n, `sigla ${s} na primeira aparição (${onde}) sem o nome por extenso entre parênteses`);
+        if (!glossario.has(s) && !noGlossario.has(s)) {
+          noGlossario.add(s);
+          erro(n, `sigla ${s} não está em "${TITULO_GLOSSARIO}"`);
+        }
+      }
     }
   }
 
@@ -247,13 +281,12 @@ function validar(arquivo) {
   // figuras na teoria
   const figurasTeoria = teoria.linhas.filter((l) => /<figure class="figura">/.test(l)).length;
   if (teoria.ini >= 0 && figurasTeoria < 1) erro(L(teoria.ini), 'Aula Teórica sem nenhuma figura (§5: toda aula tem imagens)');
-  // numeração das figuras na teoria
-  let nfig = 0;
-  teoria.linhas.forEach((l, k) => {
-    const m = l.match(/<b>Figura (\d+)\.<\/b>/);
-    if (m) {
-      nfig++;
-      if (Number(m[1]) !== nfig) erro(L(teoria.ini + k), `figura numerada ${m[1]}, deveria ser ${nfig}`);
+  // negrito é palavra-chave (sai na cor da matéria), não frase inteira
+  corpo.forEach((l, i) => {
+    if (i >= teste.ini && teste.ini >= 0) return;
+    for (const m of l.matchAll(/\*\*([^*]+)\*\*/g)) {
+      const n = m[1].split(/\s+/).filter(Boolean).length;
+      if (n > 8 && !/^Fórmula: /.test(m[1]) && !/[=×÷]/.test(m[1])) aviso(L(i), `negrito com ${n} palavras: destaque só a palavra-chave`);
     }
   });
   // frases longas (aviso)
@@ -325,11 +358,10 @@ function validar(arquivo) {
       if (corpo[i - 1]?.trim() !== '' || corpo[i + 1]?.trim() !== '') erro(L(i), 'imagem precisa de linha em branco antes e depois');
     } else if (/!\[/.test(l)) erro(L(i), 'imagem markdown deve ficar sozinha na linha: ![descrição](./img/tema/arquivo.png)');
   });
-  // cada <figure> tem figcaption; cada svg tem title e desc com os ids do aria-labelledby
+  // cada svg tem title e desc com os ids do aria-labelledby
   const txt = corpo.join('\n');
   const figs = [...txt.matchAll(/<figure class="figura">([\s\S]*?)<\/figure>/g)];
   for (const f of figs) {
-    if (!/<figcaption>[\s\S]+<\/figcaption>/.test(f[1])) erro(0, 'figura sem <figcaption>');
     const svg = f[1].match(/<svg[^>]*aria-labelledby="([^"]+)"/);
     if (svg) {
       const [idT, idD] = svg[1].split(/\s+/);
@@ -338,19 +370,27 @@ function validar(arquivo) {
     }
   }
 
-  // ---------------------------------------------------- Teste de Fogo (§7)
+  // -------------------------------------------- Questões do ENEM / e escrita (§7)
   const questoes = [];
   if (teste.ini >= 0) {
     const t = teste.linhas;
     const primeira = t.find((l) => l.trim());
-    if (primeira !== INSTRUCAO_TESTE) erro(L(teste.ini), `a primeira linha do Teste de Fogo deve ser ${INSTRUCAO_TESTE}`);
+    if (primeira !== INSTRUCAO_TESTE) erro(L(teste.ini), `a primeira linha de "${nomeQuestoes}" deve ser ${INSTRUCAO_TESTE}`);
     t.forEach((l, k) => {
       const m = l.match(/^\*\*Quest[ãa]o (\d+)\*\*(.*)$/);
       if (!m) return;
       if (m[2].trim()) erro(L(teste.ini + k), 'o rótulo "**Questão N**" fica sozinho na linha');
       questoes.push({ n: Number(m[1]), k });
     });
-    if (questoes.length !== 5) erro(L(teste.ini), `o Teste de Fogo tem ${questoes.length} questões; devem ser 5`);
+    if (questoes.length !== 5) erro(L(teste.ini), `"${nomeQuestoes}" tem ${questoes.length} questões; devem ser 5`);
+    if (materia === 'redacao') {
+      const iT = t.findIndex((l) => /^<Textarea\b/.test(l));
+      if (iT < 0) erro(L(teste.ini), 'a aula de Redação termina com a folha: <Textarea id="<tema>" titulo="…" dica="…" />');
+      else {
+        if (questoes.length && iT < questoes[questoes.length - 1].k) erro(L(teste.ini + iT), 'a folha de redação vem depois da questão 5');
+        if (!t.slice(0, iT).some((l) => /^\*\*Agora escreva\.\*\*/.test(l))) erro(L(teste.ini + iT), 'antes da folha, um parágrafo "**Agora escreva.** instrução curta"');
+      }
+    }
     questoes.forEach((q, j) => {
       if (q.n !== j + 1) erro(L(teste.ini + q.k), `questão numerada ${q.n}, deveria ser ${j + 1}`);
       const fim = j + 1 < questoes.length ? questoes[j + 1].k : t.length;
@@ -364,7 +404,8 @@ function validar(arquivo) {
       if (!oficial && !autoral) erro(q.linhaFonte, 'linha de fonte fora do formato: *ENEM 2019 · PPL · 2º dia · caderno azul · questão 146* (aplicação só se não for a regular; " · inglês/espanhol" nas questões de língua) ou *Questão autoral no estilo ENEM*');
       q.oficial = oficial;
       q.autoral = autoral;
-      if (autoral) aviso(q.linhaFonte, `questão ${q.n} é autoral: avisar no relato`);
+      if (autoral && materia !== 'redacao') aviso(q.linhaFonte, `questão ${q.n} é autoral: avisar no relato`);
+      if (oficial && materia === 'redacao') erro(q.linhaFonte, 'na Redação as 5 questões são autorais (*Questão autoral no estilo ENEM*)');
       // alternativas: 5 linhas seguidas A) … E), A–D com "\" no fim
       const iA = bloco.findIndex((l) => /^A\) /.test(l));
       if (iA < 0) {
