@@ -15,6 +15,9 @@ Status: `pendente`, `em andamento`, `concluída`, `bloqueada`. Questões: ids do
 - 25/09/2026 · "Difícil" = parâmetro b no terço superior da mesma área e ano; questão sem b não conta como difícil.
 - 25/09/2026 · Nome da aplicação na linha de fonte: conferir a capa do caderno (ex.: o caderno 9 branco de 2016 listado como PPL é a "3ª aplicação").
 - 25/09/2026 · Direito autoral: reproduzir só texto do INEP, obra em domínio público (autor morto há mais de 70 anos, Lei 9.610/98, art. 41) e trecho curto de prosa com crédito; o resto remete à página do PDF oficial ou a questão é trocada.
+- 26/09/2026 · Padrão v2, depois do piloto (pedido do Max): resumo e relevância juntos no "Raio-X do tema" (retrátil); cor fixa por matéria, com o negrito na cor da matéria; temas cobrados em lista; glossário dentro de `<Accordion>`, só siglas e termos não óbvios; sem tabela de símbolos; "Aula Teórica" e "Questões do ENEM"; sem legenda "Figura N"; sem "Como o ENEM cobra isso"; siglas por extenso também na Aula Teórica; recortes aparados e centrados. Os 3 pilotos foram convertidos e revisados de novo.
+- 26/09/2026 · Redação: "## Questões e escrita" com 5 questões autorais sobre a competência da aula + `**Agora escreva.**` + `<Textarea />` (folha pautada; a correção fica para depois, só visual por enquanto).
+- 26/09/2026 · Push só no fim de cada matéria (confirmado pelo Max depois do piloto).
 
 ## Fase 3: aulas existentes (ordem de trabalho)
 
