@@ -34,7 +34,7 @@ Status: `pendente`, `em andamento`, `concluída`, `bloqueada`. Questões: ids do
 | geometria/semelhanca-de-triangulos | 2 | pendente |  |  |  |
 | geometria/teorema-de-pitagoras | 3 | pendente |  |  |  |
 | geometria/trigonometria-basica | 4 | pendente |  |  |  |
-| geometria/geometria-solida-volume | 5 | em andamento | 2024-ppl-D2-azul-Q171, 2022-ppl-D2-azul-Q150, 2022-regular-D2-azul-Q153, 2023-ppl-D2-azul-Q159, 2009-regular-D2-azul-Q173 |  | piloto |
+| geometria/geometria-solida-volume | 5 | concluída | 2024-ppl-D2-azul-Q171, 2022-ppl-D2-azul-Q150, 2022-regular-D2-azul-Q153, 2023-ppl-D2-azul-Q159, 2009-regular-D2-azul-Q173 | eb0bb1d | piloto; revisor: PASS na 3ª leitura (rodada 1: números que entregavam Q1-Q4, cartões de h = V ÷ Ab, tronco e massa); sem divisão |
 | estatistica-e-probabilidade/analise-de-graficos-e-tabelas | 1 | pendente |  |  |  |
 | estatistica-e-probabilidade/medidas-de-tendencia-central | 2 | pendente |  |  |  |
 | estatistica-e-probabilidade/desvio-padrao | 3 | pendente |  |  |  |
