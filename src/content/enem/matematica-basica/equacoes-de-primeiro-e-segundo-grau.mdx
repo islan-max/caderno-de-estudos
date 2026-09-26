@@ -3,166 +3,369 @@ title: "Equações de Primeiro e Segundo Grau"
 subject: "Matemática Básica"
 order: 6
 relevance: >
-  Equações são frases matemáticas com uma incógnita (uma letra, geralmente x, que representa um valor
-  desconhecido). Resolver uma equação é descobrir qual número faz aquela frase ser verdadeira. Esse é,
-  sem exagero, o assunto mais transversal da prova. O ENEM quase nunca cobra "resolva a equação 2x + 3
-  = 7" isoladamente: ele esconde a equação dentro de um problema do cotidiano (preço de um serviço,
-  lucro de uma empresa, formato de um terreno, altura de uma construção) e espera que você monte a
-  equação sozinho antes de resolvê-la.
+  Uma equação descreve uma condição sobre um valor desconhecido, e resolvê-la é achar esse valor. O
+  ENEM (Exame Nacional do Ensino Médio) quase nunca pede "resolva a equação x + 5 = 12": ele esconde a
+  equação dentro de um problema — um ponto de equilíbrio entre custo e receita, a trajetória de um
+  projétil, o preço que dá o maior lucro. Entender como montar e resolver equações de 1º e 2º grau é o
+  que conecta a linguagem algébrica dessas situações à resposta numérica pedida. Esse tema é a base de
+  praticamente toda a Matemática que envolve encontrar um valor desconhecido.
 quickSummary: >
-  A equação do 1º grau tem a forma ax + b = 0, com a ≠ 0. Ela representa qualquer situação de
-  proporção direta e constante: um custo fixo somado a um custo por unidade, uma cobrança por hora, um
-  valor que cresce sempre na mesma taxa. Para resolver, isole os termos com x de um lado e os números
-  do outro, sempre fazendo a mesma operação nos dois lados da "balança".
+  Uma equação de 1º grau tem a incógnita sem expoente (como x); para resolver, isole x fazendo a mesma
+  operação dos dois lados. Uma equação de 2º grau tem a incógnita elevada ao quadrado (x²); a forma
+  geral é ax² + bx + c = 0, e suas raízes vêm da fórmula de Bhaskara. O gráfico de uma equação do 2º
+  grau é uma parábola, cujo ponto mais alto ou mais baixo (o vértice) dá o valor máximo ou mínimo de uma
+  situação.
+resources:
+  conteudoComplementar:
+    conteudo: "Funções"
+    comoAjuda: "Uma equação do 1º ou do 2º grau é o que sobra quando se iguala uma função afim ou quadrática a um valor fixo; a próxima aula estuda essas funções por inteiro, não só um valor delas."
+gabarito:
+  - correta: 4
+    porque: >
+      A parábola passa pelas raízes x=0 e x=150, então y = a·x·(x−150). No vértice, x=75 e y=25:
+      25 = a × 75 × (75−150) = a × 75 × (−75) = −5625a, então a = 25 ÷ (−5625) = −1/225. Substituindo:
+      y = −(1/225)·x·(x−150). Multiplicando os dois lados por −225: −225y = x·(x−150) = x² − 150x.
+      Isolando: 225y = −(x² − 150x) = 150x − x².
+      Revisar: Aula Teórica › 5. Fórmula de Bhaskara e as raízes de uma equação do 2º grau
+  - correta: 3
+    porque: >
+      Com desconto x (em centavos), o preço por litro vira (150 − x) centavos e a quantidade vendida vira
+      (10 000 + 100x) litros. O valor arrecadado, em centavos, é (150 − x)(10 000 + 100x). Expandindo:
+      1 500 000 + 15 000x − 10 000x − 100x² = 1 500 000 + 5 000x − 100x². Dividindo tudo por 100 para
+      passar a reais: V = 15 000 + 50x − x².
+      Revisar: Aula Teórica › 4. Equação do 2º grau: forma geral e produto de binômios
+  - correta: 3
+    porque: >
+      L(x) = −x² + 14x − 45 tem a = −1 e b = 14. O vértice (ponto de máximo, já que a concavidade é para
+      baixo) fica em x = −b ÷ (2a) = −14 ÷ (−2) = 7. Entre os preços das barras, o mais próximo de 7 é a
+      Barra IV, de R$ 7,00.
+      Revisar: Aula Teórica › 6. O vértice da parábola: valor máximo ou mínimo
+  - correta: 4
+    porque: >
+      A receita mensal por pacote é R$ 280,00, e o custo por pacote é 400 × 0,42 = R$ 168,00. Sem
+      prejuízo significa receita ≥ custo fixo + custo variável: 280x ≥ 12 800 + 168x. Isolando x:
+      112x ≥ 12 800, então x ≥ 114,28..., ou seja, no mínimo 115 pacotes (x precisa ser um número
+      inteiro que satisfaça a desigualdade).
+      Revisar: Aula Teórica › 3. Inequação do 1º grau: a mesma ideia, com ≤ e ≥
+  - correta: 1
+    porque: >
+      Em 2 horas, a empresa X cobra 60 + 18×2 = 96 reais. A empresa Y, cobrando v reais por hora, deve
+      ficar com custo menor ou igual: 24 + 2v ≤ 96. Isolando v: 2v ≤ 72, então v ≤ 36. O valor máximo é
+      R$ 36,00 por hora.
+      Revisar: Aula Teórica › 3. Inequação do 1º grau: a mesma ideia, com ≤ e ≥
 ---
 
-## Aula Teórica Completa
+<Accordion titulo="Palavras e siglas desta aula" dica="Consulte quando encontrar um termo novo" icone="spell-check">
 
-### Analogia inicial: a equação como uma balança
+- **ENEM** (Exame Nacional do Ensino Médio): a prova nacional que dá acesso a faculdades e bolsas.
+- **INEP** (Instituto Nacional de Estudos e Pesquisas Educacionais Anísio Teixeira): o órgão do governo que faz o ENEM.
+- **Incógnita**: a letra que representa o valor desconhecido numa equação, normalmente x.
+- **Raiz de uma equação**: o valor da incógnita que torna a equação verdadeira.
+- **Coeficiente**: o número que multiplica a incógnita (ou seu quadrado) numa equação.
+- **Inequação**: uma condição parecida com uma equação, mas com ≤, ≥, &lt; ou > no lugar do sinal de igual.
+- **Vértice da parábola**: o ponto mais alto ou mais baixo do gráfico de uma equação do 2º grau.
 
-Imagine uma balança de dois pratos, perfeitamente equilibrada. Tudo o que está escrito à esquerda do sinal de igual (=) pesa exatamente o mesmo que está à direita. Se você tira ou adiciona algo de um lado, precisa fazer a mesma coisa do outro lado para a balança continuar equilibrada. Essa é a regra de ouro para resolver qualquer equação: **o que você faz de um lado, tem que fazer do outro**.
+</Accordion>
 
-### Parte A: Equação do 1º grau
+## Antes de Começar
 
-Uma equação do 1º grau é aquela em que a incógnita aparece apenas com expoente 1 (sem x², sem raiz de x). A forma geral é:
+**O que o ENEM cobra aqui.** A prova quase nunca escreve uma equação pronta e pede para resolvê-la: ela descreve uma situação, e você monta a equação a partir do enunciado. Os temas que costumam aparecer são estes:
 
-**ax + b = 0**
+- **Isolar a incógnita** numa equação ou inequação de 1º grau, geralmente para achar um ponto de equilíbrio.
+- **Expandir um produto de binômios** para montar uma equação do 2º grau.
+- **Achar as raízes** de uma equação do 2º grau, a partir de pontos conhecidos de uma situação.
+- **Usar o vértice da parábola** para achar o valor máximo ou mínimo de uma situação.
 
-Aqui: **a** é o coeficiente que multiplica x (a ≠ 0, senão x desaparece), **b** é o termo independente (o número "solto"), **x** é a incógnita que queremos descobrir.
+**O que você precisa saber antes.**
 
-Passo a passo para resolver, usando o exemplo 3x + 6 = 21:
+- **Operações com números negativos e frações.** Isolar uma incógnita envolve somar, subtrair, multiplicar e dividir os dois lados de uma equação, inclusive com sinais trocados.
+- **Multiplicação de dois binômios**, como (a + x)(b − x). Se ainda travar nisso, revise a distributiva: cada termo do primeiro parêntese multiplica cada termo do segundo.
+- **Potenciação**, em especial elevar ao quadrado. Revise a aula de Potências e Raízes se precisar.
 
-1. Isole os termos com x de um lado e os números do outro: 3x = 21 − 6
-2. Simplifique: 3x = 15
-3. Divida os dois lados pelo coeficiente de x: x = 15/3 = 5
+## Aula Teórica
 
-O grande desafio do ENEM aqui não é resolver a equação: é **montar** ela a partir de um texto. Para isso, você precisa traduzir palavras em símbolos:
+### 1. O que é uma equação e o que é resolvê-la
 
-| Frase em português | Tradução matemática |
-|---|---|
-| "o dobro de um número" | 2x |
-| "um valor fixo mais um valor por unidade" | b + a·x |
-| "a soma é igual a" | ... + ... = |
-| "no mínimo" / "pelo menos" | ≥ |
-| "no máximo" | ≤ |
+Uma **equação** é uma igualdade que tem uma **incógnita**: uma letra (quase sempre x) representando um valor ainda desconhecido. Resolver a equação é achar o valor (ou os valores) da incógnita que tornam essa igualdade verdadeira — esse valor é chamado de **raiz** da equação.
 
-Muitas questões do ENEM, na verdade, pedem uma **inequação** (desigualdade) em vez de uma igualdade exata: "para que a empresa Y cobre no máximo tanto quanto a empresa X". A lógica de montagem é idêntica à da equação; só no final você trabalha com ≤, ≥, &lt; ou > em vez de =.
+<figure class="figura">
+  <svg viewBox="0 0 460 130" role="img" aria-labelledby="fig-eq-1-t fig-eq-1-d">
+    <title id="fig-eq-1-t">Partes de uma equação</title>
+    <desc id="fig-eq-1-d">A equação 2x mais 3 igual a 11, com "2" e "x" marcados como coeficiente e incógnita, e "11" marcado como o outro lado da igualdade.</desc>
+    <text x="230" y="60" class="rotulo" text-anchor="middle" font-size="26">2x + 3 = 11</text>
+    <line x1="158" y1="75" x2="120" y2="95" class="traco-fino" />
+    <text x="120" y="112" class="rotulo-fraco" text-anchor="middle">coeficiente</text>
+    <line x1="178" y1="75" x2="230" y2="95" class="traco-fino" />
+    <text x="230" y="112" class="rotulo-fraco" text-anchor="middle">incógnita</text>
+    <line x1="330" y1="75" x2="360" y2="95" class="traco-fino" />
+    <text x="360" y="112" class="rotulo-fraco" text-anchor="middle">o outro lado</text>
+  </svg>
+</figure>
 
-### Parte B: Equação do 2º grau
+Uma equação é de **1º grau** quando a incógnita aparece sem expoente (só x, nunca x²). É de **2º grau** quando o maior expoente da incógnita é 2 (aparece um termo x²).
 
-Uma equação do 2º grau é aquela em que a incógnita aparece elevada ao quadrado. A forma geral é:
+### 2. Equação do 1º grau: isolar a incógnita
 
-**ax² + bx + c = 0**
+Para resolver uma equação de 1º grau, o objetivo é deixar a incógnita sozinha de um lado da igualdade. Para isso, é permitido fazer a mesma operação nos dois lados ao mesmo tempo — somar, subtrair, multiplicar ou dividir — sem que a igualdade deixe de valer.
 
-Aqui: **a** é o coeficiente do termo x² (a ≠ 0, senão a equação deixa de ser de 2º grau), **b** é o coeficiente do termo x, **c** é o termo independente.
+**Exemplo resolvido.** Uma corrida de aplicativo cobra R$ 4,00 fixos mais R$ 1,50 por quilômetro rodado. Uma corrida custou R$ 16,00. Quantos quilômetros ela teve?
 
-**Método 1: Fórmula de Bhaskara** (o mais usado e mais seguro)
+1. Montar a equação: 4 + 1,50x = 16, sendo x a distância em quilômetro.
+2. Subtrair 4 dos dois lados: 1,50x = 16 − 4 = 12.
+3. Dividir os dois lados por 1,50: x = 12 ÷ 1,50 = 8.
+4. Resposta: 8 quilômetros.
 
-Primeiro calculamos o **discriminante**:
+**Erro comum.** Fazer a operação em só um lado da equação, como subtrair 4 apenas do lado direito. Qualquer operação precisa ser feita nos dois lados para manter a igualdade.
 
-**Δ = b² − 4ac**
+Em problemas do ENEM (Exame Nacional do Ensino Médio), o mais comum é a incógnita aparecer duas vezes, uma de cada lado. É o caso ao comparar um custo fixo mais variável com uma receita: primeiro reúna os termos com x de um lado e os números do outro, antes de isolar x.
 
-O Δ (delta) nos diz quantas soluções reais a equação tem: se Δ > 0, duas raízes reais diferentes; se Δ = 0, uma única raiz (raiz dupla); se Δ &lt; 0, nenhuma raiz real.
+### 3. Inequação do 1º grau: a mesma ideia, com ≤ e ≥
 
-Depois, aplicamos a fórmula de Bhaskara:
+Uma **inequação** troca o sinal de igual por ≤, ≥, &lt; ou >. Ela se resolve como uma equação, com as mesmas operações nos dois lados. Há um cuidado a mais: ao multiplicar ou dividir os dois lados por um número negativo, o sinal da desigualdade se inverte.
 
-**x = (−b ± √Δ) / (2a)**
+**Exemplo resolvido.** Uma loja tem um custo fixo mensal de R$ 2 000,00 e um custo de R$ 15,00 por unidade produzida. Cada unidade é vendida por R$ 35,00. Qual é o número mínimo de unidades vendidas para não haver prejuízo no mês?
 
-Aqui: **x** são as duas raízes possíveis (uma usando + e outra usando −), **b** é o mesmo coeficiente de bx com o sinal trocado, **Δ** é o discriminante calculado acima, **a** é o coeficiente de x², multiplicado por 2 no denominador.
+1. Montar a inequação: receita ≥ custo, ou seja, 35x ≥ 2 000 + 15x, sendo x o número de unidades.
+2. Reunir os termos com x: 35x − 15x ≥ 2 000, ou seja, 20x ≥ 2 000.
+3. Isolar x: x ≥ 2 000 ÷ 20 = 100.
+4. Resposta: no mínimo 100 unidades.
 
-Exemplo: x² − 4x + 3 = 0. Aqui a=1, b=−4, c=3.
-Δ = (−4)² − 4(1)(3) = 16 − 12 = 4
-x = (4 ± √4) / 2 = (4 ± 2) / 2 → x = 3 ou x = 1
+**Erro comum.** Esquecer de inverter o sinal da desigualdade ao dividir os dois lados por um número negativo. Como no exemplo acima os dois lados foram divididos por 20 (positivo), o sinal não muda; mas isso precisa ser checado sempre.
 
-**Método 2: Soma e Produto** (mais rápido quando as raízes são "bonitas")
+Às vezes a resposta de uma inequação precisa ser um número inteiro, como uma quantidade de produtos ou de dias. Nesse caso, arredonde para cima quando a condição for "no mínimo" e o valor encontrado não for inteiro.
 
-Se você já sabe que a soma das raízes é −b/a e o produto das raízes é c/a, pode simplesmente pensar em dois números que somados e multiplicados deem esses resultados. No exemplo acima: soma = 4, produto = 3 → os números são 3 e 1. Bate com o resultado da fórmula.
+### 4. Equação do 2º grau: forma geral e produto de binômios
 
-**Aplicação central no ENEM: a parábola e o vértice**
+Uma **equação do 2º grau** tem a forma geral **ax² + bx + c = 0**, com a diferente de zero. Muitas vezes essa forma não aparece pronta: o enunciado descreve uma situação onde é preciso multiplicar dois binômios (duas expressões com dois termos cada) para chegar até ela.
 
-Toda equação do 2º grau está associada a uma parábola (y = ax² + bx + c). Isso é ouro para o ENEM porque muitas questões pedem o **valor máximo ou mínimo** de uma situação (lucro máximo, altura máxima, área máxima). Esse ponto é o **vértice** da parábola, calculado por:
+**Fórmula: produto de dois binômios**
 
-**xV = −b / (2a)** e **yV = −Δ / (4a)**
+**(m + nx)(p + qx) = mp + mqx + npx + nqx²**
 
-Aqui: **xV** é o valor de x onde ocorre o máximo/mínimo, **yV** é o valor máximo (se a&lt;0, parábola "de boca para baixo") ou mínimo (se a>0) da função, **b, a e Δ** são os mesmos coeficientes e discriminante de antes.
+- **m, n, p, q**: os números (ou expressões) de cada binômio.
+- **x**: a incógnita.
+- **Em palavras:** cada termo do primeiro parêntese multiplica cada termo do segundo, e depois somam-se os quatro resultados.
+- **Quando usar:** sempre que o enunciado combinar duas quantidades que variam ao mesmo tempo em função de x, como um preço que cai e uma quantidade que sobe.
 
-### Armadilhas típicas do INEP neste tema
+**Exemplo resolvido.** Uma banca vende 200 revistas por dia a R$ 8,00 cada. Para cada real de desconto no preço, vende 50 revistas a mais por dia. Escreva o valor V arrecadado por dia em função do desconto x.
 
-O INEP adora testar se você sabe **montar** a equação a partir do texto: o erro mais comum não é de cálculo, é de interpretação (por exemplo, trocar "área" por "perímetro", ou esquecer de multiplicar preço por quantidade para achar receita). Outro erro clássico é confundir a pergunta: a questão pode pedir o valor de x, mas o "valor final" pedido é y (ex: pedem a altura H, que é o valor da função, não a raiz da equação). Fique atento também a **intervalos**: muitas questões de 1º grau viram inequações disfarçadas de equações, e a resposta certa é um intervalo de valores, não um único número.
+1. Dados: preço por revista = 8 − x; quantidade vendida = 200 + 50x.
+2. Montar o produto: V = (8 − x)(200 + 50x).
+3. Expandir: 8×200 + 8×50x − x×200 − x×50x = 1 600 + 400x − 200x − 50x².
+4. Simplificar: V = 1 600 + 200x − 50x².
+
+**Erro comum.** Multiplicar só os primeiros termos dos dois parênteses (8 × 200) e esquecer os outros três produtos. A distributiva exige multiplicar cada termo do primeiro parêntese por cada termo do segundo.
+
+### 5. Fórmula de Bhaskara e as raízes de uma equação do 2º grau
+
+As **raízes** de ax² + bx + c = 0 (os valores de x que resolvem a equação) podem ser calculadas pela **fórmula de Bhaskara**.
+
+**Fórmula: fórmula de Bhaskara**
+
+**x = (−b ± √Δ) ÷ (2a), onde Δ = b² − 4ac**
+
+- **a, b, c**: os coeficientes da forma geral ax² + bx + c = 0.
+- **Δ** (a letra grega delta, chamada de **discriminante**): decide quantas raízes reais existem.
+- **Em palavras:** calcule Δ primeiro. Se Δ for negativo, não há raiz real; se for zero, há uma raiz; se for positivo, há duas raízes: uma para +√Δ e outra para −√Δ.
+- **Quando usar:** sempre que for preciso achar os valores exatos de x que zeram uma equação do 2º grau.
+
+**Exemplo resolvido.** Uma bola é lançada do chão, e sua altura h, em metro, depois de t segundos, é h = 20t − 5t². Em que instante a bola volta a tocar o chão?
+
+1. A bola toca o chão quando h = 0: 20t − 5t² = 0.
+2. Identificar os coeficientes (com t no lugar de x): a = −5, b = 20, c = 0.
+3. Calcular Δ: Δ = 20² − 4×(−5)×0 = 400.
+4. Aplicar a fórmula: t = (−20 ± √400) ÷ (2×(−5)) = (−20 ± 20) ÷ (−10).
+5. Duas raízes: t = 0 (o instante do lançamento) e t = 4 (quando ela volta ao chão).
+6. Resposta: 4 segundos.
+
+**Erro comum.** Esquecer que uma equação do 2º grau pode ter duas raízes, e descartar a que não faz sentido no problema (como um tempo negativo) sem checar as duas primeiro.
+
+Às vezes o problema já dá as raízes de uma equação do 2º grau, como dois pontos onde uma trajetória cruza o eixo. O caminho pode ser o inverso: montar a equação na **forma fatorada** a partir delas.
+
+**Fórmula: forma fatorada, a partir das raízes**
+
+**ax² + bx + c = a · (x − r₁) · (x − r₂)**
+
+- **r₁, r₂**: as duas raízes da equação (os valores de x onde ela vale zero).
+- **a**: o mesmo coeficiente da forma geral; precisa de outra informação (como um ponto extra) para ser calculado.
+- **Em palavras:** monte o produto (x − r₁)(x − r₂) e multiplique pelo coeficiente a.
+- **Quando usar:** quando as raízes já são conhecidas e falta achar o coeficiente a com um ponto adicional.
+
+**Exemplo resolvido.** Uma bola de futebol chuta do chão e volta a tocá-lo a 40 metros de distância, atingindo 5 metros de altura máxima no meio do caminho. Escreva a equação da parábola dessa trajetória.
+
+1. Dados: raízes em x = 0 e x = 40; altura máxima 5 no ponto médio, x = 20.
+2. Forma fatorada: y = a · x · (x − 40).
+3. Substituir o vértice: 5 = a × 20 × (20 − 40) = a × 20 × (−20) = −400a.
+4. Calcular a: a = 5 ÷ (−400) = −1/80.
+5. Resposta: y = −(1/80) · x · (x − 40).
+
+**Erro comum.** Trocar o sinal de a. Como a parábola abre para baixo (a altura sobe e depois desce), o coeficiente a precisa ser negativo.
+
+### 6. O vértice da parábola: valor máximo ou mínimo
+
+O gráfico de uma equação do 2º grau (y = ax² + bx + c) é uma **parábola**. O ponto mais alto ou mais baixo dela é o **vértice**, e sua coordenada x é dada por uma fórmula direta.
+
+<figure class="figura">
+  <svg viewBox="0 0 460 180" role="img" aria-labelledby="fig-eq-2-t fig-eq-2-d">
+    <title id="fig-eq-2-t">Vértice de uma parábola com concavidade para baixo</title>
+    <desc id="fig-eq-2-d">Uma parábola aberta para baixo, cruzando o eixo horizontal em duas raízes e com o vértice marcado no ponto mais alto, entre as duas raízes.</desc>
+    <line x1="40" y1="150" x2="420" y2="150" class="traco-fino" />
+    <path d="M 80 150 Q 230 20 380 150" class="traco" fill="none" />
+    <circle cx="80" cy="150" r="4" class="preenche" />
+    <circle cx="380" cy="150" r="4" class="preenche" />
+    <circle cx="230" cy="52" r="4" class="preenche" />
+    <text x="80" y="170" class="rotulo-fraco" text-anchor="middle">r₁</text>
+    <text x="380" y="170" class="rotulo-fraco" text-anchor="middle">r₂</text>
+    <text x="230" y="35" class="rotulo" text-anchor="middle">vértice</text>
+    <line x1="230" y1="52" x2="230" y2="150" class="tracejado" />
+  </svg>
+</figure>
+
+**Fórmula: coordenada x do vértice**
+
+**x = −b ÷ (2a)**
+
+- **a, b**: os coeficientes da forma geral ax² + bx + c.
+- **x**: a coordenada horizontal do vértice; substituindo esse valor de volta na equação, acha-se a coordenada y (o valor máximo ou mínimo).
+- **Em palavras:** o vértice fica exatamente no meio das duas raízes (quando elas existem), e essa fórmula acha essa posição direto pelos coeficientes.
+- **Quando usar:** sempre que o problema pedir um valor máximo (quando a for negativo, parábola com concavidade para baixo) ou mínimo (quando a for positivo, concavidade para cima).
+
+**Exemplo resolvido.** O lucro mensal de uma oficina, em milhares de reais, é L(x) = −2x² + 40x − 150, sendo x o número de carros atendidos por dia. Quantos carros por dia maximizam o lucro?
+
+1. Identificar os coeficientes: a = −2, b = 40.
+2. Aplicar a fórmula: x = −40 ÷ (2×(−2)) = −40 ÷ (−4) = 10.
+3. Resposta: 10 carros por dia.
+
+**Erro comum.** Confundir a coordenada x do vértice (o valor que maximiza) com a coordenada y (o valor máximo em si). A fórmula x = −b/(2a) dá a posição; para saber o lucro máximo, seria preciso substituir esse x de volta em L(x).
+
+### Armadilhas típicas do INEP
+
+1. **Operar em só um lado da equação**, quebrando a igualdade.
+2. **Esquecer de inverter o sinal** de uma inequação ao multiplicar ou dividir por um número negativo.
+3. **Expandir errado um produto de binômios**, esquecendo um dos quatro produtos da distributiva.
+4. **Descartar as duas raízes sem checar**, quando só uma delas faz sentido no problema.
+5. **Confundir a coordenada x do vértice** com o valor máximo, que é a coordenada y.
+6. **Arredondar errado uma resposta que precisa ser inteira**, sem prestar atenção se a condição pede "no mínimo" (arredondar para cima) ou "no máximo" (arredondar para baixo).
 
 ## Tópicos-Chave para Revisão
 
 <div className="topico">
 
-A **equação do 1º grau** tem a forma **ax + b = 0**, com a ≠ 0. Ela representa qualquer situação de proporção direta e constante: um custo fixo somado a um custo por unidade, uma cobrança por hora, um valor que cresce sempre na mesma taxa. Para resolver, isole os termos com x de um lado e os números do outro, sempre fazendo a mesma operação nos dois lados da "balança". No ENEM, o desafio real é traduzir o enunciado (valor fixo + valor variável, "no mínimo", "no máximo") para a linguagem matemática antes mesmo de calcular.
+#### 1. O que é uma equação
 
-A **equação do 2º grau** tem a forma **ax² + bx + c = 0**, com a ≠ 0. O **discriminante Δ = b² − 4ac** informa quantas soluções reais existem (duas se Δ>0, uma se Δ=0, nenhuma se Δ&lt;0). A **fórmula de Bhaskara, x = (−b ± √Δ) / (2a)**, resolve qualquer equação desse tipo. Quando as raízes são números "redondos", o **método da soma e produto** (soma = −b/a, produto = c/a) é mais rápido.
+Uma **equação** iguala uma expressão com uma **incógnita** a um valor; resolvê-la é achar a **raiz**, o valor que torna a igualdade verdadeira. É de 1º grau sem expoente na incógnita, de 2º grau com um termo x².
 
-O **vértice da parábola**, dado por **xV = −b/(2a)** e **yV = −Δ/(4a)**, é a chave das questões de "máximo" ou "mínimo": lucro máximo, altura máxima, receita máxima. Sempre que o enunciado pedir o "melhor" valor de alguma grandeza modelada por uma função quadrática, pense automaticamente no vértice.
+#### 2. Equação e inequação do 1º grau
 
-Problemas de **contexto financeiro e comercial** (preço × quantidade = receita, custo fixo + custo variável) são o cenário favorito do ENEM para aplicar tanto equações do 1º quanto do 2º grau: muitas vezes a mesma situação (preço de um produto) pode gerar uma equação linear (custo) ou quadrática (receita = preço × quantidade vendida, quando a quantidade também depende do preço).
+Para **isolar** a incógnita, faça a mesma operação nos dois lados. Numa **inequação**, o sinal se inverte ao multiplicar ou dividir por um número negativo.
 
-Fique atento à diferença entre **resolver uma equação** (encontrar x) e **encontrar um intervalo** (quando o enunciado usa "no mínimo", "no máximo", "não pode ultrapassar"): nesses casos, a equação vira inequação e a resposta é uma faixa de valores, não um número isolado.
+#### 3. Forma geral e produto de binômios
+
+A forma geral é **ax² + bx + c = 0**. Um produto de dois binômios se expande multiplicando cada termo do primeiro pelo segundo: **(m + nx)(p + qx) = mp + mqx + npx + nqx²**.
+
+#### 4. Fórmula de Bhaskara
+
+As raízes de uma equação do 2º grau vêm de **x = (−b ± √Δ) ÷ (2a), onde Δ = b² − 4ac**. Dadas as raízes, a forma fatorada é **ax² + bx + c = a · (x − r₁) · (x − r₂)**.
+
+#### 5. Vértice da parábola
+
+O **vértice** de y = ax² + bx + c fica em **x = −b ÷ (2a)**: é o valor máximo (a negativo) ou mínimo (a positivo) da situação.
 
 </div>
 
-## Teste de Fogo
+## Questões do ENEM
 
-*Questões sem gabarito: resolva primeiro, depois confira com o professor ou com a IA.*
+*Marque uma alternativa em cada questão e confira tudo de uma vez no botão do fim.*
 
-**Questão 1 (ENEM PPL 2020)**
-Provedores de conteúdos postam anúncios de empresas em seus websites. O provedor A cobra R$ 0,10 por clique feito no anúncio, além do pagamento de uma taxa de contratação de R$ 50,00. O provedor B cobra uma taxa de contratação por anúncio mais atrativa, no valor de R$ 20,00, mais um valor por clique feito no anúncio. Para um anúncio que receberá 100 cliques, o provedor B fixará uma proposta com um valor a ser cobrado por clique, de modo que venha a receber, pelo menos, o mesmo total que receberia o provedor A. O gerente do provedor B deve avaliar os valores por clique a serem fixados.
+**Questão 1**
 
-O valor mínimo que o gerente do provedor B deverá escolher é
+*ENEM 2018 · 2ª aplicação · 2º dia · caderno azul · questão 158*
 
-a) R$ 0,11
-b) R$ 0,14
-c) R$ 0,30
-d) R$ 0,40
-e) R$ 0,41
+Um projétil é lançado por um canhão e atinge o solo a uma distância de 150 metros do ponto de partida. Ele percorre uma trajetória parabólica, e a altura máxima que atinge em relação ao solo é de 25 metros.
 
-**Questão 2 (ENEM PPL 2023)**
+<figure class="figura">
+  <svg viewBox="0 0 460 200" role="img" aria-labelledby="fig-eq-q1-t fig-eq-q1-d">
+    <title id="fig-eq-q1-t">Trajetória parabólica do projétil</title>
+    <desc id="fig-eq-q1-d">Um sistema de eixos xy com a origem no ponto onde o projétil atinge o solo, o canhão no ponto 150 no eixo x, e uma trajetória em arco entre os dois pontos, com altura máxima 25 marcada no meio do caminho.</desc>
+    <line x1="40" y1="170" x2="440" y2="170" class="traco-fino" />
+    <line x1="40" y1="170" x2="40" y2="20" class="traco-fino" />
+    <path d="M 40 170 Q 240 30 440 170" class="traco" fill="none" />
+    <circle cx="40" cy="170" r="4" class="preenche" />
+    <circle cx="440" cy="170" r="4" class="preenche" />
+    <text x="40" y="188" class="rotulo-fraco" text-anchor="middle">(0; 0)</text>
+    <text x="440" y="188" class="rotulo-fraco" text-anchor="middle">(150; 0)</text>
+    <line x1="240" y1="100" x2="240" y2="170" class="tracejado" />
+    <text x="255" y="100" class="rotulo">25 m</text>
+    <text x="240" y="192" class="rotulo-fraco" text-anchor="middle">150 m</text>
+    <text x="15" y="30" class="rotulo-fraco">y</text>
+    <text x="450" y="175" class="rotulo-fraco">x</text>
+  </svg>
+</figure>
+
+Admita um sistema de coordenadas xy em que no eixo vertical y está representada a altura e no eixo horizontal x está representada a distância, ambas em metro. Considere que o canhão está no ponto (150; 0) e que o projétil atinge o solo no ponto (0; 0) do plano xy.
+
+A equação da parábola que representa a trajetória descrita pelo projétil é
+
+A) y = 150x − x².\
+B) y = 3 750x − 25x².\
+C) 75y = 300x − 2x².\
+D) 125y = 450x − 3x².\
+E) 225y = 150x − x².
+
+**Questão 2**
+
+*ENEM 2009 · 2º dia · caderno azul · questão 155*
+
+Um posto de combustível vende 10.000 litros de álcool por dia a R$ 1,50 cada litro. Seu proprietário percebeu que, para cada centavo de desconto que concedia por litro, eram vendidos 100 litros a mais por dia. Por exemplo, no dia em que o preço do álcool foi R$ 1,48, foram vendidos 10.200 litros.
+
+Considerando x o valor, em centavos, do desconto dado no preço de cada litro, e V o valor, em R$, arrecadado por dia com a venda do álcool, então a expressão que relaciona V e x é
+
+A) V = 10.000 + 50x − x².\
+B) V = 10.000 + 50x + x².\
+C) V = 15.000 − 50x − x².\
+D) V = 15.000 + 50x − x².\
+E) V = 15.000 − 50x + x².
+
+**Questão 3**
+
+*ENEM 2020 · digital · 2º dia · caderno azul · questão 172*
+
+Uma empresa de chocolates consultou o gerente de produção e verificou que existem cinco tipos diferentes de barras de chocolate que podem ser produzidas, com os seguintes preços no mercado: Barra I, R$ 2,00; Barra II, R$ 3,50; Barra III, R$ 4,00; Barra IV, R$ 7,00; Barra V, R$ 8,00.
+
+Analisando as tendências do mercado, que incluem a quantidade vendida e a procura pelos consumidores, o gerente de vendas da empresa verificou que o lucro L com a venda de barras de chocolate é expresso pela função L(x) = −x² + 14x − 45, em que x representa o preço da barra de chocolate. A empresa decide investir na fabricação da barra de chocolate cujo preço praticado no mercado renderá o maior lucro.
+
+Nessas condições, a empresa deverá investir na produção da barra
+
+A) I.\
+B) II.\
+C) III.\
+D) IV.\
+E) V.
+
+**Questão 4**
+
+*ENEM 2020 · digital · 2º dia · caderno azul · questão 168*
+
+Uma microempresa especializou-se em produzir um tipo de chaveiro personalizado para brindes. O custo de produção de cada unidade é de R$ 0,42 e são comercializados em pacotes com 400 chaveiros, que são vendidos por R$ 280,00. Além disso, essa empresa tem um custo mensal fixo de R$ 12.800,00 que não depende do número de chaveiros produzidos.
+
+Qual é o número mínimo de pacotes de chaveiros que devem ser vendidos mensalmente para que essa microempresa não tenha prejuízo no mês?
+
+A) 26\
+B) 46\
+C) 109\
+D) 114\
+E) 115
+
+**Questão 5**
+
+*ENEM 2023 · 2ª aplicação · 2º dia · caderno azul · questão 160*
+
 Duas empresas do mercado de pequenos reparos domésticos determinam o valor de seus serviços a partir de um valor fixo acrescido de um valor cobrado por hora. A empresa X cobra R$ 60,00 de valor fixo mais R$ 18,00 por hora de serviço prestado. A empresa Y cobra R$ 24,00 de valor fixo e está definindo um novo valor a ser cobrado por hora. Sua estratégia de mercado prevê que, em relação à empresa X, o custo total do serviço deve ser menor ou igual para trabalhos de até duas horas de duração.
 
 Qual é o valor máximo, em real, que a empresa Y poderá cobrar por hora de serviço prestado a fim de atender à sua estratégia de mercado?
 
-a) 18
-b) 36
-c) 48
-d) 54
-e) 78
-
-**Questão 3 (ENEM Digital 2020)**
-Uma empresa de chocolates consultou o gerente de produção e verificou que existem cinco tipos diferentes de barras de chocolate que podem ser produzidas, com os seguintes preços no mercado: Barra I: R$ 2,00; Barra II: R$ 3,50; Barra III: R$ 4,00; Barra IV: R$ 7,00; Barra V: R$ 8,00. Analisando as tendências do mercado, que incluem a quantidade vendida e a procura pelos consumidores, o gerente de vendas da empresa verificou que o lucro L com a venda de barras de chocolate é expresso pela função L(x) = −x² + 14x − 45, em que x representa o preço da barra de chocolate. A empresa decide investir na fabricação da barra de chocolate cujo preço praticado no mercado renderá o maior lucro.
-
-Nessas condições, a empresa deverá investir na produção da barra
-
-a) I
-b) II
-c) III
-d) IV
-e) V
-
-**Questão 4 (ENEM 2017)**
-A Igreja de São Francisco de Assis, obra arquitetônica modernista de Oscar Niemeyer, localizada na Lagoa da Pampulha, em Belo Horizonte, possui abóbadas parabólicas. A entrada principal da capela tem o formato de uma parábola com concavidade voltada para baixo, que toca o solo em dois pontos simétricos, distantes 10 metros um do outro (isto é, 5 metros para cada lado do eixo central). Considerando um sistema de coordenadas em que o solo é o eixo x e o eixo de simetria da parábola é o eixo y, essa parábola passa também pelo ponto (4, 3), ou seja, a 4 metros do centro, a altura da abóbada é de 3 metros.
-
-Qual a medida da altura H, em metro, indicada no eixo de simetria (ponto mais alto da abóbada)?
-
-a) 16/3
-b) 31/5
-c) 25/4
-d) 25/3
-e) 75/2
-
-*(Observação: reconstruí os dados numéricos da figura original (que não posso reproduzir por ser protegida por direitos autorais) de forma equivalente, preservando a geometria e os valores usados na resolução oficial.)*
-
-**Questão 5 (ENEM 2015)**
-Uma padaria vende, em média, 100 pães especiais por dia e arrecada com essas vendas, em média, R$ 300,00. Constatou-se que a quantidade de pães especiais vendidos diariamente aumenta, caso o preço seja reduzido, de acordo com a equação q = 400 − 100p, na qual q representa a quantidade de pães especiais vendidos diariamente e p, o seu preço em reais. A fim de aumentar o fluxo de clientes, o gerente da padaria decidiu fazer uma promoção. Para tanto, modificará o preço do pão especial de modo que a quantidade a ser vendida diariamente seja a maior possível, sem diminuir a média de arrecadação diária na venda desse produto.
-
-O preço p, em reais, do pão especial nessa promoção deverá estar no intervalo
-
-a) R$ 0,50 ≤ p &lt; R$ 1,50
-b) R$ 1,50 ≤ p &lt; R$ 2,50
-c) R$ 2,50 ≤ p &lt; R$ 3,50
-d) R$ 3,50 ≤ p &lt; R$ 4,50
-e) R$ 4,50 ≤ p &lt; R$ 5,50
+A) 18\
+B) 36\
+C) 48\
+D) 54\
+E) 78
