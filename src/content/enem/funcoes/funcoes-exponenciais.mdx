@@ -3,149 +3,415 @@ title: "Funções Exponenciais"
 subject: "Funções"
 order: 3
 relevance: >
-  Função exponencial é qualquer função em que a variável aparece no expoente de uma potência (não na
-  base). É o modelo matemático que descreve tudo que cresce ou diminui proporcionalmente ao que já
-  existe: juros compostos, crescimento de bactérias, decaimento radioativo, desvalorização de carros,
-  propagação de doenças. Aparece em praticamente todas as edições do ENEM, geralmente em Matemática (1
-  a 2 questões) e frequentemente cruzada com Química (radioatividade, meia-vida) e Biologia
-  (crescimento populacional). É considerada uma das funções mais rentáveis para estudar, porque o
-  padrão de cobrança se repete muito.
+  Função exponencial é o modelo de tudo que muda multiplicando, e não somando: bactérias que dobram a
+  cada hora, um carro que perde uma porcentagem do valor a cada ano, uma população que cresce um tanto
+  por cento ao ano. O ENEM (Exame Nacional do Ensino Médio) costuma dar alguns valores da situação e
+  pedir o fator de multiplicação, o valor depois de vários períodos ou a expressão que representa o
+  fenômeno. Quem confunde crescimento exponencial com crescimento em ritmo constante (função afim)
+  costuma cair nas alternativas erradas.
 quickSummary: >
-  Função exponencial tem a forma f(x) = a · bˣ, onde a é o valor inicial (quando x=0), b é a base
-  (fator de crescimento se b>1, fator de decaimento se 0<b<1), e x é o expoente, normalmente o tempo.
+  Uma função exponencial tem a forma f(x) = b · aˣ: b é o valor inicial e a é o fator que multiplica o
+  resultado a cada passo. Se a é maior que 1, a função cresce; se a está entre 0 e 1, decresce. Aumentar
+  p% por período dá fator (1 + p/100); dobrar a cada T unidades de tempo dá f(t) = f(0) · 2^(t ÷ T). Para
+  resolver aˣ = número, escreva o número como potência da mesma base e iguale os expoentes.
+resources:
+  conteudoComplementar:
+    conteudo: "Funções Logarítmicas"
+    comoAjuda: "O logaritmo é a operação que desfaz a exponencial: ele responde \"a que expoente devo elevar a base para chegar a este número?\"."
+gabarito:
+  - correta: 1
+    porque: >
+      Em 2 horas cabem 2 ÷ 0,25 = 8 períodos de 0,25 hora. Em cada um a população dobra, então ela é
+      multiplicada por 2⁸ = 256. Se x é a quantidade inicial, x × 256 = 189 440, e x = 189 440 ÷ 256 = 740.
+      Revisar: Aula Teórica › 3. Dobrar, triplicar ou cair pela metade a cada período
+  - correta: 4
+    porque: >
+      O ano 2030 corresponde a x = 30. Então y = 363 · e^(0,03 × 30) = 363 · e^(0,9). Como 0,9 = 3 × 0,3,
+      e^(0,9) = (e^(0,3))³ = 1,35³ = 2,460375. Logo y = 363 × 2,460375 ≈ 893 milhões, que fica entre 870 e
+      910 milhões.
+      Revisar: Aula Teórica › 5. Potência de potência
+  - correta: 3
+    porque: >
+      O fator é q = 27 000 ÷ 30 000 = 0,9, e ele se repete: 24 300 ÷ 27 000 = 0,9. Ao final de seis anos,
+      V(6) = 30 000 × 0,9⁶ = 30 000 × 0,531441 ≈ 15 943 reais, ou seja, cerca de 15,9 mil reais.
+      Revisar: Aula Teórica › 4. Achando o fator a partir de dados
+  - correta: 1
+    porque: >
+      Aumentar 50% em relação ao ano anterior é multiplicar por 1,5 a cada ano. No ano 1 a área é 500; no
+      ano 2, 500 × 1,5; no ano 3, 500 × 1,5². No ano n, o fator 1,5 foi aplicado (n − 1) vezes:
+      Aₙ = 500 · 1,5^(n − 1). As alternativas com "+ 250" somam sempre o mesmo valor, o que seria uma
+      função afim, e não um aumento de 50% sobre o ano anterior.
+      Revisar: Aula Teórica › 2. Crescimento percentual
+  - correta: 1
+    porque: >
+      O gráfico mostra y(0) = 0,5. Como y(0) = a^(0 − 1) = 1 ÷ a, temos 1 ÷ a = 0,5, então a = 2 (o ponto
+      (6; 32) confirma: 2⁵ = 32). A muda tem 0,5 m e deve crescer 7,5 m, chegando a 8 m. Então
+      2^(t − 1) = 8 = 2³, logo t − 1 = 3 e t = 4 anos.
+      Revisar: Aula Teórica › 6. Equação exponencial e leitura de gráfico
 ---
 
-## Aula Teórica Completa
+<Accordion titulo="Palavras e siglas desta aula" dica="Consulte quando encontrar um termo novo" icone="spell-check">
 
-### Passo 1: Por que precisamos de uma função nova?
+- **ENEM** (Exame Nacional do Ensino Médio): a prova nacional que dá acesso a faculdades e bolsas.
+- **INEP** (Instituto Nacional de Estudos e Pesquisas Educacionais Anísio Teixeira): o órgão do governo que faz o ENEM.
+- **^**: "elevado a". 2^(t − 1) quer dizer 2 elevado a (t − 1); é usado quando o expoente é uma expressão longa.
+- **Fator**: o número que multiplica o valor a cada período (por exemplo, 1,5 para um aumento de 50%).
+- **e**: o número de Euler, uma constante que vale cerca de 2,718. Na prova, o valor das potências de e que você precisa costuma vir dado.
+- **log₂**: logaritmo na base 2. log₂ 1 024 é o expoente a que se eleva o 2 para dar 1 024, ou seja, 10. A próxima aula explica o logaritmo.
+- **Habitáculo**: o recipiente fechado onde fica a cultura de bactérias no experimento.
+- **Muda**: a planta jovem, pronta para ser plantada.
+- **Hectare**: unidade de área de um quadrado de 100 m por 100 m.
+- **Gases de efeito estufa**: gases, como o gás carbônico, que retêm calor na atmosfera e aquecem o planeta.
+- **Créditos de carbono**: certificados que uma empresa ganha por deixar de emitir gás carbônico ou por retirá-lo do ar, por exemplo com reflorestamento.
+- **Fator de desvalorização**: o número que multiplica o valor de um bem a cada ano; se ele perde 10% ao ano, o fator é 0,9.
 
-Você já estudou função linear (afim): y = ax + b. Nela, a cada passo, **soma-se** sempre a mesma quantidade. Exemplo: uma vela que perde 2 cm de altura a cada hora, sempre 2 cm, não importa a altura atual.
+</Accordion>
 
-Mas existem fenômenos onde a variação não é uma soma fixa, e sim uma **multiplicação** fixa. Uma população de bactérias que dobra a cada hora: começa com 100, vira 200, depois 400, depois 800. Repare: o "quanto aumenta" muda a cada hora (100, depois 200, depois 400), mas o **fator multiplicativo** (×2) é sempre o mesmo. Isso é crescimento exponencial.
+## Antes de Começar
 
-**A armadilha nº 1 do ENEM**: confundir "aumenta uma quantidade fixa" (afim) com "multiplica por um fator fixo" (exponencial). Sempre pergunte: o enunciado fala em *somar/subtrair* uma quantidade, ou em *dobrar/triplicar/reduzir à metade/aumentar X%*? Se for a segunda opção, é exponencial.
+**O que o ENEM cobra aqui.** A prova quase nunca pede "calcule 2⁵": ela descreve algo que dobra, triplica ou muda por um percentual fixo, e pede o valor depois de um tempo ou a expressão da situação. Os temas que costumam aparecer são estes:
 
-### Passo 2: A fórmula geral
+- **Transformar um percentual em fator** e diferenciar crescimento exponencial de crescimento em ritmo constante.
+- **Contar quantos períodos** de duplicação (ou de queda pela metade) cabem num intervalo.
+- **Achar o fator** a partir de uma tabela de valores.
+- **Usar propriedades de potência** para calcular valores sem calculadora.
+- **Resolver uma equação exponencial** igualando as bases, inclusive a partir de um gráfico.
 
-f(x) = a · bˣ
+**O que você precisa saber antes.**
 
-Decompondo cada peça:
-- **f(x)** = o valor da grandeza depois de x unidades de tempo (a "resposta" da função).
-- **a** = o valor inicial, quando x = 0 (é o que você tinha no começo, antes de qualquer crescimento/decaimento).
-- **b** = a base, chamada de **fator de crescimento** (se b > 1) ou **fator de decaimento** (se 0 &lt; b &lt; 1). É o número pelo qual você multiplica a cada unidade de tempo.
-- **x** = a variável independente, geralmente o tempo, que fica no **expoente**.
+- **Potências.** 2⁵ = 2 × 2 × 2 × 2 × 2 = 32; a⁰ = 1; a⁻¹ = 1 ÷ a. Revise a aula de Potências e Raízes se precisar.
+- **Porcentagem.** Aumentar 10% é multiplicar por 1,1; diminuir 10% é multiplicar por 0,9. Revise a aula de Porcentagem se precisar.
+- **Função afim.** Ela soma sempre o mesmo valor a cada passo; a exponencial multiplica. Revise a aula de Função Afim para comparar.
 
-Regra de ouro: **b > 1** → a função cresce. **0 &lt; b &lt; 1** → a função decresce (decai).
+## Aula Teórica
 
-### Passo 3: Como descobrir "b" a partir de uma porcentagem
+### 1. O que é uma função exponencial
 
-Esse é o formato favorito do ENEM: "aumento de 3% ao ano", "desvalorização de 10% ao ano", "reduz à metade a cada 6 horas".
+Numa **função exponencial**, a variável fica no expoente. A cada passo de 1 em x, o resultado é multiplicado sempre pelo mesmo número, o **fator**.
 
-- Se cresce X% ao período: b = 1 + (X/100). Exemplo: aumento de 3% → b = 1,03.
-- Se decresce X% ao período: b = 1 − (X/100). Exemplo: desvalorização de 10% → b = 1 − 0,10 = 0,90.
-- Se **dobra**: b = 2. Se **triplica**: b = 3. Se **reduz à metade**: b = 1/2 = 0,5.
+**Fórmula: função exponencial**
 
-### Passo 4: Meia-vida, um caso especialíssimo (e certo no ENEM)
+**f(x) = b · aˣ**
 
-Meia-vida é o tempo necessário para uma quantidade **cair pela metade**. Sempre que o enunciado der uma meia-vida "t½" e pedir o valor após um tempo T, o caminho mais rápido (e o que o ENEM espera) é:
+- **x**: a variável, quase sempre o tempo (horas, dias, anos).
+- **b**: o valor inicial, que é f(0).
+- **a**: o fator, positivo e diferente de 1. Se a é maior que 1, a função cresce; se está entre 0 e 1, decresce.
+- **Em palavras:** comece no valor inicial e multiplique pelo fator uma vez para cada passo de tempo.
+- **Quando usar:** quando algo aumenta ou diminui multiplicando pelo mesmo número a cada período.
 
-1. Descobrir quantas meias-vidas cabem no tempo total: n = T / t½.
-2. Dividir a quantidade inicial por 2, n vezes: quantidade final = inicial × (1/2)ⁿ.
+<figure class="figura">
+  <svg viewBox="0 0 460 190" role="img" aria-labelledby="fig-exp-1-t fig-exp-1-d">
+    <title id="fig-exp-1-t">Crescimento e decrescimento exponencial</title>
+    <desc id="fig-exp-1-d">À esquerda, uma curva que começa baixa e sobe cada vez mais rápido, com fator maior que 1. À direita, uma curva que começa alta e desce cada vez mais devagar, com fator entre 0 e 1.</desc>
+    <line x1="30" y1="160" x2="210" y2="160" class="traco-fino" />
+    <line x1="30" y1="160" x2="30" y2="20" class="traco-fino" />
+    <path d="M 30 150 Q 150 150 200 25" class="traco" />
+    <text x="120" y="182" class="rotulo" text-anchor="middle">a maior que 1</text>
+    <line x1="250" y1="160" x2="430" y2="160" class="traco-fino" />
+    <line x1="250" y1="160" x2="250" y2="20" class="traco-fino" />
+    <path d="M 255 25 Q 300 150 425 150" class="traco" />
+    <text x="340" y="182" class="rotulo" text-anchor="middle">a entre 0 e 1</text>
+  </svg>
+</figure>
 
-**Armadilha nº 2 (fatal e recorrente)**: usar regra de três simples (linear) em problemas de meia-vida. Se algo perde metade em 8 dias, **não** significa que perde tudo em 16 dias: perde apenas 1/4 do que tinha, porque o decaimento é sempre "pela metade do que restou", não "pela metade do valor original a cada intervalo igual". Nunca aplique proporcionalidade direta aqui.
+**Exemplo resolvido.** Em f(x) = 3 · 2ˣ, quanto valem f(0), f(1) e f(4)?
 
-### Passo 5: A notação com "e" (número de Euler)
+1. Valor inicial: f(0) = 3 · 2⁰ = 3 · 1 = 3.
+2. Um passo: f(1) = 3 · 2¹ = 6.
+3. Quatro passos: f(4) = 3 · 2⁴ = 3 · 16 = 48.
+4. Resposta: 3, 6 e 48.
 
-Às vezes a fórmula aparece como N(t) = N₀ · eᵏᵗ, onde "e" é a constante de Euler (≈ 2,718) e k é uma constante (positiva = crescimento, negativa = decaimento). Não se assuste: é a mesma lógica de f(x) = a·bˣ, só que a base é substituída por "e" elevado a uma constante. O ENEM costuma dar informação suficiente (como "triplicou em 1 hora") para você descobrir o valor de eᵏ substituindo diretamente na equação, sem precisar calcular k isoladamente: depois é só usar as propriedades de potência (eᵏᵗ = (eᵏ)ᵗ).
+**Erro comum.** Multiplicar a base pelo expoente (2 × 4 = 8) em vez de elevar (2⁴ = 16). O expoente diz quantas vezes o fator aparece multiplicando.
 
-### Passo 6: Propriedades de potência que você vai usar o tempo todo
+### 2. Crescimento percentual
 
-- aᵐ · aⁿ = aᵐ⁺ⁿ
-- (aᵐ)ⁿ = aᵐ·ⁿ
-- a⁻ⁿ = 1/aⁿ
-- Se aᵐ = aⁿ, então m = n (quando a > 0 e a ≠ 1): essa propriedade resolve equações exponenciais "escondendo" a variável no expoente igualando as bases.
+Quando algo aumenta p% em relação ao período anterior, o fator é (1 + p/100). Quando diminui p%, o fator é (1 − p/100). Como cada aumento incide sobre o valor já aumentado, o crescimento é exponencial.
 
-### Padrões de armadilha do INEP nesse tópico
+**Exemplo resolvido.** Uma cidade tem 20 000 habitantes e cresce 10% ao ano. Qual é a expressão da população P depois de n anos, e quanto ela vale depois de 2 anos?
 
-1. **Confundir crescimento linear com exponencial** (a armadilha mais comum, já citada).
-2. **Aplicar regra de três em meia-vida/decaimento** (ignora que a base de comparação muda a cada intervalo).
-3. **Esquecer o valor inicial "a"** quando o gráfico ou tabela não começa em x = 0, ou quando y(0) não é zero (como no problema do eucalipto, onde a muda já nasce com 0,5 m).
-4. **Confundir a função exponencial com a logarítmica**: a exponencial responde "quanto tenho depois de um tempo X?"; a logarítmica (inversa) responde "quanto tempo leva para eu ter uma quantidade X?". O ENEM adora colocar uma alternativa logarítmica como distrator de uma pergunta puramente exponencial (e vice-versa).
-5. **Em decaimento acumulado com doses repetidas** (bem comum em Química/Farmacologia), esquecer de somar o resíduo da dose anterior com a nova dose.
+1. Fator: 1 + 10/100 = 1,1.
+2. Expressão: P(n) = 20 000 · 1,1ⁿ.
+3. Depois de 2 anos: 20 000 × 1,1² = 20 000 × 1,21 = 24 200.
+4. Resposta: P(n) = 20 000 · 1,1ⁿ; 24 200 habitantes.
+
+**Erro comum.** Somar sempre 10% do valor inicial (2 000 por ano), o que daria 24 000. Isso seria uma **função afim**, que soma o mesmo valor todo ano; o aumento percentual sobre o ano anterior multiplica.
+
+Preste atenção em qual é o primeiro período. Se o valor dado já é o do "primeiro mês" (ou "primeiro ano"), no período n o fator foi aplicado só (n − 1) vezes. O símbolo ^ quer dizer "elevado a": 1,2^(n − 1) é 1,2 elevado a (n − 1). Ele aparece quando o expoente é uma expressão comprida.
+
+**Exemplo resolvido.** Uma loja vendeu 200 peças no primeiro mês e, a partir daí, vende 20% a mais que no mês anterior. Qual é a expressão das vendas no mês n? Quanto ela vende no terceiro mês?
+
+1. Fator: 1 + 20/100 = 1,2.
+2. Mês 1: 200 (nenhum aumento ainda). Mês 2: 200 × 1,2. Mês 3: 200 × 1,2².
+3. No mês n, o fator aparece (n − 1) vezes: V(n) = 200 · 1,2^(n − 1).
+4. Terceiro mês: 200 × 1,44 = 288 peças.
+
+**Erro comum.** Escrever 200 · 1,2ⁿ, que daria 240 peças já no primeiro mês. Teste a expressão com n = 1: ela precisa devolver o valor do primeiro período.
+
+### 3. Dobrar, triplicar ou cair pela metade a cada período
+
+Quando algo dobra a cada período de duração T, conte quantos períodos cabem no tempo t: são t ÷ T períodos.
+
+**Fórmula: duplicação a cada período**
+
+**f(t) = f(0) · 2^(t ÷ T)**
+
+- **f(0)**: a quantidade inicial.
+- **T**: o tempo de um período de duplicação.
+- **t**: o tempo total que passou, na mesma unidade de T.
+- **Em palavras:** divida o tempo total pelo período e eleve o 2 a esse número. Para triplicar, use 3 no lugar de 2; para cair pela metade, use 1/2.
+- **Quando usar:** quando o problema diz "dobra a cada", "triplica a cada" ou "cai pela metade a cada".
+
+**Exemplo resolvido.** Uma amostra de 800 g de uma substância perde metade da massa a cada 3 anos. Quanto sobra depois de 12 anos?
+
+1. Períodos: 12 ÷ 3 = 4.
+2. Cada período multiplica por 1/2: fator total (1/2)⁴ = 1/16.
+3. Calcular: 800 × 1/16 = 50.
+4. Resposta: 50 g.
+
+**Erro comum.** Usar o tempo total como expoente (2¹² ou (1/2)¹²) em vez do número de períodos. O expoente conta **períodos**, não horas nem anos.
+
+Se o problema der a quantidade final e perguntar a inicial, faça o caminho de volta: divida a quantidade final pelo fator total.
+
+### 4. Achando o fator a partir de dados
+
+Numa tabela de valores de uma função exponencial, a divisão de um valor pelo anterior dá sempre o mesmo resultado: esse é o fator.
+
+**Fórmula: fator a partir de dois valores seguidos**
+
+**q = valor de um período ÷ valor do período anterior**
+
+- **q**: o fator de cada período.
+- **valor de um período**, **valor do período anterior**: dois valores consecutivos da tabela.
+- **Em palavras:** divida um valor pelo que veio logo antes; o resultado se repete na tabela toda.
+- **Quando usar:** quando o problema dá alguns valores e pede o valor depois de mais períodos.
+
+**Exemplo resolvido.** A quantidade de um remédio no sangue de um paciente foi medida de hora em hora: 200 mg, depois 160 mg, depois 128 mg. Mantido o padrão, quanto haverá 5 horas depois da primeira medida?
+
+1. Fator: 160 ÷ 200 = 0,8; conferindo, 128 ÷ 160 = 0,8.
+2. Expressão: Q(t) = 200 · 0,8ᵗ, com t em hora.
+3. Depois de 5 horas: 200 × 0,8⁵ = 200 × 0,32768 ≈ 65,5.
+4. Resposta: cerca de 65,5 mg.
+
+**Erro comum.** Achar a queda da primeira hora (40 mg) e subtrair esse mesmo valor toda hora. A queda em miligramas diminui a cada hora; o que se repete é o **fator**.
+
+Se a pergunta pedir a resposta "em milhar, com uma casa decimal", divida o valor por 1 000 e arredonde: 12 468 reais viram 12,5 mil reais.
+
+### 5. Potência de potência
+
+Quando o expoente é um produto, dá para quebrar a conta em partes usando uma potência já conhecida.
+
+**Fórmula: potência de potência**
+
+**a^(m × n) = (a^m)^n**
+
+- **a**: a base.
+- **m, n**: dois números cujo produto é o expoente.
+- **Em palavras:** elevar a um expoente que é um produto é o mesmo que elevar por partes, um fator de cada vez.
+- **Quando usar:** quando o enunciado dá o valor de uma potência pequena (como 2^(0,5)) e a conta pede uma maior (como 2^(1,5)).
+
+**Exemplo resolvido.** Sabendo que 1,1⁵ ≈ 1,61, quanto vale aproximadamente 1,1¹⁵?
+
+1. Escrever o expoente como produto: 15 = 5 × 3.
+2. Aplicar a propriedade: 1,1¹⁵ = (1,1⁵)³.
+3. Calcular: 1,61³ = 1,61 × 1,61 × 1,61 ≈ 4,17.
+4. Resposta: cerca de 4,17.
+
+**Erro comum.** Multiplicar o valor dado pelo número de vezes (1,61 × 3 ≈ 4,83) em vez de elevar ao cubo. Três fatores 1,1⁵ se **multiplicam** entre si.
+
+Alguns modelos usam a base **e**, um número fixo que vale cerca de 2,718 (o número de Euler). Ele funciona como qualquer outra base, e a prova costuma dar o valor da potência que você precisa. Escrever 50e^(0,02x) é o mesmo que 50 × e^(0,02x): número colado na letra é multiplicação.
+
+**Exemplo resolvido.** A massa de uma colônia de fungos, em grama, segue m(x) = 50e^(0,02x), com x = 0 no ano de 2012. Sabendo que e^(0,2) ≈ 1,22, qual é a massa em 2032?
+
+1. O ano 2032 corresponde a x = 2032 − 2012 = 20.
+2. Expoente: 0,02 × 20 = 0,4, que é 2 × 0,2.
+3. Potência de potência: e^(0,4) = (e^(0,2))² ≈ 1,22² = 1,4884.
+4. Resposta: m ≈ 50 × 1,4884 ≈ 74,4 g.
+
+**Erro comum.** Usar o próprio ano (2032) no lugar de x. O x conta quantos anos passaram desde o ano em que x vale 0.
+
+### 6. Equação exponencial e leitura de gráfico
+
+Para resolver uma equação com a incógnita no expoente, escreva os dois lados como potências da **mesma base** e iguale os expoentes.
+
+**Fórmula: igualar as bases**
+
+**se a^m = a^n, então m = n**
+
+- **a**: a base, positiva e diferente de 1.
+- **m, n**: os expoentes dos dois lados.
+- **Em palavras:** com a mesma base dos dois lados, os expoentes precisam ser iguais.
+- **Quando usar:** quando a pergunta é "depois de quanto tempo" o valor chega a um número que é potência da base.
+
+**Exemplo resolvido.** O gráfico de f(x) = a^(x − 2), com a positivo, passa pelo ponto (4; 9). Para que valor de x a função vale 27?
+
+1. Usar o ponto do gráfico: f(4) = a^(4 − 2) = a² = 9, então a = 3.
+2. Montar a equação: 3^(x − 2) = 27.
+3. Escrever 27 como potência de 3: 27 = 3³, então x − 2 = 3.
+4. Resposta: x = 5.
+
+<figure class="figura">
+  <svg viewBox="0 0 460 210" role="img" aria-labelledby="fig-exp-2-t fig-exp-2-d">
+    <title id="fig-exp-2-t">Gráfico de f(x) = a elevado a (x − 2)</title>
+    <desc id="fig-exp-2-d">Uma curva exponencial crescente que passa pelo ponto x = 4, y = 9 e pelo ponto x = 5, y = 27, com linhas tracejadas desses pontos até os eixos.</desc>
+    <line x1="60" y1="190" x2="400" y2="190" class="traco-fino" />
+    <line x1="60" y1="190" x2="60" y2="10" class="traco-fino" />
+    <text x="410" y="194" class="rotulo-fraco">x</text>
+    <text x="68" y="16" class="rotulo-fraco">y</text>
+    <path d="M 60 189.4 L 115 188.2 L 170 184.5 L 225 173.5 L 280 140.5 L 307.5 104.2 L 321.3 77 L 335 41.5 L 340.5 24.5" class="traco" />
+    <line x1="60" y1="140.5" x2="280" y2="140.5" class="tracejado" />
+    <line x1="280" y1="140.5" x2="280" y2="190" class="tracejado" />
+    <line x1="60" y1="41.5" x2="335" y2="41.5" class="tracejado" />
+    <line x1="335" y1="41.5" x2="335" y2="190" class="tracejado" />
+    <circle cx="280" cy="140.5" r="4" class="preenche" />
+    <circle cx="335" cy="41.5" r="4" class="preenche" />
+    <text x="52" y="144" class="rotulo" text-anchor="end">9</text>
+    <text x="52" y="45" class="rotulo" text-anchor="end">27</text>
+    <text x="280" y="205" class="rotulo" text-anchor="middle">4</text>
+    <text x="335" y="205" class="rotulo" text-anchor="middle">5</text>
+  </svg>
+</figure>
+
+**Erro comum.** Dividir o número pela base (27 ÷ 3 = 9) e usar o resultado como expoente. Pergunte "3 elevado a quanto dá 27?" e conte os fatores: 3 × 3 × 3.
+
+Num gráfico, o valor em x = 0 é o valor inicial. Se a função tem um expoente como (x − 1), use f(0) = a^(0 − 1) = 1 ÷ a para achar a base.
+
+Leia com atenção o que o enunciado pede igualar. Se ele diz que algo **cresceu** certa medida desde o início, o valor final é o inicial mais o crescimento. Um saldo de R$ 1 200,00 que aumentou R$ 300,00 fica em R$ 1 500,00, e é esse 1 500 que entra na equação.
+
+Quando o número não é uma potência exata da base, a resposta vira um **logaritmo**. Por exemplo, 2ˣ = 10 não tem x inteiro: x = log₂ 10, "o expoente que leva o 2 até 10", um número entre 3 e 4. A próxima aula explica o logaritmo; aqui, basta reconhecer quando a conta dá uma potência exata e quando não dá.
+
+### Armadilhas típicas do INEP
+
+1. **Confundir exponencial com afim**: somar sempre o mesmo valor quando o enunciado diz que o aumento é percentual sobre o período anterior.
+2. **Usar o tempo total como expoente**, em vez do número de períodos (t ÷ T).
+3. **Errar a contagem de períodos** quando o primeiro valor já é o do "ano 1".
+4. **Subtrair a perda em reais** todo ano, em vez de multiplicar pelo fator.
+5. **Multiplicar pela potência dada** em vez de elevar, ao usar potência de potência.
+6. **Esquecer a altura inicial** quando o problema fala em quanto algo "cresceu" a partir do plantio ou do início.
 
 ## Tópicos-Chave para Revisão
 
 <div className="topico">
 
-Função exponencial tem a forma **f(x) = a · bˣ**, onde a é o **valor inicial** (quando x=0), b é a **base** (fator de crescimento se b>1, fator de decaimento se 0&lt;b&lt;1), e x é o **expoente**, normalmente o tempo. A diferença crucial em relação à função afim é que aqui a variação é **multiplicativa** (multiplica-se por um fator fixo a cada intervalo), enquanto na afim a variação é **aditiva** (soma-se um valor fixo).
+#### 1. Função exponencial
 
-Para transformar uma **porcentagem de crescimento ou decaimento** em base b, use: cresce X% → b = 1 + X/100; decresce X% → b = 1 − X/100. Casos especiais: dobrar é b=2, triplicar é b=3, reduzir à metade é b=0,5.
+A forma é **f(x) = b · aˣ**: b é o **valor inicial** e a é o **fator**; cresce se a é maior que 1 e decresce se a está entre 0 e 1.
 
-**Meia-vida** é o tempo para uma grandeza cair pela metade. O cálculo correto é sempre por **meias-vidas sucessivas**: número de meias-vidas n = tempo total / meia-vida, e quantidade final = inicial × (1/2)ⁿ. Nunca use regra de três linear aqui: esse é o erro mais comum e mais punido pelo INEP.
+#### 2. Crescimento percentual
 
-A notação com o número de Euler, **N(t) = N₀·eᵏᵗ**, segue a mesma lógica: N₀ é o valor inicial, k é a constante de crescimento (positiva) ou decaimento (negativa). Informações do tipo "triplicou em 1 hora" servem para descobrir o valor de eᵏ diretamente, sem precisar isolar k.
+Aumentar p% ao período dá **fator (1 + p/100)**; diminuir dá **(1 − p/100)**. Se o primeiro valor já é o do período 1, o expoente é (n − 1). Somar sempre o mesmo valor seria **função afim**.
 
-As **propriedades de potência** (aᵐ·aⁿ=aᵐ⁺ⁿ, (aᵐ)ⁿ=aᵐⁿ, a⁻ⁿ=1/aⁿ, e a regra "bases iguais implicam expoentes iguais") são a ferramenta operacional para resolver qualquer equação exponencial que o ENEM apresentar.
+#### 3. Duplicação por período
 
-O ENEM nunca cobra função exponencial isolada de contexto: ela sempre está embutida em situações de **modelagem real**, juros, radioatividade, medicamentos, população, depreciação de bens. Reconhecer o padrão verbal ("aumenta X% ao ano", "reduz à metade a cada Y horas", "triplica em Z horas") é o que te leva direto à base b correta.
+**f(t) = f(0) · 2^(t ÷ T)**: o expoente é o número de **períodos**, não o tempo total.
+
+#### 4. Fator por dados
+
+**q = valor de um período ÷ valor do período anterior**; o **fator** se repete, a diferença em reais não.
+
+#### 5. Potência de potência
+
+**a^(m × n) = (a^m)^n**: use uma **potência conhecida** para calcular uma maior. A base e (≈ 2,718) segue as mesmas regras.
+
+#### 6. Equação exponencial
+
+**se a^m = a^n, então m = n**: escreva os dois lados na **mesma base** e iguale os expoentes. Se algo "cresceu" uma medida, o valor final é o inicial mais esse crescimento.
 
 </div>
 
-## Teste de Fogo
+## Questões do ENEM
 
-*Questões sem gabarito: resolva primeiro, depois confira com o professor ou com a IA.*
+*Marque uma alternativa em cada questão e confira tudo de uma vez no botão do fim.*
 
-**Questão 1 (ENEM 2016, 2ª aplicação)**
+**Questão 1**
 
-Admita que um tipo de eucalipto tenha expectativa de crescimento exponencial, nos primeiros anos após seu plantio, modelado pela função y(t) = aᵗ⁻¹, na qual y representa a altura da planta em metro, t é considerado em ano, e a é uma constante maior que 1. O gráfico da função y mostra que, quando t = 0, a altura y vale 0,5 m. Admita ainda que y(0) fornece a altura da muda quando plantada, e deseja-se cortar os eucaliptos quando as mudas crescerem 7,5 m após o plantio.
+*ENEM 2020 · 2ª aplicação · 2º dia · caderno azul · questão 169*
 
-O tempo entre a plantação e o corte, em ano, é igual a:
-a) 3
-b) 4
-c) 6
-d) log₂7
-e) log₂15
+Um laboratório realizou um teste para calcular a velocidade de reprodução de um tipo de bactéria. Para tanto, realizou um experimento para observar a reprodução de uma quantidade x dessas bactérias por um período de duas horas. Após esse período, constava no habitáculo do experimento uma população de 189 440 da citada bactéria. Constatou-se, assim, que a população de bactérias dobrava a cada 0,25 hora.
 
-**Questão 2 (ENEM PPL 2019)**
+A quantidade inicial de bactérias era de
 
-Em um laboratório, cientistas observaram o crescimento de uma população de bactérias submetida a uma dieta magra em fósforo, com generosas porções de arsênico. Descobriu-se que o número de bactérias dessa população, após t horas de observação, poderia ser modelado pela função exponencial N(t) = N₀·eᵏᵗ, em que N₀ é o número de bactérias no instante do início da observação (t = 0), e k é uma constante real positiva. Sabe-se que, após uma hora de observação, o número de bactérias foi triplicado.
+A) 370.\
+B) 740.\
+C) 1 480.\
+D) 11 840.\
+E) 23 680.
 
-Cinco horas após o início da observação, o número de bactérias, em relação ao número inicial dessa cultura, foi:
-a) 3N₀
-b) 15N₀
-c) 243N₀
-d) 360N₀
-e) 729N₀
+**Questão 2**
 
-**Questão 3 (ENEM PPL 2015)**
+*ENEM 2009 · 2º dia · caderno azul · questão 138*
 
-O sindicato de trabalhadores de uma empresa sugere que o piso salarial da classe seja de R$ 1.800,00, propondo um aumento percentual fixo por cada ano dedicado ao trabalho. A expressão que corresponde à proposta salarial (s), em função do tempo de serviço (t), em anos, é s(t) = 1.800 · (1,03)ᵗ.
+Suponha que o modelo exponencial y = 363e^(0,03x), em que x = 0 corresponde ao ano 2000, x = 1 corresponde ao ano 2001, e assim sucessivamente, e que y é a população em milhões de habitantes no ano x, seja usado para estimar essa população com 60 anos ou mais de idade nos países em desenvolvimento entre 2010 e 2050. Desse modo, considerando e^(0,3) = 1,35, estima-se que a população com 60 anos ou mais estará, em 2030, entre
 
-De acordo com a proposta do sindicato, o salário de um profissional dessa empresa com 2 anos de tempo de serviço será, em reais:
-a) 7.416,00
-b) 3.819,24
-c) 3.709,62
-d) 3.708,00
-e) 1.909,62
+A) 490 e 510 milhões.\
+B) 550 e 620 milhões.\
+C) 780 e 800 milhões.\
+D) 810 e 860 milhões.\
+E) 870 e 910 milhões.
 
-**Questão 4 (ENEM PPL 2018)**
+**Questão 3**
 
-O terremoto e o tsunami ocorridos no Japão em 11 de março de 2011 romperam as paredes de isolamento de alguns reatores da usina nuclear de Fukushima, o que ocasionou a liberação de substâncias radioativas. Entre elas está o iodo-131, cuja presença na natureza está limitada por sua meia-vida de oito dias.
+*ENEM 2024 · 2ª aplicação · 2º dia · caderno azul · questão 168*
 
-O tempo estimado para que esse material se desintegre até atingir 1/16 da sua massa inicial é de:
-a) 8 dias
-b) 16 dias
-c) 24 dias
-d) 32 dias
-e) 128 dias
+O automóvel é um bem que se desvaloriza muito rapidamente, quando comparado a outros bens. Após a venda, um automóvel novo já sofre uma grande desvalorização. O histórico de um automóvel novo, vendido por R$ 30 000,00, apresenta os seguintes valores (V) de mercado, após decorridos os períodos indicados a seguir:
 
-**Questão 5 (ENEM PPL 2013)**
+- ao final de um ano, R$ 27 000,00;
+- ao final de dois anos, R$ 24 300,00;
+- ao final de três anos, R$ 21 870,00.
 
-Em um experimento, uma cultura de bactérias tem sua população reduzida pela metade a cada hora, devido à ação de um agente bactericida.
+Esses preços seguiram um modelo exponencial que expressa V em função do número n de ano de uso, pela relação V(n) = V₀ · qⁿ, em que V₀ é o valor inicial, q é o fator de desvalorização e n é o tempo, em ano, decorrido após a venda.
 
-Neste experimento, o número de bactérias em função do tempo pode ser modelado por uma função do tipo:
-a) afim
-b) seno
-c) cosseno
-d) logarítmica crescente
-e) exponencial
+O valor, em milhar de real, com uma casa decimal, que mais se aproxima do valor de mercado desse carro, ao final de seis anos, é
+
+A) 13,7.\
+B) 14,3.\
+C) 14,6.\
+D) 15,9.\
+E) 17,7.
+
+**Questão 4**
+
+*ENEM 2024 · 2ª aplicação · 2º dia · caderno azul · questão 167*
+
+Visando obter créditos de carbono, uma empresa, emissora de gases de efeito estufa, elabora um projeto de reflorestamento em uma área desmatada. De acordo com o projeto, no primeiro ano serão reflorestados 500 hectares. A partir daí, a cada ano, a área total reflorestada será aumentada em 50% em relação ao ano anterior.
+
+A expressão algébrica que representa a área total reflorestada (Aₙ), em hectare, ao final de n anos é
+
+A) Aₙ = 500 · 0,5^(n − 1)\
+B) Aₙ = 500 · 1,5^(n − 1)\
+C) Aₙ = 500 + n · 250\
+D) Aₙ = 500 · (1 + 0,5^(n − 1))\
+E) Aₙ = 500 + (n − 1) · 250
+
+**Questão 5**
+
+*ENEM 2016 · 2ª aplicação · 2º dia · caderno azul · questão 176*
+
+Admita que um tipo de eucalipto tenha expectativa de crescimento exponencial, nos primeiros anos após seu plantio, modelado pela função y(t) = a^(t − 1), na qual y representa a altura da planta em metro, t é considerado em ano, e a é uma constante maior que 1. O gráfico representa a função y.
+
+<figure class="figura">
+  <svg viewBox="0 0 460 220" role="img" aria-labelledby="fig-exp-q5-t fig-exp-q5-d">
+    <title id="fig-exp-q5-t">Altura do eucalipto ao longo do tempo</title>
+    <desc id="fig-exp-q5-d">Curva exponencial crescente que começa em y = 0,5 metro quando t = 0 (desenhado um pouco acima do zero, fora de escala, como no original) e passa pelo ponto em que t = 6 anos e y = 32 metros, marcado por linhas tracejadas até os eixos. Figura redesenhada a partir da prova oficial, com os mesmos dados.</desc>
+    <line x1="60" y1="190" x2="420" y2="190" class="traco-fino" />
+    <line x1="60" y1="190" x2="60" y2="10" class="traco-fino" />
+    <text x="68" y="16" class="rotulo-fraco">y (metro)</text>
+    <text x="430" y="206" class="rotulo-fraco" text-anchor="end">t (ano)</text>
+    <path d="M 60 168 L 110 166.5 L 160 163 L 210 156 L 260 141 L 310 108 L 335 82 L 347.5 63.6 L 360 39.6 L 370 17" class="traco" />
+    <line x1="60" y1="39.6" x2="360" y2="39.6" class="tracejado" />
+    <line x1="360" y1="39.6" x2="360" y2="190" class="tracejado" />
+    <text x="52" y="172" class="rotulo" text-anchor="end">0,5</text>
+    <text x="52" y="194" class="rotulo" text-anchor="end">0</text>
+    <text x="52" y="44" class="rotulo" text-anchor="end">32</text>
+    <text x="360" y="206" class="rotulo" text-anchor="middle">6</text>
+  </svg>
+</figure>
+
+Admita ainda que y(0) fornece a altura da muda quando plantada, e deseja-se cortar os eucaliptos quando as mudas crescerem 7,5 m após o plantio.
+
+O tempo entre a plantação e o corte, em ano, é igual a
+
+A) 3.\
+B) 4.\
+C) 6.\
+D) log₂ 7.\
+E) log₂ 15.
