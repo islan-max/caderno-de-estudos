@@ -78,7 +78,7 @@ Status: `pendente`, `em andamento`, `concluída`, `bloqueada`. Questões: ids do
 | lingua-portuguesa/denotacao-e-conotacao | 2 | pendente |  |  |  |
 | lingua-portuguesa/ambiguidade | 3 | pendente |  |  |  |
 | lingua-portuguesa/funcoes-da-linguagem | 4 | pendente |  |  |  |
-| lingua-portuguesa/variacao-linguistica | 5 | pendente |  |  | piloto |
+| lingua-portuguesa/variacao-linguistica | 5 | concluída | 2015-ppl-D2-cinza-Q111, 2020-ppl-D1-azul-Q006, 2009-regular-D2-azul-Q131, 2015-ppl-D2-cinza-Q101, 2025-reaplicacao-D1-azul-Q043 | 3e2c6ef | piloto; revisor: PASS na 3ª leitura; sem divisão |
 | lingua-portuguesa/generos-textuais | 6 | pendente |  |  |  |
 | lingua-portuguesa/coesao-e-coerencia | 7 | pendente |  |  |  |
 | lingua-portuguesa/intertextualidade | 8 | pendente |  |  |  |
