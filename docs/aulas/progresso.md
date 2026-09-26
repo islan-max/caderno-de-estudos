@@ -28,7 +28,7 @@ Status: `pendente`, `em andamento`, `concluída`, `bloqueada`. Questões: ids do
 | matematica-basica/razao-e-proporcao | 3 | concluída | 2017-regular-D2-azul-Q164, 2024-ppl-D2-azul-Q177, 2021-digital-D2-azul-Q159, 2020-digital-D2-azul-Q161, 2023-ppl-D2-azul-Q171 | e99bc5a | revisor: PASS na 1ª leitura; todas as 5 são "difícil" pelo b — banco sem uma fácil limpa; 2 figuras próprias substituem decoração/fórmula-imagem do PDF |
 | matematica-basica/regra-de-tres | 4 | concluída | 2024-ppl-D2-azul-Q147, 2025-reaplicacao-D2-azul-Q163, 2021-digital-D2-azul-Q158, 2021-digital-D2-azul-Q167, 2025-reaplicacao-D2-azul-Q144 | 5d89151 | revisor: PASS na 2ª leitura; 3 difíceis pelo b |
 | matematica-basica/porcentagem | 5 | concluída | 2016-segunda-aplicacao-D2-azul-Q143, 2020-digital-D2-azul-Q137, 2019-regular-D2-azul-Q153, 2025-regular-D2-azul-Q162, 2025-reaplicacao-D2-azul-Q179 | 97041ad | revisor: PASS na 2ª leitura; 4 difíceis pelo b |
-| matematica-basica/equacoes-de-primeiro-e-segundo-grau | 6 | pendente |  |  |  |
+| matematica-basica/equacoes-de-primeiro-e-segundo-grau | 6 | concluída | 2018-ppl-D2-azul-Q158, 2009-regular-D2-azul-Q155, 2020-digital-D2-azul-Q172, 2020-digital-D2-azul-Q168, 2023-ppl-D2-azul-Q160 | e2f4ece | revisor: PASS na 2ª leitura (rodada 1: erro de sinal numa conta do gabarito, referência de seção errada, notação inconsistente); banco quase não tem questão de "resolver equação" pura, todas as 5 são problemas aplicados (ponto de equilíbrio, trajetória parabólica, produto de binômios, vértice); sem divisão |
 | funcoes/funcao-afim | 1 | pendente |  |  |  |
 | funcoes/funcoes-quadraticas | 2 | pendente |  |  |  |
 | funcoes/funcoes-exponenciais | 3 | pendente |  |  |  |
