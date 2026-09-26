@@ -3,174 +3,331 @@ title: "Potências e Raízes"
 subject: "Matemática Básica"
 order: 2
 relevance: >
-  Potências e raízes são a base de praticamente toda a matemática do ENEM: juros compostos, notação
-  científica, funções exponenciais, física (cinemática, energia) e química (concentração, pH) dependem
-  diretamente disso. O ENEM raramente cobra "calcule 2³" isoladamente: ele testa se você entende as
-  propriedades operatórias para simplificar expressões complexas rapidamente, já que o tempo de prova
-  é curto. É tema recorrente, presente direta ou indiretamente em quase toda edição.
+  Potência é um jeito curto de escrever uma multiplicação repetida, e raiz é a operação que desfaz
+  uma potência. O ENEM (Exame Nacional do Ensino Médio) usa potências de 10 o tempo todo: para escrever
+  números muito grandes ou muito pequenos (a notação científica) e para converter entre unidades como
+  quilo, mega e giga. Também aparecem em problemas que elevam uma medida ao quadrado ou ao cubo. Esses
+  usos aparecem com frequência na prova de Matemática, quase sempre dentro de um problema maior, como
+  ciência, tecnologia ou um jogo.
 quickSummary: >
-  Potência é multiplicação repetida: aⁿ = a base, n expoente, quantas vezes a base se repete. a⁰ = 1
-  (qualquer base não-nula) e a¹ = a são casos especiais que decorrem da lógica das propriedades
-  operatórias.
+  Uma potência aⁿ é a base a multiplicada por ela mesma n vezes (o expoente). Uma potência de 10 move a
+  vírgula: 10 elevado a um número positivo multiplica por 10 várias vezes, e a um número negativo divide.
+  A notação científica escreve qualquer número como um valor entre 1 e 10 vezes uma potência de 10. A raiz
+  é a conta que desfaz a potência: a raiz quadrada de um número é o valor que, ao quadrado, dá esse número.
+resources:
+  conteudoComplementar:
+    conteudo: "Razão e Proporção"
+    comoAjuda: "Uma grandeza proporcional ao quadrado de outra, como nesta aula, é um caso particular de proporção — a próxima aula generaliza essa ideia."
+gabarito:
+  - correta: 3
+    porque: >
+      0,00011 tem o algarismo 1 na quarta casa decimal. Movendo a vírgula 4 casas para a direita até
+      chegar em 1,1, o expoente de 10 fica negativo e igual a −4: 1,1 × 10 elevado a −4.
+      Revisar: Aula Teórica › 3. Notação científica
+  - correta: 3
+    porque: >
+      Dois trilhões e quatrocentos e cinquenta bilhões é 2 450 000 000 000. Movendo a vírgula 12 casas
+      para a esquerda até chegar em 2,45, o expoente de 10 fica positivo e igual a 12: 2,45 × 10 elevado a 12.
+      Revisar: Aula Teórica › 3. Notação científica
+  - correta: 3
+    porque: >
+      6,7 × 10⁶ é 6 700 000. Contando as casas a partir da direita, o algarismo 7 está na
+      posição das centenas de milhar (700 000).
+      Revisar: Aula Teórica › 2. Potências de 10 e valor posicional
+  - correta: 4
+    porque: >
+      2,0 megapixels × 3 bytes = 6 × 10⁶ bytes por foto; 150 fotos dão 9 × 10⁸ bytes.
+      Com 95% de redução, sobra 5%: 9 × 10⁸ × 0,05 = 4,5 × 10⁷ bytes, ou seja,
+      45 MB — o menor dispositivo que cabe isso é o cartão de 64 MB.
+      Revisar: Aula Teórica › 5. Potências de 10 aplicadas: as unidades de medida
+  - correta: 1
+    porque: >
+      Com a constante achada no nível 1 e experiência 1 (ataque 2, defesa 1), a força de ataque de J1
+      (nível 4, experiência 5) é 2 × 5 × 4² = 160, e a força de defesa de J2 (nível 2,
+      experiência 6) é 1 × 2 × 6² = 72. A diferença é 160 − 72 = 88.
+      Revisar: Aula Teórica › 6. Elevar ao quadrado em problemas
 ---
 
-## Aula Teórica Completa
+<Accordion titulo="Palavras e siglas desta aula" dica="Consulte quando encontrar um termo novo" icone="spell-check">
 
-**O que é uma potência?**
+- **ENEM** (Exame Nacional do Ensino Médio): a prova nacional que dá acesso a faculdades e bolsas.
+- **INEP** (Instituto Nacional de Estudos e Pesquisas Educacionais Anísio Teixeira): o órgão do governo que faz o ENEM.
+- **Base**: numa potência, o número que se repete na multiplicação.
+- **Expoente**: numa potência, o número que diz quantas vezes a base se repete.
+- **Notação científica**: um jeito de escrever um número como um valor entre 1 e 10 vezes uma potência de 10.
+- **Valor posicional**: o valor que um algarismo tem por causa do lugar que ele ocupa no número (unidade, dezena, centena…).
+- **Diretamente proporcional**: quando uma grandeza cresce (ou diminui) na mesma medida que outra; y diretamente proporcional a x significa y = k × x, para alguma constante k.
+- **Byte**: a unidade básica de armazenamento num computador.
+- **KB** (quilobyte): mil bytes.
+- **MB** (megabyte): um milhão de bytes.
+- **GB** (gigabyte): um bilhão de bytes.
 
-Potência é uma forma resumida de escrever uma multiplicação repetida do mesmo número. Em vez de escrever 2 × 2 × 2 × 2, escrevemos 2⁴.
+</Accordion>
 
-A estrutura é: aⁿ, onde a = base (o número que se repete), n = expoente (quantas vezes a base se multiplica por ela mesma).
+## Antes de Começar
 
-Exemplo: 3⁴ = 3 × 3 × 3 × 3 = 81. Aqui, a base é 3 e o expoente é 4.
+**O que o ENEM cobra aqui.** A prova quase nunca pede só "calcule 2⁵": ela usa potências dentro de um problema maior, quase sempre com potências de 10. Os temas que costumam aparecer são estes:
 
-**Casos especiais de expoente**
+- **Escrever um número em notação científica**, tanto números grandes quanto pequenos.
+- **Ler o valor posicional** de um algarismo escrito em notação científica.
+- **Converter entre unidades** que usam potências de 10, como quilo, mega e giga.
+- **Elevar uma medida ao quadrado ou ao cubo** dentro de um problema.
 
-Todo número elevado a 1 é ele mesmo: a¹ = a. Não muda nada, pois só há uma "cópia" da base.
+**O que você precisa saber antes.**
 
-Todo número (diferente de zero) elevado a 0 é igual a 1: a⁰ = 1. Isso parece estranho, mas faz sentido quando você entende as propriedades de divisão de potências (vamos ver adiante): é a única forma de manter a lógica consistente.
+- **Multiplicação com números grandes.** As contas desta aula envolvem multiplicar e dividir números como 1 000 ou 1 000 000; revise a tabuada e a multiplicação por 10, 100 e 1 000 se ainda travar nisso.
+- **Casas decimais.** Em 0,00011, cada zero depois da vírgula move uma casa: a primeira casa é os décimos, a segunda os centésimos, e assim por diante.
+- **Proporção direta.** Quando uma grandeza é diretamente proporcional a outra, existe um número fixo k tal que uma é sempre k vezes a outra. Para achar k, basta usar um par de valores conhecido.
 
-**Expoente negativo**
+## Aula Teórica
 
-Quando o expoente é negativo, ele indica um inverso (uma fração). A regra é: a⁻ⁿ = 1/aⁿ.
+### 1. O que é uma potência
 
-Exemplo: 2⁻³ = 1/2³ = 1/8. O sinal negativo não torna o resultado negativo: ele "vira" o número em fração.
+Uma potência é um jeito curto de escrever uma multiplicação repetida do mesmo número. Em vez de escrever 2 × 2 × 2 × 2, escrevemos 2⁴.
 
-Pense assim: o expoente negativo é como um "aviso" de que o número deve ir para o denominador de uma fração, virando positivo lá.
+Numa potência, o número que se repete é a **base**, e o número que diz quantas vezes ele se repete é o **expoente**. Por exemplo, em 3⁴, a base é 3 e o expoente é 4: 3⁴ = 3 × 3 × 3 × 3 = 81.
 
-**Propriedades operatórias das potências (o coração do assunto)**
+<figure class="figura">
+  <svg viewBox="0 0 460 150" role="img" aria-labelledby="fig-potencias-1-t fig-potencias-1-d">
+    <title id="fig-potencias-1-t">Base e expoente numa potência</title>
+    <desc id="fig-potencias-1-d">A potência 3 elevado a 4 (3 na base, 4 no expoente), com uma seta apontando o 3 e o rótulo "base: o número que se repete" e outra seta apontando o 4 e o rótulo "expoente: quantas vezes se repete". Abaixo, a expansão 3 × 3 × 3 × 3 = 81.</desc>
+    <text x="180" y="60" class="rotulo" text-anchor="middle" font-size="28">3</text>
+    <text x="205" y="45" class="rotulo" text-anchor="middle" font-size="16">4</text>
+    <line x1="170" y1="85" x2="170" y2="105" class="traco-fino" />
+    <text x="170" y="120" class="rotulo-fraco" text-anchor="middle">base</text>
+    <line x1="215" y1="40" x2="235" y2="20" class="traco-fino" />
+    <text x="255" y="18" class="rotulo-fraco" text-anchor="middle">expoente</text>
+    <text x="230" y="95" class="rotulo" text-anchor="middle">= 3 × 3 × 3 × 3 = 81</text>
+  </svg>
+</figure>
 
-Multiplicação de potências de mesma base: você conserva a base e soma os expoentes.
-aᵐ × aⁿ = aᵐ⁺ⁿ. Exemplo: 2³ × 2² = 2⁵ = 32.
+Dois casos merecem atenção. Todo número elevado a 1 é ele mesmo: 5¹ = 5, porque só há uma "cópia" da base. Todo número (diferente de zero) elevado a 0 é igual a 1: 5⁰ = 1. Isso não é intuitivo, mas garante que as regras da próxima seção continuem funcionando mesmo quando o expoente chega a zero.
 
-Por quê? Porque 2³ × 2² significa (2×2×2) × (2×2), que juntando tudo dá 5 multiplicações de 2.
+**Erro comum.** Confundir "elevar ao quadrado" com "multiplicar por 2". 5² é 5 × 5 = 25, não 5 × 2 = 10.
 
-Divisão de potências de mesma base: você conserva a base e subtrai os expoentes.
-aᵐ ÷ aⁿ = aᵐ⁻ⁿ. Exemplo: 5⁶ ÷ 5² = 5⁴ = 625.
+### 2. Potências de 10 e valor posicional
 
-É por essa regra que aⁿ ÷ aⁿ = a⁰, e como qualquer número dividido por ele mesmo é 1, concluímos que a⁰ = 1.
+Uma potência de 10 é fácil de calcular de cabeça: o expoente diz quantos zeros o número tem. 10³ = 1 000 (três zeros), e 10⁶ = 1 000 000 (seis zeros).
 
-Potência de potência: você conserva a base e multiplica os expoentes.
-(aᵐ)ⁿ = aᵐˣⁿ. Exemplo: (2³)² = 2⁶ = 64.
+Multiplicar um número por uma potência de 10 move a vírgula. Se o expoente é positivo, a vírgula anda para a direita e o número cresce. Se o expoente é negativo, a vírgula anda para a esquerda e o número diminui.
 
-Potência de um produto: o expoente "distribui" para cada fator.
-(a × b)ⁿ = aⁿ × bⁿ. Exemplo: (2 × 3)² = 2² × 3² = 4 × 9 = 36 (confere: 6² = 36).
+**Exemplo resolvido.** Quanto vale 4,8 × 10⁵?
 
-Potência de uma fração: o expoente distribui para numerador e denominador.
-(a/b)ⁿ = aⁿ/bⁿ.
+1. Dados: 4,8 multiplicado por 10⁵.
+2. O expoente 5 é positivo: mova a vírgula 5 casas para a direita, completando com zeros.
+3. 4,8 → 48 → 480 → 4 800 → 48 000 → 480 000.
+4. Resposta: 480 000.
 
-**Radiciação (raízes): a operação inversa da potenciação**
+Depois de escrever o número por extenso, cada algarismo tem um **valor posicional**: o lugar que ele ocupa decide o valor dele (unidade, dezena, centena, milhar, dezena de milhar, centena de milhar, milhão…). Em 480 000, o 8 está na posição das dezenas de milhar, então ele vale 80 000.
 
-Se 3² = 9, então a raiz quadrada de 9 é 3. A raiz "desfaz" a potência.
+**Erro comum.** Contar as casas a partir da esquerda em vez da direita, ou esquecer de completar com zeros ao mover a vírgula.
 
-Estrutura: ⁿ√a = b, onde n = índice (que raiz é, quadrada, cúbica etc.), a = radicando (o número de dentro), b = resultado.
+### 3. Notação científica
 
-Quando não há índice escrito, ele é 2 (raiz quadrada) por convenção: √9 significa ²√9.
+A **notação científica** escreve qualquer número, por maior ou menor que seja, como um valor entre 1 e 10 multiplicado por uma potência de 10. Ela existe porque números muito grandes ou muito pequenos, escritos por extenso, são difíceis de ler e de comparar.
 
-**A ponte crucial: raiz é potência com expoente fracionário**
+**Fórmula: notação científica**
 
-Este é o conceito que mais cai disfarçado no ENEM. Toda raiz pode ser reescrita como potência: ⁿ√aᵐ = a^(m/n).
+**n = m × 10ᵉ, com m entre 1 e 10**
 
-Exemplo: ³√2² = 2^(2/3). Isso é poderoso porque permite aplicar TODAS as propriedades de potência (que você acabou de aprender) em expressões com raízes.
+- **n**: o número original, grande ou pequeno.
+- **m**: a parte entre 1 e 10 (pode ter casas decimais).
+- **e**: o expoente, positivo para números grandes e negativo para números pequenos.
+- **Em palavras:** mova a vírgula até sobrar só um algarismo diferente de zero antes dela; o expoente é quantas casas você moveu.
+- **Quando usar:** para escrever de forma compacta um número muito grande (população, distância entre planetas) ou muito pequeno (tamanho de um vírus, de uma célula).
 
-**Racionalização (tirar raiz do denominador)**
+**Exemplo resolvido.** Escreva 45 000 em notação científica.
 
-Por convenção matemática, não deixamos raiz no denominador de uma fração. Para eliminar, multiplicamos numerador e denominador pela mesma raiz.
+1. Dados: 45 000.
+2. Mova a vírgula até sobrar um só algarismo antes dela: de 45000, para 4,5, a vírgula andou 4 casas para a esquerda.
+3. Como a vírgula andou para a esquerda, o expoente é positivo: 4.
+4. Resposta: 4,5 × 10⁴.
 
-Exemplo: 1/√2. Multiplicamos por √2/√2 (que vale 1, então não muda o valor): (1×√2)/(√2×√2) = √2/2.
+**Exemplo resolvido.** Escreva 0,0032 em notação científica.
 
-**Pegadinhas clássicas do ENEM**
+1. Dados: 0,0032.
+2. Mova a vírgula até sobrar um só algarismo diferente de zero antes dela: de 0,0032 para 3,2, a vírgula andou 3 casas para a direita.
+3. Como a vírgula andou para a direita, o expoente é negativo: −3.
+4. Resposta: 3,2 × 10⁻³.
 
-O ENEM adora misturar uma questão de contexto real (crescimento populacional, meia-vida radioativa, juros) com uma simplificação de potências que parece complicada, mas se resolve em 2-3 passos usando as propriedades.
+**Erro comum.** Errar o sinal do expoente. Número grande (maior que 1) usa expoente positivo; número pequeno (entre 0 e 1) usa expoente negativo.
 
-Erro comum 1: achar que aᵐ × aⁿ = a^(m×n). Errado: na multiplicação de mesma base, os expoentes SOMAM, não multiplicam. Quem multiplica é a "potência de potência".
+Para números escritos por extenso, como "dois trilhões" ou "450 bilhões", primeiro junte tudo num só número (somando as partes) e só depois conte as casas para achar o expoente.
 
-Erro comum 2: achar que (a+b)ⁿ = aⁿ+bⁿ. Isso é FALSO. A propriedade de distribuir o expoente só vale para multiplicação e divisão, nunca para soma ou subtração dentro dos parênteses.
+### 4. As propriedades das potências
 
-Erro comum 3: confundir −a² com (−a)². Em −a², o expoente afeta só o "a", e o sinal de menos fica de fora: −3² = −9. Já em (−a)², o sinal entra na conta: (−3)² = 9. O ENEM explora isso com frequência.
+Duas regras resolvem a maioria das contas com potências de mesma base, sem precisar expandir a multiplicação toda.
 
-Erro comum 4: em bases diferentes, não dá para somar/multiplicar expoentes diretamente. 2³ × 3² não simplifica pela regra de "mesma base": você precisa calcular cada potência separadamente (8 × 9 = 72), a menos que consiga transformar as bases (ex: 4ˣ = (2²)ˣ = 2²ˣ) para igualá-las.
+**Fórmula: multiplicação e divisão de potências de mesma base**
+
+**a elevado a m × a elevado a n = a elevado a (m + n) e a elevado a m ÷ a elevado a n = a elevado a (m − n)**
+
+- **a**: a base, igual nas duas potências.
+- **m, n**: os expoentes.
+- **Em palavras:** para multiplicar potências de mesma base, mantenha a base e some os expoentes; para dividir, mantenha a base e subtraia os expoentes.
+- **Quando usar:** sempre que houver duas potências da mesma base sendo multiplicadas ou divididas, inclusive potências de 10.
+
+**Exemplo resolvido.** Calcule 10³ × 10⁵.
+
+1. Dados: mesma base, 10; expoentes 3 e 5.
+2. Fórmula: soma os expoentes.
+3. Calcular: 3 + 5 = 8.
+4. Resposta: 10⁸.
+
+**Erro comum.** Multiplicar os expoentes em vez de somar (achar que o resultado é 10¹⁵). Isso só vale para potência de potência, não para multiplicação de potências.
+
+### 5. Potências de 10 aplicadas: as unidades de medida
+
+Prefixos como quilo, mega e giga são só potências de 10. Quilo é mil vezes (10³), mega é um milhão de vezes (10⁶), e giga é um bilhão de vezes (10⁹). Trocar de unidade é multiplicar ou dividir por essas potências.
+
+**Exemplo resolvido.** Um pendrive tem 4 000 000 000 bytes livres. Quantos gigabytes (GB) isso representa, sabendo que 1 GB = 10⁹ bytes?
+
+1. Dados: 4 000 000 000 bytes; 1 GB = 1 000 000 000 bytes.
+2. Dividir: 4 000 000 000 ÷ 1 000 000 000 = 4.
+3. Resposta: 4 GB.
+
+Quando um problema junta várias etapas (uma potência de 10, depois outra operação), resolva uma de cada vez, sem tentar juntar tudo numa conta só.
+
+**Erro comum.** Comparar valores em unidades diferentes sem converter todos para a mesma unidade primeiro (por exemplo, comparar megabytes com gigabytes diretamente).
+
+### 6. Elevar ao quadrado em problemas
+
+Quando um problema diz que uma grandeza é diretamente proporcional ao **quadrado** de outra, o cálculo tem duas etapas. Primeiro eleva-se o número ao quadrado, e só depois se multiplica pela constante e pelos outros fatores.
+
+**Exemplo resolvido.** A energia armazenada numa mola é diretamente proporcional ao quadrado da distância que ela é esticada. Esticada 2 cm, a mola guarda 8 unidades de energia. Quanta energia ela guarda esticada 5 cm?
+
+1. Dados: energia = k × distância elevada a 2; com distância 2, energia 8.
+2. Achar k: 8 = k × 2² = k × 4, então k = 2.
+3. Aplicar a nova distância: energia = 2 × 5² = 2 × 25.
+4. Calcular: 2 × 25 = 50.
+5. Resposta: 50 unidades de energia.
+
+**Erro comum.** Multiplicar a distância por 2 (em vez de elevar ao quadrado) ao calcular a nova energia, ou esquecer de achar a constante k antes de aplicar aos novos valores.
+
+### 7. Raiz quadrada e raiz cúbica
+
+A **raiz** é a operação que desfaz uma potência. A raiz quadrada de um número é o valor que, elevado ao quadrado, dá esse número: a raiz quadrada de 25 é 5, porque 5² = 25. Do mesmo jeito, a raiz cúbica de um número é o valor que, elevado ao cubo, dá esse número: a raiz cúbica de 27 é 3, porque 3³ = 27.
+
+**Erro comum.** Achar que a raiz quadrada de um número é sempre metade dele. A raiz quadrada de 25 é 5, não 12,5.
+
+### Armadilhas típicas do INEP
+
+1. **Errar o sinal do expoente** na notação científica: número menor que 1 usa expoente negativo, número maior que 1 usa expoente positivo.
+2. **Contar o valor posicional a partir da esquerda**, quando o certo é contar as casas a partir da direita (unidade, dezena, centena…).
+3. **Somar os expoentes em vez de multiplicar** (ou o contrário) ao aplicar as propriedades das potências.
+4. **Comparar valores em unidades diferentes** sem converter todos para a mesma potência de 10 primeiro.
+5. **Confundir "elevar ao quadrado" com "multiplicar por 2".** São operações diferentes.
+6. **Esquecer de achar a constante de proporcionalidade** antes de aplicar a fórmula a um novo valor.
+7. **Achar que a raiz é metade do número.** A raiz desfaz a potência; ela não divide por 2.
 
 ## Tópicos-Chave para Revisão
 
 <div className="topico">
 
-**Potência** é multiplicação repetida: aⁿ = a base, n expoente, quantas vezes a base se repete. **a⁰ = 1** (qualquer base não-nula) e **a¹ = a** são casos especiais que decorrem da lógica das propriedades operatórias.
+#### 1. O que é uma potência
 
-**Expoente negativo** inverte a base em fração: a⁻ⁿ = 1/aⁿ. O sinal negativo não torna o número negativo, apenas manda ele para o denominador.
+Uma **potência** é uma multiplicação repetida: a **base** é o número que se repete, e o **expoente** diz quantas vezes. Casos especiais: qualquer base elevada a 1 é ela mesma, e elevada a 0 é 1.
 
-**Multiplicação de mesma base**: soma expoentes (aᵐ × aⁿ = aᵐ⁺ⁿ). **Divisão de mesma base**: subtrai expoentes (aᵐ ÷ aⁿ = aᵐ⁻ⁿ). **Potência de potência**: multiplica expoentes ((aᵐ)ⁿ = aᵐˣⁿ). São as três propriedades mais cobradas.
+#### 2. Potências de 10 e valor posicional
 
-**Distributividade do expoente** funciona em multiplicação e divisão dentro dos parênteses ((a×b)ⁿ = aⁿ×bⁿ e (a/b)ⁿ = aⁿ/bⁿ) mas NUNCA em soma ou subtração: (a+b)ⁿ ≠ aⁿ+bⁿ.
+Uma potência de 10 tem tantos zeros quanto o **expoente**. Multiplicar por ela move a vírgula: para a direita se o expoente é positivo, para a esquerda se é negativo. Cada algarismo tem um **valor posicional** conforme o lugar que ocupa.
 
-**Radiciação** é a operação inversa da potenciação: ⁿ√a tem índice n e radicando a. Sem índice escrito, é raiz quadrada (índice 2).
+#### 3. Notação científica
 
-**Conversão raiz-potência** é a chave para resolver questões complexas: ⁿ√aᵐ = a^(m/n). Isso permite usar todas as propriedades de potência em expressões radicais.
+A **notação científica** escreve um número como **n = m × 10ᵉ, com m entre 1 e 10**: o expoente e positivo para números grandes e negativo para números pequenos.
 
-**Racionalização** elimina raízes do denominador multiplicando numerador e denominador pela mesma raiz, sem alterar o valor da fração (multiplicar por algo/algo = multiplicar por 1).
+#### 4. Propriedades das potências
 
-**Sinal e expoente**: −aⁿ (menos fora dos parênteses, ou seja, fora da base) mantém o resultado negativo se n for aplicado só ao número positivo; (−a)ⁿ (menos dentro dos parênteses, incluído na base) pode virar positivo se n for par. Distinção clássica de pegadinha.
+Para multiplicar ou dividir potências de mesma base, use **a elevado a m × a elevado a n = a elevado a (m + n) e a elevado a m ÷ a elevado a n = a elevado a (m − n)**: mantenha a base e some ou subtraia os **expoentes**.
+
+#### 5. Potências de 10 nas unidades
+
+Quilo, mega e giga são potências de 10 (mil, milhão e bilhão vezes). Trocar de unidade é **multiplicar** ou **dividir** por essas potências; problemas com desconto resolvem-se em etapas.
+
+#### 6. Quadrado numa proporção
+
+Numa grandeza **diretamente proporcional** ao quadrado de outra, ache primeiro a constante k com um par de valores conhecido, depois aplique aos **novos valores**, elevando ao quadrado antes de multiplicar.
+
+#### 7. Raiz quadrada e cúbica
+
+A **raiz** desfaz a potência: a raiz quadrada de um número é o valor que, ao **quadrado**, dá esse número; a raiz cúbica é o valor que, ao **cubo**, dá esse número.
 
 </div>
 
-## Teste de Fogo
+## Questões do ENEM
 
-*Questões sem gabarito: resolva primeiro, depois confira com o professor ou com a IA.*
+*Marque uma alternativa em cada questão e confira tudo de uma vez no botão do fim.*
 
-**Questão 1 (ENEM 2013)**
+**Questão 1**
 
-Uma pessoa aplicou a quantia de R$ 4.000,00, à taxa de juros compostos de 3% ao mês. O valor S resgatado após um período de t meses é dado por S = 4000 × (1,03)ᵗ.
+*ENEM 2019 · 2º dia · caderno azul · questão 140*
 
-Considere as aproximações: log 1,03 = 0,0128; log 2 = 0,301. O menor valor inteiro de t, em meses, para que essa pessoa resgate um valor superior ao dobro do valor aplicado é:
+A gripe é uma infecção respiratória aguda de curta duração causada pelo vírus influenza. Ao entrar no nosso organismo pelo nariz, esse vírus multiplica-se, disseminando-se para a garganta e demais partes das vias respiratórias, incluindo os pulmões.
 
-(A) 23
-(B) 24
-(C) 26
-(D) 52
-(E) 53
+O vírus influenza é uma partícula esférica que tem um diâmetro interno de 0,00011 mm.
 
-**Questão 2 (ENEM 2011)**
+Em notação científica, o diâmetro interno do vírus influenza, em mm, é
 
-Após um exame médico, constatou-se que um paciente tem em seu organismo 512 mg de determinada substância química que é eliminada por dia à taxa de 50%. O médico responsável afirmou que outro exame clínico só deverá ser realizado quando a quantidade dessa substância química, no organismo do paciente, atingir a marca de 4 mg.
+A) 1,1 × 10⁻¹\
+B) 1,1 × 10⁻²\
+C) 1,1 × 10⁻³\
+D) 1,1 × 10⁻⁴\
+E) 1,1 × 10⁻⁵
 
-Qual é o número mínimo de dias, após o exame, para que o paciente deva realizar o outro exame clínico, de acordo com a orientação médica?
+**Questão 2**
 
-(A) 7
-(B) 8
-(C) 9
-(D) 16
-(E) 128
+*ENEM 2025 · 2ª aplicação · 2º dia · caderno azul · questão 139*
 
-**Questão 3 (ENEM 2010)**
+Um tipo de bactéria se reproduz rapidamente, formando uma colônia com dois trilhões e quatrocentos e cinquenta bilhões de bactérias.
 
-O ácido acetilsalicílico, cujo nome popular é aspirina, é um remédio bastante utilizado como analgésico. A meia-vida de uma substância no organismo humano é o tempo necessário para que a quantidade absorvida dessa substância se reduza à metade. No caso da aspirina, a meia-vida é de aproximadamente 3 horas.
+Em notação científica, o número de bactérias dessa colônia é
 
-[Este é um contexto de exponencial ligado a potências: para fins didáticos, vou usar uma questão puramente de simplificação de potências e raízes, mais alinhada ao tópico específico de hoje:]
+A) 2,45 × 10⁶.\
+B) 2,45 × 10⁷.\
+C) 2,45 × 10⁹.\
+D) 2,45 × 10¹².\
+E) 2,45 × 10¹⁵.
 
-**Questão 3 (ENEM 2019: versão simplificação)**
+**Questão 3**
 
-O valor da expressão numérica √[3]&#123;16&#125; × √[3]&#123;4&#125; é:
+*ENEM 2019 · PPL · 2º dia · caderno azul · questão 145*
 
-(A) 2
-(B) 4
-(C) 8
-(D) 16
-(E) 64
+Um asteroide batizado de 2013-TV135 passou a aproximadamente 6,7 × 10⁶ quilômetros da Terra. A presença do objeto espacial nas proximidades da Terra foi detectada por astrônomos ucranianos, que alertaram para uma possível volta do asteroide em 2032.
 
-**Questão 4 (ENEM-style, baseada em padrão de prova)**
+O valor posicional do algarismo 7, presente na notação científica da distância, em quilômetro, entre o asteroide e a Terra, corresponde a
 
-Simplificando a expressão (2⁻² × 2⁵) / 2¹, obtém-se:
+A) 7 décimos de quilômetro.\
+B) 7 centenas de quilômetros.\
+C) 7 dezenas de milhar de quilômetros.\
+D) 7 centenas de milhar de quilômetros.\
+E) 7 unidades de milhão de quilômetros.
 
-(A) 2⁰
-(B) 2¹
-(C) 2²
-(D) 2³
-(E) 2⁴
+**Questão 4**
 
-**Questão 5 (ENEM 2015)**
+*ENEM 2009 · 2º dia · caderno azul · questão 170*
 
-Uma empresa produz dois tipos de esferas de mesmo material, para brindes: um tipo maciço e outro oco. As esferas maciças têm raio de medida R, e as ocas têm raio de medida 2R, sendo essa a única diferença dimensional entre elas. Considere que o volume de uma esfera maciça de raio R é dado por V = (4/3)πR³.
+A resolução das câmeras digitais modernas é dada em megapixels, unidade de medida que representa um milhão de pontos. As informações sobre cada um desses pontos são armazenadas, em geral, em 3 bytes. Porém, para evitar que as imagens ocupem muito espaço, elas são submetidas a algoritmos de compressão, que reduzem em até 95% a quantidade de bytes necessários para armazená-las. Considere 1 KB = 1 000 bytes, 1 MB = 1 000 KB, 1 GB = 1 000 MB.
 
-Sabendo que a razão entre as massas da esfera oca e da esfera maciça, sendo ambas do mesmo material, é 7, qual é a razão entre os raios internos e externos da esfera oca? Considerando que o raio externo da esfera oca é 2R.
+Utilizando uma câmera de 2,0 megapixels cujo algoritmo de compressão é de 95%, João fotografou 150 imagens para seu trabalho escolar. Se ele deseja armazená-las de modo que o espaço restante no dispositivo seja o menor espaço possível, ele deve utilizar
 
-*(Nota: Esta questão envolve potências de razão de volumes, se preferir, posso substituí-la por outra mais direta ao tópico de potências e raízes puro)*
+A) um CD de 700 MB.\
+B) um pendrive de 1 GB.\
+C) um HD externo de 16 GB.\
+D) um memory stick de 16 MB.\
+E) um cartão de memória de 64 MB.
+
+**Questão 5**
+
+*ENEM 2019 · 2º dia · caderno azul · questão 141*
+
+Em um jogo on-line, cada jogador procura subir de nível e aumentar sua experiência, que são dois parâmetros importantes no jogo, dos quais dependem as forças de defesa e de ataque do participante. A força de defesa de cada jogador é diretamente proporcional ao seu nível e ao quadrado de sua experiência, enquanto sua força de ataque é diretamente proporcional à sua experiência e ao quadrado do seu nível. Nenhum jogador sabe o nível ou a experiência dos demais.
+
+Os jogadores iniciam o jogo no nível 1 com experiência 1 e possuem força de ataque 2 e de defesa 1. Nesse jogo, cada participante se movimenta em uma cidade em busca de tesouros para aumentar sua experiência. Quando dois deles se encontram, um deles pode desafiar o outro para um confronto, sendo o desafiante considerado o atacante. Compara-se então a força de ataque do desafiante com a força de defesa do desafiado e vence o confronto aquele cuja força for maior.
+
+Durante um jogo, o jogador J1, de nível 4 e experiência 5, irá atacar o jogador J2, de nível 2 e experiência 6. O jogador J1 venceu esse confronto porque a diferença entre sua força de ataque e a força de defesa de seu oponente era
+
+A) 112.\
+B) 88.\
+C) 60.\
+D) 28.\
+E) 24.

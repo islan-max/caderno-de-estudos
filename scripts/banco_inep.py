@@ -521,7 +521,23 @@ def linhas_da_pagina(pagina):
             if not spans:
                 continue
             x0, y0, x1, y1 = l["bbox"]
-            texto = unicodedata.normalize("NFKC", "".join(s["text"] for s in l["spans"]))
+            # Expoente (10⁶, 10⁻⁴...): a prova desenha o expoente menor e mais alto, como um span à
+            # parte, sem espaço nem sinal de "elevado a". Sem isso, "10" e "6" viram "106" grudados.
+            # Aqui, uma queda de tamanho de fonte dentro da mesma linha vira um "^" antes do expoente.
+            partes, tam_normal, em_expoente = [], None, False
+            for s in l["spans"]:
+                if not s["text"]:
+                    continue
+                if tam_normal is None:
+                    tam_normal = s["size"]
+                if s["size"] < tam_normal * 0.85:
+                    if not em_expoente:
+                        partes.append("^")
+                        em_expoente = True
+                else:
+                    tam_normal, em_expoente = s["size"], False
+                partes.append(s["text"])
+            texto = unicodedata.normalize("NFKC", "".join(partes))
             t = texto.strip()
             if y0 < 0.05 * h and not CABECALHO.match(t):
                 continue
