@@ -5,149 +5,339 @@ order: 1
 relevance: >
   Função afim é o modelo matemático de tudo que tem uma parte fixa e uma parte que cresce a um ritmo
   constante: conta de luz com taxa mínima mais consumo, corrida de táxi com bandeirada mais quilômetro
-  rodado, plano de celular com mensalidade mais franquia excedente, salário fixo mais comissão. É a
-  função mais cobrada do ENEM, e quase nunca com a pergunta "qual é a lei da função" escrita assim; o
-  INEP entrega uma situação real ou um gráfico e espera que você extraia sozinho o valor inicial e a
-  taxa de variação. Aparecem tipicamente 2 a 4 questões por prova que se resolvem com ela, muitas
-  comparando dois planos e pedindo o ponto em que um passa a ser mais vantajoso que o outro.
+  rodado, plano de celular com mensalidade mais franquia excedente, salário fixo mais comissão. O ENEM
+  (Exame Nacional do Ensino Médio) quase nunca pergunta "qual é a lei da função" escrita assim: ele
+  entrega uma situação real ou um gráfico e espera que você extraia sozinho o valor inicial e a taxa de
+  variação. É comum a prova comparar dois planos e pedir o ponto em que um passa a ser mais vantajoso
+  que o outro.
 quickSummary: >
-  Função afim é toda função do tipo f(x) = ax + b, cujo gráfico é uma reta: b é o valor inicial (o que já
-  se paga ou se tem quando x é zero) e a é a taxa de variação (quanto o resultado muda a cada aumento de
-  uma unidade em x).
+  Função afim é toda função do tipo f(x) = ax + b, cujo gráfico é uma reta: b é o coeficiente linear (o
+  valor quando x é zero) e a é o coeficiente angular (quanto o resultado muda a cada aumento de 1 em x).
+  Para achar a a partir de dois pontos conhecidos, divida a variação de y pela variação de x. Para
+  comparar duas funções afins, calcule o resultado de cada uma para a mesma entrada e compare.
+resources:
+  conteudoComplementar:
+    conteudo: "Funções Quadráticas"
+    comoAjuda: "A função afim é o caso mais simples de função; a próxima aula usa a mesma ideia de coeficientes, mas com um termo ao quadrado."
+gabarito:
+  - correta: 3
+    porque: >
+      O gerente ganha R$ 1 000,00 fixo, e cada diarista ganha 2 × 80 = R$ 160,00 por semana. Como X é o
+      total de funcionários, há (X − 1) diaristas. A quantia gasta é Y = 1 000 + 160(X − 1) =
+      1 000 + 160X − 160 = 160X + 840.
+      Revisar: Aula Teórica › 2. Escrevendo a função a partir de um problema
+  - correta: 0
+    porque: >
+      A reta y1 passa por A(0; 10) e B(20; 50): coeficiente angular (50 − 10) ÷ (20 − 0) = 2 por segundo.
+      A reta y2 passa por A(0; 10) e C(40; 30): coeficiente angular (30 − 10) ÷ (40 − 0) = 0,5 por
+      segundo. Se y1 aumentou 20 °C, o tempo decorrido foi 20 ÷ 2 = 10 segundos. Nesse mesmo tempo, y2
+      aumenta 0,5 × 10 = 5 °C.
+      Revisar: Aula Teórica › 3. Coeficiente angular: a taxa de variação
+  - correta: 0
+    porque: >
+      Plano A ao longo de 6 meses: 500 × 6 + 4 × 650 = 3 000 + 2 600 = R$ 5 600,00. Plano B: 200 × 6 + 6 ×
+      650 = 1 200 + 3 900 = R$ 5 100,00. O plano B custa 5 600 − 5 100 = R$ 500,00 a menos que o plano A.
+      Revisar: Aula Teórica › 4. Comparando duas funções afins
+  - correta: 4
+    porque: >
+      Cidade A para 6 km: 3,45 + 2,05 × 6 = R$ 15,75; média por km: 15,75 ÷ 6 = 2,625. Cidade B para 6 km:
+      3,60 + 1,90 × 6 = R$ 15,00; média por km: 15,00 ÷ 6 = 2,50. A diferença entre as médias é
+      2,625 − 2,50 = 0,125, que arredonda para 0,13.
+      Revisar: Aula Teórica › 4. Comparando duas funções afins
+  - correta: 3
+    porque: >
+      De 2009 a 2011 (2 anos), a taxa caiu de 22,5 para 18,7, uma queda de 3,8 em 2 anos: 1,9 por ano.
+      Mantendo essa queda a partir de 2011 (18,7), em 2015 (4 anos depois) a taxa estaria em
+      18,7 − 4 × 1,9 = 11,1 (ainda acima de 10); em 2016 (5 anos depois), 18,7 − 5 × 1,9 = 9,2 (abaixo de
+      10). A taxa cruza 10 entre 2015 e 2016.
+      Revisar: Aula Teórica › 5. Lendo e extrapolando um gráfico linear
 ---
 
-## Aula Teórica Completa
+<Accordion titulo="Palavras e siglas desta aula" dica="Consulte quando encontrar um termo novo" icone="spell-check">
 
-**O que é uma função.** Função é uma regra que transforma um número de entrada em exatamente um número de saída. Pense numa máquina: você coloca o valor x (a variável independente, aquilo que você escolhe, como o número de quilômetros rodados) e a máquina devolve f(x) (a variável dependente, aquilo que é consequência, como o preço da corrida). A notação f(x) lê-se "f de x" e significa "o valor que a função devolve para essa entrada x": não é multiplicação de f por x.
+- **ENEM** (Exame Nacional do Ensino Médio): a prova nacional que dá acesso a faculdades e bolsas.
+- **INEP** (Instituto Nacional de Estudos e Pesquisas Educacionais Anísio Teixeira): o órgão do governo que faz o ENEM.
+- **Função afim**: uma função do tipo f(x) = ax + b, cujo gráfico é uma reta.
+- **Coeficiente angular**: o número a, que diz o quanto o resultado muda a cada aumento de 1 em x; também chamado de taxa de variação.
+- **Coeficiente linear**: o número b, o valor da função quando x é zero.
+- **IBGE** (Instituto Brasileiro de Geografia e Estatística): o órgão do governo que produz dados oficiais sobre a população e a economia do país.
+- **Extrapolar**: continuar um padrão observado para além dos dados que você já tem.
+- **Semirreta**: uma reta que tem ponto de início, mas não tem fim; no gráfico, começa num ponto e segue para um lado só.
+- **Bandeirada**: o valor fixo cobrado no início de toda corrida de táxi, antes de rodar qualquer quilômetro.
 
-**A lei da função afim.** Função afim é toda função que pode ser escrita na forma
+</Accordion>
 
-f(x) = a × x + b
+## Antes de Começar
 
-em que a e b são números fixos, chamados coeficientes, e a é diferente de zero. Também aparece escrita como y = ax + b, sendo y apenas outro nome para f(x). Quando a é igual a zero, sobra f(x) = b, que é uma função constante (uma reta horizontal). Quando b é igual a zero, sobra f(x) = ax, chamada de função linear, que é o caso da proporcionalidade direta pura.
+**O que o ENEM cobra aqui.** A prova quase nunca escreve "f(x) = ax + b" pronta: ela descreve uma situação com uma parte fixa e uma parte que muda, ou mostra um gráfico, e espera que você monte ou leia a função sozinho. Os temas que costumam aparecer são estes:
 
-**O que significa b: o valor inicial.** Substituindo x por zero, temos f(0) = a × 0 + b = b. Ou seja, b é o valor da função quando a entrada é zero: o ponto de partida. Na conta de luz, é a taxa mínima que você paga mesmo sem consumir nada. Na corrida de táxi, é a bandeirada. No gráfico, b é a altura em que a reta corta o eixo vertical. Por isso b é chamado de coeficiente linear ou valor inicial.
+- **Escrever a função a partir de uma descrição**, identificando a parte fixa e a parte variável.
+- **Achar o coeficiente angular** a partir de dois pontos conhecidos.
+- **Comparar duas funções afins**, para saber qual é mais vantajosa em cada situação.
+- **Ler um gráfico linear e extrapolar** um valor além dos dados mostrados.
 
-**O que significa a: a taxa de variação.** O coeficiente a diz quanto a saída muda a cada aumento de UMA unidade na entrada. Se f(x) = 2,50x + 6,00 descreve a corrida de táxi, então a = 2,50 significa que cada quilômetro rodado custa R$ 2,50 a mais. Por isso a é chamado de taxa de variação, coeficiente angular ou declividade. Quando o enunciado disser "por", "a cada", "para cada", ou trouxer uma unidade composta como reais por quilômetro, ele está te entregando o valor de a.
+**O que você precisa saber antes.**
 
-Calculando a partir de dois pontos conhecidos (x1, y1) e (x2, y2):
+- **Equações do 1º grau.** Achar onde duas funções se cruzam, ou isolar uma variável, usa exatamente essa ferramenta; revise a aula de Equações se precisar.
+- **Razão e proporção.** O coeficiente angular é uma razão entre duas variações.
+- **Plano cartesiano.** Saber localizar um ponto (x, y) e entender o que é uma reta nesse plano.
 
-a = (y2 − y1) ÷ (x2 − x1)
+## Aula Teórica
 
-Isto é: a variação da saída dividida pela variação da entrada. Em palavras simples, "quanto subiu dividido por quanto andou".
+### 1. O que é uma função afim
 
-**O gráfico é sempre uma reta.** Como a variação é constante, os pontos ficam alinhados. Duas informações bastam para desenhar a reta: onde ela corta o eixo vertical (a altura b) e sua inclinação (a).
+Uma **função afim** tem a forma **f(x) = ax + b**, e o gráfico dela é sempre uma reta.
 
-Se a é positivo (a > 0), a função é crescente: aumentar x aumenta f(x), e a reta sobe da esquerda para a direita. Se a é negativo (a &lt; 0), a função é decrescente: aumentar x diminui f(x), e a reta desce. Quanto maior o valor absoluto de a, mais inclinada (mais "em pé") é a reta. Repare que o sinal de b não tem nada a ver com crescer ou decrescer: b só determina a altura em que a reta começa.
+<figure class="figura">
+  <svg viewBox="0 0 400 180" role="img" aria-labelledby="fig-afim-1-t fig-afim-1-d">
+    <title id="fig-afim-1-t">Coeficiente linear e angular de uma reta</title>
+    <desc id="fig-afim-1-d">Uma reta crescente cruzando o eixo vertical no ponto b, o coeficiente linear, e um pequeno degrau mostrando quanto ela sobe a cada passo no eixo horizontal, o coeficiente angular a.</desc>
+    <line x1="60" y1="160" x2="370" y2="160" class="traco-fino" />
+    <line x1="60" y1="160" x2="60" y2="20" class="traco-fino" />
+    <line x1="60" y1="130" x2="320" y2="40" class="traco" />
+    <circle cx="60" cy="130" r="4" class="preenche" />
+    <text x="44" y="134" class="rotulo" text-anchor="end">b</text>
+    <line x1="180" y1="88.5" x2="220" y2="88.5" class="tracejado" />
+    <line x1="220" y1="88.5" x2="220" y2="74.6" class="tracejado" />
+    <text x="200" y="104" class="rotulo-fraco" text-anchor="middle">1</text>
+    <text x="248" y="95" class="rotulo-fraco">a</text>
+  </svg>
+</figure>
 
-**A raiz (ou zero) da função.** Raiz é o valor de x que faz a função valer zero, ou seja, o ponto em que a reta cruza o eixo horizontal. Resolvendo ax + b = 0, chega-se a
+**Fórmula: função afim**
 
-x = −b ÷ a
+**f(x) = ax + b**
 
-Exemplo: em f(x) = −2x + 8, a raiz é x = −8 ÷ (−2) = 4. Confirmando: f(4) = −2 × 4 + 8 = 0. No mundo real, a raiz costuma ter significado forte: o ano em que um estoque acaba, o momento em que um reservatório esvazia, o tempo em que uma dívida é quitada, o instante em que um objeto atinge o solo.
+- **x**: a quantidade que varia (horas, quilômetros, unidades).
+- **a**: o coeficiente angular, o quanto f(x) muda a cada vez que x aumenta 1 unidade. Se a for positivo, a reta sobe; se for negativo, a reta desce.
+- **b**: o coeficiente linear, o valor de f(x) quando x é 0, ou seja, onde a reta cruza o eixo vertical.
+- **Em palavras:** o resultado é a parte fixa (b) somada à taxa (a) vezes a quantidade (x).
+- **Quando usar:** sempre que uma situação tiver uma parte fixa e uma parte que cresce ou diminui no mesmo ritmo a cada unidade.
 
-**Montar a lei a partir de dois pontos.** Se você sabe que a função afim passa pelos pontos (2, 7) e (5, 16), calcule primeiro a taxa: a = (16 − 7) ÷ (5 − 2) = 9 ÷ 3 = 3. Depois substitua um dos pontos na lei para achar b: 7 = 3 × 2 + b, logo 7 = 6 + b, logo b = 1. A lei é f(x) = 3x + 1. Sempre confira com o outro ponto: f(5) = 3 × 5 + 1 = 16. Bateu.
+**Exemplo resolvido.** Uma conta de água cobra R$ 25,00 fixos mais R$ 4,00 por metro cúbico consumido. Escreva a função que dá o valor da conta em função do consumo x.
 
-**Montar a lei a partir de um enunciado.** O procedimento é mecânico. Primeiro, pergunte "o que se paga ou se tem mesmo quando a quantidade é zero?": isso é b. Depois, pergunte "quanto muda a cada unidade a mais?": isso é a.
+1. Parte fixa (coeficiente linear): R$ 25,00, cobrada mesmo com consumo zero.
+2. Parte variável (coeficiente angular): R$ 4,00 por metro cúbico.
+3. Resposta: f(x) = 4x + 25.
 
-Conta de água com taxa fixa de R$ 24,00 mais R$ 3,20 por metro cúbico consumido: f(x) = 3,20x + 24,00, com x em metros cúbicos. Para um consumo de 18 metros cúbicos: f(18) = 3,20 × 18 + 24 = 57,60 + 24 = R$ 81,60.
+**Erro comum.** Trocar a e b de lugar, escrevendo a parte fixa multiplicando x. O número que multiplica x é sempre o coeficiente angular (a taxa), nunca o valor fixo.
 
-Corrida de táxi com bandeirada de R$ 6,00 e R$ 2,50 por quilômetro: f(x) = 2,50x + 6,00. Uma corrida que custou R$ 43,50 percorreu quantos quilômetros? Resolvendo 2,50x + 6 = 43,50, temos 2,50x = 37,50, logo x = 15 km.
+### 2. Escrevendo a função a partir de um problema
 
-**Comparar dois planos: o ponto de equilíbrio.** Este é o formato favorito do ENEM. Dois planos são descritos por duas funções afins, e a pergunta é a partir de quando um compensa mais que o outro. A resposta está no ponto em que as duas retas se cruzam, chamado de ponto de equilíbrio: basta igualar as duas leis e resolver.
+O passo mais importante é identificar, no meio do texto, o que é fixo (não depende de x) e o que varia proporcionalmente a x.
 
-Plano A cobra R$ 30,00 fixos mais R$ 0,50 por minuto: A(m) = 0,50m + 30. Plano B cobra R$ 60,00 fixos mais R$ 0,20 por minuto: B(m) = 0,20m + 60. Igualando: 0,50m + 30 = 0,20m + 60. Passando os termos com m para um lado e os números para o outro: 0,30m = 30, logo m = 100 minutos. Nesse consumo, os dois custam o mesmo: A(100) = 50 + 30 = R$ 80,00 e B(100) = 20 + 60 = R$ 80,00.
+**Exemplo resolvido.** Uma oficina cobra uma taxa de visita de R$ 50,00, mais R$ 30,00 por hora de serviço. Escreva o custo total C em função do número de horas h.
 
-E agora vem a parte que o INEP realmente quer: interpretar. Abaixo de 100 minutos, o plano com menor valor fixo (A) é mais barato. Acima de 100 minutos, o plano com menor taxa por minuto (B) é mais barato. A regra geral vale sempre: quem tem o valor inicial menor vence no começo, e quem tem a taxa de variação menor vence no longo prazo. Testar um valor qualquer depois do cruzamento é a maneira mais segura de decidir quem é quem, e leva cinco segundos.
+1. Identificar a parte fixa: R$ 50,00 (taxa de visita, paga mesmo com 0 horas).
+2. Identificar a parte variável: R$ 30,00 por hora, multiplicando h.
+3. Resposta: C = 30h + 50.
 
-**Situações de decrescimento.** Uma máquina comprada por R$ 24.000,00 que perde R$ 2.500,00 de valor por ano é descrita por V(t) = 24.000 − 2.500t, com t em anos. Aqui b = 24.000 é o valor de compra e a = −2.500 é a taxa de variação negativa, que representa a depreciação anual. Para saber quando ela valerá R$ 9.000,00: 24.000 − 2.500t = 9.000, então 2.500t = 15.000, logo t = 6 anos.
+**Erro comum.** Multiplicar a parte fixa por x também. Uma taxa fixa não muda com x; ela é somada uma única vez, fora da multiplicação.
 
-**Armadilhas típicas do INEP:** (1) trocar a por b ao ler o enunciado, usando a taxa fixa como se fosse por unidade, a pergunta-chave é sempre "quanto se paga com quantidade zero?"; (2) responder o valor do ponto de equilíbrio em reais quando o comando pediu a quantidade (minutos, quilômetros, unidades), ou o contrário; (3) esquecer que, exatamente no ponto de equilíbrio, os dois planos custam igual, questões que perguntam "a partir de quanto o plano B é mais vantajoso" pedem um valor estritamente maior que o do cruzamento; (4) confundir o sinal de b com crescimento ou decrescimento, quando quem manda nisso é o sinal de a; (5) ler mal um gráfico em que os eixos não começam em zero, tomando a altura visível na borda esquerda como se fosse b; (6) não converter unidades antes de montar a lei, misturando, por exemplo, preço por hora com tempo dado em minutos.
+Em alguns problemas, a variável x conta uma coisa, e a quantidade multiplicada pela taxa é ligeiramente diferente (como "o total de pessoas" contra "quantas pagam uma taxa extra"). Leia com cuidado o que exatamente está sendo multiplicado.
+
+### 3. Coeficiente angular: a taxa de variação
+
+Quando dois pontos de uma reta são conhecidos, o coeficiente angular se calcula dividindo a variação de y pela variação de x correspondente.
+
+**Fórmula: coeficiente angular a partir de dois pontos**
+
+**a = (y₂ − y₁) ÷ (x₂ − x₁)**
+
+- **(x₁, y₁) e (x₂, y₂)**: dois pontos quaisquer da reta.
+- **a**: o coeficiente angular, constante em qualquer par de pontos da mesma reta.
+- **Em palavras:** divida o quanto y mudou pelo quanto x mudou entre os dois pontos.
+- **Quando usar:** sempre que dois pontos de uma função afim forem conhecidos (numa tabela, num gráfico, ou no enunciado) e for preciso achar a taxa de variação.
+
+**Exemplo resolvido.** Uma vela queima de forma constante. Ela media 20 cm de altura 2 minutos depois de acesa, e 14 cm de altura 5 minutos depois de acesa. Qual é a taxa de variação da altura, em centímetro por minuto?
+
+1. Dados: ponto (2; 20) e ponto (5; 14).
+2. Fórmula: a = (14 − 20) ÷ (5 − 2).
+3. Calcular: a = (−6) ÷ 3 = −2.
+4. Resposta: a altura diminui 2 cm por minuto.
+
+**Erro comum.** Inverter a ordem dos pontos em só uma das subtrações (por exemplo, calcular y₂−y₁ mas x₁−x₂). As duas subtrações precisam seguir a mesma ordem dos pontos.
+
+Quando duas retas passam pelo mesmo ponto inicial, comparar seus coeficientes angulares diz qual cresce mais rápido. Numa mesma variação de x, a de maior coeficiente angular (em valor absoluto) varia mais em y.
+
+### 4. Comparando duas funções afins
+
+Para decidir qual de duas opções (dois planos, duas tarifas) é melhor numa situação, calcule o resultado de cada função para a mesma entrada e compare os totais.
+
+**Exemplo resolvido.** A gráfica X cobra R$ 80,00 de taxa fixa mais R$ 0,50 por cópia. A gráfica Y cobra R$ 20,00 de taxa fixa mais R$ 0,90 por cópia. Para um pedido de 200 cópias, qual gráfica é mais barata?
+
+1. Custo na gráfica X: 80 + 0,50 × 200 = 80 + 100 = R$ 180,00.
+2. Custo na gráfica Y: 20 + 0,90 × 200 = 20 + 180 = R$ 200,00.
+3. Resposta: a gráfica X é mais barata para esse pedido, por R$ 20,00.
+
+**Erro comum.** Comparar só as taxas fixas ou só os preços por unidade, isoladamente. A opção com a menor taxa fixa pode sair mais cara no total, dependendo da quantidade.
+
+Às vezes o problema pede uma **média** (custo total dividido pela quantidade) em vez do custo total. Nesse caso, calcule o custo total de cada opção primeiro, e só depois divida cada um pela quantidade para comparar as médias.
+
+### 5. Lendo e extrapolando um gráfico linear
+
+Quando um gráfico mostra pontos ligados por um segmento de reta, o coeficiente angular entre dois desses pontos permite continuar o padrão para além dos dados mostrados — isso é **extrapolar**.
+
+**Exemplo resolvido.** Um posto de gasolina reduziu seu preço de R$ 6,00 (em janeiro) para R$ 5,40 (em abril), numa queda constante por mês. Mantendo essa mesma taxa, em que mês o preço chega a R$ 4,20?
+
+1. Dados: janeiro (mês 0) → 6,00; abril (mês 3) → 5,40. Variação: (5,40 − 6,00) ÷ (3 − 0) = −0,60 ÷ 3 = −0,20 por mês.
+2. Quanto falta cair: 4,20 − 5,40 = −1,20.
+3. Quantos meses depois de abril: −1,20 ÷ (−0,20) = 6 meses depois de abril.
+4. Resposta: abril + 6 meses = outubro.
+
+**Erro comum.** Extrapolar contando os meses a partir do início (janeiro) em vez de a partir do último ponto conhecido (abril). A extrapolação soma o tempo extra ao ponto mais recente que você já calculou.
+
+### Armadilhas típicas do INEP
+
+1. **Trocar coeficiente angular com linear**, multiplicando por x o número que deveria ser somado sozinho.
+2. **Inverter a ordem dos pontos** numa das duas subtrações ao calcular o coeficiente angular.
+3. **Comparar só uma parte** (só a taxa fixa, ou só o preço por unidade) em vez do resultado total para a mesma entrada.
+4. **Confundir custo total com custo médio**, quando o problema pede a média por unidade.
+5. **Extrapolar a partir do ponto errado**, contando o tempo extra desde o início da série, não desde o último ponto conhecido.
+6. **Cobrar a taxa fixa mais de uma vez**, em vez de somá-la uma única vez ao total.
 
 ## Tópicos-Chave para Revisão
 
 <div className="topico">
 
-Função afim é toda função do tipo f(x) = ax + b, cujo gráfico é uma reta: b é o valor inicial (o que já se paga ou se tem quando x é zero) e a é a taxa de variação (quanto o resultado muda a cada aumento de uma unidade em x).
+#### 1. O que é uma função afim
 
-O coeficiente b, chamado de coeficiente linear ou valor inicial, é o valor de f(0) e corresponde ao ponto em que a reta corta o eixo vertical: é a bandeirada do táxi, a taxa mínima da conta de luz, a mensalidade fixa do plano, o salário-base antes das comissões.
+Uma **função afim** tem a forma **f(x) = ax + b**: **a** é o coeficiente angular (a taxa de variação) e **b** é o coeficiente linear (o valor quando x é zero).
 
-O coeficiente a, chamado de taxa de variação ou coeficiente angular, é calculado por a = (y2 − y1) ÷ (x2 − x1) e aparece no enunciado sempre que houver as expressões "por", "a cada" ou uma unidade composta como reais por quilômetro. Com a positivo a função é crescente e a reta sobe; com a negativo é decrescente e a reta desce; o valor absoluto de a mede a inclinação.
+#### 2. Escrevendo a função
 
-A raiz ou zero da função é o valor x = −b ÷ a, ponto em que a reta cruza o eixo horizontal e a função vale zero; no contexto de um problema, costuma representar o instante em que algo se esgota, se quita ou atinge o solo.
+Identifique a **parte fixa** (soma, não multiplica x) e a **parte variável** (multiplica x) na descrição do problema, e monte f(x) = (taxa) × x + (fixo).
 
-Para montar a lei a partir de dois pontos, calcule primeiro a taxa a pela razão entre as variações, depois substitua um dos pontos na lei para encontrar b e confira o resultado com o outro ponto. Para montar a partir de um enunciado, identifique o valor com quantidade zero (que é b) e o valor por unidade (que é a).
+#### 3. Coeficiente angular
 
-O ponto de equilíbrio entre dois planos é obtido igualando as duas leis e resolvendo a equação; nele os dois custam exatamente o mesmo. Antes desse ponto vence o plano de menor valor inicial; depois dele vence o plano de menor taxa de variação, e testar um valor após o cruzamento confirma a conclusão rapidamente.
+Com dois pontos conhecidos, **a = (y₂ − y₁) ÷ (x₂ − x₁)**. É a mesma **taxa de variação** em qualquer par de pontos da mesma reta.
 
-Situações de depreciação, esvaziamento e desconto usam taxa de variação negativa, como V(t) = 24.000 − 2.500t, em que 24.000 é o valor de compra e 2.500 é a perda por ano; a incógnita costuma ser o tempo, obtido isolando t na equação.
+#### 4. Comparando funções
 
-Casos particulares: com a igual a zero a função é constante e o gráfico é uma reta horizontal; com b igual a zero a função é linear, f(x) = ax, e representa grandezas diretamente proporcionais, com a reta passando pela origem.
+Para comparar duas opções, calcule o **resultado total** de cada uma para a mesma entrada; se o problema pedir uma **média**, divida cada total pela quantidade só depois de calculá-lo.
+
+#### 5. Extrapolar um gráfico
+
+Ache a **taxa de variação** entre dois pontos conhecidos e continue o padrão a partir do **último ponto conhecido**, não do início da série.
 
 </div>
 
-## Teste de Fogo
+## Questões do ENEM
 
-*Questões sem gabarito: resolva primeiro, depois confira com o professor ou com a IA.*
+*Marque uma alternativa em cada questão e confira tudo de uma vez no botão do fim.*
 
-**Questão 1 (estilo ENEM: autoral)**
-Em determinado município, o valor cobrado por uma corrida de táxi é composto por uma parcela fixa, chamada bandeirada, de R$ 6,00, somada a R$ 2,50 por quilômetro percorrido. Um passageiro pagou R$ 43,50 por uma corrida realizada nesse município.
+**Questão 1**
 
-A distância percorrida nessa corrida, em quilômetros, foi de
+*ENEM 2019 · 2º dia · caderno azul · questão 168*
 
-a) 14,4
-b) 15,0
-c) 17,4
-d) 19,8
-e) 22,0
+Uma empresa tem diversos funcionários. Um deles é o gerente, que recebe R$ 1 000,00 por semana. Os outros funcionários são diaristas. Cada um deles trabalha 2 dias por semana, recebendo R$ 80,00 por dia trabalhado.
 
-**Questão 2 (estilo ENEM: autoral)**
-Uma operadora de telefonia oferece dois planos mensais para o mesmo serviço. No plano A, o cliente paga R$ 30,00 fixos por mês e mais R$ 0,50 por minuto de ligação. No plano B, paga R$ 60,00 fixos por mês e mais R$ 0,20 por minuto de ligação.
+Chamando de X a quantidade total de funcionários da empresa, a quantia Y, em reais, que esta empresa gasta semanalmente para pagar seus funcionários é expressa por
 
-Um cliente deseja saber a partir de quantos minutos mensais de ligação o plano B passa a ser mais econômico que o plano A.
+A) Y = 80X + 920.\
+B) Y = 80X + 1 000.\
+C) Y = 80X + 1 080.\
+D) Y = 160X + 840.\
+E) Y = 160X + 1 000.
 
-O plano B é mais econômico quando o consumo mensal é superior a
+**Questão 2**
 
-a) 30 minutos
-b) 60 minutos
-c) 80 minutos
-d) 100 minutos
-e) 150 minutos
+*ENEM 2024 · 2ª aplicação · 2º dia · caderno azul · questão 170*
 
-**Questão 3 (estilo ENEM: autoral)**
-A conta de água de uma residência é calculada somando-se uma taxa fixa mensal de R$ 24,00 a um valor de R$ 3,20 por metro cúbico de água consumido no mês.
+Dois objetos metálicos, ambos com temperatura inicial igual a 10 °C, são aquecidos. Suas temperaturas, y₁ e y₂, em função do tempo t, em segundo, estão representadas no plano cartesiano pelas semirretas com origem no ponto A(0; 10) e que passam, respectivamente, pelos pontos B(20; 50) e C(40; 30).
 
-Em determinado mês, o consumo registrado foi de 18 metros cúbicos. O valor total da conta desse mês, em reais, foi
+<figure class="figura">
+  <svg viewBox="0 0 460 220" role="img" aria-labelledby="fig-afim-q2-t fig-afim-q2-d">
+    <title id="fig-afim-q2-t">Temperatura de dois objetos ao longo do tempo</title>
+    <desc id="fig-afim-q2-d">Duas semirretas partindo do ponto A(0; 10): a reta y1 passa por B(20; 50), com subida mais íngreme, e a reta y2 passa por C(40; 30), com subida mais suave.</desc>
+    <line x1="60" y1="170" x2="420" y2="170" class="traco-fino" />
+    <line x1="60" y1="170" x2="60" y2="20" class="traco-fino" />
+    <text x="440" y="175" class="rotulo-fraco">t (s)</text>
+    <text x="15" y="20" class="rotulo-fraco">y (°C)</text>
+    <line x1="60" y1="170" x2="250" y2="30" class="traco" />
+    <line x1="60" y1="170" x2="380" y2="110" class="traco" />
+    <circle cx="60" cy="170" r="4" class="preenche" />
+    <text x="60" y="187" class="rotulo" text-anchor="middle">A(0; 10)</text>
+    <circle cx="220" cy="50" r="4" class="preenche" />
+    <text x="205" y="48" class="rotulo" text-anchor="end">B(20; 50)</text>
+    <text x="255" y="70" class="rotulo-fraco">y₁</text>
+    <circle cx="340" cy="130" r="4" class="preenche" />
+    <text x="325" y="118" class="rotulo" text-anchor="end">C(40; 30)</text>
+    <text x="380" y="150" class="rotulo-fraco">y₂</text>
+  </svg>
+</figure>
 
-a) 57,60
-b) 66,60
-c) 81,60
-d) 86,40
-e) 489,60
+Sabe-se que, em determinado intervalo de tempo, a temperatura y₁ aumentou 20 °C.
 
-**Questão 4 (estilo ENEM: autoral)**
-Uma empresa comprou uma máquina industrial por R$ 24.000,00. Para efeito contábil, considera-se que essa máquina sofre depreciação linear, perdendo R$ 2.500,00 de valor a cada ano completo de uso, a partir da data da compra.
+Nesse mesmo intervalo de tempo, a temperatura y₂, em grau Celsius, aumentou
 
-O número de anos completos de uso após o qual o valor contábil dessa máquina será igual a R$ 9.000,00 é
+A) 5.\
+B) 10.\
+C) 15.\
+D) 20.\
+E) 50.
 
-a) 3
-b) 5
-c) 6
-d) 9
-e) 10
+**Questão 3**
 
-**Questão 5 (estilo ENEM: autoral)**
-Um técnico registrou a temperatura da água em um tanque de aquecimento, em graus Celsius, em função do tempo decorrido desde o início do aquecimento, em minutos. Os dados obtidos estão na tabela.
+*ENEM 2017 · 2ª aplicação · 2º dia · caderno azul · questão 141*
 
-Tempo 0 minuto, temperatura 18 graus Celsius
-Tempo 3 minutos, temperatura 30 graus Celsius
-Tempo 6 minutos, temperatura 42 graus Celsius
-Tempo 9 minutos, temperatura 54 graus Celsius
+Uma empresa de entregas presta serviços para outras empresas que fabricam e vendem produtos. Os fabricantes dos produtos podem contratar um entre dois planos oferecidos pela empresa que faz as entregas. No plano A, cobra-se uma taxa fixa mensal no valor de R$ 500,00, além de uma tarifa de R$ 4,00 por cada quilograma enviado (para qualquer destino dentro da área de cobertura). No plano B, cobra-se uma taxa fixa mensal no valor de R$ 200,00, porém a tarifa por cada quilograma enviado sobe para R$ 6,00. Certo fabricante havia decidido contratar o plano A por um período de 6 meses. Contudo, ao perceber que ele precisará enviar apenas 650 quilogramas de mercadoria durante todo o período, ele resolveu contratar o plano B.
 
-Mantido esse mesmo comportamento, a temperatura da água, em graus Celsius, aos 20 minutos de aquecimento será de
+Qual alternativa avalia corretamente a decisão final do fabricante de contratar o plano B?
 
-a) 80
-b) 98
-c) 102
-d) 108
-e) 120
+A) A decisão foi boa para o fabricante, pois o plano B custará ao todo R$ 500,00 a menos do que o plano A custaria.\
+B) A decisão foi boa para o fabricante, pois o plano B custará ao todo R$ 1 500,00 a menos do que o plano A custaria.\
+C) A decisão foi ruim para o fabricante, pois o plano B custará ao todo R$ 1 000,00 a mais do que o plano A custaria.\
+D) A decisão foi ruim para o fabricante, pois o plano B custará ao todo R$ 1 300,00 a mais do que o plano A custaria.\
+E) A decisão foi ruim para o fabricante, pois o plano B custará ao todo R$ 6 000,00 a mais do que o plano A custaria.
+
+**Questão 4**
+
+*ENEM 2014 · 2ª aplicação · 2º dia · caderno cinza · questão 159*
+
+Os sistemas de cobrança dos serviços de táxi nas cidades A e B são distintos. Uma corrida de táxi na cidade A é calculada pelo valor fixo da bandeirada, que é de R$ 3,45, mais R$ 2,05 por quilômetro rodado. Na cidade B, a corrida é calculada pelo valor fixo da bandeirada, que é de R$ 3,60, mais R$ 1,90 por quilômetro rodado. Uma pessoa utilizou o serviço de táxi nas duas cidades para percorrer a mesma distância de 6 km.
+
+Qual o valor que mais se aproxima da diferença, em reais, entre as médias do custo por quilômetro rodado ao final das duas corridas?
+
+A) 0,75\
+B) 0,45\
+C) 0,38\
+D) 0,33\
+E) 0,13
+
+**Questão 5**
+
+*ENEM 2020 · 2ª aplicação · 2º dia · caderno azul · questão 171*
+
+A taxa de mortalidade infantil vem decaindo a cada ano no Brasil. O gráfico, gerado a partir de dados do IBGE, apresenta a evolução da taxa de mortalidade infantil (número de óbitos para cada 1 000 nascidos vivos) de crianças com até 5 anos, no Brasil, no período de 2000 a 2011.
+
+<figure class="figura">
+  <svg viewBox="0 0 460 220" role="img" aria-labelledby="fig-afim-q5-t fig-afim-q5-d">
+    <title id="fig-afim-q5-t">Taxa de mortalidade infantil de 2000 a 2011</title>
+    <desc id="fig-afim-q5-d">Um gráfico de linha decrescente com três pontos: 30,1 óbitos em 2000; 22,5 óbitos em 2009; e 18,7 óbitos em 2011.</desc>
+    <text x="240" y="16" class="rotulo-fraco" text-anchor="middle">Óbitos por 1 000 nascidos vivos</text>
+    <line x1="60" y1="190" x2="420" y2="190" class="traco-fino" />
+    <line x1="60" y1="190" x2="60" y2="32" class="traco-fino" />
+    <line x1="90" y1="45" x2="260" y2="110" class="traco" />
+    <line x1="260" y1="110" x2="360" y2="140" class="traco" />
+    <circle cx="90" cy="45" r="4" class="preenche" />
+    <text x="90" y="30" class="rotulo" text-anchor="middle">30,1</text>
+    <text x="90" y="205" class="rotulo-fraco" text-anchor="middle">2000</text>
+    <circle cx="260" cy="110" r="4" class="preenche" />
+    <text x="260" y="96" class="rotulo" text-anchor="middle">22,5</text>
+    <text x="260" y="205" class="rotulo-fraco" text-anchor="middle">2009</text>
+    <circle cx="360" cy="140" r="4" class="preenche" />
+    <text x="378" y="144" class="rotulo" text-anchor="start">18,7</text>
+    <text x="360" y="205" class="rotulo-fraco" text-anchor="middle">2011</text>
+  </svg>
+</figure>
+
+Considere que, para os próximos anos, o decréscimo anual médio do número de óbitos para cada 1 000 nascidos vivos registrado, no período de 2009 a 2011, será mantido.
+
+A partir das informações fornecidas, a taxa de mortalidade infantil de crianças com até 5 anos tornar-se-á inferior a 10 no período de
+
+A) 2011 a 2012.\
+B) 2012 a 2013.\
+C) 2013 a 2014.\
+D) 2015 a 2016.\
+E) 2017 a 2018.
