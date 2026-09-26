@@ -25,7 +25,7 @@ Status: `pendente`, `em andamento`, `concluída`, `bloqueada`. Questões: ids do
 |---|---|---|---|---|---|
 | matematica-basica/fracoes | 1 | concluída | 2020-digital-D2-azul-Q159, 2019-regular-D2-azul-Q151, 2019-ppl-D2-azul-Q165, 2022-ppl-D2-azul-Q148, 2009-regular-D2-azul-Q144 | 53a79d2 | revisor: PASS na 2ª leitura; sem divisão; 3 bugs de extração corrigidos em banco_inep.py |
 | matematica-basica/potencias-e-raizes | 2 | concluída | 2019-regular-D2-azul-Q140, 2025-reaplicacao-D2-azul-Q139, 2019-ppl-D2-azul-Q145, 2009-regular-D2-azul-Q170, 2019-regular-D2-azul-Q141 | 0f4567e | revisor: PASS na 2ª leitura (rodada 1: exemplo ecoava número/posição da Q3, exemplo ecoava cenário da Q4, fonte da Q3 dizia "2ª aplicação" em vez de PPL); só 2 questões "difícil" pelo b — banco não tinha uma 3ª sem invadir razão/proporção ou funções; corrigido bug de extração de expoente em notação científica (10^N virava "10N" grudado) |
-| matematica-basica/razao-e-proporcao | 3 | pendente |  |  |  |
+| matematica-basica/razao-e-proporcao | 3 | concluída | 2017-regular-D2-azul-Q164, 2024-ppl-D2-azul-Q177, 2021-digital-D2-azul-Q159, 2020-digital-D2-azul-Q161, 2023-ppl-D2-azul-Q171 | e99bc5a | revisor: PASS na 1ª leitura; todas as 5 são "difícil" pelo b — banco sem uma fácil limpa; 2 figuras próprias substituem decoração/fórmula-imagem do PDF |
 | matematica-basica/regra-de-tres | 4 | pendente |  |  |  |
 | matematica-basica/porcentagem | 5 | pendente |  |  |  |
 | matematica-basica/equacoes-de-primeiro-e-segundo-grau | 6 | pendente |  |  |  |
