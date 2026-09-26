@@ -27,7 +27,7 @@ Status: `pendente`, `em andamento`, `concluída`, `bloqueada`. Questões: ids do
 | matematica-basica/potencias-e-raizes | 2 | concluída | 2019-regular-D2-azul-Q140, 2025-reaplicacao-D2-azul-Q139, 2019-ppl-D2-azul-Q145, 2009-regular-D2-azul-Q170, 2019-regular-D2-azul-Q141 | 0f4567e | revisor: PASS na 2ª leitura (rodada 1: exemplo ecoava número/posição da Q3, exemplo ecoava cenário da Q4, fonte da Q3 dizia "2ª aplicação" em vez de PPL); só 2 questões "difícil" pelo b — banco não tinha uma 3ª sem invadir razão/proporção ou funções; corrigido bug de extração de expoente em notação científica (10^N virava "10N" grudado) |
 | matematica-basica/razao-e-proporcao | 3 | concluída | 2017-regular-D2-azul-Q164, 2024-ppl-D2-azul-Q177, 2021-digital-D2-azul-Q159, 2020-digital-D2-azul-Q161, 2023-ppl-D2-azul-Q171 | e99bc5a | revisor: PASS na 1ª leitura; todas as 5 são "difícil" pelo b — banco sem uma fácil limpa; 2 figuras próprias substituem decoração/fórmula-imagem do PDF |
 | matematica-basica/regra-de-tres | 4 | concluída | 2024-ppl-D2-azul-Q147, 2025-reaplicacao-D2-azul-Q163, 2021-digital-D2-azul-Q158, 2021-digital-D2-azul-Q167, 2025-reaplicacao-D2-azul-Q144 | 5d89151 | revisor: PASS na 2ª leitura; 3 difíceis pelo b |
-| matematica-basica/porcentagem | 5 | pendente |  |  |  |
+| matematica-basica/porcentagem | 5 | concluída | 2016-segunda-aplicacao-D2-azul-Q143, 2020-digital-D2-azul-Q137, 2019-regular-D2-azul-Q153, 2025-regular-D2-azul-Q162, 2025-reaplicacao-D2-azul-Q179 | 97041ad | revisor: PASS na 2ª leitura; 4 difíceis pelo b |
 | matematica-basica/equacoes-de-primeiro-e-segundo-grau | 6 | pendente |  |  |  |
 | funcoes/funcao-afim | 1 | pendente |  |  |  |
 | funcoes/funcoes-quadraticas | 2 | pendente |  |  |  |
