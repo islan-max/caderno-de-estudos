@@ -28,7 +28,7 @@ const TAGS = new Set(['div', 'figure', 'figcaption', 'b', ...TAGS_SVG]);
 // nome da capa do caderno -> aplicações do banco (o site do INEP chama de "Reaplicação/PPL"
 // o caderno que na capa diz "2ª aplicação"; em 2016 a PPL foi a "3ª aplicação")
 const APLICACOES = {
-  ppl: ['ppl'], digital: ['digital'], 'reaplicação': ['reaplicacao', 'ppl'], '2ª aplicação': ['segunda-aplicacao', 'ppl'],
+  ppl: ['ppl'], digital: ['digital'], 'reaplicação': ['reaplicacao', 'ppl'], '2ª aplicação': ['segunda-aplicacao', 'ppl', 'reaplicacao'],
   '3ª aplicação': ['terceira-aplicacao', 'ppl'], 'belém': ['belem'],
 };
 const CORES = ['azul', 'amarelo', 'branco', 'rosa', 'cinza', 'laranja', 'verde', 'roxo'];
