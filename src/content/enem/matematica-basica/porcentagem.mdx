@@ -3,126 +3,270 @@ title: "Porcentagem"
 subject: "Matemática Básica"
 order: 5
 relevance: >
-  Porcentagem é uma forma padronizada de comparar: em vez de dizer "18 de 40", dizemos "45%", porque
-  todo mundo entende imediatamente quanto isso representa. É o conteúdo mais presente na prova de
-  Matemática do ENEM: dificilmente existe uma edição com menos de 5 questões que dependem de
-  porcentagem, seja no cálculo direto, seja escondida dentro de gráficos, tabelas, juros, estatística
-  ou química. O INEP quase nunca pede "calcule 20% de 300"; ele pede desconto sobre desconto, aumento
-  seguido de queda, comparação entre variação percentual e ponto percentual, e leitura de gráfico com
-  porcentagens que precisam virar quantidade absoluta.
+  Porcentagem é uma fração especial, sempre com denominador 100. O ENEM (Exame Nacional do Ensino
+  Médio) raramente pede só "calcule 20% de 300": ele gosta de somar duas porcentagens diferentes sobre
+  partes diferentes de um total, aplicar dois aumentos um atrás do outro, ou pedir a porcentagem de uma
+  porcentagem. A prova espera que você entenda a porcentagem como um número que multiplica, não que
+  soma direto quando há mais de uma mudança. Esse tema aparece com muita frequência na prova de
+  Matemática, quase sempre misturado com custos, produção ou pesquisas.
 quickSummary: >
-  Por cento significa "dividido por cem": 25% é o mesmo que 25/100 e que 0,25. Todo problema de
-  porcentagem fica mais rápido com fator multiplicativo: aumento de p por cento multiplica por
-  (1 + p/100) e desconto de p por cento multiplica por (1 − p/100).
+  Porcentagem é uma fração de denominador 100: p% de um valor é (p ÷ 100) vezes esse valor. Aumentar
+  p% multiplica por (1 + p/100); diminuir p% multiplica por (1 − p/100). Quando duas mudanças
+  percentuais acontecem uma depois da outra, os fatores se multiplicam. Quando um total é dividido em
+  partes com porcentagens diferentes, cada parte tem seu próprio cálculo antes de somar.
+resources:
+  conteudoComplementar:
+    conteudo: "Matemática Financeira"
+    comoAjuda: "Juros e descontos financeiros são porcentagens aplicadas repetidas vezes; esta aula é a base para entender como elas se acumulam."
+gabarito:
+  - correta: 0
+    porque: >
+      Do total de 150 milhões de toneladas, 2/3 são de plantio: 100 milhões. Dessas, 64% são perdidas,
+      divididas em 20% na colheita, 8% no transporte, 15% na indústria e 1% no varejo, somando 44%. O
+      restante da perda, 64% − 44% = 20%, é no processamento culinário: 20% de 100 milhões = 20 milhões.
+      Revisar: Aula Teórica › 2. Porcentagem de uma porcentagem
+  - correta: 0
+    porque: >
+      O papel (60% do custo) sobe 25,9%, virando 0,60 × 1,259 = 0,7554 do custo original. A gráfica (40%)
+      sobe 32,5%, virando 0,40 × 1,325 = 0,53. Somando: 0,7554 + 0,53 = 1,2854, ou seja, R$ 128,54.
+      Revisar: Aula Teórica › 4. Média ponderada de porcentagens diferentes
+  - correta: 4
+    porque: >
+      Os dois aumentos multiplicam o valor original: 1 250 × 1,072 (aumento de 7,2%) × 1,10 (aumento de
+      10%) = 1 250 × 1,1792 = 1 474.
+      Revisar: Aula Teórica › 3. Aumentos e reduções sucessivos
+  - correta: 1
+    porque: >
+      O custo do plástico reciclado é 5% do petroquímico: se este custa 10 000 por tonelada, aquele custa
+      500. Produzindo x toneladas por reciclagem e (190 − x) por petróleo, o novo custo total precisa ser
+      no máximo metade do atual (570 000): resolvendo, x ≥ 140 toneladas.
+      Revisar: Aula Teórica › 4. Média ponderada de porcentagens diferentes
+  - correta: 3
+    porque: >
+      Sul e Norte juntas são 3/8 = 37,5% da frota. O Sudeste tem hoje 100% − 18% − 12% − 37,5% = 32,5% e
+      precisa chegar a 40%, uma diferença de 7,5 pontos percentuais. Essa diferença é 7,5 ÷ 37,5 = 20% do
+      que Sul e Norte têm juntas.
+      Revisar: Aula Teórica › 2. Porcentagem de uma porcentagem
 ---
 
-## Aula Teórica Completa
+<Accordion titulo="Palavras e siglas desta aula" dica="Consulte quando encontrar um termo novo" icone="spell-check">
 
-**O que porcentagem realmente significa.** O símbolo % quer dizer literalmente "por cento", ou seja, "dividido por cem". Escrever 25% é escrever a fração 25/100, que na forma decimal é 0,25. As três escritas são a mesma coisa: 25% = 25/100 = 0,25. Trocar entre elas é a habilidade mais importante desse conteúdo, e a regra é simples: para ir de porcentagem para decimal, divida por 100 (ande com a vírgula duas casas para a esquerda); para voltar, multiplique por 100. Assim, 7% = 0,07; 130% = 1,30; 0,5% = 0,005.
+- **ENEM** (Exame Nacional do Ensino Médio): a prova nacional que dá acesso a faculdades e bolsas.
+- **INEP** (Instituto Nacional de Estudos e Pesquisas Educacionais Anísio Teixeira): o órgão do governo que faz o ENEM.
+- **Fator multiplicativo**: o número que multiplica um valor para aplicar um aumento ou uma redução percentual.
+- **Ponto percentual**: a unidade usada para comparar duas porcentagens por subtração direta (a diferença entre 40% e 32,5% é 7,5 pontos percentuais).
 
-**Calcular a parte.** "Calcular p por cento de um valor" é multiplicar esse valor pelo decimal correspondente. Quinze por cento de 240 é 0,15 × 240 = 36. Nada de regra de três aqui: multiplicação direta é mais rápida e erra menos. Vale a fórmula geral parte = (p ÷ 100) × todo, em que "todo" é o valor de referência, aquele que representa 100%.
+</Accordion>
 
-**Calcular a porcentagem.** Se você tem a parte e o todo e quer saber quanto por cento a parte representa, divida a parte pelo todo e multiplique por 100: p = (parte ÷ todo) × 100. Se 36 alunos de uma escola de 240 alunos foram premiados, então 36 ÷ 240 = 0,15, que multiplicado por 100 dá 15%. Repare que é a mesma equação da linha anterior, apenas isolando outra letra.
+## Antes de Começar
 
-**Calcular o todo.** Esse é o caso que mais derruba gente. Se 36 é 15% de um total desconhecido, então 0,15 × todo = 36, logo todo = 36 ÷ 0,15 = 240. Sempre que o enunciado der um valor e disser que ele "corresponde a tantos por cento", você vai DIVIDIR pelo decimal, nunca multiplicar.
+**O que o ENEM cobra aqui.** A prova quase nunca pede uma porcentagem isolada: ela combina mais de uma mudança percentual no mesmo problema. Os temas que costumam aparecer são estes:
 
-**Fator multiplicativo: a ferramenta que resolve quase tudo.** Aumentar um valor em 10% é somar a ele 10% dele mesmo. Em vez de calcular a parte e depois somar, faça em um passo só: o valor final é 100% + 10% = 110% do original, ou seja, multiplique por 1,10. Do mesmo modo, dar 10% de desconto deixa 100% − 10% = 90% do valor, ou seja, multiplique por 0,90. Esses números (1,10 e 0,90) são chamados de fatores multiplicativos, ou fatores de aumento e de desconto.
+- **Calcular a porcentagem de uma porcentagem.**
+- **Aplicar dois aumentos ou reduções percentuais em sequência.**
+- **Somar partes de um total com porcentagens diferentes.**
+- **Comparar duas porcentagens** para achar uma diferença ou uma transferência entre elas.
 
-A regra geral: aumento de p por cento tem fator 1 + p/100; desconto de p por cento tem fator 1 − p/100. Alguns exemplos para gravar o formato: aumento de 5% dá fator 1,05; aumento de 25% dá 1,25; aumento de 100% dá 2,00 (dobrar); desconto de 5% dá 0,95; desconto de 25% dá 0,75; desconto de 40% dá 0,60.
+**O que você precisa saber antes.**
 
-Um salário de R$ 2.000,00 com reajuste de 8% passa a valer 2.000 × 1,08 = R$ 2.160,00. Uma calça de R$ 180,00 com 30% de desconto sai por 180 × 0,70 = R$ 126,00.
+- **Frações e decimais.** 20% é o mesmo que 20/100, que é o mesmo que 0,20; revise a aula de Frações se ainda travar na conversão.
+- **Multiplicação com decimais.** As contas desta aula multiplicam valores por números como 1,25 ou 0,7 o tempo todo.
+- **Equações simples.** Alguns problemas pedem para descobrir um valor desconhecido a partir de uma condição sobre porcentagens.
 
-**Variações sucessivas: por que os fatores se multiplicam.** Quando um valor sofre duas mudanças percentuais seguidas, a segunda incide sobre o resultado da primeira, não sobre o valor original. Por isso as porcentagens NÃO se somam: os fatores se multiplicam.
+## Aula Teórica
 
-Veja o caso mais cobrado da prova. Um produto de R$ 100,00 sofre aumento de 10% e, depois, desconto de 10%. Passo a passo: 100 × 1,10 = 110; depois 110 × 0,90 = 99. O valor final é R$ 99,00, e não R$ 100,00. Perdeu-se 1%. A explicação em palavras: o aumento de 10% foi calculado sobre 100 (valeu R$ 10,00), mas o desconto de 10% foi calculado sobre 110 (valeu R$ 11,00). Como o desconto foi tirado de uma base maior, ele "pesa" mais. Em fatores: 1,10 × 0,90 = 0,99, isto é, 99% do original, uma perda de 1%.
+### 1. O que é porcentagem
 
-O mesmo raciocínio vale para dois aumentos: um aumento de 20% seguido de outro de 30% não dá 50%, e sim 1,20 × 1,30 = 1,56, ou seja, 56% de aumento acumulado. E para dois descontos: 20% seguido de 10% dá 0,80 × 0,90 = 0,72, ou seja, o cliente paga 72% do preço, o que corresponde a um desconto único equivalente de 28%, e não de 30%. Loja que anuncia "30% + 10%" está oferecendo 37% de desconto real, porque 0,70 × 0,90 = 0,63.
+**Porcentagem** é uma fração especial, sempre com denominador 100. Escrever 20% é o mesmo que escrever 20/100, ou 0,20 em decimal.
 
-**Desfazer uma variação.** Para voltar ao valor original depois de um aumento de 25%, o desconto necessário não é de 25%. Como o fator de ida foi 1,25, o fator de volta tem que ser 1 ÷ 1,25 = 0,80, ou seja, um desconto de 20%. Da mesma forma, se um produto foi vendido por R$ 102,00 após 15% de desconto, o preço original era 102 ÷ 0,85 = R$ 120,00. Divida pelo fator para desfazer; multiplique pelo fator para fazer.
+<figure class="figura">
+  <svg viewBox="0 0 460 150" role="img" aria-labelledby="fig-porcentagem-1-t fig-porcentagem-1-d">
+    <title id="fig-porcentagem-1-t">Porcentagem como fração de 100</title>
+    <desc id="fig-porcentagem-1-d">Um quadrado dividido em 100 partes pequenas, com 20 delas pintadas, representando 20%, igual a 20 sobre 100, igual a 0,20.</desc>
+    <rect x="60" y="20" width="100" height="100" class="traco" />
+    <rect x="60" y="90" width="100" height="30" class="preenche" />
+    <line x1="60" y1="50" x2="160" y2="50" class="traco-fino" />
+    <line x1="60" y1="90" x2="160" y2="90" class="traco-fino" />
+    <text x="110" y="140" class="rotulo" text-anchor="middle">20%</text>
+    <text x="300" y="65" class="rotulo" text-anchor="middle">20% = 20/100 = 0,20</text>
+  </svg>
+</figure>
 
-**Variação percentual.** Para medir quanto uma grandeza mudou, use variação percentual = ((valor final − valor inicial) ÷ valor inicial) × 100. O detalhe que quase todo mundo esquece: o denominador é sempre o valor INICIAL, o ponto de partida. Se o preço foi de 80 para 100, a variação é ((100 − 80) ÷ 80) × 100 = (20 ÷ 80) × 100 = 25% de aumento. Se depois voltar de 100 para 80, a variação é ((80 − 100) ÷ 100) × 100 = −20%, uma queda de 20%. Subir 25% e cair 20% levam ao mesmo lugar porque as bases de comparação são diferentes. Resultado negativo significa queda; positivo, aumento.
+**Fórmula: porcentagem de um valor**
 
-**Ponto percentual não é porcentagem.** Quando a própria grandeza já é um percentual (taxa de desemprego, participação de mercado, índice de aprovação), existem duas maneiras corretas e diferentes de descrever a mudança, e o ENEM cobra exatamente essa distinção. Se o desemprego passou de 12% para 9%: a queda em pontos percentuais é a subtração simples, 12 − 9 = 3 pontos percentuais; a queda percentual (relativa) é (3 ÷ 12) × 100 = 25%. As duas afirmações estão certas e dizem coisas diferentes: caiu 3 pontos percentuais, o que representa uma redução de 25% no nível de desemprego. Ponto percentual se subtrai; porcentagem se divide pelo valor inicial.
+**parte = (p ÷ 100) × todo**
 
-**Porcentagem em gráficos.** Gráfico de setores mostra a repartição de um todo, e a soma de todas as fatias é obrigatoriamente 100%. Para transformar fatia em quantidade, multiplique pelo total: 45% de 3.600 pessoas são 0,45 × 3.600 = 1.620 pessoas. Para comparar duas fatias, você pode trabalhar só com os percentuais: uma fatia de 36% é o dobro de uma de 18%, independentemente do total. E para achar a diferença absoluta entre duas fatias, subtraia os percentuais primeiro e só depois multiplique pelo total: dá menos conta e menos erro.
+- **p**: a porcentagem, sem o símbolo %.
+- **todo**: o valor total.
+- **parte**: o resultado, na mesma unidade do todo.
+- **Em palavras:** divida a porcentagem por 100 e multiplique pelo valor total.
+- **Quando usar:** sempre que o enunciado pedir "quantos por cento" ou "p% de um valor".
 
-**Armadilhas típicas do INEP:** (1) somar porcentagens sucessivas em vez de multiplicar os fatores, respondendo 30% quando o correto é 28%, ou "voltou ao valor original" quando houve perda de 1%; (2) confundir ponto percentual com variação percentual em questões de desemprego, inflação e pesquisa eleitoral; (3) usar o valor final como base da variação percentual, quando a base correta é sempre o valor inicial; (4) multiplicar quando deveria dividir no caso "tal valor corresponde a p por cento do total", para achar o todo, divide-se; (5) responder o valor do desconto (quanto se economizou) quando a pergunta pedia o valor pago, ou vice-versa; (6) esquecer que porcentagens acima de 100% são possíveis e significam mais do que o todo original, com fator maior que 2 quando o aumento passa de 100%.
+**Exemplo resolvido.** Uma turma tem 40 alunos, e 25% deles foram ao museu. Quantos alunos foram?
+
+1. Dados: p = 25; todo = 40.
+2. Fórmula: parte = (25 ÷ 100) × 40.
+3. Calcular: 25 ÷ 100 = 0,25; 0,25 × 40 = 10.
+4. Resposta: 10 alunos.
+
+**Erro comum.** Esquecer de dividir por 100 e multiplicar direto pela porcentagem (25 × 40), o que dá um número muito maior que o total.
+
+Para aumentar um valor em p%, multiplique por (1 + p/100). Para diminuir p%, multiplique por (1 − p/100).
+
+### 2. Porcentagem de uma porcentagem
+
+Quando uma porcentagem se aplica sobre uma parte que já é uma porcentagem do total, é preciso calcular em duas etapas: primeiro a parte, depois a porcentagem dela.
+
+**Exemplo resolvido.** Uma escola tem 300 alunos, e 3/5 deles são do turno da manhã. Desses alunos da manhã, 10% praticam algum esporte na escola. Quantos alunos da manhã praticam esporte?
+
+1. Dados: total 300; 3/5 são da manhã; 10% desses praticam esporte.
+2. Alunos da manhã: 3/5 × 300 = 180.
+3. Esportistas entre eles: 10% de 180 = 0,10 × 180 = 18.
+4. Resposta: 18 alunos.
+
+**Erro comum.** Aplicar a porcentagem sobre o total da escola (10% de 300 = 30) em vez de sobre a parte certa (os alunos da manhã).
+
+Às vezes o problema faz o caminho contrário: dá uma diferença entre duas porcentagens do total e pergunta que fração disso vem de um grupo específico. Nesse caso, divida a diferença pela porcentagem desse grupo, não pelo total.
+
+### 3. Aumentos e reduções sucessivos
+
+Quando um valor sofre duas mudanças percentuais, uma depois da outra, os dois **fatores multiplicativos** se multiplicam entre si, e não se somam.
+
+**Fórmula: duas mudanças percentuais em sequência**
+
+**valor final = valor inicial × (1 + p/100) × (1 + q/100)**
+
+- **p, q**: as porcentagens de cada mudança (negativas quando o valor diminui).
+- **valor inicial** e **valor final**: na mesma unidade.
+- **Em palavras:** cada mudança percentual vira um fator; multiplique os dois fatores pelo valor inicial.
+- **Quando usar:** sempre que houver dois aumentos, duas reduções, ou um aumento e uma redução em sequência sobre o mesmo valor.
+
+**Exemplo resolvido.** Um produto custava R$ 80,00. O preço subiu 15% num mês e mais 8% no mês seguinte. Qual o preço final?
+
+1. Dados: valor inicial R$ 80,00; aumentos de 15% e depois 8%.
+2. Fórmula: valor final = 80 × 1,15 × 1,08.
+3. Calcular: 80 × 1,15 = 92; 92 × 1,08 = 99,36.
+4. Resposta: R$ 99,36.
+
+**Erro comum.** Somar as duas porcentagens (15% + 8% = 23%) e aplicar de uma vez só. Isso dá um resultado próximo, mas não exatamente igual ao correto, porque o segundo aumento incide sobre um valor já maior.
+
+### 4. Média ponderada de porcentagens diferentes
+
+Quando um total é formado por partes diferentes, e cada parte sofre uma porcentagem (ou reajuste) diferente, calcule cada parte separadamente antes de somar.
+
+**Exemplo resolvido.** O gasto de uma família é 70% aluguel e 30% alimentação. O aluguel subiu 8%, e a alimentação subiu 20%. Qual foi o aumento percentual do gasto total?
+
+1. Dados: 70% do gasto sobe 8%; 30% sobe 20%.
+2. Parte do aluguel depois do aumento: 0,70 × 1,08 = 0,756.
+3. Parte da alimentação depois do aumento: 0,30 × 1,20 = 0,36.
+4. Somar as partes: 0,756 + 0,36 = 1,116.
+5. Resposta: o gasto total aumentou 11,6% (o fator final é 1,116).
+
+**Erro comum.** Fazer a média simples das duas porcentagens (8% e 20%, média 14%) sem considerar o peso de cada parte no total. Como o aluguel pesa mais (70%), o resultado fica mais próximo do aumento do aluguel.
+
+Quando o problema pede para atingir uma meta de custo, como reduzir o total em pelo menos certa porcentagem, monte uma equação com a parte desconhecida. Depois resolva a partir da condição da meta.
+
+### Armadilhas típicas do INEP
+
+1. **Multiplicar direto pela porcentagem** sem dividir por 100 primeiro.
+2. **Aplicar a porcentagem sobre o total errado**, quando ela deveria incidir só sobre uma parte.
+3. **Somar duas mudanças percentuais** que deveriam se multiplicar, tratando-as como se fossem independentes.
+4. **Fazer a média simples de porcentagens diferentes**, ignorando o peso de cada parte no total.
+5. **Confundir "pontos percentuais" com "por cento"**: a diferença entre 40% e 32,5% é 7,5 pontos percentuais, não 7,5%.
+6. **Dividir uma diferença pelo total errado**, quando o problema pede a porcentagem de um subgrupo, não do total inteiro.
 
 ## Tópicos-Chave para Revisão
 
 <div className="topico">
 
-Por cento significa "dividido por cem": 25% é o mesmo que 25/100 e que 0,25. Todo problema de porcentagem fica mais rápido com fator multiplicativo: aumento de p por cento multiplica por (1 + p/100) e desconto de p por cento multiplica por (1 − p/100).
+#### 1. O que é porcentagem
 
-As três relações básicas saem da mesma fórmula parte = (p ÷ 100) × todo: para achar a parte, multiplique o todo pelo decimal; para achar o percentual, divida a parte pelo todo e multiplique por 100; para achar o todo, divida a parte pelo decimal.
+**Porcentagem** é uma fração de denominador 100: **parte = (p ÷ 100) × todo**. Aumentar p% multiplica por (1 + p/100); diminuir p% multiplica pelo **fator** (1 − p/100).
 
-Fatores mais usados: 1,05 e 0,95 para 5%, 1,10 e 0,90 para 10%, 1,25 e 0,75 para 25%, 1,50 e 0,50 para 50%, 2,00 para aumento de 100%. Multiplicar pelo fator aplica a variação; dividir pelo fator desfaz a variação, e por isso desfazer um aumento de 25% exige desconto de 20%, já que 1 ÷ 1,25 = 0,80.
+#### 2. Porcentagem de uma porcentagem
 
-Variações sucessivas multiplicam fatores e nunca somam percentuais: 10% de aumento seguido de 10% de desconto dá 1,10 × 0,90 = 0,99, uma perda de 1%, porque o desconto incidiu sobre uma base maior do que a do aumento. Do mesmo modo, 20% mais 30% de aumento acumulam 56% (1,20 × 1,30 = 1,56) e 20% mais 10% de desconto equivalem a um desconto único de 28% (0,80 × 0,90 = 0,72).
+Quando a porcentagem incide sobre uma **parte** do total (não sobre o todo), calcule a parte primeiro e só depois aplique a porcentagem sobre ela. No caminho contrário, divida a diferença pela porcentagem do **subgrupo**, não pelo total.
 
-Variação percentual é ((valor final − valor inicial) ÷ valor inicial) × 100, com o valor inicial sempre no denominador; resultado positivo indica aumento e negativo indica queda. É por isso que subir de 80 para 100 é um aumento de 25%, mas cair de 100 para 80 é uma queda de 20%.
+#### 3. Aumentos e reduções sucessivos
 
-Ponto percentual é a diferença por subtração entre dois percentuais, enquanto variação percentual é essa diferença dividida pelo percentual inicial: de 12% para 9% houve queda de 3 pontos percentuais, que corresponde a uma redução relativa de 25%.
+Duas mudanças percentuais em sequência multiplicam os **fatores**: **valor final = valor inicial × (1 + p/100) × (1 + q/100)**. Elas não se somam.
 
-Em gráficos de setores, as fatias somam 100%; para converter fatia em quantidade multiplique o percentual em decimal pelo total, e para comparar duas fatias basta trabalhar com os percentuais, subtraindo antes de multiplicar pelo total.
+#### 4. Média ponderada
+
+Quando um total tem partes com porcentagens diferentes, calcule cada **parte** separadamente e some os resultados; não faça a **média simples** das porcentagens.
 
 </div>
 
-## Teste de Fogo
+## Questões do ENEM
 
-*Questões sem gabarito: resolva primeiro, depois confira com o professor ou com a IA.*
+*Marque uma alternativa em cada questão e confira tudo de uma vez no botão do fim.*
 
-**Questão 1 (estilo ENEM: autoral)**
-Uma loja de departamentos anuncia uma promoção em que todas as peças de vestuário têm 20% de desconto sobre o preço de etiqueta. Além disso, o cliente que pagar em dinheiro recebe um desconto adicional de 10% sobre o valor já promocional.
+**Questão 1**
 
-Um cliente escolheu uma jaqueta cujo preço de etiqueta é R$ 200,00 e pagou em dinheiro. O valor pago por ele, em reais, foi
+*ENEM 2016 · 2ª aplicação · 2º dia · caderno azul · questão 143*
 
-a) 140,00
-b) 144,00
-c) 150,00
-d) 160,00
-e) 170,00
+O Brasil é o quarto produtor mundial de alimentos e é também um dos campeões mundiais de desperdício. São produzidas por ano, aproximadamente, 150 milhões de toneladas de alimentos e, desse total, 2/3 são produtos de plantio. Em relação ao que se planta, 64% são perdidos ao longo da cadeia produtiva (20% perdidos na colheita, 8% no transporte e armazenamento, 15% na indústria de processamento, 1% no varejo e o restante no processamento culinário e hábitos alimentares).
 
-**Questão 2 (estilo ENEM: autoral)**
-Um instituto de pesquisa divulgou que a taxa de desemprego de determinada região passou de 12%, no primeiro trimestre, para 9%, no último trimestre do mesmo ano. Um jornal noticiou o dado com a manchete: "Desemprego cai 25% na região".
+O desperdício durante o processamento culinário e hábitos alimentares, em milhão de tonelada, é igual a
 
-A manchete está correta porque a queda de
+A) 20.\
+B) 30.\
+C) 56.\
+D) 64.\
+E) 96.
 
-a) 3 pontos percentuais equivale a uma redução de 25% em relação à taxa inicial.
-b) 3 pontos percentuais equivale a uma redução de 25% em relação à taxa final.
-c) 25 pontos percentuais foi convertida em porcentagem pelo jornal.
-d) 3% na taxa foi somada aos 12% iniciais e depois dividida por 100.
-e) 21 pontos percentuais foi dividida pelo número de trimestres do ano.
+**Questão 2**
 
-**Questão 3 (estilo ENEM: autoral)**
-Em uma farmácia, um medicamento de uso contínuo está sendo vendido com desconto de 15% sobre o preço de tabela. Uma pessoa que comprou uma caixa desse medicamento pagou R$ 102,00.
+*ENEM 2020 · digital · 2º dia · caderno azul · questão 137*
 
-O preço de tabela dessa caixa, em reais, é
+Uma editora pretende fazer uma reimpressão de um de seus livros. A direção da editora sabe que o gasto com papel representa 60% do custo de reimpressão, e que as despesas com a gráfica representam os 40% restantes. Dentro da programação da editora, no momento em que ela realizar a reimpressão, o preço do papel e os custos com a gráfica terão sofrido reajustes de 25,9% e 32,5%, respectivamente. O custo para a reimpressão de cada livro, nos preços atuais, é de R$ 100,00.
 
-a) 86,70
-b) 117,00
-c) 117,30
-d) 120,00
-e) 130,00
+Qual será o custo, em real, para a reimpressão de cada livro com os reajustes estimados de custo de papel e despesas com a gráfica?
 
-**Questão 4 (estilo ENEM: autoral)**
-A conta de energia elétrica de uma residência sofreu dois reajustes ao longo de um ano: em janeiro, um aumento de 25% sobre o valor cobrado em dezembro do ano anterior; em julho, um novo aumento de 20% sobre o valor que já vinha sendo cobrado desde janeiro.
+A) 128,54\
+B) 129,20\
+C) 129,86\
+D) 158,40\
+E) 166,82
 
-Considerando o mesmo consumo mensal em todos os meses, o aumento percentual acumulado da conta entre dezembro e agosto foi de
+**Questão 3**
 
-a) 5%
-b) 22,5%
-c) 45%
-d) 50%
-e) 500%
+*ENEM 2019 · 2º dia · caderno azul · questão 153*
 
-**Questão 5 (estilo ENEM: autoral)**
-Uma pesquisa de opinião ouviu 4.800 moradores de um município sobre qual obra pública deveria ser prioridade no orçamento. Do total de entrevistados, 35% escolheram a construção de um hospital, 20% escolheram a reforma das escolas, 30% escolheram o saneamento básico e os demais escolheram outras obras.
+Segundo o Instituto Brasileiro de Geografia e Estatística (IBGE), o rendimento médio mensal dos trabalhadores brasileiros, no ano 2000, era de R$ 1 250,00. Já o Censo 2010 mostrou que, em 2010, esse valor teve um aumento de 7,2% em relação a 2000. Esse mesmo instituto projeta que, em 2020, o rendimento médio mensal dos trabalhadores brasileiros poderá ser 10% maior do que foi em 2010.
 
-A diferença entre o número de moradores que escolheram o hospital e o número dos que escolheram a reforma das escolas é
+Supondo que as projeções do IBGE se realizem, o rendimento médio mensal dos brasileiros em 2020 será de
 
-a) 15
-b) 150
-c) 720
-d) 960
-e) 1.680
+A) R$ 1 340,00.\
+B) R$ 1 349,00.\
+C) R$ 1 375,00.\
+D) R$ 1 465,00.\
+E) R$ 1 474,00.
+
+**Questão 4**
+
+*ENEM 2025 · 2º dia · caderno azul · questão 162*
+
+Uma empresa produziu, em um determinado mês, 110 toneladas de plástico a partir de derivados de petróleo e 80 toneladas a partir de plásticos reciclados. O custo para reciclar uma tonelada de plástico é de R$ 500,00, que equivale a 5% do custo para produzir a mesma quantidade de plástico a partir de derivados de petróleo. Para o mês seguinte, a meta dessa empresa é produzir a mesma quantidade de plástico que foi produzida nesse mês, mas com redução de, pelo menos, 50% no custo de produção.
+
+Para que no mês seguinte a empresa atinja a meta, a quantidade mínima de toneladas de plástico que devem ser produzidas a partir de reciclagem deverá ser
+
+A) 135.\
+B) 140.\
+C) 155.\
+D) 160.\
+E) 175.
+
+**Questão 5**
+
+*ENEM 2025 · 2ª aplicação · 2º dia · caderno azul · questão 179*
+
+Uma locadora de veículos possui uma frota distribuída em todas as cinco regiões brasileiras. Um levantamento indica que 18% dessa frota está no Nordeste, 12% encontra-se na região Centro-Oeste, e as regiões Sul e Norte, juntas, correspondem a 3/8 da frota. Objetivando concentrar um quantitativo maior de veículos no Sudeste, a região mais populosa do Brasil, a gerência da locadora estabelece que nessa região deverão estar 40% da frota total de veículos, e que um percentual do total da frota das regiões Sul e Norte deverá para lá ser transferido.
+
+Qual percentual da frota total das regiões Sul e Norte deverá ser transferido?
+
+A) 4%\
+B) 7,5%\
+C) 14%\
+D) 20%\
+E) 23%
