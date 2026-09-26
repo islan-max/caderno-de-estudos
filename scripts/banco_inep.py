@@ -501,7 +501,8 @@ def trocar_ilegiveis(cadernos):
 CABECALHO = re.compile(r"(?i)^quest[ãa]o\s*0*(\d{1,3})\b")
 FAIXA = re.compile(
     r"(?i)(e suas tecnologias|quest(õ|o)es de \d+ a \d+|^linguagens, c[óo]digos|^ci[êe]ncias (humanas|da natureza)$|"
-    r"^matem[áa]tica$|^l[íi]ngua estrangeira|op[çc][ãa]o (ingl|espanh)|\*\w{6,}\*|p[áa]gina \d+$|^caderno \d|(enem\d{4}){2,})"
+    r"^matem[áa]tica$|^l[íi]ngua estrangeira|op[çc][ãa]o (ingl|espanh)|\*\w{6,}\*|p[áa]gina \d+$|^caderno \d|(enem\d{4}){2,}|"
+    r"^\d[ªa]\s+aplica[çc][ãa]o$)"
 )
 COMPARTILHADO = re.compile(r"(?i)(para as|responda [àa]s) quest(õ|o)es( de)?\s+0?(?P<de>\d+)\s+(a|e)\s+0?(?P<ate>\d+)")
 FIM = re.compile(r"(?i)(proposta de reda|instru[çc][õo]es para a reda|^rascunho|folha de rascunho|^reda[çc][ãa]o$)")
@@ -634,7 +635,14 @@ def separar_alternativas(linhas):
             elif atual is not None and l["x0"] > x_letra + 3 and esperado <= 6:
                 atual.append(l["texto"])
         if len(textos) == 5:
-            return inicio, [" ".join(t).strip() for t in textos]
+            # Fração digitada em duas linhas empilhadas (numerador em cima, denominador embaixo)
+            # vira "8 3" em vez de "8/3": junta com "/" quando a alternativa inteira são só
+            # dois números curtos, o padrão de uma fração sem mais nenhum texto ao redor.
+            def montar(t):
+                if len(t) == 2 and all(re.fullmatch(r"\d{1,4}", p) for p in t):
+                    return "/".join(t)
+                return " ".join(t).strip()
+            return inicio, [montar(t) for t in textos]
     return None, []
 
 
@@ -782,7 +790,11 @@ def extrair_caderno(c):
                 y1 = ultimo_y[1]
             y1_regiao = y1
             pagina = doc[s["pagina"]]
-            for g in graficos_da_regiao(pagina, s["x0"], y0, s["x1"], y1 + 1):
+            # A busca por figuras começa depois da linha do cabeçalho "Questão N", não da própria
+            # linha: algumas provas desenham um risco/textura decorativo do lado do número da
+            # questão, e ele batia como "figura" mesmo sem fazer parte do enunciado.
+            y0_fig = cab["y1"] if s is segs[si] else y0
+            for g in graficos_da_regiao(pagina, s["x0"], y0_fig, s["x1"], y1 + 1):
                 figuras.append({"pagina": s["pagina"] + 1, "bbox": [round(v, 1) for v in g]})
             regioes.append({"pagina": s["pagina"] + 1, "bbox": [round(s["x0"], 1), round(y0 - 2, 1), round(s["x1"], 1), round(y1_regiao + 2, 1)]})
             if ultimo_y and any(id(l) == ultimo_y[0] for l in ls):
