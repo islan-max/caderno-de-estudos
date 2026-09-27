@@ -3,148 +3,531 @@ title: "Geometria Plana"
 subject: "Geometria"
 order: 1
 relevance: >
-  Geometria plana é o estudo das figuras desenhadas numa superfície lisa: quadrados, retângulos,
-  triângulos, círculos e as figuras compostas que aparecem em plantas de casas, terrenos e embalagens.
-  As duas medidas centrais são o perímetro (o contorno da figura) e a área (a superfície que ela ocupa).
-  É um dos blocos mais volumosos do ENEM: planta de imóvel, cálculo de quantidade de piso ou de tinta,
-  área plantada, terreno a ser cercado, projeto de reforma. O INEP raramente entrega a figura pronta com
-  todas as medidas; ele costuma dar um desenho composto que precisa ser decomposto, ou uma medida em
-  unidade diferente da pedida na resposta. Aparecem 3 a 5 questões por prova.
+  Geometria plana é o cálculo de áreas e medidas de figuras desenhadas numa superfície: terrenos,
+  plantas de casas, pisos, canteiros circulares, placas. O ENEM (Exame Nacional do Ensino Médio) quase
+  nunca pede uma área isolada: ele mistura a área com dinheiro (quanto custa pintar ou pavimentar), com
+  escala (a planta desenhada no papel) ou com figuras que precisam ser divididas em partes mais simples.
+  Saber as fórmulas de retângulo, triângulo, trapézio, círculo e hexágono, e principalmente saber
+  quando decompor uma figura, resolve a maior parte dessas questões.
 quickSummary: >
-  Perímetro é a soma dos lados, medido em unidades de comprimento; área é a superfície ocupada, medida em
-  unidades quadradas. Toda figura complicada se resolve decompondo em retângulos e triângulos, somando ou
-  subtraindo pedaços.
+  Retângulo: base × altura. Triângulo: base × altura ÷ 2. Trapézio: (base maior + base menor) × altura
+  ÷ 2. Círculo: π × raio². Hexágono regular: 6 triângulos equiláteros, cada um com área L²√3 ÷ 4.
+  Figuras complicadas se dividem em figuras simples. Numa escala 1 : k, as áreas ficam k² vezes menores.
+resources:
+  conteudoComplementar:
+    conteudo: "Semelhança de Triângulos"
+    comoAjuda: "A próxima aula explica por que, ao ampliar ou reduzir uma figura, as medidas mudam numa proporção e as áreas mudam no quadrado dessa proporção."
+gabarito:
+  - correta: 4
+    porque: >
+      A área construída inclui as paredes. Na largura: 0,20 + 3 + 0,10 + 3 + 0,20 = 6,5 m. No comprimento,
+      a altura da Sala não é dada, então o caminho é pelo lado direito. O Quarto B fica entre as mesmas
+      paredes da Cozinha e tem a mesma altura, 4 m: 0,20 + 4 + 0,10 + 2 + 0,10 + 4,4 + 0,20 = 11 m. A área
+      construída é 6,5 × 11 = 71,5 m², e o IPTU é 71,5 × 4 = R$ 286,00.
+      Revisar: Aula Teórica › 1. Área do retângulo e área construída
+  - correta: 4
+    porque: >
+      O círculo atual tem diâmetro 6 m, raio 3 m e área 3 × 3² = 27 m². O novo diâmetro é 6 + 8 = 14 m,
+      raio 7 m e área 3 × 7² = 147 m². A região a pavimentar é a diferença: 147 − 27 = 120 m², maior que
+      os 100 m² do estoque. O material não será suficiente.
+      Revisar: Aula Teórica › 3. Círculo e coroa circular
+  - correta: 2
+    porque: >
+      A diagonal AD divide o pentágono em duas partes. ABCD é um trapézio (AD paralela a BC), com bases 50 e
+      29 e altura 8: (50 + 29) × 8 ÷ 2 = 316 m². ADE é um triângulo de base 50 e altura 20:
+      50 × 20 ÷ 2 = 500 m². Área total: 316 + 500 = 816 m².
+      Revisar: Aula Teórica › 2. Triângulo, trapézio e decomposição
+  - correta: 0
+    porque: >
+      Na escala 1 : 25, cada medida real é 25 vezes a do desenho. O terreno quadrado de 9 m² tem lado de 3 m
+      = 300 cm; no desenho, o lado mede 300 ÷ 25 = 12 cm, e a área é 12 × 12 = 144 cm². Pela área direto:
+      9 m² = 90 000 cm², e 90 000 ÷ 25² = 90 000 ÷ 625 = 144 cm².
+      Revisar: Aula Teórica › 5. Escala e área
+  - correta: 1
+    porque: >
+      A área do círculo inscrito é π × r² = 3π, então r² = 3 e r = √3. O hexágono regular é formado por 6
+      triângulos equiláteros de lado L, e o raio do círculo inscrito é a altura de um deles: L√3 ÷ 2 = √3,
+      então L = 2. A área do hexágono é 6 × (L²√3 ÷ 4) = 6 × (4√3 ÷ 4) = 6√3 m².
+      Revisar: Aula Teórica › 4. Hexágono regular e triângulo equilátero
 ---
 
-## Aula Teórica Completa
+<Accordion titulo="Palavras e siglas desta aula" dica="Consulte quando encontrar um termo novo" icone="spell-check">
 
-**Perímetro e área não são a mesma coisa.** Perímetro é o comprimento do contorno da figura, ou seja, a soma de todos os lados. É o que interessa quando se compra tela para cercar um terreno, rodapé para uma sala ou fita para contornar um quadro. A unidade é de comprimento: metro (m), centímetro (cm), quilômetro (km).
+- **ENEM** (Exame Nacional do Ensino Médio): a prova nacional que dá acesso a faculdades e bolsas.
+- **INEP** (Instituto Nacional de Estudos e Pesquisas Educacionais Anísio Teixeira): o órgão do governo que faz o ENEM.
+- **IPTU** (Imposto Predial Territorial Urbano): o imposto anual que o dono de um imóvel na cidade paga à prefeitura.
+- **Planta baixa**: o desenho de uma casa vista de cima, mostrando os cômodos e as paredes.
+- **Espessura**: a grossura de uma parede, medida de uma face à outra.
+- **Área construída**: a área ocupada pela construção, contando também as paredes.
+- **Pavimentar**: cobrir o chão com piso, concreto ou asfalto; o material usado é o **revestimento**.
+- **Síndico**: a pessoa que administra um condomínio.
+- **Vértice**: cada "canto" de um polígono, onde dois lados se encontram.
+- **Diagonal**: o segmento que liga dois vértices de um polígono que não são vizinhos.
+- **Paralela**: duas retas paralelas nunca se encontram, porque mantêm sempre a mesma distância entre si.
+- **Perpendicular**: que forma um ângulo reto (90°) com outra linha, como o canto de uma folha de papel.
+- **Pentágono**: polígono de 5 lados.
+- **Hexágono**: polígono de 6 lados.
+- **Polígono regular**: um polígono com todos os lados iguais e todos os ângulos iguais.
+- **Círculo inscrito**: o círculo desenhado dentro de um polígono, tocando todos os lados.
+- **√**: raiz quadrada; √3 é o número que, multiplicado por ele mesmo, dá 3 (cerca de 1,73).
+- **π** (pi): o número que relaciona o comprimento da circunferência com o diâmetro, cerca de 3,14; a prova às vezes manda usar 3, e às vezes deixa a resposta "com π".
 
-Área é a medida da superfície que a figura ocupa, isto é, quantos quadradinhos de um determinado tamanho cabem dentro dela. É o que interessa quando se compra piso, grama, tinta ou terra para plantio. A unidade é quadrada: metro quadrado (m²), centímetro quadrado (cm²), quilômetro quadrado (km²). O símbolo elevado a dois na unidade existe justamente porque a área nasce da multiplicação de duas medidas de comprimento.
+</Accordion>
 
-Duas figuras podem ter o mesmo perímetro e áreas completamente diferentes. Um retângulo de 1 m por 9 m e um quadrado de 5 m de lado têm ambos perímetro de 20 m, mas o primeiro tem área de 9 m² e o segundo, de 25 m². Isso já foi cobrado diretamente no ENEM.
+## Antes de Começar
 
-**Fórmulas essenciais.** Em todas elas, use as medidas na MESMA unidade antes de multiplicar.
+**O que o ENEM cobra aqui.** A prova raramente pede "calcule a área de um retângulo de 3 por 4": ela dá uma planta, um terreno ou um canteiro e espera que você escolha a fórmula certa e, muitas vezes, divida a figura. Os temas que costumam aparecer são estes:
 
-Quadrado, de lado L: perímetro P = 4 × L; área A = L × L, que se escreve L².
+- **Somar medidas** (inclusive espessura de paredes) antes de calcular uma área.
+- **Dividir uma figura** em triângulos, retângulos e trapézios.
+- **Calcular área de círculo** e da faixa entre dois círculos.
+- **Usar o triângulo equilátero** dentro de um hexágono regular, inclusive no caminho de volta (da área para o lado).
+- **Levar uma área para outra escala** ou outra unidade.
 
-Retângulo, de base b e altura h: perímetro P = 2 × (b + h); área A = b × h.
+**O que você precisa saber antes.**
 
-Paralelogramo (quadrilátero com lados opostos paralelos, tipo um retângulo "entortado"), de base b e altura h: área A = b × h. Atenção: h é a altura, ou seja, a distância perpendicular entre as duas bases paralelas, e não a medida do lado inclinado.
+- **Potências e raízes.** 11² = 121; √121 = 11; √3 × √3 = 3; √75 = √(25 × 3) = 5√3. Revise a aula de Potências e Raízes se precisar.
+- **Razão e proporção.** A escala 1 : 100 quer dizer que 1 cm no desenho vale 100 cm na realidade; revise a aula de Razão e Proporção.
+- **Unidades de medida.** 1 m = 100 cm, então 1 m² = 100 × 100 = 10 000 cm².
 
-Triângulo, de base b e altura h: área A = (b × h) ÷ 2. É metade de um retângulo de mesma base e mesma altura. De novo, a altura é a distância perpendicular da base até o vértice oposto, e pode até cair fora do triângulo em figuras muito inclinadas.
+## Aula Teórica
 
-Trapézio (quadrilátero com apenas dois lados paralelos), de base maior B, base menor b e altura h: área A = ((B + b) × h) ÷ 2. Em palavras: some as duas bases paralelas, multiplique pela altura e divida por dois. Exemplo: B = 10 m, b = 6 m e h = 4 m dão A = ((10 + 6) × 4) ÷ 2 = (16 × 4) ÷ 2 = 32 m².
+### 1. Área do retângulo e área construída
 
-Losango (quadrilátero de quatro lados iguais), de diagonal maior D e diagonal menor d: área A = (D × d) ÷ 2. Diagonais são os segmentos que ligam vértices opostos. Com D = 12 cm e d = 8 cm, a área é (12 × 8) ÷ 2 = 48 cm².
+A **área** mede quanto espaço uma figura ocupa numa superfície, em unidades ao quadrado (m², cm²). A do retângulo é a mais usada.
 
-Círculo, de raio r (a distância do centro até a borda): o contorno, chamado de comprimento da circunferência, é C = 2 × π × r; a área é A = π × r², ou seja, π multiplicado pelo raio ao quadrado. O símbolo π (pi) é um número fixo, aproximadamente 3,14, e o ENEM sempre informa o valor a usar. O diâmetro é o dobro do raio, então, quando o enunciado der o diâmetro, divida por 2 antes de aplicar as fórmulas. Com r = 5 m: comprimento = 2 × 3,14 × 5 = 31,4 m e área = 3,14 × 25 = 78,5 m².
+**Fórmula: área do retângulo**
 
-**Conversão de unidades de área.** Esta é a etapa que mais elimina candidatos, porque o instinto é errado. Como 1 m = 100 cm, ao elevar ao quadrado temos 1 m² = 100 × 100 = 10.000 cm². Não é 100. A regra é: quando o fator de conversão de comprimento é 10, o de área é 100; quando o de comprimento é 100, o de área é 10.000; quando o de comprimento é 1.000, o de área é 1.000.000.
+**A = b × h**
 
-Os números que caem: 1 m² = 10.000 cm²; 1 km² = 1.000.000 m²; 1 cm² = 100 mm².
+- **b**: a base (um lado).
+- **h**: a altura, o lado **perpendicular** à base (que forma um ângulo reto com ela).
+- **A**: a área, na unidade ao quadrado (se b e h estão em metro, A está em m²).
+- **Em palavras:** multiplique os dois lados. No quadrado, os dois lados são iguais: A = L × L = L².
+- **Quando usar:** pisos, terrenos, paredes, placas e qualquer região retangular.
 
-Em contextos rurais aparece o hectare (símbolo ha), que é a área de um quadrado de 100 m de lado: 1 hectare = 10.000 m². Assim, um terreno retangular de 250 m por 180 m tem área de 45.000 m², que corresponde a 45.000 ÷ 10.000 = 4,5 hectares.
+Numa planta, as **medidas internas** são as medidas de cada cômodo por dentro, sem as paredes. A **área construída** usa as medidas por fora: some cômodos e paredes numa linha que atravesse a casa de ponta a ponta. Cômodos lado a lado, entre as mesmas duas paredes, têm a mesma medida nessa direção, mesmo que ela só esteja escrita num deles.
 
-**Decompor figuras compostas.** Plantas de imóveis e terrenos quase nunca são retângulos perfeitos. A técnica é sempre uma de duas.
+<figure class="figura">
+  <svg viewBox="0 0 460 262" role="img" aria-labelledby="fig-plana-1-t fig-plana-1-d">
+    <title id="fig-plana-1-t">Medidas internas e paredes numa planta</title>
+    <desc id="fig-plana-1-d">Planta desenhada em proporção, com dois cômodos lado a lado: a sala, com 4,6 m de largura interna, e o quarto, com 3,2 m de largura e 5,5 m de profundidade internas. As paredes externas têm 0,25 m e a parede entre os cômodos tem 0,15 m. A sala tem a mesma profundidade do quarto.</desc>
+    <rect x="60" y="20" width="304" height="216" class="traco" />
+    <rect x="69" y="29" width="165.6" height="198" class="traco-fino" />
+    <rect x="240" y="29" width="115.2" height="198" class="traco-fino" />
+    <text x="152" y="115" class="rotulo" text-anchor="middle">Sala</text>
+    <line x1="72" y1="210" x2="231" y2="210" class="tracejado" />
+    <text x="152" y="203" class="rotulo-fraco" text-anchor="middle">4,6 m</text>
+    <text x="290" y="110" class="rotulo" text-anchor="middle">Quarto</text>
+    <line x1="243" y1="210" x2="352" y2="210" class="tracejado" />
+    <text x="290" y="203" class="rotulo-fraco" text-anchor="middle">3,2 m</text>
+    <line x1="342" y1="32" x2="342" y2="190" class="tracejado" />
+    <text x="336" y="150" class="rotulo-fraco" text-anchor="end">5,5 m</text>
+    <text x="36" y="132" class="rotulo-fraco" text-anchor="middle">0,25</text>
+    <text x="390" y="132" class="rotulo-fraco" text-anchor="middle">0,25</text>
+    <line x1="237" y1="238" x2="237" y2="246" class="traco-fino" />
+    <text x="237" y="258" class="rotulo-fraco" text-anchor="middle">0,15</text>
+  </svg>
+</figure>
 
-Somar: corte a figura em retângulos e triângulos, calcule a área de cada pedaço e some tudo.
+**Exemplo resolvido.** Na planta acima, as paredes externas têm 0,25 m de espessura, e a parede entre os cômodos tem 0,15 m. A sala tem 4,6 m de largura interna, e o quarto tem 3,2 m de largura e 5,5 m de profundidade. A sala fica entre as mesmas paredes da frente e do fundo. Qual é a área construída?
 
-Subtrair: enxergue a figura como um retângulo grande do qual foi retirado um pedaço, calcule a área do retângulo cheio e desconte a do pedaço removido. Uma planta em forma de L com 12 m por 9 m no total, tendo um recorte de 5 m por 4 m em um dos cantos, tem área 12 × 9 − 5 × 4 = 108 − 20 = 88 m².
+1. Largura, de ponta a ponta: 0,25 + 4,6 + 0,15 + 3,2 + 0,25 = 8,45 m.
+2. Profundidade: a da sala não está escrita, mas é a mesma do quarto (5,5 m). Com as paredes: 0,25 + 5,5 + 0,25 = 6 m.
+3. Área: 8,45 × 6 = 50,7.
+4. Resposta: 50,7 m².
 
-O mesmo vale para áreas com furos: um jardim quadrado de 10 m de lado com um chafariz circular de raio 2 m no meio tem área ajardinada 10 × 10 − 3,14 × 2 × 2 = 100 − 12,56 = 87,44 m².
+**Erro comum.** Esquecer a parede interna, ou somar a espessura da parede externa só de um lado. Uma medida de fora a fora passa por **duas** paredes externas e por cada parede interna que estiver no caminho.
 
-**Cuidado com o perímetro em figuras compostas.** Perímetro não se decompõe do mesmo jeito. Ao cortar a figura em pedaços, surgem lados internos que não fazem parte do contorno real. Para o perímetro, percorra a borda externa com o dedo e some apenas o que você efetivamente percorre.
+### 2. Triângulo, trapézio e decomposição
 
-**O efeito da escala sobre a área.** Se todas as medidas lineares de uma figura são multiplicadas por um número k, a área fica multiplicada por k × k, ou seja, por k². Um terreno de 20 m por 30 m tem 600 m²; dobrando os dois lados, vira 40 m por 60 m, com 2.400 m², que é 4 vezes a área original, e não 2. Triplicar os lados multiplica a área por 9. Reduzir os lados à metade reduz a área a um quarto. Essa é uma das perguntas favoritas do INEP, tanto em plantas quanto em mapas: numa escala 1:100, cada centímetro quadrado do papel representa 10.000 cm² reais, ou seja, 1 m².
+A **altura** de um triângulo ou de um trapézio é a distância perpendicular até a base, e não o comprimento de um lado inclinado. Do mesmo jeito, a **distância de um ponto a uma reta** é o menor caminho entre eles, sempre medido em ângulo reto com a reta.
 
-**Aplicações que caem na prova.**
+<figure class="figura">
+  <svg viewBox="0 0 460 170" role="img" aria-labelledby="fig-plana-2-t fig-plana-2-d">
+    <title id="fig-plana-2-t">Altura do triângulo e do trapézio</title>
+    <desc id="fig-plana-2-d">À esquerda, um triângulo com a base embaixo e uma linha tracejada vertical do vértice de cima até a base, marcada como altura h. À direita, um trapézio com a base maior B embaixo, a base menor b em cima, paralela a ela, e a altura h tracejada entre as duas.</desc>
+    <path d="M 30 140 L 200 140 L 140 30 Z" class="traco" />
+    <line x1="140" y1="30" x2="140" y2="140" class="tracejado" />
+    <text x="148" y="95" class="rotulo">h</text>
+    <text x="80" y="160" class="rotulo" text-anchor="middle">base</text>
+    <path d="M 250 140 L 440 140 L 390 40 L 290 40 Z" class="traco" />
+    <line x1="330" y1="40" x2="330" y2="140" class="tracejado" />
+    <text x="338" y="95" class="rotulo">h</text>
+    <text x="345" y="160" class="rotulo" text-anchor="middle">B (base maior)</text>
+    <text x="340" y="30" class="rotulo" text-anchor="middle">b (base menor)</text>
+  </svg>
+</figure>
 
-Quantidade de piso: divida a área do cômodo pela área de uma peça, ambas na mesma unidade, e acrescente a perda prevista. Uma sala de 5 m por 4,8 m tem 24 m². Uma peça de 0,40 m por 0,40 m tem 0,16 m². São necessárias 24 ÷ 0,16 = 150 peças. Se o enunciado pedir 10% a mais para recortes e quebras, o total vira 150 × 1,10 = 165 peças.
+**Fórmula: área do triângulo**
 
-Quantidade de tinta: calcule a área a pintar, multiplique pelo número de demãos e divida pelo rendimento informado (em metros quadrados por litro). Uma área de 45 m² com duas demãos exige cobrir 90 m²; com rendimento de 10 m² por litro, são 9 litros. Se a lata tem 3,6 litros, 9 ÷ 3,6 = 2,5, e como não se compra meia lata, são necessárias 3 latas: arredondamento sempre para cima.
+**A = b × h ÷ 2**
 
-Área plantada e produtividade: multiplique a área pela produção por unidade de área, cuidando para que as unidades combinem (toneladas por hectare exigem a área em hectares).
+- **b**: a base do triângulo.
+- **h**: a altura relativa a essa base.
+- **Em palavras:** o triângulo é metade de um retângulo de mesma base e mesma altura.
+- **Quando usar:** qualquer triângulo em que se conheça uma base e a altura até ela.
 
-**Armadilhas típicas do INEP:** (1) converter área como se fosse comprimento, trocando 1 m² por 100 cm² em vez de 10.000 cm²; (2) usar o lado inclinado do paralelogramo ou do trapézio como se fosse a altura, altura é sempre perpendicular; (3) confundir raio com diâmetro no círculo, o que faz a área ficar quatro vezes maior ou menor do que deveria; (4) responder o perímetro quando se pediu a área, ou somar lados internos ao contorno de uma figura composta; (5) esquecer o acréscimo percentual de perdas em pisos e azulejos, ou arredondar para baixo o número de latas e caixas, quando o correto é sempre para cima; (6) supor que dobrar as dimensões dobra a área, quando na verdade quadruplica; (7) esquecer de multiplicar pelo número de demãos no cálculo de tinta.
+**Exemplo resolvido.** Uma vela de barco triangular tem 10 m de base e 5 m de altura. Qual é a área?
+
+1. Fórmula: A = 10 × 5 ÷ 2.
+2. Calcular: 50 ÷ 2 = 25.
+3. Resposta: 25 m².
+
+**Erro comum.** Esquecer de dividir por 2 e responder 50, que é a área do retângulo inteiro.
+
+**Fórmula: área do trapézio**
+
+**A = (B + b) × h ÷ 2**
+
+- **B, b**: as duas bases, os lados **paralelos** (a maior e a menor).
+- **h**: a altura, a distância entre as duas bases.
+- **Em palavras:** some as bases, multiplique pela altura e divida por 2.
+- **Quando usar:** figuras com dois lados paralelos de tamanhos diferentes.
+
+**Exemplo resolvido.** Um canteiro tem a forma de um trapézio com bases de 13 m e 5 m, a 6 m de distância uma da outra. Qual é a área?
+
+1. Somar as bases: 13 + 5 = 18.
+2. Multiplicar pela altura e dividir por 2: 18 × 6 ÷ 2 = 54.
+3. Resposta: 54 m².
+
+**Erro comum.** Usar o comprimento de um lado inclinado como altura. A altura é sempre a distância em **ângulo reto** entre as bases paralelas (ou até a base, no triângulo).
+
+Quando uma figura não tem fórmula pronta, **decomponha**: trace um segmento que a divida em triângulos, retângulos e trapézios, calcule cada parte e some. Se um lado da figura for paralelo ao segmento traçado, a parte entre os dois é um trapézio.
+
+**Exemplo resolvido.** Uma placa de acrílico de 5 lados é cortada por um segmento de 1,6 m em duas partes. Acima do corte fica um lado de 1 m, paralelo a ele e a 0,5 m de distância: essa parte é um trapézio. Abaixo do corte há um único vértice, a 0,9 m do segmento: essa parte é um triângulo. Qual é a área da placa?
+
+1. Trapézio de bases 1,6 e 1 e altura 0,5: (1,6 + 1) × 0,5 ÷ 2 = 0,65 m².
+2. Triângulo de base 1,6 e altura 0,9: 1,6 × 0,9 ÷ 2 = 0,72 m².
+3. Somar as partes: 0,65 + 0,72 = 1,37.
+4. Resposta: 1,37 m².
+
+**Erro comum.** Tratar a parte com dois lados paralelos como triângulo. Se ela tem dois lados paralelos, é trapézio, e as **duas** bases entram na conta.
+
+### 3. Círculo e coroa circular
+
+O **raio** é a distância do centro até a borda do círculo; o **diâmetro** é o dobro do raio.
+
+**Fórmula: área do círculo**
+
+**A = π × r²**
+
+- **r**: o raio (metade do diâmetro).
+- **π**: cerca de 3,14; use o valor que o enunciado mandar, ou deixe a resposta "com π".
+- **Em palavras:** eleve o raio ao quadrado e multiplique por π.
+- **Quando usar:** regiões circulares como lagos, pistas, mesas e praças.
+
+A região entre dois círculos com o mesmo centro se chama **coroa circular**: sua área é a do círculo maior menos a do menor.
+
+<figure class="figura">
+  <svg viewBox="0 0 460 170" role="img" aria-labelledby="fig-plana-3-t fig-plana-3-d">
+    <title id="fig-plana-3-t">Coroa circular</title>
+    <desc id="fig-plana-3-d">Dois círculos com o mesmo centro. O de dentro tem raio r e o de fora tem raio R. A faixa entre os dois está pintada e é a coroa circular.</desc>
+    <path class="preenche" fill-rule="evenodd" d="M 155 85 a 75 75 0 1 0 150 0 a 75 75 0 1 0 -150 0 Z M 185 85 a 45 45 0 1 0 90 0 a 45 45 0 1 0 -90 0 Z" />
+    <circle cx="230" cy="85" r="75" class="traco" />
+    <circle cx="230" cy="85" r="45" class="traco" />
+    <line x1="230" y1="85" x2="275" y2="85" class="traco-fino" />
+    <line x1="230" y1="85" x2="283" y2="138" class="traco-fino" />
+    <text x="252" y="78" class="rotulo" text-anchor="middle">r</text>
+    <text x="292" y="152" class="rotulo">R</text>
+    <line x1="338" y1="42" x2="282" y2="46" class="traco-fino" />
+    <text x="340" y="40" class="rotulo-fraco">coroa circular</text>
+  </svg>
+</figure>
+
+**Exemplo resolvido.** Um lago circular tem raio de 20 m. Em volta dele será feita uma trilha de 5 m de largura. Usando π = 3, qual é a área da trilha?
+
+1. A trilha é a coroa entre o círculo do lago (raio 20) e o círculo de fora (raio 20 + 5 = 25).
+2. Círculo de fora: 3 × 25² = 3 × 625 = 1 875 m².
+3. Lago: 3 × 20² = 3 × 400 = 1 200 m².
+4. Resposta: 1 875 − 1 200 = 675 m².
+
+**Erro comum.** Usar o diâmetro no lugar do raio, ou responder a área do círculo de fora inteiro (1 875 m²), esquecendo de tirar o lago.
+
+### 4. Hexágono regular e triângulo equilátero
+
+Um **triângulo equilátero** tem os três lados iguais. Um **hexágono regular** pode ser dividido, a partir do centro, em 6 triângulos equiláteros iguais.
+
+<figure class="figura">
+  <svg viewBox="0 0 460 190" role="img" aria-labelledby="fig-plana-4-t fig-plana-4-d">
+    <title id="fig-plana-4-t">Hexágono regular dividido em 6 triângulos equiláteros</title>
+    <desc id="fig-plana-4-d">Um hexágono regular com linhas do centro até cada vértice, formando 6 triângulos equiláteros de lado L. Em um dos triângulos, uma linha tracejada do centro até o meio do lado de cima marca a altura, que é o raio do círculo inscrito no hexágono.</desc>
+    <path d="M 184 20 L 276 20 L 322 100 L 276 180 L 184 180 L 138 100 Z" class="traco" />
+    <line x1="230" y1="100" x2="184" y2="20" class="traco-fino" />
+    <line x1="230" y1="100" x2="276" y2="20" class="traco-fino" />
+    <line x1="230" y1="100" x2="322" y2="100" class="traco-fino" />
+    <line x1="230" y1="100" x2="276" y2="180" class="traco-fino" />
+    <line x1="230" y1="100" x2="184" y2="180" class="traco-fino" />
+    <line x1="230" y1="100" x2="138" y2="100" class="traco-fino" />
+    <line x1="230" y1="100" x2="230" y2="20" class="tracejado" />
+    <text x="230" y="14" class="rotulo" text-anchor="middle">L</text>
+    <text x="336" y="60" class="rotulo-fraco">altura do triângulo</text>
+    <text x="336" y="74" class="rotulo-fraco">= raio do círculo inscrito</text>
+    <line x1="334" y1="66" x2="236" y2="60" class="traco-fino" />
+  </svg>
+</figure>
+
+**Fórmula: triângulo equilátero de lado L**
+
+**altura = L√3 ÷ 2 e área = L²√3 ÷ 4**
+
+- **L**: o lado do triângulo.
+- **√3**: a raiz quadrada de 3, cerca de 1,73; muitas vezes a resposta fica "com √3".
+- **Em palavras:** a altura é o lado vezes √3, dividido por 2; a área é o lado ao quadrado vezes √3, dividido por 4.
+- **Quando usar:** em triângulos equiláteros e em hexágonos regulares, que são 6 deles juntos.
+
+**Exemplo resolvido.** Um triângulo equilátero tem 16 cm de lado. Quais são a altura e a área?
+
+1. Altura: 16√3 ÷ 2 = 8√3 cm.
+2. Área: 16² × √3 ÷ 4 = 256√3 ÷ 4 = 64√3 cm².
+3. Resposta: altura 8√3 cm e área 64√3 cm².
+
+**Erro comum.** Esquecer o √3 e responder só 8 ou 64. A raiz faz parte da medida e costuma aparecer nas alternativas.
+
+**Fórmula: área do hexágono regular**
+
+**área do hexágono = 6 × L²√3 ÷ 4**
+
+- **L**: o lado do hexágono, que também é o lado de cada um dos 6 triângulos.
+- **Em palavras:** calcule a área de um triângulo equilátero de lado L e multiplique por 6.
+- **Quando usar:** sempre que aparecer um hexágono regular; o raio do círculo inscrito nele é a altura de um dos triângulos.
+
+**Exemplo resolvido.** Um círculo inscrito num hexágono regular tem área 75π cm². Qual é a área do hexágono?
+
+1. Da área do círculo para o raio: π × r² = 75π, então r² = 75 e r = √75 = √(25 × 3) = 5√3 cm.
+2. O raio do círculo inscrito é a altura de um triângulo: L√3 ÷ 2 = 5√3, então L = 10 cm.
+3. Área do hexágono: 6 × 10² × √3 ÷ 4 = 6 × 100√3 ÷ 4 = 150√3.
+4. Resposta: 150√3 cm².
+
+**Erro comum.** Achar que o raio do círculo inscrito é o próprio lado do hexágono (usar L = 5√3). O raio do círculo **inscrito** é a altura do triângulo, menor que o lado.
+
+### 5. Escala e área
+
+Numa escala 1 : k, cada medida real é k vezes a do desenho. Como a área multiplica duas medidas, ela muda k × k = k² vezes.
+
+**Fórmula: área na escala**
+
+**área real = área no desenho × k²**
+
+- **k**: o número da escala 1 : k.
+- **Em palavras:** para passar do desenho para a realidade, multiplique a área por k ao quadrado; para o caminho de volta, divida.
+- **Quando usar:** quando o problema dá uma planta ou uma maquete e pergunta por uma área.
+
+Cuidado também com a unidade: 1 m² = 10 000 cm², porque cada metro tem 100 cm e a área multiplica 100 × 100.
+
+**Exemplo resolvido.** Numa maquete na escala 1 : 200, uma praça ocupa 35 cm². Qual é a área real da praça, em metro quadrado?
+
+1. Na escala 1 : 200, as áreas reais são 200² = 40 000 vezes maiores.
+2. Área real: 35 × 40 000 = 1 400 000 cm².
+3. Converter: 1 400 000 ÷ 10 000 = 140 m².
+4. Resposta: 140 m².
+
+**Erro comum.** Multiplicar a área só por 200, como se fosse uma medida de comprimento. Na área, a escala entra **ao quadrado**.
+
+### Armadilhas típicas do INEP
+
+1. **Esquecer as paredes** (ou contar só uma delas) ao calcular a área construída.
+2. **Usar um lado inclinado como altura** do triângulo ou do trapézio.
+3. **Usar o diâmetro no lugar do raio** na área do círculo.
+4. **Calcular o círculo novo inteiro** quando a pergunta é só a faixa entre os dois.
+5. **Confundir o raio do círculo inscrito** com o lado do hexágono.
+6. **Aplicar a escala sem elevar ao quadrado** ao trabalhar com área, ou esquecer que 1 m² são 10 000 cm².
 
 ## Tópicos-Chave para Revisão
 
 <div className="topico">
 
-Perímetro é a soma dos lados, medido em unidades de comprimento; área é a superfície ocupada, medida em unidades quadradas. Toda figura complicada se resolve decompondo em retângulos e triângulos, somando ou subtraindo pedaços.
+#### 1. Retângulo e área construída
 
-Fórmulas de área dos quadriláteros: quadrado A = L²; retângulo A = base × altura; paralelogramo A = base × altura, com altura perpendicular e nunca o lado inclinado; trapézio A = ((base maior + base menor) × altura) ÷ 2; losango A = (diagonal maior × diagonal menor) ÷ 2.
+**A = b × h**. A **área construída** usa as medidas por fora: some cômodos e todas as **paredes** do caminho; cômodos entre as mesmas paredes têm a mesma medida.
 
-Triângulo tem área A = (base × altura) ÷ 2, exatamente metade do retângulo de mesma base e mesma altura, com a altura sempre medida perpendicularmente à base escolhida.
+#### 2. Triângulo, trapézio e decomposição
 
-No círculo, o raio r é a distância do centro à borda e o diâmetro é o dobro do raio; o comprimento da circunferência é C = 2 × π × r e a área é A = π × r², com π aproximadamente 3,14 e sempre informado pela prova. Se o enunciado der o diâmetro, divida por dois antes de calcular.
+**A = b × h ÷ 2** e **A = (B + b) × h ÷ 2**. A **altura** é perpendicular à base; figuras sem fórmula se **decompõem** em partes simples.
 
-Conversão de unidades de área eleva ao quadrado o fator de comprimento: 1 m² = 10.000 cm², 1 km² = 1.000.000 m², 1 cm² = 100 mm². Em contexto rural, 1 hectare = 10.000 m², de modo que 45.000 m² equivalem a 4,5 hectares.
+<figure class="figura">
+  <svg viewBox="0 0 300 100" role="img" aria-labelledby="fig-plana-2-rev-t fig-plana-2-rev-d">
+    <title id="fig-plana-2-rev-t">Resumo: altura do trapézio</title>
+    <desc id="fig-plana-2-rev-d">Um trapézio com a base maior B embaixo, a base menor b em cima e a altura h tracejada em ângulo reto entre elas.</desc>
+    <path d="M 60 85 L 240 85 L 200 20 L 100 20 Z" class="traco" />
+    <line x1="140" y1="20" x2="140" y2="85" class="tracejado" />
+    <text x="148" y="58" class="rotulo">h</text>
+    <text x="150" y="14" class="rotulo" text-anchor="middle">b</text>
+    <text x="150" y="98" class="rotulo" text-anchor="middle">B</text>
+  </svg>
+</figure>
 
-Figuras compostas se resolvem somando as áreas dos pedaços ou subtraindo a parte recortada de um retângulo maior; já o perímetro exige percorrer apenas a borda externa, ignorando os lados internos criados pela decomposição.
+#### 3. Círculo
 
-Multiplicar todas as medidas lineares por um fator k multiplica a área por k², de modo que dobrar as dimensões quadruplica a área e triplicá-las multiplica a área por nove. O mesmo raciocínio vale para escalas de plantas e mapas.
+**A = π × r²**, com o **raio** (metade do diâmetro). A **coroa circular** é o círculo maior menos o menor.
 
-Em problemas de piso, divida a área do cômodo pela área de uma peça na mesma unidade e acrescente o percentual de perdas; em problemas de tinta, multiplique a área pelo número de demãos e divida pelo rendimento em metros quadrados por litro, arredondando o número de latas sempre para cima.
+#### 4. Hexágono regular
+
+**altura = L√3 ÷ 2 e área = L²√3 ÷ 4** no triângulo equilátero, e **área do hexágono = 6 × L²√3 ÷ 4**. O raio do círculo inscrito é a **altura** de um dos 6 triângulos.
+
+<figure class="figura">
+  <svg viewBox="0 0 330 110" role="img" aria-labelledby="fig-plana-4-rev-t fig-plana-4-rev-d">
+    <title id="fig-plana-4-rev-t">Resumo: hexágono em 6 triângulos</title>
+    <desc id="fig-plana-4-rev-d">Um hexágono regular dividido em 6 triângulos equiláteros a partir do centro, com a altura de um deles tracejada.</desc>
+    <path d="M 123 10 L 177 10 L 204 55 L 177 100 L 123 100 L 96 55 Z" class="traco" />
+    <line x1="150" y1="55" x2="123" y2="10" class="traco-fino" />
+    <line x1="150" y1="55" x2="177" y2="10" class="traco-fino" />
+    <line x1="150" y1="55" x2="204" y2="55" class="traco-fino" />
+    <line x1="150" y1="55" x2="177" y2="100" class="traco-fino" />
+    <line x1="150" y1="55" x2="123" y2="100" class="traco-fino" />
+    <line x1="150" y1="55" x2="96" y2="55" class="traco-fino" />
+    <line x1="150" y1="55" x2="150" y2="10" class="tracejado" />
+    <text x="212" y="30" class="rotulo-fraco">altura = raio inscrito</text>
+  </svg>
+</figure>
+
+#### 5. Escala e área
+
+**área real = área no desenho × k²**. Na área, a **escala** entra ao quadrado; e 1 m² = 10 000 cm².
 
 </div>
 
-## Teste de Fogo
+## Questões do ENEM
 
-*Questões sem gabarito: resolva primeiro, depois confira com o professor ou com a IA.*
+*Marque uma alternativa em cada questão e confira tudo de uma vez no botão do fim.*
 
-**Questão 1 (estilo ENEM: autoral)**
-Um pedreiro vai assentar piso cerâmico em uma sala retangular de 5 m de comprimento por 4,8 m de largura. As peças cerâmicas escolhidas são quadradas, com 0,40 m de lado. O fabricante recomenda comprar 10% de peças a mais do que o estritamente necessário, para cobrir recortes e quebras.
+**Questão 1**
 
-O número mínimo de peças que esse pedreiro deve comprar é
+*ENEM 2017 · 2ª aplicação · 2º dia · caderno azul · questão 150*
 
-a) 60
-b) 150
-c) 165
-d) 240
-e) 1.500
+A figura traz o esboço da planta baixa de uma residência. Algumas medidas internas dos cômodos estão indicadas. A espessura de cada parede externa da casa é 0,20 m e das paredes internas, 0,10 m.
 
-**Questão 2 (estilo ENEM: autoral)**
-A planta de um salão comercial tem a forma da letra L. Ela pode ser vista como um retângulo de 12 m por 9 m do qual foi retirado, em um dos cantos, um retângulo de 5 m por 4 m, correspondente a uma área ocupada por uma escada externa.
+<figure class="figura">
+  <svg viewBox="0 0 280 345" role="img" aria-labelledby="fig-plana-q1-t fig-plana-q1-d">
+    <title id="fig-plana-q1-t">Planta baixa da residência</title>
+    <desc id="fig-plana-q1-d">Planta retangular. Em cima, à esquerda, a Sala; à direita, o Quarto A, com 4,4 m de altura. Abaixo do Quarto A, uma passagem de 2 m de altura, aberta para a Sala e separada do Banheiro por uma parede. Embaixo, a Cozinha, com 3 m de largura e 4 m de altura, e o Quarto B, com 3 m de largura. Figura redesenhada a partir da prova oficial, com os mesmos dados.</desc>
+    <rect x="40" y="15" width="182" height="308" class="traco" />
+    <line x1="131" y1="15" x2="131" y2="145" class="traco" />
+    <line x1="131" y1="145" x2="131" y2="204" class="tracejado" />
+    <line x1="131" y1="204" x2="131" y2="323" class="traco" />
+    <line x1="131" y1="145" x2="222" y2="145" class="traco" />
+    <line x1="40" y1="204" x2="222" y2="204" class="traco" />
+    <line x1="162" y1="145" x2="162" y2="204" class="traco" />
+    <text x="85" y="110" class="rotulo" text-anchor="middle">Sala</text>
+    <text x="172" y="60" class="rotulo" text-anchor="middle">Quarto A</text>
+    <line x1="212" y1="22" x2="212" y2="138" class="tracejado" />
+    <text x="206" y="100" class="rotulo-fraco" text-anchor="end">4,4 m</text>
+    <line x1="137" y1="150" x2="137" y2="199" class="tracejado" />
+    <text x="150" y="178" class="rotulo-fraco" text-anchor="middle">2 m</text>
+    <text x="192" y="178" class="rotulo" text-anchor="middle">Banheiro</text>
+    <text x="90" y="252" class="rotulo" text-anchor="middle">Cozinha</text>
+    <text x="176" y="252" class="rotulo" text-anchor="middle">Quarto B</text>
+    <line x1="50" y1="211" x2="50" y2="316" class="tracejado" />
+    <text x="56" y="232" class="rotulo-fraco">4 m</text>
+    <line x1="47" y1="305" x2="125" y2="305" class="tracejado" />
+    <text x="86" y="298" class="rotulo-fraco" text-anchor="middle">3 m</text>
+    <line x1="137" y1="305" x2="215" y2="305" class="tracejado" />
+    <text x="176" y="298" class="rotulo-fraco" text-anchor="middle">3 m</text>
+  </svg>
+</figure>
 
-A área do piso desse salão comercial, em metros quadrados, é
+Sabe-se que, na localidade onde se encontra esse imóvel, o Imposto Predial Territorial Urbano (IPTU) é calculado conforme a área construída da residência. Nesse cálculo, são cobrados R$ 4,00 por cada metro quadrado de área construída.
 
-a) 68
-b) 88
-c) 96
-d) 108
-e) 128
+O valor do IPTU desse imóvel, em real, é
 
-**Questão 3 (estilo ENEM: autoral)**
-Um morador vai pintar as paredes internas de um quarto. Descontadas a porta e as janelas, a área total a ser pintada é de 45 m². A tinta escolhida tem rendimento de 10 metros quadrados por litro e é vendida apenas em latas de 3,6 litros. O fabricante recomenda a aplicação de duas demãos.
+A) 250,00.\
+B) 250,80.\
+C) 258,64.\
+D) 276,48.\
+E) 286,00.
 
-O número mínimo de latas que esse morador deve comprar é
+**Questão 2**
 
-a) 2
-b) 3
-c) 5
-d) 9
-e) 13
+*ENEM 2019 · 2º dia · caderno azul · questão 142*
 
-**Questão 4 (estilo ENEM: autoral)**
-Um agricultor comprou um terreno retangular que mede 250 m de comprimento por 180 m de largura e pretende plantar milho em toda a sua extensão. A produtividade média esperada para a variedade escolhida é de 8 toneladas por hectare, sendo 1 hectare igual a 10.000 m².
+Em um condomínio, uma área pavimentada, que tem a forma de um círculo com diâmetro medindo 6 m, é cercada por grama. A administração do condomínio deseja ampliar essa área, mantendo seu formato circular, e aumentando, em 8 m, o diâmetro dessa região, mantendo o revestimento da parte já existente. O condomínio dispõe, em estoque, de material suficiente para pavimentar mais 100 m² de área. O síndico do condomínio irá avaliar se esse material disponível será suficiente para pavimentar a região a ser ampliada.
 
-A produção esperada nesse terreno, em toneladas, é de
+Utilize 3 como aproximação para π.
 
-a) 3,6
-b) 4,5
-c) 36,0
-d) 45,0
-e) 360,0
+A conclusão correta a que o síndico deverá chegar, considerando a nova área a ser pavimentada, é a de que o material disponível em estoque
 
-**Questão 5 (estilo ENEM: autoral)**
-Uma praça possui um canteiro de flores com formato quadrado, de 4 m de lado. A prefeitura aprovou um projeto de ampliação em que o canteiro continuará quadrado, mas com o lado triplicado em relação ao atual.
+A) será suficiente, pois a área da nova região a ser pavimentada mede 21 m².\
+B) será suficiente, pois a área da nova região a ser pavimentada mede 24 m².\
+C) será suficiente, pois a área da nova região a ser pavimentada mede 48 m².\
+D) não será suficiente, pois a área da nova região a ser pavimentada mede 108 m².\
+E) não será suficiente, pois a área da nova região a ser pavimentada mede 120 m².
 
-Em relação à área do canteiro atual, a área do novo canteiro será
+**Questão 3**
 
-a) a mesma
-b) o dobro
-c) o triplo
-d) seis vezes maior
-e) nove vezes maior
+*ENEM 2018 · 2ª aplicação · 2º dia · caderno azul · questão 171*
+
+Uma pessoa possui um terreno em forma de um pentágono, como ilustrado na figura.
+
+<figure class="figura">
+  <svg viewBox="0 0 360 215" role="img" aria-labelledby="fig-plana-q3-t fig-plana-q3-d">
+    <title id="fig-plana-q3-t">Terreno em forma de pentágono</title>
+    <desc id="fig-plana-q3-d">Pentágono ABCDE. O lado BC fica em cima; A fica à esquerda e D à direita, um pouco abaixo de B e C; o ponto E fica embaixo. Figura redesenhada a partir da prova oficial, com os mesmos dados.</desc>
+    <path d="M 30 80 L 80 32 L 254 32 L 330 80 L 130 200 Z" class="traco" />
+    <circle cx="30" cy="80" r="4" class="preenche" />
+    <circle cx="80" cy="32" r="4" class="preenche" />
+    <circle cx="254" cy="32" r="4" class="preenche" />
+    <circle cx="330" cy="80" r="4" class="preenche" />
+    <circle cx="130" cy="200" r="4" class="preenche" />
+    <text x="20" y="84" class="rotulo" text-anchor="end">A</text>
+    <text x="74" y="24" class="rotulo" text-anchor="end">B</text>
+    <text x="262" y="24" class="rotulo">C</text>
+    <text x="340" y="84" class="rotulo">D</text>
+    <text x="118" y="206" class="rotulo" text-anchor="end">E</text>
+  </svg>
+</figure>
+
+Sabe-se que a diagonal AD mede 50 m e é paralela ao lado BC, que mede 29 m. A distância do ponto B a AD é de 8 m e a distância do ponto E a AD é de 20 m.
+
+A área, em metro quadrado, deste terreno é igual a
+
+A) 658.\
+B) 700.\
+C) 816.\
+D) 1 132.\
+E) 1 632.
+
+**Questão 4**
+
+*ENEM 2017 · 2ª aplicação · 2º dia · caderno azul · questão 143*
+
+No centro de uma praça será construída uma estátua que ocupará um terreno quadrado com área de 9 metros quadrados. O executor da obra percebeu que a escala do desenho na planta baixa do projeto é de 1 : 25.
+
+Na planta baixa, a área da figura que representa esse terreno, em centímetro quadrado, é
+
+A) 144.\
+B) 225.\
+C) 3 600.\
+D) 7 500.\
+E) 32 400.
+
+**Questão 5**
+
+*ENEM 2018 · 2ª aplicação · 2º dia · caderno azul · questão 159*
+
+Um brinquedo chamado pula-pula, quando visto de cima, consiste de uma cama elástica com contorno em formato de um hexágono regular.
+
+<figure class="figura">
+  <svg viewBox="0 0 300 220" role="img" aria-labelledby="fig-plana-q5-t fig-plana-q5-d">
+    <title id="fig-plana-q5-t">Hexágono regular com círculo inscrito</title>
+    <desc id="fig-plana-q5-d">Hexágono regular com o lado de cima AB de medida L. Dentro dele, um círculo de centro O que toca todos os lados. Do centro O sai o raio r até o meio do lado AB, formando ângulo reto, e um segmento de O até o vértice B. Figura redesenhada a partir da prova oficial, com os mesmos dados.</desc>
+    <path d="M 103.8 40 L 196.2 40 L 242.4 120 L 196.2 200 L 103.8 200 L 57.6 120 Z" class="traco" />
+    <circle cx="150" cy="120" r="80" class="traco" />
+    <line x1="150" y1="120" x2="150" y2="40" class="traco-fino" />
+    <line x1="150" y1="120" x2="196.2" y2="40" class="traco-fino" />
+    <rect x="150" y="40" width="8" height="8" class="traco-fino" />
+    <line x1="103.8" y1="22" x2="196.2" y2="22" class="tracejado" />
+    <text x="150" y="16" class="rotulo" text-anchor="middle">L</text>
+    <text x="96" y="36" class="rotulo" text-anchor="end">A</text>
+    <text x="204" y="36" class="rotulo">B</text>
+    <text x="142" y="86" class="rotulo" text-anchor="end">r</text>
+    <text x="150" y="138" class="rotulo" text-anchor="middle">O</text>
+  </svg>
+</figure>
+
+Se a área do círculo inscrito no hexágono é 3π metros quadrados, então a área do hexágono, em metro quadrado, é
+
+A) 9\
+B) 6√3\
+C) 9√2\
+D) 12\
+E) 12√3
