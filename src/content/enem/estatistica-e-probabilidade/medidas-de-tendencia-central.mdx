@@ -3,147 +3,443 @@ title: "Média, Mediana e Moda"
 subject: "Estatística e Probabilidade"
 order: 2
 relevance: >
-  Média, mediana e moda são as três maneiras de resumir um monte de números em um só valor que
-  represente o conjunto. Elas se chamam medidas de tendência central porque tentam apontar o "centro"
-  dos dados. É um dos temas mais frequentes do ENEM, com 2 a 4 questões por prova, quase sempre a partir
-  de uma tabela de frequência, de um gráfico de barras ou de uma lista de notas, salários e tempos. O
-  INEP gosta especialmente de duas coisas: fazer você calcular a partir de tabela de frequência, sem
-  listar os dados um a um, e perguntar qual das três medidas representa melhor a situação quando existe
-  um valor muito fora do padrão.
+  Média, mediana e moda resumem um monte de números num valor só. Elas se chamam medidas de tendência
+  central porque apontam o "centro" dos dados. O ENEM (Exame Nacional do Ensino Médio) cobra esse tema
+  em quase toda prova, e raramente com uma lista simples: os dados vêm numa tabela de frequência, a
+  média tem pesos, falta um valor para atingir uma meta ou é preciso entender o que a mediana diz sobre
+  um grupo. Saber o que cada medida significa vale tanto quanto saber calcular.
 quickSummary: >
-  Média é a soma dos valores dividida pela quantidade deles, mediana é o valor do meio depois de ordenar
-  os dados, e moda é o valor que mais se repete. Valores extremos puxam a média, mas quase não afetam a
-  mediana.
+  Média = soma dos valores ÷ quantidade de valores; ao contrário, soma = média × quantidade. Na média
+  ponderada, cada valor é multiplicado pelo seu peso (ou pela sua frequência) e a soma é dividida pela
+  soma dos pesos. Mediana é o valor do meio dos dados em ordem; com quantidade par, é a média dos dois do
+  meio. Moda é o valor que mais se repete; é o valor, não o número de vezes.
+resources:
+  conteudoComplementar:
+    conteudo: "Análise de Gráficos e Tabelas"
+    comoAjuda: "Os dados desta aula quase sempre vêm em quadros e tabelas de frequência. Se ler o cruzamento de linha e coluna travar você, revise essa aula."
+gabarito:
+  - correta: 0
+    porque: >
+      A moda é o número de interrupções que aparece em mais dias: 3 interrupções, em 10 dias (o 10 é a
+      frequência, não a moda). A média é a soma de valor × número de dias, dividida pelo total de dias:
+      (0 × 5 + 1 × 6 + 2 × 6 + 3 × 10 + 4 × 3) ÷ 30 = (0 + 6 + 12 + 30 + 12) ÷ 30 = 60 ÷ 30 = 2,0.
+      Revisar: Aula Teórica › 2. Média ponderada e tabela de frequência
+  - correta: 3
+    porque: >
+      Para "Bom", a média precisa ser pelo menos 7. A soma dos créditos é 12 + 4 + 8 + 8 + 10 = 42. As notas
+      conhecidas somam 8 × 4 + 6 × 8 + 5 × 8 + 7,5 × 10 = 32 + 48 + 40 + 75 = 195. Então (12x + 195) ÷ 42 ≥ 7,
+      ou seja, 12x + 195 ≥ 294, 12x ≥ 99 e x ≥ 8,25.
+      Revisar: Aula Teórica › 3. Quanto falta para atingir uma média
+  - correta: 1
+    porque: >
+      São 24 + 1 + 20 + 3 = 48 funcionários, um número par: a mediana é a média do 24º e do 25º salários,
+      em ordem. Do 1º ao 24º, o salário é 622,00; o 25º é 1 244,00. Mediana = (622 + 1 244) ÷ 2 = 933,00.
+      Revisar: Aula Teórica › 4. Mediana
+  - correta: 3
+    porque: >
+      A soma das 15 estaturas é 15 × 1,93 = 28,95 m. Saem os quatro mais baixos, que somam
+      1,78 + 1,82 + 1,84 + 1,86 = 7,30 m; ficam 21,65 m. Para a média chegar a 1,99 m, a nova soma deve ser pelo
+      menos 15 × 1,99 = 29,85 m. Com o jogador de 2,02 m, faltam 29,85 − 21,65 − 2,02 = 6,18 m para os três
+      últimos, que precisam ter média de pelo menos 6,18 ÷ 3 = 2,06 m.
+      Revisar: Aula Teórica › 3. Quanto falta para atingir uma média
+  - correta: 2
+    porque: >
+      O basquete tem uma pessoa a mais que o futebol, então a turma tem um número ímpar de alunos. Em
+      ordem de altura, o aluno do meio mede a mediana, 1,67 m: é o F. Os mais altos, do F para cima, formam
+      o grupo maior, o do basquete; os mais baixos que ele jogam futebol. P (1,65) e J (1,66) jogam
+      futebol; F (1,67) e M (1,68), basquete. A média e a moda não decidem nada aqui.
+      Revisar: Aula Teórica › 4. Mediana
 ---
 
-## Aula Teórica Completa
+<Accordion titulo="Palavras e siglas desta aula" dica="Consulte quando encontrar um termo novo" icone="spell-check">
 
-**Para que servem essas medidas.** Quando você tem muitos números (as notas de uma turma, os salários de uma empresa, o tempo de espera numa fila), é impraticável olhar todos. Medidas de tendência central resumem o conjunto em um único valor representativo. As três mais cobradas são média, mediana e moda, e cada uma responde a uma pergunta diferente.
+- **ENEM** (Exame Nacional do Ensino Médio): a prova nacional que dá acesso a faculdades e bolsas.
+- **INEP** (Instituto Nacional de Estudos e Pesquisas Educacionais Anísio Teixeira): o órgão do governo que faz o ENEM.
+- **Frequência**: quantas vezes um valor aparece nos dados.
+- **Tabela de frequência**: tabela que mostra cada valor e quantas vezes ele aparece.
+- **Peso**: número que diz quanto um valor "vale" na média; um valor de peso 3 conta como se aparecesse 3 vezes.
+- **Descarga atmosférica**: raio.
+- **Rede elétrica**: os fios e postes que levam energia às casas.
+- **Companhia de fornecimento de energia**: a empresa que entrega a energia elétrica.
+- **Disciplina**: matéria de um curso.
+- **Crédito**: número que mede o tamanho de uma disciplina; serve de peso na média.
+- **Período letivo**: o semestre ou ano de aulas.
+- **Matrícula**: a inscrição numa disciplina ou num curso.
+- **Estatura**: altura de uma pessoa.
+- **Levantamento**: pesquisa ou contagem de dados.
+- **Respectivamente**: na mesma ordem em que os itens foram citados.
 
-**Média aritmética simples.** É a mais conhecida: some todos os valores e divida pela quantidade de valores.
+</Accordion>
 
-média = (soma de todos os valores) ÷ (quantidade de valores)
+## Antes de Começar
 
-Se um aluno tirou 5, 7, 7, 8 e 10, a soma é 37 e a quantidade é 5, então a média é 37 ÷ 5 = 7,4. A média significa "quanto cada um teria se tudo fosse repartido igualmente". Por isso ela não precisa ser um valor que exista no conjunto: uma média de 2,3 filhos por família é perfeitamente válida, mesmo que ninguém tenha 2,3 filhos.
+**O que o ENEM cobra aqui.** A prova quase nunca dá uma lista pronta e pede a média. Os temas que costumam aparecer são estes:
 
-Uma consequência útil dessa fórmula, muito cobrada: soma total = média × quantidade. Sabendo a média de uma turma de 20 alunos, você recupera a soma das notas multiplicando por 20, e isso resolve as questões do tipo "qual será a nova média se um valor for corrigido ou se entrar mais alguém no grupo".
+- **Calcular a média de uma tabela de frequência**, sem escrever os dados um a um.
+- **Usar pesos** (créditos, horas, quantidades) numa média ponderada.
+- **Achar o valor que falta** para a média chegar a uma meta.
+- **Achar a mediana** quando os dados vêm agrupados numa tabela.
+- **Interpretar**: o que a mediana e a moda dizem sobre um grupo.
 
-**Média ponderada.** Nem sempre todos os valores têm a mesma importância. Peso é um número que indica a importância relativa de cada valor. Na média ponderada, multiplica-se cada valor pelo seu peso, soma-se tudo e divide-se pela SOMA DOS PESOS (não pela quantidade de valores).
+**O que você precisa saber antes.**
 
-média ponderada = (soma de valor × peso) ÷ (soma dos pesos)
+- **Operações com decimais.** 1,2 × 4 = 4,8; 8,1 ÷ 2 = 4,05. Revise a aula de Frações se precisar.
+- **Desigualdades.** O sinal ≥ quer dizer "maior ou igual" ("no mínimo", "pelo menos"); ≤ quer dizer "menor ou igual" ("no máximo"); &lt; e > são "menor que" e "maior que", sem o igual. Uma desigualdade se resolve como uma equação: 3x + 4 ≥ 19 dá 3x ≥ 15 e x ≥ 5. Uma desigualdade dupla, como 5 ≤ x ≤ 8, quer dizer que x está entre 5 e 8, incluindo o 5 e o 8. Duas faixas vizinhas juntas formam uma faixa só: "5 ≤ x ≤ 8 ou 8 &lt; x ≤ 11" dá 5 ≤ x ≤ 11. Revise a aula de Equações de Primeiro e Segundo Grau.
+- **Ordem.** Os dados "em ordem" vão do menor para o maior. A 5ª posição quer dizer o quinto da fila.
 
-Exemplo: numa disciplina, a primeira prova tem peso 2 e a segunda, peso 3. O aluno tirou 6,0 e 8,0. A média é (6 × 2 + 8 × 3) ÷ (2 + 3) = (12 + 24) ÷ 5 = 36 ÷ 5 = 7,2. Repare que o resultado ficou mais próximo do 8, porque a prova de nota 8 pesava mais. Dividir por 2 em vez de 5 é o erro clássico aqui.
+## Aula Teórica
 
-**Mediana.** Mediana é o valor que ocupa a posição central depois que os dados são colocados em ordem crescente. Ordenar é obrigatório e é a etapa que mais gente pula.
+### 1. Média aritmética
 
-Se a quantidade de valores (chamada de n) for ímpar, a mediana é o valor que está exatamente no meio, na posição (n + 1) ÷ 2. Em 19, 21, 22, 24, 26 (n = 5), a posição central é (5 + 1) ÷ 2 = 3, então a mediana é 22.
+A **média aritmética** (ou só média) reparte o total igualmente entre todos. Some os valores e divida pela quantidade de valores.
 
-Se n for par, não existe um único valor no meio: existem dois. A mediana é a média aritmética desses dois valores centrais, que ocupam as posições n ÷ 2 e n ÷ 2 + 1. Em 180, 190, 195, 205, 210, 220, 230, 240 (n = 8), os centrais são o quarto e o quinto, ou seja, 205 e 210, e a mediana é (205 + 210) ÷ 2 = 207,5. Note que, nesse caso, a mediana pode não ser um valor da lista.
+**Fórmula: média aritmética**
 
-A mediana divide o conjunto ao meio: metade dos dados está abaixo dela e metade acima.
+**média = soma dos valores ÷ quantidade de valores**
 
-**Moda.** Moda é o valor que aparece com maior frequência, ou seja, o que mais se repete. Em 5, 7, 7, 8, 10, a moda é 7. Um conjunto pode ter uma moda (unimodal), duas ou mais (bimodal ou multimodal, quando há empate na maior frequência) ou nenhuma (amodal, quando todos os valores aparecem o mesmo número de vezes). A moda é a única das três que funciona com dados não numéricos: dá para falar na cor mais vendida, no meio de transporte mais usado, no candidato mais citado, mas não faz sentido calcular a média de cores.
+- **soma dos valores**: todos os valores somados.
+- **quantidade de valores**: quantos valores foram somados.
+- **Em palavras:** é quanto cada um teria se o total fosse dividido por igual.
+- **Quando usar:** notas, alturas, gastos, temperaturas, sempre que todos os valores contam do mesmo jeito.
 
-**O efeito dos valores extremos.** Valor extremo, ou outlier, é um dado muito distante dos demais. A média é sensível a ele porque todo valor entra na soma; a mediana é resistente porque só a posição importa.
+A mesma fórmula vale ao contrário: **soma = média × quantidade**. Isso permite achar o total de um grupo só sabendo a média, sem conhecer os valores um a um. "Média diária" é a média por dia; "média mensal", por mês.
 
-Veja os salários mensais de cinco funcionários de uma pequena empresa: R$ 1.500,00; R$ 1.600,00; R$ 1.700,00; R$ 1.800,00 e R$ 20.000,00 (o dono). A soma é R$ 26.600,00 e a média é 26.600 ÷ 5 = R$ 5.320,00. Só que nenhum funcionário ganha algo próximo disso: quatro dos cinco ganham menos de R$ 1.900,00. A mediana, por outro lado, é o terceiro valor da lista ordenada, R$ 1.700,00, que descreve muito melhor a realidade de quem trabalha ali.
+**Exemplo resolvido.** As notas de uma aluna em quatro trabalhos foram 5, 7, 8 e 6. Qual é a média? E se a média de 5 caixas é 14 kg, qual é a massa total delas?
 
-Conclusão que o ENEM cobra em texto, sem conta nenhuma: quando existem valores extremos, a mediana representa melhor o conjunto do que a média. Quando os dados são bem distribuídos, sem extremos, a média é uma boa representação. E quando a pergunta é sobre o mais comum, o mais vendido, o mais frequente, a resposta é a moda.
+1. Média das notas: (5 + 7 + 8 + 6) ÷ 4 = 26 ÷ 4 = 6,5.
+2. Total das caixas: soma = média × quantidade = 14 × 5 = 70 kg.
+3. Resposta: média 6,5; total de 70 kg.
 
-**Calcular a partir de uma tabela de frequência.** Frequência é o número de vezes que cada valor aparece. Em vez de listar 20 dados, a tabela informa cada valor e quantas vezes ele ocorreu. Considere o número de gols marcados por um time em 20 jogos: 0 gol em 5 jogos, 1 gol em 8 jogos, 2 gols em 4 jogos e 3 gols em 3 jogos.
+**Erro comum.** Dividir pela quantidade errada, por exemplo esquecer um valor igual a zero. Um zero também conta na quantidade.
 
-Para a média, é uma média ponderada em que os pesos são as frequências: (0 × 5 + 1 × 8 + 2 × 4 + 3 × 3) ÷ (5 + 8 + 4 + 3) = (0 + 8 + 8 + 9) ÷ 20 = 25 ÷ 20 = 1,25 gol por jogo.
+### 2. Média ponderada e tabela de frequência
 
-Para a moda, basta olhar a maior frequência: 8 é a maior, e corresponde ao valor 1 gol. A moda é 1.
+Na **média ponderada**, cada valor tem um **peso**. Multiplique cada valor pelo seu peso, some tudo e divida pela soma dos pesos. Numa **tabela de frequência**, o peso de cada valor é a sua frequência: o número de vezes que ele aparece.
 
-Para a mediana, use a frequência acumulada, que é a soma das frequências até cada linha. Acumulando: até 0 gol temos 5 jogos; até 1 gol temos 5 + 8 = 13 jogos; até 2 gols temos 17; até 3 gols temos 20. Como n = 20 é par, a mediana é a média das posições 10 e 11. As posições de 6 a 13 correspondem ao valor 1 gol, então tanto a décima quanto a décima primeira valem 1, e a mediana é (1 + 1) ÷ 2 = 1.
+**Fórmula: média ponderada**
 
-Cuidado importante: nesse tipo de tabela, a média NÃO é a soma dos valores da primeira coluna dividida pelo número de linhas. Ignorar as frequências é o erro mais comum do tema.
+**média ponderada = soma de (valor × peso) ÷ soma dos pesos**
 
-**Armadilhas típicas do INEP:** (1) calcular a mediana sem ordenar os dados, pegando o valor que está fisicamente no meio da lista dada; (2) esquecer que, com quantidade par de dados, a mediana é a média dos DOIS valores centrais; (3) na média ponderada, dividir pela quantidade de notas em vez de dividir pela soma dos pesos; (4) em tabela de frequência, tratar cada linha como um único dado e ignorar quantas vezes o valor ocorreu; (5) confundir a frequência (quantas vezes ocorreu) com o próprio valor da variável, a moda é o valor, não a frequência dele; (6) escolher a média em situações com valores extremos, quando o comando pede a medida que melhor representa o conjunto; (7) supor que a moda é sempre única, quando pode haver empate ou nenhuma moda.
+- **valor**: cada dado (uma nota, um número de gols).
+- **peso**: quanto aquele valor conta (créditos, horas, ou a frequência numa tabela).
+- **Em palavras:** um valor de peso 3 conta como se aparecesse 3 vezes.
+- **Quando usar:** notas com pesos diferentes, disciplinas com créditos, tabelas de frequência.
+
+**Exemplo resolvido.** A nota final de um curso tem prova com peso 3 e trabalho com peso 2. Uma aluna tirou 6 na prova e 9 no trabalho. Qual é a nota final?
+
+1. Valor × peso: 6 × 3 = 18 e 9 × 2 = 18.
+2. Soma dos pesos: 3 + 2 = 5.
+3. Média ponderada: (18 + 18) ÷ 5 = 36 ÷ 5 = 7,2.
+4. Resposta: 7,2.
+
+**Exemplo resolvido.** Um time anotou quantos gols fez em cada jogo de um torneio:
+
+| Gols no jogo | Número de jogos |
+|---|---|
+| 0 | 4 |
+| 1 | 7 |
+| 2 | 5 |
+| 3 | 4 |
+
+Qual é a média de gols por jogo?
+
+1. Total de jogos (soma das frequências): 4 + 7 + 5 + 4 = 20.
+2. Total de gols (valor × frequência): 0 × 4 + 1 × 7 + 2 × 5 + 3 × 4 = 0 + 7 + 10 + 12 = 29.
+3. Média: 29 ÷ 20 = 1,45.
+4. Resposta: 1,45 gol por jogo.
+
+Se a tabela tiver uma linha "Total", ela já é a soma das frequências. A tabela também pode vir "deitada", com os valores na primeira linha e as frequências na segunda; a conta é a mesma.
+
+**Erro comum.** Somar só a coluna dos valores (0 + 1 + 2 + 3) e dividir por 4, ou dividir o total pelo número de linhas da tabela. Divida pela soma das frequências.
+
+### 3. Quanto falta para atingir uma média
+
+Muitas questões dão a meta de média e pedem o valor que falta. Escreva a média com o valor desconhecido x, iguale à meta (ou use ≥ quando a meta é "no mínimo") e resolva. Um jeito rápido: a soma necessária é meta × quantidade (ou meta × soma dos pesos); o que falta é essa soma menos o que já se tem.
+
+**Fórmula: valor que falta**
+
+**valor que falta = meta × quantidade − soma que já se tem**
+
+- **meta**: a média que se quer atingir.
+- **quantidade**: o número de valores quando a lista estiver completa (na média ponderada, a soma dos pesos).
+- **soma que já se tem**: a soma dos valores já conhecidos (na ponderada, a soma de valor × peso).
+- **Em palavras:** a média só chega à meta se a soma total chegar a meta × quantidade.
+- **Quando usar:** nota mínima numa prova, vendas que faltam no mês, pontos que faltam num campeonato. Quando um valor tem peso diferente, divida o que falta pelo peso dele.
+
+**Exemplo resolvido.** Um vendedor quer média de pelo menos 41 vendas por mês em 6 meses. Nos 5 primeiros vendeu 35, 42, 38, 41 e 36. Quantas vendas precisa fazer no 6º mês?
+
+1. Soma necessária: 41 × 6 = 246.
+2. Soma que já tem: 35 + 42 + 38 + 41 + 36 = 192.
+3. Falta: 246 − 192 = 54.
+4. Resposta: pelo menos 54 vendas.
+
+**Exemplo resolvido.** Uma torrefação mistura três lotes de café: 2 kg de um café de R$ 6 o quilo, 3 kg de um de R$ 7 o quilo e 5 kg de um terceiro. Qual é o preço máximo do quilo do terceiro para que o preço médio da mistura seja no máximo R$ 6,50?
+
+1. O peso de cada preço é a quantidade em quilo. Soma dos pesos: 2 + 3 + 5 = 10. Soma máxima: 6,5 × 10 = 65.
+2. Soma que já tem: 6 × 2 + 7 × 3 = 12 + 21 = 33.
+3. Sobram 65 − 33 = 32 para o lote de 5 kg: 5x ≤ 32, então x ≤ 32 ÷ 5 = 6,40.
+4. Resposta: no máximo R$ 6,40 o quilo.
+
+Quando alguém **sai** de um grupo e outra pessoa **entra**, faça a conta com as somas: tire da soma o valor de quem saiu e acrescente o de quem entrou. A quantidade só muda se o número de pessoas mudar. Se o que falta vai ser dividido entre k valores novos, a média deles precisa ser pelo menos **falta ÷ k**.
+
+**Exemplo resolvido.** Um grupo de 10 amigos tem média de idade 30 anos. Saem 3 deles, de 22, 25 e 26 anos, e entram 3 pessoas novas. Qual deve ser, no mínimo, a média de idade das 3 novas para a média do grupo chegar a 32 anos?
+
+1. Soma antiga: 30 × 10 = 300. O grupo continua com 10 pessoas.
+2. Tirando quem saiu: 300 − (22 + 25 + 26) = 300 − 73 = 227.
+3. Soma necessária: 32 × 10 = 320. Falta 320 − 227 = 93 para as 3 novas.
+4. Média mínima das novas: 93 ÷ 3 = 31.
+5. Resposta: pelo menos 31 anos.
+
+**Erro comum.** Fazer a média das médias, ou esquecer de tirar da soma quem saiu do grupo. Trabalhe sempre com as somas.
+
+### 4. Mediana
+
+A **mediana** é o valor do meio quando os dados estão **em ordem**. Metade dos dados fica abaixo dela e metade acima.
+
+- Com uma **quantidade ímpar** n de dados, a mediana é o dado da posição (n + 1) ÷ 2. Com 7 dados, é o 4º.
+- Com uma **quantidade par**, há dois dados no meio, nas posições n ÷ 2 e n ÷ 2 + 1; a mediana é a média deles. Com 8 dados, é a média do 4º e do 5º.
+
+<figure class="figura">
+  <svg viewBox="0 0 480 150" role="img" aria-labelledby="fig-med-1-t fig-med-1-d">
+    <title id="fig-med-1-t">Mediana com quantidade ímpar e par</title>
+    <desc id="fig-med-1-d">Em cima, sete valores em ordem, 2, 3, 3, 5, 8, 9 e 12; o 4º, o 5, está destacado como mediana. Embaixo, oito valores em ordem, 1, 4, 4, 6, 10, 11, 13 e 15; o 4º e o 5º, 6 e 10, estão destacados, e a mediana é a média deles, 8.</desc>
+    <rect x="160" y="20" width="36" height="30" class="traco preenche" />
+    <text x="38" y="40" class="rotulo" text-anchor="middle">2</text>
+    <text x="78" y="40" class="rotulo" text-anchor="middle">3</text>
+    <text x="118" y="40" class="rotulo" text-anchor="middle">3</text>
+    <text x="178" y="40" class="rotulo" text-anchor="middle">5</text>
+    <text x="238" y="40" class="rotulo" text-anchor="middle">8</text>
+    <text x="278" y="40" class="rotulo" text-anchor="middle">9</text>
+    <text x="318" y="40" class="rotulo" text-anchor="middle">12</text>
+    <text x="345" y="40" class="rotulo-fraco">mediana = 5</text>
+    <rect x="140" y="90" width="80" height="30" class="traco preenche" />
+    <text x="38" y="110" class="rotulo" text-anchor="middle">1</text>
+    <text x="78" y="110" class="rotulo" text-anchor="middle">4</text>
+    <text x="118" y="110" class="rotulo" text-anchor="middle">4</text>
+    <text x="160" y="110" class="rotulo" text-anchor="middle">6</text>
+    <text x="200" y="110" class="rotulo" text-anchor="middle">10</text>
+    <text x="238" y="110" class="rotulo" text-anchor="middle">11</text>
+    <text x="278" y="110" class="rotulo" text-anchor="middle">13</text>
+    <text x="318" y="110" class="rotulo" text-anchor="middle">15</text>
+    <text x="345" y="110" class="rotulo-fraco">mediana = (6 + 10) ÷ 2 = 8</text>
+    <text x="178" y="68" class="rotulo-fraco" text-anchor="middle">4º de 7</text>
+    <text x="180" y="138" class="rotulo-fraco" text-anchor="middle">4º e 5º de 8</text>
+  </svg>
+</figure>
+
+**Fórmula: posição da mediana**
+
+**posição da mediana = (n + 1) ÷ 2**
+
+- **n**: a quantidade de dados.
+- **Em palavras:** se (n + 1) ÷ 2 der um número inteiro, a mediana é o dado dessa posição. Se der um número "e meio" (como 10,5), a mediana é a média dos dois dados vizinhos (o 10º e o 11º).
+- **Quando usar:** sempre que a pergunta pedir a mediana, depois de pôr os dados em ordem.
+
+Numa **tabela de frequência**, não escreva os dados um a um: vá somando as frequências, em ordem, para saber até que posição vai cada valor.
+
+**Exemplo resolvido.** As idades dos alunos de um curso estão na tabela. Qual é a mediana?
+
+| Idade (anos) | Número de alunos |
+|---|---|
+| 14 | 3 |
+| 15 | 5 |
+| 16 | 6 |
+| 17 | 2 |
+
+1. Total: 3 + 5 + 6 + 2 = 16 alunos, um número par. Posição (16 + 1) ÷ 2 = 8,5: a mediana é a média do 8º e do 9º.
+2. Posições acumuladas: 14 anos ocupa do 1º ao 3º; 15 anos, do 4º ao 8º (3 + 5 = 8); 16 anos, do 9º ao 14º.
+3. O 8º tem 15 anos e o 9º tem 16 anos. Mediana = (15 + 16) ÷ 2 = 15,5.
+4. Resposta: 15,5 anos.
+
+A mediana também **divide um grupo ao meio**. Com uma quantidade ímpar de pessoas em ordem, quem está exatamente no meio mede a mediana; há tantos abaixo dela quantos acima. Se dois grupos dividem uma turma e um deles tem uma pessoa a mais, o total é ímpar (menor + menor + 1). Então a pessoa da mediana fica no **grupo maior**.
+
+**Exemplo resolvido.** Numa corrida, 11 atletas terminaram com tempos todos diferentes, e a mediana dos tempos foi 52 s. Os 6 mais rápidos vão para a final. Um atleta que fez 52 s vai para a final? E um que fez 53 s?
+
+1. Com 11 atletas em ordem do mais rápido para o mais lento, a mediana é o 6º tempo: o atleta de 52 s é o 6º.
+2. Os 6 mais rápidos são do 1º ao 6º, então o de 52 s vai para a final.
+3. O de 53 s é mais lento que a mediana: está do 7º em diante e fica de fora.
+4. Resposta: o de 52 s vai; o de 53 s não vai.
+
+**Erro comum.** Achar a mediana sem pôr os dados em ordem, ou pegar o valor do meio da **tabela** (a linha do meio) em vez do dado do meio. Conte as posições pelas frequências.
+
+### 5. Moda
+
+A **moda** é o valor que mais se repete. Numa tabela de frequência, é o valor da linha com a **maior frequência**. Um conjunto pode ter duas modas ou nenhuma (se nenhum valor se repete).
+
+**Exemplo resolvido.** Na tabela de gols da seção 2, qual é a moda?
+
+1. A maior frequência é 7 jogos.
+2. Ela está na linha de 1 gol.
+3. Resposta: a moda é 1 gol por jogo (e não 7).
+
+**Erro comum.** Responder a frequência (quantas vezes) em vez do valor. A moda é sempre um dos **valores** da tabela.
+
+A média é puxada por valores muito altos ou muito baixos; a mediana e a moda quase não mudam com eles. Por isso, cada medida responde a uma pergunta diferente: a média reparte o total, a mediana divide o grupo ao meio e a moda mostra o mais comum.
+
+### Armadilhas típicas do INEP
+
+1. **Dividir pelo número de linhas** da tabela em vez da soma das frequências.
+2. **Responder a frequência** como se fosse a moda.
+3. **Esquecer de ordenar** os dados antes da mediana.
+4. **Com quantidade par**, pegar só um dado do meio em vez da média dos dois.
+5. **Fazer a média das médias** ou esquecer de tirar da soma quem saiu do grupo.
+6. **Usar a média ou a moda** quando a pergunta depende da mediana.
 
 ## Tópicos-Chave para Revisão
 
 <div className="topico">
 
-Média é a soma dos valores dividida pela quantidade deles, mediana é o valor do meio depois de ordenar os dados, e moda é o valor que mais se repete. Valores extremos puxam a média, mas quase não afetam a mediana.
+#### 1. Média
 
-Da fórmula da média sai a relação soma total = média × quantidade, que resolve todas as questões em que a média muda porque um valor foi corrigido, retirado ou acrescentado ao conjunto. A média também não precisa ser um valor existente no conjunto, como uma média de 2,3 filhos por família.
+**média = soma dos valores ÷ quantidade de valores**; ao contrário, **soma = média × quantidade**.
 
-Média ponderada usa pesos que indicam a importância de cada valor: multiplique cada valor pelo seu peso, some e divida pela soma dos pesos, nunca pela quantidade de valores. Com notas 6,0 de peso 2 e 8,0 de peso 3, a média é (12 + 24) ÷ 5 = 7,2.
+#### 2. Média ponderada
 
-Mediana exige ordenar os dados antes de qualquer coisa. Com quantidade n ímpar, é o valor da posição (n + 1) ÷ 2; com n par, é a média aritmética dos dois valores centrais, das posições n ÷ 2 e n ÷ 2 + 1, e nesse caso pode não pertencer ao conjunto. Metade dos dados fica abaixo e metade acima da mediana.
+**média ponderada = soma de (valor × peso) ÷ soma dos pesos**. Na tabela, o **peso** é a frequência.
 
-Moda é o valor de maior frequência e é a única medida aplicável a dados não numéricos, como cor preferida ou meio de transporte. Um conjunto pode ser unimodal, bimodal ou multimodal (quando há empate na maior frequência) ou amodal (quando não há repetição predominante).
+#### 3. Valor que falta
 
-Valores extremos, ou outliers, puxam a média na sua direção porque entram na soma, enquanto a mediana é resistente porque depende apenas da posição: em salários de 1.500, 1.600, 1.700, 1.800 e 20.000, a média é 5.320 e a mediana é 1.700, e é a mediana que descreve a realidade da maioria.
+**valor que falta = meta × quantidade − soma que já se tem**. Quando alguém sai e outro entra, ajuste a **soma**; se o que falta for dividido entre k valores novos, a média deles é **falta ÷ k**.
 
-A escolha da medida depende da pergunta: média quando os dados são equilibrados e se quer repartir igualmente, mediana quando há valores extremos ou distribuição desigual, moda quando interessa o mais frequente, o mais vendido ou o mais escolhido.
+#### 4. Mediana
 
-Em tabela de frequência, a média é ponderada pelas frequências, somando valor × frequência e dividindo pela soma das frequências; a moda é o valor associado à maior frequência; e a mediana é localizada pela frequência acumulada, procurando em qual valor caem as posições centrais.
+**posição da mediana = (n + 1) ÷ 2**, com os dados **em ordem**; quantidade par: média dos dois do meio.
+
+#### 5. Moda
+
+A **moda** é o **valor** mais frequente, nunca a frequência.
 
 </div>
 
-## Teste de Fogo
+## Questões do ENEM
 
-*Questões sem gabarito: resolva primeiro, depois confira com o professor ou com a IA.*
+*Marque uma alternativa em cada questão e confira tudo de uma vez no botão do fim.*
 
-**Questão 1 (estilo ENEM: autoral)**
-Uma família registrou o consumo mensal de energia elétrica, em quilowatt-hora, ao longo de oito meses consecutivos, obtendo os seguintes valores, na ordem em que ocorreram: 180, 210, 195, 240, 205, 230, 190 e 220.
+**Questão 1**
 
-A mediana desses consumos, em quilowatt-hora, é
+*ENEM 2022 · 2ª aplicação · 2º dia · caderno azul · questão 167*
 
-a) 195,0
-b) 205,0
-c) 207,5
-d) 208,75
-e) 210,0
+Descargas atmosféricas, objetos estranhos e quedas de árvores, entre outros motivos, podem gerar interrupções na rede elétrica. Em certo município, um levantamento realizado pela companhia de fornecimento de energia relacionou, durante 30 dias, o número de interrupções na rede elétrica com o número de dias em que elas ocorreram.
 
-**Questão 2 (estilo ENEM: autoral)**
-Em uma disciplina de um curso técnico, a nota final é a média ponderada de três avaliações, com pesos 2, 3 e 5, respectivamente. Um estudante obteve 6,0 na primeira avaliação e 7,0 na segunda, e precisa que sua nota final seja exatamente 7,0 para ser aprovado.
+<figure class="figura">
 
-A nota que esse estudante precisa obter na terceira avaliação é
+| Número de interrupções | Número de dias |
+|---|---|
+| 0 | 5 |
+| 1 | 6 |
+| 2 | 6 |
+| 3 | 10 |
+| 4 | 3 |
+| Total | 30 |
 
-a) 6,5
-b) 7,0
-c) 7,4
-d) 8,0
-e) 8,5
+</figure>
 
-**Questão 3 (estilo ENEM: autoral)**
-Um técnico registrou o número de gols marcados por um time de futebol em cada um dos 20 jogos de um campeonato, conforme a tabela.
+A moda e a média diária do número de interrupções são, respectivamente, iguais a
 
-Nenhum gol: 5 jogos
-Um gol: 8 jogos
-Dois gols: 4 jogos
-Três gols: 3 jogos
+A) 3 e 2,0.\
+B) 3 e 2,4.\
+C) 3 e 6,0.\
+D) 10 e 2,0.\
+E) 10 e 2,4.
 
-O número médio de gols marcados por esse time, por jogo, nesse campeonato, foi de
+**Questão 2**
 
-a) 1,00
-b) 1,25
-c) 1,50
-d) 2,00
-e) 5,00
+*ENEM 2017 · 2º dia · caderno azul · questão 151*
 
-**Questão 4 (estilo ENEM: autoral)**
-Uma pequena empresa tem cinco funcionários, cujos salários mensais, em reais, são 1.500,00; 1.600,00; 1.700,00; 1.800,00 e 20.000,00, sendo este último o salário do proprietário. Ao divulgar dados sobre remuneração, um representante da empresa afirmou que "o salário médio dos funcionários é de R$ 5.320,00".
+A avaliação de rendimento de alunos de um curso universitário baseia-se na média ponderada das notas obtidas nas disciplinas pelos respectivos números de créditos, como mostra o quadro:
 
-Um analista contestou a afirmação, argumentando que ela não descreve a realidade da maioria dos trabalhadores da empresa. A medida estatística que representaria melhor a remuneração típica desse grupo, bem como seu valor, é
+<figure class="figura">
 
-a) a média, igual a R$ 1.700,00.
-b) a mediana, igual a R$ 1.700,00.
-c) a mediana, igual a R$ 5.320,00.
-d) a moda, igual a R$ 20.000,00.
-e) a moda, igual a R$ 1.500,00.
+| Avaliação | Média de notas (M) |
+|---|---|
+| Excelente | 9 &lt; M ≤ 10 |
+| Bom | 7 ≤ M ≤ 9 |
+| Regular | 5 ≤ M &lt; 7 |
+| Ruim | 3 ≤ M &lt; 5 |
+| Péssimo | M &lt; 3 |
 
-**Questão 5 (estilo ENEM: autoral)**
-Em uma turma de 20 alunos, a média das notas de uma prova foi 6,0. Ao revisar a correção, a professora percebeu que a nota de um dos alunos havia sido registrada como 4,0, quando o valor correto era 9,0. Todas as demais notas estavam corretas.
+</figure>
 
-Após a correção do registro, a nova média das notas dessa turma passou a ser
+Quanto melhor a avaliação de um aluno em determinado período letivo, maior sua prioridade na escolha de disciplinas para o período seguinte.
 
-a) 6,05
-b) 6,25
-c) 6,50
-d) 7,00
-e) 8,50
+Determinado aluno sabe que se obtiver avaliação "Bom" ou "Excelente" conseguirá matrícula nas disciplinas que deseja. Ele já realizou as provas de 4 das 5 disciplinas em que está matriculado, mas ainda não realizou a prova da disciplina I, conforme o quadro.
+
+<figure class="figura">
+
+| Disciplinas | Notas | Número de créditos |
+|---|---|---|
+| I |  | 12 |
+| II | 8,00 | 4 |
+| III | 6,00 | 8 |
+| IV | 5,00 | 8 |
+| V | 7,50 | 10 |
+
+</figure>
+
+Para que atinja seu objetivo, a nota mínima que ele deve conseguir na disciplina I é
+
+A) 7,00.\
+B) 7,38.\
+C) 7,50.\
+D) 8,25.\
+E) 9,00.
+
+**Questão 3**
+
+*ENEM 2014 · 2ª aplicação · 2º dia · caderno cinza · questão 164*
+
+Os salários, em reais, dos funcionários de uma empresa são distribuídos conforme o quadro:
+
+<figure class="figura">
+
+| Valor do salário (R$) | 622,00 | 1 244,00 | 3 110,00 | 6 220,00 |
+|---|---|---|---|---|
+| Número de funcionários | 24 | 1 | 20 | 3 |
+
+</figure>
+
+A mediana dos valores dos salários dessa empresa é, em reais,
+
+A) 622,00.\
+B) 933,00.\
+C) 1 244,00.\
+D) 2 021,50.\
+E) 2 799,00.
+
+**Questão 4**
+
+*ENEM 2020 · 2º dia · caderno azul · questão 165*
+
+O técnico de um time de basquete pretende aumentar a estatura média de sua equipe de 1,93 m para, no mínimo, 1,99 m. Para tanto, dentre os 15 jogadores que fazem parte de sua equipe, irá substituir os quatro mais baixos, de estaturas: 1,78 m, 1,82 m, 1,84 m e 1,86 m. Para isso, o técnico contratou um novo jogador de 2,02 m. Os outros três jogadores que ele ainda precisa contratar devem satisfazer à sua necessidade de aumentar a média das estaturas da equipe. Ele fixará a média das estaturas para os três jogadores que ainda precisa contratar dentro do critério inicialmente estabelecido.
+
+Qual deverá ser a média mínima das estaturas, em metro, que ele deverá fixar para o grupo de três novos jogadores que ainda irá contratar?
+
+A) 1,96\
+B) 1,98\
+C) 2,05\
+D) 2,06\
+E) 2,08
+
+**Questão 5**
+
+*ENEM 2019 · 2º dia · caderno azul · questão 167*
+
+Os alunos de uma turma escolar foram divididos em dois grupos. Um grupo jogaria basquete, enquanto o outro jogaria futebol. Sabe-se que o grupo de basquete é formado pelos alunos mais altos da classe e tem uma pessoa a mais do que o grupo de futebol. A tabela seguinte apresenta informações sobre as alturas dos alunos da turma.
+
+<figure class="figura">
+
+| Média | Mediana | Moda |
+|---|---|---|
+| 1,65 | 1,67 | 1,70 |
+
+</figure>
+
+Os alunos P, J, F e M medem, respectivamente, 1,65 m, 1,66 m, 1,67 m e 1,68 m, e as suas alturas não são iguais a de nenhum outro colega da sala.
+
+Segundo essas informações, argumenta-se que os alunos P, J, F e M jogaram, respectivamente,
+
+A) basquete, basquete, basquete, basquete.\
+B) futebol, basquete, basquete, basquete.\
+C) futebol, futebol, basquete, basquete.\
+D) futebol, futebol, futebol, basquete.\
+E) futebol, futebol, futebol, futebol.
