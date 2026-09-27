@@ -188,5 +188,25 @@
       "2C × 0,0365 + C × 0,0365²"
     ],
     "figuras": []
+  },
+  "2017-regular-D2-azul-Q136": {
+    "nota": "frações empilhadas entre colchetes; conferido na imagem da página em 27/09/2026",
+    "alternativas": [
+      "P[1 + 1/(1 + i/100) + 1/(1 + i/100)²]",
+      "P[1 + 1/(1 + i/100) + 1/(1 + 2i/100)]",
+      "P[1 + 1/(1 + i/100)² + 1/(1 + i/100)²]",
+      "P[1/(1 + i/100) + 1/(1 + 2i/100) + 1/(1 + 3i/100)]",
+      "P[1/(1 + i/100) + 1/(1 + i/100)² + 1/(1 + i/100)³]"
+    ]
+  },
+  "2018-regular-D2-azul-Q137": {
+    "nota": "ordinais e ln(4/3) desmontados; conferido na imagem da página em 27/09/2026",
+    "alternativas": [
+      "56ª",
+      "55ª",
+      "52ª",
+      "51ª",
+      "45ª"
+    ]
   }
 }
