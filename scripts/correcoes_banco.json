@@ -312,5 +312,17 @@
       "90° e n2 > n1.",
       "90° e n2 < n1."
     ]
+  },
+  "2021-digital-D2-azul-Q128": {
+    "nota": "a \"figura\" detectada é a faixa de cabeçalho da página digital; a questão não tem figura; conferido na imagem da página em 27/09/2026",
+    "figuras": []
+  },
+  "2022-ppl-D2-azul-Q111": {
+    "nota": "resistividade em notação científica embaralhada no texto; conferido na imagem da página em 27/09/2026",
+    "texto": "Em virtude do frio intenso, um casal adquire uma torneira elétrica para instalar na cozinha. Um eletricista é contratado para fazer um novo circuito elétrico para a cozinha, cuja corrente será de 30 A, com a finalidade de alimentar os terminais da torneira elétrica. Ele utilizou um par de fios de cobre, de área da seção reta igual a 4 mm² e de 28 m de comprimento total, desde o quadro de distribuição (onde ficam os disjuntores) até a cozinha. A tensão medida na saída do quadro de distribuição é 220 V. Considere que a resistividade do fio de cobre é de 1,7 × 10⁻⁸ Ω·m. Considerando a resistência da fiação, a tensão aplicada aos terminais da torneira é mais próxima de"
+  },
+  "2022-digital-D2-azul-Q116": {
+    "nota": "unidades em fração embaralhadas no texto; tabela da vazão conferida; conferido na imagem da página em 27/09/2026",
+    "texto": "O manual de uma ducha elétrica informa que seus três níveis de aquecimento (morno, quente e superquente) apresentam as seguintes variações de temperatura da água em função de sua vazão: Utiliza-se um disjuntor para proteger o circuito dessa ducha contra sobrecargas elétricas em qualquer nível de aquecimento. Por padrão, o disjuntor é especificado pela corrente nominal igual ao múltiplo de 5 A imediatamente superior à corrente máxima do circuito. Considere que a ducha deve ser ligada em 220 V e que toda a energia é dissipada através da resistência do chuveiro e convertida em energia térmica transferida para a água, que apresenta calor específico de 4,2 J/(g °C) e densidade de 1 000 g/L. O disjuntor adequado para a proteção dessa ducha é especificado por:"
   }
 }
