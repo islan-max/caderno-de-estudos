@@ -92,5 +92,15 @@
   "2017-regular-D2-azul-Q138": {
     "nota": "fórmula I(x) = k · sen(x) desmontada; conferido na imagem da página em 26/09/2026",
     "texto": "Raios de luz solar estão atingindo a superfície de um lago formando um ângulo x com a sua superfície, conforme indica a figura. Em determinadas condições, pode-se supor que a intensidade luminosa desses raios, na superfície do lago, seja dada aproximadamente por I(x) = k · sen(x), sendo k uma constante, e supondo-se que x está entre 0° e 90°. Quando x = 30°, a intensidade luminosa se reduz a qual percentual de seu valor máximo?"
+  },
+  "2017-regular-D2-azul-Q165": {
+    "nota": "frações empilhadas nas alternativas; conferido na imagem da página em 27/09/2026",
+    "alternativas": [
+      "0",
+      "1/2",
+      "1/5",
+      "2/15",
+      "8/35"
+    ]
   }
 }
