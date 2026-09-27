@@ -102,5 +102,29 @@
       "2/15",
       "8/35"
     ]
+  },
+  "2014-ppl-D2-cinza-Q136": {
+    "nota": "letra da alternativa seguinte colada na E; conferido na imagem da página em 27/09/2026",
+    "alternativas": [
+      "I.",
+      "II.",
+      "III.",
+      "IV.",
+      "V."
+    ]
+  },
+  "2023-ppl-D2-azul-Q149": {
+    "nota": "rodapé da página colado na alternativa E; conferido na imagem da página em 27/09/2026",
+    "alternativas": [
+      "I.",
+      "II.",
+      "III.",
+      "IV.",
+      "V."
+    ]
+  },
+  "2021-digital-D2-azul-Q146": {
+    "nota": "as 'figuras' eram a fórmula CV = s/X̄ e as alternativas em imagem, já em texto; conferido na imagem da página em 27/09/2026",
+    "figuras": []
   }
 }
