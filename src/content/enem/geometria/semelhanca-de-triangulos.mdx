@@ -3,135 +3,396 @@ title: "Semelhança de Triângulos"
 subject: "Geometria"
 order: 2
 relevance: >
-  Semelhança de triângulos aparece quase todo ano no ENEM, geralmente disfarçada em contextos do
-  cotidiano: sombra de poste, altura de prédio, rampa de hospital, escoras de postes, distância de
-  rio. A banca nunca pergunta "esses triângulos são semelhantes?" diretamente: ela monta uma situação
-  real e espera que você enxergue os dois triângulos escondidos na figura. É um dos temas com maior
-  retorno de acerto por tempo de estudo, porque o raciocínio se repete quase sempre igual.
+  Duas figuras são semelhantes quando uma é a ampliação ou a redução exata da outra: mesmos ângulos,
+  medidas proporcionais. É a ideia por trás da escala de um desenho, da sombra de um objeto, de uma
+  rampa e de uma foto ampliada. O ENEM (Exame Nacional do Ensino Médio) costuma esconder dois triângulos
+  semelhantes dentro de uma situação (uma rampa, um túnel, uma luz projetando sombra) e pedir uma medida
+  que falta ou a relação entre áreas. Quem reconhece os triângulos e monta a proporção certa resolve;
+  quem esquece que a área muda com o quadrado da razão cai na alternativa errada.
 quickSummary: >
-  Semelhança de triângulos significa mesma forma, tamanhos proporcionais: ângulos correspondentes
-  iguais e lados correspondentes numa razão constante k. AB/DE = AC/DF = BC/EF = k é a proporção
-  mestra; k = 1 é o caso particular de congruência.
+  Triângulos com os mesmos ângulos são semelhantes, e seus lados correspondentes são proporcionais: a
+  razão entre eles é sempre o mesmo número k. Uma reta paralela a um lado corta o triângulo num
+  triângulo menor semelhante ao original. Se as medidas se multiplicam por k, as áreas se multiplicam
+  por k². Na escala 1 : k, o real é k vezes o desenho.
+resources:
+  conteudoComplementar:
+    conteudo: "Teorema de Pitágoras"
+    comoAjuda: "A próxima aula trabalha outra relação entre os lados de um triângulo, a do triângulo retângulo, que junto com a semelhança resolve quase todo problema de medida indireta."
+gabarito:
+  - correta: 3
+    porque: >
+      A rampa e o trecho já percorrido formam dois triângulos retângulos com o mesmo ângulo de inclinação,
+      logo semelhantes: altura ÷ caminho é igual nos dois. Então 0,8 ÷ 3,2 = 2,2 ÷ x, e x = 3,2 × 2,2 ÷ 0,8
+      = 8,8 m de rampa. Já foram percorridos 3,2 m; faltam 8,8 − 3,2 = 5,6 m.
+      Revisar: Aula Teórica › 2. Triângulos com um ângulo em comum
+  - correta: 4
+    porque: >
+      A obra é uma ampliação do desenho: 20 cm viraram 30 m = 3 000 cm. A razão é 3 000 ÷ 20 = 150, ou
+      seja, cada 1 cm do desenho vale 150 cm na obra: escala 1 : 150.
+      Revisar: Aula Teórica › 1. Figuras semelhantes, razão de semelhança e escala
+  - correta: 4
+    porque: >
+      A altura do triângulo equilátero de lado 6 é 6√3 ÷ 2 = 3√3. O caminhão de 3 m, no centro, toca os
+      lados inclinados; acima do teto dele sobra um triângulo equilátero menor, de base 3, semelhante ao
+      túnel com razão 3 ÷ 6 = 1/2, cuja altura é 3√3 ÷ 2. A altura do caminhão é 3√3 − 3√3 ÷ 2 = 3√3 ÷ 2.
+      Revisar: Aula Teórica › 3. Paralela à base e base média
+  - correta: 1
+    porque: >
+      Os segmentos que unem pontos médios medem metade do lado paralelo a eles, então DEF é equilátero de
+      lado 1/2, semelhante a ABC com razão 1/2. A área de ABC é 1² × √3 ÷ 4 = √3/4; a de DEF é (1/2)² = 1/4
+      disso: √3/4 × 1/4 = √3/16.
+      Revisar: Aula Teórica › 4. Áreas na semelhança
+  - correta: 4
+    porque: >
+      Seja d a distância do ponto luminoso à parede. A luz, o disco e a sombra formam triângulos
+      semelhantes: raio da sombra = raio do disco × d ÷ (distância do disco à luz). Com o disco a 1 m, o
+      raio da sombra é proporcional a d ÷ 1; com o disco a 1 + 2 = 3 m, a d ÷ 3. Os raios estão na razão 3,
+      e as áreas na razão 3² = 9.
+      Revisar: Aula Teórica › 5. Ponto luminoso e sombra
 ---
 
-## Aula Teórica Completa
+<Accordion titulo="Palavras e siglas desta aula" dica="Consulte quando encontrar um termo novo" icone="spell-check">
 
-**A ideia central, sem matemática ainda:** imagine que você tira uma foto de um objeto e depois dá zoom nela no celular. A imagem ampliada tem exatamente a mesma forma da original: os ângulos não mudam, só o tamanho. Dois triângulos são **semelhantes** quando um é essa "foto ampliada ou reduzida" do outro.
+- **ENEM** (Exame Nacional do Ensino Médio): a prova nacional que dá acesso a faculdades e bolsas.
+- **INEP** (Instituto Nacional de Estudos e Pesquisas Educacionais Anísio Teixeira): o órgão do governo que faz o ENEM.
+- **Segmento**: um pedaço de reta entre dois pontos; o segmento AB vai de A até B.
+- **Respectivamente**: na mesma ordem em que as coisas foram citadas; "D, E e F dos lados BC, AC e AB, respectivamente" quer dizer que D está em BC, E em AC e F em AB.
+- **Triângulo equilátero**: triângulo com os três lados iguais.
+- **Viário**: ligado a vias de trânsito, como ruas e estradas.
+- **Tangenciar**: encostar em algo sem atravessar, tocando num ponto só.
+- **Paralelepípedo reto**: um bloco em forma de caixa, com faces retangulares.
+- **Esboço**: um desenho rápido, feito para planejar o trabalho final.
+- **√**: raiz quadrada; √3 é o número que multiplicado por ele mesmo dá 3, cerca de 1,73.
 
-**Definição formal:** dois triângulos são semelhantes quando:
-1. Os três ângulos correspondentes são iguais (congruentes), **e**
-2. Os três lados correspondentes são proporcionais (guardam a mesma razão entre si).
+</Accordion>
 
-Na prática, se o triângulo ABC é semelhante ao triângulo DEF (escrevemos ABC ~ DEF), então:
+## Antes de Começar
 
-AB/DE = AC/DF = BC/EF = k
+**O que o ENEM cobra aqui.** A prova quase nunca diz "os triângulos são semelhantes": ela descreve uma situação e você precisa enxergar os dois triângulos. Os temas que costumam aparecer são estes:
 
-Aqui, **k** é a **razão de semelhança**: o número que multiplicado pelos lados de um triângulo dá os lados do outro. Se k = 2, o segundo triângulo tem lados duas vezes maiores. Se k = 1, os triângulos são **congruentes** (idênticos em tamanho e forma): congruência é apenas um caso particular de semelhança.
+- **Montar a proporção** entre lados correspondentes de triângulos com o mesmo ângulo.
+- **Usar a escala** de um desenho ampliado ou reduzido.
+- **Achar o triângulo menor** que uma paralela ou os pontos médios formam dentro de um triângulo.
+- **Levar a razão ao quadrado** quando a pergunta é sobre área.
+- **Enxergar a semelhança numa sombra** projetada por uma luz.
 
-**O detalhe que a maioria erra:** você não precisa provar as duas condições (ângulos iguais E lados proporcionais) separadamente. Existem "atalhos" chamados **casos de semelhança**, e provar UM deles já garante os dois automaticamente:
+**O que você precisa saber antes.**
 
-**Caso AA (Ângulo-Ângulo):** se dois ângulos de um triângulo são iguais a dois ângulos de outro, os triângulos já são semelhantes (o terceiro ângulo é consequência, porque a soma dos ângulos internos de qualquer triângulo é sempre 180°). Este é o caso mais usado no ENEM, porque em situações de sombra, rampas e prédios, o ângulo reto (90°) e o ângulo de inclinação do sol ou da rampa se repetem nos dois triângulos.
+- **Razão e proporção.** Se a/b = c/d, então a × d = b × c (multiplicar em cruz). Uma fração como 1/2 é o mesmo que 1 ÷ 2. Revise a aula de Razão e Proporção se precisar.
+- **Triângulo equilátero.** Com lado L, a altura é L√3 ÷ 2 e a área é L²√3 ÷ 4; o símbolo √ é a raiz quadrada, e √3 é o número que multiplicado por ele mesmo dá 3, cerca de 1,73. Revise a aula de Geometria Plana se precisar.
+- **Unidades.** 1 m = 100 cm; converta tudo para a mesma unidade antes de dividir.
 
-**Caso LAL (Lado-Ângulo-Lado):** se dois lados de um triângulo são proporcionais a dois lados de outro, e o ângulo formado entre esses dois lados é igual nos dois, os triângulos são semelhantes.
+## Aula Teórica
 
-**Caso LLL (Lado-Lado-Lado):** se os três lados de um triângulo são proporcionais aos três lados de outro, na mesma ordem, os triângulos são semelhantes.
+### 1. Figuras semelhantes, razão de semelhança e escala
 
-**Como identificar os dois triângulos escondidos num problema real:** a maioria das questões do ENEM usa uma destas duas configurações:
+Duas figuras são **semelhantes** quando uma é a ampliação ou a redução exata da outra. Os ângulos são iguais, e cada medida de uma é a medida correspondente da outra multiplicada pelo mesmo número k, a **razão de semelhança**.
 
-*Configuração 1: Triângulos "empilhados" (mesmo vértice, lados paralelos):* uma pessoa e um poste projetam sombras ao mesmo tempo. Os raios de sol são paralelos, então o ângulo que o raio faz com o chão é igual nos dois casos. Junto com o ângulo reto (poste/pessoa perpendicular ao chão), você tem o caso AA. A proporção fica: altura da pessoa / sombra da pessoa = altura do poste / sombra do poste.
+<figure class="figura">
+  <svg viewBox="0 0 460 170" role="img" aria-labelledby="fig-sem-1-t fig-sem-1-d">
+    <title id="fig-sem-1-t">Dois triângulos semelhantes</title>
+    <desc id="fig-sem-1-d">Um triângulo pequeno com lados 4, 6 e 8 e um triângulo maior com o mesmo formato e lados 7; 10,5 e 14. Cada lado do maior é 1,75 vez o lado correspondente do menor.</desc>
+    <path d="M 30 140 L 150 140 L 108.75 96.4 Z" class="traco" />
+    <text x="90" y="158" class="rotulo" text-anchor="middle">8</text>
+    <text x="62" y="112" class="rotulo" text-anchor="end">6</text>
+    <text x="136" y="112" class="rotulo">4</text>
+    <path d="M 220 140 L 430 140 L 357.8 63.7 Z" class="traco" />
+    <text x="325" y="158" class="rotulo" text-anchor="middle">14</text>
+    <text x="282" y="96" class="rotulo" text-anchor="end">10,5</text>
+    <text x="400" y="96" class="rotulo">7</text>
+    <text x="230" y="30" class="rotulo-fraco" text-anchor="middle">cada lado × 1,75</text>
+  </svg>
+</figure>
 
-*Configuração 2: Triângulos "em X" (retas que se cruzam):* dois segmentos paralelos cortados por duas retas que se cruzam num ponto formam dois triângulos semelhantes "de cabeça para baixo" um em relação ao outro. Os ângulos opostos pelo vértice são iguais, e como os segmentos são paralelos, os ângulos alternos também são iguais: de novo, caso AA.
+**Fórmula: lados de triângulos semelhantes**
 
-**Armadilha clássica do INEP:** trocar a ordem da correspondência dos lados. Se ABC ~ DEF, o lado AB corresponde a DE (primeira letra com primeira, segunda com segunda), não a qualquer lado. Montar a proporção errada (por exemplo, AB/EF em vez de AB/DE) é o erro número um nessas questões, e como o resultado errado geralmente ainda é um número "bonito", você não percebe que errou. Sempre desenhe as letras correspondentes uma embaixo da outra antes de montar a fração.
+**a' ÷ a = b' ÷ b = c' ÷ c = k**
+
+- **a, b, c**: os lados de um triângulo.
+- **a', b', c'**: os lados correspondentes (os que ficam na frente dos mesmos ângulos) do outro.
+- **k**: a razão de semelhança, a mesma para todos os pares.
+- **Em palavras:** dividindo cada lado do segundo triângulo pelo lado correspondente do primeiro, o resultado é sempre o mesmo.
+- **Quando usar:** quando dois triângulos têm os mesmos ângulos; basta ter dois ângulos iguais para garantir o terceiro.
+
+**Exemplo resolvido.** Um triângulo tem lados 4, 6 e 8 cm. Outro, semelhante, tem o menor lado medindo 7 cm. Quanto medem os outros dois lados?
+
+1. Lados correspondentes: o menor com o menor. k = 7 ÷ 4 = 1,75.
+2. Segundo lado: 6 × 1,75 = 10,5 cm.
+3. Maior lado: 8 × 1,75 = 14 cm.
+4. Resposta: 10,5 cm e 14 cm.
+
+**Erro comum.** Somar a diferença (7 − 4 = 3) a todos os lados, chegando a 9 e 11. Na semelhança, as medidas se **multiplicam** pelo mesmo número; não se soma nada.
+
+A **escala** de um desenho, mapa ou planta é a razão de semelhança entre o desenho e o objeto real.
+
+**Fórmula: escala**
+
+**escala 1 : k, com k = medida real ÷ medida no desenho**
+
+- **medida real** e **medida no desenho**: a mesma medida nas duas versões, **na mesma unidade**.
+- **k**: quantas vezes o real é maior que o desenho.
+- **Em palavras:** converta as duas medidas para a mesma unidade e divida a real pela do desenho.
+- **Quando usar:** plantas, mapas, maquetes e qualquer ampliação ou redução com as mesmas proporções.
+
+**Exemplo resolvido.** Numa planta, uma parede de 5 m aparece com 2 cm. Qual é a escala da planta?
+
+1. Mesma unidade: 5 m = 500 cm.
+2. Dividir: 500 ÷ 2 = 250.
+3. Resposta: escala 1 : 250.
+
+**Erro comum.** Dividir sem converter (5 ÷ 2 = 2,5) e responder 1 : 2,5. Com unidades diferentes, a divisão não diz quantas vezes o real é maior.
+
+### 2. Triângulos com um ângulo em comum
+
+Quando um triângulo pequeno está "dentro" de um grande, com um ângulo em comum e um lado paralelo (retas paralelas nunca se encontram, porque ficam sempre à mesma distância), os dois são semelhantes. É o caso de uma escada apoiada ou de uma sombra.
+
+<figure class="figura">
+  <svg viewBox="0 0 320 170" role="img" aria-labelledby="fig-sem-2-t fig-sem-2-d">
+    <title id="fig-sem-2-t">Triângulo pequeno dentro de um triângulo grande</title>
+    <desc id="fig-sem-2-d">Uma escada de comprimento x apoiada no alto de um muro de 4 m. Um degrau a 1,6 m do pé da escada, medido ao longo dela, fica a 1 m do chão. As linhas verticais do degrau e do topo até o chão formam um triângulo pequeno e um grande, com o mesmo ângulo no pé da escada.</desc>
+    <line x1="60" y1="150" x2="290" y2="150" class="traco-fino" />
+    <line x1="100" y1="150" x2="250" y2="30" class="traco" />
+    <line x1="137.5" y1="120" x2="137.5" y2="150" class="tracejado" />
+    <line x1="250" y1="30" x2="250" y2="150" class="tracejado" />
+    <circle cx="137.5" cy="120" r="4" class="preenche" />
+    <text x="143" y="142" class="rotulo-fraco">1 m</text>
+    <text x="256" y="95" class="rotulo-fraco">4 m</text>
+    <text x="112" y="124" class="rotulo-fraco" text-anchor="end">1,6 m</text>
+    <text x="160" y="68" class="rotulo-fraco" text-anchor="end">x (escada inteira)</text>
+  </svg>
+</figure>
+
+**Exemplo resolvido.** Uma escada está apoiada no alto de um muro de 4 m. Subindo 1,6 m pela escada, uma pessoa está a 1 m do chão. Qual é o comprimento da escada? Quanto ainda falta subir?
+
+1. O triângulo pequeno (até o degrau) e o grande (até o topo) têm o mesmo ângulo no pé da escada: são semelhantes.
+2. Proporção altura ÷ comprimento na escada: 1 ÷ 1,6 = 4 ÷ x.
+3. Multiplicar em cruz: x = 1,6 × 4 ÷ 1 = 6,4 m.
+4. Falta subir: 6,4 − 1,6 = 4,8 m.
+5. Resposta: a escada tem 6,4 m, e faltam 4,8 m.
+
+**Erro comum.** Montar a proporção misturando medidas que não se correspondem. Escreva sempre "a mesma coisa sobre a mesma coisa": altura ÷ comprimento = altura ÷ comprimento.
+
+### 3. Paralela à base e base média
+
+Num triângulo ABC, as letras maiúsculas são os vértices (os cantos do triângulo), e AB é o lado (o **segmento** de reta) que liga A a B. Uma reta **paralela** a um lado corta os outros dois e forma um triângulo menor, semelhante ao original. A razão entre as bases é a mesma que a razão entre as alturas. Se o triângulo original é equilátero, o menor também é.
+
+Um caso especial: o segmento que liga os **pontos médios** de dois lados (o ponto médio divide o lado em duas partes iguais) é paralelo ao terceiro lado e mede metade dele. É a **base média**.
+
+<figure class="figura">
+  <svg viewBox="0 0 460 255" role="img" aria-labelledby="fig-sem-3-t fig-sem-3-d">
+    <title id="fig-sem-3-t">Caixa encaixada numa tenda triangular</title>
+    <desc id="fig-sem-3-d">Uma tenda com entrada triangular de base 5 m e altura 4 m, desenhada em escala. Uma caixa retangular de 2 m de largura está no centro, encostando nos dois lados inclinados. Acima da caixa sobra um triângulo menor, semelhante ao da tenda, de base 2 m.</desc>
+    <path d="M 105 230 L 355 230 L 230 30 Z" class="traco" />
+    <rect x="180" y="110" width="100" height="120" class="traco-fino" />
+    <line x1="230" y1="30" x2="230" y2="110" class="tracejado" />
+    <text x="230" y="175" class="rotulo-fraco" text-anchor="middle">caixa de 2 m</text>
+    <text x="230" y="248" class="rotulo-fraco" text-anchor="middle">base 5 m</text>
+    <line x1="372" y1="30" x2="372" y2="230" class="tracejado" />
+    <text x="378" y="134" class="rotulo-fraco">4 m</text>
+  </svg>
+</figure>
+
+**Exemplo resolvido.** A entrada de uma tenda é um triângulo de base 5 m e altura 4 m. Uma caixa de 2 m de largura, colocada no centro, encosta nos dois lados inclinados. Qual é a altura da caixa?
+
+1. No teto da caixa, a largura da tenda é 2 m. Acima dele sobra um triângulo de base 2 m, semelhante ao da tenda (a base é paralela).
+2. Razão de semelhança: 2 ÷ 5 = 0,4.
+3. Altura do triângulo de cima: 4 × 0,4 = 1,6 m.
+4. Altura da caixa: 4 − 1,6 = 2,4 m.
+5. Resposta: 2,4 m.
+
+**Erro comum.** Responder a altura do triângulo de cima (1,6 m). Ele é o espaço **acima** da caixa; a caixa ocupa o que sobra até o chão.
+
+### 4. Áreas na semelhança
+
+Se as medidas de uma figura se multiplicam por k, a área se multiplica por k × k = k², porque a área multiplica duas medidas.
+
+**Fórmula: área de figuras semelhantes**
+
+**área maior ÷ área menor = k²**
+
+- **k**: a razão de semelhança entre as medidas (lados, alturas, raios).
+- **Em palavras:** a razão entre as áreas é a razão entre as medidas ao quadrado.
+- **Quando usar:** sempre que duas figuras semelhantes forem comparadas pela área, e não pelo tamanho de um lado.
+
+**Exemplo resolvido.** Um triângulo tem área de 50 cm². Seus lados são ampliados 2,5 vezes. Qual é a nova área? E se, em vez disso, os lados fossem reduzidos a 2/5 do tamanho?
+
+1. Ampliação: k = 2,5, então a área se multiplica por 2,5² = 6,25: 50 × 6,25 = 312,5 cm².
+2. Redução: k = 2/5, então a área se multiplica por (2/5)² = (2 × 2) ÷ (5 × 5) = 4/25.
+3. Área reduzida: 50 × 4 ÷ 25 = 8 cm².
+4. Resposta: 312,5 cm² e 8 cm².
+
+**Erro comum.** Multiplicar a área só por k (50 × 2,5 = 125). Na área, a razão entra **ao quadrado**.
+
+### 5. Ponto luminoso e sombra
+
+Uma luz pequena (um **ponto luminoso**), um objeto e sua sombra na parede formam triângulos semelhantes com vértice na luz. Quanto mais perto da luz está o objeto, maior a sombra.
+
+**Fórmula: tamanho da sombra**
+
+**tamanho da sombra ÷ tamanho do objeto = distância luz–parede ÷ distância luz–objeto**
+
+- **distância luz–parede**: da luz até onde a sombra se forma.
+- **distância luz–objeto**: da luz até o objeto.
+- **Em palavras:** a sombra é tantas vezes maior que o objeto quantas vezes a parede está mais longe da luz do que o objeto.
+- **Quando usar:** sombras de uma luz pequena, projetores e câmeras, sempre que houver um objeto entre uma fonte de luz e uma tela.
+
+**Exemplo resolvido.** Um projetor tem a lâmpada a 10 cm de um slide de 3 cm de largura, e a tela fica a 4 m da lâmpada. Qual é a largura da imagem? Quantas vezes a área da imagem é maior que a do slide?
+
+1. Mesma unidade: 4 m = 400 cm.
+2. Razão: 400 ÷ 10 = 40. A imagem tem 3 × 40 = 120 cm de largura.
+3. Área: a razão entre as áreas é 40² = 1 600.
+4. Resposta: 120 cm de largura, com área 1 600 vezes maior.
+
+**Erro comum.** Usar a distância do objeto até a parede no lugar da distância da luz até o objeto. As duas distâncias da proporção partem **da luz**.
+
+Se o objeto se afasta da luz, a distância luz–objeto aumenta e a sombra diminui na mesma proporção; se a distância luz–objeto dobra, a sombra fica com metade do tamanho.
+
+### Armadilhas típicas do INEP
+
+1. **Somar uma diferença** em vez de multiplicar pela razão de semelhança.
+2. **Misturar lados que não se correspondem** ao montar a proporção.
+3. **Responder a parte errada**: o triângulo de cima em vez da caixa, ou a escada inteira em vez do que falta.
+4. **Esquecer de elevar a razão ao quadrado** quando a pergunta é sobre área.
+5. **Medir a distância a partir da parede**, e não da luz, num problema de sombra.
+6. **Comparar medidas em unidades diferentes** (cm com m) ao calcular uma escala.
 
 ## Tópicos-Chave para Revisão
 
 <div className="topico">
 
-Semelhança de triângulos significa mesma forma, tamanhos proporcionais: ângulos correspondentes iguais e lados correspondentes numa razão constante k. AB/DE = AC/DF = BC/EF = k é a proporção mestra; k = 1 é o caso particular de congruência.
+#### 1. Semelhança e escala
 
-O caso AA (ângulo-ângulo) é o mais cobrado no ENEM: dois ângulos iguais já garantem semelhança, porque o terceiro ângulo é sempre 180° menos os outros dois. Nas questões de sombra, o ângulo do sol com o chão é igual nos dois triângulos (raios paralelos) e o ângulo reto poste/pessoa-chão também é igual: dois ângulos batendo, semelhança garantida.
+**a' ÷ a = b' ÷ b = c' ÷ c = k**: triângulos com os mesmos ângulos têm lados **proporcionais**. Na planta ou no mapa, **escala 1 : k, com k = medida real ÷ medida no desenho**, sempre na mesma **unidade**.
 
-Os casos LAL (dois lados proporcionais + ângulo entre eles igual) e LLL (três lados proporcionais) são usados quando o problema já dá medidas de lados em vez de ângulos, geralmente em contextos de mapas, plantas e escalas.
+#### 2. Ângulo em comum
 
-Na configuração "triângulos empilhados" (sombra de poste e de pessoa, rampa e paciente), a proporção é sempre: medida pequena do triângulo pequeno / medida pequena do triângulo grande = medida grande do triângulo pequeno / medida grande do triângulo grande. Cuidado ao montar essa fração: sempre altura com altura, distância com distância, nunca cruzar altura com sombra do lado errado.
+Triângulo pequeno dentro do grande, com um ângulo em comum: monte a **proporção** "a mesma coisa sobre a mesma coisa" e confira qual **parte** a pergunta quer.
 
-Na configuração "triângulos em X" (segmentos paralelos cruzados por retas concorrentes, como no problema da haste entre dois postes), os triângulos ficam invertidos um em relação ao outro, e os ângulos correspondentes são opostos pelo vértice ou alternos internos: ainda caso AA.
+#### 3. Paralela e base média
 
-O erro mais comum do INEP nessa proporção é a correspondência trocada dos lados: escrever a proporção com a ordem errada das letras dá um número plausível, mas errado. Sempre identifique visualmente qual lado do triângulo pequeno "vira" qual lado do triângulo grande antes de escrever a fração.
+Uma **paralela** a um lado forma um triângulo menor semelhante; a **base média** (entre pontos médios) mede metade do lado paralelo.
+
+#### 4. Áreas
+
+**área maior ÷ área menor = k²**: a **área** muda com o **quadrado** da razão.
+
+#### 5. Sombra
+
+**tamanho da sombra ÷ tamanho do objeto = distância luz–parede ÷ distância luz–objeto**: as duas **distâncias** partem da **luz**.
 
 </div>
 
-## Teste de Fogo
+## Questões do ENEM
 
-*Questões sem gabarito: resolva primeiro, depois confira com o professor ou com a IA.*
+*Marque uma alternativa em cada questão e confira tudo de uma vez no botão do fim.*
 
-**Questão 1 (ENEM 2013, 2ª aplicação regular)**
+**Questão 1**
 
-Vou descrever as figuras em texto (com coordenadas/relações precisas) já que a maioria dessas questões oficiais é resolvida a partir da descrição verbal da montagem geométrica.
+*ENEM 2009 · 2º dia · caderno azul · questão 154*
 
-**Questão 1 (ENEM 2013)**
+A rampa de um hospital tem na sua parte mais elevada uma altura de 2,2 metros. Um paciente ao caminhar sobre a rampa percebe que se deslocou 3,2 metros e alcançou uma altura de 0,8 metro.
 
-Em um canteiro de obras foram colocadas seis estacas no chão plano. Três delas (A, B, C) eram vértices de um triângulo retângulo, e as outras três (M, N e um terceiro ponto) eram os pontos médios dos lados desse triângulo, ou seja, M e N são os pontos médios de dois lados do triângulo ABC, formando um triângulo menor MNC dentro do triângulo grande. A região demarcada pelas estacas A, B, M e N (o "trapézio" que sobra ao recortar o triângulo pequeno MNC do triângulo grande ABC) deveria ser calçada com concreto.
+A distância em metros que o paciente ainda deve caminhar para atingir o ponto mais alto da rampa é
 
-Nessas condições, a área a ser calçada corresponde:
+A) 1,16 metros.\
+B) 3,0 metros.\
+C) 5,4 metros.\
+D) 5,6 metros.\
+E) 7,04 metros.
 
-a) à mesma área do triângulo AMC.
-b) à mesma área do triângulo BNC.
-c) à metade da área formada pelo triângulo ABC.
-d) ao dobro da área do triângulo MNC.
-e) ao triplo da área do triângulo MNC.
+**Questão 2**
 
-**Questão 2 (ENEM 2009)**
+*ENEM 2025 · 2º dia · caderno azul · questão 156*
 
-A rampa de um hospital tem, na sua parte mais elevada, uma altura de 2,2 metros. Um paciente, ao caminhar sobre a rampa, percebe que se deslocou 3,2 metros (medidos ao longo da rampa) e alcançou uma altura de 0,8 metro.
+Um artista, que costuma fazer desenhos com areia na praia, pediu a um banhista que fizesse um pequeno desenho, que serviria de esboço para uma grande obra de arte a ser feita na areia. Esse desenho está representado na figura.
 
-A distância, em metros, que o paciente ainda deve caminhar para atingir o ponto mais alto da rampa é:
+<figure class="figura">
+  <svg viewBox="0 0 300 250" role="img" aria-labelledby="fig-sem-q2-t fig-sem-q2-d">
+    <title id="fig-sem-q2-t">Desenho de um sol</title>
+    <desc id="fig-sem-q2-d">Um sol formado por um círculo com oito raios triangulares em volta. O desenho inteiro mede 20 cm de largura e 20 cm de altura, indicados por linhas de medida embaixo e à direita. Figura redesenhada a partir da prova oficial, com os mesmos dados.</desc>
+    <circle cx="130" cy="110" r="42" class="preenche" />
+    <circle cx="130" cy="110" r="42" class="traco" />
+    <path d="M 118 50 L 142 50 L 130 20 Z" class="traco preenche" />
+    <path d="M 118 170 L 142 170 L 130 200 Z" class="traco preenche" />
+    <path d="M 70 98 L 70 122 L 40 110 Z" class="traco preenche" />
+    <path d="M 190 98 L 190 122 L 220 110 Z" class="traco preenche" />
+    <path d="M 80 70 L 92 58 L 66 50 Z" class="traco preenche" />
+    <path d="M 168 58 L 180 70 L 194 50 Z" class="traco preenche" />
+    <path d="M 80 150 L 92 162 L 66 170 Z" class="traco preenche" />
+    <path d="M 168 162 L 180 150 L 194 170 Z" class="traco preenche" />
+    <line x1="40" y1="222" x2="220" y2="222" class="tracejado" />
+    <text x="130" y="240" class="rotulo" text-anchor="middle">20 cm</text>
+    <line x1="245" y1="20" x2="245" y2="200" class="tracejado" />
+    <text x="252" y="114" class="rotulo">20 cm</text>
+  </svg>
+</figure>
 
-a) 1,16 metros.
-b) 3,0 metros.
-c) 5,4 metros.
-d) 5,6 metros.
-e) 7,04 metros.
+Após a conclusão, a obra de arte obtida manteve as mesmas proporções do desenho feito pelo banhista, sendo que as medidas indicadas na figura foram ampliadas para 30 m.
 
-**Questão 3 (ENEM 2013)**
+Em qual escala esse desenho representa a obra de arte?
 
-O dono de um sítio pretende colocar uma haste de sustentação para melhor firmar dois postes de comprimentos iguais a 6 m e 4 m. Os postes são os segmentos AC (4 m) e BD (6 m), perpendiculares ao solo, que é o segmento AB. A haste é o segmento EF, também perpendicular ao solo, colocada entre os dois postes. Os segmentos AD e BC (dos cabos de aço, ligando o topo de um poste à base do outro) se cruzam exatamente no ponto onde passa a haste EF, ou seja, E é a intersecção de AD e BC, e F é o pé dessa haste no solo, entre A e B.
+A) 1 : 1,5\
+B) 1 : 2,25\
+C) 1 : 10\
+D) 1 : 100\
+E) 1 : 150
 
-Qual deve ser o valor do comprimento da haste EF?
+**Questão 3**
 
-a) 1 m
-b) 2 m
-c) 2,4 m
-d) 3 m
-e) 2√6 m
+*ENEM 2022 · 2ª aplicação · 2º dia · caderno azul · questão 159*
 
-**Questão 4 (ENEM 2016, 2ª aplicação)**
+Um túnel viário de uma única via possui a entrada na forma de um triângulo equilátero de lado 6 m. O motorista de um caminhão com 3 m de largura deve decidir se passa por esse túnel ou se toma um caminho mais longo. Para decidir, o motorista calcula a altura que esse caminhão deveria ter para tangenciar a entrada do túnel. Considere o caminhão como um paralelepípedo reto.
 
-Pretende-se construir um mosaico com o formato de um triângulo retângulo, dispondo-se de três peças: duas delas devem ser triângulos retângulos congruentes entre si, e a terceira uma peça em formato de triângulo isósceles. Considere estas cinco composições possíveis:
+Essa altura, em metro, é
 
-- Mosaico 1: dois triângulos retângulos com catetos diferentes entre si (não congruentes) + um triângulo isósceles.
-- Mosaico 2: dois triângulos retângulos idênticos, com os mesmos ângulos (90°, 30°, 60°) e mesmos lados + um triângulo isósceles.
-- Mosaico 3: dois triângulos retângulos congruentes + um terceiro triângulo que não é isósceles (todos os lados diferentes).
-- Mosaico 4: peças que, juntas, não formam um triângulo retângulo (formam outro polígono).
-- Mosaico 5: nenhuma das peças é um triângulo retângulo.
+A) 3\
+B) 3√2\
+C) 3√3\
+D) 3√2/2\
+E) 3√3/2
 
-Na figura, o mosaico que tem as características daquele que se pretende construir é o:
+**Questão 4**
 
-a) Mosaico 1
-b) Mosaico 2
-c) Mosaico 3
-d) Mosaico 4
-e) Mosaico 5
+*ENEM 2014 · 2ª aplicação · 2º dia · caderno cinza · questão 154*
 
-**Questão 5 (construção original, estilo ENEM)**
+Um artista deseja pintar em um quadro uma figura na forma de triângulo equilátero ABC de lado 1 metro. Com o objetivo de dar um efeito diferente em sua obra, o artista traça segmentos que unem os pontos médios D, E e F dos lados BC, AC e AB, respectivamente, colorindo um dos quatro triângulos menores, como mostra a figura.
 
-Em uma tarde ensolarada, um poste de iluminação de 4,5 m de altura projeta uma sombra de 3 m de comprimento no chão plano. No mesmo instante e no mesmo local, uma pessoa que está ao lado do poste projeta uma sombra de 1,2 m.
+<figure class="figura">
+  <svg viewBox="0 0 300 200" role="img" aria-labelledby="fig-sem-q4-t fig-sem-q4-d">
+    <title id="fig-sem-q4-t">Triângulo equilátero com os pontos médios ligados</title>
+    <desc id="fig-sem-q4-d">Triângulo equilátero ABC, com A embaixo à esquerda, B embaixo à direita e C em cima. D é o ponto médio de BC, E o de AC e F o de AB. Os segmentos DE, EF e FD formam o triângulo DEF, pintado, no meio. Figura redesenhada a partir da prova oficial, com os mesmos dados.</desc>
+    <path d="M 104 104 L 196 104 L 150 184 Z" class="preenche" />
+    <path d="M 58 184 L 242 184 L 150 24 Z" class="traco" />
+    <path d="M 104 104 L 196 104 L 150 184 Z" class="traco" />
+    <text x="150" y="16" class="rotulo" text-anchor="middle">C</text>
+    <text x="48" y="190" class="rotulo" text-anchor="end">A</text>
+    <text x="252" y="190" class="rotulo">B</text>
+    <text x="206" y="100" class="rotulo">D</text>
+    <text x="94" y="100" class="rotulo" text-anchor="end">E</text>
+    <text x="150" y="198" class="rotulo" text-anchor="middle">F</text>
+  </svg>
+</figure>
 
-A altura dessa pessoa, em metros, é:
+Qual é a medida da área pintada, em metros quadrados, do triângulo DEF?
 
-a) 1,35
-b) 1,60
-c) 1,80
-d) 2,00
-e) 2,25
+A) 1/16\
+B) √3/16\
+C) 1/8\
+D) √3/8\
+E) √3/4
+
+**Questão 5**
+
+*ENEM 2023 · 2ª aplicação · 2º dia · caderno azul · questão 179*
+
+Em uma sala escura há um ponto luminoso, a mais de 3 metros de distância de uma parede, e um disco pendurado, paralelo à parede, entre ela e o ponto luminoso. O disco encontra-se a 1 metro de distância do ponto luminoso, projetando uma sombra S₁, em formato de círculo, na parede. Esse disco é afastado mais 2 m do ponto luminoso, em direção à sombra e sem encostar na parede, projetando outra sombra S₂, também no formato de um círculo.
+
+Sejam A₁ a área de S₁ e A₂ a área de S₂.
+
+O valor de A₁/A₂ é
+
+A) 1.\
+B) 2.\
+C) 3.\
+D) 4.\
+E) 9.

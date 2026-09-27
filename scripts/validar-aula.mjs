@@ -246,6 +246,8 @@ function validar(arquivo) {
       for (const m of limpo.matchAll(/(?<![\p{L}\d₀-₉⁰-⁹])([A-ZÁÉÍÓÚÂÊÔÃÕÇ]{2,}[a-z]?)(?![\p{L}\d₀-₉⁰-⁹])/gu)) {
         const s = m[1];
         if (ROMANOS.test(s) || vistas.has(s)) continue;
+        // Em Geometria, "AB", "ABC", "DEF" são nomes de pontos (letras distintas de A a H), não siglas.
+        if (materia === 'geometria' && /^[A-H]{2,4}$/.test(s) && new Set(s).size === s.length) continue;
         vistas.add(s);
         const depois = limpo.slice(m.index + s.length, m.index + s.length + 4);
         const antesDe = limpo.slice(Math.max(0, m.index - 2), m.index);
