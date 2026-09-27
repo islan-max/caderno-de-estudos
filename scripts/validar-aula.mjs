@@ -453,6 +453,8 @@ function validar(arquivo) {
       if (!m) erro(0, `gabarito[${j}].porque deve terminar com "Revisar: Aula Teórica › N. Nome da seção"`);
       else if (!secoesTeoriaNomes.has(m[1].trim())) erro(0, `gabarito[${j}] aponta "${m[1]}", que não é uma seção ### da Aula Teórica`);
       if (/[{}<]/.test(p) || /\*\*/.test(p)) erro(0, `gabarito[${j}].porque aparece como texto puro: sem markdown, { } ou <`);
+      // o porque vai para o quiz como textContent: &lt; apareceria literalmente
+      if (/&[a-z]+;/.test(p)) erro(0, `gabarito[${j}].porque tem entidade HTML (${p.match(/&[a-z]+;/)[0]}); escreva por extenso ("menor que")`);
     });
   }
 
