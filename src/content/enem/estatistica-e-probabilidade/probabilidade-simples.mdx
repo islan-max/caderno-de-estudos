@@ -3,265 +3,412 @@ title: "Probabilidade Simples"
 subject: "Estatística e Probabilidade"
 order: 5
 relevance: >
-  Probabilidade é a matemática que mede o quão provável é algo acontecer, num número entre 0
-  (impossível) e 1 (certo). É um dos temas mais frequentes da prova: aparece praticamente todo ano,
-  entre 2 e 4 questões, quase sempre embrulhado num contexto do dia a dia (sorteio, bingo, urna,
-  senha, controle de qualidade, promoção de loja). A conta em si é fácil; o difícil é traduzir o texto
-  para "quantos casos me interessam / quantos casos existem". ---
+  Probabilidade mede a chance de algo acontecer: de 0 (impossível) a 1 (certo), ou de 0% a 100%. O ENEM
+  (Exame Nacional do Ensino Médio) cobra o tema em toda prova, quase sempre numa situação do dia a dia:
+  um sorteio, dois dados, a chance de chuva e de atraso, uma pesquisa com alunos. Muitas questões são
+  difíceis porque escondem uma "condição" ("sabendo que", "dado que") que muda o total de casos. Contar
+  bem os casos possíveis resolve a maior parte delas.
 quickSummary: >
-  Probabilidade é uma fração de contagem: P(A) = n(A)/n(Ω), em que n(A) são os casos favoráveis (o que
-  eu quero) e n(Ω) é o espaço amostral (tudo o que pode acontecer). A fórmula só é válida quando os
-  resultados são equiprováveis, condição que o enunciado sinaliza com as palavras "aleatoriamente" ou
-  "ao acaso". Para converter o resultado, use porcentagem = [n(A)/n(Ω)] × 100.
+  Probabilidade = casos favoráveis ÷ casos possíveis, quando todos os casos têm a mesma chance. Com dois
+  dados, há 36 resultados, contando a ordem. Em etapas seguidas, multiplique as chances ao longo de cada
+  caminho da árvore e some os caminhos. Com uma condição ("dado que B"), o total passa a ser só o grupo B:
+  P(A dado B) = P(A e B) ÷ P(B).
+resources:
+  conteudoComplementar:
+    conteudo: "Análise Combinatória"
+    comoAjuda: "Contar os casos possíveis e os favoráveis é contagem. Se o princípio multiplicativo travar você, revise essa aula."
+gabarito:
+  - correta: 4
+    porque: >
+      Os seis primeiros a receber são os mais velhos que 75 anos (de Orlando a Roberto). Da 7ª à 10ª posição
+      ficam os quatro idosos de 75 anos, em ordem sorteada. Ser o 7º é ser o primeiro sorteado entre esses 4:
+      probabilidade 1/4.
+      Revisar: Aula Teórica › 1. Casos favoráveis e casos possíveis
+  - correta: 3
+    porque: >
+      Com dois dados há 36 pares ordenados. Soma 7: (1,6), (2,5), (3,4), (4,3), (5,2), (6,1), 6 pares. Soma 8:
+      (2,6), (3,5), (4,4), (5,3), (6,2), 5 pares. Soma 4: (1,3), (2,2), (3,1), 3 pares. José tem a maior chance.
+      Revisar: Aula Teórica › 2. Dois dados e pares ordenados
+  - correta: 2
+    porque: >
+      Caminho com chuva: 0,30 × 0,50 = 0,15. Caminho sem chuva: 0,70 × 0,25 = 0,175. A probabilidade de atraso
+      é a soma dos caminhos: 0,15 + 0,175 = 0,325.
+      Revisar: Aula Teórica › 3. Etapas seguidas e árvore de probabilidades
+  - correta: 4
+    porque: >
+      Inconsistente e fraudulenta: 0,20 × 0,25 = 0,05. Não inconsistente e fraudulenta: 0,80 × 0,0625 = 0,05.
+      Fraudulentas no total: 0,05 + 0,05 = 0,10. Dado que é fraudulenta, a chance de ser inconsistente é
+      0,05 ÷ 0,10 = 0,5.
+      Revisar: Aula Teórica › 5. Condição com porcentagens
+  - correta: 0
+    porque: >
+      Não falam inglês: 1 200 − 600 = 600 alunos. Desses, 300 não falam nenhuma das duas línguas, então os
+      outros 600 − 300 = 300 falam espanhol. A probabilidade é 300/600 = 1/2.
+      Revisar: Aula Teórica › 4. Probabilidade com condição: o total muda
 ---
 
-## Aula Teórica Completa
+<Accordion titulo="Palavras e siglas desta aula" dica="Consulte quando encontrar um termo novo" icone="spell-check">
 
-### 2.1 A ideia da criança: a pizza
+- **ENEM** (Exame Nacional do Ensino Médio): a prova nacional que dá acesso a faculdades e bolsas.
+- **INEP** (Instituto Nacional de Estudos e Pesquisas Educacionais Anísio Teixeira): o órgão do governo que faz o ENEM.
+- **Ao acaso** ou **aleatoriamente**: por sorteio, sem preferência.
+- **Estatuto do Idoso**: a lei que garante direitos às pessoas idosas.
+- **Imposto de renda**: imposto sobre o que a pessoa ganha; a declaração é o formulário enviado ao governo.
+- **Restituição**: a devolução de imposto pago a mais.
+- **Receita federal**: o órgão do governo que cuida dos impostos.
+- **Ordem decrescente**: do maior para o menor.
+- **Dado não viciado**: dado honesto, em que todas as faces têm a mesma chance.
+- **Simultaneamente**: ao mesmo tempo.
+- **Região metropolitana**: uma cidade grande e as cidades vizinhas ligadas a ela.
+- **Meteorologia**: o estudo e a previsão do tempo.
+- **Inconsistente**: que tem erro ou informação que não combina.
+- **Fraudulenta**: feita para enganar.
+- **Auditor**: profissional que confere documentos e contas.
 
-Imagine uma pizza cortada em **8 fatias iguais**. Três fatias são de calabresa. Se você pegar uma fatia de olhos fechados, qual a chance de ser calabresa?
+</Accordion>
 
-3 fatias que te interessam, de 8 possíveis → **3/8**.
+## Antes de Começar
 
-Probabilidade é exatamente isso: **uma fração**. Em cima, o que você quer. Embaixo, tudo que pode acontecer.
+**O que o ENEM cobra aqui.** A prova quase nunca pede "qual a chance de sair cara". Os temas que costumam aparecer são estes:
 
-A única exigência é que as fatias sejam **iguais** (mesma chance). Se uma fatia fosse gigante e outra minúscula, a conta simples não valeria. No ENEM, quando o enunciado diz "aleatoriamente", "ao acaso", "todas as regiões são congruentes", ele está te avisando: **as fatias são iguais, pode usar a fração**.
+- **Contar casos favoráveis e possíveis** numa situação de sorteio.
+- **Listar os resultados de dois dados**, contando a ordem.
+- **Montar uma árvore** com duas etapas, uma depois da outra.
+- **Resolver uma condição por contagem** ("sabendo que ele não pertence a um grupo").
+- **Resolver uma condição com porcentagens** ("dado que o resultado final aconteceu").
 
-### 2.2 O vocabulário oficial (só 3 palavras)
+**O que você precisa saber antes.**
 
-**Experimento aleatório**: qualquer ação cujo resultado você não controla. Jogar um dado, sortear um nome, tirar uma bola de uma urna.
+- **Frações.** Simplifique dividindo em cima e embaixo pelo mesmo número: 8/36 = 2/9. Revise a aula de Frações.
+- **Porcentagem em decimal.** 35% = 0,35 e 4,5% = 0,045. "35% de 0,4" é 0,35 × 0,4 = 0,14. Revise a aula de Porcentagem.
+- **Contagem.** Etapas seguidas multiplicam. Revise a aula de Análise Combinatória.
 
-**Espaço amostral (Ω)**: a lista de **tudo** que pode acontecer. No dado de 6 faces: Ω = &#123;1, 2, 3, 4, 5, 6&#125;.
+## Aula Teórica
 
-**Evento (A)**: o pedaço do espaço amostral que te interessa. "Sair número par" → A = &#123;2, 4, 6&#125;.
+### 1. Casos favoráveis e casos possíveis
 
-### 2.3 A fórmula-mãe
+Quando todos os resultados têm a **mesma chance** (um sorteio justo, um dado honesto), a probabilidade de um **evento** é a fração dos resultados em que ele acontece. O evento é o resultado que nos interessa. A escrita P(X) se lê "probabilidade de X".
 
-**P(A) = (n(A)) / (n())**
+**Fórmula: probabilidade**
 
-Destrinchando cada símbolo:
+**P = casos favoráveis ÷ casos possíveis**
 
-- **P(A)** = a probabilidade do evento A acontecer (o resultado, um número entre 0 e 1).
-- **n(A)** = o **número de casos favoráveis**, ou seja, quantos resultados fazem o evento A acontecer.
-- **n(Ω)** = o **número de casos possíveis**, ou seja, o total de resultados que existem.
+- **casos favoráveis**: os resultados em que o evento acontece.
+- **casos possíveis**: todos os resultados, cada um com a mesma chance.
+- **P**: a probabilidade, entre 0 e 1 (multiplique por 100 para ter a porcentagem).
+- **Em palavras:** que fração de todos os resultados é favorável.
+- **Quando usar:** sorteios, dados, moedas, cartas, escolhas ao acaso.
 
-Exemplo do dado, evento "sair par": n(A) = 3 (o 2, o 4, o 6) e n(Ω) = 6. Logo P = 3/6 = 1/2 = 50%.
+O segredo é contar só os casos que **ainda estão em jogo**. Se uma parte da ordem já está decidida, o sorteio só acontece dentro do grupo que sobrou.
 
-### 2.4 Traduzindo o resultado
+**Exemplo resolvido.** Numa gincana, as equipes se apresentam em ordem de pontuação, da maior para a menor. As pontuações são 95, 90, 90, 80, 80, 80 e 70. Entre equipes empatadas, a ordem é sorteada. Qual a probabilidade de a equipe Azul, que fez 80 pontos, se apresentar em 4º lugar?
 
-O resultado sai em fração, mas o ENEM pode pedir em decimal ou porcentagem. É a mesma coisa vestida de roupa diferente:
+1. As três primeiras posições são das equipes com 95 e 90 pontos, que têm mais pontos.
+2. As posições 4ª, 5ª e 6ª ficam para as três equipes com 80, em ordem sorteada.
+3. Ser a 4ª é ser a primeira sorteada entre essas 3: casos favoráveis 1 (a Azul sair primeiro), casos possíveis 3 (qualquer uma das três pode sair primeiro).
+4. Resposta: 1/3.
 
-**porcentagem = (n(A)) / (n()) × 100**
+**Erro comum.** Dividir pelo número total de equipes (7) quando o sorteio acontece só entre as empatadas.
 
-- **porcentagem** = o valor da probabilidade em "por cento".
-- A fração é o valor puro; **×100** só muda a unidade.
+### 2. Dois dados e pares ordenados
 
-3/8 = 0,375 = 37,5%. **Truque de prova**: se as alternativas estão em fração, não perca tempo dividindo. Se estão em porcentagem, divida e multiplique por 100.
+Ao lançar dois dados, cada resultado é um **par ordenado** (primeiro dado, segundo dado). O primeiro tem 6 resultados e o segundo também, então há 6 × 6 = **36** resultados possíveis, todos com a mesma chance. O par (1, 2) é diferente do par (2, 1): são dois resultados. Cada par é uma possibilidade, ou seja, um caso possível.
 
-### 2.5 Os limites que denunciam erro
+<figure class="figura">
+  <svg viewBox="0 0 460 250" role="img" aria-labelledby="fig-prob-1-t fig-prob-1-d">
+    <title id="fig-prob-1-t">Os 36 resultados de dois dados</title>
+    <desc id="fig-prob-1-d">Um quadro de 6 por 6. As linhas são o primeiro dado, de 1 a 6, e as colunas são o segundo dado, de 1 a 6. Cada casa mostra a soma das duas faces. As casas com soma 9 estão destacadas: (3, 6), (4, 5), (5, 4) e (6, 3).</desc>
+    <text x="210" y="14" class="rotulo-fraco" text-anchor="middle">segundo dado</text>
+    <text x="40" y="136" class="rotulo-fraco" text-anchor="end">1º dado</text>
+    <rect x="290" y="96" width="40" height="30" class="preenche" />
+    <rect x="250" y="126" width="40" height="30" class="preenche" />
+    <rect x="210" y="156" width="40" height="30" class="preenche" />
+    <rect x="170" y="186" width="40" height="30" class="preenche" />
+    <path d="M 90 36 L 330 36 M 90 66 L 330 66 M 90 96 L 330 96 M 90 126 L 330 126 M 90 156 L 330 156 M 90 186 L 330 186 M 90 216 L 330 216" class="traco-fino" />
+    <path d="M 90 36 L 90 216 M 130 36 L 130 216 M 170 36 L 170 216 M 210 36 L 210 216 M 250 36 L 250 216 M 290 36 L 290 216 M 330 36 L 330 216" class="traco-fino" />
+    <text x="110" y="30" class="rotulo" text-anchor="middle">1</text>
+    <text x="150" y="30" class="rotulo" text-anchor="middle">2</text>
+    <text x="190" y="30" class="rotulo" text-anchor="middle">3</text>
+    <text x="230" y="30" class="rotulo" text-anchor="middle">4</text>
+    <text x="270" y="30" class="rotulo" text-anchor="middle">5</text>
+    <text x="310" y="30" class="rotulo" text-anchor="middle">6</text>
+    <text x="78" y="56" class="rotulo" text-anchor="end">1</text>
+    <text x="78" y="86" class="rotulo" text-anchor="end">2</text>
+    <text x="78" y="116" class="rotulo" text-anchor="end">3</text>
+    <text x="78" y="146" class="rotulo" text-anchor="end">4</text>
+    <text x="78" y="176" class="rotulo" text-anchor="end">5</text>
+    <text x="78" y="206" class="rotulo" text-anchor="end">6</text>
+    <text x="110" y="56" class="rotulo-fraco" text-anchor="middle">2</text>
+    <text x="150" y="56" class="rotulo-fraco" text-anchor="middle">3</text>
+    <text x="190" y="56" class="rotulo-fraco" text-anchor="middle">4</text>
+    <text x="230" y="56" class="rotulo-fraco" text-anchor="middle">5</text>
+    <text x="270" y="56" class="rotulo-fraco" text-anchor="middle">6</text>
+    <text x="310" y="56" class="rotulo-fraco" text-anchor="middle">7</text>
+    <text x="110" y="86" class="rotulo-fraco" text-anchor="middle">3</text>
+    <text x="150" y="86" class="rotulo-fraco" text-anchor="middle">4</text>
+    <text x="190" y="86" class="rotulo-fraco" text-anchor="middle">5</text>
+    <text x="230" y="86" class="rotulo-fraco" text-anchor="middle">6</text>
+    <text x="270" y="86" class="rotulo-fraco" text-anchor="middle">7</text>
+    <text x="310" y="86" class="rotulo-fraco" text-anchor="middle">8</text>
+    <text x="110" y="116" class="rotulo-fraco" text-anchor="middle">4</text>
+    <text x="150" y="116" class="rotulo-fraco" text-anchor="middle">5</text>
+    <text x="190" y="116" class="rotulo-fraco" text-anchor="middle">6</text>
+    <text x="230" y="116" class="rotulo-fraco" text-anchor="middle">7</text>
+    <text x="270" y="116" class="rotulo-fraco" text-anchor="middle">8</text>
+    <text x="310" y="116" class="rotulo-fraco" text-anchor="middle">9</text>
+    <text x="110" y="146" class="rotulo-fraco" text-anchor="middle">5</text>
+    <text x="150" y="146" class="rotulo-fraco" text-anchor="middle">6</text>
+    <text x="190" y="146" class="rotulo-fraco" text-anchor="middle">7</text>
+    <text x="230" y="146" class="rotulo-fraco" text-anchor="middle">8</text>
+    <text x="270" y="146" class="rotulo-fraco" text-anchor="middle">9</text>
+    <text x="310" y="146" class="rotulo-fraco" text-anchor="middle">10</text>
+    <text x="110" y="176" class="rotulo-fraco" text-anchor="middle">6</text>
+    <text x="150" y="176" class="rotulo-fraco" text-anchor="middle">7</text>
+    <text x="190" y="176" class="rotulo-fraco" text-anchor="middle">8</text>
+    <text x="230" y="176" class="rotulo-fraco" text-anchor="middle">9</text>
+    <text x="270" y="176" class="rotulo-fraco" text-anchor="middle">10</text>
+    <text x="310" y="176" class="rotulo-fraco" text-anchor="middle">11</text>
+    <text x="110" y="206" class="rotulo-fraco" text-anchor="middle">7</text>
+    <text x="150" y="206" class="rotulo-fraco" text-anchor="middle">8</text>
+    <text x="190" y="206" class="rotulo-fraco" text-anchor="middle">9</text>
+    <text x="230" y="206" class="rotulo-fraco" text-anchor="middle">10</text>
+    <text x="270" y="206" class="rotulo-fraco" text-anchor="middle">11</text>
+    <text x="310" y="206" class="rotulo-fraco" text-anchor="middle">12</text>
+    <text x="350" y="146" class="rotulo-fraco">soma 9:</text>
+    <text x="350" y="160" class="rotulo-fraco">4 casas</text>
+  </svg>
+</figure>
 
-**0 ≤ P(A) ≤ 1**
+**Exemplo resolvido.** Lançando dois dados, qual é a probabilidade de a soma ser 9? E de ser 12?
 
-- **0** = evento impossível (tirar 7 num dado de 6 faces).
-- **1** = evento certo (tirar um número menor que 7 num dado de 6 faces).
+1. Soma 9: (3, 6), (4, 5), (5, 4) e (6, 3), 4 pares.
+2. Probabilidade: 4/36 = 1/9.
+3. Soma 12: só (6, 6), 1 par. O par (6, 6) conta uma vez só, porque trocar a ordem não muda nada. Probabilidade: 1/36.
+4. Resposta: 1/9 e 1/36; a soma 9 é mais provável.
 
-Se você calculou algo como 5/3 ou 1,4, **errou**. Provavelmente inverteu numerador e denominador. Isso é um autochecagem grátis em toda questão.
+**Erro comum.** Contar "4 e 5" como um resultado só, sem a ordem. Com dados, (4, 5) e (5, 4) são resultados diferentes; só os pares com números iguais, como (6, 6), aparecem uma vez. Outro erro é achar que uma soma maior tem mais chance: o que importa é o número de pares.
 
-### 2.6 A técnica que mais economiza tempo: o evento complementar
+### 3. Etapas seguidas e árvore de probabilidades
 
-Às vezes contar o que você quer é horrível, mas contar o que você **não** quer é fácil. Como só existem dois destinos (acontece ou não acontece), as duas probabilidades somam o bolo inteiro:
+Quando uma situação acontece em **etapas**, desenhe uma **árvore**: cada galho tem a probabilidade daquela etapa. Ao longo de um caminho, **multiplique**; para juntar caminhos diferentes que levam ao mesmo resultado, **some**. Os galhos que saem de um mesmo ponto somam 1 (100%). Por isso, P(não A) = 1 − P(A): se a chance de fila grande é 0,4, a de fila pequena é 1 − 0,4 = 0,6.
 
-**P(A) + P(Ā) = 1**
+**Fórmula: probabilidade pela árvore**
 
-Isolando:
+**P(evento) = soma, em cada caminho que leva ao evento, do produto das probabilidades dos galhos**
 
-**P(A) = 1 - P(Ā)**
+- **galho**: a probabilidade de uma etapa, sabendo o que aconteceu nas etapas anteriores.
+- **caminho**: uma sequência de galhos do começo até um resultado.
+- **Em palavras:** "e" ao longo do caminho multiplica; "ou" entre caminhos soma.
+- **Quando usar:** chuva e atraso, máquina e defeito, primeira e segunda retirada.
 
-- **P(A)** = probabilidade do evento acontecer.
-- **P(Ā)** (lê-se "A barra") = probabilidade do evento **não** acontecer, chamado de **evento complementar**.
-- **1** = o total, o "bolo inteiro" (100%).
+<figure class="figura">
+  <svg viewBox="0 0 460 220" role="img" aria-labelledby="fig-prob-2-t fig-prob-2-d">
+    <title id="fig-prob-2-t">Árvore de fila e atraso</title>
+    <desc id="fig-prob-2-d">Árvore com duas etapas. Do início saem dois galhos: fila grande, com 0,4, e fila pequena, com 0,6. De fila grande saem atrasa, com 0,65, e não atrasa, com 0,35. De fila pequena saem atrasa, com 0,45, e não atrasa, com 0,55. Os caminhos que terminam em atraso dão 0,4 × 0,65 = 0,26 e 0,6 × 0,45 = 0,27.</desc>
+    <line x1="40" y1="110" x2="170" y2="55" class="traco" />
+    <line x1="40" y1="110" x2="170" y2="165" class="traco" />
+    <line x1="242" y1="55" x2="330" y2="25" class="traco" />
+    <line x1="242" y1="55" x2="330" y2="85" class="traco" />
+    <line x1="242" y1="165" x2="330" y2="135" class="traco" />
+    <line x1="242" y1="165" x2="330" y2="195" class="traco" />
+    <text x="200" y="59" class="rotulo" text-anchor="middle">fila grande</text>
+    <text x="200" y="169" class="rotulo" text-anchor="middle">fila pequena</text>
+    <text x="96" y="74" class="rotulo-fraco">0,4</text>
+    <text x="96" y="160" class="rotulo-fraco">0,6</text>
+    <text x="272" y="32" class="rotulo-fraco">0,65</text>
+    <text x="272" y="84" class="rotulo-fraco">0,35</text>
+    <text x="272" y="142" class="rotulo-fraco">0,45</text>
+    <text x="272" y="194" class="rotulo-fraco">0,55</text>
+    <text x="336" y="29" class="rotulo">atrasa: 0,26</text>
+    <text x="336" y="89" class="rotulo">não atrasa</text>
+    <text x="336" y="139" class="rotulo">atrasa: 0,27</text>
+    <text x="336" y="199" class="rotulo">não atrasa</text>
+  </svg>
+</figure>
 
-Exemplo: numa locadora com 120 carros, 16 são vermelhos e o cliente **odeia** vermelho. Em vez de contar todas as outras cores, faça: P(vermelho) = 16/120. Logo P(não vermelho) = 1 − 16/120 = 104/120.
+**Exemplo resolvido.** Uma estudante pega fila grande no restaurante com probabilidade 0,4. Com fila grande, ela se atrasa para a aula com probabilidade 0,65; com fila pequena, com probabilidade 0,45. Qual é a probabilidade de ela se atrasar?
 
-**Gatilho de leitura**: sempre que aparecer "**pelo menos um**", "**no mínimo um**" ou "**nenhum**", pense imediatamente em complementar. Calcular "pelo menos um acerto" direto exige somar vários casos; calcular "nenhum acerto" e subtrair de 1 é uma conta só.
+1. Fila pequena tem probabilidade 1 − 0,4 = 0,6.
+2. Caminho "fila grande e atrasa": 0,4 × 0,65 = 0,26.
+3. Caminho "fila pequena e atrasa": 0,6 × 0,45 = 0,27.
+4. Os dois caminhos levam ao atraso: 0,26 + 0,27 = 0,53.
+5. Resposta: 0,53, ou 53%.
 
-### 2.7 Contando o espaço amostral: o Princípio Multiplicativo
+**Erro comum.** Somar as chances de atraso (0,65 + 0,45 = 1,10, mais que 1, o que é impossível) ou fazer a média delas (0,55), sem pesar cada uma pela chance da fila. Cada caminho precisa ser multiplicado do começo ao fim.
 
-Muitas questões não te dão o total pronto; você precisa **calcular** n(Ω). A regra: se uma escolha tem várias etapas independentes, **multiplique** as possibilidades de cada etapa.
+### 4. Probabilidade com condição: o total muda
 
-**n() = n₁ × n₂ × n₃ × … × n_k**
+"Sabendo que", "dado que" e "se ele é" são **condições**: já se sabe algo sobre o resultado. A escrita P(A dado B) se lê "probabilidade de A, sabendo que B aconteceu". A condição **troca o total**: os casos possíveis passam a ser só os que cumprem a condição.
 
-- **n(Ω)** = total de resultados possíveis.
-- **n₁, n₂, …, n_k** = número de opções disponíveis em cada etapa da escolha.
-- **k** = quantidade de etapas.
+**Fórmula: probabilidade com condição (por contagem)**
 
-Exemplo: uma senha de 2 dígitos, algarismos de 0 a 9, **podendo repetir**: 10 × 10 = 100 senhas. Se os dígitos precisam ser **distintos**: a primeira casa tem 10 opções, a segunda só 9 (uma já foi usada) → 10 × 9 = 90 senhas. A chance de acertar de primeira é 1/90.
+**P(A dado B) = casos de A dentro de B ÷ casos de B**
 
-Repare como a palavrinha "**distintos**" mudou o denominador. Isso é um clássico da prova.
+- **B**: a condição, o que já se sabe.
+- **A**: o evento procurado.
+- **Em palavras:** olhe só para o grupo B e pergunte que fração dele também é A.
+- **Quando usar:** pesquisas com dois grupos que se misturam, tabelas de dupla entrada, "sabendo que".
 
-### 2.8 Dois eventos: "E" versus "OU"
+Quando os grupos se misturam, separe as pessoas em partes: só de um grupo, dos dois, de nenhum. Quem "não é de A" é o total menos A.
 
-**Quando a questão pede que duas coisas aconteçam juntas ("E"), multiplique:**
+**Exemplo resolvido.** Numa turma de 40 alunos, 25 gostam de futebol, 18 gostam de vôlei e 7 não gostam de nenhum dos dois. Um aluno é sorteado, e sabe-se que ele não gosta de futebol. Qual é a probabilidade de ele gostar de vôlei?
 
-**P(A B) = P(A) × P(B)**
+1. Não gostam de futebol: 40 − 25 = 15 alunos. Esse é o novo total.
+2. Desses 15, 7 não gostam de nenhum dos dois. Os outros 15 − 7 = 8 gostam só de vôlei.
+3. Probabilidade: 8/15.
+4. Resposta: 8/15.
 
-- **P(A ∩ B)** = probabilidade de A **e** B acontecerem (o símbolo ∩ significa "interseção", os dois juntos).
-- **P(A)** = probabilidade do primeiro evento.
-- **P(B)** = probabilidade do segundo evento.
+**Erro comum.** Dividir pelo total da turma (40) em vez do total do grupo da condição (15), ou usar todos os 18 que gostam de vôlei, quando alguns deles também gostam de futebol.
 
-Atenção: isso só vale se os eventos forem **independentes**, ou seja, um não afeta o outro (dois lançamentos de moeda, dois semáforos separados).
+### 5. Condição com porcentagens
 
-Se o primeiro evento **muda** o cenário do segundo (retirar uma bola e **não devolver**), use:
+Quando os dados vêm em porcentagens, monte a árvore (ou uma tabela) com os caminhos e use a mesma ideia: a condição é o novo total.
 
-**P(A B) = P(A) × P(B|A)**
+**Fórmula: probabilidade com condição (com porcentagens)**
 
-- **P(B|A)** = probabilidade de B acontecer **sabendo que A já aconteceu** (chamada probabilidade condicional).
+**P(A dado B) = P(A e B) ÷ P(B)**
 
-Exemplo prático: urna com 3 bolas pretas e 3 brancas. Tirar duas pretas seguidas **sem reposição**: a primeira é 3/6; agora sobraram 5 bolas, sendo 2 pretas, então a segunda é 2/5. Resultado: 3/6 × 2/5 = 6/30 = 1/5.
+- **P(A e B)**: a probabilidade do caminho em que acontecem A e B.
+- **P(B)**: a soma de todos os caminhos em que B acontece.
+- **Em palavras:** entre todos os casos B, que fração vem do caminho A.
+- **Quando usar:** "dado que", "sabendo que", quando as porcentagens são dadas por grupo.
 
-**Trap clássica do INEP**: o aluno faz 3/6 × 3/6 e erra. A frase "**sem reposição**" ou "**sucessivamente**" obriga você a diminuir tanto o numerador quanto o denominador na segunda etapa.
+**Exemplo resolvido.** Numa caixa de e-mails, 60% das mensagens são propaganda. Das propagandas, 90% vão para a pasta de lixo; das outras mensagens, 45% vão para o lixo. Uma mensagem está no lixo. Qual é a probabilidade de ela ser propaganda?
 
-**Quando a questão pede que uma coisa OU outra aconteça, some:**
+1. Caminho "propaganda e lixo": 0,60 × 0,90 = 0,54.
+2. Não propaganda: 1 − 0,60 = 0,40. Caminho "não propaganda e lixo": 0,40 × 0,45 = 0,18.
+3. Total no lixo: 0,54 + 0,18 = 0,72.
+4. Dado que está no lixo: 0,54 ÷ 0,72 = 0,75.
+5. Resposta: 0,75, ou 75%.
 
-**P(A B) = P(A) + P(B) - P(A B)**
+**Erro comum.** Responder 0,90 (a chance de uma propaganda ir para o lixo) em vez da chance de uma mensagem do lixo ser propaganda. "A dado B" e "B dado A" são perguntas diferentes.
 
-- **P(A ∪ B)** = probabilidade de acontecer A **ou** B (o símbolo ∪ significa "união", pelo menos um dos dois).
-- **P(A) + P(B)** = a soma direta das duas.
-- **− P(A ∩ B)** = você **desconta** o pedaço que pertence aos dois ao mesmo tempo, porque senão ele seria contado duas vezes.
+### Armadilhas típicas do INEP
 
-Se os eventos são **mutuamente exclusivos** (não podem acontecer juntos, como "sair cara" e "sair coroa" no mesmo lançamento), então P(A ∩ B) = 0 e a fórmula vira simplesmente:
-
-**P(A B) = P(A) + P(B)**
-
-Exemplo do desconto: rifa de 1 a 100, evento "número maior que 40 **ou** número par". Existem 60 números maiores que 40 e 50 pares, mas 30 números são as duas coisas (42, 44, …, 100). Então P = 60/100 + 50/100 − 30/100 = 80/100 = 80%. Quem esquece de subtrair marca 110% e não percebe que passou de 1.
-
-### 2.9 Os padrões de armadilha do INEP
-
-**Numerador e denominador trocados.** A alternativa com a fração invertida está sempre lá esperando. Confira: o denominador é o **total**, sempre o maior número.
-
-**Distratores "quase certos".** Se o total são 120 carros e 16 são vermelhos, as alternativas trazem 16/120 (o que você **não** quer), 104/120 (o correto) e variações. O erro não é de conta, é de **leitura de qual evento foi pedido**.
-
-**Trocar "E" por "OU".** Multiplicar quando devia somar, ou vice-versa. Diagnóstico rápido: se as duas coisas precisam acontecer na mesma jogada, multiplique; se basta uma das duas, some.
-
-**Ignorar "sem reposição".** Já detalhado acima. Circule essa expressão no enunciado.
-
-**Confundir "distintos" com "podem repetir"** na contagem do espaço amostral.
-
-**Excesso de texto.** O ENEM enche a questão de contexto irrelevante (regras de um jogo, história da empresa). Sua tarefa é achar duas coisas: **quantos casos me interessam** e **quantos casos existem**. O resto é ruído.
-
----
+1. **Dividir pelo total errado**: numa condição ou num sorteio entre empatados, o total é só o grupo em jogo.
+2. **Esquecer a ordem** nos resultados de dois dados.
+3. **Achar que soma maior tem mais chance**: conte os pares.
+4. **Somar ou fazer a média** das chances sem multiplicar pelos galhos anteriores.
+5. **Trocar "A dado B" por "B dado A"**.
+6. **Usar todos os de um grupo** quando parte deles também está no outro.
 
 ## Tópicos-Chave para Revisão
 
 <div className="topico">
 
-Probabilidade é uma **fração de contagem**: **P(A) = n(A)/n(Ω)**, em que **n(A)** são os **casos favoráveis** (o que eu quero) e **n(Ω)** é o **espaço amostral** (tudo o que pode acontecer). A fórmula só é válida quando os resultados são **equiprováveis**, condição que o enunciado sinaliza com as palavras "aleatoriamente" ou "ao acaso". Para converter o resultado, use **porcentagem = [n(A)/n(Ω)] × 100**.
+#### 1. Favoráveis e possíveis
 
-Todo resultado obedece a **0 ≤ P(A) ≤ 1**. Esse é seu **teste de sanidade**: valor maior que 1 significa fração invertida ou soma sem descontar interseção.
+**P = casos favoráveis ÷ casos possíveis**, contando só os **casos favoráveis** e os **casos possíveis** ainda em jogo.
 
-O **evento complementar** é o atalho de ouro: **P(A) + P(Ā) = 1**, logo **P(A) = 1 − P(Ā)**. Os gatilhos que exigem essa ferramenta são "**pelo menos um**", "**no mínimo**" e "**nenhum**": contar o oposto é sempre mais rápido do que somar todos os casos favoráveis.
+#### 2. Dois dados
 
-Quando o total não vem pronto, monte-o pelo **princípio multiplicativo**: **n(Ω) = n₁ × n₂ × … × n_k**, multiplicando as opções de cada etapa. A palavra "**distintos**" reduz uma opção a cada etapa seguinte (10 × 9 em vez de 10 × 10).
+São **36** pares **ordenados**; (4, 5) e (5, 4) contam separados.
 
-Para dois eventos simultâneos ("**E**"), multiplique: **P(A ∩ B) = P(A) × P(B)** se forem **independentes**, e **P(A ∩ B) = P(A) × P(B|A)** se houver **dependência**, caso das retiradas **sem reposição**, em que numerador e denominador encolhem juntos na segunda etapa.
+#### 3. Árvore
 
-Para eventos alternativos ("**OU**"), some descontando a sobreposição: **P(A ∪ B) = P(A) + P(B) − P(A ∩ B)**. Se os eventos forem **mutuamente exclusivos**, a interseção vale zero e sobra **P(A ∪ B) = P(A) + P(B)**.
+**P(evento) = soma, em cada caminho que leva ao evento, do produto das probabilidades dos galhos**. Ao longo do **caminho**, multiplique; entre caminhos, **some**.
 
-As **armadilhas recorrentes do INEP** são a **fração invertida**, o distrator que responde ao **evento complementar em vez do pedido**, a troca entre **soma e produto**, o esquecimento do "**sem reposição**" e a confusão entre elementos **distintos** e **repetíveis**. Em todas elas, o erro é de **interpretação do enunciado**, não de cálculo.
+#### 4. Condição por contagem
 
----
+**P(A dado B) = casos de A dentro de B ÷ casos de B**: a **condição** vira o novo **total**.
+
+#### 5. Condição com porcentagens
+
+**P(A dado B) = P(A e B) ÷ P(B)**. Monte a **árvore** e divida pelo **total** de B.
 
 </div>
 
-## Teste de Fogo
+## Questões do ENEM
 
-*Questões sem gabarito: resolva primeiro, depois confira com o professor ou com a IA.*
+*Marque uma alternativa em cada questão e confira tudo de uma vez no botão do fim.*
 
-**Questão 1: (Enem PPL 2019)**
+**Questão 1**
 
-Uma locadora possui disponíveis 120 veículos da categoria que um cliente pretende locar. Desses, 20% são da cor branca, 40% são da cor cinza, 16 veículos são da cor vermelha e o restante, de outras cores. O cliente não gosta da cor vermelha e ficaria contente com qualquer outra cor, mas o sistema de controle disponibiliza os veículos sem levar em conta a escolha da cor pelo cliente.
+*ENEM 2020 · 2º dia · caderno azul · questão 142*
 
-Disponibilizando aleatoriamente, qual é a probabilidade de o cliente ficar contente com a cor do veículo?
+O Estatuto do Idoso, no Brasil, prevê certos direitos às pessoas com idade avançada, concedendo a estas, entre outros benefícios, a restituição de imposto de renda antes dos demais contribuintes. A tabela informa os nomes e as idades de 12 idosos que aguardam suas restituições de imposto de renda. Considere que, entre os idosos, a restituição seja concedida em ordem decrescente de idade e que, em subgrupos de pessoas com a mesma idade, a ordem seja decidida por sorteio.
 
-A) 16/120
-B) 32/120
-C) 72/120
-D) 101/120
-E) 104/120
+<figure class="figura">
 
----
+| Nome | Idade (em ano) |
+|---|---|
+| Orlando | 89 |
+| Gustavo | 86 |
+| Luana | 86 |
+| Teresa | 85 |
+| Márcia | 84 |
+| Roberto | 82 |
+| Heloisa | 75 |
+| Marisa | 75 |
+| Pedro | 75 |
+| João | 75 |
+| Antônio | 72 |
+| Fernanda | 70 |
 
-**Questão 2: (Enem PPL 2021)**
+</figure>
 
-A senha de um cofre é uma sequência formada por oito dígitos, que são algarismos escolhidos de 0 a 9. Ao inseri-la, o usuário se esqueceu dos dois últimos dígitos que formam essa senha, lembrando somente que esses dígitos são distintos.
+Nessas condições, a probabilidade de João ser a sétima pessoa do grupo a receber sua restituição é igual a
 
-Digitando ao acaso os dois dígitos esquecidos, a probabilidade de que o usuário acerte a senha na primeira tentativa é
+A) 1/12\
+B) 7/12\
+C) 1/8\
+D) 5/6\
+E) 1/4
 
-A) 2/8
-B) 1/90
-C) 2/90
-D) 1/100
-E) 2/100
+**Questão 2**
 
----
+*ENEM 2012 · 2º dia · caderno azul · questão 178*
 
-**Questão 3: (Enem Digital 2020)**
+José, Paulo e Antônio estão jogando dados não viciados, nos quais, em cada uma das seis faces, há um número de 1 a 6. Cada um deles jogará dois dados simultaneamente. José acredita que, após jogar seus dados, os números das faces voltadas para cima lhe darão uma soma igual a 7. Já Paulo acredita que sua soma será igual a 4 e Antônio acredita que sua soma será igual a 8.
 
-Um apostador deve escolher uma entre cinco moedas ao acaso e lançá-la sobre uma mesa, tentando acertar qual resultado (cara ou coroa) sairá na face superior da moeda.
+Com essa escolha, quem tem a maior probabilidade de acertar sua respectiva soma é
 
-Suponha que as cinco moedas que ele pode escolher sejam diferentes:
+A) Antônio, já que sua soma é a maior de todas as escolhidas.\
+B) José e Antônio, já que há 6 possibilidades tanto para a escolha de José quanto para a escolha de Antônio, e há apenas 4 possibilidades para a escolha de Paulo.\
+C) José e Antônio, já que há 3 possibilidades tanto para a escolha de José quanto para a escolha de Antônio, e há apenas 2 possibilidades para a escolha de Paulo.\
+D) José, já que há 6 possibilidades para formar sua soma, 5 possibilidades para formar a soma de Antônio e apenas 3 possibilidades para formar a soma de Paulo.\
+E) Paulo, já que sua soma é a menor de todas.
 
-• duas delas têm "cara" nas duas faces;
-• uma delas tem "coroa" nas duas faces;
-• duas delas são normais (cara em uma face e coroa na outra).
+**Questão 3**
 
-Nesse jogo, qual é a probabilidade de o apostador obter uma face "cara" no lado superior da moeda lançada por ele?
+*ENEM 2017 · 2º dia · caderno azul · questão 179*
 
-A) 1/8
-B) 2/5
-C) 3/5
-D) 3/4
-E) 4/5
+Um morador de uma região metropolitana tem 50% de probabilidade de atrasar-se para o trabalho quando chove na região; caso não chova, sua probabilidade de atraso é de 25%. Para um determinado dia, o serviço de meteorologia estima em 30% a probabilidade da ocorrência de chuva nessa região.
 
----
+Qual é a probabilidade de esse morador se atrasar para o serviço no dia para o qual foi dada a estimativa de chuva?
 
-**Questão 4: (Enem PPL 2022)**
+A) 0,075\
+B) 0,150\
+C) 0,325\
+D) 0,600\
+E) 0,800
 
-Sete países americanos (Argentina, Brasil, Canadá, Chile, Estados Unidos, Paraguai e Uruguai) e sete países europeus (Portugal, Espanha, França, Inglaterra, Itália, Alemanha e Suíça) decidem criar uma comissão com representantes de oito desses países, objetivando criar políticas de incentivo e regulação do turismo entre eles. Na hipótese de criação da comissão, serão escolhidos aleatoriamente quatro representantes de países das Américas e quatro representantes de países europeus, não podendo estar na comissão dois representantes de um mesmo país.
+**Questão 4**
 
-Qual é a probabilidade de o Brasil e a França pertencerem a essa comissão?
+*ENEM 2019 · 2º dia · caderno azul · questão 173*
 
-A) 1/182
-B) 1/49
-C) 1/4
-D) 1/13
-E) 16/49
+Em um determinado ano, os computadores da receita federal de um país identificaram como inconsistentes 20% das declarações de imposto de renda que lhe foram encaminhadas. Uma declaração é classificada como inconsistente quando apresenta algum tipo de erro ou conflito nas informações prestadas. Essas declarações consideradas inconsistentes foram analisadas pelos auditores, que constataram que 25% delas eram fraudulentas. Constatou-se ainda que, dentre as declarações que não apresentaram inconsistências, 6,25% eram fraudulentas.
 
----
+Qual é a probabilidade de, nesse ano, a declaração de um contribuinte ser considerada inconsistente, dado que ela era fraudulenta?
 
-**Questão 5: (Enem 2018)**
+A) 0,0500\
+B) 0,1000\
+C) 0,1125\
+D) 0,3125\
+E) 0,5000
 
-Para ganhar um prêmio, uma pessoa deverá retirar, sucessivamente e sem reposição, duas bolas pretas de uma mesma urna.
+**Questão 5**
 
-Inicialmente, as quantidades e cores das bolas são como descritas a seguir:
+*ENEM 2013 · 2º dia · caderno azul · questão 150*
 
-• Urna A – Possui três bolas brancas, duas bolas pretas e uma bola verde;
-• Urna B – Possui seis bolas brancas, três bolas pretas e uma bola verde;
-• Urna C – Possui duas bolas pretas e duas bolas verdes;
-• Urna D – Possui três bolas brancas e três bolas pretas.
+Numa escola com 1 200 alunos foi realizada uma pesquisa sobre o conhecimento desses em duas línguas estrangeiras, inglês e espanhol.
 
-A pessoa deve escolher uma entre as cinco opções apresentadas:
+Nessa pesquisa constatou-se que 600 alunos falam inglês, 500 falam espanhol e 300 não falam qualquer um desses idiomas.
 
-• Opção 1 – Retirar, aleatoriamente, duas bolas da urna A;
-• Opção 2 – Retirar, aleatoriamente, duas bolas da urna B;
-• Opção 3 – Passar, aleatoriamente, uma bola da urna C para a urna A; após isso, retirar, aleatoriamente, duas bolas da urna A;
-• Opção 4 – Passar, aleatoriamente, uma bola da urna D para a urna C; após isso, retirar, aleatoriamente, duas bolas da urna C;
-• Opção 5 – Passar, aleatoriamente, uma bola da urna C para a urna D; após isso, retirar, aleatoriamente, duas bolas da urna D.
+Escolhendo-se um aluno dessa escola ao acaso e sabendo-se que ele não fala inglês, qual a probabilidade de que esse aluno fale espanhol?
 
-Com o objetivo de obter a maior probabilidade possível de ganhar o prêmio, a pessoa deve escolher a opção:
-
-A) 1
-B) 2
-C) 3
-D) 4
-E) 5
+A) 1/2\
+B) 5/8\
+C) 1/4\
+D) 5/6\
+E) 5/14
