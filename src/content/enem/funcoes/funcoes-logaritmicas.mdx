@@ -3,294 +3,389 @@ title: "Funções Logarítmicas"
 subject: "Funções"
 order: 4
 relevance: >
-  Logaritmo é a operação que responde a uma única pergunta: "a quantas vezes eu preciso multiplicar a
-  base por ela mesma para chegar nesse número?". Ele é o oposto da potenciação, assim como a divisão é
-  o oposto da multiplicação. No ENEM, logaritmo aparece com frequência média (quase todo ano há 1 ou 2
-  questões), mas quase sempre no mesmo figurino: fenômenos que crescem ou decrescem multiplicando: terremotos, pH, decibéis, meia-vida radioativa, juros compostos, crescimento de população, Lei de
-  Moore. O INEP raramente pede "calcule log₂ 8".
+  O logaritmo é a operação que desfaz a potência: ele responde "a que expoente devo elevar a base para
+  chegar a este número?". Ele aparece em escalas que comprimem números enormes em valores pequenos, como
+  a escala Richter dos terremotos e o pH (potencial hidrogeniônico) da química, e é a ferramenta para descobrir o tempo em
+  crescimentos exponenciais, como juros compostos. O ENEM (Exame Nacional do Ensino Médio) costuma dar
+  a fórmula pronta e os valores aproximados dos logaritmos; o que ele cobra é saber usar as três
+  propriedades (produto, quociente e potência) e voltar do logaritmo para a potência.
 quickSummary: >
-  Logaritmo é expoente disfarçado. A definição log_b a = x ⟺ bˣ = a diz que a base (b) elevada ao
-  logaritmo (x) resulta no logaritmando (a). Sempre que travar, volte a essa pergunta: "a base elevada
-  a quanto dá esse número?". Quando a base não está escrita, ela é 10; quando aparece ln, a base é o
-  número e ≈ 2,718.
+  O logaritmo de a na base b é o expoente x tal que bˣ = a. Sem base escrita, a base é 10. As três
+  propriedades são: log(a · b) = log a + log b; log(a ÷ b) = log a − log b; log(aⁿ) = n · log a. Para
+  desfazer um logaritmo, volte à potência; para descobrir um expoente desconhecido, aplique log dos dois
+  lados e use a propriedade da potência.
+resources:
+  conteudoComplementar:
+    conteudo: "Juros Compostos"
+    comoAjuda: "Nos juros compostos, o logaritmo volta a aparecer sempre que a incógnita é o tempo; a aula de Juros Compostos aprofunda esse uso."
+gabarito:
+  - correta: 2
+    porque: >
+      A · f = 2 000 × 0,2 = 400. Como 400 = 4 × 100 = 2² × 10², log 400 = log 2 + log 2 + log 100 =
+      0,3 + 0,3 + 2 = 2,6. Então Mₛ = 3,30 + 2,6 = 5,9, que está na faixa 5,0 ≤ Mₛ ≤ 5,9: Moderado.
+      Revisar: Aula Teórica › 3. Logaritmo do produto
+  - correta: 4
+    porque: >
+      A flor é rosa com pH maior que 7, e a mais valorizada tem pH menor que 8: o pH fica entre 7 e 8.
+      Com pH = −log₁₀ x, o −log x fica entre 7 e 8, então log x fica entre −8 e −7 (multiplicar por −1
+      inverte a ordem). Voltando à potência de 10, x fica entre 10⁻⁸ e 10⁻⁷.
+      Revisar: Aula Teórica › 6. Desigualdade com logaritmo
+  - correta: 3
+    porque: >
+      Chamando de A₁ a amplitude do Japão e de A₂ a da Argentina: 9 = log(A₁ ÷ A₀) e 7 = log(A₂ ÷ A₀).
+      Subtraindo, 9 − 7 = log(A₁ ÷ A₀) − log(A₂ ÷ A₀) = log(A₁ ÷ A₂). Então log(A₁ ÷ A₂) = 2, e a razão
+      é A₁ ÷ A₂ = 10² = 100.
+      Revisar: Aula Teórica › 4. Logaritmo do quociente
+  - correta: 3
+    porque: >
+      À venda, h = 30: 30 = 5 · log₂(t + 1), log₂(t + 1) = 6, t + 1 = 2⁶ = 64 e t = 63 dias. Altura máxima,
+      h = 40: log₂(t + 1) = 8, t + 1 = 2⁸ = 256 e t = 255 dias. O tempo entre os dois é 255 − 63 = 192 dias.
+      Revisar: Aula Teórica › 2. Desfazendo uma fórmula com logaritmo
+  - correta: 1
+    porque: >
+      Dobrar o depósito é chegar a 400: 200 · 1,05ⁿ = 400, ou seja, 1,05ⁿ = 2. Aplicando log dos dois lados,
+      n · log 1,05 = log 2, então n = 0,30 ÷ 0,02 = 15 meses. O plano com a menor carência que já alcança
+      15 meses é o B.
+      Revisar: Aula Teórica › 5. Logaritmo da potência
 ---
 
-## Aula Teórica Completa
+<Accordion titulo="Palavras e siglas desta aula" dica="Consulte quando encontrar um termo novo" icone="spell-check">
 
-### 2.1. A ideia central: logaritmo é "expoente disfarçado"
+- **ENEM** (Exame Nacional do Ensino Médio): a prova nacional que dá acesso a faculdades e bolsas.
+- **INEP** (Instituto Nacional de Estudos e Pesquisas Educacionais Anísio Teixeira): o órgão do governo que faz o ENEM.
+- **pH** (potencial hidrogeniônico): a escala que mede se algo é ácido (pH menor que 7), neutro (7) ou alcalino (maior que 7).
+- **H⁺** (íon hidrogênio): a partícula cuja concentração define o pH; quanto mais H⁺, mais ácido.
+- **Solo alcalino**: solo com pH acima de 7, o contrário de ácido.
+- **dB** (decibéis): a unidade que mede o nível de um som.
+- **Razão**: a divisão de uma grandeza por outra; "a razão entre A e B" é A ÷ B.
+- **&lt; e >**: "menor que" e "maior que"; 7 &lt; x quer dizer que x é maior que 7.
+- **≤ e ≥**: "menor ou igual a" e "maior ou igual a".
+- **≈**: "aproximadamente igual a".
+- **^**: "elevado a"; 10^(1/2) é 10 elevado a 1/2 (um meio).
+- **Hydrangea macrophylla**: nome científico da hortênsia, uma planta de jardim.
+- **Escala Richter**: a escala que mede a magnitude (a força) de um terremoto.
+- **Sismógrafo**: o aparelho que registra os tremores do solo.
+- **Amplitude**: o tamanho do movimento de uma onda, o quanto ela sobe e desce.
+- **Hz** (hertz): unidade de frequência, quantas vezes algo se repete por segundo.
+- **μm** (micrômetro): a milésima parte de um milímetro.
+- **Juros compostos**: juros calculados sobre o valor que já inclui os juros anteriores, multiplicando por um fator fixo a cada período.
+- **Carência**: o tempo mínimo que o dinheiro precisa ficar aplicado antes de poder ser retirado.
 
-Imagine uma bactéria que dobra a cada hora. Começa com 1.
+</Accordion>
 
-- 1 hora → 2
-- 2 horas → 4
-- 3 horas → 8
-- 4 horas → 16
+## Antes de Começar
 
-Se eu pergunto "quantas bactérias depois de 4 horas?", isso é **potenciação**: 2⁴ = 16.
+**O que o ENEM cobra aqui.** A prova quase sempre dá a fórmula com logaritmo pronta e os valores aproximados que você vai precisar (como log 2 = 0,3). O que ela cobra é usar as propriedades certas. Os temas que costumam aparecer são estes:
 
-Mas se eu pergunto **"quantas horas até chegar em 16?"**, a incógnita agora é o expoente. Isso é logaritmo:
+- **Voltar do logaritmo para a potência** para achar um valor.
+- **Somar logaritmos** quando o número é um produto.
+- **Subtrair logaritmos** para comparar duas medidas numa escala como a Richter.
+- **Tirar o expoente para fora** para descobrir um tempo num crescimento exponencial.
+- **Trabalhar desigualdades** com logaritmo e sinal de menos, como no pH.
 
-**₂ 16 = 4**
+**O que você precisa saber antes.**
 
-Leia assim: "log de 16 na base 2 é 4", ou melhor ainda, em português humano: **"2 elevado a quanto dá 16? Resposta: 4."**
+- **Potências.** 10³ = 1 000, 10⁻² = 0,01, 2⁶ = 64. Revise a aula de Potências e Raízes se precisar.
+- **Porcentagem como fator.** Crescer 3% ao ano é multiplicar por 1,03 a cada ano; revise a aula de Porcentagem se precisar.
+- **Funções exponenciais.** O logaritmo desfaz a exponencial; revise a aula de Funções Exponenciais.
+- **Inequações.** Ao multiplicar os dois lados de uma desigualdade por um número negativo, o sinal vira: se −x &lt; 5, então x > −5. Revise a aula de Equações de Primeiro e Segundo Grau se precisar.
+
+## Aula Teórica
+
+### 1. O que é logaritmo
+
+O **logaritmo** é um expoente. log₂ 8 pergunta: "2 elevado a quanto dá 8?". A resposta é 3, porque 2³ = 8.
+
+**Fórmula: definição de logaritmo**
+
+**logaritmo de a na base b = x quer dizer bˣ = a**
+
+- **b**: a base, positiva e diferente de 1. Ela aparece escrita pequena, embaixo do "log": log₂ é o logaritmo na base 2.
+- **a**: o número de que se tira o logaritmo; precisa ser positivo.
+- **x**: o logaritmo, que é o expoente procurado.
+- **Em palavras:** o logaritmo de a na base b é o expoente que leva b até a.
+- **Quando usar:** sempre que aparecer "log" numa fórmula e for preciso achar o número ou o expoente.
 
-### 2.2. A definição formal
+Quando a base não está escrita, ela é **10**: log 1 000 = 3, porque 10³ = 1 000; log 0,01 = −2, porque 10⁻² = 0,01.
+
+<figure class="figura">
+  <svg viewBox="0 0 460 120" role="img" aria-labelledby="fig-log-1-t fig-log-1-d">
+    <title id="fig-log-1-t">Logaritmo e potência são a mesma frase escrita de dois jeitos</title>
+    <desc id="fig-log-1-d">À esquerda, log de 81 na base 3 igual a 4. À direita, 3 elevado a 4 igual a 81. Embaixo de cada lado, uma frase lembra que o logaritmo é o expoente.</desc>
+    <text x="110" y="55" class="rotulo" text-anchor="middle" font-size="22">log₃ 81 = 4</text>
+    <text x="230" y="55" class="rotulo-fraco" text-anchor="middle">é o mesmo que</text>
+    <text x="350" y="55" class="rotulo" text-anchor="middle" font-size="22">3⁴ = 81</text>
+    <text x="110" y="95" class="rotulo-fraco" text-anchor="middle">o logaritmo é o expoente</text>
+    <text x="350" y="95" class="rotulo-fraco" text-anchor="middle">o expoente é o logaritmo</text>
+  </svg>
+</figure>
 
-**_b a = x b^x = a**
+**Exemplo resolvido.** Quanto vale log₃ 81? E log 100 000?
 
-Quebrando peça por peça:
+1. log₃ 81: 3 elevado a quanto dá 81? 3 × 3 × 3 × 3 = 81, então 3⁴ = 81.
+2. Resposta: log₃ 81 = 4.
+3. log 100 000 (base 10): 100 000 = 10⁵.
+4. Resposta: log 100 000 = 5.
 
-- **b** = **base**: o número que está sendo multiplicado por ele mesmo (o "2" das bactérias).
-- **a** = **logaritmando**: o resultado que você quer atingir (o "16").
-- **x** = **logaritmo**: a resposta, o expoente que você procura (o "4").
+**Erro comum.** Dividir o número pela base (81 ÷ 3 = 27) achando que isso é o logaritmo. Para números maiores que 1, o logaritmo **conta** quantas vezes a base se multiplica; ele não divide nada. Para números entre 0 e 1 o logaritmo é negativo, como em log 0,01 = −2.
 
-Uma frase para nunca esquecer: **"a base elevada ao logaritmo dá o logaritmando"**. Ou seja, no exemplo: 2 elevado a 4 dá 16.
+### 2. Desfazendo uma fórmula com logaritmo
 
-### 2.3. Condições de existência
+Quando uma fórmula tem um logaritmo e o problema dá o resultado, isole o logaritmo e volte para a potência.
 
-Nem todo logaritmo existe. Três regras:
+**Exemplo resolvido.** Num jogo, a pontuação p de um jogador depois de x horas de treino segue p = 3 · log₂(x + 2). Quantas horas de treino a mais ele precisa para passar de 6 para 15 pontos?
 
-**a > 0, b > 0, b ≠ 1**
+1. Para p = 6: 6 = 3 · log₂(x + 2), então log₂(x + 2) = 2 e x + 2 = 2² = 4. Logo x = 2 horas.
+2. Para p = 15: log₂(x + 2) = 15 ÷ 3 = 5, então x + 2 = 2⁵ = 32. Logo x = 30 horas.
+3. Diferença entre os dois momentos: 30 − 2 = 28.
+4. Resposta: 28 horas a mais.
 
-Por quê? Simples:
-- **a > 0** (logaritmando positivo): não existe expoente que faça 2ˣ virar um número negativo ou zero. 2¹ = 2, 2⁰ = 1, 2⁻¹ = 0,5... sempre positivo, nunca chega no zero.
-- **b > 0 e b ≠ 1**: se a base fosse 1, teríamos 1ˣ = 1 sempre, e nunca chegaríamos em outro número.
+**Erro comum.** Esquecer o "+ 2" no final e usar 32 horas no lugar de 30. O número de dentro do logaritmo é x + 2, não x; ainda falta desfazer essa soma.
 
-**Isso é armadilha clássica de vestibular**: você resolve a equação, acha x = −3, e esquece de checar se o logaritmando fica negativo.
+### 3. Logaritmo do produto
 
-### 2.4. Bases especiais (as que o ENEM usa)
+O logaritmo de um produto é a soma dos logaritmos. É assim que a prova transforma uma conta difícil em somas fáceis, usando valores aproximados como log 2 ≈ 0,3 ou log 3 ≈ 0,48.
 
-- **Base 10 (logaritmo decimal)**: quando a base não aparece escrita, ela é 10. Então `log 100` significa `log₁₀ 100 = 2`. **Esta é a mais cobrada no ENEM.**
-- **Base e (logaritmo natural)**: escrito como `ln`. O número e ≈ 2,718. Aparece em juros compostos contínuos e decaimento radioativo.
+**Fórmula: logaritmo do produto**
 
-### 2.5. Consequências imediatas da definição
+**log(a · b) = log a + log b**
 
-Estas você deduz em 3 segundos, não precisa decorar:
+- **a, b**: dois números positivos.
+- **log**: na base 10, quando a base não aparece.
+- **Em palavras:** o logaritmo de uma multiplicação é a soma dos logaritmos de cada fator.
+- **Quando usar:** quando o número dentro do log é uma multiplicação, ou pode ser escrito como uma (por exemplo, 300 = 3 × 100).
 
-**_b 1 = 0 (porque b⁰ = 1)**
-**_b b = 1 (porque b¹ = b)**
-**_b b^n = n (porque b^n = b^n)**
-**b^_b a = a (a base "desfaz" o log)**
+**Exemplo resolvido.** Sabendo que log 3 ≈ 0,48, quanto vale log 900?
 
-### 2.6. As três propriedades operatórias: o coração do ENEM
+1. Escrever 900 como produto: 900 = 9 × 100 = 3 × 3 × 100.
+2. Aplicar a propriedade: log 900 = log 3 + log 3 + log 100.
+3. Calcular: 0,48 + 0,48 + 2 = 2,96.
+4. Resposta: log 900 ≈ 2,96.
 
-Estas três transformam problemas impossíveis em contas de somar. Elas existem porque **logaritmo é expoente**, e expoentes têm regras de multiplicação.
+**Erro comum.** Multiplicar os logaritmos (log 3 × log 100) em vez de somar. O produto **dentro** do log vira **soma** fora dele.
 
-**Propriedade 1: Log do produto vira soma:**
-**_b (M · N) = _b M + _b N**
+### 4. Logaritmo do quociente
 
-- **M** e **N** = os dois números que estão sendo multiplicados
-- **b** = a base (tem que ser a mesma nos três logs)
+O logaritmo de uma divisão é a diferença dos logaritmos. Uma **escala logarítmica** é aquela em que a medida é o logaritmo da grandeza: somar 1 na medida multiplica a grandeza por 10. Por isso, numa escala logarítmica, a **diferença** de duas medidas diz a **razão** entre as grandezas.
 
-*Por que funciona?* Porque quando você multiplica potências de mesma base, você **soma** os expoentes: 2³ · 2⁵ = 2⁸. Como o log É o expoente, ele soma.
+<figure class="figura">
+  <svg viewBox="0 0 460 115" role="img" aria-labelledby="fig-log-2-t fig-log-2-d">
+    <title id="fig-log-2-t">Escala logarítmica</title>
+    <desc id="fig-log-2-d">Uma reta com os números 0,01; 0,1; 1; 10; 100 e 1 000 igualmente espaçados. Embaixo de cada um, o logaritmo: −2, −1, 0, 1, 2 e 3. Cada passo para a direita soma 1 ao logaritmo e multiplica o número por 10.</desc>
+    <line x1="40" y1="60" x2="430" y2="60" class="traco" />
+    <line x1="60" y1="54" x2="60" y2="66" class="traco" />
+    <line x1="130" y1="54" x2="130" y2="66" class="traco" />
+    <line x1="200" y1="54" x2="200" y2="66" class="traco" />
+    <line x1="270" y1="54" x2="270" y2="66" class="traco" />
+    <line x1="340" y1="54" x2="340" y2="66" class="traco" />
+    <line x1="410" y1="54" x2="410" y2="66" class="traco" />
+    <text x="60" y="45" class="rotulo" text-anchor="middle">0,01</text>
+    <text x="130" y="45" class="rotulo" text-anchor="middle">0,1</text>
+    <text x="200" y="45" class="rotulo" text-anchor="middle">1</text>
+    <text x="270" y="45" class="rotulo" text-anchor="middle">10</text>
+    <text x="340" y="45" class="rotulo" text-anchor="middle">100</text>
+    <text x="410" y="45" class="rotulo" text-anchor="middle">1 000</text>
+    <text x="60" y="84" class="rotulo-fraco" text-anchor="middle">−2</text>
+    <text x="130" y="84" class="rotulo-fraco" text-anchor="middle">−1</text>
+    <text x="200" y="84" class="rotulo-fraco" text-anchor="middle">0</text>
+    <text x="270" y="84" class="rotulo-fraco" text-anchor="middle">1</text>
+    <text x="340" y="84" class="rotulo-fraco" text-anchor="middle">2</text>
+    <text x="410" y="84" class="rotulo-fraco" text-anchor="middle">3</text>
+    <text x="230" y="108" class="rotulo-fraco" text-anchor="middle">em cima, o número; embaixo, o logaritmo: +1 no logaritmo = × 10 no número</text>
+  </svg>
+</figure>
 
-Exemplo: log 6 = log(2·3) = log 2 + log 3.
+**Fórmula: logaritmo do quociente**
 
-**Propriedade 2: Log do quociente vira subtração:**
-**_b ≤ft((M) / (N)) = _b M - _b N**
+**log(a ÷ b) = log a − log b**
 
-- **M** = numerador, **N** = denominador, **b** = base comum
+- **a, b**: dois números positivos.
+- **Em palavras:** o logaritmo de uma divisão é o logaritmo de cima menos o de baixo.
+- **Quando usar:** quando a fórmula tem uma divisão dentro do log, ou quando o problema compara duas medidas da mesma escala.
 
-*Por que?* Dividir potências subtrai expoentes: 2⁸ ÷ 2³ = 2⁵.
+**Exemplo resolvido.** O nível de um som, em dB (decibéis), é L = 10 · log(I ÷ I₀), em que I é a intensidade do som e I₀ uma intensidade de referência. Um som tem 80 dB e outro tem 50 dB. Quantas vezes mais intenso é o primeiro?
 
-Exemplo: log 5 = log(10/2) = log 10 − log 2 = 1 − 0,30 = 0,70.
+1. Chamando de I₁ e I₂ as intensidades dos dois sons e dividindo por 10: log(I₁ ÷ I₀) = 8 e log(I₂ ÷ I₀) = 5.
+2. Subtrair: log(I₁ ÷ I₀) − log(I₂ ÷ I₀) = log(I₁ ÷ I₂) = 8 − 5 = 3.
+3. Voltar à potência: I₁ ÷ I₂ = 10³.
+4. Resposta: 1 000 vezes mais intenso.
 
-**Propriedade 3: Expoente do logaritmando "desce" multiplicando:**
-**_b (M^n) = n · _b M**
+**Erro comum.** Responder a diferença (3) ou a razão das medidas (80 ÷ 50 = 1,6). Numa escala logarítmica, cada 1 a mais no logaritmo multiplica a grandeza por 10.
 
-- **M** = a base da potência dentro do log
-- **n** = o expoente que vai descer
-- **b** = a base do logaritmo
+### 5. Logaritmo da potência
 
-*Por que?* Porque M⁵ = M·M·M·M·M, e pela Propriedade 1 isso vira log M + log M + ... cinco vezes = 5·log M.
+O expoente de dentro do log pode "sair" e multiplicar. É isso que resolve equações exponenciais em que o número não é uma potência exata da base.
 
-**Esta terceira propriedade é a mais importante do ENEM inteiro.** Ela é a ferramenta que **tira a incógnita de cima do expoente**. Sempre que uma questão tiver algo como (0,99)ᵗ = 0,01 e perguntar o valor de t, você aplica log dos dois lados e usa a Propriedade 3 para trazer o t para baixo.
+**Fórmula: logaritmo da potência**
 
-### 2.7. Mudança de base
+**log(aⁿ) = n · log a**
 
-Sua calculadora (e a tabela do ENEM) só tem base 10. Se o problema pedir base 2, use:
+- **a**: um número positivo.
+- **n**: o expoente, que sai do log e multiplica.
+- **Em palavras:** o logaritmo de uma potência é o expoente vezes o logaritmo da base.
+- **Quando usar:** quando a incógnita está no expoente, como em "depois de quantos anos o valor triplica".
 
-**_b a = (_c a) / (_c b)**
+**Exemplo resolvido.** Uma população P cresce 10% ao ano. Um projeto pode durar 9, 12 ou 18 anos, e deve terminar só quando a população já tiver triplicado. Qual é o menor prazo possível? Use log 3 ≈ 0,48 e log 1,1 ≈ 0,04.
 
-- **a** = logaritmando original
-- **b** = base original (a que você quer trocar)
-- **c** = base nova (geralmente 10)
+1. Crescer 10% ao ano é multiplicar por 1,1 a cada ano: depois de n anos, a população é P · 1,1ⁿ.
+2. Triplicar: P · 1,1ⁿ = 3P. Dividindo os dois lados por P, o valor inicial some: 1,1ⁿ = 3.
+3. Aplicar log dos dois lados e tirar o expoente: n · log 1,1 = log 3, então n · 0,04 = 0,48 e n = 12 anos.
+4. Resposta: o prazo de 12 anos, o menor entre os que já alcançam o triplo (9 anos ainda não bastam).
 
-Truque de memória: **"o de cima continua em cima, a base velha vai para baixo"**.
+**Erro comum.** Dividir os números de dentro (3 ÷ 1,1) em vez dos logaritmos. O n sai da divisão **log 3 ÷ log 1,1**, não de 3 ÷ 1,1.
 
-Exemplo: log₂ 100 = log 100 / log 2 = 2 / 0,30 ≈ 6,67.
+### 6. Desigualdade com logaritmo
 
-### 2.8. A função logarítmica e seu gráfico
+Na base 10, quanto maior o número, maior o logaritmo. Então uma desigualdade entre logaritmos vira a mesma desigualdade entre potências de 10. O cuidado é com o **sinal de menos**: multiplicar os lados por −1 inverte os sinais da desigualdade.
 
-**f(x) = _b x**
+**Exemplo resolvido.** Numa escala S = −log x, um material é classificado como tipo II quando 3 &lt; S &lt; 5. Que valores de x correspondem ao tipo II?
 
-- **x** = variável independente, sempre **positiva** (domínio: x > 0)
-- **b** = base fixa, positiva e diferente de 1
-- **f(x)** = a imagem, que pode ser **qualquer número real** (positivo, negativo ou zero)
+1. Substituir: 3 &lt; −log x &lt; 5.
+2. Multiplicar tudo por −1 e inverter os sinais: −5 &lt; log x &lt; −3.
+3. Voltar à potência de 10: 10⁻⁵ &lt; x &lt; 10⁻³.
+4. Resposta: x entre 0,00001 e 0,001.
 
-Duas formas de gráfico:
+**Erro comum.** Trocar o sinal do log mas esquecer de inverter os sinais de desigualdade, chegando a −3 &lt; log x &lt; −5, que não faz sentido. Confira: o número da esquerda precisa ser menor que o da direita.
 
-**Se b > 1 (ex.: log₂ x, log x): função CRESCENTE.** Sobe rapidamente no começo e depois quase estaciona. Passa por (1, 0) sempre.
+### Armadilhas típicas do INEP
 
-**Se 0 &lt; b &lt; 1 (ex.: log₀,₅ x): função DECRESCENTE.** Desce. Também passa por (1, 0).
-
-Todo gráfico logarítmico:
-- **Nunca toca o eixo y**: ele se aproxima infinitamente mas não encosta (assíntota vertical em x = 0).
-- **Sempre corta o eixo x no ponto (1, 0)**, porque log de 1 é sempre 0, em qualquer base.
-
-**Relação com a exponencial:** a função logarítmica é a **função inversa** da exponencial. O gráfico de log é o gráfico da exponencial "espelhado" na reta y = x. Se f(x) = 2ˣ leva 3 até 8, então f⁻¹(x) = log₂ x leva 8 de volta até 3.
-
-### 2.9. Por que o mundo real usa logaritmo: escalas logarítmicas
-
-Terremotos, som e acidez variam em quantidades absurdas: um terremoto pode ser um bilhão de vezes mais forte que outro. Números assim são impossíveis de colocar em um gráfico. A solução é usar o **expoente** em vez do número.
-
-Por isso a escala Richter vai de 1 a 10, mas **cada ponto significa multiplicar por 10**. Um terremoto 8 não é "um pouco pior" que um 7: ele é **10 vezes** mais forte. Um 9 é **100 vezes** mais forte que um 7.
-
-**Esta é a interpretação conceitual que o ENEM mais cobra**: entender que numa escala logarítmica, somar 1 na escala significa multiplicar a grandeza real por 10.
-
-### 2.10. Roteiro para resolver questão de ENEM com logaritmo
-
-1. **Identifique o modelo.** Se o texto diz "dobra a cada X", "cai 1% a cada Y", "reduz à metade", é crescimento/decaimento exponencial → vai virar log.
-2. **Monte a equação exponencial** no formato: valor final = valor inicial × (fator)ᵗ.
-3. **Isole a potência**: deixe (fator)ᵗ sozinho de um lado.
-4. **Aplique log dos dois lados.**
-5. **Use a Propriedade 3** para descer o t.
-6. **Substitua os valores aproximados** que a questão deu.
-
-Sobre o **fator**:
-- Aumento de p% → fator = 1 + p/100
-- Redução de p% → fator = 1 − p/100
-- Dobra → fator = 2
-- Metade → fator = 1/2
-
-### 2.11. Armadilhas clássicas do INEP
-
-**Confundir log(M + N) com log M + log N.** Não existe propriedade para log de uma soma. `log(2+3) ≠ log 2 + log 3`. Só produto vira soma.
-
-**Confundir log(Mⁿ) com (log M)ⁿ.** No primeiro, o expoente desce. No segundo, ele fica: é o log inteiro elevado.
-
-**Errar a razão em escala logarítmica.** Questão de terremoto 9,0 vs 7,0: a alternativa-armadilha oferece "2" (a diferença) ou "9/7" (a razão dos números da escala). A resposta correta é 10² = 100, porque a escala é logarítmica.
-
-**Esquecer a condição de existência.** Você resolve, acha duas raízes, mas uma delas torna o logaritmando negativo. O INEP coloca essa raiz falsa nas alternativas.
-
-**Não converter a unidade no final.** Questão dá tempo em intervalos de 30 min e pergunta a resposta em horas. Você acha 458 períodos e marca "458" quando a resposta é 229 horas.
-
-**Inverter a mudança de base.** Trocar log a / log b por log b / log a.
-
----
+1. **Achar que o logaritmo é uma divisão** do número pela base.
+2. **Esquecer o que está junto de x** dentro do log (como o "+ 2") ao voltar para a potência.
+3. **Multiplicar logaritmos** quando a propriedade manda somar.
+4. **Responder a diferença das medidas** numa escala logarítmica, em vez da razão 10 elevado a essa diferença.
+5. **Dividir os números de dentro** (3 ÷ 1,1) em vez dos logaritmos deles.
+6. **Esquecer de inverter a desigualdade** ao multiplicar por −1.
 
 ## Tópicos-Chave para Revisão
 
 <div className="topico">
 
-Logaritmo é **expoente disfarçado**. A definição `log_b a = x ⟺ bˣ = a` diz que a **base** (b) elevada ao **logaritmo** (x) resulta no **logaritmando** (a). Sempre que travar, volte a essa pergunta: "a base elevada a quanto dá esse número?". Quando a base não está escrita, ela é **10**; quando aparece `ln`, a base é o número **e ≈ 2,718**.
+#### 1. Definição
 
-Existem três **condições de existência** que o INEP usa para plantar raízes falsas nas alternativas: `a > 0`, `b > 0` e `b ≠ 1`. Achou a solução da equação? Substitua e confira se o logaritmando continua positivo antes de marcar.
+**logaritmo de a na base b = x quer dizer bˣ = a**: o **logaritmo** é o expoente. Sem base escrita, a **base** é 10.
 
-Quatro consequências saem direto da definição, sem decoreba: `log_b 1 = 0`, `log_b b = 1`, `log_b bⁿ = n` e `b^(log_b a) = a`. A última significa que **base e log se anulam**, como raiz e quadrado.
+#### 2. Desfazer o logaritmo
 
-As três **propriedades operatórias** transformam multiplicação em soma. Produto vira soma: `log_b(M·N) = log_b M + log_b N`. Quociente vira subtração: `log_b(M/N) = log_b M − log_b N`. E expoente desce multiplicando: `log_b(Mⁿ) = n·log_b M`. Elas funcionam porque potências de mesma base somam e subtraem expoentes ao serem multiplicadas e divididas.
+**Isole** o logaritmo e volte à **potência**; depois desfaça o que estiver junto de x.
 
-A terceira propriedade é a **ferramenta central do ENEM**: ela é o que permite **tirar a incógnita de cima do expoente**. O roteiro completo é montar `valor final = valor inicial · (fator)ᵗ`, isolar a potência, aplicar log dos dois lados e descer o t. O **fator** é `1 + p/100` para aumento percentual e `1 − p/100` para redução percentual.
+#### 3. Produto
 
-A **mudança de base** serve para converter qualquer base para a base 10, que é a única com valores tabelados: `log_b a = log_c a / log_c b`. O logaritmando fica em cima, a base antiga desce para o denominador.
+**log(a · b) = log a + log b**: produto dentro vira **soma** fora.
 
-A **função logarítmica** `f(x) = log_b x` tem **domínio x > 0** e imagem em todos os reais. É **crescente se b > 1** e **decrescente se 0 &lt; b &lt; 1**. Todo gráfico **corta o eixo x em (1, 0)** e tem **assíntota vertical no eixo y**, que ele nunca toca. Ela é a **função inversa da exponencial**, portanto seu gráfico é o espelho de `bˣ` na reta `y = x`.
+#### 4. Quociente
 
-**Escalas logarítmicas** (Richter, pH, decibéis) existem para comprimir números gigantes. A regra de interpretação é que **somar 1 na escala significa multiplicar a grandeza real por 10**. Diferença de 2 pontos na escala Richter significa 10² = **100 vezes** mais amplitude, nunca "2 vezes" nem "9/7".
+**log(a ÷ b) = log a − log b**: numa escala logarítmica, a **diferença** das medidas dá a **razão** 10 elevado a essa diferença.
 
-Os **erros mais punidos** são: aplicar propriedade em soma (`log(M+N)` não se abre), confundir `log(Mⁿ)` com `(log M)ⁿ`, ignorar a condição de existência, inverter a mudança de base e esquecer de converter a unidade de tempo pedida no final.
+#### 5. Potência
 
----
+**log(aⁿ) = n · log a**: o **expoente** sai e multiplica; é assim que se acha o tempo num crescimento **exponencial**.
+
+#### 6. Desigualdade
+
+Com sinal de menos, **multiplique por −1** e **inverta** os sinais antes de voltar à potência de 10.
 
 </div>
 
-## Teste de Fogo
+## Questões do ENEM
 
-*Questões sem gabarito: resolva primeiro, depois confira com o professor ou com a IA.*
+*Marque uma alternativa em cada questão e confira tudo de uma vez no botão do fim.*
 
-**QUESTÃO 1: (ENEM 2016)**
+**Questão 1**
 
-Uma liga metálica sai do forno a uma temperatura de 3 000 °C e diminui 1% de sua temperatura a cada 30 min. Use 0,477 como aproximação para log₁₀(3) e 1,041 como aproximação para log₁₀(11).
+*ENEM 2019 · 2º dia · caderno azul · questão 154*
 
-O tempo decorrido, em hora, até que a liga atinja 30 °C é mais próximo de
+Charles Richter e Beno Gutenberg desenvolveram a escala Richter, que mede a magnitude de um terremoto. Essa escala pode variar de 0 a 10, com possibilidades de valores maiores. O quadro mostra a escala de magnitude local (Mₛ) de um terremoto que é utilizada para descrevê-lo.
 
-A) 22.
-B) 50.
-C) 100.
-D) 200.
-E) 400.
+<figure class="figura">
 
----
+| Descrição | Magnitude local (Mₛ) (μm · Hz) |
+|---|---|
+| Pequeno | 0 ≤ Mₛ ≤ 3,9 |
+| Ligeiro | 4,0 ≤ Mₛ ≤ 4,9 |
+| Moderado | 5,0 ≤ Mₛ ≤ 5,9 |
+| Grande | 6,0 ≤ Mₛ ≤ 9,9 |
+| Extremo | Mₛ ≥ 10,0 |
 
-**QUESTÃO 2: (ENEM 2013)**
+</figure>
 
-Em setembro de 1987, Goiânia foi palco do maior acidente radioativo ocorrido no Brasil, quando uma amostra de césio-137, removida de um aparelho de radioterapia abandonado, foi manipulada inadvertidamente por parte da população. A meia-vida de um material radioativo é o tempo necessário para que a massa desse material se reduza à metade. A meia-vida do césio-137 é 30 anos e a quantidade restante de massa de um material radioativo, após t anos, é calculada pela expressão M(t) = A · (2,7)^(kt), onde A é a massa inicial e k é uma constante negativa.
+Para se calcular a magnitude local, usa-se a fórmula Mₛ = 3,30 + log(A · f), em que A representa a amplitude máxima da onda registrada por um sismógrafo em micrômetro (μm) e f representa a frequência da onda, em hertz (Hz). Ocorreu um terremoto com amplitude máxima de 2 000 μm e frequência de 0,2 Hz.
 
-Considere 0,3 como aproximação para log₁₀ 2.
+Disponível em: http://cejarj.cecierj.edu.br. Acesso em: 1 fev. 2015 (adaptado).
 
-Qual o tempo necessário, em anos, para que uma quantidade de massa do césio-137 se reduza a 10% da quantidade inicial?
+Utilize 0,3 como aproximação para log 2.
 
-A) 27
-B) 36
-C) 50
-D) 54
-E) 100
+De acordo com os dados fornecidos, o terremoto ocorrido pode ser descrito como
 
----
+A) Pequeno.\
+B) Ligeiro.\
+C) Moderado.\
+D) Grande.\
+E) Extremo.
 
-**QUESTÃO 3: (ENEM 2018)**
+**Questão 2**
 
-Com o avanço em ciência da computação, estamos próximos do momento em que o número de transistores no processador de um computador pessoal será da mesma ordem de grandeza que o número de neurônios em um cérebro humano, que é da ordem de 100 bilhões.
+*ENEM 2019 · 2º dia · caderno azul · questão 137*
 
-Uma das grandezas determinantes para o desempenho de um processador é a densidade de transistores, que é o número de transistores por centímetro quadrado. Em 1986, uma empresa fabricava um processador contendo 100 000 transistores distribuídos em 0,25 cm² de área. Desde então, o número de transistores por centímetro quadrado que se pode colocar em um processador dobra a cada dois anos (Lei de Moore).
+A *Hydrangea macrophylla* é uma planta com flor azul ou cor-de-rosa, dependendo do pH do solo no qual está plantada. Em solo ácido (ou seja, com pH &lt; 7) a flor é azul, enquanto que em solo alcalino (ou seja, com pH > 7) a flor é rosa. Considere que a *Hydrangea* cor-de-rosa mais valorizada comercialmente numa determinada região seja aquela produzida em solo com pH inferior a 8. Sabe-se que pH = −log₁₀ x, em que x é a concentração de íon hidrogênio (H⁺).
 
-*Disponível em: www.pocket-lint.com. Acesso em: 1 dez. 2017 (adaptado).*
+Para produzir a *Hydrangea* cor-de-rosa de maior valor comercial, deve-se preparar o solo de modo que x assuma
 
-Considere 0,30 como aproximação para log₁₀ 2. Em que ano a empresa atingiu ou atingirá a densidade de 100 bilhões de transistores?
+A) qualquer valor acima de 10⁻⁸.\
+B) qualquer valor positivo inferior a 10⁻⁷.\
+C) valores maiores que 7 e menores que 8.\
+D) valores maiores que 70 e menores que 80.\
+E) valores maiores que 10⁻⁸ e menores que 10⁻⁷.
 
-A) 1999
-B) 2002
-C) 2022
-D) 2026
-E) 2146
+**Questão 3**
 
----
+*ENEM 2018 · 2ª aplicação · 2º dia · caderno azul · questão 163*
 
-**QUESTÃO 4: (ENEM 2016)**
+Em março de 2011, um terremoto de 9,0 graus de magnitude na escala Richter atingiu o Japão matando milhares de pessoas e causando grande destruição. Em janeiro daquele ano, um terremoto de 7,0 graus na escala Richter atingiu a cidade de Santiago Del Estero, na Argentina. A magnitude de um terremoto, medida pela escala Richter, é R = log(A/A₀), em que A é a amplitude do movimento vertical do solo, informado em um sismógrafo, A₀ é uma amplitude de referência e log representa o logaritmo na base 10.
 
-Em 2011, um terremoto de magnitude 9,0 na escala Richter causou um devastador tsunami no Japão, provocando um alerta na usina nuclear de Fukushima. Em 2013, outro terremoto, de magnitude 7,0 na mesma escala, sacudiu Sichuan (sudoeste da China), deixando centenas de mortos e milhares de feridos. A magnitude de um terremoto na escala Richter pode ser calculada por
+Disponível em: http://earthquake.usgs.gov. Acesso em: 28 fev. 2012 (adaptado).
 
-**M = (2) / (3) · ₁0≤ft((E) / (E₀))**
+A razão entre as amplitudes dos movimentos verticais dos terremotos do Japão e da Argentina é
 
-sendo E a energia, em kWh, liberada pelo terremoto e E₀ uma constante real positiva. Considere que E₁ e E₂ representam as energias liberadas nos terremotos ocorridos no Japão e na China, respectivamente.
+A) 1,28\
+B) 2,0\
+C) 10^(9/7)\
+D) 100\
+E) 10⁹ − 10⁷
 
-*Disponível em: www.terra.com.br. Acesso em: 15 ago. 2013 (adaptado).*
+**Questão 4**
 
-Qual a relação entre E₁ e E₂?
+*ENEM 2019 · 2ª aplicação · 2º dia · caderno azul · questão 144*
 
-A) E₁ = E₂ + 2
-B) E₁ = 10² · E₂
-C) E₁ = 10³ · E₂
-D) E₁ = 10^(9/7) · E₂
-E) E₁ = (9/7) · E₂
+Um jardineiro cultiva plantas ornamentais e as coloca à venda quando estas atingem 30 centímetros de altura. Esse jardineiro estudou o crescimento de suas plantas, em função do tempo, e deduziu uma fórmula que calcula a altura em função do tempo, a partir do momento em que a planta brota do solo até o momento em que ela atinge sua altura máxima de 40 centímetros. A fórmula é h = 5 · log₂(t + 1), em que t é o tempo contado em dia e h, a altura da planta em centímetro.
 
----
+A partir do momento em que uma dessas plantas é colocada à venda, em quanto tempo, em dia, ela alcançará sua altura máxima?
 
-**QUESTÃO 5: (ENEM 2020)**
+A) 63\
+B) 96\
+C) 128\
+D) 192\
+E) 255
 
-A Lei de Zipf, batizada com o nome do linguista americano George Zipf, é uma lei empírica que relaciona a frequência (f) de uma palavra em um dado texto com o seu ranking (r). Ela é dada por
+**Questão 5**
 
-**f = (A) / (r^B)**
+*ENEM 2019 · 2ª aplicação · 2º dia · caderno azul · questão 169*
 
-O ranking da palavra é a sua posição ao ordenar as palavras por ordem de frequência. Ou seja, r = 1 para a palavra mais frequente, r = 2 para a segunda palavra mais frequente e assim sucessivamente. A e B são constantes positivas.
+Uma pessoa fez um depósito inicial de R$ 200,00 em um Fundo de Investimentos que possui rendimento constante sob juros compostos de 5% ao mês. Esse Fundo possui cinco planos de carência (tempo mínimo necessário de rendimento do Fundo sem movimentação do cliente). Os planos são:
 
-*Disponível em: http://klein.sbm.org.br. Acesso em: 12 ago. 2020 (adaptado).*
+- Plano A: carência de 10 meses;
+- Plano B: carência de 15 meses;
+- Plano C: carência de 20 meses;
+- Plano D: carência de 28 meses;
+- Plano E: carência de 40 meses.
 
-Com base nos valores de X = log (r) e Y = log (f), é possível estimar valores para A e B. No caso hipotético em que a lei é verificada exatamente, a relação entre Y e X é
+O objetivo dessa pessoa é deixar essa aplicação rendendo até que o valor inicialmente aplicado duplique, quando somado aos juros do Fundo.
 
-A) Y = log(A) − B · X
-B) Y = log(A)/X + log(B)
-C) Y = log(A)/B − X
-D) Y = log(A)/(B·X)
-E) Y = log(A)/(X^B)
+Considere as aproximações: log 2 = 0,30 e log 1,05 = 0,02.
+
+Para que essa pessoa atinja seu objetivo apenas no período de carência, mas com a menor carência possível, deverá optar pelo plano
+
+A) A.\
+B) B.\
+C) C.\
+D) D.\
+E) E.
