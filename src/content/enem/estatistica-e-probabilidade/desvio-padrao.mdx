@@ -3,153 +3,423 @@ title: "Desvio Padrão"
 subject: "Estatística e Probabilidade"
 order: 3
 relevance: >
-  O desvio padrão é uma medida de dispersão: ele diz o quanto os valores de um conjunto de dados se
-  afastam, em média, da média aritmética desse conjunto. Duas turmas podem ter a mesma média de notas,
-  mas uma pode ser "regular" (notas próximas umas das outras) e outra "instável" (notas muito
-  diferentes entre si): é o desvio padrão que revela essa diferença, que a média sozinha esconde. O
-  ENEM cobra esse tema quase todo ano em Matemática, geralmente sem exigir a conta completa: a banca
-  prefere testar se você entende o conceito (o que significa um desvio padrão maior ou menor) e se
-  você consegue aplicá-lo em contextos como esportes, agricultura, medicina, indústria e finanças.
+  Dois grupos podem ter a mesma média e ser muito diferentes: num, todos os valores ficam perto da
+  média; no outro, eles se espalham. As medidas de dispersão (amplitude, variância, desvio padrão e
+  coeficiente de variação) medem esse espalhamento. O ENEM (Exame Nacional do Ensino Médio) usa essas
+  medidas para decidir quem é "mais regular", qual lote tem defeito, se um tempo varia muito ou pouco e
+  se um resultado melhorou de verdade. As questões costumam ser das mais difíceis da prova, mais pela
+  interpretação do que pela conta.
 quickSummary: >
-  O desvio padrão mede a dispersão dos dados em relação à média: quanto menor, mais regular e
-  homogêneo é o conjunto; quanto maior, mais disperso e instável. Ele é sempre expresso na mesma
-  unidade dos dados originais, o que o torna mais interpretável no dia a dia do que a variância.
+  Amplitude = maior valor − menor valor. Variância = média dos quadrados das distâncias até a média;
+  desvio padrão (σ) = raiz quadrada da variância. Quanto menor o desvio padrão, mais regulares (mais
+  parecidos entre si) são os dados. O CV (coeficiente de variação), igual a σ ÷ média, compara a dispersão de
+  grupos com médias diferentes. Ao mudar de unidade, o desvio padrão muda como os dados, e a variância
+  muda com o quadrado.
+resources:
+  conteudoComplementar:
+    conteudo: "Média, Mediana e Moda"
+    comoAjuda: "Todo cálculo de dispersão começa pela média. Se calcular a média travar você, revise essa aula."
+gabarito:
+  - correta: 2
+    porque: >
+      O atleta mais regular é o que tem saltos mais parecidos entre si, ou seja, o de menor desvio padrão.
+      O menor desvio do quadro é 0,17, do atleta III. A média e a mediana não medem regularidade.
+      Revisar: Aula Teórica › 2. O que o desvio padrão mede
+  - correta: 4
+    porque: >
+      Na ração atual, CV = 1 ÷ 10 = 0,1. Com a nova ração, CV = 1,5 ÷ média. A troca acontece se
+      1,5 ÷ média for menor que 0,1, ou seja, se a média for maior que 1,5 ÷ 0,1 = 15. A média precisa passar de 15,0 kg.
+      Revisar: Aula Teórica › 4. Coeficiente de variação
+  - correta: 1
+    porque: >
+      Média: (48 + 54 + 50 + 46 + 44 + 52 + 49) ÷ 7 = 343 ÷ 7 = 49. Distâncias até a média: −1, 5, 1, −3, −5, 3
+      e 0; quadrados: 1, 25, 1, 9, 25, 9 e 0, que somam 70. Variância = 70 ÷ 7 = 10; σ = √10. Como 10 está entre 9 e 16,
+      σ fica entre 3 e 4 (cerca de 3,16), na faixa "acima de 2 e até 4": variabilidade baixa.
+      Revisar: Aula Teórica › 3. Como calcular a variância e o desvio padrão
+  - correta: 4
+    porque: >
+      Cada talhão tem 30 000 m² = 3 hectares. Um desvio de 90 kg por talhão é 90 ÷ 3 = 30 kg por hectare; em sacas
+      de 60 kg, 30 ÷ 60 = 0,5 saca por hectare. A variância é o quadrado do desvio padrão: 0,5² = 0,25
+      (sacas/hectare)².
+      Revisar: Aula Teórica › 5. Mudança de unidade
+  - correta: 0
+    porque: >
+      Amplitude = maior − menor. Lote I: 10,30 − 9,80 = 0,50. Lote II: 10,60 − 10,55 = 0,05. Lote III:
+      10,20 − 9,80 = 0,40. Lote IV: 10,20 − 9,90 = 0,30. Lote V: 9,50 − 9,30 = 0,20. A maior é a do lote I.
+      Revisar: Aula Teórica › 1. Dispersão e amplitude
 ---
 
-## Aula Teórica Completa
+<Accordion titulo="Palavras e siglas desta aula" dica="Consulte quando encontrar um termo novo" icone="spell-check">
 
-Imagine dois times de vôlei. Ambos têm jogadores com altura média de 1,80 m. No time A, todos medem exatamente 1,80 m. No time B, há jogadores de 1,60 m e de 2,00 m, mas a média também dá 1,80 m. As médias são iguais, só que os times são completamente diferentes em termos de uniformidade. O desvio padrão é o número que captura essa diferença: no time A, ele vale 0 (ninguém se desvia da média); no time B, ele é grande (há gente bem longe da média).
+- **ENEM** (Exame Nacional do Ensino Médio): a prova nacional que dá acesso a faculdades e bolsas.
+- **INEP** (Instituto Nacional de Estudos e Pesquisas Educacionais Anísio Teixeira): o órgão do governo que faz o ENEM.
+- **CV** (coeficiente de variação): o desvio padrão dividido pela média.
+- **Dispersão ou variabilidade**: o quanto os dados se espalham.
+- **Regular**: que varia pouco; um atleta regular tem resultados parecidos entre si.
+- **Amostra**: a parte de um grupo que foi observada ou medida.
+- **Distribuição**: o conjunto dos valores observados.
+- **Lote**: um conjunto de peças produzidas juntas.
+- **Zootecnista**: profissional que cuida da criação de animais.
+- **Ração**: alimento preparado para animais.
+- **Consultoria**: empresa contratada para analisar e dar conselhos.
+- **Safra**: a colheita de um período.
+- **Talhão**: um pedaço de terra de uma plantação.
+- **Hectare**: medida de área igual a 10 000 m².
+- **Percurso**: o trajeto que se faz de um ponto a outro.
 
-Para calcular o desvio padrão, seguimos um caminho em quatro etapas, e cada uma delas tem um porquê.
+</Accordion>
 
-**Etapa 1: Calcular a média.** Some todos os valores e divida pela quantidade deles. Isso é o "centro" do conjunto de dados, o ponto de referência a partir do qual vamos medir os afastamentos.
+## Antes de Começar
 
-**Etapa 2: Calcular os desvios e elevá-los ao quadrado.** Para cada valor do conjunto, subtraia a média: valor − média. Esse número (positivo se o valor for maior que a média, negativo se for menor) é o "desvio" daquele elemento. Aqui mora uma pegadinha importante: se você simplesmente somasse todos os desvios, o resultado sempre daria zero, os valores positivos e negativos se cancelariam. Por isso, elevamos cada desvio ao quadrado: isso transforma tudo em número positivo (não importa se o desvio era negativo, o quadrado sempre é positivo) e ainda dá mais peso aos valores muito distantes da média.
+**O que o ENEM cobra aqui.** A prova raramente pede só "calcule o desvio padrão". Os temas que costumam aparecer são estes:
 
-**Etapa 3: Calcular a variância.** Some todos os quadrados dos desvios e divida pela quantidade de valores (n). Esse resultado é chamado de **variância**. Ela já mede a dispersão, mas tem um problema prático: como elevamos tudo ao quadrado na etapa anterior, a unidade de medida também fica "ao quadrado". Se os dados originais eram em quilogramas, a variância sai em quilogramas², o que não tem interpretação física direta.
+- **Escolher o mais regular** olhando o desvio padrão.
+- **Calcular a amplitude** para achar o grupo que mais varia.
+- **Calcular a variância e o desvio padrão** de poucos números e classificar o resultado numa faixa.
+- **Comparar grupos com o coeficiente de variação**, que junta desvio e média.
+- **Trocar a unidade** de um desvio padrão ou de uma variância.
 
-**Etapa 4: Extrair a raiz quadrada.** Para voltar à unidade original (kg, minutos, reais, anos etc.), tiramos a raiz quadrada da variância. O resultado é o **desvio padrão**, geralmente representado por σ (letra grega sigma, quando falamos da população toda) ou por *s* (quando falamos de uma amostra).
+**O que você precisa saber antes.**
 
-A fórmula fica assim:
+- **Média.** Média = soma ÷ quantidade. Revise a aula de Média, Mediana e Moda.
+- **Quadrado e raiz quadrada.** 6² = 36, e √36 = 6. Uma raiz que não é exata fica entre duas exatas: como 25 &lt; 30 &lt; 36, √30 fica entre 5 e 6. O sinal ≈ quer dizer "aproximadamente igual". Revise a aula de Potências e Raízes.
+- **Números negativos ao quadrado.** (−4)² = (−4) × (−4) = 16: o quadrado nunca é negativo.
+- **Desigualdades.** &lt; é "menor que", > é "maior que", ≤ é "menor ou igual". "2 &lt; x ≤ 5" quer dizer x maior que 2 e até 5. Revise a aula de Equações de Primeiro e Segundo Grau.
+- **Área.** 1 hectare = 10 000 m²; então 50 000 m² = 5 hectares.
+- **Dividir por decimal.** Multiplique os dois números pelo mesmo 10, 100 ou 1 000 até o divisor ficar inteiro: 3 ÷ 0,08 = 300 ÷ 8 = 37,5. Dividir por 0,1 é multiplicar por 10.
 
-σ = √[ Σ(xᵢ − x̄)² / n ]
+## Aula Teórica
 
-Onde: **σ** é o desvio padrão (o que queremos encontrar); **Σ** é o símbolo de somatório, que indica que devemos somar todos os termos seguintes; **xᵢ** representa cada valor individual do conjunto de dados; **x̄** é a média aritmética de todos os valores; **n** é a quantidade total de valores no conjunto.
+### 1. Dispersão e amplitude
 
-E a relação entre as duas medidas é simplesmente: **variância = σ² = desvio padrão elevado ao quadrado.**
+A média diz onde fica o "centro" dos dados, mas não diz se eles estão juntos ou espalhados. As **medidas de dispersão** dizem isso. A mais simples é a **amplitude**.
 
-Um ponto conceitual que o ENEM adora explorar: quanto **menor** o desvio padrão, mais **regular**, **homogêneo** ou **previsível** é o conjunto de dados. Quanto **maior**, mais **disperso**, **instável** ou **heterogêneo**. Quando a questão pede para comparar "quem foi mais regular" ou "qual grupo é mais uniforme", você não precisa calcular nada: basta comparar os desvios padrão já fornecidos e escolher o menor.
+**Fórmula: amplitude**
 
-Outra ferramenta relacionada é o **coeficiente de variação (CV)**, útil quando você quer comparar a dispersão de dois conjuntos que têm médias muito diferentes (por exemplo, peso de coelhos versus peso de elefantes). Ele é definido por:
+**amplitude = maior valor − menor valor**
 
-CV = s / x̄
+- **maior valor**: o máximo dos dados.
+- **menor valor**: o mínimo dos dados.
+- **Em palavras:** o tamanho da faixa ocupada pelos dados.
+- **Quando usar:** quando a pergunta pede a amplitude, ou para uma ideia rápida de quem varia mais.
 
-Onde **CV** é o coeficiente de variação; **s** é o desvio padrão; **x̄** é a média. Quanto menor o CV, relativamente mais homogêneo é o conjunto: mesmo que o desvio padrão "bruto" seja grande em valor absoluto.
+**Exemplo resolvido.** As temperaturas máximas de uma semana foram 18, 22, 25, 20, 21, 19 e 23 graus numa cidade, e 26, 27, 26, 28, 27, 26 e 27 graus em outra. Qual cidade teve maior amplitude?
 
-**Pegadinhas do INEP nesse tema:**
+1. Primeira cidade: maior 25, menor 18; amplitude 25 − 18 = 7 graus.
+2. Segunda cidade: maior 28, menor 26; amplitude 28 − 26 = 2 graus.
+3. Resposta: a primeira cidade, com amplitude 7.
 
-Primeira: a banca costuma dar o desvio padrão pronto, dentro de uma tabela, e pedir só para você *interpretar*, não calcular. Muita gente perde tempo tentando refazer a conta quando a resposta já está ali, bastando comparar os valores.
+**Erro comum.** Subtrair o primeiro valor da lista do último, sem procurar o maior e o menor. Outro erro é escolher o grupo mais longe de um valor ideal: a amplitude compara os dados entre si, não com o valor ideal.
 
-Segunda: confundir variância com desvio padrão. Se a questão pede a variância e te dá o desvio padrão (ou vice-versa), lembre-se: variância é o desvio padrão ao quadrado, e desvio padrão é a raiz quadrada da variância. Esquecer essa relação (ou aplicá-la ao contrário) é o erro mais comum.
+### 2. O que o desvio padrão mede
 
-Terceira: mudança de unidade. Quando o desvio padrão vem em uma unidade (kg/talhão, por exemplo) e a pergunta quer a variância em outra unidade (sacas/hectare), é preciso primeiro converter o próprio desvio padrão para a nova unidade e só depois elevá-lo ao quadrado: nunca converter a variância diretamente sem passar pelo desvio padrão.
+O **desvio padrão** mede, em média, quanto os dados se afastam da média. Ele é indicado pela letra grega σ ("sigma") ou pela letra s.
 
-Quarta: interpretar erroneamente o que uma medida de tendência central (média, mediana, moda) garante sozinha. Média ou moda igual a um valor central, isoladamente, não garante que os dados estejam concentrados perto desse valor: só o desvio padrão baixo garante isso com certeza.
+- **Desvio padrão pequeno:** os valores ficam perto da média; o grupo é **regular**, **homogêneo**.
+- **Desvio padrão grande:** os valores se espalham; o grupo é irregular.
+- **Desvio padrão zero:** todos os valores são iguais.
+
+O esquema abaixo mostra dois grupos com a mesma média, 10.
+
+<figure class="figura">
+  <svg viewBox="0 0 480 180" role="img" aria-labelledby="fig-dp-1-t fig-dp-1-d">
+    <title id="fig-dp-1-t">Mesma média, dispersões diferentes</title>
+    <desc id="fig-dp-1-d">Dois grupos de cinco valores marcados como pontos sobre uma reta de 4 a 16, os dois com média 10, indicada por uma linha tracejada. No grupo A, os pontos 9; 9,5; 10; 10,5 e 11 ficam juntos perto da média: desvio padrão pequeno. No grupo B, os pontos 6, 8, 10, 12 e 14 se espalham: desvio padrão grande.</desc>
+    <line x1="60" y1="70" x2="396" y2="70" class="traco-fino" />
+    <line x1="60" y1="67" x2="60" y2="73" class="traco-fino" />
+    <text x="60" y="87" class="rotulo-fraco" text-anchor="middle">4</text>
+    <line x1="116" y1="67" x2="116" y2="73" class="traco-fino" />
+    <text x="116" y="87" class="rotulo-fraco" text-anchor="middle">6</text>
+    <line x1="172" y1="67" x2="172" y2="73" class="traco-fino" />
+    <text x="172" y="87" class="rotulo-fraco" text-anchor="middle">8</text>
+    <line x1="228" y1="67" x2="228" y2="73" class="traco-fino" />
+    <text x="228" y="87" class="rotulo-fraco" text-anchor="middle">10</text>
+    <line x1="284" y1="67" x2="284" y2="73" class="traco-fino" />
+    <text x="284" y="87" class="rotulo-fraco" text-anchor="middle">12</text>
+    <line x1="340" y1="67" x2="340" y2="73" class="traco-fino" />
+    <text x="340" y="87" class="rotulo-fraco" text-anchor="middle">14</text>
+    <line x1="396" y1="67" x2="396" y2="73" class="traco-fino" />
+    <text x="396" y="87" class="rotulo-fraco" text-anchor="middle">16</text>
+    <circle cx="200" cy="60" r="5" class="traco preenche" />
+    <circle cx="214" cy="60" r="5" class="traco preenche" />
+    <circle cx="228" cy="60" r="5" class="traco preenche" />
+    <circle cx="242" cy="60" r="5" class="traco preenche" />
+    <circle cx="256" cy="60" r="5" class="traco preenche" />
+    <text x="8" y="64" class="rotulo">Grupo A</text>
+    <text x="404" y="64" class="rotulo-fraco">σ pequeno</text>
+    <line x1="60" y1="150" x2="396" y2="150" class="traco-fino" />
+    <line x1="60" y1="147" x2="60" y2="153" class="traco-fino" />
+    <text x="60" y="167" class="rotulo-fraco" text-anchor="middle">4</text>
+    <line x1="116" y1="147" x2="116" y2="153" class="traco-fino" />
+    <text x="116" y="167" class="rotulo-fraco" text-anchor="middle">6</text>
+    <line x1="172" y1="147" x2="172" y2="153" class="traco-fino" />
+    <text x="172" y="167" class="rotulo-fraco" text-anchor="middle">8</text>
+    <line x1="228" y1="147" x2="228" y2="153" class="traco-fino" />
+    <text x="228" y="167" class="rotulo-fraco" text-anchor="middle">10</text>
+    <line x1="284" y1="147" x2="284" y2="153" class="traco-fino" />
+    <text x="284" y="167" class="rotulo-fraco" text-anchor="middle">12</text>
+    <line x1="340" y1="147" x2="340" y2="153" class="traco-fino" />
+    <text x="340" y="167" class="rotulo-fraco" text-anchor="middle">14</text>
+    <line x1="396" y1="147" x2="396" y2="153" class="traco-fino" />
+    <text x="396" y="167" class="rotulo-fraco" text-anchor="middle">16</text>
+    <circle cx="116" cy="140" r="5" class="traco preenche" />
+    <circle cx="172" cy="140" r="5" class="traco preenche" />
+    <circle cx="228" cy="140" r="5" class="traco preenche" />
+    <circle cx="284" cy="140" r="5" class="traco preenche" />
+    <circle cx="340" cy="140" r="5" class="traco preenche" />
+    <text x="8" y="144" class="rotulo">Grupo B</text>
+    <text x="404" y="144" class="rotulo-fraco">σ grande</text>
+    <line x1="228" y1="30" x2="228" y2="73" class="tracejado" />
+    <line x1="228" y1="92" x2="228" y2="150" class="tracejado" />
+    <text x="228" y="22" class="rotulo-fraco" text-anchor="middle">média 10</text>
+  </svg>
+</figure>
+
+O desvio padrão **não** diz quem tem valores maiores; isso é papel da média e da mediana. Numa escolha pelo "mais regular" ou "mais constante", olhe o desvio padrão.
+
+**Exemplo resolvido.** Quatro estudantes fizeram vários simulados. O quadro dá a média e o desvio padrão das notas de cada um.
+
+| Estudante | Média | Desvio padrão |
+|---|---|---|
+| Ana | 7,8 | 1,2 |
+| Beto | 6,4 | 0,5 |
+| Caio | 8,3 | 2,1 |
+| Duda | 7,1 | 0,9 |
+
+Quem é o estudante mais regular? E quem tem a maior média?
+
+1. Mais regular é quem tem o menor desvio padrão: 0,5, do Beto.
+2. A maior média é 8,3, do Caio, que é também o menos regular (desvio 2,1).
+3. Resposta: Beto é o mais regular; Caio tem a maior média.
+
+**Erro comum.** Escolher o de maior média, ou o de maior desvio padrão, quando a pergunta é sobre regularidade. Regular é quem tem o **menor** desvio.
+
+### 3. Como calcular a variância e o desvio padrão
+
+Para calcular, siga cinco passos:
+
+1. Calcule a **média** dos dados.
+2. Calcule a distância de cada valor até a média: valor − média (pode dar negativo).
+3. Eleve cada distância ao **quadrado** (fica tudo positivo).
+4. Faça a média desses quadrados: é a **variância**.
+5. Tire a raiz quadrada da variância: é o **desvio padrão**.
+
+**Fórmula: variância e desvio padrão**
+
+**variância = soma de (valor − média)² ÷ quantidade; σ = √variância**
+
+- **valor − média**: o quanto cada dado se afasta da média.
+- **quantidade**: o número de dados.
+- **σ**: o desvio padrão, na mesma unidade dos dados.
+- **Em palavras:** a variância é a média dos quadrados das distâncias até a média; o desvio padrão é a raiz dela.
+- **Quando usar:** quando a questão dá os dados e pede o desvio padrão ou a variância, ou pede para classificar a variabilidade numa faixa.
+
+**Exemplo resolvido.** Os pesos, em kg, de cinco caixas são 6, 8, 10, 12 e 14. Qual é a variância? Entre que números inteiros fica o desvio padrão?
+
+1. Média: (6 + 8 + 10 + 12 + 14) ÷ 5 = 50 ÷ 5 = 10.
+2. Distâncias até a média: −4, −2, 0, 2 e 4.
+3. Quadrados: 16, 4, 0, 4 e 16; soma 40.
+4. Variância: 40 ÷ 5 = 8.
+5. Desvio padrão: √8. Como 4 &lt; 8 &lt; 9, √8 fica entre 2 e 3 (cerca de 2,83).
+6. Resposta: variância 8 kg²; desvio padrão entre 2 e 3 kg.
+
+**Erro comum.** Somar as distâncias sem elevar ao quadrado (dá sempre zero), ou esquecer de tirar a raiz no fim e usar a variância como se fosse o desvio padrão.
+
+### 4. Coeficiente de variação
+
+Um desvio padrão de 2 kg é grande para quem pesa em média 5 kg e pequeno para quem pesa 80 kg. Para comparar grupos com médias diferentes, use o **CV (coeficiente de variação)**: o desvio padrão em relação à média.
+
+**Fórmula: coeficiente de variação**
+
+**CV = σ ÷ média**
+
+- **σ**: o desvio padrão (às vezes escrito s).
+- **média**: a média dos dados (às vezes escrita x̄ ou X̄, "x barra").
+- **Em palavras:** quanto o desvio padrão representa da média. Quanto menor o CV, mais homogêneo o grupo.
+- **Quando usar:** para comparar a dispersão de grupos com médias diferentes, ou quando a questão define um critério pelo CV.
+
+**Exemplo resolvido.** Numa turma X, a média das notas é 50 e o desvio padrão é 4. Numa turma Y, a média é 80 e o desvio padrão é 5. Qual turma é mais homogênea? E, numa turma Z com desvio padrão 3, qual deve ser a média para o CV ficar menor que o da turma X?
+
+1. CV de X: 4 ÷ 50 = 0,08. CV de Y: 5 ÷ 80 = 0,0625.
+2. Y tem o menor CV, então é mais homogênea, embora tenha o desvio padrão maior.
+3. Para Z: a média de fronteira é a que dá CV igual a 0,08: média = 3 ÷ 0,08 = 300 ÷ 8 = 37,5. Com o desvio fixo, média maior dá CV menor. Então, para o CV ficar menor que 0,08, a média precisa ser maior que 37,5 (ou seja, superior a 37,5).
+4. Resposta: Y é mais homogênea; Z precisa de média maior que 37,5.
+
+**Erro comum.** Achar que um CV menor exige média menor. Com o desvio fixo, quanto **maior** a média, **menor** o CV.
+
+### 5. Mudança de unidade
+
+Se todos os dados são divididos (ou multiplicados) por um mesmo número, a média e o desvio padrão também são divididos (ou multiplicados) por esse número. A **variância**, que é um quadrado, é dividida (ou multiplicada) pelo **quadrado** desse número. A unidade da variância é a unidade dos dados ao quadrado.
+
+**Fórmula: desvio padrão e variância numa nova unidade**
+
+**novo σ = σ ÷ k; nova variância = variância ÷ k² = (novo σ)²**
+
+- **k**: o número pelo qual todos os dados foram divididos para mudar de unidade (100 para passar de centímetro a metro, por exemplo).
+- **Em palavras:** converta primeiro o desvio padrão, como se fosse um dado; depois eleve ao quadrado para ter a variância.
+- **Quando usar:** quando a questão dá o desvio padrão numa unidade e pede a variância ou o desvio em outra.
+
+**Exemplo resolvido.** Numa padaria, cada fornada dura 2 horas, e o desvio padrão da farinha usada por fornada é 800 g. Qual é o desvio padrão em quilograma por hora? E a variância, em (quilograma por hora)²?
+
+1. Por hora: 800 ÷ 2 = 400 g por hora.
+2. Em quilograma (1 kg = 1 000 g): 400 ÷ 1 000 = 0,4 kg por hora.
+3. Variância: 0,4² = 0,16.
+4. Resposta: desvio padrão 0,4 kg por hora; variância 0,16 (kg por hora)².
+
+**Erro comum.** Converter a variância dividindo só por k, e não por k². O jeito seguro é converter o desvio padrão e depois elevar ao quadrado.
+
+### Armadilhas típicas do INEP
+
+1. **Escolher o de maior média** quando a pergunta pede o mais regular.
+2. **Confundir variância com desvio padrão**: um é o quadrado do outro.
+3. **Esquecer de elevar ao quadrado** as distâncias até a média.
+4. **Comparar desvios padrão** de grupos com médias muito diferentes, em vez do CV.
+5. **Inverter a desigualdade** do CV: com o desvio fixo, média maior dá CV menor.
+6. **Converter a variância** dividindo só pelo fator da unidade, sem elevar ao quadrado.
 
 ## Tópicos-Chave para Revisão
 
 <div className="topico">
 
-O desvio padrão mede a dispersão dos dados em relação à média: quanto menor, mais regular e homogêneo é o conjunto; quanto maior, mais disperso e instável. Ele é sempre expresso na mesma unidade dos dados originais, o que o torna mais interpretável no dia a dia do que a variância.
+#### 1. Amplitude
 
-O cálculo segue quatro etapas encadeadas: média → desvios elevados ao quadrado → variância (média dos quadrados dos desvios) → raiz quadrada da variância. Elevar ao quadrado existe justamente para evitar que desvios positivos e negativos se cancelem ao somar.
+**amplitude = maior valor − menor valor**: mede o tamanho da **faixa** ocupada pelos **dados**.
 
-A fórmula fundamental é σ = √[ Σ(xᵢ − x̄)² / n ], e a relação-chave para decorar é variância = σ². Toda vez que uma questão pede conversão entre as duas, é essa relação que resolve, e é preciso ter cuidado ao mudar unidades antes de elevar ao quadrado.
+#### 2. Regularidade
 
-O coeficiente de variação, CV = s / x̄, serve para comparar a dispersão relativa de conjuntos com médias muito diferentes entre si; quanto menor o CV, relativamente mais homogêneo é o grupo.
+O **desvio padrão** mede o espalhamento; o mais **regular** é o de menor desvio.
 
-Nas questões do ENEM, o desvio padrão quase sempre aparece pronto em uma tabela ou gráfico: a tarefa exigida é interpretação e comparação, não recálculo do zero. Um desvio padrão baixo combinado com uma média específica é a única combinação de dados que garante concentração de valores num intervalo; média, mediana ou moda sozinhas nunca garantem isso.
+#### 3. Cálculo
+
+**variância = soma de (valor − média)² ÷ quantidade; σ = √variância**. A **variância** é o quadrado do desvio.
+
+#### 4. Coeficiente de variação
+
+**CV = σ ÷ média**; menor **CV**, grupo mais **homogêneo**.
+
+#### 5. Unidades
+
+**novo σ = σ ÷ k; nova variância = variância ÷ k² = (novo σ)²**. Converta o **desvio** e depois eleve ao **quadrado**.
 
 </div>
 
-## Teste de Fogo
+## Questões do ENEM
 
-*Questões sem gabarito: resolva primeiro, depois confira com o professor ou com a IA.*
+*Marque uma alternativa em cada questão e confira tudo de uma vez no botão do fim.*
 
-**Questão 1 (ENEM 2010, 2º dia, prova azul)**
+**Questão 1**
 
-Marco e Paulo foram classificados em um concurso. Para classificação no concurso, o candidato deveria obter média aritmética na pontuação igual ou superior a 14. Em caso de empate na média, o desempate seria em favor da pontuação mais regular. No quadro a seguir são apresentados os pontos obtidos nas provas de Matemática, Português e Conhecimentos Gerais, a média, a mediana e o desvio padrão dos dois candidatos.
+*ENEM 2014 · 2ª aplicação · 2º dia · caderno cinza · questão 136*
 
-| Candidato | Matemática | Português | Conh. Gerais | Média | Mediana | Desvio padrão |
+Em uma escola, cinco atletas disputam a medalha de ouro em uma competição de salto em distância. Segundo o regulamento dessa competição, a medalha de ouro será dada ao atleta mais regular em uma série de três saltos. Os resultados e as informações dos saltos desses cinco atletas estão no quadro.
+
+<figure class="figura">
+
+| Atleta | 1º salto | 2º salto | 3º salto | Média | Mediana | Desvio padrão |
 |---|---|---|---|---|---|---|
-| Marco | 14 | 15 | 15 | 14,7 | 15 | 0,47 |
-| Paulo | 11 | 19 | 14 | 14,7 | 14 | 3,30 |
+| I | 2,9 | 3,4 | 3,1 | 3,1 | 3,1 | 0,25 |
+| II | 3,3 | 2,8 | 3,6 | 3,2 | 3,3 | 0,40 |
+| III | 3,6 | 3,3 | 3,3 | 3,4 | 3,3 | 0,17 |
+| IV | 2,3 | 3,3 | 3,4 | 3,0 | 3,3 | 0,60 |
+| V | 3,7 | 3,5 | 2,2 | 3,1 | 3,5 | 0,81 |
 
-Foi convocado para a próxima etapa o candidato:
+</figure>
 
-A) Marco, pois a média e a mediana são iguais.
-B) Marco, pois obteve menor desvio padrão.
-C) Paulo, pois obteve a maior pontuação da tabela, 19 em Português.
-D) Paulo, pois obteve maior mediana.
-E) Paulo, pois obteve maior desvio padrão.
+A medalha de ouro foi conquistada pelo atleta número
 
-**Questão 2 (ENEM 2012, 2º dia, prova azul)**
+A) I.\
+B) II.\
+C) III.\
+D) IV.\
+E) V.
 
-Um produtor de café irrigado em Minas Gerais recebeu um relatório de consultoria estatística, constando, entre outras informações, o desvio padrão das produções de uma safra dos talhões de sua propriedade. Os talhões têm a mesma área de 30 000 m² e o valor obtido para o desvio padrão foi de 90 kg/talhão. O produtor deve apresentar as informações sobre a produção e a variância dessas produções em sacas de 60 kg por hectare (10 000 m²). A variância das produções dos talhões expressa em (sacas/hectare)² é:
+**Questão 2**
 
-A) 20,25.
-B) 4,50.
-C) 0,71.
-D) 0,50.
-E) 0,25.
+*ENEM 2021 · digital · 2º dia · caderno azul · questão 146*
 
-**Questão 3 (ENEM PPL 2019, 2ª aplicação)**
+Um zootecnista pretende testar se uma nova ração para coelhos é mais eficiente do que a que ele vem utilizando atualmente. A ração atual proporciona uma massa média de 10 kg por coelho, com um desvio padrão de 1 kg, alimentado com essa ração durante um período de três meses.
+
+O zootecnista selecionou uma amostra de coelhos e os alimentou com a nova ração pelo mesmo período de tempo. Ao final, anotou a massa de cada coelho, obtendo um desvio padrão de 1,5 kg para a distribuição das massas dos coelhos dessa amostra.
+
+Para avaliar a eficiência dessa ração, ele utilizará o coeficiente de variação (CV) que é uma medida de dispersão definida por CV = s/X̄, em que s representa o desvio padrão e X̄, a média das massas dos coelhos que foram alimentados com uma determinada ração.
+
+O zootecnista substituirá a ração que vinha utilizando pela nova, caso o coeficiente de variação da distribuição das massas dos coelhos que foram alimentados com a nova ração for menor do que o coeficiente de variação da distribuição das massas dos coelhos que foram alimentados com a ração atual.
+
+A substituição da ração ocorrerá se a média da distribuição das massas dos coelhos da amostra, em quilograma, for superior a
+
+A) 5,0.\
+B) 9,5.\
+C) 10,0.\
+D) 10,5.\
+E) 15,0.
+
+**Questão 3**
+
+*ENEM 2019 · 2ª aplicação · 2º dia · caderno azul · questão 149*
 
 Um fiscal de certa empresa de ônibus registra o tempo, em minuto, que um motorista novato gasta para completar certo percurso. No Quadro 1 figuram os tempos gastos pelo motorista ao realizar o mesmo percurso sete vezes. O Quadro 2 apresenta uma classificação para a variabilidade do tempo, segundo o valor do desvio padrão.
 
-Quadro 1: Tempos (min): 48, 54, 50, 46, 44, 52, 49
+<figure class="figura">
 
-Quadro 2: Classificação:
-Extremamente baixa: 0 &lt; σ ≤ 2
-Baixa: 2 &lt; σ ≤ 4
-Moderada: 4 &lt; σ ≤ 6
-Alta: 6 &lt; σ ≤ 8
-Extremamente alta: σ > 8
+**Quadro 1**
 
-Com base nas informações apresentadas nos quadros, a variabilidade do tempo é:
+| Tempos (em minuto) | 48 | 54 | 50 | 46 | 44 | 52 | 49 |
+|---|---|---|---|---|---|---|---|
 
-A) extremamente baixa.
-B) baixa.
-C) moderada.
-D) alta.
+**Quadro 2**
+
+| Variabilidade | Desvio padrão do tempo (min) |
+|---|---|
+| Extremamente baixa | 0 &lt; σ ≤ 2 |
+| Baixa | 2 &lt; σ ≤ 4 |
+| Moderada | 4 &lt; σ ≤ 6 |
+| Alta | 6 &lt; σ ≤ 8 |
+| Extremamente alta | σ > 8 |
+
+</figure>
+
+Com base nas informações apresentadas nos quadros, a variabilidade do tempo é
+
+A) extremamente baixa.\
+B) baixa.\
+C) moderada.\
+D) alta.\
 E) extremamente alta.
 
-**Questão 4 (ENEM 2021, 2º dia, prova azul)**
+**Questão 4**
 
-Um zootecnista pretende testar se uma nova ração para coelhos é mais eficiente do que a que ele vem utilizando atualmente. A ração atual proporciona uma massa média de 10 kg por coelho, com um desvio padrão de 1 kg, durante um período de três meses. O zootecnista selecionou uma amostra de coelhos e os alimentou com a nova ração pelo mesmo período de tempo. Ao final, anotou a massa de cada coelho, obtendo um desvio padrão de 1,5 kg para a distribuição das massas dessa amostra. Para avaliar a eficiência dessa ração, ele utilizará o coeficiente de variação (CV), definido por CV = s/x̄, em que s representa o desvio padrão e x̄ a média das massas dos coelhos alimentados com uma determinada ração. O zootecnista substituirá a ração atual pela nova caso o coeficiente de variação da nova ração seja menor do que o da ração atual. A substituição ocorrerá se a média da distribuição das massas dos coelhos da amostra, em quilograma, for superior a:
+*ENEM 2012 · 2º dia · caderno azul · questão 176*
 
-A) 5,0.
-B) 9,5.
-C) 10,0.
-D) 10,5.
-E) 15,0.
+Um produtor de café irrigado em Minas Gerais recebeu um relatório de consultoria estatística, constando, entre outras informações, o desvio padrão das produções de uma safra dos talhões de sua propriedade. Os talhões têm a mesma área de 30 000 m² e o valor obtido para o desvio padrão foi de 90 kg/talhão. O produtor deve apresentar as informações sobre a produção e a variância dessas produções em sacas de 60 kg por hectare (10 000 m²).
 
-**Questão 5 (ENEM 2025, 2º dia)**
+A variância das produções dos talhões expressa em (sacas/hectare)² é
 
-Em um estudo clínico, 55 mulheres foram distribuídas, aleatoriamente, em 5 grupos de 11 pessoas. Para testar uma nova medicação, será escolhido um grupo no qual a maioria das mulheres tenham idades entre 20 e 30 anos. Os demais grupos tomarão placebo ou medicações já existentes no mercado. O quadro, parcialmente preenchido, informa alguns dados relativos às idades das mulheres desses grupos:
+A) 20,25.\
+B) 4,50.\
+C) 0,71.\
+D) 0,50.\
+E) 0,25.
 
-| Grupo | Dado 1 | Dado 2 |
-|---|---|---|
-| 1 | Média = 25 | Desvio padrão = 10 |
-| 2 | Mediana = 25 | Desvio padrão = 9 |
-| 3 | Moda = 25 |: |
-| 4 | Média = 25 | Desvio padrão = 1 |
-| 5 | Idade mínima = 20 | Idade máxima = 35 |
+**Questão 5**
 
-Mesmo com o quadro incompleto, foi possível selecionar um desses grupos porque, apenas com os dados apresentados, foi identificado um grupo que, certamente, atendia ao critério de escolha. O grupo escolhido foi o:
+*ENEM 2023 · 2ª aplicação · 2º dia · caderno azul · questão 149*
 
-A) 1.
-B) 2.
-C) 3.
-D) 4.
-E) 5.
+A amplitude é uma medida estatística que detecta a variabilidade dos dados de uma amostra. Ela pode ser utilizada como critério de qualidade da produção na indústria de peças, indicando, por exemplo, a necessidade do descarte de um lote defeituoso.
+
+Uma fábrica analisou cinco unidades de cada um dos cinco lotes da produção de um tipo de peça que, por projeto, devem ter comprimento igual a 10 cm. As medidas, em centímetro, dessas unidades estão distribuídas a seguir:
+
+- lote I: 9,80; 10,30; 10,30; 10,30 e 10,30;
+- lote II: 10,55; 10,58; 10,58; 10,60 e 10,60;
+- lote III: 9,80; 9,80; 10,00; 10,00 e 10,20;
+- lote IV: 9,90; 9,90; 9,90; 10,20 e 10,20;
+- lote V: 9,30; 9,30; 9,50; 9,50 e 9,50.
+
+Foi determinado o descarte do lote que apresentasse a maior amplitude.
+
+De acordo com o critério adotado, a fábrica descartará o lote
+
+A) I.\
+B) II.\
+C) III.\
+D) IV.\
+E) V.
