@@ -1,14 +1,57 @@
 {
   "2017-regular-D2-azul-Q164": {
     "nota": "frações empilhadas; conferido na imagem da página em 26/09/2026",
-    "alternativas": ["5/4", "1/4", "4/3", "4/1", "3/4"]
+    "alternativas": [
+      "5/4",
+      "1/4",
+      "4/3",
+      "4/1",
+      "3/4"
+    ]
   },
   "2022-ppl-D2-azul-Q171": {
     "nota": "frações empilhadas; conferido na imagem da página em 26/09/2026",
-    "alternativas": ["V = (1/50)x^2", "V = 2 − (1/50)x", "V = 2x − (1/50)x^2", "V = x − (1/100)x^2", "V = 2x − (1/100)x"]
+    "alternativas": [
+      "V = (1/50)x^2",
+      "V = 2 − (1/50)x",
+      "V = 2x − (1/50)x^2",
+      "V = x − (1/100)x^2",
+      "V = 2x − (1/100)x"
+    ]
   },
   "2018-ppl-D2-azul-Q163": {
     "nota": "expoente em fração (9/7) caía na linha da alternativa B; conferido na imagem da página em 26/09/2026",
-    "alternativas": ["1,28", "2,0", "10^(9/7)", "100", "10^9 − 10^7"]
+    "alternativas": [
+      "1,28",
+      "2,0",
+      "10^(9/7)",
+      "100",
+      "10^9 − 10^7"
+    ]
+  },
+  "2009-regular-D2-azul-Q154": {
+    "nota": "alternativas em duas colunas ficaram dentro do texto; conferido na imagem da página em 26/09/2026",
+    "texto": "A rampa de um hospital tem na sua parte mais elevada uma altura de 2,2 metros. Um paciente ao caminhar sobre a rampa percebe que se deslocou 3,2 metros e alcançou uma altura de 0,8 metro. A distância em metros que o paciente ainda deve caminhar para atingir o ponto mais alto da rampa é",
+    "alternativas": [
+      "1,16 metros.",
+      "3,0 metros.",
+      "5,4 metros.",
+      "5,6 metros.",
+      "7,04 metros."
+    ]
+  },
+  "2022-ppl-D2-azul-Q159": {
+    "nota": "questão de largura total; a 'figura' era do desenho da questão 158 na mesma página, e a questão não tem figura; conferido na imagem da página em 26/09/2026",
+    "figuras": []
+  },
+  "2014-ppl-D2-cinza-Q154": {
+    "nota": "frações empilhadas; conferido na imagem da página em 26/09/2026",
+    "alternativas": [
+      "1/16",
+      "√3/16",
+      "1/8",
+      "√3/8",
+      "√3/4"
+    ]
   }
 }

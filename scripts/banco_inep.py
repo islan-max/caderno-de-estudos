@@ -870,16 +870,17 @@ CORRECOES = RAIZ / "scripts" / "correcoes_banco.json"
 
 
 def aplicar_correcoes(qs):
-    """Alternativas que o PDF embaralha (fração empilhada no expoente, por exemplo) e que foram
-    transcritas à mão, conferindo na imagem da página. Ficam num arquivo versionado para a
-    reextração não perder a correção."""
+    """Campos que o PDF embaralha (fração empilhada, alternativas em duas colunas, figura da
+    questão vizinha em página de largura total) e que foram corrigidos à mão, conferindo na imagem
+    da página. Ficam num arquivo versionado para a reextração não perder a correção."""
     if not CORRECOES.exists():
         return qs
     corr = ler_json(CORRECOES)
     for q in qs:
-        if q["id"] in corr:
-            q["alternativas"] = corr[q["id"]]["alternativas"]
-            q["alternativas_corrigidas"] = True
+        for campo, valor in corr.get(q["id"], {}).items():
+            if campo != "nota":
+                q[campo] = valor
+                q["corrigida_a_mao"] = True
     return qs
 
 
