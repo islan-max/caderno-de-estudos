@@ -348,5 +348,17 @@
   "2018-ppl-D2-azul-Q110": {
     "nota": "notação dos nuclídeos (sobrescrito e subscrito) embaralhada no texto; conferido na imagem da página em 27/09/2026",
     "texto": "O elemento radioativo tório (Th) pode substituir os combustíveis fósseis e baterias. Pequenas quantidades desse elemento seriam suficientes para gerar grande quantidade de energia. A partícula liberada em seu decaimento poderia ser bloqueada utilizando-se uma caixa de aço inoxidável. A equação nuclear para o decaimento do ²³⁰₉₀Th é: ²³⁰₉₀Th → ²²⁶₈₈Ra + partícula + energia. Considerando a equação de decaimento nuclear, a partícula que fica bloqueada na caixa de aço inoxidável é o(a)"
+  },
+  "2021-ppl-D2-azul-Q128": {
+    "nota": "texto ilegível no PDF (fonte embutida); conferido na imagem da página em 27/09/2026",
+    "texto": "Os compostos iônicos CaCO₃ e NaCl têm solubilidades muito diferentes em água. Enquanto o carbonato de cálcio, principal constituinte do mármore, é praticamente insolúvel em água, o sal de cozinha é muito solúvel. A solubilidade de qualquer sal é o resultado do balanço entre a energia de rede (energia necessária para separar completamente os íons do sólido cristalino) e a energia envolvida na hidratação dos íons dispersos em solução. Em relação à energia de rede, a menor solubilidade do primeiro composto é explicada pelo fato de ele apresentar maior",
+    "alternativas": [
+      "atração entre seus íons.",
+      "densidade do sólido iônico.",
+      "energia de ionização do cálcio.",
+      "eletronegatividade dos átomos.",
+      "polarizabilidade do íon carbonato."
+    ],
+    "texto_ilegivel": 0.0
   }
 }
