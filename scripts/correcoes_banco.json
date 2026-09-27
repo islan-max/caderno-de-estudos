@@ -73,5 +73,24 @@
       "2",
       "√10"
     ]
+  },
+  "2018-regular-D2-azul-Q180": {
+    "nota": "raízes e fração 6/π empilhada; conferido na imagem da página em 26/09/2026",
+    "texto": "Para decorar um cilindro circular reto será usada uma faixa retangular de papel transparente, na qual está desenhada em negrito uma diagonal que forma 30° com a borda inferior. O raio da base do cilindro mede 6/π cm, e ao enrolar a faixa obtém-se uma linha em formato de hélice, como na figura. O valor da medida da altura do cilindro, em centímetro, é",
+    "alternativas": [
+      "36√3",
+      "24√3",
+      "4√3",
+      "36",
+      "72"
+    ]
+  },
+  "2020-ppl-D2-azul-Q154": {
+    "nota": "√3 e π perdidos na extração; conferido na imagem da página em 26/09/2026",
+    "texto": "Projetado pelo arquiteto Oscar Niemeyer, o Museu de Arte Contemporânea (MAC) tornou-se um dos cartões-postais da cidade de Niterói (Figura 1). Considere que a forma da cúpula do MAC seja a de um tronco de cone circular reto (Figura 2), cujo diâmetro da base maior mede 50 m e 12 m é a distância entre as duas bases. A administração do museu deseja fazer uma reforma revitalizando o piso de seu pátio e, para isso, precisa estimar a sua área. (Utilize 1,7 como valor aproximado para √3 e 3 para π). A medida da área do pátio do museu a ser revitalizada, em metro quadrado, está no intervalo"
+  },
+  "2017-regular-D2-azul-Q138": {
+    "nota": "fórmula I(x) = k · sen(x) desmontada; conferido na imagem da página em 26/09/2026",
+    "texto": "Raios de luz solar estão atingindo a superfície de um lago formando um ângulo x com a sua superfície, conforme indica a figura. Em determinadas condições, pode-se supor que a intensidade luminosa desses raios, na superfície do lago, seja dada aproximadamente por I(x) = k · sen(x), sendo k uma constante, e supondo-se que x está entre 0° e 90°. Quando x = 30°, a intensidade luminosa se reduz a qual percentual de seu valor máximo?"
   }
 }
