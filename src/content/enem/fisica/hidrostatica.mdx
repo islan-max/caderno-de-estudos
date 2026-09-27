@@ -2,179 +2,417 @@
 title: "Hidrostática"
 subject: "Física"
 order: 5
+relevance: >
+  Hidrostática estuda líquidos e gases parados: por que um navio de aço flutua, por que o ouvido dói no
+  fundo da piscina, como um macaco hidráulico ergue um carro com pouca força, por que o remédio sobe na
+  seringa. O ENEM (Exame Nacional do Ensino Médio) cobra o tema com experimentos simples e
+  situações do cotidiano, pedindo contas curtas de densidade, pressão e empuxo ou explicações sobre a
+  pressão atmosférica.
+quickSummary: >
+  Densidade é massa por volume. Pressão é força por área; numa coluna de líquido ou de material empilhado,
+  vale d × g × h. O ar também faz pressão: é ele que empurra o remédio para dentro da seringa. Num líquido parado, um
+  aumento de pressão chega igual a todos os pontos (Pascal), o que multiplica forças. Todo corpo mergulhado
+  recebe um empuxo para cima igual ao peso do líquido que ele desloca (Arquimedes).
+resources:
+  conteudoComplementar:
+    conteudo: "Leis de Newton"
+    comoAjuda: "Empuxo, peso e a leitura de um dinamômetro são forças que se equilibram. Se somar forças travar você, revise essa aula."
 gabarito:
-  - correta: 4
+  - correta: 2
     porque: >
-      Com um canudo fora do líquido, o ar entra livremente e a pressão dentro da boca se iguala à atmosférica, a mesma que empurra o suco. Sem diferença de pressão, o suco não sobe.
+      A pressão de uma pilha é d × g × h, qualquer que seja a área. Assim, h = 10⁴ ÷ (1 250 × 10) = 0,8 m.
+      Revisar: Aula Teórica › 2. Pressão
+  - correta: 2
+    porque: >
+      Com velocidade constante, a plataforma precisa de uma força igual ao peso total: (65 + 15 + 20) × 10 = 1 000 N.
+      Pelo princípio de Pascal, a força na tubulação 5 vezes mais estreita é 1 000 ÷ 5 = 200 N.
+      Revisar: Aula Teórica › 4. Princípio de Pascal
   - correta: 1
     porque: >
-      Corpo flutuando em equilíbrio: o empuxo equilibra exatamente o peso total do navio com a carga.
+      O empuxo é a diferença das leituras: 30 − 24 = 6 N. Metade do cubo são 500 cm³, e 6 = d × 0,0005 × 10 dá
+      d = 1 200 kg/m³, ou seja, 1,2 g/cm³.
+      Revisar: Aula Teórica › 5. Empuxo e flutuação
   - correta: 2
     porque: >
-      Apertar a garrafa aumenta a pressão em todo o líquido (Pascal), o que comprime a bolha de ar dentro do frasco e deixa entrar mais água. Mais água dentro, mais peso, e o frasco afunda.
-  - correta: 0
+      O gelo flutuando desloca uma massa de água igual à dele, e o nível sobe. Ao derreter, ele vira exatamente essa
+      massa de água, que ocupa o volume que já deslocava: o nível não muda mais.
+      Revisar: Aula Teórica › 5. Empuxo e flutuação
+  - correta: 4
     porque: >
-      De p = d.g.h vem h = p/(d.g). Para 18 kPa, h = 18000/10000 = 1,8 m; para 38 kPa, h = 3,8 m.
-  - correta: 2
-    porque: >
-      O peso total é (65 + 15 + 20) x 10 = 1000 N. Pelo princípio de Pascal a pressão é a mesma, então F = 1000 x (1/5) = 200 N.
-relevance: >
-  Hidrostática estuda fluidos (líquidos e gases) parados, em equilíbrio. É um dos temas mais
-  recorrentes de Física no ENEM: aparece quase todo ano, geralmente em 1 a 2 questões. O ENEM adora
-  contextualizar: mergulhadores, navios, seringas, canudinhos, torneiras, elevadores de carro.
-  Raramente pede a fórmula pura; ele testa se você entende por que o fenômeno acontece.
-quickSummary: >
-  Pressão é força dividida por área (P = F/A); a mesma força pode gerar pressões bem diferentes
-  dependendo de quão espalhada ela está: essa é a base para entender por que uma agulha fina fura e
-  uma superfície larga não.
+      Quem empurra o suco para cima é a pressão atmosférica, quando a pressão na boca fica menor que ela. Com um canudo
+      fora do suco, o ar entra por ele, e a pressão na boca fica praticamente igual à que age sobre o suco.
+      Revisar: Aula Teórica › 3. Pressão atmosférica
 ---
 
-## Aula Teórica Completa
+<Accordion titulo="Palavras e siglas desta aula" dica="Consulte quando encontrar um termo novo" icone="spell-check">
 
-**Pressão: a ideia central**
+- **ENEM** (Exame Nacional do Ensino Médio): a prova nacional que dá acesso a faculdades e bolsas.
+- **INEP** (Instituto Nacional de Estudos e Pesquisas Educacionais Anísio Teixeira): o órgão do governo que faz o ENEM.
+- **N** (newton): a unidade de força; um corpo de 1 kg pesa cerca de 10 N.
+- **Pa** (pascal): a unidade de pressão; 1 Pa é 1 N sobre 1 m².
+- **Dinamômetro**: balança de mola que mede força, em newtons.
+- **Maciço e homogêneo**: sem buracos por dentro e feito do mesmo material em todo o corpo.
+- **Submerso**: abaixo da superfície do líquido. **Emerso**: acima dela.
+- **Pistão**: peça que desliza dentro de um tubo, empurrando ou sendo empurrada por um fluido.
+- **Fluido**: líquido ou gás.
+- **Sucção**: ato de sugar, puxando o ar de dentro de um tubo.
+- **Imerso**: mergulhado. **Aspirado**: sugado.
+- **Laje**: o piso de concreto de um andar.
+- **Graduação** (de um instrumento): a escala de valores que ele mede. **Calibração**: conferência de que ele mede certo.
 
-Pressão é força espalhada sobre uma área. A fórmula:
+</Accordion>
 
-P = F / A
+## Antes de Começar
 
-- P = pressão (Pascal, Pa)
-- F = força aplicada perpendicularmente (Newton, N)
-- A = área sobre a qual a força age (m²)
+**O que o ENEM cobra aqui.** Os temas que costumam aparecer são estes:
 
-Imagine pisar na neve com uma bota normal versus com um esqui. A força (seu peso) é a mesma, mas o esqui espalha essa força numa área maior, então a pressão em cada ponto da neve é menor: você não afunda. Isso já mostra a lógica que o ENEM cobra: pressão depende de força E área, nunca só uma das duas.
+- **Calcular uma pressão** e isolar uma altura ou uma área.
+- **Explicar fenômenos** com a pressão atmosférica: seringas, garrafas, ventosas.
+- **Usar o princípio de Pascal** em elevadores e prensas hidráulicas.
+- **Calcular o empuxo** e, com ele, uma densidade ou um volume.
+- **Prever o que acontece com o nível** de um líquido quando algo flutua ou derrete.
 
-**Pressão hidrostática: quanto mais fundo, mais pressão**
+**O que você precisa saber antes.**
 
-Dentro de um líquido, existe uma pressão extra causada pelo peso do próprio líquido acima do ponto que você está analisando. Fórmula (Lei de Stevin):
+- **Peso.** O peso é m × g, com g = 10 m/s² (a aceleração da gravidade); 1 kg pesa 10 N (newtons, a unidade de força).
+- **Equilíbrio.** Parado, ou com velocidade constante, as forças para cima somam o mesmo que as forças para baixo (aula de Leis de Newton).
+- **Potências de 10.** 10⁴ = 10 000; 10⁵ = 100 000; 10⁻³ = 0,001.
 
-P = ρ · g · h
+## Aula Teórica
 
-- P = pressão hidrostática (Pa)
-- ρ (rô) = densidade do líquido (kg/m³)
-- g = aceleração da gravidade (m/s²)
-- h = altura (profundidade) da coluna de líquido acima do ponto (m)
+### 1. Densidade
 
-Detalhe crucial: essa pressão **não depende do formato do recipiente**, nem da quantidade total de líquido. Só depende de três coisas: densidade do líquido, gravidade e profundidade. Um copo fino e uma piscina, na mesma profundidade h e com a mesma água, têm exatamente a mesma pressão hidrostática naquele ponto.
+**Fórmula: densidade**
 
-**Pressão total: somando a atmosfera**
+**d = m ÷ V**
 
-Se o líquido está exposto ao ar (como um copo aberto, uma piscina, o mar), o ar também empurra a superfície do líquido com a pressão atmosférica. Então a pressão total num ponto dentro do líquido é:
+- **d**: a densidade.
+- **m**: a massa.
+- **V**: o volume.
+- **Em palavras:** quanto de massa cabe em cada unidade de volume. A água tem 1 g/cm³: cada centímetro cúbico de água tem 1 g.
+- **Quando usar:** para comparar materiais, saber se algo flutua ou achar a massa de um volume.
 
-P_total = P_atm + ρ · g · h
+As unidades mais usadas são g/cm³ e kg/m³. Para trocar, use **1 g/cm³ = 1 000 kg/m³**: de g/cm³ para kg/m³, multiplique por 1 000; de kg/m³ para g/cm³, divida por 1 000. Para volumes: 1 L = 1 000 cm³, e 1 m³ = 1 000 L = 1 000 000 cm³. Um cubo de aresta 20 cm tem volume 20 × 20 × 20 = 8 000 cm³ = 0,008 m³.
 
-- P_atm = pressão atmosférica (aproximadamente 10⁵ Pa ao nível do mar)
+**Exemplo resolvido.** Um bloco de madeira de 600 g tem volume de 800 cm³. Qual é a densidade dele, em g/cm³ e em kg/m³?
 
-Isso aparece direto em questões de mergulhadores e tubulações.
+1. d = 600 ÷ 800 = 0,75 g/cm³.
+2. Em kg/m³: 0,75 × 1 000 = 750 kg/m³.
+3. Resposta: 0,75 g/cm³, ou 750 kg/m³.
 
-**Princípio de Pascal: a base dos elevadores hidráulicos**
+**Erro comum.** Misturar unidades: massa em kg com volume em cm³. Antes de dividir, passe tudo para g e cm³ ou tudo para kg e m³.
 
-Se você aumenta a pressão em qualquer ponto de um fluido fechado (dentro de um recipiente confinado), esse aumento se transmite **integralmente** para todos os pontos do fluido e para as paredes do recipiente.
+### 2. Pressão
 
-Isso é o que permite o elevador hidráulico e o macaco de carro: você aplica uma força pequena numa área pequena, e como a pressão se transmite igual para o outro lado (que tem área grande), a força que sai do outro lado é muito maior.
+A mesma força machuca mais quando se concentra numa área pequena: um salto fino afunda na grama, um tênis não. Essa ideia é a **pressão**.
 
-F₁ / A₁ = F₂ / A₂
+**Fórmula: pressão**
 
-- F₁ = força aplicada no pistão pequeno
-- A₁ = área do pistão pequeno
-- F₂ = força resultante no pistão grande
-- A₂ = área do pistão grande
+**p = F ÷ A**
 
-Pense assim: a pressão (F/A) é igual dos dois lados, então se a área do lado 2 é 5 vezes maior que a do lado 1, a força no lado 2 também será 5 vezes maior. Você "multiplica" a força trocando por deslocamento: não ganha energia de graça, é só uma troca de força por distância percorrida (mas o ENEM raramente cobra esse detalhe de trabalho, foca na relação de forças).
+- **p**: a pressão, em pascals (Pa), que são newtons por metro quadrado.
+- **F**: a força que aperta a superfície, em newtons.
+- **A**: a área em que a força se espalha, em m².
+- **Em palavras:** mais força, mais pressão; mais área, menos pressão.
+- **Quando usar:** pneus, pés, pregos, pisos, qualquer força apoiada numa área.
 
-**Princípio de Arquimedes: empuxo e flutuação**
+**Exemplo resolvido.** Uma caixa de 60 kg está apoiada numa base de 0,3 m². Que pressão ela faz no chão?
 
-Todo corpo mergulhado (total ou parcialmente) num fluido recebe uma força para cima chamada empuxo, igual ao peso do fluido que esse corpo deslocou.
+1. Força: o peso, 60 × 10 = 600 N.
+2. p = 600 ÷ 0,3 = 2 000 Pa.
+3. Resposta: 2 000 Pa.
 
-E = ρ_fluido · V_deslocado · g
+**Erro comum.** Usar a massa (kg) no lugar da força (N). Multiplique por 10 antes.
 
-- E = empuxo (N)
-- ρ_fluido = densidade do fluido (não do corpo!)
-- V_deslocado = volume de fluido deslocado (igual ao volume da parte submersa do corpo)
-- g = aceleração da gravidade
+Num líquido parado, a pressão cresce com a profundidade, porque cada camada sustenta o peso das camadas de cima. O mesmo vale para um material sólido empilhado de maneira uniforme sobre um piso.
 
-**Condição de flutuação:**
-- Se o corpo flutua em equilíbrio (parado, boiando), o empuxo é exatamente igual ao peso do corpo: E = P.
-- Se o peso for maior que o empuxo máximo possível, o corpo afunda.
+**Fórmula: pressão de uma coluna**
 
-Armadilha clássica: pensar que "objeto pesado sempre afunda". Errado: um navio petroleiro pesa milhares de toneladas e flutua, porque o que importa é a **densidade média** do conjunto (casco + ar interno) comparada à densidade da água, não o peso absoluto.
+**p = d × g × h**
+
+- **p**: a pressão da coluna, em Pa.
+- **d**: a densidade do líquido ou do material empilhado, em kg/m³.
+- **g**: a aceleração da gravidade, 10 m/s².
+- **h**: a altura da coluna (ou a profundidade), em metros.
+- **Em palavras:** a pressão depende da densidade e da altura, e **não** da área. A coluna tem peso d × (A × h) × g; dividindo pela área A, a área some.
+- **Quando usar:** profundidade em piscinas, represas e mares; pilhas de material sobre um piso; caixas-d'água. Virando a conta: h = p ÷ (d × g).
+
+<figure class="figura">
+  <svg viewBox="0 0 460 200" role="img" aria-labelledby="fig-hi-1-t fig-hi-1-d">
+    <title id="fig-hi-1-t">Mesma altura, mesma pressão</title>
+    <desc id="fig-hi-1-d">Um balde estreito e uma piscina larga, com água até a mesma altura h. A pressão da água no fundo é a mesma nos dois, d × g × h, porque ela não depende da área.</desc>
+    <rect x="60" y="60" width="50" height="110" class="preenche" />
+    <path d="M 60 40 L 60 170 L 110 170 L 110 40" class="traco" />
+    <rect x="190" y="60" width="220" height="110" class="preenche" />
+    <path d="M 190 40 L 190 170 L 410 170 L 410 40" class="traco" />
+    <line x1="36" y1="60" x2="36" y2="170" class="traco-fino" />
+    <line x1="30" y1="60" x2="42" y2="60" class="traco-fino" />
+    <line x1="30" y1="170" x2="42" y2="170" class="traco-fino" />
+    <text x="26" y="119" class="rotulo" text-anchor="end">h</text>
+    <text x="85" y="190" class="rotulo-fraco" text-anchor="middle">balde</text>
+    <text x="300" y="190" class="rotulo-fraco" text-anchor="middle">piscina, mesma altura</text>
+    <text x="235" y="30" class="rotulo-fraco" text-anchor="middle">mesma pressão no fundo: p = d × g × h</text>
+  </svg>
+</figure>
+
+**Exemplo resolvido.** Qual é a pressão da água (sem contar a do ar) no fundo de uma piscina de 2 m de profundidade? E a que profundidade de uma represa a pressão da água chega a 30 000 Pa?
+
+1. Piscina: p = 1 000 × 10 × 2 = 20 000 Pa.
+2. Represa: h = 30 000 ÷ (1 000 × 10) = 3 m.
+3. Resposta: 20 000 Pa; 3 m.
+
+**Erro comum.** Dividir também pela área do piso ou do fundo. Na fórmula da coluna, a área não entra: uma piscina larga e um balde da mesma altura têm a mesma pressão no fundo.
+
+### 3. Pressão atmosférica
+
+O ar também tem peso, e a camada de ar sobre nós faz pressão em tudo: é a **pressão atmosférica**, cerca de 100 000 Pa (10⁵ Pa) ao nível do mar. Ela empurra em todas as direções: de cima, de lado, de baixo.
+
+Não percebemos essa pressão porque ela age dos dois lados das coisas. Um efeito aparece quando a pressão de um lado **cai**: o ar do outro lado empurra. É assim que funciona a **sucção**:
+
+- Ao puxar o êmbolo de uma seringa (o pistão dela), com a agulha no remédio, o espaço dentro dela aumenta e a pressão ali cai. A pressão atmosférica, que continua agindo sobre a superfície do remédio no frasco, **empurra** o líquido para dentro da seringa.
+- Ninguém "puxa" um líquido: quem sobe o líquido é o ar de fora, que empurra mais que o de dentro.
+- Se a pressão de dentro não cair, a de fora fica **igual** à de dentro e nada sobe. É o que acontece com uma seringa com um furo no corpo: ao puxar o êmbolo, o ar entra pelo furo, e o remédio não sobe.
+
+**Erro comum.** Achar que o líquido sobe porque é "aspirado" com mais força, ou porque o ar é mais leve que ele. O que importa é a **diferença de pressão**.
+
+### 4. Princípio de Pascal
+
+Num líquido parado dentro de um recipiente fechado, um aumento de pressão num ponto chega **igual** a todos os outros pontos. Isso permite multiplicar forças: é a ideia da prensa e do elevador hidráulico.
+
+<figure class="figura">
+  <svg viewBox="0 0 460 200" role="img" aria-labelledby="fig-hi-2-t fig-hi-2-d">
+    <title id="fig-hi-2-t">Prensa hidráulica</title>
+    <desc id="fig-hi-2-d">Um tubo em forma de U cheio de líquido, com um pistão estreito à esquerda e um pistão largo à direita. Uma força pequena F1 empurra o pistão estreito para baixo; o pistão largo sobe com uma força maior F2.</desc>
+    <path d="M 80 60 L 80 170 L 380 170 L 380 60" class="traco" />
+    <path d="M 110 60 L 110 140 L 300 140 L 300 60" class="traco" />
+    <rect x="81" y="90" width="28" height="80" class="preenche" />
+    <rect x="109" y="141" width="192" height="28" class="preenche" />
+    <rect x="301" y="110" width="78" height="60" class="preenche" />
+    <rect x="80" y="82" width="30" height="8" class="traco preenche" />
+    <rect x="300" y="102" width="80" height="8" class="traco preenche" />
+    <line x1="95" y1="30" x2="95.0" y2="68.0" class="traco" />
+    <path d="M 95 78 L 90.0 68.0 L 100.0 68.0 Z" class="traco preenche" />
+    <line x1="340" y1="98" x2="340.0" y2="50.0" class="traco" />
+    <path d="M 340 40 L 345.0 50.0 L 335.0 50.0 Z" class="traco preenche" />
+    <text x="103" y="40" class="rotulo">F1</text>
+    <text x="350" y="56" class="rotulo">F2</text>
+    <text x="95" y="190" class="rotulo-fraco" text-anchor="middle">área A1 (pequena)</text>
+    <text x="340" y="190" class="rotulo-fraco" text-anchor="middle">área A2 (grande)</text>
+  </svg>
+</figure>
+
+Em elevadores hidráulicos, o lado pequeno costuma ser a tubulação estreita onde uma bomba empurra o fluido; o lado grande é o pistão que ergue a plataforma.
+
+**Fórmula: prensa hidráulica**
+
+**F1 ÷ A1 = F2 ÷ A2**
+
+- **F1, A1**: a força e a área no pistão pequeno (onde se empurra).
+- **F2, A2**: a força e a área no pistão grande (que levanta a carga).
+- **Em palavras:** a pressão é a mesma dos dois lados. Se a área grande é **n vezes** a pequena, a força grande é n vezes a pequena.
+- **Quando usar:** elevadores de carro, macacos hidráulicos, freios, cadeiras de dentista.
+
+**Exemplo resolvido.** Num macaco hidráulico, a área do pistão grande é 8 vezes a do pequeno. Que força é preciso fazer no pistão pequeno para erguer, com velocidade constante, um carro de 1 100 kg sobre um suporte de 100 kg?
+
+1. Velocidade constante: a força no pistão grande é igual ao peso total, (1 100 + 100) × 10 = 12 000 N.
+2. Pascal: F1 = F2 ÷ 8 = 12 000 ÷ 8 = 1 500 N.
+3. Resposta: 1 500 N.
+
+**Erro comum.** Esquecer parte do peso (o suporte, a plataforma) ou multiplicar pela razão das áreas em vez de dividir.
+
+### 5. Empuxo e flutuação
+
+Todo corpo mergulhado num líquido recebe dele uma força para cima, o **empuxo**. O princípio de Arquimedes diz quanto ela vale.
+
+**Fórmula: empuxo**
+
+**E = d × V × g**
+
+- **E**: o empuxo, em newtons.
+- **d**: a densidade do **líquido** (não a do corpo), em kg/m³.
+- **V**: o volume **submerso** do corpo, que é o volume de líquido que ele empurra para o lado, em m³.
+- **g**: 10 m/s².
+- **Em palavras:** o empuxo é igual ao peso do líquido deslocado.
+- **Quando usar:** corpos que flutuam, afundam ou ficam pendurados dentro de um líquido; achar a densidade de um líquido.
+- **Virando a conta:** d = E ÷ (V × g) e V = E ÷ (d × g).
+
+Um **dinamômetro** que segura um corpo mostra o **peso aparente**. No ar, mostra o peso. Com o corpo mergulhado, mostra menos, porque o empuxo ajuda a sustentar: **empuxo = leitura no ar − leitura no líquido**.
+
+<figure class="figura">
+  <svg viewBox="0 0 460 200" role="img" aria-labelledby="fig-hi-3-t fig-hi-3-d">
+    <title id="fig-hi-3-t">Peso aparente num dinamômetro</title>
+    <desc id="fig-hi-3-d">Um bloco preso a um dinamômetro está mergulhado num recipiente com água. Sobre ele agem o peso P, para baixo, o empuxo E, para cima, e a força do fio, para cima, que é a leitura do dinamômetro. A leitura vale P − E.</desc>
+    <rect x="130" y="100" width="200" height="90" class="preenche" />
+    <path d="M 130 40 L 130 190 L 330 190 L 330 40" class="traco" />
+    <line x1="130" y1="100" x2="330" y2="100" class="traco-fino" />
+    <rect x="222" y="10" width="16" height="36" class="traco" />
+    <line x1="230" y1="46" x2="230" y2="128" class="traco-fino" />
+    <rect x="214" y="128" width="32" height="32" class="traco preenche" />
+    <text x="244" y="32" class="rotulo-fraco">dinamômetro</text>
+    <line x1="257" y1="146" x2="257.0" y2="136.0" class="traco" />
+    <path d="M 257 126 L 262.0 136.0 L 252.0 136.0 Z" class="traco preenche" />
+    <line x1="205" y1="138" x2="205.0" y2="178.0" class="traco" />
+    <path d="M 205 188 L 200.0 178.0 L 210.0 178.0 Z" class="traco preenche" />
+    <line x1="240" y1="128" x2="240.0" y2="108.0" class="traco-fino" />
+    <path d="M 240 98 L 245.0 108.0 L 235.0 108.0 Z" class="traco preenche" />
+    <text x="264" y="140" class="rotulo">E</text>
+    <text x="197" y="170" class="rotulo" text-anchor="end">P</text>
+    <text x="248" y="90" class="rotulo">leitura</text>
+    <text x="340" y="150" class="rotulo-fraco">leitura = P − E</text>
+  </svg>
+</figure>
+
+**Exemplo resolvido.** Uma pedra de 2 kg, pendurada num dinamômetro, marca 20 N no ar. Totalmente mergulhada em água, marca 12 N. Qual é o volume da pedra? E a densidade dela?
+
+1. Empuxo: 20 − 12 = 8 N.
+2. Volume submerso (água, 1 000 kg/m³): 8 = 1 000 × V × 10, então V = 8 ÷ 10 000 = 0,0008 m³ = 800 cm³.
+3. Densidade da pedra: 2 000 g ÷ 800 cm³ = 2,5 g/cm³.
+4. Resposta: 800 cm³; 2,5 g/cm³.
+
+**Erro comum.** Usar o volume do corpo inteiro quando só uma parte está mergulhada. O empuxo depende só do volume submerso.
+
+Um corpo **flutua** quando é menos denso que o líquido. Parado na superfície, o empuxo iguala o peso. A fração submersa é a razão das densidades: um corpo com 0,75 g/cm³ flutua na água com 75% do volume submerso e 25% emerso.
+
+Um corpo que flutua desloca uma massa de líquido **igual à sua própria massa**: flutuando, o empuxo iguala o peso, e o empuxo é o peso do líquido deslocado. Por isso, colocar um objeto flutuando num recipiente **sobe** o nível do líquido. Há um caso especial: o objeto feito do próprio líquido congelado, como gelo na água. Ao derreter, ele vira exatamente a massa de água que já deslocava. Essa água ocupa o mesmo volume que a parte submersa ocupava, e o nível **não muda** com o derretimento.
+
+**Erro comum.** Achar que o nível sobe quando o gelo derrete porque a parte emersa "entra" na água. Ao derreter, o gelo encolhe: a mesma massa, como água, ocupa menos volume, exatamente o da parte que estava submersa.
+
+### Armadilhas típicas do INEP
+
+1. **Usar massa no lugar de força**: pressão e empuxo pedem newtons.
+2. **Dividir pela área** na pressão de coluna: p = d × g × h não depende da área.
+3. **Achar que o líquido é puxado** por quem suga: quem empurra é o ar de fora.
+4. **Inverter a razão das áreas** em Pascal: pistão pequeno, força pequena.
+5. **Usar o volume inteiro** de um corpo parcialmente mergulhado.
+6. **Achar que o gelo derretendo sobe o nível**: o nível só sobe quando o gelo é colocado.
 
 ## Tópicos-Chave para Revisão
 
 <div className="topico">
 
-Pressão é força dividida por área (P = F/A); a mesma força pode gerar pressões bem diferentes dependendo de quão espalhada ela está: essa é a base para entender por que uma agulha fina fura e uma superfície larga não.
+#### 1. Densidade
 
-A pressão hidrostática (P = ρ·g·h) cresce com a profundidade e depende apenas de densidade do líquido, gravidade e altura da coluna: nunca do formato ou volume total do recipiente. Essa independência do formato é um dos erros mais cobrados pelo ENEM.
+**d = m ÷ V**; **1 g/cm³ = 1 000 kg/m³**; água: 1 g/cm³.
 
-Quando o líquido está em contato com a atmosfera, some a pressão atmosférica à pressão hidrostática para achar a pressão total num ponto (P_total = P_atm + ρgh); questões de mergulhador e tubulação dependem disso.
+#### 2. Pressão
 
-O Princípio de Pascal (F₁/A₁ = F₂/A₂) explica como elevadores hidráulicos e macacos de carro multiplicam força: a pressão aplicada se transmite igual em todo o fluido confinado, e como a área do êmbolo maior é maior, a força de saída também é maior, na mesma proporção da razão entre as áreas.
+**p = F ÷ A** em pascals; numa coluna, **p = d × g × h**, sem depender da **área**.
 
-O Princípio de Arquimedes (E = ρ_fluido·V_deslocado·g) diz que o empuxo depende da densidade do **fluido** e do volume **deslocado**, nunca da densidade ou do peso do corpo diretamente; um corpo flutua quando consegue deslocar fluido suficiente para que o empuxo se iguale ao seu peso, o que explica por que objetos pesados como navios flutuam.
+<figure class="figura">
+  <svg viewBox="0 0 460 120" role="img" aria-labelledby="fig-hi-t2-rev-t fig-hi-t2-rev-d">
+    <title id="fig-hi-t2-rev-t">Mesma altura, mesma pressão (resumo)</title>
+    <desc id="fig-hi-t2-rev-d">Um recipiente estreito e um largo com água na mesma altura: a pressão no fundo é a mesma nos dois.</desc>
+    <rect x="80" y="30" width="30" height="60" class="preenche" />
+    <path d="M 80 20 L 80 90 L 110 90 L 110 20" class="traco" />
+    <rect x="200" y="30" width="180" height="60" class="preenche" />
+    <path d="M 200 20 L 200 90 L 380 90 L 380 20" class="traco" />
+    <text x="95" y="108" class="rotulo-fraco" text-anchor="middle">estreito</text>
+    <text x="290" y="108" class="rotulo-fraco" text-anchor="middle">largo: mesma pressão no fundo</text>
+  </svg>
+</figure>
 
-Cuidado com confundir massa, peso, densidade e volume nas alternativas: o ENEM adora criar distratores que trocam "peso do corpo" por "peso do fluido deslocado", ou "volume do corpo" por "volume submerso", a diferença entre essas grandezas é frequentemente o que decide a questão.
+#### 3. Pressão atmosférica
+
+Cerca de **10⁵ Pa**, em todas as direções; o líquido sobe quando a pressão de um lado **cai** e a de fora empurra.
+
+#### 4. Pascal
+
+**F1 ÷ A1 = F2 ÷ A2**: área n vezes maior, força n vezes maior; com velocidade constante, força = **peso total**.
+
+#### 5. Empuxo
+
+**E = d × V × g**, com a densidade do **líquido** e o volume **submerso**; empuxo = leitura no ar − leitura no líquido; gelo derretendo não muda o nível.
 
 </div>
 
-## Teste de Fogo
+## Questões do ENEM
 
 *Marque uma alternativa em cada questão e confira tudo de uma vez no botão do fim.*
 
-**Questão 1 (ENEM 2018)**
+**Questão 1**
 
-Talvez você já tenha bebido suco usando dois canudinhos iguais. Entretanto, pode-se verificar que, se colocar um canudo imerso no suco e outro do lado de fora do líquido, fazendo a sucção simultaneamente em ambos, você terá dificuldade em bebê-lo. Essa dificuldade ocorre porque o(a)
+*ENEM 2025 · 2º dia · caderno azul · questão 118*
 
-A) força necessária para a sucção do ar e do suco simultaneamente dobra de valor.
-B) densidade do ar é menor que a do suco, portanto, o volume de ar aspirado é muito maior que o volume de suco.
-C) velocidade com que o suco sobe deve ser constante nos dois canudos, o que é impossível com um dos canudos de fora.
-D) peso da coluna de suco é consideravelmente maior que o peso da coluna de ar, o que dificulta a sucção do líquido.
-E) pressão no interior da boca assume praticamente o mesmo valor daquela que atua sobre o suco.
+A laje de um depósito de bebidas tem 50 m² de área útil de armazenamento e foi projetada para suportar pressões de até 10⁴ Pa. O gerente do estabelecimento pretende armazenar um produto cuja densidade é 1 250 kg/m³. Considere a aceleração da gravidade igual a 10 m/s².
 
-**Questão 2 (ENEM PPL 2016)**
+A altura máxima, em metro, de empilhamento do produto que essa laje é capaz de suportar é
 
-Um navio petroleiro é capaz de transportar milhares de toneladas de carga. Neste caso, uma grande quantidade de massa consegue flutuar. Nesta situação, o empuxo é
+A) 0,16 m.\
+B) 0,50 m.\
+C) 0,80 m.\
+D) 1,60 m.\
+E) 8,00 m.
 
-A) maior que a força peso do petroleiro.
-B) igual à força peso do petroleiro.
-C) maior que a força peso da água deslocada.
-D) igual à força peso do volume submerso do navio.
-E) igual à massa da água deslocada.
+**Questão 2**
 
-**Questão 3 (ENEM PPL 2010)**
+*ENEM 2013 · 1º dia · caderno azul · questão 61*
 
-Um brinquedo chamado ludião consiste em um pequeno frasco de vidro, parcialmente preenchido com água, que é emborcado (virado com a boca para baixo) dentro de uma garrafa PET cheia de água e tampada. Nessa situação, o frasco fica na parte superior da garrafa, conforme mostra a FIGURA 1. Quando a garrafa é pressionada, o frasco se desloca para baixo, como mostrado na FIGURA 2.
+Para oferecer acessibilidade aos portadores de dificuldades de locomoção, é utilizado, em ônibus e automóveis, o elevador hidráulico. Nesse dispositivo é usada uma bomba elétrica, para forçar um fluido a passar de uma tubulação estreita para outra mais larga, e dessa forma acionar um pistão que movimenta a plataforma. Considere um elevador hidráulico cuja área da cabeça do pistão seja cinco vezes maior do que a área da tubulação que sai da bomba. Desprezando o atrito e considerando uma aceleração gravitacional de 10 m/s², deseja-se elevar uma pessoa de 65 kg em uma cadeira de rodas de 15 kg sobre a plataforma de 20 kg.
 
-*(Figura 1: frasco de vidro invertido flutuando no topo da garrafa PET fechada, cheia de água. Figura 2: mesma garrafa sendo apertada pelas laterais por uma mão, com o frasco agora afundado próximo ao fundo.)*
+Qual deve ser a força exercida pelo motor da bomba sobre o fluido, para que o cadeirante seja elevado com velocidade constante?
 
-Ao apertar a garrafa, o movimento de descida do frasco ocorre porque
-
-A) diminui a força para baixo que a água aplica no frasco.
-B) aumenta a pressão na parte pressionada da garrafa.
-C) aumenta a quantidade de água que fica dentro do frasco.
-D) diminui a força de resistência da água sobre o frasco.
-E) diminui a pressão que a água aplica na base do frasco.
-
-**Questão 4 (ENEM PPL 2015)**
-
-No manual de uma torneira elétrica são fornecidas instruções básicas de instalação para que o produto funcione corretamente:
-- Se a torneira for conectada à caixa-d'água domiciliar, a pressão da água na entrada da torneira deve ser no mínimo 18 kPa e no máximo 38 kPa.
-- Para pressões da água entre 38 kPa e 75 kPa ou água proveniente diretamente da rede pública, é necessário utilizar o redutor de pressão que acompanha o produto.
-- Essa torneira elétrica pode ser instalada em um prédio ou em uma casa.
-
-Considere a massa específica da água 1 000 kg/m³ e a aceleração da gravidade 10 m/s². Para que a torneira funcione corretamente, sem o uso do redutor de pressão, quais deverão ser a mínima e a máxima altura entre a torneira e a caixa-d'água?
-
-A) 1,8 m e 3,8 m
-B) 1,8 m e 7,5 m
-C) 3,8 m e 7,5 m
-D) 18 m e 38 m
-E) 18 m e 75 m
-
-**Questão 5 (ENEM 2013)**
-
-Para oferecer acessibilidade aos portadores de dificuldade de locomoção, é utilizado, em ônibus e automóveis, o elevador hidráulico. Nesse dispositivo é usada uma bomba elétrica, para forçar um fluido a passar de uma tubulação estreita para outra mais larga, e dessa forma acionar um pistão que movimenta a plataforma. Considere um elevador hidráulico cuja área da cabeça do pistão seja cinco vezes maior do que a área da tubulação que sai da bomba. Desprezando o atrito e considerando uma aceleração gravitacional de 10 m/s², deseja-se elevar uma pessoa de 65 kg em uma cadeira de rodas de 15 kg sobre a plataforma de 20 kg. Qual deve ser a força exercida pelo motor da bomba sobre o fluido, para que o cadeirante seja elevado com velocidade constante?
-
-A) 20 N
-B) 100 N
-C) 200 N
-D) 1 000 N
+A) 20 N\
+B) 100 N\
+C) 200 N\
+D) 1 000 N\
 E) 5 000 N
+
+**Questão 3**
+
+*ENEM 2011 · 1º dia · caderno azul · questão 73*
+
+Em um experimento realizado para determinar a densidade da água de um lago, foram utilizados alguns materiais conforme ilustrado: um dinamômetro D com graduação de 0 N a 50 N e um cubo maciço e homogêneo de 10 cm de aresta e 3 kg de massa. Inicialmente, foi conferida a calibração do dinamômetro, constatando-se a leitura de 30 N quando o cubo era preso ao dinamômetro e suspenso no ar. Ao mergulhar o cubo na água do lago, até que metade do seu volume ficasse submersa, foi registrada a leitura de 24 N no dinamômetro.
+
+<figure class="figura">
+  <svg viewBox="0 0 460 210" role="img" aria-labelledby="fig-hi-q3-t fig-hi-q3-d">
+    <title id="fig-hi-q3-t">Cubo pendurado no dinamômetro</title>
+    <desc id="fig-hi-q3-d">Um dinamômetro D, no alto, segura por um fio um cubo mergulhado até a metade na água de um lago: a metade de baixo do cubo está sob a superfície e a metade de cima fora dela. Figura redesenhada a partir da prova oficial, com os mesmos dados.</desc>
+    <rect x="150" y="120" width="160" height="80" class="preenche" />
+    <line x1="150" y1="120" x2="310" y2="120" class="traco" />
+    <line x1="150" y1="200" x2="310" y2="200" class="traco" />
+    <rect x="224" y="10" width="12" height="44" class="traco" />
+    <line x1="227" y1="18" x2="233" y2="18" class="traco-fino" />
+    <line x1="227" y1="26" x2="233" y2="26" class="traco-fino" />
+    <line x1="227" y1="34" x2="233" y2="34" class="traco-fino" />
+    <line x1="227" y1="42" x2="233" y2="42" class="traco-fino" />
+    <line x1="230" y1="54" x2="230" y2="98" class="traco" />
+    <rect x="208" y="98" width="44" height="44" class="traco preenche" />
+    <text x="246" y="26" class="rotulo">D</text>
+  </svg>
+</figure>
+
+Considerando que a aceleração da gravidade local é de 10 m/s², a densidade da água do lago, em g/cm³, é
+
+A) 0,6.\
+B) 1,2.\
+C) 1,5.\
+D) 2,4.\
+E) 4,8.
+
+**Questão 4**
+
+*ENEM 2015 · 2ª aplicação · 1º dia · caderno branco · questão 54*
+
+Sabe-se que nas proximidades dos polos do planeta Terra é comum a formação dos *icebergs*, que são grandes blocos de gelo, flutuando nas águas oceânicas. Estudos mostram que a parte de gelo que fica emersa durante a flutuação corresponde a aproximadamente 10% do seu volume total. Um estudante resolveu simular essa situação introduzindo um bloquinho de gelo no interior de um recipiente contendo água, observando a variação de seu nível desde o instante de introdução até o completo derretimento do bloquinho.
+
+Com base nessa simulação, verifica-se que o nível da água no recipiente
+
+A) subirá com a introdução do bloquinho de gelo e, após o derretimento total do gelo, esse nível subirá ainda mais.\
+B) subirá com a introdução do bloquinho de gelo e, após o derretimento total do gelo, esse nível descerá, voltando ao seu valor inicial.\
+C) subirá com a introdução do bloquinho de gelo e, após o derretimento total do gelo, esse nível permanecerá sem alteração.\
+D) não sofrerá alteração com a introdução do bloquinho de gelo, porém, após seu derretimento, o nível subirá devido a um aumento em torno de 10% no volume de água.\
+E) subirá em torno de 90% do seu valor inicial com a introdução do bloquinho de gelo e, após seu derretimento, o nível descerá apenas 10% do valor inicial.
+
+**Questão 5**
+
+*ENEM 2018 · 2º dia · caderno azul · questão 134*
+
+Talvez você já tenha bebido suco usando dois canudinhos iguais. Entretanto, pode-se verificar que, se colocar um canudo imerso no suco e outro do lado de fora do líquido, fazendo a sucção simultaneamente em ambos, você terá dificuldade em bebê-lo.
+
+Essa dificuldade ocorre porque o(a)
+
+A) força necessária para a sucção do ar e do suco simultaneamente dobra de valor.\
+B) densidade do ar é menor que a do suco, portanto, o volume de ar aspirado é muito maior que o volume de suco.\
+C) velocidade com que o suco sobe deve ser constante nos dois canudos, o que é impossível com um dos canudos de fora.\
+D) peso da coluna de suco é consideravelmente maior que o peso da coluna de ar, o que dificulta a sucção do líquido.\
+E) pressão no interior da boca assume praticamente o mesmo valor daquela que atua sobre o suco.
