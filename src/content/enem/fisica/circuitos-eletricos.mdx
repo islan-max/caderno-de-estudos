@@ -3,172 +3,452 @@ title: "Circuitos Elétricos"
 subject: "Física"
 order: 10
 relevance: >
-  Circuitos elétricos é um dos assuntos mais recorrentes da prova de Física do ENEM: aparece quase
-  todo ano, geralmente misturado com o dia a dia: chuveiro elétrico, conta de luz, lâmpadas,
-  disjuntores. A boa notícia é que, apesar de parecer assustador, o ENEM cobra um conjunto pequeno e
-  bem definido de ideias: como a corrente se comporta quando os componentes estão em série ou em
-  paralelo, e como transformar isso em conta de energia e dinheiro. Quem domina essas poucas ideias
-  resolve a grande maioria das questões.
+  Nas casas, as tomadas e lâmpadas são ligadas de um jeito que permite desligar uma sem apagar as
+  outras; nos enfeites de Natal, às vezes uma lâmpada queimada apaga um trecho inteiro. O ENEM (Exame
+  Nacional do Ensino Médio) cobra circuitos com lâmpadas que queimam ou são ligadas por chaves, pede o
+  que um medidor vai marcar e compara baterias montadas com as mesmas células. Saber reconhecer o que
+  está em série e o que está em paralelo resolve a maioria das questões.
 quickSummary: >
-  A corrente elétrica, a tensão e a resistência se relacionam pela primeira Lei de Ohm (V = R · i).
-  Pense sempre nessa fórmula como um equilíbrio: para uma mesma resistência, mais tensão empurra mais
-  corrente; para uma mesma tensão, mais resistência restringe mais a corrente.
+  Em série, a corrente é a mesma e as tensões se somam; se um elemento abre, tudo para. Em paralelo, a
+  tensão é a mesma e as correntes se somam; cada ramo funciona sozinho. Com a tensão da fonte fixa, ligar
+  mais aparelhos em paralelo aumenta a potência total. Um fio sem resistência ligado em paralelo com uma
+  lâmpada a deixa apagada (curto-circuito). Amperímetro vai em série; voltímetro, em paralelo. Pilhas em
+  série somam tensão; em paralelo, somam a capacidade de carga.
+resources:
+  conteudoComplementar:
+    conteudo: "Eletrodinâmica"
+    comoAjuda: "Tensão, corrente, resistência e potência de um aparelho sozinho são a base desta aula. Se U = R × i ou P = U² ÷ R travarem você, revise essa aula."
+gabarito:
+  - correta: 2
+    porque: >
+      Uma lâmpada tirada apaga só outras 9: o cordão tem grupos de 10 lâmpadas em série, e os 200 ÷ 10 = 20 grupos
+      estão em paralelo. Os grupos são iguais e dividem a corrente total em 20 partes: cada lâmpada tem 1/20 dela.
+      Revisar: Aula Teórica › 1. Série e paralelo
+  - correta: 2
+    porque: >
+      Chave aberta: só a lâmpada 1, X = U² ÷ R. Chave fechada: entra em paralelo o ramo das lâmpadas 2 e 3 em série, com
+      2R, que consome U² ÷ 2R = X/2. Total: X + X/2 = (3/2)X.
+      Revisar: Aula Teórica › 2. Resistência equivalente e potência
+  - correta: 1
+    porque: >
+      A lâmpada D está ligada em paralelo com um fio sem resistência: está em curto e já fica apagada. A e B estão em série;
+      com A queimada, B apaga. C está ligada direto à fonte ideal e continua com o mesmo brilho.
+      Revisar: Aula Teórica › 3. Lâmpadas que queimam e curto-circuito
+  - correta: 0
+    porque: >
+      O multímetro 2 está ligado nos dois lados da lâmpada: é voltímetro e marca 5,62 V. O multímetro 1 está no caminho da
+      corrente, em série: é amperímetro e marcará 5,62 ÷ 40, cerca de 0,14 A.
+      Revisar: Aula Teórica › 4. Amperímetro e voltímetro
+  - correta: 0
+    porque: >
+      10,8 V são 3 células em série (3 × 3,6); com 12 células, ficam 4 conjuntos em paralelo, que somam a carga. A de
+      14,4 V tem 4 em série e só 3 conjuntos em paralelo, com menos carga.
+      Revisar: Aula Teórica › 5. Associação de pilhas e baterias
 ---
 
-## Aula Teórica Completa
+<Accordion titulo="Palavras e siglas desta aula" dica="Consulte quando encontrar um termo novo" icone="spell-check">
 
-### A ideia central: um circuito é um caminho fechado
+- **ENEM** (Exame Nacional do Ensino Médio): a prova nacional que dá acesso a faculdades e bolsas.
+- **INEP** (Instituto Nacional de Estudos e Pesquisas Educacionais Anísio Teixeira): o órgão do governo que faz o ENEM.
+- **A** (ampère), **V** (volt), **Ω** (ohm), **W** (watt): unidades de corrente, tensão, resistência e potência.
+- **ddp** (diferença de potencial): o mesmo que tensão elétrica.
+- **mAh** (miliampère-hora): unidade da capacidade de carga de uma bateria.
+- **Circuito**: caminho fechado por onde passa a corrente.
+- **Ramo**: cada caminho separado de um circuito entre dois pontos de encontro de fios.
+- **Chave** (ou interruptor): peça que abre ou fecha um caminho do circuito.
+- **Fonte ideal**: fonte que mantém sempre a mesma tensão, qualquer que seja a corrente pedida.
+- **Célula** (de bateria): cada unidade que forma uma bateria, como uma pilha pequena.
+- **Capacidade de carga**: quanta carga a bateria fornece até acabar; diz quanto tempo ela dura.
+- **LED** (diodo emissor de luz): pequena lâmpada eletrônica.
+- **Multímetro**: aparelho que pode medir tensão (como voltímetro) ou corrente (como amperímetro).
+- **Brilho** (de uma lâmpada): cresce com a potência que ela recebe.
 
-Imagine um circuito elétrico como uma pista de corrida fechada por onde "carrinhos" (as cargas elétricas) circulam sem parar. Para os carrinhos andarem, é preciso uma bateria: ela é como uma bomba que empurra os carrinhos, dando energia a eles. Essa energia por carga se chama **tensão elétrica** (ou diferença de potencial), medida em volts (V). Quanto de carrinho passa por um ponto da pista a cada segundo é a **corrente elétrica**, medida em ampères (A). E os obstáculos na pista (lâmpadas, resistores, chuveiros) que dificultam a passagem dos carrinhos, representam a **resistência elétrica**, medida em ohms (Ω).
+</Accordion>
 
-Essas três grandezas se relacionam pela primeira Lei de Ohm:
+## Antes de Começar
 
-**V = R · i**
+**O que o ENEM cobra aqui.** Os temas que costumam aparecer são estes:
 
-Onde: V = tensão (volts), R = resistência (ohms), i = corrente (ampères).
+- **Reconhecer ligações** em série e em paralelo, inclusive em cordões de lâmpadas.
+- **Prever o que acontece** quando uma lâmpada queima ou uma chave é ligada.
+- **Comparar potências** antes e depois de uma mudança no circuito.
+- **Ler medidores**: onde vai o voltímetro, onde vai o amperímetro e o que marcam.
+- **Montar baterias** com células em série e em paralelo.
 
-Pense assim: quanto maior o obstáculo (R) para uma mesma corrente passar, mais "empurrão" (V) é necessário. Ou, para uma mesma tensão disponível, quanto maior a resistência, menor a corrente que consegue passar.
+**O que você precisa saber antes.**
 
-### Potência e energia elétrica: o que realmente vai na conta de luz
+- **Lei de Ohm.** U = R × i; isolando a corrente, i = U ÷ R. "Obedecer à Lei de Ohm" quer dizer que a resistência não muda. Também vale P = U² ÷ R (aula de Eletrodinâmica).
+- **Frações e razões.** 1 + 1/3 = 4/3; um total dividido em 5 partes iguais dá 1/5 para cada. A **razão** entre a e b é a ÷ b.
 
-A **potência elétrica** é a rapidez com que um aparelho converte energia elétrica em outra forma (luz, calor, movimento):
+## Aula Teórica
 
-**P = V · i**
+### 1. Série e paralelo
 
-Combinando com a Lei de Ohm, surgem duas variações muito úteis, dependendo do que você já sabe sobre o aparelho:
+<figure class="figura">
+  <svg viewBox="0 0 460 200" role="img" aria-labelledby="fig-ci-1-t fig-ci-1-d">
+    <title id="fig-ci-1-t">Ligação em série e em paralelo</title>
+    <desc id="fig-ci-1-d">À esquerda, uma bateria e duas lâmpadas num caminho só, uma depois da outra: ligação em série. À direita, uma bateria e duas lâmpadas, cada uma no seu próprio ramo, ligadas aos mesmos dois fios: ligação em paralelo.</desc>
+    <path d="M 40 105 L 40 30 L 200 30 L 200 170 L 40 170 L 40 115" class="traco" />
+    <line x1="26" y1="105" x2="54" y2="105" class="traco" />
+    <line x1="32" y1="115" x2="48" y2="115" class="traco" />
+    <text x="58" y="104" class="rotulo-fraco">+</text>
+    <text x="58" y="124" class="rotulo-fraco">−</text>
+    <circle cx="120" cy="30" r="13" class="traco preenche" />
+    <path d="M 110.9 20.9 L 129.1 39.1 M 129.1 20.9 L 110.9 39.1" class="traco-fino" />
+    <circle cx="200" cy="100" r="13" class="traco preenche" />
+    <path d="M 190.9 90.9 L 209.1 109.1 M 209.1 90.9 L 190.9 109.1" class="traco-fino" />
+    <text x="120" y="194" class="rotulo-fraco" text-anchor="middle">em série: um caminho só</text>
+    <path d="M 260 105 L 260 30 L 420 30 L 420 170 L 260 170 L 260 115" class="traco" />
+    <path d="M 340 30 L 340 170" class="traco" />
+    <line x1="246" y1="105" x2="274" y2="105" class="traco" />
+    <line x1="252" y1="115" x2="268" y2="115" class="traco" />
+    <text x="278" y="104" class="rotulo-fraco">+</text>
+    <text x="278" y="124" class="rotulo-fraco">−</text>
+    <circle cx="340" cy="100" r="13" class="traco preenche" />
+    <path d="M 330.9 90.9 L 349.1 109.1 M 349.1 90.9 L 330.9 109.1" class="traco-fino" />
+    <circle cx="420" cy="100" r="13" class="traco preenche" />
+    <path d="M 410.9 90.9 L 429.1 109.1 M 429.1 90.9 L 410.9 109.1" class="traco-fino" />
+    <text x="340" y="194" class="rotulo-fraco" text-anchor="middle">em paralelo: um caminho para cada</text>
+  </svg>
+</figure>
 
-**P = R · i²** (útil quando você sabe a corrente e a resistência)
+**Em série**, os elementos ficam um depois do outro, num caminho só.
 
-**P = V² / R** (útil quando você sabe a tensão e a resistência: é a fórmula clássica das questões de chuveiro elétrico)
+- A **corrente** é a **mesma** em todos.
+- As **tensões se somam**: a da fonte se divide entre os elementos.
+- Se um elemento abre (queima ou é retirado), o caminho se rompe e **todos apagam**.
 
-A **energia elétrica** consumida é a potência mantida durante um tempo:
+**Em paralelo**, cada elemento tem seu próprio caminho, ligado aos mesmos dois pontos. Cada um desses caminhos separados entre dois pontos onde os fios se encontram é um **ramo**.
 
-**E = P · t**
+- A **tensão** é a **mesma** em todos.
+- As **correntes se somam**: a corrente total é a soma das correntes dos ramos.
+- Se um ramo abre, os outros **continuam funcionando**.
 
-Onde: E = energia, P = potência, t = tempo. Se P estiver em quilowatts (kW) e t em horas (h), E sai em quilowatt-hora (kWh): a unidade que aparece na sua conta de luz. É por isso que praticamente toda questão de "quanto vai custar" ou "quanto vou economizar" no ENEM usa essa fórmula: primeiro converta Watts para quilowatts (divida por 1000), depois multiplique pelo tempo em horas.
+As casas usam paralelo: cada aparelho recebe a tensão da tomada e funciona sozinho. Um circuito pode misturar os dois tipos de ligação: **grupos em série ligados em paralelo**. Nesse caso, tirar um elemento apaga só o seu grupo. Se os grupos são iguais, a corrente total se divide igualmente entre eles.
 
-### Associação em série: um único caminho
+**Exemplo resolvido.** Um painel tem 48 luzes do tipo LED (diodo emissor de luz, uma pequena lâmpada eletrônica). Retirando um LED qualquer, apagam-se ele e mais 3; os outros continuam acesos. Como o painel está ligado? Que fração da corrente total passa por um LED?
 
-Quando os componentes estão em **série**, existe apenas um caminho possível para a corrente: como carrinhos numa fila única de pedágios. Isso tem duas consequências que você precisa gravar:
+1. Um LED retirado apaga um grupo de 4: cada grupo tem 4 LED em série.
+2. Os grupos funcionam sozinhos: estão em paralelo. São 48 ÷ 4 = 12 grupos.
+3. Grupos iguais dividem a corrente total em 12 partes; dentro do grupo, a corrente é a mesma em todos os LED do grupo.
+4. Resposta: grupos de 4 em série, 12 grupos em paralelo; cada LED tem 1/12 da corrente total.
 
-A corrente é a mesma em todos os pontos do circuito em série (não há onde ela "se perder" ou "se dividir"). Já a tensão da bateria se reparte entre os componentes: cada um "gasta" uma parte da energia disponível.
+**Erro comum.** Contar os elementos que apagam juntos e esquecer o que foi retirado: "apaga mais 3" quer dizer grupos de 4.
 
-A resistência equivalente (aquela que substituiria todos os resistores por um só, produzindo o mesmo efeito) é simplesmente a soma:
+### 2. Resistência equivalente e potência
 
-**R_eq = R₁ + R₂ + R₃ + ... + Rₙ**
+Um conjunto de resistências pode ser trocado por uma só, a **resistência equivalente**, que puxa a mesma corrente da fonte.
 
-Pense assim: se você aumenta o número de obstáculos na mesma pista única, fica cada vez mais difícil para os carrinhos passarem, por isso a resistência total só aumenta.
+**Fórmula: resistência equivalente em série**
 
-### Associação em paralelo: vários caminhos
+**Req = R1 + R2 + …**
 
-Quando os componentes estão em **paralelo**, existem vários caminhos possíveis simultâneos: como pedágios paralelos numa rodovia com várias faixas. Aqui a lógica se inverte:
+- **Req**: a resistência equivalente, em ohms.
+- **R1, R2**: as resistências ligadas em série.
+- **Em palavras:** em série, as resistências se somam: duas lâmpadas iguais de R valem 2R.
+- **Quando usar:** elementos um depois do outro, num caminho só.
 
-A tensão é a mesma em cada ramo (todos "sentem" o mesmo empurrão da bateria). Já a corrente total se divide entre os ramos: cada ramo carrega uma parte da corrente, e a soma das correntes dos ramos é igual à corrente total.
+**Exemplo resolvido.** Duas resistências, de 30 Ω e 50 Ω, estão em série numa fonte de 16 V. Qual é a corrente?
 
-A resistência equivalente é dada pelo inverso da soma dos inversos:
+1. Req = 30 + 50 = 80 Ω.
+2. i = U ÷ Req = 16 ÷ 80 = 0,2 A.
+3. Resposta: 0,2 A, a mesma nas duas.
 
-**1/R_eq = 1/R₁ + 1/R₂ + 1/R₃ + ... + 1/Rₙ**
+**Erro comum.** Achar que a corrente se divide numa ligação em série. Ela é a mesma em todos os elementos.
 
-Pense assim: quando você abre mais faixas (mais caminhos), fica mais fácil para os carrinhos passarem no total, por isso a resistência equivalente do paralelo é sempre **menor** do que a menor resistência individual do grupo. Dois casos particulares que caem muito no ENEM:
+Em paralelo, a resistência equivalente é **menor** que a menor delas: há mais caminhos para a corrente.
 
-Se são apenas dois resistores em paralelo: **R_eq = (R₁ · R₂) / (R₁ + R₂)**
+Com a **tensão da fonte fixa**, é mais fácil comparar potências somando a potência de cada ramo em paralelo, com P = U² ÷ R para cada um. Ligar um ramo novo em paralelo **não muda** os outros ramos: só acrescenta a potência dele. A potência fornecida pela fonte é a **soma** das potências dos ramos. Uma chave aberta deixa o ramo aberto, como uma lâmpada queimada, e ele não consome nada.
 
-Se são "n" resistores iguais em paralelo, cada um com resistência R: **R_eq = R / n**
+**Fórmula: potência de um ramo com tensão fixa**
 
-### Associação mista
+**P = U² ÷ R**
 
-É quando um circuito combina trechos em série e trechos em paralelo. A estratégia é sempre a mesma: identifique primeiro os pedacinhos que estão claramente em paralelo, calcule a resistência equivalente desses pedacinhos, e depois some esse resultado (agora um único "bloco") com o que estiver em série, como se fosse um resistor só.
+- **P**: a potência do ramo, em watts.
+- **U**: a tensão da fonte, a mesma para todos os ramos em paralelo.
+- **R**: a resistência total daquele ramo (se tiver elementos em série, some-os).
+- **Em palavras:** ramo de resistência maior consome menos; a potência total é a soma das potências dos ramos.
+- **Quando usar:** comparar a potência de uma fonte antes e depois de ligar ou desligar um ramo.
 
-### Um detalhe que confunde muita gente: o que acontece quando uma lâmpada queima
+**Exemplo resolvido.** Numa fonte de tensão fixa, um aquecedor de resistência R consome a potência P. Liga-se em paralelo com ele um segundo ramo, com resistência 4R. Quanto passa a ser a potência total?
 
-Essa é uma armadilha clássica do INEP. Quando um componente que estava em **paralelo** com outros "queima" (some do circuito), a resistência daquele ramo desaparece, e isso **aumenta** a resistência equivalente do trecho (porque você perdeu um caminho). Resistência equivalente maior, com a mesma tensão da fonte, significa **corrente total menor** pela Lei de Ohm, e por isso o brilho das lâmpadas restantes **diminui**, mesmo que elas continuem fisicamente intactas. É um raciocínio em cadeia que o ENEM adora testar.
+1. O primeiro ramo continua com P = U² ÷ R.
+2. O ramo novo: U² ÷ (4R) = P/4.
+3. Total: P + P/4 = (5/4)P.
+4. Resposta: (5/4)P.
+
+**Erro comum.** Achar que o ramo novo "divide" a potência do primeiro. Com a tensão fixa, o primeiro ramo continua igual, e a potência total aumenta.
+
+### 3. Lâmpadas que queimam e curto-circuito
+
+Uma lâmpada **queimada** é um ramo **aberto**: por ali não passa corrente. O que acontece com as outras depende de como estão ligadas:
+
+- Quem estava **em série** com ela apaga.
+- Quem está **em outro ramo**, ligado direto à **fonte ideal** (que mantém a mesma tensão, qualquer que seja a corrente), continua com o mesmo brilho, porque continua com a mesma tensão.
+
+Um **curto-circuito** acontece quando um fio sem resistência liga os dois lados de um elemento. A corrente prefere o fio: o elemento fica com tensão zero e **não acende**, esteja o resto do circuito como estiver.
+
+Teste do curto: olhe os dois pontos onde a lâmpada se liga. Se dá para ir de um ao outro só por fio, sem passar por nenhum outro elemento, ela está em curto. Não importa qual dos dois caminhos parece o "principal" no desenho.
+
+<figure class="figura">
+  <svg viewBox="0 0 460 190" role="img" aria-labelledby="fig-ci-2-t fig-ci-2-d">
+    <title id="fig-ci-2-t">Lâmpada em curto-circuito</title>
+    <desc id="fig-ci-2-d">Uma bateria ligada a dois ramos. No primeiro, só a lâmpada P. No segundo, as lâmpadas Q e S em série, e um fio sem resistência liga os dois lados de S: S está em curto.</desc>
+    <path d="M 50 105 L 50 30 L 330 30 L 330 170 L 50 170 L 50 115" class="traco" />
+    <path d="M 180 30 L 180 170" class="traco" />
+    <path d="M 330 105 L 400 105 L 400 155 L 330 155" class="traco" />
+    <line x1="36" y1="105" x2="64" y2="105" class="traco" />
+    <line x1="42" y1="115" x2="58" y2="115" class="traco" />
+    <text x="68" y="104" class="rotulo-fraco">+</text>
+    <text x="68" y="124" class="rotulo-fraco">−</text>
+    <circle cx="180" cy="100" r="13" class="traco preenche" />
+    <path d="M 170.9 90.9 L 189.1 109.1 M 189.1 90.9 L 170.9 109.1" class="traco-fino" />
+    <text x="198" y="105" class="rotulo">P</text>
+    <circle cx="330" cy="65" r="13" class="traco preenche" />
+    <path d="M 320.9 55.9 L 339.1 74.1 M 339.1 55.9 L 320.9 74.1" class="traco-fino" />
+    <text x="312" y="70" class="rotulo" text-anchor="end">Q</text>
+    <circle cx="330" cy="130" r="13" class="traco preenche" />
+    <path d="M 320.9 120.9 L 339.1 139.1 M 339.1 120.9 L 320.9 139.1" class="traco-fino" />
+    <text x="312" y="135" class="rotulo" text-anchor="end">S</text>
+    <text x="406" y="134" class="rotulo-fraco">fio</text>
+  </svg>
+</figure>
+
+**Exemplo resolvido.** Numa fonte ideal, três lâmpadas iguais, cada uma com resistência R, estão ligadas assim: a lâmpada P está sozinha num ramo. Num segundo ramo, as lâmpadas Q e S estão em série, e um fio liga os dois lados de S. Quem acende no começo? E o que acontece se o fio for cortado?
+
+1. No começo, S está em curto e fica apagada. Q está, na prática, sozinha no segundo ramo: recebe toda a tensão U e tem potência U² ÷ R. P também, no primeiro ramo.
+2. Cortando o fio, Q e S ficam em série, com 2R: cada uma recebe U/2.
+3. Potência de Q: (U/2)² ÷ R = U² ÷ 4R, um quarto da de antes. S acende com o mesmo brilho fraco. P não muda, porque o seu ramo continua com a tensão U.
+4. Resposta: S acende, Q fica com um quarto da potência (brilho menor) e P não muda.
+
+**Erro comum.** Achar que a lâmpada em curto só fica "mais fraca": ela fica apagada, com tensão zero. E, com fonte ideal, os ramos em paralelo não mudam quando outro ramo muda.
+
+### 4. Amperímetro e voltímetro
+
+- O **amperímetro** mede **corrente**. Ele entra **no caminho** da corrente, **em série** com o elemento: a corrente precisa passar por dentro dele. Um amperímetro ideal tem resistência quase nula.
+- O **voltímetro** mede **tensão**. Ele é ligado **nos dois lados** do elemento, **em paralelo**. Um voltímetro ideal tem resistência enorme e quase não puxa corrente.
+
+<figure class="figura">
+  <svg viewBox="0 0 460 200" role="img" aria-labelledby="fig-ci-3-t fig-ci-3-d">
+    <title id="fig-ci-3-t">Onde ligar amperímetro e voltímetro</title>
+    <desc id="fig-ci-3-d">Um circuito com uma bateria e um resistor. O amperímetro, marcado com A, está no meio do fio, de modo que a corrente passa por dentro dele: em série. O voltímetro, marcado com V, tem seus fios presos nos dois lados do resistor: em paralelo.</desc>
+    <path d="M 60 105 L 60 40 L 160 40" class="traco" />
+    <path d="M 188 40 L 300 40 L 300 90" class="traco" />
+    <rect x="288" y="90" width="24" height="60" class="traco preenche" />
+    <path d="M 300 150 L 300 180 L 60 180 L 60 115" class="traco" />
+    <path d="M 300 60 L 380 60 L 380 106" class="traco" />
+    <path d="M 380 134 L 380 170 L 300 170" class="traco" />
+    <line x1="46" y1="105" x2="74" y2="105" class="traco" />
+    <line x1="52" y1="115" x2="68" y2="115" class="traco" />
+    <text x="78" y="104" class="rotulo-fraco">+</text>
+    <text x="78" y="124" class="rotulo-fraco">−</text>
+    <circle cx="174" cy="40" r="14" class="traco" />
+    <text x="174" y="45" class="rotulo" text-anchor="middle">A</text>
+    <circle cx="380" cy="120" r="14" class="traco" />
+    <text x="380" y="125" class="rotulo" text-anchor="middle">V</text>
+    <text x="276" y="124" class="rotulo-fraco" text-anchor="end">resistor</text>
+    <text x="174" y="76" class="rotulo-fraco" text-anchor="middle">em série</text>
+    <text x="404" y="124" class="rotulo-fraco">em paralelo</text>
+  </svg>
+</figure>
+
+Para descobrir o que um medidor mede numa foto ou num desenho, siga os fios. Se ele **interrompe** um fio e a corrente tem de atravessá-lo, é amperímetro. Se ele está ligado **nas duas pontas** de um elemento, é voltímetro.
+
+**Exemplo resolvido.** Um resistor de 25 Ω está ligado a uma bateria. Um voltímetro ligado nos dois lados do resistor marca 5 V. Quanto marcará um amperímetro colocado em série com ele?
+
+1. A tensão no resistor é a do voltímetro: 5 V.
+2. i = U ÷ R = 5 ÷ 25 = 0,2 A.
+3. Resposta: 0,2 A.
+
+**Erro comum.** Usar a tensão escrita nas pilhas no lugar da tensão medida: a medida é que vale para o elemento.
+
+### 5. Associação de pilhas e baterias
+
+Baterias são feitas juntando **células** iguais.
+
+- **Em série**, as **tensões se somam**, mas a **capacidade de carga** (em mAh, miliampère-hora: a carga que a bateria fornece) é a de uma célula, porque a mesma corrente atravessa todas.
+- **Em paralelo**, a **tensão** é a de uma célula, mas as **capacidades se somam**.
+
+Com um número fixo de células, a tensão pedida decide quantas vão em série em cada conjunto; o que sobra forma conjuntos iguais em paralelo, que multiplicam a capacidade.
+
+Dá para montar ao contrário: células em paralelo formam um conjunto, e os conjuntos vão em série. Cada conjunto em paralelo tem a tensão de uma célula; em série, os conjuntos somam as tensões. Seja qual for a montagem descrita, confira se ela dá mesmo a tensão anunciada.
+
+**Exemplo resolvido.** Há 10 células de 1,5 V e 1 000 mAh. Monte uma bateria de 3,0 V e diga a capacidade. E uma de 7,5 V?
+
+1. 3,0 V = 2 × 1,5: conjuntos de 2 em série. Com 10 células, são 5 conjuntos em paralelo: 5 × 1 000 = 5 000 mAh.
+2. 7,5 V = 5 × 1,5: conjuntos de 5 em série, 2 conjuntos em paralelo: 2 000 mAh.
+3. Resposta: 3,0 V com 5 000 mAh; 7,5 V com 2 000 mAh.
+
+**Erro comum.** Achar que a bateria de maior tensão também tem mais carga. Com o mesmo número de células, mais tensão deixa menos conjuntos em paralelo.
+
+### Armadilhas típicas do INEP
+
+1. **Esquecer o elemento retirado** ao contar um grupo em série.
+2. **Achar que o ramo novo divide** a potência dos outros: com tensão fixa, ele soma.
+3. **Não ver o curto-circuito**: um fio em paralelo com uma lâmpada a mantém apagada.
+4. **Trocar os medidores**: amperímetro em série, voltímetro em paralelo.
+5. **Usar a tensão das pilhas** em vez da tensão medida no elemento.
+6. **Somar capacidades em série**: em série soma a tensão; em paralelo soma a carga.
 
 ## Tópicos-Chave para Revisão
 
 <div className="topico">
 
-A corrente elétrica, a tensão e a resistência se relacionam pela **primeira Lei de Ohm (V = R · i)**. Pense sempre nessa fórmula como um equilíbrio: para uma mesma resistência, mais tensão empurra mais corrente; para uma mesma tensão, mais resistência restringe mais a corrente.
+#### 1. Série e paralelo
 
-A potência elétrica mede a rapidez da conversão de energia e pode ser calculada de três formas equivalentes, dependendo dos dados disponíveis: **P = V · i**, **P = R · i²** e **P = V² / R**. Questões de chuveiro elétrico quase sempre usam a última, porque a tensão da rede (110 V ou 220 V) é dada e a resistência do chuveiro se mantém fixa.
+Série: **mesma corrente**, tensões somam, um abre e **todos apagam**; paralelo: **mesma tensão**, cada ramo sozinho.
 
-A energia elétrica consumida é **E = P · t**, e é essa grandeza (não a potência) que aparece na conta de luz em quilowatt-hora (kWh). O erro mais comum aqui é esquecer de converter Watts para quilowatts antes de multiplicar pelo tempo.
+#### 2. Potência
 
-Na associação em série, existe um único caminho para a corrente: a **corrente é igual em todos os pontos** e a tensão se reparte entre os componentes. A resistência equivalente é a soma direta: **R_eq = R₁ + R₂ + ... + Rₙ**.
+**Req = R1 + R2 + …** em série; com tensão **fixa**, **P = U² ÷ R** por ramo, e as potências dos ramos se **somam**.
 
-Na associação em paralelo, existem vários caminhos: a **tensão é igual em cada ramo** e a corrente total se divide entre eles. A resistência equivalente segue **1/R_eq = 1/R₁ + 1/R₂ + ... + 1/Rₙ**, e, para dois resistores, o atalho é **R_eq = (R₁·R₂)/(R₁+R₂)**; para n resistores iguais de valor R, **R_eq = R/n**.
+#### 3. Queima e curto
 
-Circuitos mistos se resolvem "por partes": reduza primeiro os blocos em paralelo a uma única resistência equivalente, depois trate esse resultado como mais um elemento em série com o resto do circuito.
+Lâmpada queimada abre o **ramo**; fio em paralelo com lâmpada: **curto**, lâmpada apagada.
 
-Quando uma lâmpada em paralelo com outras se queima, o caminho dela desaparece, a resistência equivalente daquele trecho aumenta, a corrente total do circuito diminui (pela Lei de Ohm), e por isso o brilho de todas as lâmpadas restantes diminui: mesmo as que não queimaram. Esse é o padrão de armadilha que liga "associação de resistores" com "eletrodinâmica" numa questão só.
+#### 4. Medidores
 
-A segunda Lei de Ohm relaciona a resistência de um fio com sua geometria e material: **R = ρ · L / A**, onde ρ é a resistividade (depende só do material), L é o comprimento do fio e A é a área da seção transversal. Fio mais comprido = mais resistência; fio mais grosso (maior área) = menos resistência.
+**Amperímetro** em série; **voltímetro** em paralelo; **i = U ÷ R** com a tensão medida.
+
+#### 5. Baterias
+
+Série **soma a tensão**; paralelo **soma a carga** (mAh).
 
 </div>
 
-## Teste de Fogo
+## Questões do ENEM
 
-*Questões sem gabarito: resolva primeiro, depois confira com o professor ou com a IA.*
+*Marque uma alternativa em cada questão e confira tudo de uma vez no botão do fim.*
 
-**Questão 1 (ENEM 2016, Caderno Amarelo, Q51)**
+**Questão 1**
 
-Três lâmpadas idênticas foram ligadas no circuito esquematizado (representado acima). A bateria apresenta resistência interna desprezível, e os fios possuem resistência nula. Um técnico fez uma análise do circuito para prever a corrente elétrica nos pontos A, B, C, D e E, e rotulou essas correntes de I_A, I_B, I_C, I_D e I_E, respectivamente.
+*ENEM 2020 · 2ª aplicação · 2º dia · caderno azul · questão 95*
 
-O técnico concluiu que as correntes que apresentam o mesmo valor são:
+Um cordão de 200 pequenas lâmpadas é utilizado em árvores de Natal. Uma pessoa verifica que, ao retirar somente uma lâmpada de qualquer posição, outras nove não acendem mais, porém as demais 190 lâmpadas permanecem em pleno funcionamento. Com base nessa informação, ela tenta identificar a estrutura do circuito e a relação entre os valores das quantidades físicas envolvidas, entre as quais a razão entre as intensidades da corrente elétrica em uma das lâmpadas e da corrente elétrica total no cordão com as 200 lâmpadas ligadas.
 
-a) I_A = I_E e I_C = I_D.
-b) I_A = I_B = I_E e I_C = I_D.
-c) I_A = I_B, apenas.
-d) I_A = I_B = I_E, apenas.
-e) I_C = I_B, apenas.
+O valor dessa razão é igual a
 
----
+A) 1/200.\
+B) 1/100.\
+C) 1/20.\
+D) 1/10.\
+E) 1.
 
-**Questão 2 (ENEM 2023, Caderno Azul, 2º dia, Q120)**
+**Questão 2**
 
-O circuito com três lâmpadas incandescentes idênticas, representado acima, consiste em uma associação mista de resistores. Cada lâmpada (L1, L2 e L3) é associada, em paralelo, a um resistor de resistência R, formando um conjunto. Esses conjuntos são associados em série, tendo todas as lâmpadas o mesmo brilho quando ligadas à fonte de energia. Após vários dias em uso, apenas a lâmpada L2 queima, enquanto as demais permanecem acesas.
+*ENEM 2015 · 2ª aplicação · 1º dia · caderno branco · questão 49*
 
-Em relação à situação em que todas as lâmpadas funcionam, após a queima de L2, os brilhos das lâmpadas serão:
+Um eletricista projeta um circuito com três lâmpadas incandescentes idênticas, conectadas conforme a figura. Deseja-se que uma delas fique sempre acesa, por isso é ligada diretamente aos polos da bateria, entre os quais se mantém uma tensão constante. As outras duas lâmpadas são conectadas em um fio separado, que contém uma chave. Com a chave aberta (desligada), a bateria fornece uma potência X.
 
-a) os mesmos.
-b) mais intensos.
-c) menos intensos.
-d) menos intenso para L1 e o mesmo para L3.
-e) mais intenso para L1 e menos intenso para L3.
+<figure class="figura">
+  <svg viewBox="0 0 460 190" role="img" aria-labelledby="fig-ci-q2-t fig-ci-q2-d">
+    <title id="fig-ci-q2-t">Circuito com três lâmpadas e uma chave</title>
+    <desc id="fig-ci-q2-d">Esquema do circuito: a lâmpada 1 está ligada diretamente aos polos da bateria. Num fio separado, também ligado aos polos da bateria, estão a chave e as lâmpadas 2 e 3, uma depois da outra. No original, as lâmpadas aparecem desenhadas; aqui, em esquema, com as mesmas ligações. Figura redesenhada a partir da prova oficial, com os mesmos dados.</desc>
+    <path d="M 60 105 L 60 30 L 380 30 L 380 50" class="traco" />
+    <path d="M 380 76 L 380 170 L 60 170 L 60 115" class="traco" />
+    <path d="M 200 30 L 200 170" class="traco" />
+    <line x1="380" y1="50" x2="394" y2="72" class="traco" />
+    <circle cx="380" cy="50" r="2.5" class="traco preenche" />
+    <circle cx="380" cy="76" r="2.5" class="traco preenche" />
+    <text x="400" y="66" class="rotulo-fraco">Chave</text>
+    <line x1="46" y1="105" x2="74" y2="105" class="traco" />
+    <line x1="52" y1="115" x2="68" y2="115" class="traco" />
+    <text x="78" y="104" class="rotulo-fraco">+</text>
+    <text x="78" y="124" class="rotulo-fraco">−</text>
+    <text x="38" y="114" class="rotulo-fraco" text-anchor="end">Bateria</text>
+    <circle cx="200" cy="100" r="13" class="traco preenche" />
+    <path d="M 190.9 90.9 L 209.1 109.1 M 209.1 90.9 L 190.9 109.1" class="traco-fino" />
+    <text x="218" y="105" class="rotulo">1</text>
+    <circle cx="380" cy="105" r="13" class="traco preenche" />
+    <path d="M 370.9 95.9 L 389.1 114.1 M 389.1 95.9 L 370.9 114.1" class="traco-fino" />
+    <text x="362" y="110" class="rotulo" text-anchor="end">2</text>
+    <circle cx="380" cy="145" r="13" class="traco preenche" />
+    <path d="M 370.9 135.9 L 389.1 154.1 M 389.1 135.9 L 370.9 154.1" class="traco-fino" />
+    <text x="362" y="150" class="rotulo" text-anchor="end">3</text>
+  </svg>
+</figure>
 
----
+Assumindo que as lâmpadas obedeçam à Lei de Ohm, com a chave fechada, a potência fornecida pela bateria, em função de X, é:
 
-**Questão 3 (ENEM 2013, Caderno Azul, Q75)**
+A) (2/3)X.\
+B) X.\
+C) (3/2)X.\
+D) 2X.\
+E) 3X.
 
-O chuveiro elétrico é um dispositivo capaz de transformar energia elétrica em energia térmica, o que possibilita a elevação da temperatura da água. Um chuveiro projetado para funcionar em 110 V pode ser adaptado para funcionar em 220 V, de modo a manter inalterada sua potência. Uma das maneiras de fazer essa adaptação é trocar a resistência do chuveiro por outra, de mesmo material e com o(a):
+**Questão 3**
 
-a) dobro do comprimento do fio.
-b) metade do comprimento do fio.
-c) metade da área da seção reta do fio.
-d) quádruplo da área da seção reta do fio.
-e) quarta parte da área da seção reta do fio.
+*ENEM 2022 · 2ª aplicação · 2º dia · caderno azul · questão 118*
 
----
+No circuito elétrico, estão associadas quatro lâmpadas elétricas idênticas A, B, C e D. Considere a fonte de tensão (V) ideal.
 
-**Questão 4 (ENEM PPL 2022, 2º dia, Q92)**
+<figure class="figura">
+  <svg viewBox="0 0 460 225" role="img" aria-labelledby="fig-ci-q3-t fig-ci-q3-d">
+    <title id="fig-ci-q3-t">Circuito com quatro lâmpadas</title>
+    <desc id="fig-ci-q3-d">Uma fonte V à esquerda. No fio de cima, as lâmpadas A e B em série. Num fio do meio, a lâmpada C. Os dois fios chegam a um fio vertical à direita, que desce até a fonte. A lâmpada D está num laço à direita, ligado às duas pontas desse fio vertical. Figura redesenhada a partir da prova oficial, com os mesmos dados.</desc>
+    <path d="M 70 125 L 70 40 L 330 40 L 330 210 L 70 210 L 70 135" class="traco" />
+    <path d="M 70 100 L 330 100" class="traco" />
+    <path d="M 330 40 L 410 40 L 410 210 L 330 210" class="traco" />
+    <line x1="56" y1="125" x2="84" y2="125" class="traco" />
+    <line x1="62" y1="135" x2="78" y2="135" class="traco" />
+    <text x="88" y="124" class="rotulo-fraco">+</text>
+    <text x="88" y="144" class="rotulo-fraco">−</text>
+    <text x="56" y="136" class="rotulo" text-anchor="end">V</text>
+    <circle cx="140" cy="40" r="13" class="traco preenche" />
+    <path d="M 130.9 30.9 L 149.1 49.1 M 149.1 30.9 L 130.9 49.1" class="traco-fino" />
+    <text x="140" y="21" class="rotulo" text-anchor="middle">A</text>
+    <circle cx="250" cy="40" r="13" class="traco preenche" />
+    <path d="M 240.9 30.9 L 259.1 49.1 M 259.1 30.9 L 240.9 49.1" class="traco-fino" />
+    <text x="250" y="21" class="rotulo" text-anchor="middle">B</text>
+    <circle cx="200" cy="100" r="13" class="traco preenche" />
+    <path d="M 190.9 90.9 L 209.1 109.1 M 209.1 90.9 L 190.9 109.1" class="traco-fino" />
+    <text x="200" y="81" class="rotulo" text-anchor="middle">C</text>
+    <circle cx="410" cy="125" r="13" class="traco preenche" />
+    <path d="M 400.9 115.9 L 419.1 134.1 M 419.1 115.9 L 400.9 134.1" class="traco-fino" />
+    <text x="428" y="130" class="rotulo">D</text>
+  </svg>
+</figure>
 
-A preocupação com a sustentabilidade faz com que se procurem, cada vez mais, métodos eficientes para a economia de energia elétrica. Um procedimento que se pode adotar é a substituição das lâmpadas incandescentes por lâmpadas de LED nas residências. Uma lâmpada incandescente, que opera 8 horas por dia, foi substituída por uma de LED. Elas apresentam 60 W e 8 W de potência nominal de consumo, respectivamente.
+Comparando-se o brilho das lâmpadas, se a lâmpada A queimar, de modo que não possa conduzir corrente elétrica, observa-se que
 
-A redução do consumo de energia elétrica, em quilowatt-hora, obtida durante trinta dias foi:
+A) as lâmpadas B e D apagam-se, e C permanece acesa com o mesmo brilho.\
+B) a lâmpada B apaga-se, a C permanece acesa com mesmo brilho e D permanece apagada.\
+C) a lâmpada B apaga-se, a C permanece acesa com maior brilho e D permanece acesa com o mesmo brilho.\
+D) a lâmpada B apaga-se, a C permanece acesa com o mesmo brilho e D permanece acesa com maior brilho.\
+E) as lâmpadas C e D permanecem acesas com o mesmo brilho e B permanece acesa com maior brilho.
 
-a) 0,24.
-b) 1,80.
-c) 1,92.
-d) 12,48.
-e) 14,40.
+**Questão 4**
 
----
+*ENEM 2022 · 2ª aplicação · 2º dia · caderno azul · questão 105*
 
-**Questão 5 (elaborada no estilo ENEM: não é questão oficial do INEP)**
+Um multímetro pode atuar como voltímetro (leitura em volt) ou como amperímetro (leitura em ampère), dependendo da função selecionada. A forma de conectar o multímetro ao circuito depende da grandeza física a ser medida. Uma lâmpada de lanterna, de resistência elétrica igual a 40 Ω, brilha quando conectada a quatro pilhas em série, cada uma com 1,5 V de tensão elétrica. O multímetro 2 indica o valor 5,62, conforme a figura, e o multímetro 1 está conectado, porém desligado.
 
-Em uma instalação residencial, dois resistores, R₁ = 6 Ω e R₂ = 3 Ω, são ligados em paralelo entre si. Esse conjunto é ligado em série com um terceiro resistor, R₃ = 4 Ω, a uma bateria ideal de 12 V. A corrente total fornecida pela bateria a esse circuito é de:
+<figure class="figura">
 
-a) 1,0 A
-b) 1,5 A
-c) 2,0 A
-d) 3,0 A
-e) 6,0 A
+![Foto de uma montagem: quatro pilhas em série ligadas por fios a uma pequena lâmpada acesa. Um fio sai das pilhas e chega a um cabo do multímetro 1; do outro cabo do multímetro 1, um fio segue até a lâmpada. O multímetro 2 tem seus dois cabos presos nos dois lados da lâmpada e mostra 5,62 no visor](./img/circuitos-eletricos/q4.png)
+
+</figure>
+
+Ao se ligar o multímetro 1, a grandeza física e o seu valor correspondente indicados na tela são, respectivamente,
+
+A) corrente elétrica e 0,14.\
+B) corrente elétrica e 0,15.\
+C) corrente elétrica e 0,29.\
+D) tensão elétrica e 0,14.\
+E) tensão elétrica e 225.
+
+**Questão 5**
+
+*ENEM 2018 · 2ª aplicação · 2º dia · caderno azul · questão 135*
+
+Baterias de lítio, utilizadas em dispositivos eletrônicos portáteis, são constituídas de células individuais com ddp de 3,6 V. É comum os fabricantes de computadores utilizarem as células individuais para a obtenção de baterias de 10,8 V ou 14,4 V. No entanto, fazem a propaganda de seus produtos fornecendo a informação do número de células da bateria e sua capacidade de carga em mAh, por exemplo, 4 400 mAh.
+
+Disponível em: www.laptopbattery.net. Acesso em: 15 nov. 2011 (adaptado).
+
+Dentre as baterias de 10,8 V e 14,4 V, constituídas por 12 células individuais, qual possui maior capacidade de carga?
+
+A) A bateria de 10,8 V, porque possui combinações em paralelo de 4 conjuntos com 3 células em série.\
+B) A bateria de 14,4 V, porque possui combinações em paralelo de 3 conjuntos com 4 células em série.\
+C) A bateria de 14,4 V, porque possui combinações em série de 3 conjuntos com 4 células em paralelo.\
+D) A bateria de 10,8 V, porque possui combinações em série de 4 conjuntos com 3 células em paralelo.\
+E) A bateria de 10,8 V, porque possui combinações em série de 3 conjuntos com 4 células em série.
