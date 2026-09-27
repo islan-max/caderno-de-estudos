@@ -3,132 +3,402 @@ title: "Eletrodinâmica"
 subject: "Física"
 order: 9
 relevance: >
-  Eletrodinâmica é a parte da Física que estuda a corrente elétrica, ou seja, cargas elétricas em
-  movimento dentro de um circuito. É um dos assuntos mais certos da prova: aparece praticamente todo
-  ano, geralmente em 2 a 4 questões, sempre embrulhado em situações do cotidiano (chuveiro elétrico,
-  celular, cerca elétrica, conta de luz, fiação de casa). A boa notícia é que o INEP raramente pede
-  conta pesada: ele quer ver se você entende o que está acontecendo fisicamente dentro do fio.
+  Eletrodinâmica estuda as cargas em movimento: a corrente que acende a lâmpada, aquece o chuveiro e
+  carrega o celular. É um dos temas de Física mais ligados ao dia a dia no ENEM (Exame Nacional do Ensino
+  Médio): manuais de aparelhos, contas de luz, chuveiros, disjuntores, fios e baterias. As questões pedem
+  contas curtas com corrente, tensão, resistência, potência e energia, quase sempre com troca de unidades.
 quickSummary: >
-  A corrente elétrica (i = Q/Δt) mede o fluxo de cargas por segundo em um fio; pense nela como a
-  "quantidade de água" passando por um cano por segundo, e lembre que sua unidade é o Ampère.
+  Corrente é carga por tempo. Tensão, corrente e resistência se ligam por tensão = resistência × corrente,
+  e um fio resiste mais quando é longo e fino. Potência é tensão × corrente; com a tensão fixa, a menor
+  resistência dá a maior potência. Energia é potência × tempo, e a conta de luz usa o quilowatt-hora. O
+  disjuntor precisa aguentar a maior corrente do aparelho.
+resources:
+  conteudoComplementar:
+    conteudo: "Circuitos Elétricos"
+    comoAjuda: "Depois de entender um aparelho sozinho, o próximo passo é ligar vários: em série e em paralelo."
+gabarito:
+  - correta: 2
+    porque: >
+      1 500 mAh é uma corrente de 1,5 A durante 1 hora, ou 3 600 s. Carga = 1,5 × 3 600 = 5 400 C.
+      Revisar: Aula Teórica › 1. Corrente elétrica e carga
+  - correta: 3
+    porque: >
+      O percurso gastou 110 ÷ 5 = 22 kWh. O carregador fornece 220 × 20 = 4 400 W = 4,4 kW, então leva
+      22 ÷ 4,4 = 5 horas.
+      Revisar: Aula Teórica › 4. Energia elétrica e quilowatt-hora
+  - correta: 2
+    porque: >
+      Com potência = tensão² ÷ resistência, a maior potência de cada chuveiro está na menor resistência. O maior
+      valor é o do C: 220² ÷ 8 = 6 050 W, contra cerca de 5 040 W do B e 4 840 W do D.
+      Revisar: Aula Teórica › 3. Potência elétrica
+  - correta: 2
+    porque: >
+      A fiação tem resistência 1,7 × 10⁻⁸ × 28 ÷ (4 × 10⁻⁶), cerca de 0,12 Ω, e perde 0,12 × 30, cerca de 3,6 V.
+      Sobram 220 − 3,6, cerca de 216 V, para a torneira.
+      Revisar: Aula Teórica › 2. Tensão, resistência e fios
+  - correta: 1
+    porque: >
+      No superquente com 3 L/min, a água recebe 50 g/s × 4,2 × 30 = 6 300 W (com 6 L/min dá o mesmo). A corrente é
+      6 300 ÷ 220, cerca de 28,6 A, e o múltiplo de 5 logo acima é 30 A.
+      Revisar: Aula Teórica › 5. Disjuntores e fusíveis
 ---
 
-## Aula Teórica Completa
+<Accordion titulo="Palavras e siglas desta aula" dica="Consulte quando encontrar um termo novo" icone="spell-check">
 
-**A analogia da água.** Antes de qualquer fórmula, pense num cano de água. A corrente elétrica é como a quantidade de água que passa por segundo dentro do cano: quanto mais "gente" (cargas elétricas) passando por um ponto por segundo, maior a corrente. A tensão elétrica é como a pressão da água: o que empurra as cargas para se mover, geralmente vinda de uma diferença de altura (um reservatório mais alto que o outro). A resistência elétrica é como um estreitamento no cano: quanto mais estreito, mais difícil para a água passar, e mais "força" (tensão) você precisa para manter o mesmo fluxo.
+- **ENEM** (Exame Nacional do Ensino Médio): a prova nacional que dá acesso a faculdades e bolsas.
+- **INEP** (Instituto Nacional de Estudos e Pesquisas Educacionais Anísio Teixeira): o órgão do governo que faz o ENEM.
+- **A** (ampère): a unidade de corrente, 1 coulomb por segundo; **mA** (miliampère) é 0,001 A.
+- **C** (coulomb): a unidade de carga elétrica.
+- **V** (volt): a unidade de tensão.
+- **Ω** (ohm, letra grega "ômega"): a unidade de resistência.
+- **W** (watt): a unidade de potência; **kW** (quilowatt) = 1 000 W.
+- **kWh** (quilowatt-hora): energia de 1 kW durante 1 hora.
+- **mAh** (miliampère-hora): carga de uma corrente de 1 mA durante 1 hora.
+- **J** (joule): a unidade de energia; 1 W = 1 J por segundo.
+- **Terminais**: as pontas de um aparelho onde os fios são ligados.
+- **Sobrecarga**: corrente maior do que a fiação aguenta.
+- **Potência dissipada**: a potência que vira calor no aparelho.
+- **Corrente nominal** (de um disjuntor): a corrente que ele aguenta sem desligar, o valor escrito nele.
+- **Carregador ideal**: carregador que não perde energia; toda a potência vai para a bateria.
+- **Efeito Joule**: aquecimento de um fio ou resistência pela passagem da corrente.
+- **Resistividade**: o quanto um material resiste à corrente, qualquer que seja o formato do fio.
+- **Seção reta** (de um fio): o círculo que aparece quando se corta o fio; sua área diz o quanto o fio é grosso.
+- **Disjuntor**: chave que se desliga sozinha quando a corrente passa do limite.
+- **Vazão**: volume de água que passa por minuto, em litros por minuto (L/min).
 
-**Corrente elétrica (i).** É a quantidade de carga elétrica que atravessa uma seção de um fio por unidade de tempo.
+</Accordion>
 
-i = Q / Δt, onde i = corrente elétrica (medida em Ampère, A), Q = quantidade de carga elétrica (medida em Coulomb, C), e Δt = intervalo de tempo (medido em segundos, s).
+## Antes de Começar
 
-**Tensão elétrica ou diferença de potencial: ddp (U).** É o que "empurra" as cargas a se mover dentro do circuito, criado por uma pilha, bateria ou tomada. É medida em Volts (V).
+**O que o ENEM cobra aqui.** Os temas que costumam aparecer são estes:
 
-**Resistência elétrica (R).** É a dificuldade que um material oferece à passagem da corrente. É medida em Ohms (Ω). Fios de metal têm resistência baixa; um chuveiro ou uma lâmpada têm resistência alta de propósito, porque é essa resistência que transforma energia elétrica em calor ou luz.
+- **Converter carga de bateria** (mAh) em coulombs.
+- **Comparar potências** de chuveiros e aparelhos pela tensão e pela resistência.
+- **Calcular a perda de tensão** em fios longos ou finos.
+- **Calcular energia e tempo** com quilowatt-hora.
+- **Escolher o disjuntor** a partir da potência de um aparelho.
 
-**Primeira Lei de Ohm.** Relaciona as três grandezas acima, para a maioria dos materiais (chamados de "resistores ôhmicos").
+**O que você precisa saber antes.**
 
-U = R · i, onde U = tensão elétrica (V), R = resistência elétrica (Ω), e i = corrente elétrica (A).
+- **Notação científica.** 10⁻⁶ = 0,000001; 1,7 × 10⁻⁸ é 1,7 dividido por 100 000 000. Na divisão, subtraia os expoentes: 10⁻⁸ ÷ 10⁻⁶ = 10⁻²; e 10⁻² = 0,01.
+- **Calor sensível.** Calor = massa × calor específico × variação de temperatura (aula de Termologia).
+- **Tempo.** 1 h = 60 min = 3 600 s.
 
-Essa fórmula é o coração da eletrodinâmica: se você sabe duas das três grandezas, descobre a terceira. É a fórmula que o ENEM mais espera que você use com autonomia.
+## Aula Teórica
 
-**Potência elétrica (P).** É a rapidez com que um aparelho consome (ou transforma) energia elétrica. Um chuveiro de 5500 W transforma energia elétrica em calor mais rápido do que um de 3600 W.
+### 1. Corrente elétrica e carga
 
-P = U · i, onde P = potência elétrica (medida em Watts, W), U = tensão elétrica (V), e i = corrente elétrica (A).
+Num fio metálico, elétrons andam empurrados pela fonte (pilha, bateria ou tomada). A **corrente elétrica** mede quanta carga passa por segundo.
 
-Combinando a Lei de Ohm com essa fórmula, chegamos em duas versões alternativas, muito úteis quando você não tem a corrente ou não tem a tensão diretamente:
+<figure class="figura">
+  <svg viewBox="0 0 460 200" role="img" aria-labelledby="fig-ed-1-t fig-ed-1-d">
+    <title id="fig-ed-1-t">Um circuito simples</title>
+    <desc id="fig-ed-1-d">Uma pilha ligada por fios a uma lâmpada, formando um caminho fechado. Uma seta sobre o fio de cima indica o sentido da corrente.</desc>
+    <path d="M 110 150 L 110 40 L 350 40 L 350 150 L 245 150" class="traco" />
+    <path d="M 215 150 L 110 150" class="traco" />
+    <line x1="215" y1="132" x2="215" y2="168" class="traco" />
+    <line x1="245" y1="140" x2="245" y2="160" class="traco" />
+    <circle cx="350" cy="95" r="18" class="traco preenche" />
+    <path d="M 338 83 L 362 107 M 362 83 L 338 107" class="traco-fino" />
+    <text x="230" y="188" class="rotulo-fraco" text-anchor="middle">pilha</text>
+    <text x="378" y="99" class="rotulo-fraco">lâmpada</text>
+    <text x="230" y="28" class="rotulo-fraco" text-anchor="middle">corrente</text>
+    <line x1="200" y1="40" x2="251.0" y2="40.0" class="traco" />
+    <path d="M 260 40 L 251.0 44.5 L 251.0 35.5 Z" class="traco preenche" />
+  </svg>
+</figure>
 
-P = R · i², onde P = potência (W), R = resistência (Ω), e i = corrente elétrica (A).
+**Fórmula: corrente elétrica**
 
-P = U² / R, onde P = potência (W), U = tensão elétrica (V), e R = resistência (Ω).
+**i = Q ÷ Δt**
 
-**Energia elétrica (E).** É o que a companhia elétrica realmente cobra na conta de luz: não a potência, mas a energia consumida ao longo do tempo.
+- **i**: a corrente, em ampères (A).
+- **Q**: a carga que passou, em coulombs (C).
+- **Δt**: o tempo, em segundos (Δ, "delta", quer dizer variação).
+- **Em palavras:** 1 ampère é 1 coulomb passando a cada segundo. Virando a conta: Q = i × Δt.
+- **Quando usar:** baterias, carregadores, qualquer "quanto de carga" ou "por quanto tempo".
 
-E = P · Δt, onde E = energia elétrica (medida em Watt-hora, Wh, ou quilowatt-hora, kWh, se P estiver em kW), P = potência (W ou kW), e Δt = tempo de uso (h).
+A capacidade de uma bateria costuma vir em **mAh** (miliampère-hora): é a corrente, em miliampères, vezes o tempo, em horas. Para passar para coulombs, troque mA por A (divida por 1 000) e horas por segundos (multiplique por 3 600).
 
-Repare: 1 kWh não é "1000 watts", é a energia gasta por um aparelho de 1000 W ligado durante 1 hora inteira. É essa unidade (kWh) que aparece na sua conta de luz.
+**Exemplo resolvido.** Um fone sem fio tem bateria de 400 mAh. Quantos coulombs de carga ela fornece?
 
-**Circuitos em série.** Quando os componentes são ligados um após o outro, formando um único caminho para a corrente. Nesse tipo de ligação, a corrente elétrica é a mesma em todos os pontos do circuito (porque não há outro caminho para ela "escapar"), mas a tensão se divide entre os componentes, proporcionalmente à resistência de cada um.
+1. 400 mAh = 400 ÷ 1 000 = 0,4 A durante 1 h.
+2. 1 h = 3 600 s.
+3. Q = i × Δt = 0,4 × 3 600 = 1 440 C.
+4. Resposta: 1 440 C.
 
-R_série = R1 + R2 + R3 + ..., onde R_série é a resistência equivalente do trecho em série, e R1, R2, R3 são as resistências de cada componente.
+**Erro comum.** Esquecer uma das trocas: deixar em miliampères (daria 1 000 vezes mais) ou em horas (daria 3 600 vezes menos).
 
-**Circuitos em paralelo.** Quando os componentes são ligados lado a lado, oferecendo caminhos diferentes para a corrente. Aqui, a tensão é a mesma em todos os componentes do paralelo (porque todos estão "presos" entre os mesmos dois pontos), mas a corrente total se divide entre eles, proporcionalmente ao inverso da resistência de cada um (caminho de menor resistência "recebe" mais corrente).
+### 2. Tensão, resistência e fios
 
-1/R_paralelo = 1/R1 + 1/R2 + 1/R3 + ..., onde R_paralelo é a resistência equivalente do trecho em paralelo.
+A **tensão** (em volts) é o "empurrão" que a fonte dá nas cargas. A **resistência** (em ohms) é a dificuldade que um fio ou aparelho oferece à passagem da corrente.
 
-Caso especial, muito usado para ganhar tempo na prova, quando há apenas dois resistores em paralelo:
+**Fórmula: lei de Ohm**
 
-R_paralelo = (R1 · R2) / (R1 + R2)
+**U = R × i**
 
-**Circuito misto.** É a combinação de trechos em série com trechos em paralelo no mesmo circuito: a maioria das questões do ENEM usa esse formato. A estratégia é sempre a mesma: resolva primeiro o trecho em paralelo (reduzindo-o a um único resistor equivalente), depois some esse resultado em série com o restante.
+- **U**: a tensão, em volts (V).
+- **R**: a resistência, em ohms (Ω).
+- **i**: a corrente, em ampères (A).
+- **Em palavras:** para a mesma resistência, mais tensão empurra mais corrente.
+- **Quando usar:** para achar tensão, corrente ou resistência de um aparelho ou de um trecho de fio.
 
-**Choque elétrico.** O corpo humano tem uma resistência elétrica própria (da ordem de 1000 Ω entre as mãos, por exemplo). O que define se um choque é perigoso não é a tensão sozinha, mas a corrente que atravessa o corpo: por isso a Lei de Ohm (U = R·i) é usada para calcular limites de segurança em fios, disjuntores e cercas elétricas.
+**Exemplo resolvido.** Um secador ligado em 127 V puxa 5 A. Qual é a resistência dele? E a corrente, se a resistência fosse o dobro?
+
+1. R = U ÷ i = 127 ÷ 5 = 25,4 Ω.
+2. Com o dobro, 50,8 Ω: i = 127 ÷ 50,8 = 2,5 A.
+3. Resposta: 25,4 Ω; 2,5 A (resistência dobra, corrente cai à metade).
+
+**Erro comum.** Multiplicar tensão por corrente para achar a resistência. Isso dá a potência, não a resistência.
+
+A resistência de um fio depende do material, do comprimento e da grossura.
+
+<figure class="figura">
+  <svg viewBox="0 0 460 195" role="img" aria-labelledby="fig-ed-2-t fig-ed-2-d">
+    <title id="fig-ed-2-t">Comprimento e seção de um fio</title>
+    <desc id="fig-ed-2-d">Um trecho de fio desenhado como um cilindro deitado. O círculo da ponta, sombreado, é a seção reta, de área A. O comprimento do fio é L.</desc>
+    <ellipse cx="90" cy="100" rx="14" ry="30" class="traco preenche" />
+    <path d="M 90 70 L 370 70 M 90 130 L 370 130" class="traco" />
+    <path d="M 370 70 A 14 30 0 0 1 370 130" class="traco" />
+    <line x1="90" y1="160" x2="370" y2="160" class="traco-fino" />
+    <line x1="90" y1="152" x2="90" y2="168" class="traco-fino" />
+    <line x1="370" y1="152" x2="370" y2="168" class="traco-fino" />
+    <text x="230" y="182" class="rotulo" text-anchor="middle">comprimento L</text>
+    <text x="72" y="40" class="rotulo">área A da seção reta</text>
+    <line x1="100" y1="46" x2="93.9" y2="75.2" class="traco-fino" />
+    <path d="M 92 84 L 89.5 74.3 L 98.3 76.1 Z" class="traco preenche" />
+  </svg>
+</figure>
+
+**Fórmula: resistência de um fio**
+
+**R = ρ × L ÷ A**
+
+- **ρ** (letra grega "rô"): a resistividade do material, em Ω·m; o cobre tem cerca de 1,7 × 10⁻⁸ Ω·m.
+- **L**: o comprimento do fio, em metros (contando a ida e a volta, se forem dois fios). Se o enunciado já diz "comprimento total", ele inclui a ida e a volta: não dobre.
+- **A**: a área da seção reta, em m²; 1 mm² = 10⁻⁶ m².
+- **Em palavras:** fio mais longo, mais resistência; fio mais grosso, menos resistência.
+- **Quando usar:** extensões, fiação da casa, fios que esquentam.
+
+Um fio de verdade "come" parte da tensão: a **queda de tensão** nele é U = R × i. O aparelho recebe a tensão da fonte **menos** a queda nos fios.
+
+**Exemplo resolvido.** Uma extensão tem fios de cobre com 20 m de comprimento total e seção de 2,5 mm². Ela leva 10 A até um aspirador, numa tomada de 127 V. Qual é a tensão no aspirador?
+
+1. A = 2,5 mm² = 2,5 × 10⁻⁶ m².
+2. R = 1,7 × 10⁻⁸ × 20 ÷ (2,5 × 10⁻⁶). Os números: 1,7 × 20 = 34 e 34 ÷ 2,5 = 13,6. As potências: 10⁻⁸ ÷ 10⁻⁶ = 10⁻². Junto: 13,6 × 10⁻² = 0,136 Ω.
+3. Queda nos fios: U = 0,136 × 10 = 1,36 V.
+4. No aspirador: 127 − 1,36, cerca de 125,6 V.
+5. Resposta: cerca de 125,6 V.
+
+**Erro comum.** Usar a área em mm² sem trocar para m², o que dá uma resistência um milhão de vezes menor. Outro erro é responder a queda de tensão no lugar da tensão no aparelho.
+
+### 3. Potência elétrica
+
+A **potência** diz quanta energia elétrica um aparelho transforma por segundo (em calor, luz, movimento).
+
+**Fórmula: potência elétrica**
+
+**P = U × i**
+
+- **P**: a potência, em watts (W).
+- **U**: a tensão, em volts.
+- **i**: a corrente, em ampères.
+- **Em palavras:** potência é tensão vezes corrente. Juntando com U = R × i, também vale **P = U² ÷ R** e P = R × i².
+- **Quando usar:** chuveiros, lâmpadas, carregadores, qualquer aparelho com tensão e corrente ou tensão e resistência.
+
+Com a **tensão fixa** (a da tomada), P = U² ÷ R mostra que a **menor resistência** dá a **maior potência**. No chuveiro, a **chave seletora** escolhe o ponto da resistência por onde a corrente sai: um trecho mais curto dá uma resistência menor. Por isso, num aparelho com várias posições, a **potência máxima** está na posição de **menor resistência**. Para comparar aparelhos, calcule a potência máxima de cada um; se as tensões são diferentes, a tensão entra ao quadrado e pesa muito.
+
+**Exemplo resolvido.** Um aquecedor ligado em 127 V tem resistência de 4 Ω. Outro, ligado em 220 V, tem 8,8 Ω. Qual é mais potente?
+
+1. Primeiro: P = 127² ÷ 4 = 16 129 ÷ 4, cerca de 4 032 W.
+2. Segundo: P = 220² ÷ 8,8 = 48 400 ÷ 8,8 = 5 500 W.
+3. Resposta: o de 220 V, mesmo com resistência maior.
+
+**Erro comum.** Escolher sempre a menor resistência sem olhar a tensão. A regra "menor resistência, maior potência" só vale com a mesma tensão.
+
+### 4. Energia elétrica e quilowatt-hora
+
+**Fórmula: energia elétrica**
+
+**E = P × Δt**
+
+- **E**: a energia, em joules (com P em W e Δt em s) ou em quilowatts-hora (com P em kW e Δt em h).
+- **P**: a potência.
+- **Δt**: o tempo de uso.
+- **Em palavras:** um aparelho mais potente, ou ligado por mais tempo, gasta mais energia. Virando a conta: Δt = E ÷ P.
+- **Quando usar:** conta de luz, consumo de aparelhos, tempo de recarga.
+
+O **quilowatt-hora** (kWh) é a energia de 1 kW durante 1 hora, igual a 3 600 000 J. Para usá-lo, passe a potência para kW (divida os watts por 1 000) e o tempo para horas. Veículos elétricos informam o **desempenho** em km/kWh: a energia gasta num trajeto é a distância dividida pelo desempenho. Um patinete de 20 km/kWh gasta 10 ÷ 20 = 0,5 kWh em 10 km.
+
+**Exemplo resolvido.** Um ferro de passar de 1 200 W fica ligado 30 minutos por dia, durante 30 dias. Quanto ele consome no mês? E quanto custa, com o kWh a R$ 0,80?
+
+1. Potência: 1 200 W = 1,2 kW. Tempo: 30 × 0,5 h = 15 h.
+2. E = 1,2 × 15 = 18 kWh.
+3. Custo: 18 × 0,80 = R$ 14,40.
+4. Resposta: 18 kWh; R$ 14,40.
+
+**Erro comum.** Multiplicar watts por horas e chamar de kWh, sem dividir por 1 000. Outro erro é usar minutos no lugar de horas.
+
+### 5. Disjuntores e fusíveis
+
+O **disjuntor** (ou o **fusível**, que queima em vez de desligar) protege a fiação: ele corta o circuito quando a corrente passa do seu limite. Ele deve aguentar a **maior** corrente que o aparelho puxa, e não ser muito maior que isso.
+
+Para escolher: ache a potência no uso mais forte, calcule a corrente com **i = P ÷ U** e escolha o disjuntor padrão logo acima.
+
+Muitas vezes a potência vem do aquecimento da água que passa pelo aparelho.
+
+**Fórmula: potência de aquecimento da água**
+
+**potência = massa por segundo × c × ΔT**
+
+- **massa por segundo**: quantos gramas de água passam por segundo (g/s).
+- **c**: o calor específico da água, em J por grama por °C, escrito J/(g °C); para a água, 4,2.
+- **ΔT**: quanto a temperatura da água sobe, em °C.
+- **Em palavras:** o calor que a água recebe a cada segundo é a potência, em watts, porque 1 W = 1 J por segundo. A densidade da água, 1 000 g por litro, transforma a vazão em massa: 2 L/min são 2 000 g em 60 s, cerca de 33 g por segundo.
+- **Quando usar:** chuveiros, duchas, torneiras e máquinas que aquecem água corrente. Se há vários níveis ou vazões, calcule a potência de cada um e fique com a maior, porque o disjuntor precisa aguentar qualquer nível.
+
+**Exemplo resolvido.** Uma máquina de café aquece 1,5 L de água por minuto em 45 °C, ligada em 127 V (c = 4,2 J por grama por °C). Os disjuntores vêm em múltiplos de 5 A. Qual escolher?
+
+1. Massa por segundo: 1 500 g ÷ 60 s = 25 g/s.
+2. Potência: 25 × 4,2 × 45 = 4 725 W.
+3. Corrente: 4 725 ÷ 127, cerca de 37,2 A.
+4. Múltiplo de 5 logo acima: 40 A.
+5. Resposta: 40 A.
+
+**Erro comum.** Escolher o disjuntor pela potência mais fraca, ou arredondar para baixo. O disjuntor precisa aguentar o caso de maior corrente.
+
+### Armadilhas típicas do INEP
+
+1. **Esquecer as trocas** de mAh para coulombs (mA para A e horas para segundos).
+2. **Deixar a área em mm²** na resistência do fio.
+3. **Responder a queda de tensão** no lugar da tensão que chega ao aparelho.
+4. **Escolher a menor resistência** entre aparelhos de tensões diferentes, sem calcular.
+5. **Confundir watt com quilowatt-hora**: kWh já é energia, e o W é potência.
+6. **Dimensionar o disjuntor pelo uso mais fraco**: vale a maior corrente.
 
 ## Tópicos-Chave para Revisão
 
 <div className="topico">
 
-A corrente elétrica (i = Q/Δt) mede o fluxo de cargas por segundo em um fio; pense nela como a "quantidade de água" passando por um cano por segundo, e lembre que sua unidade é o Ampère.
+#### 1. Corrente
 
-A tensão elétrica (U), medida em Volts, é a "pressão" que empurra as cargas; sem uma diferença de potencial entre dois pontos, não existe corrente.
+**i = Q ÷ Δt**; **1 mAh = 3,6 C** (0,001 A × 3 600 s).
 
-A resistência elétrica (R), medida em Ohms, representa o quanto um material dificulta a passagem da corrente, e conecta as duas grandezas anteriores pela Lei de Ohm: U = R · i.
+#### 2. Resistência
 
-A potência elétrica (P = U · i = R · i² = U²/R) diz a rapidez com que a energia é convertida por um aparelho; quanto maior o Watt de um chuveiro, mais rápido ele aquece a água, e também mais corrente ele puxa.
+**U = R × i**; **R = ρ × L ÷ A**, com A em m²; o aparelho recebe a fonte **menos** a queda nos fios.
 
-A energia elétrica (E = P · Δt) é o que aparece na conta de luz em kWh; ela depende tanto da potência do aparelho quanto do tempo de uso, e essa diferença entre potência e energia é uma pegadinha clássica do ENEM.
+#### 3. Potência
 
-Nos circuitos em série (R_série = R1 + R2 + ...), a corrente é igual em todos os pontos e a tensão se reparte entre os componentes; se um componente queima, o circuito inteiro para de funcionar, pois há um único caminho.
+**P = U × i**; com tensão **fixa**, menor resistência dá **maior potência** (P = U² ÷ R).
 
-Nos circuitos em paralelo (1/R_paralelo = 1/R1 + 1/R2 + ...), a tensão é igual em todos os ramos e a corrente se reparte entre eles; se um componente queima, os outros continuam funcionando normalmente, pois cada um tem seu próprio caminho de volta à bateria.
+#### 4. Energia
 
-Em circuitos mistos, a estratégia de resolução é sempre resolver primeiro o bloco em paralelo, reduzindo-o a uma resistência equivalente, e só depois somar esse resultado em série com o restante do circuito.
+**E = P × Δt**; **kWh** com P em kW e tempo em horas; distância ÷ desempenho = energia.
 
-O choque elétrico depende da corrente que passa pelo corpo, não apenas da tensão; a resistência do corpo humano (da ordem de 1000 Ω) entra na Lei de Ohm para calcular se uma corrente é perigosa ou não.
+#### 5. Disjuntor
 
-Agora vamos ver os circuitos das primeiras duas questões, para você visualizar a topologia antes de calcular.
+Aguenta a **maior corrente**: **i = P ÷ U**, e escolha o padrão logo acima; água aquecida: **potência = massa por segundo × c × ΔT**.
 
 </div>
 
-## Teste de Fogo
+## Questões do ENEM
 
-*Questões sem gabarito: resolva primeiro, depois confira com o professor ou com a IA.*
+*Marque uma alternativa em cada questão e confira tudo de uma vez no botão do fim.*
 
-**Questão 1 (ENEM 2018).** Muitos smartphones e tablets não precisam mais de teclas, uma vez que todos os comandos podem ser dados ao se pressionar a própria tela. Inicialmente essa tecnologia foi proporcionada por meio das telas resistivas, formadas basicamente por duas camadas de material condutor transparente que não se encostam até que alguém as pressione, modificando a resistência total do circuito de acordo com o ponto onde ocorre o toque. A imagem é uma simplificação do circuito formado pelas placas, em que A e B representam pontos onde o circuito pode ser fechado por meio do toque (veja o diagrama acima). Qual é a resistência equivalente no circuito provocada por um toque que fecha o circuito no ponto A?
+**Questão 1**
 
-a) 1,3 kΩ
-b) 4,0 kΩ
-c) 6,0 kΩ
-d) 6,7 kΩ
-e) 12,0 kΩ
+*ENEM 2018 · 2ª aplicação · 2º dia · caderno azul · questão 91*
 
-**Questão 2 (ENEM 2016).** Três lâmpadas idênticas foram ligadas no circuito esquematizado (veja o diagrama acima). A bateria apresenta resistência interna desprezível, e os fios possuem resistência nula. Um técnico fez uma análise do circuito para prever a corrente elétrica nos pontos A, B, C, D e E, e rotulou essas correntes de IA, IB, IC, ID e IE, respectivamente. O técnico concluiu que as correntes que apresentam o mesmo valor são
+Com o avanço das multifunções dos dispositivos eletrônicos portáteis, como os *smartphones*, o gerenciamento da duração da bateria desses equipamentos torna-se cada vez mais crítico. O manual de um telefone celular diz que a quantidade de carga fornecida pela sua bateria é de 1 500 mAh.
 
-a) IA = IE e IC = ID.
-b) IA = IB = IE e IC = ID.
-c) IA = IB, apenas.
-d) IA = IB = IE, apenas.
-e) IC = IB, apenas.
+A quantidade de carga fornecida por essa bateria, em coulomb, é de
 
-**Questão 3 (ENEM 2017).** Em algumas residências, cercas eletrificadas são utilizadas com o objetivo de afastar possíveis invasores. Uma cerca eletrificada funciona com uma diferença de potencial elétrico de aproximadamente 10 000 V. Para que não seja letal, a corrente que pode ser transmitida através de uma pessoa não deve ser maior do que 0,01 A. Já a resistência elétrica corporal entre as mãos e os pés de uma pessoa é da ordem de 1 000 Ω. Para que a corrente não seja letal a uma pessoa que toca a cerca eletrificada, o gerador de tensão deve possuir uma resistência interna que, em relação à do corpo humano, é
+A) 90.\
+B) 1 500.\
+C) 5 400.\
+D) 90 000.\
+E) 5 400 000.
 
-a) praticamente nula.
-b) aproximadamente igual.
-c) milhares de vezes maior.
-d) da ordem de 10 vezes maior.
-e) da ordem de 10 vezes menor.
+**Questão 2**
 
-**Questão 4 (ENEM 2017).** O Brasil vive uma crise hídrica que também tem trazido consequências na área de energia. Um estudante do ensino médio resolveu dar sua contribuição de economia, usando para isso conceitos que ele aprendeu nas aulas de física. Ele convence sua mãe a tomar banho com a chave do chuveiro na posição verão e diminuir o tempo de banho para 5 minutos, em vez de 15 minutos. Sua alegação baseou-se no seguinte argumento: se a chave do chuveiro estiver na posição inverno (potência de 6 000 W), o gasto será muito maior do que com a chave na posição verão (potência de 3 600 W). A economia por banho, em kWh, apresentada pelo estudante para sua mãe foi de
+*ENEM 2021 · digital · 2º dia · caderno azul · questão 128*
 
-a) 0,3.
-b) 0,5.
-c) 1,2.
-d) 1,5.
-e) 1,8.
+Carros elétricos estão cada vez mais baratos, no entanto, os órgãos governamentais e a indústria se preocupam com o tempo de recarga das baterias, que é muito mais lento quando comparado ao tempo gasto para encher o tanque de combustível. Portanto, os usuários de transporte individual precisam se conscientizar dos ganhos ambientais dessa mudança e planejar com antecedência seus percursos, pensando em pausas necessárias para recargas.
 
-**Questão 5 (ENEM 2019).** Uma casa tem um cabo elétrico mal dimensionado, de resistência igual a 10 Ω, que a conecta à rede elétrica de 120 V. Nessa casa, cinco lâmpadas, de resistência igual a 200 Ω, estão conectadas ao mesmo circuito que uma televisão de resistência igual a 50 Ω, conforme ilustrado no esquema (veja o diagrama acima). A televisão funciona apenas com tensão entre 90 V e 130 V. O número máximo de lâmpadas que podem ser ligadas sem que a televisão pare de funcionar é
+Após realizar um percurso de 110 km, um motorista pretende recarregar as baterias de seu carro elétrico, que tem um desempenho médio de 5,0 km/kWh, usando um carregador ideal que opera a uma tensão de 220 V e é percorrido por uma corrente de 20 A.
 
-a) 1.
-b) 2.
-c) 3.
-d) 4.
-e) 5.
+Quantas horas são necessárias para recarregar a energia utilizada nesse percurso?
+
+A) 0,005\
+B) 0,125\
+C) 2,5\
+D) 5,0\
+E) 8,0
+
+**Questão 3**
+
+*ENEM 2020 · 2ª aplicação · 2º dia · caderno azul · questão 128*
+
+Nos chuveiros elétricos, a água entra em contato com uma resistência aquecida por efeito Joule. A potência dissipada pelo aparelho varia em função da tensão à qual está ligado e do valor da resistência elétrica escolhida com a chave seletora. No quadro estão indicados valores de tensão e as possíveis resistências para cinco modelos de chuveiro. Nesse quadro, o valor das resistências é medido a partir da extremidade esquerda.
+
+<figure class="figura">
+
+| Chuveiro | Tensão | Posição de seleção da resistência elétrica |
+|---|---|---|
+| A | 127 V | 5,0 Ω |
+| B | 127 V | 3,2 Ω · 6,2 Ω |
+| C | 220 V | 8,0 Ω · 17,3 Ω |
+| D | 220 V | 10,0 Ω · 12,1 Ω · 23,0 Ω |
+| E | 220 V | 10,5 Ω · 24,2 Ω |
+
+</figure>
+
+No original, cada resistência aparece desenhada como um fio enrolado, com as posições da chave marcadas ao longo dele; o quadro acima traz os mesmos valores.
+
+Qual chuveiro apresenta a maior potência elétrica?
+
+A) A\
+B) B\
+C) C\
+D) D\
+E) E
+
+**Questão 4**
+
+*ENEM 2022 · 2ª aplicação · 2º dia · caderno azul · questão 111*
+
+Em virtude do frio intenso, um casal adquire uma torneira elétrica para instalar na cozinha. Um eletricista é contratado para fazer um novo circuito elétrico para a cozinha, cuja corrente será de 30 A, com a finalidade de alimentar os terminais da torneira elétrica. Ele utilizou um par de fios de cobre, de área da seção reta igual a 4 mm² e de 28 m de comprimento total, desde o quadro de distribuição (onde ficam os disjuntores) até a cozinha. A tensão medida na saída do quadro de distribuição é 220 V. Considere que a resistividade do fio de cobre é de 1,7 × 10⁻⁸ Ω·m.
+
+Considerando a resistência da fiação, a tensão aplicada aos terminais da torneira é mais próxima de
+
+A) 211 V.\
+B) 213 V.\
+C) 216 V.\
+D) 219 V.\
+E) 220 V.
+
+**Questão 5**
+
+*ENEM 2022 · digital · 2º dia · caderno azul · questão 116*
+
+O manual de uma ducha elétrica informa que seus três níveis de aquecimento (morno, quente e superquente) apresentam as seguintes variações de temperatura da água em função de sua vazão:
+
+<figure class="figura">
+
+| Vazão (L/min) | ΔT (°C) morno | ΔT (°C) quente | ΔT (°C) superquente |
+|---|---|---|---|
+| 3 | 10 | 20 | 30 |
+| 6 | 5 | 10 | 15 |
+
+</figure>
+
+Utiliza-se um disjuntor para proteger o circuito dessa ducha contra sobrecargas elétricas em qualquer nível de aquecimento. Por padrão, o disjuntor é especificado pela corrente nominal igual ao múltiplo de 5 A imediatamente superior à corrente máxima do circuito. Considere que a ducha deve ser ligada em 220 V e que toda a energia é dissipada através da resistência do chuveiro e convertida em energia térmica transferida para a água, que apresenta calor específico de 4,2 J/(g °C) e densidade de 1 000 g/L.
+
+O disjuntor adequado para a proteção dessa ducha é especificado por:
+
+A) 60 A\
+B) 30 A\
+C) 20 A\
+D) 10 A\
+E) 5 A
