@@ -344,5 +344,9 @@
       "a lâmpada B apaga-se, a C permanece acesa com o mesmo brilho e D permanece acesa com maior brilho.",
       "as lâmpadas C e D permanecem acesas com o mesmo brilho e B permanece acesa com maior brilho."
     ]
+  },
+  "2018-ppl-D2-azul-Q110": {
+    "nota": "notação dos nuclídeos (sobrescrito e subscrito) embaralhada no texto; conferido na imagem da página em 27/09/2026",
+    "texto": "O elemento radioativo tório (Th) pode substituir os combustíveis fósseis e baterias. Pequenas quantidades desse elemento seriam suficientes para gerar grande quantidade de energia. A partícula liberada em seu decaimento poderia ser bloqueada utilizando-se uma caixa de aço inoxidável. A equação nuclear para o decaimento do ²³⁰₉₀Th é: ²³⁰₉₀Th → ²²⁶₈₈Ra + partícula + energia. Considerando a equação de decaimento nuclear, a partícula que fica bloqueada na caixa de aço inoxidável é o(a)"
   }
 }
