@@ -360,5 +360,24 @@
       "polarizabilidade do íon carbonato."
     ],
     "texto_ilegivel": 0.0
+  },
+  "2023-regular-D2-azul-Q129": {
+    "nota": "rodapé da página colado na alternativa E e rótulos da estrutura no texto; conferido na imagem da página em 27/09/2026",
+    "texto": "O Aldrin é um inseticida agrícola organoclorado sintético de baixa polaridade, cuja estrutura molecular simétrica, de fórmula C₁₂H₈Cl₆, está representada na figura. Introduzido na agricultura a partir da década de 1950, esse composto apresenta alta persistência no meio ambiente e acumulação nos organismos, sendo danoso para a saúde. Um pesquisador coletou fluidos biológicos de indivíduos de uma população contaminada por esse inseticida agrícola. Ele analisou amostras de saliva, sangue, lágrima, urina e leite quanto à presença dessa substância. Em qual dos fluidos o pesquisador provavelmente encontrou a maior concentração dessa substância?",
+    "alternativas": [
+      "Saliva, por consequência da atividade de enzimas.",
+      "Sangue, em função das hemácias e leucócitos.",
+      "Lágrima, em razão da concentração de sais.",
+      "Urina, pela presença de moléculas de ureia.",
+      "Leite, por causa do alto teor de gorduras."
+    ]
+  },
+  "2013-regular-D1-azul-Q086": {
+    "nota": "rótulos das estruturas colados no texto; conferido na imagem da página em 27/09/2026",
+    "texto": "As fraldas descartáveis que contêm o polímero poliacrilato de sódio (1) são mais eficientes na retenção de água que as fraldas de pano convencionais, constituídas de fibras de celulose (2). A maior eficiência dessas fraldas descartáveis, em relação às de pano, deve-se às"
+  },
+  "2019-regular-D2-azul-Q112": {
+    "nota": "conteúdo do quadro colado no texto; conferido na imagem da página em 27/09/2026",
+    "texto": "Os hidrocarbonetos são moléculas orgânicas com uma série de aplicações industriais. Por exemplo, eles estão presentes em grande quantidade nas diversas frações do petróleo e normalmente são separados por destilação fracionada, com base em suas temperaturas de ebulição. O quadro apresenta as principais frações obtidas na destilação do petróleo em diferentes faixas de temperaturas. Na fração 4, a separação dos compostos ocorre em temperaturas mais elevadas porque"
   }
 }
