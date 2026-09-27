@@ -3,91 +3,352 @@ title: "Inflação"
 subject: "Matemática Financeira"
 order: 3
 relevance: >
-  Inflação é o aumento generalizado e contínuo dos preços de bens e serviços em um período de tempo.
-  Isso não é um tópico isolado no ENEM: ele quase nunca aparece como "calcule a inflação" sozinho. Em
-  vez disso, a banca combina inflação com porcentagem, ganho real de salário, reajuste de valores
-  (aluguéis, contratos, preços de produtos) e aumentos sucessivos. É um dos temas mais recorrentes da
-  prova, porque conecta matemática básica com cidadania financeira: exatamente o tipo de "matemática
-  do cotidiano" que o INEP adora cobrar. Se você domina bem "aumento percentual" e "poder de compra",
-  você resolve a esmagadora maioria das questões que envolvem inflação.
+  Inflação é o aumento geral dos preços: com ela, o mesmo dinheiro compra menos coisas com o tempo. O
+  ENEM (Exame Nacional do Ensino Médio) cobra o tema em questões sobre salário, poder de compra, índices
+  de preços e perda de valor de bens. As contas são de porcentagem, mas com uma pegadinha constante:
+  porcentagens de períodos diferentes não se somam nem se subtraem, elas se multiplicam e se dividem
+  como fatores.
 quickSummary: >
-  Inflação é o aumento generalizado e contínuo dos preços de bens e serviços, medido por um índice de
-  inflação (como o IPCA). O índice mostra, em percentual, quanto os preços variaram entre duas datas,
-  e serve de base para calcular reajustes de salários, aluguéis e contratos.
+  Variação percentual de A para B = (B − A) ÷ A × 100. Inflação de f% num período multiplica os preços por
+  (1 + f). O ganho real de um salário que subiu i% com inflação de f% é dado por 1 + r = (1 + i) ÷ (1 + f),
+  e não por i − f. Em vários períodos, eleve o fator ao número de períodos. Um bem que perde valor a taxa
+  constante segue V = V₀ × qⁿ, com q menor que 1.
+resources:
+  conteudoComplementar:
+    conteudo: "Juros Compostos"
+    comoAjuda: "Inflação acumulada e perda de valor usam o mesmo fator multiplicativo dos juros compostos. Se multiplicar fatores travar você, revise essa aula."
+gabarito:
+  - correta: 4
+    porque: >
+      O aumento foi 415 − 70 = 345 reais. Em relação ao valor de 1994: 345 ÷ 70 é cerca de 4,93, ou seja, 493%.
+      Revisar: Aula Teórica › 1. Variação percentual
+  - correta: 2
+    porque: >
+      Pela fórmula, 1 + r = 1,10 ÷ 1,05, que é cerca de 1,0476. Então r é cerca de 0,0476, ou 4,76%; a alternativa mais
+      próxima é 4,7%. Esse valor fica entre 1,5% e 5%: a proposta é regular.
+      Revisar: Aula Teórica › 3. Ganho real e poder de compra
+  - correta: 1
+    porque: >
+      Em um ano, o poder de compra é multiplicado por 1,10 ÷ 1,06. Em dois anos, por (1,10 ÷ 1,06)² = 1,21 ÷ 1,1236, cerca de
+      1,0769. O aumento é de cerca de 0,0769, ou 7,7%.
+      Revisar: Aula Teórica › 3. Ganho real e poder de compra
+  - correta: 1
+    porque: >
+      São 18 valores. Em ordem, o 9º e o 10º são 5,97 e 6,50. A mediana é a média deles: (5,97 + 6,50) ÷ 2 = 6,235;
+      a alternativa mais próxima é 6,24. A média dos 18 valores daria cerca de 8,07, que é outra medida.
+      Revisar: Aula Teórica › 2. Inflação acumulada e índices
+  - correta: 3
+    porque: >
+      O fator de desvalorização é q = 27 000 ÷ 30 000 = 0,9 (e 24 300 ÷ 27 000 também dá 0,9). Em seis anos:
+      30 000 × 0,9⁶ = 30 000 × 0,531441, cerca de 15 943, ou seja, 15,9 mil reais.
+      Revisar: Aula Teórica › 4. Perda de valor a taxa constante
 ---
 
-## Aula Teórica Completa
+<Accordion titulo="Palavras e siglas desta aula" dica="Consulte quando encontrar um termo novo" icone="spell-check">
 
-**O que é inflação, de fato?**
-Imagine que você compra sempre os mesmos produtos: arroz, feijão, passagem de ônibus. Se, de um ano para o outro, você precisa gastar mais dinheiro para comprar exatamente as mesmas coisas, na mesma quantidade, isso significa que os preços subiram. Essa subida geral de preços é a inflação. Ela é medida por um **índice de inflação**, que é simplesmente um número em porcentagem mostrando o quanto os preços variaram, em média, entre duas datas. No Brasil, o índice oficial é o IPCA (calculado pelo IBGE), mas existem outros, como o INPC e o IGP-M.
+- **ENEM** (Exame Nacional do Ensino Médio): a prova nacional que dá acesso a faculdades e bolsas.
+- **INEP** (Instituto Nacional de Estudos e Pesquisas Educacionais Anísio Teixeira): o órgão do governo que faz o ENEM.
+- **IPCA** (Índice Nacional de Preços ao Consumidor Amplo): o principal índice de inflação do Brasil.
+- **Inflação**: o aumento geral dos preços num período.
+- **Índice de preços**: número que mostra quanto os preços variaram num período.
+- **Poder de compra**: quanto um salário consegue comprar.
+- **Ganho real**: o aumento do poder de compra, já descontada a inflação.
+- **Custo de vida**: quanto custa viver: comida, moradia, transporte.
+- **Salário-mínimo**: o menor salário que a lei permite pagar.
+- **Série histórica**: valores de um mesmo dado ao longo de vários anos.
+- **Pontos percentuais**: em geral, a diferença entre duas porcentagens; na questão do salário-mínimo, quer dizer a variação em porcentagem.
+- **Algebricamente**: usando letras e fórmulas.
+- **Desvalorizar**: perder valor.
+- **Categoria de trabalhadores**: um grupo de trabalhadores da mesma profissão.
 
-**A ideia central: fator de aumento**
-Para trabalhar com inflação matematicamente, você usa a mesma lógica de "aumento percentual" que já vimos em outros tópicos. Se algo aumenta P%, multiplicamos o valor original pelo **fator de aumento** (1 + P/100).
+</Accordion>
 
-Exemplo simples: um produto custava R$ 100,00 e a inflação do período foi de 8%. O novo preço é:
-Novo preço = 100 × (1 + 0,08) = 100 × 1,08 = R$ 108,00
+## Antes de Começar
 
-**Poder de compra: o conceito que realmente separa quem entende de quem decora fórmula**
+**O que o ENEM cobra aqui.** A prova raramente pergunta "o que é inflação". Os temas que costumam aparecer são estes:
 
-Poder de compra é a capacidade que o seu dinheiro tem de comprar bens e serviços. Se o seu salário sobe, mas os preços sobem mais ainda, você fica **mais pobre na prática**, mesmo ganhando mais dinheiro em números absolutos. Essa é a armadilha mental mais importante do assunto: um aumento nominal (em reais) não significa automaticamente um ganho real.
+- **Calcular quanto um valor aumentou** em porcentagem, às vezes mais de 100%.
+- **Ler um índice de inflação** numa tabela ou num gráfico.
+- **Calcular o ganho real** de um salário, descontando a inflação.
+- **Acompanhar o poder de compra** por vários anos.
+- **Calcular a perda de valor** de um bem ano a ano.
 
-O poder de compra pode ser pensado como uma razão:
+**O que você precisa saber antes.**
 
-Poder de compra = Salário / Custo de vida
+- **Porcentagem e fator.** Aumentar 5% é multiplicar por 1,05; perder 5% é multiplicar por 0,95. Revise a aula de Porcentagem.
+- **Juros compostos.** Variações seguidas se multiplicam: M = C × (1 + i)ⁿ. Revise a aula de Juros Compostos.
+- **Mediana.** Com os dados em ordem, é o valor do meio; com quantidade par, a média dos dois do meio. Revise a aula de Média, Mediana e Moda.
+- **Aproximação.** O sinal ≈ quer dizer "aproximadamente igual". Arredonde só no fim da conta.
+- **Símbolos.** A barra / também indica divisão: 6/3 = 6 ÷ 3. O ponto · também indica multiplicação: 2 · 3 = 2 × 3.
 
-Se o salário sobe por um fator (1 + i) e o custo de vida (a inflação) sobe por um fator (1 + f), o novo poder de compra é:
+## Aula Teórica
 
-Poder de compra novo = [Salário × (1+i)] / [Custo × (1+f)]
+### 1. Variação percentual
 
-**A fórmula do ganho real**
+Para saber quanto um valor mudou em porcentagem, compare o aumento com o **valor inicial**.
 
-O ENEM tem uma fórmula oficial e recorrente para isso, que costuma vir *dada no próprio enunciado* (você não precisa decorá-la, mas precisa saber usá-la):
+**Fórmula: variação percentual**
 
-1 + r = (1 + i) / (1 + f)
+**variação = (B − A) ÷ A × 100**
 
-Decompondo cada letra:
-- **r** = ganho real (a taxa de crescimento verdadeira do poder de compra do salário)
-- **i** = percentual de aumento do salário (o número "bruto", nominal)
-- **f** = taxa de inflação do período
+- **A**: o valor inicial (o mais antigo).
+- **B**: o valor final.
+- **variação**: em porcentagem; positiva se aumentou, negativa se diminuiu.
+- **Em palavras:** quanto o valor mudou, dividido pelo valor de antes.
+- **Quando usar:** "quanto por cento aumentou", "variação percentual", "aumento em pontos percentuais" de um valor.
 
-Repare: **r não é simplesmente "i menos f"**. Essa subtração direta é a armadilha número um do INEP nesse tema. Quem calcula 10% − 5% = 5% de ganho real está errado, porque o aumento e a inflação incidem sobre bases diferentes (uma incide sobre o salário antigo, a outra sobre os preços antigos), e por isso a relação correta é uma **divisão de fatores**, não uma subtração de percentuais.
+Uma variação pode passar de 100%: dobrar é aumentar 100%; triplicar é aumentar 200%. Numa tabela com vários anos, use só o primeiro e o último do período pedido; os do meio não entram na conta. Se a pergunta pede um número inteiro, arredonde no fim.
 
-**Aumentos sucessivos (quando o efeito se repete por vários períodos)**
+**Exemplo resolvido.** A passagem de ônibus de uma cidade foi de R$ 2,50 para R$ 4,75. Um aluguel foi de R$ 400,00 para R$ 1 300,00. Qual foi o aumento percentual de cada um?
 
-Quando salário e inflação aumentam todo ano, por vários anos seguidos, você não soma as porcentagens: você multiplica os fatores de aumento, um para cada ano.
+1. Passagem: (4,75 − 2,50) ÷ 2,50 = 2,25 ÷ 2,50 = 0,9, ou seja, 90%.
+2. Aluguel: (1 300 − 400) ÷ 400 = 900 ÷ 400 = 2,25, ou seja, 225%.
+3. Resposta: 90% e 225%.
 
-Exemplo: salário sobe 10% ao ano, inflação sobe 6% ao ano, durante 2 anos.
-Fator do salário em 2 anos = (1,10)² = 1,21 → salário subiu 21% no total
-Fator da inflação em 2 anos = (1,06)² = 1,1236 → preços subiram 12,36% no total
-Fator do poder de compra = 1,21 / 1,1236 ≈ 1,077 → ganho real de aproximadamente 7,7%
+**Erro comum.** Dividir pelo valor final em vez do inicial, ou responder quantas vezes o valor ficou maior (1 300 ÷ 400 = 3,25, "325%") em vez do aumento.
 
-**Reajuste de custos com pesos diferentes (proporção do orçamento)**
+### 2. Inflação acumulada e índices
 
-Outro formato clássico: um custo total é dividido em partes (por exemplo, 60% papel e 40% gráfica), e cada parte sofre um reajuste percentual diferente. Aqui você não aplica um reajuste único sobre o total: você aplica cada reajuste sobre a parte correspondente, e depois soma os resultados.
+A **inflação** de um período é a variação percentual média dos preços. Se a inflação foi f, um preço típico foi multiplicado por **(1 + f)**. Inflações de vários períodos se **multiplicam**, como nos juros compostos.
+
+**Fórmula: inflação acumulada**
+
+**1 + inflação acumulada = (1 + f₁) × (1 + f₂) × … × (1 + fₙ)**
+
+- **f₁, f₂, …**: a inflação de cada período, em decimal.
+- **Em palavras:** cada inflação incide sobre os preços já aumentados.
+- **Quando usar:** inflação de vários meses ou anos, preço corrigido pela inflação.
+
+Um **índice de preços**, como o IPCA (Índice Nacional de Preços ao Consumidor Amplo), é a inflação de cada período. Uma série desses índices pode ser resumida por média ou mediana, como qualquer lista de dados.
+
+<figure class="figura">
+  <svg viewBox="0 0 460 150" role="img" aria-labelledby="fig-inf-1-t fig-inf-1-d">
+    <title id="fig-inf-1-t">Inflação acumulada em três anos</title>
+    <desc id="fig-inf-1-d">Um preço de R$ 200,00 passa por três anos de inflação de 4% ao ano. Ele vira 208,00 depois do primeiro ano, 216,32 depois do segundo e 224,97 depois do terceiro. Cada seta multiplica o preço por 1,04.</desc>
+    <rect x="10" y="50" width="80" height="36" class="traco" />
+    <rect x="130" y="50" width="80" height="36" class="traco" />
+    <rect x="250" y="50" width="80" height="36" class="traco" />
+    <rect x="370" y="50" width="80" height="36" class="traco preenche" />
+    <text x="50" y="73" class="rotulo" text-anchor="middle">200,00</text>
+    <text x="170" y="73" class="rotulo" text-anchor="middle">208,00</text>
+    <text x="290" y="73" class="rotulo" text-anchor="middle">216,32</text>
+    <text x="410" y="73" class="rotulo" text-anchor="middle">224,97</text>
+    <line x1="92" y1="68" x2="126" y2="68" class="traco-fino" />
+    <line x1="212" y1="68" x2="246" y2="68" class="traco-fino" />
+    <line x1="332" y1="68" x2="366" y2="68" class="traco-fino" />
+    <path d="M 126 68 L 120 64 L 120 72 Z" class="traco preenche" />
+    <path d="M 246 68 L 240 64 L 240 72 Z" class="traco preenche" />
+    <path d="M 366 68 L 360 64 L 360 72 Z" class="traco preenche" />
+    <text x="110" y="42" class="rotulo-fraco" text-anchor="middle">× 1,04</text>
+    <text x="230" y="42" class="rotulo-fraco" text-anchor="middle">× 1,04</text>
+    <text x="350" y="42" class="rotulo-fraco" text-anchor="middle">× 1,04</text>
+    <text x="50" y="106" class="rotulo-fraco" text-anchor="middle">hoje</text>
+    <text x="170" y="106" class="rotulo-fraco" text-anchor="middle">1 ano</text>
+    <text x="290" y="106" class="rotulo-fraco" text-anchor="middle">2 anos</text>
+    <text x="410" y="106" class="rotulo-fraco" text-anchor="middle">3 anos</text>
+    <text x="230" y="136" class="rotulo" text-anchor="middle">200 × 1,04³ = 200 × 1,124864 ≈ 224,97</text>
+  </svg>
+</figure>
+
+**Exemplo resolvido.** A inflação foi de 4% ao ano durante 3 anos. Qual foi a inflação acumulada? Quanto passou a custar algo que custava R$ 200,00?
+
+1. Fator: 1,04³ = 1,04 × 1,04 × 1,04 = 1,124864.
+2. Inflação acumulada: 1,124864 − 1 = 0,124864, cerca de 12,5% (e não 3 × 4% = 12%).
+3. Preço: 200 × 1,124864 ≈ 224,97.
+4. Resposta: cerca de 12,5%; R$ 224,97.
+
+Para resumir uma série longa pela **mediana**, ponha os valores em ordem. Com n valores e n par, os do meio são o (n ÷ 2)º e o seguinte: com 20 valores, o 10º e o 11º. Para ordenar muitos números sem se perder, risque o menor e o maior de cada vez, até sobrar o meio.
+
+**Exemplo resolvido.** O preço do quilo de um produto, em reais, em 12 mercados foi: 4,20; 3,95; 4,80; 4,10; 5,30; 3,70; 4,45; 4,05; 4,90; 3,85; 4,60; 4,15. Qual é a mediana? E a média?
+
+1. Em ordem: 3,70; 3,85; 3,95; 4,05; 4,10; 4,15; 4,20; 4,45; 4,60; 4,80; 4,90; 5,30.
+2. São 12 valores: os do meio são o 6º e o 7º, 4,15 e 4,20. Mediana: (4,15 + 4,20) ÷ 2 = 4,175.
+3. Média: a soma é 52,05, e 52,05 ÷ 12 = 4,3375.
+4. Resposta: mediana cerca de 4,18; média cerca de 4,34. São medidas diferentes.
+
+**Erro comum.** Somar as inflações dos períodos, achar a mediana sem pôr os valores em ordem, ou calcular a média (soma ÷ quantidade) quando a pergunta pede a mediana.
+
+### 3. Ganho real e poder de compra
+
+Se o salário sobe i e os preços sobem f no mesmo período, o salário compra **(1 + i) ÷ (1 + f)** vezes o que comprava antes. O **ganho real** é quanto o poder de compra aumentou.
+
+**Fórmula: ganho real**
+
+**1 + r = (1 + i) ÷ (1 + f)**
+
+- **i**: o aumento do salário no período, em decimal.
+- **f**: a inflação do mesmo período, em decimal.
+- **r**: o ganho real; negativo quando o salário perde para a inflação.
+- **Em palavras:** divida o fator do salário pelo fator dos preços.
+- **Quando usar:** "ganho real", "aumento do poder de compra", "o salário acompanhou a inflação?".
+
+Em **vários períodos** com as mesmas taxas, eleve o fator ao número de períodos: (1 + r)ⁿ.
+
+**Exemplo resolvido.** Uma aplicação rendeu 7% num ano em que a inflação foi de 4%. Qual foi o ganho real? E se, por 3 anos seguidos, a aplicação render 11% ao ano e a inflação for de 4% ao ano?
+
+1. Um ano: 1 + r = 1,07 ÷ 1,04. Para dividir decimais, multiplique os dois por 100: 107 ÷ 104, cerca de 1,0288.
+2. Volte do fator para a porcentagem: r = 1,0288 − 1 = 0,0288; × 100 = 2,88%, cerca de 2,9% (e não 7% − 4% = 3%).
+3. Três anos: dá para elevar antes e dividir depois. 1,11³ = 1,367631 e 1,04³ = 1,124864; 1,367631 ÷ 1,124864, cerca de 1,2158 (para estimar à mão, basta ver que 1,3676 é pouco mais que 1,2 vez 1,1249).
+4. Ganho em três anos: 1,2158 − 1 = 0,2158, cerca de 21,6% (e não 3 × 7% = 21%).
+5. Resposta: cerca de 2,9% e cerca de 21,6%.
+
+**Erro comum.** Subtrair as taxas (i − f) ou somar os ganhos de cada ano em vez de multiplicar os fatores. A diferença é pequena com taxas baixas, mas as alternativas da prova costumam trazer os dois valores.
+
+### 4. Perda de valor a taxa constante
+
+Um bem que perde a mesma porcentagem do valor a cada ano (uma moto, um celular) segue um modelo **exponencial**. Nesse modelo, o valor é multiplicado pelo mesmo fator a cada período, e o n fica no expoente. É como nos juros compostos, mas com fator menor que 1.
+
+**Fórmula: desvalorização**
+
+**V = V₀ × qⁿ**
+
+- **V₀**: o valor inicial.
+- **q**: o fator de desvalorização, menor que 1 (perder 15% ao ano é q = 0,85).
+- **n**: o número de períodos.
+- **V**: o valor depois de n períodos. A prova às vezes escreve V(n) ("V de n", o valor depois de n anos) e usa o ponto · como sinal de vezes: V(n) = V₀ · qⁿ.
+- **Em palavras:** a cada ano o valor é multiplicado por q.
+- **Quando usar:** perda de valor de bens, queda constante de uma quantidade.
+
+Se a questão der uma lista de valores, ache q dividindo um valor pelo anterior. Confira com mais de um par.
+
+<figure class="figura">
+  <svg viewBox="0 0 460 200" role="img" aria-labelledby="fig-inf-2-t fig-inf-2-d">
+    <title id="fig-inf-2-t">Desvalorização a 20% ao ano</title>
+    <desc id="fig-inf-2-d">Seis colunas, do ano 0 ao ano 5, com o valor de um celular que perde 20% ao ano: 2 000, 1 600, 1 280, 1 024, 819,20 e 655,36. Cada coluna é 0,8 vez a anterior, e a queda em reais diminui a cada ano.</desc>
+    <line x1="30" y1="175" x2="440" y2="175" class="traco" />
+    <rect x="45" y="45.0" width="40" height="130.0" class="traco preenche" />
+    <text x="65" y="40.0" class="rotulo-fraco" text-anchor="middle">2 000</text>
+    <text x="65" y="190" class="rotulo-fraco" text-anchor="middle">ano 0</text>
+    <rect x="112" y="71.0" width="40" height="104.0" class="traco preenche" />
+    <text x="132" y="66.0" class="rotulo-fraco" text-anchor="middle">1 600</text>
+    <text x="132" y="190" class="rotulo-fraco" text-anchor="middle">ano 1</text>
+    <rect x="179" y="91.8" width="40" height="83.2" class="traco preenche" />
+    <text x="199" y="86.8" class="rotulo-fraco" text-anchor="middle">1 280</text>
+    <text x="199" y="190" class="rotulo-fraco" text-anchor="middle">ano 2</text>
+    <rect x="246" y="108.4" width="40" height="66.6" class="traco preenche" />
+    <text x="266" y="103.4" class="rotulo-fraco" text-anchor="middle">1 024</text>
+    <text x="266" y="190" class="rotulo-fraco" text-anchor="middle">ano 3</text>
+    <rect x="313" y="121.8" width="40" height="53.2" class="traco preenche" />
+    <text x="333" y="116.8" class="rotulo-fraco" text-anchor="middle">819,20</text>
+    <text x="333" y="190" class="rotulo-fraco" text-anchor="middle">ano 4</text>
+    <rect x="380" y="132.4" width="40" height="42.6" class="traco preenche" />
+    <text x="400" y="127.4" class="rotulo-fraco" text-anchor="middle">655,36</text>
+    <text x="400" y="190" class="rotulo-fraco" text-anchor="middle">ano 5</text>
+  </svg>
+</figure>
+
+**Exemplo resolvido.** Um celular custou R$ 2 000,00 e, nos dois anos seguintes, valia R$ 1 600,00 e R$ 1 280,00. Mantendo a mesma taxa, quanto valerá depois de 5 anos, em milhar de real, com uma casa decimal?
+
+1. q = 1 600 ÷ 2 000 = 0,8; conferindo, 1 280 ÷ 1 600 = 0,8.
+2. Potência sem calculadora, reaproveitando as contas: 0,8² = 0,64; 0,8⁴ = 0,64² = 0,4096; 0,8⁵ = 0,4096 × 0,8 = 0,32768.
+3. V(5) = 2 000 · 0,8⁵ = 2 000 × 0,32768 = 655,36 reais.
+4. Em milhar de real: 655,36 ÷ 1 000 = 0,65536 mil; com uma casa decimal, 0,7 mil.
+5. Resposta: R$ 655,36, ou cerca de 0,7 mil reais.
+
+**Erro comum.** Subtrair sempre a mesma quantia (400 por ano), como se a perda fosse linear. A perda em reais diminui a cada ano, porque a porcentagem incide sobre um valor menor.
+
+### Armadilhas típicas do INEP
+
+1. **Dividir pelo valor final** numa variação percentual.
+2. **Confundir aumento com "quantas vezes"**: triplicar é aumentar 200%.
+3. **Somar inflações** de vários períodos em vez de multiplicar os fatores.
+4. **Subtrair taxas** (i − f) para achar o ganho real.
+5. **Tratar a desvalorização como linear**, tirando sempre o mesmo valor.
+6. **Esquecer de ordenar** os índices antes da mediana, ou calcular a média no lugar da mediana.
 
 ## Tópicos-Chave para Revisão
 
 <div className="topico">
 
-Inflação é o aumento generalizado e contínuo dos preços de bens e serviços, medido por um índice de inflação (como o IPCA). O índice mostra, em percentual, quanto os preços variaram entre duas datas, e serve de base para calcular reajustes de salários, aluguéis e contratos.
+#### 1. Variação percentual
 
-Fator de aumento é a ferramenta matemática central do assunto: para aumentar um valor V em P%, multiplica-se V por (1 + P/100). A fórmula do montante com reajuste percentual simples é M = V × (1 + P/100), onde M é o valor final, V é o valor inicial e P é a taxa percentual de reajuste.
+**variação = (B − A) ÷ A × 100**, sempre em relação ao **valor inicial**; pode passar de **100%**.
 
-Poder de compra é a relação entre o quanto você ganha e o quanto as coisas custam. Quando o salário sobe mais devagar que a inflação, o poder de compra cai, mesmo que o salário nominal tenha aumentado. A fórmula geral é Poder de compra = Salário / Custo de vida.
+#### 2. Inflação acumulada
 
-Ganho real é o crescimento verdadeiro do poder de compra do salário, dado pela fórmula 1 + r = (1 + i) / (1 + f), em que r é o ganho real, i é o percentual de aumento do salário e f é a taxa de inflação do período. A armadilha clássica do INEP é o aluno calcular r como uma subtração simples (i − f) em vez de usar a divisão de fatores: isso quase sempre aparece como uma alternativa "isca" na prova.
+**1 + inflação acumulada = (1 + f₁) × (1 + f₂) × … × (1 + fₙ)**; os **fatores** se **multiplicam**. Para resumir uma série, a **mediana** (valores em ordem, o do meio) não é a **média**.
 
-Aumentos sucessivos ao longo de vários períodos não se somam: multiplicam-se os fatores de cada período. Para dois aumentos seguidos de P1% e P2%, o fator total é (1 + P1/100) × (1 + P2/100), e não (P1 + P2)%.
+#### 3. Ganho real
 
-Reajustes proporcionais em custos compostos ocorrem quando um valor total é formado por partes com pesos diferentes (por exemplo, 60% de um custo é papel, 40% é gráfica), e cada parte sofre um índice de reajuste distinto. Nesses casos, aplica-se o reajuste específico a cada parcela separadamente antes de somar os resultados finais: nunca se aplica uma média simples dos dois percentuais sobre o total.
+**1 + r = (1 + i) ÷ (1 + f)**; em n períodos, eleve o **fator** a n; não **subtraia** as taxas.
+
+#### 4. Desvalorização
+
+**V = V₀ × qⁿ**, com **q** menor que 1, achado pela **razão** entre valores seguidos.
 
 </div>
 
-## Teste de Fogo
+## Questões do ENEM
 
-*Questões sem gabarito: resolva primeiro, depois confira com o professor ou com a IA.*
+*Marque uma alternativa em cada questão e confira tudo de uma vez no botão do fim.*
 
-**Questão 1 (ENEM 2011, 2ª Aplicação)**
+**Questão 1**
+
+*ENEM 2011 · 2ª aplicação · 2º dia · caderno cinza · questão 170*
+
+O salário-mínimo ― menor salário que um trabalhador pode receber ― é estabelecido por lei e reavaliado todos os anos com base no custo de vida da população.
+
+Disponível em: http://www.brasilescola.com. Acesso em: 2 maio 2010 (adaptado).
+
+A tabela apresenta uma série histórica do salário-mínimo no Brasil:
+
+<figure class="figura">
+
+| Ano | R$ |
+|---|---|
+| 1994 | 70,00 |
+| 1999 | 136,00 |
+| 2003 | 240,00 |
+| 2008 | 415,00 |
+
+</figure>
+
+BANCO CENTRAL DO BRASIL. Disponível em: http://www.ibge.gov.br. Acesso em: 28 abr. 2010 (adaptado).
+
+Que número inteiro representa, o valor mais aproximado do aumento sofrido pelo salário-mínimo, de 1994 a 2008, em pontos percentuais?
+
+A) 14\
+B) 38\
+C) 67\
+D) 265\
+E) 493
+
+**Questão 2**
+
+*ENEM 2020 · digital · 2º dia · caderno azul · questão 151*
+
+O ganho real de um salário, r, é a taxa de crescimento do poder de compra desse salário. Ele é calculado a partir do percentual de aumento dos salários e da taxa de inflação, referidos a um mesmo período. Algebricamente, pode-se calcular o ganho real pela fórmula
+
+1 + r = (1 + i)/(1 + f),
+
+em que i é o percentual de aumento no valor dos salários e f é a taxa de inflação, ambos referidos a um mesmo período.
+
+Considere que uma categoria de trabalhadores recebeu uma proposta de aumento salarial de 10%, e que a taxa de inflação do período correspondente tenha sido 5%. Para avaliar a proposta, os trabalhadores criaram uma classificação em função dos ganhos reais conforme o quadro.
+
+<figure class="figura">
+
+| Ganho real | Classificação |
+|---|---|
+| Igual ou superior a 5% | Boa |
+| Maior ou igual a 1,5% e menor do que 5% | Regular |
+| Maior do que 0% e menor do que 1,5% | Ruim |
+| Igual ou menor do que 0% | Inaceitável (ganho real negativo significa perda do poder de compra dos salários) |
+
+</figure>
+
+Eles classificaram a proposta de aumento e justificaram essa classificação apresentando o valor do ganho real que obteriam.
+
+A classificação, com sua respectiva justificativa, foi
+
+A) inaceitável, porque o ganho real seria mais próximo de – 5%.\
+B) ruim, porque o ganho real seria mais próximo de 1,05%.\
+C) regular, porque o ganho real seria mais próximo de 4,7%.\
+D) boa, porque o ganho real seria mais próximo de 9,5%.\
+E) boa, porque o ganho real seria mais próximo de 5%.
+
+**Questão 3**
+
+*ENEM 2011 · 2ª aplicação · 2º dia · caderno cinza · questão 155*
 
 A taxa de inflação é um índice que aponta, em percentuais, a evolução média dos preços de mercadorias e serviços. Entretanto, cada família percebe a variação dos preços de modo particular, pois o peso de cada item no seu orçamento é diferente. Assim, se o preço dos medicamentos sobe muito, o impacto da inflação para as famílias que têm mais idosos tende a ser maior. Se o preço dos alimentos cai, o impacto da inflação para as famílias mais pobres tende a ser menor, já que boa parte de seu orçamento é gasto em alimentação.
 
@@ -97,85 +358,105 @@ Considere que os salários de determinado grupo de pessoas crescem 10,0% ao ano,
 
 O aumento percentual do poder de compra, em dois anos, das pessoas que pertencem ao referido grupo, mais aproximado, será de
 
-A) 4,0%.
-B) 7,7%.
-C) 8,0%.
-D) 8,6%.
+A) 4,0%.\
+B) 7,7%.\
+C) 8,0%.\
+D) 8,6%.\
 E) 14,0%.
 
----
+**Questão 4**
 
-**Questão 2 (ENEM Digital 2020)**
+*ENEM 2017 · 2ª aplicação · 2º dia · caderno azul · questão 164*
 
-Uma editora pretende fazer uma reimpressão de um de seus livros. A direção da editora sabe que o gasto com papel representa 60% do custo de reimpressão, e que as despesas com a gráfica representam os 40% restantes. Dentro da programação da editora, no momento em que ela realizar a reimpressão, o preço do papel e os custos com a gráfica terão sofrido reajustes de 25,9% e 32,5%, respectivamente. O custo para a reimpressão de cada livro, nos preços atuais, é de R$ 100,00.
+Um dos principais indicadores de inflação é o Índice Nacional de Preços ao Consumidor Amplo (IPCA). O gráfico apresenta os valores do IPCA nos anos de 1994 a 2011.
 
-Qual será o custo, em real, para a reimpressão de cada livro com os reajustes estimados de custo de papel e despesas com a gráfica?
+<figure class="figura">
+  <svg viewBox="0 0 470 222" role="img" aria-labelledby="fig-inf-q4-t fig-inf-q4-d">
+    <title id="fig-inf-q4-t">Inflação anual pelo IPCA, de 1994 a 2011</title>
+    <desc id="fig-inf-q4-d">Gráfico de linha com o IPCA de cada ano, em porcentagem: 1994, 18,57; 1995, 22,41; 1996, 9,56; 1997, 5,22; 1998, 1,65; 1999, 8,94; 2000, 5,97; 2001, 7,67; 2002, 12,53; 2003, 9,30; 2004, 7,60; 2005, 5,69; 2006, 3,14; 2007, 4,46; 2008, 5,90; 2009, 4,31; 2010, 5,91; 2011, 6,50. Figura redesenhada a partir da prova oficial, com os mesmos dados.</desc>
+    <line x1="60" y1="200" x2="450" y2="200" class="traco" />
+    <line x1="60" y1="200" x2="60" y2="30" class="traco" />
+    <line x1="56" y1="200.0" x2="60" y2="200.0" class="traco-fino" />
+    <text x="52" y="204.0" class="rotulo-fraco" text-anchor="end">0</text>
+    <line x1="56" y1="167.0" x2="60" y2="167.0" class="traco-fino" />
+    <text x="52" y="171.0" class="rotulo-fraco" text-anchor="end">5</text>
+    <line x1="56" y1="134.0" x2="60" y2="134.0" class="traco-fino" />
+    <text x="52" y="138.0" class="rotulo-fraco" text-anchor="end">10</text>
+    <line x1="56" y1="101.0" x2="60" y2="101.0" class="traco-fino" />
+    <text x="52" y="105.0" class="rotulo-fraco" text-anchor="end">15</text>
+    <line x1="56" y1="68.0" x2="60" y2="68.0" class="traco-fino" />
+    <text x="52" y="72.0" class="rotulo-fraco" text-anchor="end">20</text>
+    <line x1="56" y1="35.0" x2="60" y2="35.0" class="traco-fino" />
+    <text x="52" y="39.0" class="rotulo-fraco" text-anchor="end">25</text>
+    <path d="M 75 77.4 L 96 52.1 L 117 136.9 L 138 165.5 L 159 189.1 L 180 141.0 L 201 160.6 L 222 149.4 L 243 117.3 L 264 138.6 L 285 149.8 L 306 162.4 L 327 179.3 L 348 170.6 L 369 161.1 L 390 171.6 L 411 161.0 L 432 157.1" class="traco" />
+    <text x="75.0" y="90.9" class="rotulo-fraco" text-anchor="middle">18,57</text>
+    <text x="75" y="214" class="rotulo-fraco" text-anchor="middle">94</text>
+    <text x="96.0" y="44.6" class="rotulo-fraco" text-anchor="middle">22,41</text>
+    <text x="96" y="214" class="rotulo-fraco" text-anchor="middle">95</text>
+    <text x="132.2" y="131.4" class="rotulo-fraco" text-anchor="middle">9,56</text>
+    <text x="117" y="214" class="rotulo-fraco" text-anchor="middle">96</text>
+    <text x="153.2" y="160.0" class="rotulo-fraco" text-anchor="middle">5,22</text>
+    <text x="138" y="214" class="rotulo-fraco" text-anchor="middle">97</text>
+    <text x="176" y="194" class="rotulo-fraco" text-anchor="middle">1,65</text>
+    <text x="159" y="214" class="rotulo-fraco" text-anchor="middle">98</text>
+    <text x="180.0" y="133.5" class="rotulo-fraco" text-anchor="middle">8,94</text>
+    <text x="180" y="214" class="rotulo-fraco" text-anchor="middle">99</text>
+    <text x="201.0" y="174.1" class="rotulo-fraco" text-anchor="middle">5,97</text>
+    <text x="201" y="214" class="rotulo-fraco" text-anchor="middle">00</text>
+    <text x="237.2" y="161.9" class="rotulo-fraco" text-anchor="middle">7,67</text>
+    <text x="222" y="214" class="rotulo-fraco" text-anchor="middle">01</text>
+    <text x="243.0" y="109.8" class="rotulo-fraco" text-anchor="middle">12,53</text>
+    <text x="243" y="214" class="rotulo-fraco" text-anchor="middle">02</text>
+    <text x="279.2" y="133.1" class="rotulo-fraco" text-anchor="middle">9,30</text>
+    <text x="264" y="214" class="rotulo-fraco" text-anchor="middle">03</text>
+    <text x="300.2" y="144.3" class="rotulo-fraco" text-anchor="middle">7,60</text>
+    <text x="285" y="214" class="rotulo-fraco" text-anchor="middle">04</text>
+    <text x="321.2" y="156.9" class="rotulo-fraco" text-anchor="middle">5,69</text>
+    <text x="306" y="214" class="rotulo-fraco" text-anchor="middle">05</text>
+    <text x="327.0" y="192.8" class="rotulo-fraco" text-anchor="middle">3,14</text>
+    <text x="327" y="214" class="rotulo-fraco" text-anchor="middle">06</text>
+    <text x="363.2" y="183.1" class="rotulo-fraco" text-anchor="middle">4,46</text>
+    <text x="348" y="214" class="rotulo-fraco" text-anchor="middle">07</text>
+    <text x="369.0" y="153.6" class="rotulo-fraco" text-anchor="middle">5,90</text>
+    <text x="369" y="214" class="rotulo-fraco" text-anchor="middle">08</text>
+    <text x="390.0" y="185.1" class="rotulo-fraco" text-anchor="middle">4,31</text>
+    <text x="390" y="214" class="rotulo-fraco" text-anchor="middle">09</text>
+    <text x="411.0" y="153.5" class="rotulo-fraco" text-anchor="middle">5,91</text>
+    <text x="411" y="214" class="rotulo-fraco" text-anchor="middle">10</text>
+    <text x="432.0" y="170.6" class="rotulo-fraco" text-anchor="middle">6,50</text>
+    <text x="432" y="214" class="rotulo-fraco" text-anchor="middle">11</text>
+    <text x="255" y="14" class="rotulo" text-anchor="middle">Inflação Anual - IPCA</text>
+    <text x="64" y="26" class="rotulo-fraco">Inflação</text>
+    <text x="468" y="214" class="rotulo-fraco" text-anchor="end">Ano</text>
+  </svg>
+</figure>
 
-A) 128,54
-B) 129,20
-C) 129,86
-D) 158,40
-E) 166,82
+Disponível em: www.ibge.gov.br. Acesso em: 2 ago. 2012 (adaptado).
 
----
+O valor mais próximo da mediana de todos os valores da inflação indicados no gráfico é
 
-**Questão 3 (ENEM Digital 2020)**
+A) 5,97.\
+B) 6,24.\
+C) 6,50.\
+D) 8,07.\
+E) 10,10.
 
-O ganho real de um salário, r, é a taxa de crescimento do poder de compra desse salário. Ele é calculado a partir do percentual de aumento dos salários e da taxa de inflação, referidos a um mesmo período. Algebricamente, pode-se calcular o ganho real pela fórmula
+**Questão 5**
 
-1 + r = (1 + i) / (1 + f)
+*ENEM 2024 · 2ª aplicação · 2º dia · caderno azul · questão 168*
 
-em que i é o percentual de aumento no valor dos salários e f é a taxa de inflação, ambos referidos a um mesmo período.
+O automóvel é um bem que se desvaloriza muito rapidamente, quando comparado a outros bens. Após a venda, um automóvel novo já sofre uma grande desvalorização. O histórico de um automóvel novo, vendido por R$ 30 000,00, apresenta os seguintes valores (V) de mercado, após decorridos os períodos indicados a seguir:
 
-Considere que uma categoria de trabalhadores recebeu uma proposta de aumento salarial de 10%, e que a taxa de inflação do período correspondente tenha sido 5%. Para avaliar a proposta, os trabalhadores criaram uma classificação em função dos ganhos reais, conforme o quadro:
+- ao final de um ano, R$ 27 000,00;
+- ao final de dois anos, R$ 24 300,00;
+- ao final de três anos, R$ 21 870,00.
 
-| Ganho real | Classificação |
-|---|---|
-| Igual ou superior a 5% | Boa |
-| Maior ou igual a 1,5% e menor que 5% | Regular |
-| Maior que 0% e menor que 1,5% | Ruim |
-| Igual ou menor que 0% | Inaceitável |
+Esses preços seguiram um modelo exponencial que expressa V em função do número n de ano de uso, pela relação V(n) = V₀ · qⁿ, em que V₀ é o valor inicial, q é o fator de desvalorização e n é o tempo, em ano, decorrido após a venda.
 
-Eles classificaram a proposta de aumento e justificaram essa classificação apresentando o valor do ganho real que obteriam. A classificação, com sua respectiva justificativa, foi
+O valor, em milhar de real, com uma casa decimal, que mais se aproxima do valor de mercado desse carro, ao final de seis anos, é
 
-A) inaceitável, porque o ganho real seria mais próximo de –5%.
-B) ruim, porque o ganho real seria mais próximo de 1,05%.
-C) regular, porque o ganho real seria mais próximo de 4,7%.
-D) boa, porque o ganho real seria mais próximo de 9,5%.
-E) boa, porque o ganho real seria mais próximo de 5%.
-
----
-
-**Questão 4 (ENEM 2020)**
-
-O quadro representa os gastos mensais, em real, de uma família com internet, mensalidade escolar e mesada do filho:
-
-| Item | Gasto mensal (R$) |
-|---|---|
-| Internet | 120,00 |
-| Mensalidade escolar | 700,00 |
-| Mesada do filho | 400,00 |
-
-No início do ano, a internet e a mensalidade escolar tiveram acréscimos, respectivamente, de 20% e 10%. Necessitando manter o valor da despesa mensal total com os itens citados, a família reduzirá a mesada do filho.
-
-Qual será a porcentagem da redução da mesada?
-
-A) 15,0
-B) 23,5
-C) 30,0
-D) 70,0
-E) 76,5
-
----
-
-**Questão 5 (ENEM 2020 – reaplicação/variação da questão do ganho real)**
-
-Considerando a mesma fórmula da Questão 3, 1 + r = (1 + i) / (1 + f), suponha agora que uma outra categoria de trabalhadores tenha recebido uma proposta de aumento salarial de 8%, com taxa de inflação do período de 8%.
-
-Nessa situação, o ganho real dessa categoria de trabalhadores é
-
-A) negativo, pois o aumento salarial não supera a inflação.
-B) exatamente igual a 8%, pois i e f têm o mesmo valor.
-C) igual a zero, pois o aumento salarial se anula exatamente com a inflação.
-D) impossível de calcular sem conhecer o salário inicial em reais.
-E) igual a 16%, pois somamos os dois percentuais de 8%.
+A) 13,7.\
+B) 14,3.\
+C) 14,6.\
+D) 15,9.\
+E) 17,7.
