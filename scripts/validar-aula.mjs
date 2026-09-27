@@ -42,10 +42,10 @@ const semAcento = (t) => t.normalize('NFD').replace(/[̀-ͯ]/g, '');
 // ele desaparece na comparação (não é a-z0-9) e a aula perde pontos por parecer diferente do banco,
 // que também guarda o expoente como dígito comum (10^-4), só que ao lado, não em cima.
 const SOBRESCRITO = { '⁰': '0', '¹': '1', '²': '2', '³': '3', '⁴': '4', '⁵': '5', '⁶': '6', '⁷': '7', '⁸': '8', '⁹': '9', '⁻': '-', '⁺': '+',
-  '₀': '0', '₁': '1', '₂': '2', '₃': '3', '₄': '4', '₅': '5', '₆': '6', '₇': '7', '₈': '8', '₉': '9', 'ⁿ': 'n', 'ₙ': 'n', 'ˣ': 'x', 'ᵗ': 't' };
+  '₀': '0', '₁': '1', '₂': '2', '₃': '3', '₄': '4', '₅': '5', '₆': '6', '₇': '7', '₈': '8', '₉': '9', 'ⁿ': 'n', 'ₙ': 'n', 'ˣ': 'x', 'ᵗ': 't', 'ₛ': 's' };
 // Uma folga antes do grupo inteiro (não de cada caractere): "10¹²" vira "10 12", um único token "12",
 // igual ao "10^12" do banco depois de perder o "^" na troca de símbolos por espaço, mais abaixo.
-const semSobrescrito = (t) => t.replace(/[⁰¹²³⁴⁵⁶⁷⁸⁹⁻⁺₀₁₂₃₄₅₆₇₈₉ⁿₙˣᵗ]+/g, (grupo) => ' ' + [...grupo].map((c) => SOBRESCRITO[c]).join(''));
+const semSobrescrito = (t) => t.replace(/[⁰¹²³⁴⁵⁶⁷⁸⁹⁻⁺₀₁₂₃₄₅₆₇₈₉ⁿₙˣᵗₛ]+/g, (grupo) => ' ' + [...grupo].map((c) => SOBRESCRITO[c]).join(''));
 const normal = (t) => semAcento(semSobrescrito(t)).toLowerCase().replace(/[^a-z0-9%,.]+/g, ' ').trim();
 
 function semelhanca(a, b) {

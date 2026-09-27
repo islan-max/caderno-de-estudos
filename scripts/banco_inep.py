@@ -866,12 +866,29 @@ def extrair_caderno(c):
     return questoes
 
 
+CORRECOES = RAIZ / "scripts" / "correcoes_banco.json"
+
+
+def aplicar_correcoes(qs):
+    """Alternativas que o PDF embaralha (fração empilhada no expoente, por exemplo) e que foram
+    transcritas à mão, conferindo na imagem da página. Ficam num arquivo versionado para a
+    reextração não perder a correção."""
+    if not CORRECOES.exists():
+        return qs
+    corr = ler_json(CORRECOES)
+    for q in qs:
+        if q["id"] in corr:
+            q["alternativas"] = corr[q["id"]]["alternativas"]
+            q["alternativas_corrigidas"] = True
+    return qs
+
+
 def extrair(*args):
     cat = ler_json(CATALOGO)
     for c in filtrar(cat["escolhidos"], args):
         if not arquivo_pdf(c, "prova").exists():
             continue
-        qs = extrair_caderno(c)
+        qs = aplicar_correcoes(extrair_caderno(c))
         gravar_json(QUESTOES / f"{chave_caderno(c)}.json", qs)
         sem_alt = sum(1 for q in qs if len(q["alternativas"]) != 5)
         sem_gab = sum(1 for q in qs if not (q["gabarito"] or q["gabarito_microdados"]))

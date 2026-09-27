@@ -1,0 +1,14 @@
+{
+  "2017-regular-D2-azul-Q164": {
+    "nota": "frações empilhadas; conferido na imagem da página em 26/09/2026",
+    "alternativas": ["5/4", "1/4", "4/3", "4/1", "3/4"]
+  },
+  "2022-ppl-D2-azul-Q171": {
+    "nota": "frações empilhadas; conferido na imagem da página em 26/09/2026",
+    "alternativas": ["V = (1/50)x^2", "V = 2 − (1/50)x", "V = 2x − (1/50)x^2", "V = x − (1/100)x^2", "V = 2x − (1/100)x"]
+  },
+  "2018-ppl-D2-azul-Q163": {
+    "nota": "expoente em fração (9/7) caía na linha da alternativa B; conferido na imagem da página em 26/09/2026",
+    "alternativas": ["1,28", "2,0", "10^(9/7)", "100", "10^9 − 10^7"]
+  }
+}
