@@ -2,178 +2,461 @@
 title: "Leis de Newton"
 subject: "Física"
 order: 2
-gabarito:
-  - correta: 2
-    porque: >
-      O airbag não muda massa nem inércia: ele estica o tempo da desaceleração. Como força = massa x variação de velocidade / tempo, mais tempo significa menos força sobre o ocupante.
-  - correta: 1
-    porque: >
-      É a 3ª Lei. O corpo empurra o fluido para trás e recebe dele um empurrão de mesma intensidade para a frente. O meio externo não participa, tanto que o foguete funciona no vácuo.
-  - correta: 2
-    porque: >
-      Subindo com aceleração para cima, N - P = m.a, logo N = m(g + a) = 60 x 12 = 720 N.
-  - correta: 1
-    porque: >
-      O atrito máximo é o coeficiente vezes a normal. Com menos atrito disponível a desaceleração cai e o carro precisa de mais espaço para parar. Peso e inércia não mudam.
-  - correta: 1
-    porque: >
-      Atrito = 0,25 x 20 x 10 = 50 N. Resultante = 80 - 50 = 30 N. Então a = 30/20 = 1,5 m/s².
 relevance: >
-  As Leis de Newton explicam por que os corpos se movem do jeito que se movem: elas ligam a ideia de
-  força à ideia de movimento. Se a Cinemática descreve o movimento, a Dinâmica de Newton explica a
-  causa dele. É um dos temas mais frequentes do ENEM em Física, com pelo menos uma questão por
-  edição, quase sempre em contexto de segurança no trânsito (cinto de segurança, airbag, apoio de
-  cabeça, freios), de esporte ou de situações domésticas como elevadores e objetos empurrados. O INEP
-  raramente pede conta pesada: cobra interpretação conceitual, identificação correta dos pares
-  ação e reação e leitura de um diagrama de forças.
+  As leis de Newton explicam por que as coisas se movem como se movem: por que um paraquedista para
+  de acelerar, por que uma moeda presa na parede não cai, por que uma roda consegue empurrar um carrinho
+  para a frente. O ENEM (Exame Nacional do Ensino Médio) cobra o tema quase sempre de forma conceitual,
+  com situações do dia a dia e gráficos. A chave é identificar todas as forças que agem sobre um corpo,
+  quem as exerce e se elas se equilibram ou não.
 quickSummary: >
-  Força é sempre uma interação entre dois corpos, e o que muda o movimento não é a força isolada, e
-  sim a força resultante: sem resultante, a velocidade não muda.
+  Força resultante nula: o corpo fica parado ou segue com velocidade constante (inércia). Força resultante
+  não nula: F = m × a, e a aceleração aponta como a resultante. Ação e reação têm o mesmo tamanho, sentidos
+  opostos e agem em corpos diferentes, por isso não se anulam. O atrito estático impede o deslizamento e
+  se ajusta à necessidade; o atrito cinético, com o corpo deslizando, vale μ × N e não depende da força
+  aplicada.
+resources:
+  conteudoComplementar:
+    conteudo: "Cinemática"
+    comoAjuda: "Força muda a velocidade: acelerar, frear, velocidade constante. Se esses movimentos travarem você, revise essa aula."
+gabarito:
+  - correta: 4
+    porque: >
+      O garoto puxa o móvel, e o móvel puxa o garoto com a mesma força, mas cada força age num corpo diferente.
+      Sobre o móvel agem a força do garoto e o atrito do chão; se a força do garoto vencer o atrito, o móvel se move.
+      Revisar: Aula Teórica › 3. Ação e reação
+  - correta: 4
+    porque: >
+      As duas moedas estão paradas, então as forças verticais sobre o conjunto se equilibram. A parede segura o conjunto
+      pelo atrito com a moeda de R$ 1,00: o atrito é o peso total, 0,05 + 0,09 = 0,14 N.
+      Revisar: Aula Teórica › 4. Equilíbrio e corpos em contato
+  - correta: 1
+    porque: >
+      Com o sentido da queda como positivo, a resultante começa grande e vai a zero na velocidade limite. Ao abrir o
+      paraquedas, ela salta para um valor negativo grande (para cima) e volta aos poucos a zero: gráfico B.
+      Revisar: Aula Teórica › 2. Segunda lei: força resultante e aceleração
+  - correta: 2
+    porque: >
+      A caixa desliza o tempo todo, então o atrito é cinético: μ × N. Na rampa, a normal e a rugosidade não mudam; por isso
+      o atrito fica constante, mesmo quando o trabalhador reduz a força. Gráfico C.
+      Revisar: Aula Teórica › 5. Atrito estático e cinético
+  - correta: 1
+    porque: >
+      A roda gira sem deslizar, então o atrito é estático. Ele é exercido pela superfície rugosa sobre a roda e aponta para
+      a frente, empurrando o carrinho: é essa força que transforma a energia da mola em energia de movimento.
+      Revisar: Aula Teórica › 5. Atrito estático e cinético
 ---
 
-## Aula Teórica Completa
+<Accordion titulo="Palavras e siglas desta aula" dica="Consulte quando encontrar um termo novo" icone="spell-check">
 
-**O que é força?** Força é a medida de uma interação entre dois corpos: um empurrão, um puxão, uma atração à distância. Duas consequências disso já eliminam metade dos erros de prova. Primeira: **força não é uma propriedade que o corpo "tem" guardada**, um corpo não "possui força", ele participa de interações. Segunda: **toda força tem um par**, porque é impossível empurrar sem ser empurrado de volta.
+- **ENEM** (Exame Nacional do Ensino Médio): a prova nacional que dá acesso a faculdades e bolsas.
+- **INEP** (Instituto Nacional de Estudos e Pesquisas Educacionais Anísio Teixeira): o órgão do governo que faz o ENEM.
+- **N** (newton): a unidade de força; o peso de um corpo de 1 kg é cerca de 10 N.
+- **Força resultante**: a soma de todas as forças sobre um corpo, levando em conta direção e sentido.
+- **Força normal**: a força que uma superfície faz sobre um corpo apoiado nela, perpendicular à superfície.
+- **Plano inclinado**: rampa.
+- **Rugosidade**: o quanto uma superfície é áspera.
+- **Fricção**: atrito.
+- **Velocidade limite**: a velocidade constante que um corpo atinge caindo no ar, quando a resistência do ar iguala o peso.
+- **Energia potencial elástica**: energia guardada numa mola comprimida ou esticada.
+- **Energia cinética**: a energia do movimento.
 
-A unidade de força é o newton (N). Força é uma grandeza vetorial: tem intensidade, direção (a linha em que age) e sentido (para onde aponta nessa linha). Por isso forças no mesmo sentido se somam e forças em sentidos opostos se subtraem. Essa soma de todas as forças que agem sobre um corpo tem um nome que vale ouro na prova: **força resultante**. É só ela que importa para saber como o movimento vai mudar.
+</Accordion>
 
-**1ª Lei de Newton: a inércia.** Um corpo em repouso tende a permanecer em repouso, e um corpo em movimento retilíneo com velocidade constante tende a continuar assim, a menos que uma força resultante atue sobre ele. Inércia é justamente essa "preguiça" natural de mudar o estado de movimento. A massa é a medida da inércia: quanto maior a massa, mais difícil é mudar a velocidade do corpo.
+## Antes de Começar
 
-Ponto crucial que o ENEM cobra em quase toda questão de inércia: **para manter velocidade constante não é preciso força resultante**. Um carro a velocidade constante numa estrada reta tem resultante zero, porque a força do motor equilibra exatamente o atrito e a resistência do ar. Força não serve para "manter" movimento, e sim para **mudar** movimento.
+**O que o ENEM cobra aqui.** A prova quase nunca pede só "calcule a força". Os temas que costumam aparecer são estes:
 
-Exemplos que caem todo ano: quando o ônibus freia, o passageiro é jogado para a frente, não porque alguma força o empurrou, mas porque ele *continua* com a velocidade que tinha enquanto o ônibus perde a dele; no arranque, é jogado para trás pelo mesmo motivo, invertido. A toalha puxada de baixo dos pratos e a poeira que sai do tapete batido são o mesmo fenômeno.
+- **Explicar a ação e reação** e por que elas não se anulam.
+- **Somar forças** num corpo parado para achar uma força desconhecida.
+- **Ler um gráfico** de força resultante ao longo de um movimento.
+- **Dizer para onde aponta o atrito** e quem o exerce.
+- **Distinguir o atrito estático do cinético**.
 
-**2ª Lei de Newton: a força resultante e a aceleração.** A força resultante sobre um corpo é igual à massa desse corpo multiplicada pela aceleração que ele adquire:
+**O que você precisa saber antes.**
 
-força resultante = massa × aceleração, ou F = m · a
+- **Cinemática.** Velocidade constante quer dizer aceleração zero; acelerar ou frear quer dizer aceleração diferente de zero. Revise a aula de Cinemática.
+- **Grandezas com direção e sentido.** Força, como a velocidade, tem **intensidade** (o tamanho, ou módulo), direção (a linha) e sentido (o lado). Forças opostas na mesma linha se subtraem.
 
-Com massa em quilogramas e aceleração em m/s², a força sai em newtons. Ou seja, 1 N é a força que dá a 1 kg uma aceleração de 1 m/s².
+## Aula Teórica
 
-A leitura conceitual é o que a prova cobra: para uma mesma força, **quanto maior a massa, menor a aceleração** (é mais difícil acelerar um caminhão que uma bicicleta), e a aceleração aponta sempre no sentido da força resultante.
+### 1. Força resultante e inércia
 
-Há uma reescrita da 2ª lei que o ENEM adora em segurança: como a aceleração é a variação de velocidade dividida pelo tempo,
+A **força resultante** é a soma de todas as forças que agem sobre um corpo. A **primeira lei de Newton**, a lei da **inércia**, diz: se a resultante é **zero**, o corpo não muda a velocidade. Ele continua parado, se estava parado, ou segue em linha reta com velocidade constante, se estava em movimento.
 
-força = massa × (variação de velocidade) ÷ (tempo da interação)
+**Fórmula: resultante nula**
 
-Ou seja, para uma mesma variação de velocidade (parar um corpo, por exemplo), **quanto maior o tempo da interação, menor a força**. É o princípio do airbag, do capacete, da luva de goleiro, do colchão do salto em altura e da zona de deformação da lataria: todos aumentam o tempo de parada e, com isso, reduzem a força.
+**resultante = 0 ⇔ velocidade constante (ou repouso contínuo)**
 
-**3ª Lei de Newton: ação e reação.** Se um corpo A faz uma força sobre um corpo B, então B faz sobre A uma força de mesma intensidade, mesma direção e sentido oposto. Nunca existe força sozinha: elas nascem e morrem aos pares.
+- **resultante**: a soma das forças, com sinal (forças opostas se subtraem).
+- **velocidade constante**: mesmo tamanho, mesma direção e mesmo sentido.
+- **Em palavras:** sem resultante, sem mudança de velocidade; o símbolo ⇔ quer dizer "vale nos dois sentidos".
+- **Quando usar:** corpos parados, veículos em velocidade constante, qualquer situação "com velocidade constante".
 
-E aqui está a dúvida que mais aparece na cabeça do aluno: se as duas forças são iguais e opostas, por que elas não se anulam e nada nunca sai do lugar? A resposta é curta e decisiva: **elas não se anulam porque agem em corpos diferentes**. Para anular uma força, as duas precisam agir *no mesmo corpo*. A ação está em B e a reação está em A, então cada uma influencia o movimento de um corpo distinto.
+**Exemplo resolvido.** Uma caixa sobe presa ao cabo de um guindaste, sempre a 0,5 m/s. O peso da caixa vale 900 N. Quanto vale a força resultante? Com que força o cabo puxa a caixa?
 
-Um exemplo: você empurra uma caixa e a caixa empurra você com a mesma intensidade. A caixa acelera por causa da força que *você* faz nela, e você é empurrado para trás pela força que *ela* faz em você: só que o atrito dos seus pés com o chão impede que você deslize. Outros pares clássicos: o foguete empurra os gases para baixo e os gases empurram o foguete para cima; o pé do nadador empurra a água para trás e a água empurra o nadador para a frente; a Terra puxa a maçã para baixo e a maçã puxa a Terra para cima com a mesma força (a Terra não sai do lugar visivelmente porque a massa dela é gigantesca, e pela 2ª lei a aceleração dela é praticamente nula).
+1. Velocidade constante: a aceleração é zero, então a resultante é zero.
+2. Na vertical agem a força do cabo (para cima) e o peso (para baixo). Resultante zero: força do cabo = peso = 900 N.
+3. Resposta: resultante nula; o cabo puxa com 900 N, mesmo com a caixa subindo.
 
-Cuidado com um par falso: o peso de um livro sobre a mesa e a normal que a mesa faz no livro **não** são ação e reação, as duas agem no mesmo corpo e por isso podem se anular. A reação do peso é a força que o livro faz na Terra; a reação da normal é a força que o livro faz na mesa.
+**Erro comum.** Achar que, para se mover com velocidade constante, é preciso uma força "a favor" maior que as outras. Velocidade constante significa forças equilibradas.
 
-**Peso, massa e normal.** Massa (em kg) é a quantidade de matéria e a medida da inércia, e não muda de lugar para lugar. Peso é a **força** com que um planeta atrai o corpo, medida em newtons:
+### 2. Segunda lei: força resultante e aceleração
 
-peso = massa × gravidade, ou P = m · g
+Quando a resultante não é zero, o corpo acelera, e a aceleração aponta no **mesmo sentido** da resultante.
 
-Como g na Terra vale cerca de 10 m/s² e na Lua cerca de 1,6 m/s², um astronauta de 70 kg tem a mesma massa nos dois lugares, mas pesa 700 N na Terra e cerca de 112 N na Lua. Dizer "meu peso é 70 kg" é, na Física, errado: 70 kg é massa.
+**Fórmula: segunda lei de Newton**
 
-Força normal (N) é a força que uma superfície faz no corpo apoiado nela, sempre **perpendicular** à superfície. Num corpo parado em chão horizontal ela tem o mesmo valor do peso, porque a resultante vertical é zero, mas isso é coincidência do caso mais simples: em plano inclinado, em elevador acelerado ou com alguém empurrando o corpo para baixo, normal e peso deixam de coincidir.
+**F = m × a**
 
-**Elevadores.** Esse é o cenário favorito do INEP para testar se o aluno entendeu força resultante. Dentro de um elevador, a balança marca a força normal, não o peso. Se o elevador está parado ou subindo com velocidade constante, a resultante é zero e a normal é igual ao peso: a balança marca o valor de sempre. Se o elevador **acelera para cima**, a resultante aponta para cima, a normal fica maior que o peso e a balança marca mais: a sensação de ficar "mais pesado" no arranque de subida. Se **acelera para baixo**, a normal fica menor e a balança marca menos. Com o cabo rompido, tudo cai com aceleração g, a normal vira zero e a balança marca zero: é a imponderabilidade, a mesma sensação dos astronautas em órbita.
+- **F**: a força resultante, em newtons (N).
+- **m**: a massa, em quilogramas (kg).
+- **a**: a aceleração, em m/s².
+- **Em palavras:** quanto maior a resultante, maior a aceleração; quanto maior a massa, menor a aceleração para a mesma força.
+- **Quando usar:** corpos acelerando ou freando; gráficos de força resultante.
 
-**Atrito.** Atrito é a força que aparece no contato entre duas superfícies e se opõe ao deslizamento entre elas. Ele depende da força normal e do par de materiais, resumido no coeficiente de atrito (µ, letra grega "mi", um número sem unidade).
+**Exemplo resolvido.** Um carrinho de 20 kg é empurrado com 60 N, e o atrito com o chão vale 20 N. Qual é a aceleração? E se o empurrão cair para 20 N?
 
-força de atrito = coeficiente de atrito × força normal, ou Fat = µ · N
+1. As duas forças estão na mesma linha, em sentidos opostos: resultante 60 − 20 = 40 N.
+2. a = F ÷ m = 40 ÷ 20 = 2 m/s².
+3. Com empurrão de 20 N: resultante 20 − 20 = 0. Se o carrinho estava andando, segue com velocidade constante.
+4. Resposta: 2 m/s²; aceleração zero.
 
-Existem dois tipos. O **atrito estático** age enquanto o corpo ainda não deslizou: ele se ajusta ao empurrão, crescendo até um valor máximo. O **atrito cinético** age quando o corpo já está deslizando e tem valor praticamente constante. O estático máximo é maior que o cinético: daí ser mais difícil *começar* a empurrar o armário do que continuar empurrando.
+Em muitos casos, uma força de resistência (do ar ou da água) **cresce com a velocidade**. Um corpo que cai no ar parte com velocidade zero, então no início a resistência também é zero: a resultante é o peso inteiro, o maior valor. Depois ele acelera cada vez menos, a resultante diminui, até que a resistência iguala o peso: a resultante chega a zero e ele passa a cair com **velocidade limite**, constante.
 
-O atrito não é sempre um vilão: é o atrito estático entre pneu e asfalto que permite ao carro acelerar, curvar e frear, sem ele, a roda giraria em falso. Por isso pneu careca e pista molhada são perigosos: reduzem o coeficiente de atrito e, com ele, a força máxima disponível para frear ou curvar. No modelo cobrado no ENEM, o atrito **não depende da área de contato**.
+**Como ler um gráfico de força resultante:**
 
-**Tração.** Tração (T) é a força transmitida por um fio, cabo ou corda esticada. Nas provas os fios são ideais, inextensíveis e de massa desprezível, o que traz duas consequências: a tração tem o mesmo valor nas duas pontas e corpos ligados pelo mesmo fio têm a mesma aceleração em módulo.
+- Escolha um sentido como positivo (por exemplo, o do movimento). Uma resultante no sentido **oposto** aparece **abaixo do eixo**, com valor negativo.
+- Uma mudança **de repente** nas forças aparece como um **salto vertical** no gráfico.
+- Se a resistência depende da velocidade, depois de um salto a resultante volta **aos poucos** para zero, porque a velocidade muda e a resistência muda junto.
 
-**Plano inclinado, em visão qualitativa.** Quando um bloco está sobre uma rampa, o peso continua apontando para o centro da Terra, ou seja, verticalmente para baixo, mas ele pode ser pensado como a soma de duas partes: uma **paralela à rampa**, que puxa o bloco ladeira abaixo e é a responsável por ele deslizar, e uma **perpendicular à rampa**, que é equilibrada pela força normal. Quanto mais íngreme a rampa, maior a parte paralela e menor a perpendicular. Como a normal diminui, o atrito disponível também diminui: por isso existe um ângulo a partir do qual o objeto escorrega sozinho. Uma rampa suave exige menos força para subir uma carga, à custa de um percurso mais longo.
+<figure class="figura">
+  <svg viewBox="0 0 460 200" role="img" aria-labelledby="fig-nw-3-t fig-nw-3-d">
+    <title id="fig-nw-3-t">Força resultante num barco que desliga o motor</title>
+    <desc id="fig-nw-3-d">Gráfico da força resultante sobre um barco ao longo do tempo, com o sentido do movimento como positivo. Antes de desligar o motor, o barco anda em velocidade constante e a resultante é zero. No instante em que o motor é desligado, marcado por uma linha tracejada, a resultante salta de uma vez para um valor negativo grande: sobra só a resistência da água, contra o movimento. Depois, a resultante volta aos poucos para perto de zero, porque o barco fica mais lento e a resistência diminui.</desc>
+    <line x1="50" y1="20" x2="50" y2="185" class="traco-fino" />
+    <line x1="50" y1="80" x2="440" y2="80" class="traco-fino" />
+    <text x="56" y="16" class="rotulo-fraco">força resultante</text>
+    <text x="440" y="96" class="rotulo-fraco" text-anchor="end">tempo</text>
+    <text x="44" y="84" class="rotulo-fraco" text-anchor="end">0</text>
+    <line x1="200" y1="30" x2="200" y2="185" class="tracejado" />
+    <text x="196" y="70" class="rotulo-fraco" text-anchor="end">motor desligado</text>
+    <path d="M 50 80 L 200 80" class="traco" />
+    <path d="M 200 80 L 200 170" class="tracejado" />
+    <path d="M 200 170 C 230 110, 300 88, 430 83" class="traco" />
+  </svg>
+</figure>
 
-**Diagrama de forças.** É o desenho em que você representa o corpo como um ponto e desenha, saindo dele, **apenas as forças que agem sobre ele**: nunca as que ele faz nos outros. O roteiro é sempre o mesmo: (a) desenhe o peso, sempre vertical para baixo; (b) se houver contato com superfície, desenhe a normal, perpendicular à superfície; (c) se houver fio, desenhe a tração ao longo do fio, puxando o corpo; (d) se houver contato com deslizamento ou tendência de deslizamento, desenhe o atrito paralelo à superfície e contrário ao movimento; (e) some tudo para achar a resultante. Se a resultante der zero, o corpo está parado ou com velocidade constante; se der diferente de zero, há aceleração no sentido dela.
+**Erro comum.** Confundir a força resultante com a velocidade. Um corpo pode ter velocidade alta e resultante zero; e a resultante pode ser contra o movimento (negativa) enquanto o corpo ainda anda para a frente.
 
-**Cinto, airbag e apoio de cabeça, em linguagem de Newton.** Numa colisão frontal, o carro para em uma fração de segundo, mas o passageiro, por inércia, continua com a velocidade que tinha. O **cinto de segurança** faz a força que desacelera o passageiro junto com o carro, distribuindo-a sobre ossos resistentes como bacia e clavícula. O **airbag** aumenta o tempo de parada da cabeça e do tórax e espalha a força por uma área maior. Já o **apoio de cabeça** serve para a colisão traseira: nela o banco empurra o tronco para a frente e a cabeça, por inércia, fica para trás, causando a lesão em chicote.
+### 3. Ação e reação
 
-**Armadilhas típicas do INEP:** (1) dizer que ação e reação se anulam, quando elas nunca se anulam por agirem em corpos diferentes; (2) apontar peso e normal como par ação e reação, quando ambos agem no mesmo corpo; (3) achar que velocidade constante exige força resultante, quando velocidade constante significa exatamente resultante zero; (4) confundir peso com massa, tratando quilograma como unidade de força ou supondo que a massa muda na Lua; (5) supor que a normal é sempre igual ao peso, esquecendo dos casos de elevador acelerado, plano inclinado e força extra apertando o corpo contra a superfície; (6) dizer que no airbag "a força é absorvida", quando o correto é que o tempo de interação aumenta e, por isso, a força diminui; (7) tratar o atrito como sempre prejudicial, ignorando que é o atrito que permite andar, acelerar e frear.
+A **terceira lei de Newton** diz: se um corpo A faz uma força sobre um corpo B, então B faz sobre A uma força de **mesma intensidade**, **mesma direção** e **sentido oposto**. Essas duas forças agem em **corpos diferentes**; por isso **não se anulam**.
+
+**Fórmula: ação e reação**
+
+**força de A sobre B = − força de B sobre A**
+
+- **A e B**: os dois corpos que interagem.
+- **o sinal −**: sentidos opostos.
+- **Em palavras:** as forças aparecem aos pares, uma em cada corpo.
+- **Quando usar:** empurrões entre pessoas, apoios, foguetes, qualquer interação entre dois corpos.
+
+"Ação" e "reação" são só **nomes**: qualquer uma das duas forças do par pode ser chamada de ação, e isso não muda nada. Para saber se um corpo se move, some só as forças **que agem sobre ele**.
+
+**Exemplo resolvido.** Dois patinadores parados no gelo se empurram. Um tem 40 kg e o outro, 80 kg. A força entre eles é de 120 N. Quais são as acelerações?
+
+1. Cada um recebe 120 N, em sentidos opostos (ação e reação).
+2. Patinador de 40 kg: a = 120 ÷ 40 = 3 m/s².
+3. Patinador de 80 kg: a = 120 ÷ 80 = 1,5 m/s².
+4. Resposta: 3 m/s² e 1,5 m/s², em sentidos opostos. As forças são iguais, mas agem em corpos diferentes e produzem efeitos diferentes.
+
+**Erro comum.** Dizer que ação e reação se anulam e que, por isso, nada consegue se mover. Elas nunca estão no mesmo corpo.
+
+### 4. Equilíbrio e corpos em contato
+
+Num corpo **parado**, a resultante é zero em cada direção. A soma das forças para cima é igual à soma das forças para baixo, e a soma para um lado é igual à soma para o outro. Quando vários corpos estão juntos, dá para olhar o **conjunto** inteiro: as forças entre eles são internas e se cancelam.
+
+**Fórmula: peso**
+
+**P = m × g**
+
+- **P**: o peso, em newtons (N).
+- **m**: a massa, em quilogramas (kg).
+- **g**: a aceleração da gravidade, cerca de 10 m/s².
+- **Em palavras:** um corpo de 1 kg pesa cerca de 10 N.
+- **Quando usar:** sempre que for preciso o peso a partir da massa.
+
+<figure class="figura">
+  <svg viewBox="0 0 460 200" role="img" aria-labelledby="fig-nw-1-t fig-nw-1-d">
+    <title id="fig-nw-1-t">Duas caixas empilhadas no chão</title>
+    <desc id="fig-nw-1-d">Uma caixa de 30 N sobre uma caixa de 50 N, apoiadas no chão. No conjunto, o peso total de 80 N aponta para baixo e a força do chão, de 80 N, aponta para cima.</desc>
+    <line x1="60" y1="170" x2="400" y2="170" class="traco" />
+    <rect x="140" y="110" width="100" height="60" class="traco" />
+    <rect x="160" y="60" width="60" height="50" class="traco preenche" />
+    <text x="190" y="90" class="rotulo" text-anchor="middle">30 N</text>
+    <text x="190" y="145" class="rotulo" text-anchor="middle">50 N</text>
+    <line x1="290" y1="60" x2="290" y2="165" class="traco" />
+    <path d="M 290 165 L 285 153 L 295 153 Z" class="traco preenche" />
+    <text x="298" y="120" class="rotulo-fraco">peso total 80 N</text>
+    <line x1="120" y1="168" x2="120" y2="72" class="traco" />
+    <path d="M 120 70 L 115 82 L 125 82 Z" class="traco preenche" />
+    <text x="112" y="110" class="rotulo-fraco" text-anchor="end">chão: 80 N</text>
+  </svg>
+</figure>
+
+**Exemplo resolvido.** Duas caixas estão empilhadas no chão: a de cima tem 3 kg e a de baixo, 5 kg (use g = 10 m/s²). Qual é a força que o chão faz na caixa de baixo? E a força que a caixa de baixo faz na de cima?
+
+1. Pesos: 3 × 10 = 30 N e 5 × 10 = 50 N.
+2. Conjunto parado: força do chão = peso total = 30 + 50 = 80 N, para cima.
+3. Caixa de cima parada: a caixa de baixo a sustenta com 30 N, para cima.
+4. Resposta: 80 N e 30 N.
+
+Uma força que só **aperta** um corpo contra outro, na horizontal, não sustenta peso nenhum: quem segura para cima é o **atrito**. Um livro apertado entre as duas mãos não cai porque o atrito das mãos, para cima, iguala o peso do livro.
+
+**Erro comum.** Considerar só o peso do corpo em contato com o apoio, esquecendo o que está apoiado sobre ele.
+
+### 5. Atrito estático e cinético
+
+O **atrito** é a força que uma superfície faz sobre um corpo, ao longo dela, contra o deslizamento. Há dois tipos:
+
+- **Atrito estático**: quando as superfícies **não deslizam** uma sobre a outra. Ele se ajusta ao que for preciso, até um valor máximo.
+- **Atrito cinético** (ou dinâmico): quando as superfícies **deslizam**. Ele vale μ × N e não depende da força aplicada paralela à superfície nem da velocidade.
+
+**Fórmula: atrito cinético**
+
+**f = μ × N**
+
+- **μ** (letra grega "mi"): o coeficiente de atrito, sem unidade, que depende da rugosidade das duas superfícies.
+- **N**: aqui, a letra N é a **força normal**, que aperta uma superfície contra a outra, em newtons. Não confunda com o "N" escrito depois de um número, que é a unidade newton.
+- **f**: a força de atrito cinético, em newtons.
+- **Em palavras:** com as mesmas superfícies e a mesma normal, o atrito cinético é constante.
+- **Quando usar:** corpos que deslizam, sendo arrastados, freados ou empurrados.
+
+A **normal** num chão plano é igual ao peso. Num **plano inclinado** (uma rampa) de inclinação fixa, a normal é menor que o peso, mas também **constante**. Uma força paralela à superfície (puxar ou empurrar ao longo da rampa) não muda a normal; só uma força que aperta contra a superfície mudaria.
+
+Quem **anda**, ou uma **roda com tração** (girada por motor, pedal ou mola) que rola sem deslizar, usa o atrito **estático**. O pé, ou a roda, empurra o chão para trás; pela terceira lei, o chão empurra o pé, ou a roda, **para a frente**. Essa força para a frente é o atrito estático, **exercido pelo chão sobre** o pé ou a roda. O par dela, da roda sobre o chão, age no chão e não move o veículo. Uma roda **livre**, que só é arrastada, não tem esse atrito para a frente.
+
+<figure class="figura">
+  <svg viewBox="0 0 460 170" role="img" aria-labelledby="fig-nw-2-t fig-nw-2-d">
+    <title id="fig-nw-2-t">Atrito no pé de quem anda</title>
+    <desc id="fig-nw-2-d">Um pé apoiado no chão, empurrando para trás ao dar um passo para a direita. No contato, o pé empurra o chão para trás (seta tracejada para a esquerda, no chão) e o chão empurra o pé para a frente (seta cheia para a direita, no pé): esse é o atrito estático que move quem anda.</desc>
+    <line x1="60" y1="140" x2="400" y2="140" class="traco" />
+    <path d="M 170 140 L 170 70 L 200 70 L 205 115 L 270 125 L 275 140 Z" class="traco" />
+    <line x1="232" y1="136" x2="310" y2="136" class="traco" />
+    <path d="M 312 136 L 300 131 L 300 141 Z" class="traco preenche" />
+    <line x1="228" y1="150" x2="170" y2="150" class="tracejado" />
+    <path d="M 168 150 L 180 145 L 180 155 Z" class="traco preenche" />
+    <text x="316" y="130" class="rotulo-fraco">chão sobre o pé: para a frente</text>
+    <text x="164" y="166" class="rotulo-fraco" text-anchor="end">pé sobre o chão</text>
+    <text x="230" y="30" class="rotulo-fraco" text-anchor="middle">sentido do passo →</text>
+  </svg>
+</figure>
+
+**Exemplo resolvido.** Um livro de 2 kg é empurrado sobre uma mesa e solto; ele desliza e para sozinho. O coeficiente de atrito cinético é 0,4 (use g = 10 m/s²). Quanto vale o atrito enquanto ele desliza? E a desaceleração? E se o livro tivesse 4 kg?
+
+1. Mesa plana: N = peso = 2 × 10 = 20 N.
+2. Atrito cinético: f = 0,4 × 20 = 8 N, o mesmo do começo ao fim do deslizamento, mesmo com a velocidade caindo.
+3. Desaceleração: a = 8 ÷ 2 = 4 m/s².
+4. Com 4 kg: N = 40 N e f = 0,4 × 40 = 16 N (o atrito depende da normal).
+5. Resposta: 8 N; 4 m/s²; 16 N.
+
+**Erro comum.** Achar que o atrito cinético diminui quando a força aplicada ao longo da superfície diminui, ou que o atrito sobre um pé ou uma roda com tração aponta para trás.
+
+### Armadilhas típicas do INEP
+
+1. **Achar que ação e reação se anulam**: elas agem em corpos diferentes.
+2. **Confundir resultante com velocidade**: velocidade constante é resultante zero.
+3. **Esquecer o peso de corpos apoiados** ao calcular um apoio.
+4. **Achar que o atrito cinético muda** com a força aplicada ao longo da superfície.
+5. **Pôr o atrito de quem anda para trás**: ele aponta para a frente.
+6. **Trocar quem exerce a força**: o atrito que move a roda é exercido pelo chão, sobre a roda.
 
 ## Tópicos-Chave para Revisão
 
 <div className="topico">
 
-Força é a medida de uma interação entre dois corpos, é uma grandeza vetorial medida em newtons e nunca aparece sozinha. O que determina a mudança do movimento não é uma força isolada, e sim a força resultante, a soma vetorial de todas as forças que agem sobre o mesmo corpo.
+#### 1. Inércia
 
-Primeira lei, ou lei da inércia: sem força resultante, o corpo mantém repouso ou movimento retilíneo com velocidade constante. Inércia é medida pela massa; o passageiro projetado para a frente numa freada não é empurrado por nada, apenas continua com a velocidade que já tinha.
+**resultante = 0 ⇔ velocidade constante (ou repouso contínuo)**: forças **equilibradas**, sem **aceleração**.
 
-Segunda lei: força resultante igual a massa vezes aceleração, F = m · a, com a aceleração sempre no sentido da resultante. Para a mesma força, mais massa significa menos aceleração. Reescrita como força igual a massa vezes variação de velocidade dividida pelo tempo, ela explica airbag, capacete e luva de goleiro: aumentar o tempo da interação reduz a força.
+#### 2. Segunda lei
 
-Terceira lei: ação e reação têm mesma intensidade, mesma direção e sentidos opostos, mas agem em corpos diferentes e por isso jamais se anulam. Peso e normal sobre um livro na mesa não formam par de ação e reação, porque agem no mesmo corpo; a reação do peso do livro é a atração que o livro exerce sobre a Terra.
+**F = m × a**; a aceleração aponta como a **resultante**; no gráfico, sentido oposto fica **abaixo** do eixo.
 
-Massa é quantidade de matéria em quilogramas e não muda de lugar; peso é força de atração gravitacional, P = m · g, medido em newtons, e muda conforme a gravidade local. Força normal é a força perpendicular que a superfície faz no corpo apoiado, e só por coincidência do caso mais simples ela iguala o peso.
+#### 3. Ação e reação
 
-Em elevador, a balança indica a força normal: normal igual ao peso quando parado ou em velocidade constante, normal maior que o peso quando acelera para cima, normal menor quando acelera para baixo e normal zero em queda livre, situação de imponderabilidade.
+**força de A sobre B = − força de B sobre A**, em **corpos** diferentes: não se **anulam**.
 
-Atrito é dado por Fat = µ · N, depende da normal e do par de materiais, e não da área de contato. O atrito estático se ajusta ao empurrão até um valor máximo e é maior que o atrito cinético, que age durante o deslizamento. É o atrito estático entre pneu e asfalto que permite acelerar, curvar e frear, o que explica o perigo de pneu careca e pista molhada.
+#### 4. Equilíbrio
 
-Tração é a força transmitida por fio ideal, com o mesmo valor nas duas extremidades, e corpos ligados pelo mesmo fio compartilham a mesma aceleração em módulo.
+**P = m × g**; corpo parado: forças para cima = forças para baixo; olhe o **conjunto** e some os **pesos**.
 
-No plano inclinado, o peso se divide em uma componente paralela à rampa, que puxa o corpo ladeira abaixo, e uma perpendicular, equilibrada pela normal; quanto mais íngreme a rampa, maior a componente paralela e menor a normal, o que reduz o atrito disponível.
+#### 5. Atrito
 
-O diagrama de forças representa apenas as forças que agem sobre o corpo escolhido (peso, normal, tração e atrito) e nunca as que ele exerce sobre outros; resultante zero significa repouso ou velocidade constante, resultante diferente de zero significa aceleração no sentido dela.
+**f = μ × N** quando desliza (cinético, **constante**); sem deslizar, atrito **estático**, que em quem anda e numa roda com tração aponta para a frente.
 
 </div>
 
-## Teste de Fogo
+## Questões do ENEM
 
 *Marque uma alternativa em cada questão e confira tudo de uma vez no botão do fim.*
 
-**Questão 1 (estilo ENEM: autoral)**
-Campanhas de trânsito afirmam que o uso do cinto de segurança e o acionamento do airbag reduzem drasticamente a gravidade das lesões em colisões frontais. Em uma colisão, tanto o veículo quanto o ocupante sofrem a mesma variação de velocidade, de um determinado valor até o repouso.
+**Questão 1**
 
-Do ponto de vista da física, o airbag reduz as lesões porque
+*ENEM 2012 · 2ª aplicação · 1º dia · caderno branco · questão 77*
 
-a) diminui a massa efetiva do ocupante durante o choque.
-b) elimina a inércia do ocupante no instante da colisão.
-c) aumenta o intervalo de tempo da desaceleração, reduzindo a força sobre o ocupante.
-d) anula a força de reação que o ocupante exerce sobre o veículo.
-e) transforma a força de contato em uma força de sentido oposto ao movimento do carro.
+Durante uma faxina, a mãe pediu que o filho a ajudasse, deslocando um móvel para mudá-lo de lugar. Para escapar da tarefa, o filho disse ter aprendido na escola que não poderia puxar o móvel, pois a Terceira Lei de Newton define que se puxar o móvel, o móvel o puxará igualmente de volta, e assim não conseguirá exercer uma força que possa colocá-lo em movimento.
 
-**Questão 2 (estilo ENEM: autoral)**
-Um polvo se desloca na água expulsando bruscamente, por um sifão, um jato de água para trás. Um foguete no espaço avança queimando combustível e expelindo gases pela tubeira. Em ambos os casos, o corpo se move no sentido oposto ao do fluido expelido.
+Qual argumento a mãe utilizará para apontar o erro de interpretação do garoto?
 
-O princípio físico comum às duas situações é o de que
+A) A força de ação é aquela exercida pelo garoto.\
+B) A força resultante sobre o móvel é sempre nula.\
+C) As forças que o chão exerce sobre o garoto se anulam.\
+D) A força de ação é um pouco maior que a força de reação.\
+E) O par de forças de ação e reação não atua em um mesmo corpo.
 
-a) o fluido expelido empurra o meio externo, que devolve o empurrão ao corpo.
-b) o corpo exerce força sobre o fluido e o fluido exerce sobre o corpo uma força de mesma intensidade e sentido oposto.
-c) o corpo perde massa e, por isso, sua inércia diminui, permitindo o deslocamento.
-d) a força que o corpo aplica no fluido é anulada pela reação, e o movimento resulta da diferença de pressão.
-e) o atrito entre o corpo e o meio é o responsável pelo impulso adquirido.
+**Questão 2**
 
-**Questão 3 (estilo ENEM: autoral)**
-Uma pessoa de 60 kg está em pé sobre uma balança dentro de um elevador. Adote g = 10 m/s². Em determinado trecho da viagem, o elevador sobe com aceleração constante de 2 m/s², dirigida para cima.
+*ENEM 2018 · 2ª aplicação · 2º dia · caderno azul · questão 114*
 
-Nesse trecho, a indicação da balança, em newtons, é
+Com um dedo, um garoto pressiona contra a parede duas moedas, de R$ 0,10 e R$ 1,00, uma sobre a outra, mantendo-as paradas. Em contato com o dedo está a moeda de R$ 0,10 e contra a parede está a de R$ 1,00. O peso da moeda de R$ 0,10 é 0,05 N e o da de R$ 1,00 é 0,09 N. A força de atrito exercida pela parede é suficiente para impedir que as moedas caiam.
 
-a) 480
-b) 600
-c) 720
-d) 1 200
-e) 6 000
+Qual é a força de atrito entre a parede e a moeda de R$ 1,00?
 
-**Questão 4 (estilo ENEM: autoral)**
-Manuais de direção defensiva recomendam reduzir a velocidade e aumentar a distância do veículo da frente em pista molhada. Nessa condição, a água se interpõe entre o pneu e o asfalto e o coeficiente de atrito entre eles diminui.
+A) 0,04 N\
+B) 0,05 N\
+C) 0,07 N\
+D) 0,09 N\
+E) 0,14 N
 
-Considerando um mesmo veículo, a consequência física direta dessa redução do coeficiente de atrito é que
+**Questão 3**
 
-a) o peso do veículo diminui, tornando a frenagem mais lenta.
-b) a força de atrito máxima disponível diminui, aumentando a distância necessária para parar.
-c) a inércia do veículo aumenta, exigindo maior força do motor.
-d) a força normal entre pneu e asfalto diminui, reduzindo a aceleração da gravidade.
-e) a força de reação do asfalto sobre o pneu passa a ter sentido oposto ao peso.
+*ENEM 2013 · 1º dia · caderno azul · questão 87*
 
-**Questão 5 (estilo ENEM: autoral)**
-Um caixote de 20 kg é arrastado sobre um piso horizontal por uma força horizontal constante de 80 N. O coeficiente de atrito cinético entre o caixote e o piso é 0,25 e a aceleração da gravidade vale 10 m/s².
+Em um dia sem vento, ao saltar de um avião, um paraquedista cai verticalmente até atingir a velocidade limite. No instante em que o paraquedas é aberto (instante Tₐ), ocorre a diminuição de sua velocidade de queda. Algum tempo após a abertura do paraquedas, ele passa a ter velocidade de queda constante, que possibilita sua aterrissagem em segurança.
 
-A aceleração adquirida pelo caixote é de
+Que gráfico representa a força resultante sobre o paraquedista, durante o seu movimento de queda?
 
-a) 0,5 m/s²
-b) 1,5 m/s²
-c) 2,5 m/s²
-d) 4,0 m/s²
-e) 6,5 m/s²
+<figure class="figura">
+  <svg viewBox="0 0 460 250" role="img" aria-labelledby="fig-nw-q3-t fig-nw-q3-d">
+    <title id="fig-nw-q3-t">Os cinco gráficos de força resultante</title>
+    <desc id="fig-nw-q3-d">Cinco gráficos de força resultante em função do tempo, com a abertura do paraquedas no instante Tₐ marcada por uma linha tracejada. A: a força começa alta, cai até zero em Tₐ e, depois de Tₐ, fica cada vez mais negativa. B: a força começa alta e cai até zero perto de Tₐ; em Tₐ salta para um valor negativo grande e depois volta aos poucos para zero. C: a força sobe do zero até um patamar e, a partir de Tₐ, cai até zero. D: a força começa alta, cai até zero e fica em zero. E: a força sobe do zero até um patamar e fica nele. Figura redesenhada a partir da prova oficial, com os mesmos dados.</desc>
+    <text x="2" y="12" class="rotulo">A</text>
+    <line x1="18" y1="8" x2="18" y2="112" class="traco-fino" />
+    <line x1="18" y1="60" x2="136" y2="60" class="traco-fino" />
+    <text x="24" y="12" class="rotulo-fraco">força resultante</text>
+    <text x="136" y="72" class="rotulo-fraco" text-anchor="end">tempo</text>
+    <text x="15" y="64" class="rotulo-fraco" text-anchor="end">0</text>
+    <line x1="70" y1="14" x2="70" y2="112" class="tracejado" />
+    <text x="67" y="72" class="rotulo-fraco" text-anchor="end">Tₐ</text>
+    <path d="M 20,16 C 30,42 44,56 70,60 C 76,61 80,76 82,110" class="traco" />
+    <text x="157" y="12" class="rotulo">B</text>
+    <line x1="173" y1="8" x2="173" y2="112" class="traco-fino" />
+    <line x1="173" y1="60" x2="291" y2="60" class="traco-fino" />
+    <text x="179" y="12" class="rotulo-fraco">força resultante</text>
+    <text x="291" y="72" class="rotulo-fraco" text-anchor="end">tempo</text>
+    <text x="170" y="64" class="rotulo-fraco" text-anchor="end">0</text>
+    <line x1="225" y1="14" x2="225" y2="112" class="tracejado" />
+    <text x="222" y="72" class="rotulo-fraco" text-anchor="end">Tₐ</text>
+    <path d="M 175,16 C 183,44 201,58 225,60" class="traco" />
+    <path d="M 227,110 C 229,74 245,61 283,60" class="traco" />
+    <text x="312" y="12" class="rotulo">C</text>
+    <line x1="328" y1="8" x2="328" y2="112" class="traco-fino" />
+    <line x1="328" y1="104" x2="446" y2="104" class="traco-fino" />
+    <text x="334" y="12" class="rotulo-fraco">força resultante</text>
+    <text x="446" y="116" class="rotulo-fraco" text-anchor="end">tempo</text>
+    <text x="325" y="108" class="rotulo-fraco" text-anchor="end">0</text>
+    <line x1="380" y1="14" x2="380" y2="112" class="tracejado" />
+    <text x="377" y="116" class="rotulo-fraco" text-anchor="end">Tₐ</text>
+    <path d="M 330,104 L 342,64 C 350,46 364,44 380,44 C 382,74 400,102 438,104" class="traco" />
+    <text x="80" y="142" class="rotulo">D</text>
+    <line x1="96" y1="138" x2="96" y2="242" class="traco-fino" />
+    <line x1="96" y1="234" x2="214" y2="234" class="traco-fino" />
+    <text x="102" y="142" class="rotulo-fraco">força resultante</text>
+    <text x="214" y="246" class="rotulo-fraco" text-anchor="end">tempo</text>
+    <text x="93" y="238" class="rotulo-fraco" text-anchor="end">0</text>
+    <line x1="148" y1="144" x2="148" y2="242" class="tracejado" />
+    <text x="145" y="246" class="rotulo-fraco" text-anchor="end">Tₐ</text>
+    <path d="M 98,150 C 106,202 122,232 148,234 L 206,234" class="traco" />
+    <text x="235" y="142" class="rotulo">E</text>
+    <line x1="251" y1="138" x2="251" y2="242" class="traco-fino" />
+    <line x1="251" y1="234" x2="369" y2="234" class="traco-fino" />
+    <text x="257" y="142" class="rotulo-fraco">força resultante</text>
+    <text x="369" y="246" class="rotulo-fraco" text-anchor="end">tempo</text>
+    <text x="248" y="238" class="rotulo-fraco" text-anchor="end">0</text>
+    <line x1="303" y1="144" x2="303" y2="242" class="tracejado" />
+    <text x="300" y="246" class="rotulo-fraco" text-anchor="end">Tₐ</text>
+    <path d="M 253,234 L 265,194 C 273,176 287,174 303,174 L 361,176" class="traco" />
+  </svg>
+</figure>
+
+A) Gráfico A\
+B) Gráfico B\
+C) Gráfico C\
+D) Gráfico D\
+E) Gráfico E
+
+**Questão 4**
+
+*ENEM 2025 · 2º dia · caderno azul · questão 108*
+
+Para transportar uma caixa do primeiro para o segundo piso de uma construção, um trabalhador precisará arrasta-lá sobre um plano inclinado. O trabalhador começa a arrastar a caixa no primeiro piso, exercendo sobre ela uma força de grande intensidade, paralela ao seu deslocamento. Na medida em que a caixa sobe o plano inclinado, ele decide reduzir a força sobre ela, arrastando-a lentamente até chegar ao segundo piso. Considere que a caixa permanece em movimento nos encontros dos pisos com o plano inclinado, e que a rugosidade entre as superfícies permanece a mesma durante todo o percurso.
+
+O comportamento da força de atrito entre a caixa e o chão no plano inclinado é representado em:
+
+<figure class="figura">
+  <svg viewBox="0 0 460 250" role="img" aria-labelledby="fig-nw-q4-t fig-nw-q4-d">
+    <title id="fig-nw-q4-t">Os cinco gráficos de força de atrito</title>
+    <desc id="fig-nw-q4-d">Cinco gráficos da força de atrito no plano inclinado em função do tempo. A: começa média, desce, sobe até um valor alto e fica constante. B: começa média, sobe até um pico, desce até um valor baixo e fica constante. C: constante do começo ao fim. D: constante por um tempo e depois diminui. E: sobe até um pico e depois diminui. Figura redesenhada a partir da prova oficial, com os mesmos dados.</desc>
+    <text x="2" y="12" class="rotulo">A</text>
+    <line x1="18" y1="8" x2="18" y2="112" class="traco-fino" />
+    <line x1="18" y1="104" x2="136" y2="104" class="traco-fino" />
+    <text x="24" y="12" class="rotulo-fraco">força de atrito</text>
+    <text x="136" y="116" class="rotulo-fraco" text-anchor="end">tempo</text>
+    <path d="M 20,40 L 50,70 L 72,24 L 128,24" class="traco" />
+    <text x="157" y="12" class="rotulo">B</text>
+    <line x1="173" y1="8" x2="173" y2="112" class="traco-fino" />
+    <line x1="173" y1="104" x2="291" y2="104" class="traco-fino" />
+    <text x="179" y="12" class="rotulo-fraco">força de atrito</text>
+    <text x="291" y="116" class="rotulo-fraco" text-anchor="end">tempo</text>
+    <path d="M 175,64 L 197,34 L 221,84 L 283,84" class="traco" />
+    <text x="312" y="12" class="rotulo">C</text>
+    <line x1="328" y1="8" x2="328" y2="112" class="traco-fino" />
+    <line x1="328" y1="104" x2="446" y2="104" class="traco-fino" />
+    <text x="334" y="12" class="rotulo-fraco">força de atrito</text>
+    <text x="446" y="116" class="rotulo-fraco" text-anchor="end">tempo</text>
+    <path d="M 330,54 L 438,54" class="traco" />
+    <text x="80" y="142" class="rotulo">D</text>
+    <line x1="96" y1="138" x2="96" y2="242" class="traco-fino" />
+    <line x1="96" y1="234" x2="214" y2="234" class="traco-fino" />
+    <text x="102" y="142" class="rotulo-fraco">força de atrito</text>
+    <text x="214" y="246" class="rotulo-fraco" text-anchor="end">tempo</text>
+    <path d="M 98,164 L 148,164 L 206,220" class="traco" />
+    <text x="235" y="142" class="rotulo">E</text>
+    <line x1="251" y1="138" x2="251" y2="242" class="traco-fino" />
+    <line x1="251" y1="234" x2="369" y2="234" class="traco-fino" />
+    <text x="257" y="142" class="rotulo-fraco">força de atrito</text>
+    <text x="369" y="246" class="rotulo-fraco" text-anchor="end">tempo</text>
+    <path d="M 253,204 L 277,164 L 361,214" class="traco" />
+  </svg>
+</figure>
+
+A) Gráfico A\
+B) Gráfico B\
+C) Gráfico C\
+D) Gráfico D\
+E) Gráfico E
+
+**Questão 5**
+
+*ENEM 2018 · 2ª aplicação · 2º dia · caderno azul · questão 128*
+
+Um carrinho de brinquedo funciona por fricção. Ao ser forçado a girar suas rodas para trás, contra uma superfície rugosa, uma mola acumula energia potencial elástica. Ao soltar o brinquedo, ele se movimenta sozinho para frente e sem deslizar.
+
+Quando o carrinho se movimenta sozinho, sem deslizar, a energia potencial elástica é convertida em energia cinética pela ação da força de atrito
+
+A) dinâmico na roda, devido ao eixo.\
+B) estático na roda, devido à superfície rugosa.\
+C) estático na superfície rugosa, devido à roda.\
+D) dinâmico na superfície rugosa, devido à roda.\
+E) dinâmico na roda, devido à superfície rugosa.
