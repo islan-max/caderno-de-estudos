@@ -2,196 +2,547 @@
 title: "Trabalho e Energia"
 subject: "Física"
 order: 3
-gabarito:
-  - correta: 2
-    porque: >
-      5,4 kW durante 1/3 de hora dá 1,8 kWh por dia. Em 30 dias são 54 kWh, que a 0,80 real custam 43,20 reais.
-  - correta: 1
-    porque: >
-      A potência bruta é mgh/t = 500 x 10 x 20 = 100 kW. Com 80% de rendimento, sobram 80 kW.
-  - correta: 2
-    porque: >
-      Conservação de energia: v = raiz de (2gh) = raiz de 900 = 30 m/s. A massa não entra na conta.
-  - correta: 0
-    porque: >
-      A força de sustentação é vertical e o deslocamento é horizontal. Força perpendicular ao deslocamento não realiza trabalho.
-  - correta: 1
-    porque: >
-      O LED usa menos energia elétrica para a mesma iluminação, e como aproveita mais dela como luz, dissipa menos calor. Alguma dissipação sempre resta.
 relevance: >
-  Energia é a capacidade de realizar transformações, e trabalho é o nome que a Física dá à
-  transferência de energia feita por uma força. Este é, disparado, um dos temas mais cobrados do ENEM
-  em Física: aparece todo ano, muitas vezes em mais de uma questão, porque conecta física com matriz
-  energética brasileira, usinas hidrelétricas e eólicas, eficiência de aparelhos, consumo de energia
-  elétrica em kWh na conta de luz e sustentabilidade. O formato preferido do INEP é o texto-base com
-  dados numéricos simples pedindo potência, rendimento ou energia dissipada, além de questões
-  conceituais sobre conservação e degradação da energia.
+  Energia é um dos temas de Física que mais aparecem no ENEM (Exame Nacional do Ensino Médio). A prova
+  gosta de situações reais: um atleta que acelera, um brinquedo com mola, uma cama elástica, uma bomba
+  que leva água para o alto, um carro movido a luz do Sol. Em quase todas, a ideia é a mesma: a energia
+  muda de forma, mas a conta fecha. Saber qual energia vira qual, e quanto tempo isso leva, resolve a
+  maior parte das questões.
 quickSummary: >
-  Trabalho é a transferência de energia realizada por uma força ao longo de um deslocamento, e a
-  energia total nunca é criada nem destruída: apenas transformada de uma forma em outra.
+  Energia cinética é m × v² ÷ 2, e o trabalho total sobre um corpo é a variação dela. Energia potencial
+  gravitacional é m × g × h; a elástica é k × x² ÷ 2. Sem atrito, a soma das energias fica constante: o
+  que uma perde, a outra ganha. Potência é energia dividida pelo tempo, e o rendimento diz que fração da
+  potência recebida vira potência útil.
+resources:
+  conteudoComplementar:
+    conteudo: "Leis de Newton"
+    comoAjuda: "Trabalho é força vezes deslocamento. Se a ideia de força, peso ou resultante travar você, revise essa aula."
+gabarito:
+  - correta: 1
+    porque: >
+      O corredor parte do repouso e chega a 12 m/s, então o trabalho total é a energia cinética final:
+      90 × 12² ÷ 2 = 6 480 J, o mais próximo de 6,5 × 10³ J. A distância e o tempo não entram na conta.
+      Revisar: Aula Teórica › 1. Trabalho e energia cinética
+  - correta: 1
+    porque: >
+      A energia elástica da mola vira energia cinética do cubo, então a velocidade é proporcional à deformação
+      e à raiz da constante. Para 4 vezes a velocidade: 4 vezes a deformação, com a mesma mola.
+      Revisar: Aula Teórica › 3. Conservação da energia mecânica
+  - correta: 2
+    porque: >
+      Acima de h = 0, só a gravidade age, e a energia cinética cai em linha reta até zero em h máx. Abaixo de 0, a lona
+      deformada guarda energia elástica, que cresce com o quadrado da deformação: trecho curvo, com zero em h mín (gráfico C).
+      Revisar: Aula Teórica › 4. Gráficos de energia
+  - correta: 3
+    porque: >
+      Das 11h30 às 12h30 passa 1 hora (3 600 s), então a energia é 50 × 3 600 = 180 000 J, com a potência média.
+      Ela sobe a água 20 m: m = 180 000 ÷ (10 × 20) = 900 kg, ou seja, 900 litros.
+      Revisar: Aula Teórica › 5. Potência e rendimento
+  - correta: 3
+    porque: >
+      O painel recebe 1 000 × 9 = 9 000 W e, com rendimento de 30%, entrega 2 700 W. A 108 km/h = 30 m/s, a energia
+      cinética é 200 × 30² ÷ 2 = 90 000 J, e o tempo é 90 000 ÷ 2 700, cerca de 33 s.
+      Revisar: Aula Teórica › 5. Potência e rendimento
 ---
 
-## Aula Teórica Completa
+<Accordion titulo="Palavras e siglas desta aula" dica="Consulte quando encontrar um termo novo" icone="spell-check">
 
-**O que é trabalho.** No dia a dia, "trabalho" é esforço. Na Física, o significado é bem mais estreito: trabalho é a **energia transferida por uma força quando ela desloca um corpo**. Sem deslocamento, não há trabalho, por mais cansativo que seja o esforço. Segurar uma mochila parada no ombro por dez minutos é exaustivo, mas o trabalho realizado pela força que a segura é exatamente zero, porque a mochila não se deslocou.
+- **ENEM** (Exame Nacional do Ensino Médio): a prova nacional que dá acesso a faculdades e bolsas.
+- **INEP** (Instituto Nacional de Estudos e Pesquisas Educacionais Anísio Teixeira): o órgão do governo que faz o ENEM.
+- **N** (newton): a unidade de força.
+- **J** (joule): a unidade de energia e de trabalho.
+- **W** (watt): a unidade de potência; 1 W é 1 joule por segundo.
+- **Energia cinética**: a energia do movimento.
+- **Energia potencial gravitacional**: a energia guardada pela altura.
+- **Energia potencial elástica**: a energia guardada numa mola ou num material elástico deformado.
+- **Energia mecânica**: a soma da energia cinética com as potenciais.
+- **Constante elástica**: o quanto uma mola é dura; mola mais dura, constante maior.
+- **Deformação**: o quanto uma mola foi comprimida ou esticada em relação ao seu tamanho natural.
+- **Potência**: a rapidez com que a energia é transferida ou transformada.
+- **Rendimento** (ou eficiência): a fração da energia recebida que vira energia útil.
+- **Insolação**: a potência da luz do Sol que chega a cada metro quadrado de superfície.
+- **Painel fotovoltaico**: placa que transforma luz em energia elétrica.
+- **PDF** (Portable Document Format, "formato de documento portátil"): o tipo de arquivo em que o INEP publica as provas.
+- **Movimento periódico**: movimento que se repete, sempre igual, como o de um balanço.
+- **Notação científica**: um número escrito como algo entre 1 e 10 vezes uma potência de 10, como 4,7 × 10³ = 4 700.
 
-Quando a força tem a mesma direção e o mesmo sentido do deslocamento, a conta é simples:
+</Accordion>
 
-trabalho = força × deslocamento, ou W = F · d
+## Antes de Começar
 
-A unidade de trabalho é o joule (J): 1 joule é o trabalho de uma força de 1 newton que desloca o corpo por 1 metro. Como trabalho é energia transferida, energia também se mede em joules.
+**O que o ENEM cobra aqui.** A prova raramente pede só "aplique a fórmula". Os temas que costumam aparecer são estes:
 
-**Quando o trabalho é nulo ou negativo.** Três casos precisam ficar claros, porque o ENEM cobra cada um deles.
+- **Calcular o trabalho** de um atleta ou de um motor pela variação da energia cinética.
+- **Prever o efeito** de mudar uma mola, uma altura ou uma velocidade: dobra, quadruplica?
+- **Ler ou escolher um gráfico** de energia ao longo do movimento.
+- **Ligar potência, tempo e energia**, muitas vezes com rendimento no meio.
+- **Separar os dados úteis** dos que só estão no texto para contextualizar.
 
-O trabalho é **positivo** (chamado de motor) quando a força aponta no mesmo sentido do deslocamento. Ela está *entregando* energia ao corpo, que tende a ganhar velocidade. É o caso da força do motor sobre o carro que arranca.
+**O que você precisa saber antes.**
 
-O trabalho é **negativo** (resistente) quando a força aponta no sentido contrário ao deslocamento. Ela está *retirando* energia do corpo. É o caso do atrito, sempre, e o caso da força peso enquanto o corpo sobe.
+- **Cinemática.** Velocidade em m/s e a troca de km/h para m/s: divida por 3,6 (72 km/h = 20 m/s).
+- **Leis de Newton.** Força se mede em newtons (N). O peso é a massa vezes g, a aceleração da gravidade, que vale 10 m/s² (metros por segundo, a cada segundo).
+- **Potências e raízes.** Elevar ao quadrado (5² = 25) e tirar a raiz quadrada (raiz de 36 = 6). Nas potências de 10, o expoente conta os zeros: 10² = 100, 10³ = 1 000, 10⁴ = 10 000. Se um número é multiplicado por 3, o quadrado dele é multiplicado por 9.
 
-O trabalho é **nulo** em duas situações: quando não há deslocamento (a mochila parada) e quando a força é **perpendicular** ao deslocamento. Esse segundo caso é o mais cobrado: carregar uma caixa andando na horizontal não realiza trabalho pela força vertical que a sustenta, porque força e deslocamento formam ângulo reto. Pela mesma razão, a força normal e a força centrípeta em uma curva nunca realizam trabalho.
+## Aula Teórica
 
-**Energia cinética: a energia do movimento.** Todo corpo em movimento carrega energia por estar se movendo. Ela vale
+### 1. Trabalho e energia cinética
 
-energia cinética = (massa × velocidade²) ÷ 2, ou Ec = (m · v²) ÷ 2
+**Energia** é o que permite que algo se mova, aqueça, acenda. Ela se mede em **joule (J)**. Uma força faz **trabalho** quando empurra um corpo ao longo de um caminho: o trabalho é a energia que a força entrega ao corpo (ou tira dele).
 
-com massa em kg, velocidade em m/s e resultado em joules. O detalhe que muda tudo: a velocidade está **ao quadrado**. Dobrar a velocidade de um carro multiplica por quatro sua energia cinética, e é por isso que uma colisão a 100 km/h é muito mais que "o dobro" de uma colisão a 50 km/h. Esse mesmo raciocínio explica por que a distância de frenagem cresce com o quadrado da velocidade: toda essa energia precisa ser retirada pelo atrito dos freios.
+Se a força aponta no mesmo sentido do deslocamento, o trabalho é **força × distância**. Uma força de 20 N que empurra uma caixa por 3 m faz 20 × 3 = 60 J. Uma força perpendicular ao deslocamento (que forma ângulo reto, de 90°, com o caminho) não faz trabalho.
 
-**Teorema do trabalho e da energia cinética.** O trabalho da força resultante sobre um corpo é igual à variação da energia cinética dele:
+Todo corpo em movimento tem **energia cinética**, a energia do movimento.
 
-trabalho da resultante = Ec(final) − Ec(inicial)
+**Fórmula: energia cinética**
 
-Em português: transferir energia por meio de trabalho é o mesmo que mudar a velocidade do corpo. Trabalho positivo acelera, trabalho negativo freia. Esse teorema é o atalho preferido para calcular a força de frenagem de um veículo ou a força que uma parede faz para parar um projétil.
+**Ec = m × v² ÷ 2**
 
-**Energia potencial gravitacional: a energia da altura.** É a energia "guardada" por um corpo por estar em uma certa altura em relação a um nível de referência que você escolhe (normalmente o chão):
+- **Ec**: a energia cinética, em joules (J).
+- **m**: a massa, em quilogramas (kg).
+- **v**: a velocidade, em metros por segundo (m/s).
+- **Em palavras:** a energia do movimento cresce com o **quadrado** da velocidade: velocidade 2 vezes maior, energia 4 vezes maior.
+- **Quando usar:** sempre que um corpo tem velocidade, ou ganha ou perde velocidade.
 
-energia potencial gravitacional = massa × gravidade × altura, ou Ep = m · g · h
+**Exemplo resolvido.** Uma bola de boliche de 6 kg rola a 5 m/s. Qual é a energia cinética dela? E se rolasse a 10 m/s?
 
-Um tijolo no alto de um andaime não está se movendo, mas tem energia armazenada: se soltar, ela vira movimento. Note que a altura é sempre *relativa* ao nível escolhido: o que importa nas contas é a **variação** de altura, nunca um valor absoluto.
+1. Ec = 6 × 5² ÷ 2 = 6 × 25 ÷ 2 = 75 J.
+2. A 10 m/s: Ec = 6 × 100 ÷ 2 = 300 J.
+3. Resposta: 75 J; com o dobro da velocidade, 300 J, que é 4 vezes mais.
 
-**Energia potencial elástica: a energia da deformação.** Molas, elásticos e arcos guardam energia quando são deformados:
+**Erro comum.** Esquecer de elevar a velocidade ao quadrado, ou esquecer de dividir por 2.
 
-energia potencial elástica = (constante elástica × deformação²) ÷ 2, ou Epe = (k · x²) ÷ 2
+Quando várias forças agem num corpo (a força de um motor, o atrito, a força de um músculo), não é preciso calcular o trabalho de cada uma. A soma de todos os trabalhos, o **trabalho total**, é igual ao quanto a energia cinética mudou.
 
-Aqui, k é a constante elástica da mola (em N/m), que mede quão "dura" ela é, e x é o quanto ela foi comprimida ou esticada a partir do tamanho natural, em metros. De novo o quadrado: comprimir a mola duas vezes mais guarda quatro vezes mais energia.
+**Fórmula: teorema da energia cinética**
 
-**Energia mecânica e sua conservação.** Energia mecânica é a soma da energia cinética com as energias potenciais:
+**τ total = Ec final − Ec inicial**
 
-energia mecânica = Ec + Ep
+- **τ total**: o trabalho de todas as forças somadas, em joules (τ é a letra grega "tau").
+- **Ec final**: a energia cinética no fim do trecho.
+- **Ec inicial**: a energia cinética no começo do trecho.
+- **Em palavras:** o trabalho total é o quanto a energia do movimento aumentou. Se o corpo parte do **repouso**, a Ec inicial é zero e o trabalho total é a própria Ec final. Quem larga numa corrida, ou começa a se mover, parte do repouso: velocidade inicial zero.
+- **Quando usar:** quando a questão dá a massa e as velocidades no começo e no fim, e pede o trabalho, mesmo que as forças não sejam dadas.
 
-O princípio da conservação da energia mecânica diz: **se só forças conservativas atuam (peso e força elástica), a energia mecânica total permanece constante**. Ela não some: apenas troca de forma. Na montanha-russa, no ponto mais alto o carrinho quase não tem velocidade, mas tem muita energia potencial; ao descer, essa potencial vira cinética, e o carrinho ganha velocidade. Ao subir de novo, a cinética volta a virar potencial. Numa situação ideal, sem atrito, a soma é a mesma em qualquer ponto do trajeto, e é por isso que nenhum morro seguinte de uma montanha-russa pode ser mais alto que o primeiro.
+**Exemplo resolvido.** Um skatista de 50 kg passa de 4 m/s para 6 m/s num trecho de 10 m, em 2 s. Qual foi o trabalho total sobre ele?
 
-Consequência prática cobrada em prova: se um corpo é abandonado de uma altura h e não há atrito, toda a energia potencial vira cinética ao chegar ao chão, ou seja, m · g · h = (m · v²) ÷ 2. Cancelando a massa dos dois lados, sobra v² = 2 · g · h: a velocidade de chegada **não depende da massa**.
+1. Ec inicial = 50 × 4² ÷ 2 = 50 × 16 ÷ 2 = 400 J.
+2. Ec final = 50 × 6² ÷ 2 = 50 × 36 ÷ 2 = 900 J.
+3. Trabalho total = 900 − 400 = 500 J.
+4. A distância (10 m) e o tempo (2 s) não entram: o teorema só pede massa e velocidades.
+5. Resposta: 500 J.
 
-**Forças dissipativas e degradação da energia.** No mundo real existe atrito, resistência do ar, deformação permanente. Essas forças são chamadas dissipativas: elas retiram energia mecânica do sistema e a transformam em energia térmica (calor) e sonora, que se espalha pelo ambiente e não volta mais para o movimento. Quando há atrito, a energia mecânica **não se conserva**, e a energia dissipada é exatamente a diferença:
+**Erro comum.** Fazer a conta com a diferença das velocidades, 6 − 4 = 2 m/s, em vez da diferença das energias. Outro erro é usar a velocidade média do trecho em vez das velocidades do começo e do fim.
 
-energia dissipada = energia mecânica inicial − energia mecânica final
+Questões com texto longo costumam trazer **dados que sobram**, como distâncias, tempos e contagens. Antes de calcular, pergunte qual fórmula responde à pergunta e quais dados ela pede. Alternativas em **notação científica** com "mais próximo de" pedem só comparar. Por exemplo, 480 J é 4,8 × 10², 2 150 J fica perto de 2,2 × 10³, e 27 300 J fica perto de 2,7 × 10⁴.
 
-Atenção ao ponto conceitual mais importante da aula: a energia mecânica pode diminuir, mas a **energia total do universo nunca diminui**. Ela não é criada nem destruída, só transformada: esse é o princípio da conservação da energia. O que acontece com o atrito é a *degradação*: a energia continua existindo, mas passa para uma forma mais espalhada e desorganizada (calor difuso), da qual é praticamente impossível extrair trabalho útil de novo. Dizer que "a energia se perdeu" é errado; o correto é que ela se dissipou.
+### 2. Energia potencial gravitacional e elástica
 
-**Potência: energia por tempo.** Potência mede a **rapidez** com que a energia é transferida ou transformada:
+**Energia potencial** é energia guardada, pronta para virar movimento. Há dois tipos na prova.
 
-potência = energia (ou trabalho) ÷ tempo, ou P = W ÷ Δt
+**Fórmula: energia potencial gravitacional**
 
-A unidade é o watt (W): 1 watt é 1 joule por segundo. Um chuveiro de 5 500 W consome 5 500 joules a cada segundo de banho. Duas máquinas podem realizar exatamente o mesmo trabalho e ter potências muito diferentes: a mais potente simplesmente faz isso em menos tempo. Há ainda uma forma muito útil quando a velocidade é constante: potência = força × velocidade.
+**Ep = m × g × h**
 
-**O quilowatt-hora e a conta de luz.** A concessionária não cobra por potência, e sim por energia consumida, medida em quilowatt-hora (kWh). Um kWh é a energia gasta por um aparelho de 1 000 W ligado durante 1 hora. A conta é sempre a mesma:
+- **Ep**: a energia guardada pela altura, em joules.
+- **m**: a massa, em kg.
+- **g**: a aceleração da gravidade, 10 m/s².
+- **h**: a altura em relação ao ponto escolhido como zero, em metros.
+- **Em palavras:** subir um corpo exige energia, e ela fica guardada; ela é **proporcional** à altura (o dobro da altura, o dobro da energia).
+- **Quando usar:** corpos que sobem ou descem; bombas que levam água para o alto; elevadores.
+- **Virando a conta:** m = Ep ÷ (g × h) e h = Ep ÷ (m × g).
 
-energia em kWh = (potência em watts ÷ 1 000) × (tempo de uso em horas)
+**Exemplo resolvido.** Quanta energia é preciso para levar uma caixa de 8 kg do chão até uma prateleira a 3 m de altura? E que massa esses 240 J subiriam a 4 m?
 
-E o custo é essa energia multiplicada pela tarifa em reais por kWh. Exemplo: um chuveiro de 5 500 W usado 30 minutos por dia gasta 5,5 × 0,5 = 2,75 kWh por dia, ou 82,5 kWh em 30 dias. Cuidado com a armadilha de unidade: kWh é unidade de **energia**, não de potência, e "kWh por mês" não é "kW por hora".
+1. Ep = 8 × 10 × 3 = 240 J.
+2. Massa que sobe 4 m com 240 J: m = 240 ÷ (10 × 4) = 6 kg.
+3. Resposta: 240 J; 6 kg.
 
-**Rendimento (eficiência).** Nenhuma máquina real aproveita 100% da energia que recebe: parte sempre vira calor indesejado. Rendimento é a fração aproveitada:
+**Erro comum.** Usar a altura em centímetros. Troque para metros antes: 150 cm = 1,5 m.
 
-rendimento = energia útil ÷ energia total fornecida
+Uma mola comprimida ou esticada também guarda energia. Quanto maior a **deformação** (o quanto ela saiu do tamanho natural) e mais dura a mola, mais energia.
 
-Multiplicando por 100, tem-se o rendimento em porcentagem. Uma lâmpada incandescente com 5% de rendimento transforma em luz apenas 5% da energia elétrica que recebe; os outros 95% viram calor. Uma lâmpada de LED chega a rendimentos muito maiores, e é por isso que ela ilumina igual gastando bem menos. Motores de carro a combustão ficam tipicamente entre 20% e 30%. A energia não aproveitada não sumiu: virou calor.
+<figure class="figura">
+  <svg viewBox="0 0 460 200" role="img" aria-labelledby="fig-te-1-t fig-te-1-d">
+    <title id="fig-te-1-t">Mola relaxada e mola comprimida</title>
+    <desc id="fig-te-1-d">À esquerda, uma mola vertical relaxada, no seu tamanho natural, com uma placa em cima. À direita, a mesma mola comprimida, mais baixa. Linhas tracejadas marcam a altura da placa nos dois casos, e uma seta entre elas indica a deformação x, o quanto a mola encurtou.</desc>
+    <line x1="60" y1="170" x2="420" y2="170" class="traco" />
+    <path d="M 140 170 L 126 160.167 L 154 150.333 L 126 140.5 L 154 130.667 L 126 120.833 L 154 111 L 126 101.167 L 154 91.3333 L 126 81.5 L 154 71.6667 L 126 61.8333 L 140 52" class="traco" />
+    <rect x="110" y="44" width="60" height="8" class="traco preenche" />
+    <path d="M 290 170 L 276 164.333 L 304 158.667 L 276 153 L 304 147.333 L 276 141.667 L 304 136 L 276 130.333 L 304 124.667 L 276 119 L 304 113.333 L 276 107.667 L 290 102" class="traco" />
+    <rect x="260" y="94" width="60" height="8" class="traco preenche" />
+    <line x1="175" y1="44" x2="390" y2="44" class="tracejado" />
+    <line x1="325" y1="94" x2="390" y2="94" class="tracejado" />
+    <line x1="375" y1="48" x2="375" y2="90" class="traco-fino" />
+    <path d="M 375 45 L 371 53 L 379 53 Z" class="traco preenche" />
+    <path d="M 375 93 L 371 85 L 379 85 Z" class="traco preenche" />
+    <text x="384" y="74" class="rotulo">x</text>
+    <text x="140" y="190" class="rotulo-fraco" text-anchor="middle">relaxada</text>
+    <text x="290" y="190" class="rotulo-fraco" text-anchor="middle">comprimida</text>
+  </svg>
+</figure>
 
-**Usinas e matriz energética.** Toda usina elétrica é, no fundo, um conversor de energia. Na **hidrelétrica**, a água represada tem energia potencial gravitacional, que ao cair vira cinética, gira a turbina (energia mecânica) e o gerador a converte em elétrica; a energia disponível depende da altura da queda e da vazão. Na **termelétrica**, a energia química do combustível (carvão, gás, diesel, biomassa) é liberada como calor na queima, aquece água, o vapor gira a turbina e o gerador produz eletricidade: é o tipo com maior emissão de gases e, em geral, menor rendimento. Na **eólica**, a energia cinética do vento gira as pás. Na **nuclear**, a energia liberada na fissão aquece água, e daí para a frente é igual a uma termelétrica. Na **fotovoltaica**, a luz do Sol é convertida diretamente em elétrica pelas células, sem passar por turbina.
+**Fórmula: energia potencial elástica**
 
-O ENEM costuma pedir três coisas nesse contexto: identificar a **sequência correta de transformações** de energia; comparar fontes quanto a renovabilidade e emissão de CO2; e calcular potência ou energia gerada a partir de dados de vazão, altura ou rendimento.
+**Ee = k × x² ÷ 2**
 
-**Armadilhas típicas do INEP:** (1) achar que segurar um peso parado ou carregar uma caixa andando na horizontal realiza trabalho, quando nos dois casos o trabalho é nulo; (2) esquecer que o trabalho do atrito é sempre negativo e que ele retira energia mecânica do sistema; (3) confundir energia com potência, tratando watt como se fosse energia acumulada ou kWh como se fosse potência; (4) dizer que a energia "se perde" no atrito, quando o correto é que ela se transforma em calor e se degrada, sem nunca desaparecer; (5) esquecer que a energia cinética depende do **quadrado** da velocidade, subestimando o efeito de dobrar a velocidade; (6) supor que corpos mais pesados chegam ao chão com mais velocidade em queda sem atrito, quando a massa se cancela na conta; (7) trocar rendimento por energia útil, respondendo em joules o que a questão pediu em porcentagem, ou vice-versa.
+- **Ee**: a energia guardada na mola, em joules.
+- **k**: a constante elástica, em newtons por metro (N/m); quanto maior, mais dura a mola.
+- **x**: a deformação, em metros.
+- **Em palavras:** a energia da mola cresce com o **quadrado** da deformação e é proporcional à constante. Deformação 2 vezes maior, energia 4 vezes maior; mola 2 vezes mais dura, energia 2 vezes maior.
+- **Quando usar:** molas, elásticos, estilingues, camas elásticas, qualquer material que volta à forma depois de deformado.
+
+**Exemplo resolvido.** Uma mola de constante 400 N/m é comprimida 0,1 m. Quanta energia ela guarda? E se for comprimida 0,2 m?
+
+1. Ee = 400 × 0,1² ÷ 2 = 400 × 0,01 ÷ 2 = 2 J.
+2. Com 0,2 m: Ee = 400 × 0,04 ÷ 2 = 8 J.
+3. Resposta: 2 J; com o dobro da deformação, 8 J, 4 vezes mais.
+
+**Erro comum.** Achar que a energia da mola dobra quando a deformação dobra. Ela quadruplica.
+
+### 3. Conservação da energia mecânica
+
+A **energia mecânica** é a soma da energia cinética com as potenciais. Quando não há atrito nem resistência do ar, nenhuma energia se perde: ela só muda de forma.
+
+**Fórmula: conservação da energia mecânica**
+
+**Ec + Ep + Ee = constante**
+
+- **Ec, Ep, Ee**: as energias cinética, potencial gravitacional e elástica, em joules.
+- **Em palavras:** sem atrito, o que uma energia perde, outra ganha. Compare dois pontos do movimento: a soma das três é a mesma nos dois.
+- **Quando usar:** quedas, rampas, molas que lançam objetos, sempre que o enunciado disser que o atrito é desprezível.
+
+**Exemplo resolvido.** Um carrinho parte do repouso no alto de uma rampa sem atrito, a 1,8 m de altura. Com que velocidade chega embaixo? De que altura teria de partir para chegar com o dobro dessa velocidade?
+
+1. No alto: só energia gravitacional, m × 10 × 1,8. Embaixo: só cinética, m × v² ÷ 2.
+2. Igualando: m × 18 = m × v² ÷ 2. A massa aparece dos dois lados e se cancela: v² = 36, v = 6 m/s.
+3. Para 12 m/s, a cinética teria de ser 4 vezes maior (velocidade ao quadrado). Então a altura também: 4 × 1,8 = 7,2 m.
+4. Resposta: 6 m/s; 7,2 m.
+
+**Erro comum.** Achar que, para dobrar a velocidade, basta dobrar a altura. Como a energia depende de v², dobrar a velocidade exige 4 vezes a energia.
+
+A mesma ideia vale para uma mola que empurra um corpo: a energia elástica vira cinética, k × x² ÷ 2 = m × v² ÷ 2. Cortando o "÷ 2" dos dois lados e dividindo por m, fica v² = k × x² ÷ m. Tirando a raiz, a velocidade é **proporcional à deformação** e proporcional à **raiz** da constante:
+
+<figure class="figura">
+
+| Mudança na mola | Energia da mola | Velocidade do corpo |
+|---|---|---|
+| deformação × 3 | × 9 | × 3 |
+| constante × 3 | × 3 | × raiz de 3 (cerca de 1,7) |
+| constante × 9 | × 9 | × 3 |
+
+</figure>
+
+Por exemplo, a mola de 400 N/m comprimida 0,1 m da seção 2, que guarda 2 J, é posta na vertical e lança uma bolinha de 0,1 kg para cima. No ponto mais alto, os 2 J viraram energia gravitacional: 0,1 × 10 × h = 2, então h = 2 m. Com a mola comprimida 0,2 m (8 J), a bolinha sobe 8 m.
+
+### 4. Gráficos de energia
+
+Um gráfico de **energia cinética em função da posição** (ou da altura) mostra como a velocidade muda ao longo do caminho. Para desenhá-lo sem atrito, use a conservação: **Ec = energia mecânica − energias potenciais**.
+
+- **Só a gravidade age:** a energia gravitacional é proporcional à altura, então a energia cinética varia em **linha reta** com a altura. Quanto mais alto, menos cinética.
+- **Uma mola (ou material elástico) está deformada:** a energia elástica cresce com o **quadrado** da deformação, então a energia cinética varia em **curva**.
+- **Pontos de parada:** onde o corpo para e volta (o ponto mais alto de um salto, a compressão máxima de uma mola), a energia cinética é **zero**.
+- A energia cinética **nunca é negativa**: o gráfico não passa para baixo do eixo.
+
+Como ler o eixo de um salto: num salto sobre uma lona ou uma mola vertical, o zero da altura costuma ficar onde o material está **sem deformação**. É a **posição de equilíbrio** dele: a lona lisa, a mola no tamanho natural. Acima do zero (à direita do 0 no eixo), o corpo está no ar e só a gravidade age: trecho reto. Abaixo do zero (alturas negativas, à esquerda do 0), o material está deformado: trecho curvo.
+
+<figure class="figura">
+  <svg viewBox="0 0 460 210" role="img" aria-labelledby="fig-te-2-t fig-te-2-d">
+    <title id="fig-te-2-t">Dois gráficos de energia cinética</title>
+    <desc id="fig-te-2-d">À esquerda, pedra lançada para cima: a energia cinética em função da altura é uma reta que desce do valor inicial até zero no topo. À direita, bloco que desliza e bate numa mola: a energia cinética em função da posição fica constante até o bloco encostar na mola (linha tracejada) e depois cai em curva, primeiro devagar e depois mais rápido, até zero na compressão máxima.</desc>
+    <text x="130" y="16" class="rotulo" text-anchor="middle">pedra lançada para cima</text>
+    <line x1="40" y1="170" x2="215" y2="170" class="traco-fino" />
+    <line x1="40" y1="170" x2="40" y2="30" class="traco-fino" />
+    <text x="46" y="38" class="rotulo-fraco">E<tspan dy="3" font-size="8">c</tspan></text>
+    <text x="36" y="174" class="rotulo-fraco" text-anchor="end">0</text>
+    <path d="M 40 55 L 170 170" class="traco" />
+    <text x="170" y="186" class="rotulo-fraco" text-anchor="middle">topo</text>
+    <text x="215" y="200" class="rotulo-fraco" text-anchor="end">altura</text>
+    <text x="345" y="16" class="rotulo" text-anchor="middle">bloco contra a mola</text>
+    <line x1="260" y1="170" x2="440" y2="170" class="traco-fino" />
+    <line x1="260" y1="170" x2="260" y2="30" class="traco-fino" />
+    <text x="266" y="38" class="rotulo-fraco">E<tspan dy="3" font-size="8">c</tspan></text>
+    <text x="256" y="174" class="rotulo-fraco" text-anchor="end">0</text>
+    <path d="M 260 70 L 340 70 C 375 70 400 100 410 170" class="traco" />
+    <line x1="340" y1="74" x2="340" y2="170" class="tracejado" />
+    <text x="340" y="186" class="rotulo-fraco" text-anchor="middle">encosta</text>
+    <text x="410" y="186" class="rotulo-fraco" text-anchor="middle">para</text>
+    <text x="440" y="200" class="rotulo-fraco" text-anchor="end">posição</text>
+  </svg>
+</figure>
+
+No gráfico da esquerda, uma pedra é lançada para cima: a energia cinética diminui em linha reta com a altura até zero no topo. No da direita, um bloco desliza num chão sem atrito e bate numa mola. Antes de encostar, nada muda: linha horizontal. Depois, a mola vai guardando energia e a cinética cai em curva, primeiro devagar e depois mais rápido, até zero na compressão máxima.
+
+A **força elástica** é a força com que a mola ou a lona empurra de volta. Quando um corpo **cai** sobre algo elástico, no começo da deformação essa força ainda é menor que o peso, e o corpo continua acelerando um pouco. A energia cinética máxima fica logo depois do início do contato; num esboço, ela aparece praticamente no ponto onde o contato começa. Daí até o ponto mais baixo, a curva desce até zero.
+
+**Erro comum.** Desenhar reta no trecho da mola, ou curva no trecho em que só a gravidade age.
+
+### 5. Potência e rendimento
+
+Dois motores podem fazer o mesmo trabalho; o mais **potente** faz mais depressa.
+
+**Fórmula: potência**
+
+**P = E ÷ t**
+
+- **P**: a potência, em **watts (W)**; 1 W = 1 J por segundo.
+- **E**: a energia transferida ou transformada (ou o trabalho), em joules.
+- **t**: o tempo, em **segundos**.
+- **Em palavras:** potência é energia por segundo. Virando a conta: E = P × t e t = E ÷ P.
+- **Quando usar:** motores, bombas, painéis solares, atletas; sempre que aparecem watts ou "em quanto tempo".
+
+**Exemplo resolvido.** O motor de um elevador de obra sobe 300 kg de tijolos a 12 m de altura em 1 minuto. A potência dele varia durante a subida, chegando a 750 W num instante. Qual é a potência média entregue aos tijolos?
+
+1. Energia entregue: Ep = 300 × 10 × 12 = 36 000 J.
+2. Tempo em segundos: 1 min = 60 s.
+3. P = 36 000 ÷ 60 = 600 W.
+4. O valor de 750 W é o **pico**, um instante só; para energia num intervalo, vale a **média**.
+5. Resposta: 600 W.
+
+**Erro comum.** Usar o tempo em minutos ou horas. Troque para segundos: 2 h = 7 200 s, 20 min = 1 200 s.
+
+Três lembretes que aparecem com frequência:
+
+- **Intervalo de tempo:** das 9h40 às 11h10 passa 1h30 = 90 min = 90 × 60 = 5 400 s.
+- **Água:** 1 litro de água tem massa de 1 kg. Se a conta dá a massa de água em kg, o volume em litros é o mesmo número.
+- **Insolação:** vem em W/m² (watts por metro quadrado). A potência que chega a uma superfície é **insolação × área**: 600 W/m² sobre 5 m² dão 3 000 W.
+
+Nenhuma máquina aproveita toda a energia que recebe: parte vira calor. O **rendimento** diz qual fração vira energia útil.
+
+**Fórmula: rendimento**
+
+**rendimento = P útil ÷ P recebida**
+
+- **P útil**: a potência que faz o que se quer (mover, levantar, iluminar), em watts.
+- **P recebida**: a potência que entra na máquina, em watts.
+- **Em palavras:** o rendimento é uma fração, quase sempre em porcentagem; 40% quer dizer que só 40 de cada 100 J viram energia útil. Rendimento de 100% quer dizer que nada se perde.
+- **Quando usar:** motores, painéis solares, lâmpadas, usinas; sempre que aparecem "rendimento" ou "eficiência".
+
+**Exemplo resolvido.** A bateria de um patinete elétrico entrega 400 W ao motor, que tem rendimento de 60%. O patinete, com a pessoa, tem 96 kg. Partindo do repouso, em quanto tempo ele chega a 18 km/h (sem atrito nem resistência do ar)?
+
+1. Potência útil: 60% de 400 W = 0,6 × 400 = 240 W.
+2. Velocidade em m/s: 18 ÷ 3,6 = 5 m/s.
+3. Energia cinética final: 96 × 5² ÷ 2 = 96 × 25 ÷ 2 = 1 200 J.
+4. Tempo: t = E ÷ P = 1 200 ÷ 240 = 5 s.
+5. Resposta: 5 s.
+
+**Erro comum.** Esquecer o rendimento e usar a potência toda (daria 1 200 ÷ 400 = 3 s), ou esquecer de passar km/h para m/s.
+
+### Armadilhas típicas do INEP
+
+1. **Esquecer o quadrado da velocidade**, ou usar m × v no lugar de m × v² ÷ 2.
+2. **Usar dados que sobram**: distância e tempo não entram no teorema da energia cinética.
+3. **Achar que tudo é proporcional**: dobrar a velocidade exige 4 vezes a energia; a velocidade é proporcional à deformação da mola, mas à raiz da constante.
+4. **Trocar reta por curva** num gráfico de energia: trecho só com gravidade é reta; trecho com mola é curva.
+5. **Usar a potência de pico** quando a questão dá a média do intervalo.
+6. **Esquecer o rendimento** ou as conversões (km/h para m/s, horas para segundos, litros de água para kg).
 
 ## Tópicos-Chave para Revisão
 
 <div className="topico">
 
-Trabalho é a energia transferida por uma força ao deslocar um corpo, W = F · d, medido em joules. Ele é positivo (motor) quando a força acompanha o deslocamento, negativo (resistente) quando se opõe a ele (o caso do atrito) e nulo quando não há deslocamento ou quando a força é perpendicular ao deslocamento, motivo pelo qual normal e força centrípeta nunca realizam trabalho.
+#### 1. Trabalho e energia cinética
 
-Energia cinética é Ec = (m · v²) ÷ 2 e depende do quadrado da velocidade: dobrar a velocidade quadruplica a energia, o que explica a gravidade das colisões em alta velocidade e o crescimento da distância de frenagem.
+**Ec = m × v² ÷ 2**; **τ total = Ec final − Ec inicial**: partindo do repouso, o trabalho total é a Ec final; distância e tempo podem sobrar.
 
-Teorema do trabalho e da energia cinética: o trabalho da força resultante é igual à variação da energia cinética, Ec final menos Ec inicial. Trabalho positivo acelera o corpo e trabalho negativo o freia; é o atalho para calcular forças de frenagem e de impacto.
+#### 2. Energias potenciais
 
-Energia potencial gravitacional é Ep = m · g · h, energia armazenada por causa da altura em relação a um nível de referência escolhido, e o que importa nas contas é sempre a variação de altura. Energia potencial elástica é Epe = (k · x²) ÷ 2, guardada na deformação de molas e elásticos, também dependente de um quadrado.
+**Ep = m × g × h**, proporcional à altura; **Ee = k × x² ÷ 2**, com o **quadrado** da deformação.
 
-Energia mecânica é a soma da cinética com as potenciais e se conserva quando só atuam forças conservativas: na montanha-russa ideal, potencial vira cinética na descida e cinética vira potencial na subida, e por isso nenhum morro pode ser mais alto que o primeiro. Em queda sem atrito, m · g · h = (m · v²) ÷ 2 leva a v² = 2 · g · h, resultado independente da massa.
+#### 3. Conservação
 
-Forças dissipativas como atrito e resistência do ar transformam energia mecânica em calor e som; a energia dissipada é a energia mecânica inicial menos a final. A energia total nunca é criada nem destruída: ela se degrada, passando a formas espalhadas das quais não se extrai trabalho útil, e por isso dizer que a energia "se perdeu" é incorreto.
+**Ec + Ep + Ee = constante** sem atrito; a **massa** se cancela; com mola, a velocidade é **proporcional à deformação** e à raiz da constante.
 
-Potência é energia dividida por tempo, P = W ÷ Δt, medida em watts (1 W = 1 J/s), e vale também potência = força × velocidade quando a velocidade é constante; máquinas de mesma energia e potências diferentes se distinguem apenas pelo tempo que levam.
+#### 4. Gráficos de energia
 
-Quilowatt-hora é unidade de energia, não de potência: energia em kWh igual a potência em watts dividida por 1 000, multiplicada pelo tempo de uso em horas; o custo na conta de luz é esse valor multiplicado pela tarifa por kWh.
+Só gravidade: **reta**; mola deformada: **curva**; Ec zero nos pontos de parada, nunca negativa.
 
-Rendimento é energia útil dividida pela energia total fornecida, expresso em porcentagem; a parcela não aproveitada vira calor, o que explica a diferença entre lâmpadas incandescentes e de LED e o baixo rendimento de motores a combustão.
+<figure class="figura">
+  <svg viewBox="0 0 460 130" role="img" aria-labelledby="fig-te-t4-t fig-te-t4-d">
+    <title id="fig-te-t4-t">Reta e curva nos gráficos de energia</title>
+    <desc id="fig-te-t4-d">Dois esboços de energia cinética em função da posição. À esquerda, só a gravidade age e a energia cai em linha reta. À direita, uma mola está sendo deformada e a energia cai em curva.</desc>
+    <line x1="60" y1="100" x2="200" y2="100" class="traco-fino" />
+    <line x1="60" y1="100" x2="60" y2="14" class="traco-fino" />
+    <text x="66" y="22" class="rotulo-fraco">E<tspan dy="3" font-size="8">c</tspan></text>
+    <path d="M 60 30 L 180 100" class="traco" />
+    <text x="130" y="122" class="rotulo-fraco" text-anchor="middle">só gravidade: reta</text>
+    <line x1="270" y1="100" x2="410" y2="100" class="traco-fino" />
+    <line x1="270" y1="100" x2="270" y2="14" class="traco-fino" />
+    <text x="276" y="22" class="rotulo-fraco">E<tspan dy="3" font-size="8">c</tspan></text>
+    <path d="M 270 30 C 330 30 375 55 390 100" class="traco" />
+    <text x="340" y="122" class="rotulo-fraco" text-anchor="middle">mola deformada: curva</text>
+  </svg>
+</figure>
 
-Toda usina é um conversor de energia: hidrelétrica converte potencial gravitacional em cinética, mecânica e elétrica; termelétrica e nuclear convertem calor em vapor, mecânica e elétrica; eólica parte da energia cinética do vento; fotovoltaica converte luz diretamente em eletricidade. O ENEM cobra a sequência de transformações, a comparação entre fontes quanto a emissão e renovabilidade, e cálculos de potência com rendimento.
+#### 5. Potência e rendimento
+
+**P = E ÷ t** em watts, com tempo em segundos e potência **média**; **rendimento = P útil ÷ P recebida**; 1 L de água = 1 kg; potência solar = insolação × área.
 
 </div>
 
-## Teste de Fogo
+## Questões do ENEM
 
 *Marque uma alternativa em cada questão e confira tudo de uma vez no botão do fim.*
 
-**Questão 1 (estilo ENEM: autoral)**
-Um chuveiro elétrico de 5 400 W é utilizado, em média, 20 minutos por dia em uma residência. A concessionária local cobra 0,80 real por quilowatt-hora consumido.
+**Questão 1**
 
-Considerando um mês de 30 dias, o custo aproximado do uso desse chuveiro será de
+*ENEM 2015 · 1º dia · caderno azul · questão 64*
 
-a) 14,40 reais
-b) 28,80 reais
-c) 43,20 reais
-d) 54,00 reais
-e) 86,40 reais
+Uma análise criteriosa do desempenho de Usain Bolt na quebra do recorde mundial dos 100 metros rasos mostrou que, apesar de ser o último dos corredores a reagir ao tiro e iniciar a corrida, seus primeiros 30 metros foram os mais velozes já feitos em um recorde mundial, cruzando essa marca em 3,78 segundos. Até se colocar com o corpo reto, foram 13 passadas, mostrando sua potência durante a aceleração, o momento mais importante da corrida. Ao final desse percurso, Bolt havia atingido a velocidade máxima de 12 m/s.
 
-**Questão 2 (estilo ENEM: autoral)**
-Em uma pequena central hidrelétrica, a água represada cai de uma altura de 20 m e, na base, gira uma turbina acoplada a um gerador. A vazão é de 500 kg de água por segundo, a aceleração da gravidade vale 10 m/s² e o conjunto turbina-gerador tem rendimento de 80%.
+Disponível em: http://esporte.uol.com.br. Acesso em: 5 ago. 2012 (adaptado).
 
-A potência elétrica fornecida por essa central é de aproximadamente
+Supondo que a massa desse corredor seja igual a 90 kg, o trabalho total realizado nas 13 primeiras passadas é mais próximo de:
 
-a) 20 kW
-b) 80 kW
-c) 100 kW
-d) 125 kW
-e) 800 kW
+A) 5,4×10² J.\
+B) 6,5×10³ J.\
+C) 8,6×10³ J.\
+D) 1,3×10⁴ J.\
+E) 3,2×10⁴ J.
 
-**Questão 3 (estilo ENEM: autoral)**
-Um carrinho de montanha-russa parte do repouso do ponto mais alto do percurso, a 45 m de altura, e desce por um trilho. Considere g = 10 m/s² e despreze o atrito e a resistência do ar.
+**Questão 2**
 
-A velocidade do carrinho ao passar pelo ponto mais baixo do percurso, ao nível do solo, será de
+*ENEM 2018 · 2º dia · caderno azul · questão 131*
 
-a) 15 m/s
-b) 20 m/s
-c) 30 m/s
-d) 45 m/s
-e) 90 m/s
+Um projetista deseja construir um brinquedo que lance um pequeno cubo ao longo de um trilho horizontal, e o dispositivo precisa oferecer a opção de mudar a velocidade de lançamento. Para isso, ele utiliza uma mola e um trilho onde o atrito pode ser desprezado, conforme a figura.
 
-**Questão 4 (estilo ENEM: autoral)**
-Um trabalhador segura uma caixa de 15 kg apoiada nos braços, mantendo-a sempre à mesma altura, e caminha com ela 12 m em linha reta por um corredor horizontal, com velocidade constante.
+<figure class="figura">
+  <svg viewBox="0 0 460 170" role="img" aria-labelledby="fig-te-q2-t fig-te-q2-d">
+    <title id="fig-te-q2-t">Brinquedo com mola e cubo</title>
+    <desc id="fig-te-q2-d">Um trilho horizontal em forma de canal, fechado à esquerda. Dentro dele, uma mola comprimida presa à parede da esquerda empurra um pequeno cubo para a direita. Rótulos indicam o cubo, a mola e o trilho horizontal. Figura redesenhada a partir da prova oficial, com os mesmos dados.</desc>
+    <line x1="40" y1="50" x2="420" y2="50" class="traco" />
+    <line x1="40" y1="100" x2="420" y2="100" class="traco" />
+    <line x1="40" y1="50" x2="40" y2="100" class="traco" />
+    <path d="M 40 86 L 50 78 L 60 94 L 70 78 L 80 94 L 90 78 L 100 94 L 110 78 L 120 94 L 130 78 L 140 94 L 150 78 L 160 94 L 170 78 L 180 94 L 190 78 L 200 94 L 210 78 L 220 86" class="traco" />
+    <rect x="220" y="56" width="44" height="44" class="traco preenche" />
+    <text x="300" y="24" class="rotulo-fraco">Cubo</text>
+    <line x1="296" y1="28" x2="268" y2="52" class="traco-fino" />
+    <text x="60" y="150" class="rotulo-fraco">Mola</text>
+    <line x1="80" y1="136" x2="110" y2="96" class="traco-fino" />
+    <text x="320" y="150" class="rotulo-fraco" text-anchor="middle">Trilho horizontal</text>
+    <line x1="320" y1="134" x2="320" y2="106" class="traco-fino" />
+    <path d="M 320 102 L 316 110 L 324 110 Z" class="traco preenche" />
+  </svg>
+</figure>
 
-Sobre o trabalho realizado pela força vertical que o trabalhador exerce para sustentar a caixa nesse trajeto, é correto afirmar que ele é
+Para que a velocidade de lançamento do cubo seja aumentada quatro vezes, o projetista deve
 
-a) nulo, porque essa força é perpendicular ao deslocamento.
-b) nulo, porque a velocidade da caixa é constante e não há aceleração.
-c) igual a 180 J, pois corresponde ao produto da massa pelo deslocamento.
-d) igual a 1 800 J, pois corresponde ao produto do peso pelo deslocamento.
-e) negativo, pois a força se opõe ao peso da caixa.
+A) manter a mesma mola e aumentar duas vezes a sua deformação.\
+B) manter a mesma mola e aumentar quatro vezes a sua deformação.\
+C) manter a mesma mola e aumentar dezesseis vezes a sua deformação.\
+D) trocar a mola por outra de constante elástica duas vezes maior e manter a deformação.\
+E) trocar a mola por outra de constante elástica quatro vezes maior e manter a deformação.
 
-**Questão 5 (estilo ENEM: autoral)**
-Uma lâmpada incandescente de 60 W converte cerca de 5% da energia elétrica recebida em luz visível, enquanto uma lâmpada de LED de 9 W converte cerca de 33% da energia recebida em luz visível, produzindo aproximadamente a mesma iluminação.
+**Questão 3**
 
-Comparando as duas situações, a substituição da lâmpada incandescente pela de LED implica
+*ENEM 2017 · 2º dia · caderno azul · questão 108*
 
-a) aumento da energia total consumida, já que o rendimento do LED é maior.
-b) redução da energia elétrica consumida e da parcela de energia convertida em calor.
-c) eliminação completa da dissipação de energia sob a forma de calor.
-d) manutenção da energia consumida, com aumento apenas da potência luminosa.
-e) redução da potência luminosa emitida, compensada pela economia na conta.
+O brinquedo pula-pula (cama elástica) é composto por uma lona circular flexível horizontal presa por molas à sua borda. As crianças brincam pulando sobre ela, alterando e alternando suas formas de energia. Ao pular verticalmente, desprezando o atrito com o ar e os movimentos de rotação do corpo enquanto salta, uma criança realiza um movimento periódico vertical em torno da posição de equilíbrio da lona (h = 0), passando pelos pontos de máxima e de mínima alturas, h máx e h mín, respectivamente.
+
+Esquematicamente, o esboço do gráfico da energia cinética da criança em função de sua posição vertical na situação descrita é:
+
+<figure class="figura">
+  <svg viewBox="0 0 460 250" role="img" aria-labelledby="fig-te-q3-t fig-te-q3-d">
+    <title id="fig-te-q3-t">Os cinco gráficos de energia cinética</title>
+    <desc id="fig-te-q3-d">Cinco gráficos da energia cinética (Ec) em função da altura h, com h mín à esquerda, 0 no meio e h máx à direita. A: a energia cai em linha reta de h mín até zero em h = 0 e depois sobe em linha reta até h máx. B: sobe em linha reta de zero em h mín até o máximo em h = 0 e desce em linha reta até zero em h máx. C: sobe em curva de zero em h mín até o máximo, logo à esquerda de h = 0, achatando perto do topo, e desce em linha reta até zero em h máx. D: sobe em linha reta de zero em h mín até o máximo em h = 0 e desce em curva até zero em h máx, primeiro devagar e depois rápido. E: começa baixa em h mín, desce em curva até zero, logo à direita de h = 0, e depois sobe em curva até o máximo em h máx. Figura redesenhada a partir da prova oficial, com os mesmos dados.</desc>
+    <text x="6" y="15" class="rotulo">A</text>
+    <line x1="14" y1="100" x2="134" y2="100" class="traco-fino" />
+    <path d="M 138 100 L 130 97 L 130 103 Z" class="traco preenche" />
+    <line x1="50" y1="100" x2="50" y2="14" class="traco-fino" />
+    <path d="M 50 10 L 47 18 L 53 18 Z" class="traco preenche" />
+    <text x="60" y="16" class="rotulo-fraco">E<tspan dy="3" font-size="8">c</tspan></text>
+    <text x="138" y="90" class="rotulo-fraco">h</text>
+    <text x="50" y="113" class="rotulo-fraco" text-anchor="middle">0</text>
+    <text x="22" y="113" class="rotulo-fraco" text-anchor="middle">h<tspan dy="3" font-size="8">mín</tspan></text>
+    <text x="122" y="113" class="rotulo-fraco" text-anchor="middle">h<tspan dy="3" font-size="8">máx</tspan></text>
+    <line x1="22" y1="64" x2="22" y2="100" class="tracejado" />
+    <line x1="122" y1="38" x2="122" y2="100" class="tracejado" />
+    <path d="M 22,64 L 50,100 L 122,38" class="traco" />
+    <text x="161" y="15" class="rotulo">B</text>
+    <line x1="169" y1="100" x2="289" y2="100" class="traco-fino" />
+    <path d="M 293 100 L 285 97 L 285 103 Z" class="traco preenche" />
+    <line x1="205" y1="100" x2="205" y2="14" class="traco-fino" />
+    <path d="M 205 10 L 202 18 L 208 18 Z" class="traco preenche" />
+    <text x="215" y="16" class="rotulo-fraco">E<tspan dy="3" font-size="8">c</tspan></text>
+    <text x="293" y="90" class="rotulo-fraco">h</text>
+    <text x="205" y="113" class="rotulo-fraco" text-anchor="middle">0</text>
+    <text x="177" y="113" class="rotulo-fraco" text-anchor="middle">h<tspan dy="3" font-size="8">mín</tspan></text>
+    <text x="277" y="113" class="rotulo-fraco" text-anchor="middle">h<tspan dy="3" font-size="8">máx</tspan></text>
+    <path d="M 177,100 L 205,38 L 277,100" class="traco" />
+    <text x="316" y="15" class="rotulo">C</text>
+    <line x1="324" y1="100" x2="444" y2="100" class="traco-fino" />
+    <path d="M 448 100 L 440 97 L 440 103 Z" class="traco preenche" />
+    <line x1="360" y1="100" x2="360" y2="14" class="traco-fino" />
+    <path d="M 360 10 L 357 18 L 363 18 Z" class="traco preenche" />
+    <text x="370" y="16" class="rotulo-fraco">E<tspan dy="3" font-size="8">c</tspan></text>
+    <text x="448" y="90" class="rotulo-fraco">h</text>
+    <text x="360" y="113" class="rotulo-fraco" text-anchor="middle">0</text>
+    <text x="332" y="113" class="rotulo-fraco" text-anchor="middle">h<tspan dy="3" font-size="8">mín</tspan></text>
+    <text x="432" y="113" class="rotulo-fraco" text-anchor="middle">h<tspan dy="3" font-size="8">máx</tspan></text>
+    <path d="M 332,100 C 335,66 343,40 352,38 C 355,37.5 358,38 360,39 L 432,100" class="traco" />
+    <text x="84" y="145" class="rotulo">D</text>
+    <line x1="92" y1="230" x2="212" y2="230" class="traco-fino" />
+    <path d="M 216 230 L 208 227 L 208 233 Z" class="traco preenche" />
+    <line x1="128" y1="230" x2="128" y2="144" class="traco-fino" />
+    <path d="M 128 140 L 125 148 L 131 148 Z" class="traco preenche" />
+    <text x="138" y="146" class="rotulo-fraco">E<tspan dy="3" font-size="8">c</tspan></text>
+    <text x="216" y="220" class="rotulo-fraco">h</text>
+    <text x="128" y="243" class="rotulo-fraco" text-anchor="middle">0</text>
+    <text x="100" y="243" class="rotulo-fraco" text-anchor="middle">h<tspan dy="3" font-size="8">mín</tspan></text>
+    <text x="200" y="243" class="rotulo-fraco" text-anchor="middle">h<tspan dy="3" font-size="8">máx</tspan></text>
+    <path d="M 100,230 L 128,168 C 168,168 194,186 200,230" class="traco" />
+    <text x="239" y="145" class="rotulo">E</text>
+    <line x1="247" y1="230" x2="367" y2="230" class="traco-fino" />
+    <path d="M 371 230 L 363 227 L 363 233 Z" class="traco preenche" />
+    <line x1="283" y1="230" x2="283" y2="144" class="traco-fino" />
+    <path d="M 283 140 L 280 148 L 286 148 Z" class="traco preenche" />
+    <text x="293" y="146" class="rotulo-fraco">E<tspan dy="3" font-size="8">c</tspan></text>
+    <text x="371" y="220" class="rotulo-fraco">h</text>
+    <text x="283" y="243" class="rotulo-fraco" text-anchor="middle">0</text>
+    <text x="255" y="243" class="rotulo-fraco" text-anchor="middle">h<tspan dy="3" font-size="8">mín</tspan></text>
+    <text x="355" y="243" class="rotulo-fraco" text-anchor="middle">h<tspan dy="3" font-size="8">máx</tspan></text>
+    <line x1="255" y1="218" x2="255" y2="230" class="tracejado" />
+    <line x1="355" y1="180" x2="355" y2="230" class="tracejado" />
+    <path d="M 255,218 C 263,227 273,230 289,230 C 319,230 345,220 355,180" class="traco" />
+  </svg>
+</figure>
+
+A) Gráfico A\
+B) Gráfico B\
+C) Gráfico C\
+D) Gráfico D\
+E) Gráfico E
+
+**Questão 4**
+
+*ENEM 2015 · 2ª aplicação · 1º dia · caderno branco · questão 85*
+
+Para irrigar sua plantação, um produtor rural construiu um reservatório a 20 metros de altura a partir da barragem de onde será bombeada a água. Para alimentar o motor elétrico das bombas, ele instalou um painel fotovoltaico. A potência do painel varia de acordo com a incidência solar, chegando a um valor de pico de 80 W ao meio-dia. Porém, entre as 11 horas e 30 minutos e as 12 horas e 30 minutos, disponibiliza uma potência média de 50 W. Considere a aceleração da gravidade igual a 10 m/s² e uma eficiência de transferência energética de 100%.
+
+Qual é o volume de água, em litros, bombeado para o reservatório no intervalo de tempo citado?
+
+A) 150\
+B) 250\
+C) 450\
+D) 900\
+E) 1 440
+
+**Questão 5**
+
+*ENEM 2015 · 1º dia · caderno azul · questão 49*
+
+Um carro solar é um veículo que utiliza apenas a energia solar para a sua locomoção. Tipicamente, o carro contém um painel fotovoltaico que converte a energia do Sol em energia elétrica que, por sua vez, alimenta um motor elétrico. A imagem mostra o carro solar Tokai Challenger, desenvolvido na Universidade de Tokai, no Japão, e que venceu o World Solar Challenge de 2009, uma corrida internacional de carros solares, tendo atingido uma velocidade média acima de 100 km/h.
+
+Foto: ver prova oficial, página 17 ([PDF do INEP](https://download.inep.gov.br/educacao%5Fbasica/enem/provas/2015/2015%5FPV%5Fimpresso%5FD1%5FCD1.pdf)). A foto mostra o carro, baixo e achatado, com o painel ocupando todo o teto.
+
+Disponível em: www.physics.hku.hk. Acesso em: 3 jun. 2015.
+
+Considere uma região plana onde a insolação (energia solar por unidade de tempo e de área que chega à superfície da Terra) seja de 1 000 W/m², que o carro solar possua massa de 200 kg e seja construído de forma que o painel fotovoltaico em seu topo tenha uma área de 9,0 m² e rendimento de 30%.
+
+Desprezando as forças de resistência do ar, o tempo que esse carro solar levaria, a partir do repouso, para atingir a velocidade de 108 km/h é um valor mais próximo de
+
+A) 1,0 s.\
+B) 4,0 s.\
+C) 10 s.\
+D) 33 s.\
+E) 300 s.
