@@ -126,5 +126,36 @@
   "2021-digital-D2-azul-Q146": {
     "nota": "as 'figuras' eram a fórmula CV = s/X̄ e as alternativas em imagem, já em texto; conferido na imagem da página em 27/09/2026",
     "figuras": []
+  },
+  "2013-regular-D2-azul-Q138": {
+    "nota": "potências e frações empilhadas; conferido na imagem da página em 27/09/2026",
+    "alternativas": [
+      "62⁶/10⁶",
+      "62!/10!",
+      "(62! 4!)/(10! 56!)",
+      "62! − 10!",
+      "62⁶ − 10⁶"
+    ]
+  },
+  "2020-regular-D2-azul-Q163": {
+    "nota": "a 'figura' era o recorte das alternativas C e D, já em texto; conferido na imagem da página em 27/09/2026",
+    "figuras": [],
+    "alternativas": [
+      "9!",
+      "4! 5!",
+      "2 × 4! 5!",
+      "9!/2",
+      "(4! 5!)/2"
+    ]
+  },
+  "2018-regular-D2-azul-Q165": {
+    "nota": "índices de A e C empilhados; conferido na imagem da página em 27/09/2026",
+    "alternativas": [
+      "A₁₀⁴",
+      "C₁₀⁴",
+      "C₄² × C₆² × 2 × 2",
+      "A₄² × A₆² × 2 × 2",
+      "C₄² × C₆²"
+    ]
   }
 }
