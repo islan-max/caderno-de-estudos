@@ -2,197 +2,552 @@
 title: "Impulso e Quantidade de Movimento"
 subject: "Física"
 order: 4
+relevance: >
+  Colisões estão por toda parte: batidas de carro, bolas que quicam, jogadores que se trombam,
+  partículas dentro de um reator. O ENEM (Exame Nacional do Ensino Médio) usa esse tema para cobrar
+  segurança no trânsito (cinto, airbag, barreiras), leitura de gráficos e contas com colisões em que os
+  corpos grudam ou ricocheteiam. Duas ideias resolvem quase tudo: numa colisão, a quantidade de
+  movimento total se conserva, e a força depende do tempo que a colisão dura.
+quickSummary: >
+  Quantidade de movimento é Q = m × v, com direção e sentido. O impulso de uma força, F × Δt, é igual à
+  variação da quantidade de movimento: para a mesma variação, mais tempo quer dizer menos força. Numa
+  colisão, a quantidade de movimento total antes é igual à de depois, em cada direção. Na colisão elástica,
+  a energia cinética também se conserva; nas outras, parte dela é dissipada.
+resources:
+  conteudoComplementar:
+    conteudo: "Trabalho e Energia"
+    comoAjuda: "A energia cinética, m × v² ÷ 2, é usada para saber quanta energia uma colisão dissipa. Se ela travar você, revise essa aula."
 gabarito:
-  - correta: 0
-    porque: >
-      A velocidade de chegada é raiz de (2gh) = 10 m/s, então a quantidade de movimento vale 25 kg.m/s. A força média é 25/0,5 = 50 N, e o peso de um tijolo é 25 N. Logo, 50/25 = 2 tijolos.
-  - correta: 3
-    porque: >
-      O impulso aplicado é F.dt = 250 x 0,10 = 25 N.s, e ele equivale à variação da quantidade de movimento, dm.v = 200.v. Daí v = 25/200 = 0,125 m/s.
   - correta: 1
     porque: >
-      Colisão perfeitamente inelástica: m1.v1 = (m1 + m2).v. Com v1 = 0,40 m/s e v = 0,15 m/s, vem 150 x 0,40 = (150 + m2) x 0,15, logo m2 = 250 g.
+      Todos os bonecos têm a mesma massa e a mesma variação de velocidade, então a área sob as curvas é a mesma. O risco
+      vem da maior força, ou seja, do pico da aceleração, e o cinto 2 tem o menor pico, de cerca de 65 m/s².
+      Revisar: Aula Teórica › 2. Impulso e força média
   - correta: 0
     porque: >
-      Sem inclinação na subida não há componente do peso ao longo do movimento, então o impulso resultante é nulo e a velocidade não muda. É a ideia que vira a lei da inércia.
+      Nos pneus o carro volta, então sua velocidade muda mais no mesmo tempo, e a força média é maior. Nos blocos o carro
+      para: perde toda a energia cinética, e a energia dissipada é maior.
+      Revisar: Aula Teórica › 5. Colisões e energia
+  - correta: 4
+    porque: >
+      A 45°, as quantidades de movimento nas duas direções são iguais: m × v do carro = 2m × 40. Assim, a velocidade do
+      carro era 80 km/h.
+      Revisar: Aula Teórica › 4. Colisões em duas direções
+  - correta: 2
+    porque: >
+      Em colisões elásticas entre esferas iguais, a quantidade de movimento e a energia cinética se conservam: se três bolas
+      chegam, saem as três da ponta direita (uma delas é das que chegaram), e as duas da esquerda ficam paradas (esquema C).
+      Revisar: Aula Teórica › 5. Colisões e energia
   - correta: 0
     porque: >
-      O ar soprado contra a própria vela devolve à vela a mesma quantidade de movimento que a ventoinha tirou do carro: as forças internas se cancelam e o carro A fica parado. No carro B o ar sai do sistema, e só aí há impulso externo.
-relevance: >
-  Impulso e quantidade de movimento são as ferramentas que a Física usa para analisar colisões,
-  choques e qualquer situação em que uma força atua durante um curto intervalo de tempo: batidas de
-  carro, chutes em bolas, tacadas de beisebol, o coice de uma arma, o funcionamento de um foguete. É
-  basicamente "a Terceira Lei de Newton em ação, mas com números". Esse tema aparece com muita
-  frequência no ENEM (praticamente todo ano tem pelo menos uma questão), geralmente em formato de
-  contextualização real: segurança veicular, esportes, experimentos de laboratório.
-quickSummary: >
-  A quantidade de movimento (Q = m·v) é uma grandeza vetorial que representa a "resistência" de um
-  corpo a parar ou mudar de direção; depende tanto da massa quanto da velocidade, então um corpo
-  pesado e lento pode ter o mesmo Q que um corpo leve e rápido.
+      Com a massa do nêutron igual a 1, a velocidade depois do choque é (1 − ms) ÷ (1 + ms) vezes a inicial. Ela fica
+      menor, em tamanho, quando a massa do alvo é mais próxima de 1: para o deutério, 1 ÷ 3 da inicial.
+      Revisar: Aula Teórica › 5. Colisões e energia
 ---
 
-## Aula Teórica Completa
+<Accordion titulo="Palavras e siglas desta aula" dica="Consulte quando encontrar um termo novo" icone="spell-check">
 
-### 2.1 Quantidade de movimento (momento linear)
+- **ENEM** (Exame Nacional do Ensino Médio): a prova nacional que dá acesso a faculdades e bolsas.
+- **INEP** (Instituto Nacional de Estudos e Pesquisas Educacionais Anísio Teixeira): o órgão do governo que faz o ENEM.
+- **N** (newton): a unidade de força.
+- **J** (joule): a unidade de energia.
+- **m/s²** (metro por segundo ao quadrado): a unidade de aceleração; diz quantos m/s a velocidade muda a cada segundo.
+- **Módulo**: o tamanho de uma grandeza, sem o sentido.
+- **Desaceleração**: aceleração que reduz a velocidade.
+- **Acelerômetro**: aparelho que mede a aceleração.
+- **Sistema isolado**: conjunto de corpos em que só as forças entre eles importam durante o choque.
+- **Nêutron**: partícula sem carga do núcleo do átomo.
+- **Deutério** (D): hidrogênio com um nêutron no núcleo; número de massa 2.
+- **Moderador**: substância usada num reator nuclear para frear nêutrons.
+- **Fissão**: quebra de um núcleo pesado em núcleos menores, liberando energia e nêutrons.
+- **Reação em cadeia**: fissões que liberam nêutrons que provocam novas fissões.
+- **Pêndulo**: peso pendurado num fio, que pode balançar.
 
-Imagine dois caminhões vindo na sua direção: um em alta velocidade e vazio, outro bem devagar mas carregado de tijolos. Qual você teria mais medo de encarar? Provavelmente o carregado, mesmo mais lento, porque ele tem mais **"quantidade de movimento"**, ou seja, mais dificuldade de parar.
+</Accordion>
 
-A quantidade de movimento (também chamada de momento linear) é definida como:
+## Antes de Começar
 
-**Q = m . v**
+**O que o ENEM cobra aqui.** A prova quase nunca pede só "calcule Q". Os temas que costumam aparecer são estes:
 
-Decompondo cada letra:
-- **Q** = quantidade de movimento (unidade: kg·m/s)
-- **m** = massa do corpo (kg): quanto "material" ele tem
-- **v** = velocidade do corpo (m/s): quão rápido ele se move
+- **Explicar a segurança** de cintos, airbags e barreiras: por que mais tempo de colisão quer dizer menos força.
+- **Ler um gráfico** de força ou de aceleração ao longo de uma colisão.
+- **Usar a conservação** para achar uma velocidade antes ou depois de um choque, inclusive em cruzamentos.
+- **Comparar colisões**: quem para, quem volta, quanta energia se perde.
+- **Ler uma fórmula dada** no enunciado e decidir qual caso deixa a velocidade menor.
 
-Repare: Q é uma grandeza **vetorial**. Isso significa que ela tem direção e sentido, igual à velocidade. Se um carro vai para a direita, o Q dele aponta para a direita. Isso importa muito em colisões onde os corpos vêm de direções diferentes.
+**O que você precisa saber antes.**
 
-### 2.2 Impulso
+- **Leis de Newton.** A força resultante é F = m × a, e a aceleração mede o quanto a velocidade muda por segundo.
+- **Energia cinética.** Ec = m × v² ÷ 2 (aula de Trabalho e Energia).
+- **Teorema de Pitágoras.** Num triângulo retângulo, o lado maior ao quadrado é a soma dos quadrados dos outros dois: 3² + 4² = 5².
 
-Agora pense: para você **mudar** a quantidade de movimento de alguma coisa (fazer ela acelerar, frear, ou mudar de direção), você precisa aplicar uma força por um certo tempo. Não adianta empurrar um carro parado por 0,001 segundo: ele nem vai sentir. Mas empurrar com a mesma força por 10 segundos já muda tudo.
+## Aula Teórica
 
-Esse "efeito acumulado de uma força ao longo do tempo" é o que chamamos de **impulso**:
+### 1. Quantidade de movimento
 
-**I = F . Δt**
+Um caminhão devagar e uma bala rápida são difíceis de parar por motivos diferentes: um tem muita massa, a outra muita velocidade. A grandeza que junta as duas coisas é a **quantidade de movimento**.
 
-Decompondo:
-- **I** = impulso (unidade: N·s, que é numericamente igual a kg·m/s)
-- **F** = força aplicada (N): constante nesse caso mais simples
-- **Δt** = intervalo de tempo durante o qual a força atua (s)
+**Fórmula: quantidade de movimento**
 
-Se a força não for constante (variar durante o tempo), o impulso é calculado pela **área do gráfico Força × tempo**. Isso é um ponto clássico de prova: o ENEM adora dar um gráfico F×t e pedir a área.
+**Q = m × v**
 
-### 2.3 O Teorema do Impulso: a ponte entre os dois conceitos
+- **Q**: a quantidade de movimento, em quilograma vezes metro por segundo (kg·m/s).
+- **m**: a massa, em kg.
+- **v**: a velocidade, em m/s.
+- **Em palavras:** quanto mais massa e mais velocidade, mais difícil parar o corpo. A quantidade de movimento aponta para onde o corpo se move.
+- **Quando usar:** em qualquer colisão, freada ou arremesso.
 
-Aqui está o "pulo do gato" de todo o assunto: **o impulso aplicado sobre um corpo é igual à variação da quantidade de movimento desse corpo.**
+**Exemplo resolvido.** Compare a quantidade de movimento de um ciclista de 80 kg a 5 m/s com a de uma bola de 0,4 kg a 20 m/s.
 
-**I = ΔQ = Q_final − Q_inicial**
+1. Ciclista: Q = 80 × 5 = 400 kg·m/s.
+2. Bola: Q = 0,4 × 20 = 8 kg·m/s.
+3. Resposta: o ciclista tem 50 vezes mais quantidade de movimento (400 ÷ 8 = 50), mesmo sendo mais lento.
 
-Ou, juntando as duas fórmulas:
+**Erro comum.** Esquecer o sentido. Num mesmo trilho, escolha um sentido como positivo: quem vai para o outro lado tem velocidade negativa, e sua quantidade de movimento também.
 
-**F . Δt = m . v_final − m . v_inicial**
+### 2. Impulso e força média
 
-Pense assim: se você quer fazer a mesma mudança de velocidade (o mesmo ΔQ) em menos tempo, você precisa de MAIS força. É por isso que um airbag e um cinto de segurança "estendem" o tempo da parada do corpo: ao aumentar o Δt, eles diminuem a força F necessária para o mesmo ΔQ, reduzindo o risco de lesão. **Esse é o pegadinha-padrão do ENEM em questões de segurança veicular**: a pergunta não é sobre qual dispositivo para mais rápido, e sim sobre qual aplica MENOR força, e isso está ligado a fazer a parada acontecer em MAIS tempo, de forma mais suave.
+Para mudar a quantidade de movimento de um corpo é preciso uma força agindo durante um tempo. O produto força × tempo se chama **impulso**, e ele é exatamente a mudança da quantidade de movimento.
 
-### 2.4 Conservação da quantidade de movimento
+**Fórmula: impulso**
 
-Em um **sistema isolado** (nenhuma força externa relevante agindo: só forças internas entre os corpos do próprio sistema, como em uma colisão entre dois carrinhos), a quantidade de movimento total se conserva:
+**F × Δt = m × Δv**
 
-**Q_total antes = Q_total depois**
+- **F**: a força média durante o choque, em newtons.
+- **Δt**: quanto tempo o choque dura, em segundos (Δ, a letra grega "delta", quer dizer "variação").
+- **Δv**: a variação da velocidade, a final menos a inicial, com sinal.
+- **m**: a massa, em kg.
+- **Em palavras:** para a mesma variação de velocidade, quanto **mais tempo** o choque dura, **menor** a força. É por isso que cintos, airbags, capacetes e colchões protegem: eles esticam o tempo da parada.
+- **Quando usar:** batidas, freadas, bolas chutadas ou agarradas, quedas.
 
-**m₁v₁ + m₂v₂ = m₁v₁' + m₂v₂'**
+**Exemplo resolvido.** Uma bola de 0,4 kg chega a 25 m/s nas mãos de um goleiro e para. Qual é a força média se ela para em 0,01 s? E se o goleiro recuar as mãos e a parada durar 0,05 s?
 
-Isso explica, por exemplo, por que uma arma "recua" quando disparada (o projétil vai para um lado, a arma vai para o outro, para o Q total continuar igual a zero) e por que um foguete se impulsiona no vácuo (ejeta massa para trás para ganhar velocidade para frente).
+1. Variação da velocidade: de 25 m/s a 0, então m × Δv = 0,4 × 25 = 10 kg·m/s (em tamanho).
+2. Em 0,01 s: F = 10 ÷ 0,01 = 1 000 N.
+3. Em 0,05 s: F = 10 ÷ 0,05 = 200 N.
+4. Resposta: 1 000 N; recuando as mãos, 200 N, 5 vezes menos.
 
-**Pegadinha clássica do ENEM:** os alunos esquecem que Q é vetorial. Em colisões onde os corpos vêm de direções diferentes (ex: cruzamento a 90°), não dá para simplesmente somar os números, é preciso tratar cada direção separadamente (como se fossem dois problemas: um no eixo x, outro no eixo y) ou usar vetores.
+**Erro comum.** Achar que um airbag "diminui o impulso". O impulso depende só de m × Δv, que é o mesmo; o que muda é o tempo e, com ele, a força.
 
-### 2.5 Tipos de colisão (contexto importante, mas menos cobrado em cálculo direto)
+Nos gráficos de força ou de aceleração em função do tempo, a **área** embaixo da curva de força é o impulso. Num gráfico de aceleração, a área é a variação da velocidade. Se dois choques têm a mesma massa e a mesma variação de velocidade, as áreas são iguais, mesmo com formas diferentes. O que machuca é a força **máxima**, o **pico** da curva: quanto maior a aceleração num instante, maior a força naquele instante (F = m × a).
 
-- **Colisão perfeitamente elástica**: os corpos não colam, e a energia cinética total se conserva (raro na prática, mas comum em problemas teóricos, como o pêndulo de Newton).
-- **Colisão perfeitamente inelástica**: os corpos colam e passam a se mover juntos com a mesma velocidade final. Aqui a energia cinética NÃO se conserva (parte vira calor, som, deformação), mas a quantidade de movimento sempre se conserva.
+<figure class="figura">
+  <svg viewBox="0 0 460 210" role="img" aria-labelledby="fig-im-1-t fig-im-1-d">
+    <title id="fig-im-1-t">Mesmo impulso, forças diferentes</title>
+    <desc id="fig-im-1-d">Gráfico de força em função do tempo durante uma freada brusca. Uma curva alta e estreita (parada rápida) e uma curva baixa e larga (parada lenta) têm a mesma área embaixo delas, que é o impulso. O pico da curva estreita é bem maior que o da larga.</desc>
+    <line x1="50" y1="180" x2="430" y2="180" class="traco-fino" />
+    <line x1="50" y1="180" x2="50" y2="20" class="traco-fino" />
+    <text x="56" y="28" class="rotulo-fraco">força</text>
+    <text x="430" y="198" class="rotulo-fraco" text-anchor="end">tempo</text>
+    <text x="46" y="184" class="rotulo-fraco" text-anchor="end">0</text>
+    <path d="M 70 180 C 90 180 95 40 110 40 C 125 40 130 180 150 180" class="traco preenche" />
+    <path d="M 180 180 C 230 180 260 135 300 135 C 340 135 370 180 420 180" class="traco preenche" />
+    <text x="120" y="34" class="rotulo-fraco">parada rápida: pico alto</text>
+    <text x="300" y="126" class="rotulo-fraco" text-anchor="middle">parada lenta: pico baixo</text>
+    <text x="300" y="160" class="rotulo-fraco" text-anchor="middle">mesma área</text>
+  </svg>
+</figure>
+
+### 3. Conservação da quantidade de movimento
+
+Durante uma colisão, os corpos se empurram com forças de ação e reação: mesmo tamanho, sentidos opostos, mesmo tempo. Os impulsos se cancelam, e a quantidade de movimento **total** não muda.
+
+**Fórmula: conservação da quantidade de movimento**
+
+**Q total antes = Q total depois**
+
+- **Q total**: a soma das quantidades de movimento de todos os corpos, cada uma com seu sinal.
+- **Em palavras:** o que um corpo perde de quantidade de movimento, o outro ganha. Vale para colisões e para explosões, desde que forças de fora (como o atrito) sejam pequenas durante o choque.
+- **Quando usar:** colisões em que os corpos grudam, batem e se separam, ou se empurram a partir do repouso.
+
+Quando os corpos **grudam**, eles saem juntos com uma só velocidade: m1 × v1 + m2 × v2 = (m1 + m2) × v. Aqui m1 e m2 são as massas, v1 e v2 as velocidades antes do choque e v a velocidade dos dois juntos depois.
+
+**Exemplo resolvido.** Um vagão de 3 000 kg, a 2 m/s, engata num vagão de 1 000 kg parado. Com que velocidade os dois seguem juntos? E se o segundo vagão viesse no sentido contrário, a 1 m/s?
+
+1. Antes: Q = 3 000 × 2 + 1 000 × 0 = 6 000 kg·m/s.
+2. Depois, juntos: (3 000 + 1 000) × v = 6 000, então v = 1,5 m/s.
+3. Sentido contrário: Q = 6 000 + 1 000 × (−1) = 5 000; v = 5 000 ÷ 4 000 = 1,25 m/s, no sentido do primeiro.
+4. Resposta: 1,5 m/s; 1,25 m/s.
+
+**Erro comum.** Somar as velocidades em vez das quantidades de movimento, ou esquecer o sinal de quem vem no sentido contrário.
+
+Muitas vezes a questão dá as massas só em proporção, como em "o caminhão tem o triplo da massa do carro". Chame a menor de m e a maior de 3m. A letra m aparece em todos os termos e se cancela. As velocidades podem ficar em km/h, desde que todas estejam na mesma unidade. Por exemplo, um carro de massa m, a 60 km/h, engata num caminhão parado de massa 3m. Então m × 60 = (m + 3m) × v, e v = 60 ÷ 4 = 15 km/h.
+
+### 4. Colisões em duas direções
+
+Num cruzamento, os corpos chegam por direções **perpendiculares** (em ângulo reto). A regra continua valendo, mas **em cada direção separadamente**: a quantidade de movimento na direção leste-oeste antes é igual à de depois, e o mesmo vale para a direção norte-sul.
+
+Depois que os corpos grudam, a quantidade de movimento total é a **diagonal** do retângulo formado pelas duas. O tamanho sai pelo teorema de Pitágoras. A direção fica mais perto de quem tinha mais quantidade de movimento. Se as duas eram **iguais**, o retângulo é um quadrado e o conjunto sai a **45°** das duas direções. A regra vale também ao contrário: se o conjunto sai a 45°, as duas quantidades de movimento de antes eram iguais. Num quadrado, a diagonal vale o lado × √2 (√ é o símbolo da raiz quadrada; √2 é cerca de 1,41).
+
+<figure class="figura">
+  <svg viewBox="0 0 460 230" role="img" aria-labelledby="fig-im-2-t fig-im-2-d">
+    <title id="fig-im-2-t">Quantidade de movimento em duas direções</title>
+    <desc id="fig-im-2-d">Uma seta horizontal de 400 kg·m/s, para a direita, e uma seta vertical de 300 kg·m/s, para cima, saem do mesmo ponto. Elas formam os lados de um retângulo, e a diagonal, de 500 kg·m/s, é a quantidade de movimento total depois do choque.</desc>
+    <line x1="80" y1="190" x2="316" y2="190" class="traco" />
+    <path d="M 320 190 L 308 185 L 308 195 Z" class="traco preenche" />
+    <line x1="80" y1="190" x2="80" y2="15" class="traco" />
+    <path d="M 80 10 L 75 22 L 85 22 Z" class="traco preenche" />
+    <line x1="80" y1="10" x2="320" y2="10" class="tracejado" />
+    <line x1="320" y1="10" x2="320" y2="190" class="tracejado" />
+    <line x1="80" y1="190" x2="316" y2="13" class="traco" />
+    <path d="M 320 10 L 307 13 L 313 21 Z" class="traco preenche" />
+    <text x="200" y="210" class="rotulo-fraco" text-anchor="middle">400 kg·m/s (para a direita)</text>
+    <text x="72" y="104" class="rotulo-fraco" text-anchor="end">300</text>
+    <text x="72" y="118" class="rotulo-fraco" text-anchor="end">(para cima)</text>
+    <text x="110" y="70" class="rotulo">total: 500</text>
+  </svg>
+</figure>
+
+**Exemplo resolvido.** Num jogo de hóquei no gelo, um jogador de 60 kg patina para o norte a 5 m/s e um de 40 kg patina para o leste a 10 m/s. Eles se trombam e seguem abraçados. Qual é a velocidade do par?
+
+1. Norte: Q = 60 × 5 = 300 kg·m/s. Leste: Q = 40 × 10 = 400 kg·m/s.
+2. Total pela diagonal: 300² + 400² = 90 000 + 160 000 = 250 000; a raiz é 500 kg·m/s.
+3. Velocidade do par: 500 ÷ (60 + 40) = 5 m/s.
+4. Direção: mais para o leste que para o norte, porque 400 é maior que 300; não é 45°.
+5. Resposta: 5 m/s.
+
+**Erro comum.** Somar direto 300 + 400 = 700. Quantidades de movimento perpendiculares se somam como os lados de um retângulo, não como números numa linha.
+
+### 5. Colisões e energia
+
+Em toda colisão (de um sistema isolado) a quantidade de movimento se conserva. A **energia cinética**, não necessariamente:
+
+- **Colisão elástica**: a energia cinética total também se conserva. Bolas de aço e bolas de bilhar chegam perto disso.
+- **Colisão inelástica**: parte da energia cinética vira calor, som e deformação. Quando os corpos **grudam**, ou quando um corpo bate numa parede e **para**, toda a energia cinética que podia ser perdida vira calor, som e deformação.
+
+A **energia mecânica** é a cinética mais a potencial. Numa batida em chão plano, só a cinética muda, então a energia mecânica dissipada é a energia cinética perdida: a de antes menos a de depois. Um choque em que o corpo **volta** tem uma variação de velocidade maior do que um em que ele só para. Por isso, no mesmo tempo, a força é maior; mas como sobra energia cinética na volta, a energia dissipada é menor.
+
+**Exemplo resolvido.** Uma bola de 0,5 kg bate numa parede a 10 m/s, e o choque dura 0,02 s. Compare dois casos: a bola volta a 10 m/s, ou volta a 4 m/s. Qual tem a maior força média? E a maior energia dissipada?
+
+1. Volta a 10 m/s: tomando o sentido da ida como positivo, Δv = −10 − 10 = −20 m/s. Força: 0,5 × 20 ÷ 0,02 = 500 N.
+2. Volta a 4 m/s: Δv = −4 − 10 = −14 m/s. Força: 0,5 × 14 ÷ 0,02 = 350 N.
+3. Energia antes: 0,5 × 10² ÷ 2 = 25 J. Volta a 10 m/s: sobram 25 J, dissipa 0 J. Volta a 4 m/s: sobram 0,5 × 4² ÷ 2 = 4 J, dissipa 25 − 4 = 21 J.
+4. Resposta: força maior quando volta mais rápido; energia dissipada maior quando volta mais devagar.
+
+**Erro comum.** Achar que a força é maior quando o corpo para "de uma vez". Com o mesmo tempo de choque, voltar exige mudar mais a velocidade; e quanto mais rápido volta, menos energia se perdeu.
+
+Esferas iguais, choque elástico: quando uma bola bate de frente, elasticamente, numa bola igual parada, elas **trocam de velocidade**: a primeira para e a segunda sai com a velocidade da primeira. Numa fileira de bolas iguais encostadas, se n bolas chegam, saem as n bolas da **ponta oposta**, com a mesma velocidade, mesmo que alguma delas seja uma das que chegaram. Ficam paradas as bolas da ponta de onde elas vieram. Com 7 bolas e 4 chegando, saem as 4 da outra ponta (uma delas é das que chegaram), e as 3 primeiras ficam paradas. Só assim a quantidade de movimento **e** a energia se conservam juntas. Exemplo: se 2 bolas chegam a v, sair 1 bola a 2v conservaria Q (1 × 2v = 2 × v), mas a energia dobraria, o que é impossível.
+
+<figure class="figura">
+  <svg viewBox="0 0 460 120" role="img" aria-labelledby="fig-im-3-t fig-im-3-d">
+    <title id="fig-im-3-t">Sete bolas, quatro chegam</title>
+    <desc id="fig-im-3-d">À esquerda, antes do choque: numa fileira de sete bolas iguais, as quatro da esquerda vêm juntas para a direita e as três da direita estão paradas. À direita, depois do choque: as três bolas da esquerda ficam paradas e as quatro da direita saem para a direita, com a mesma velocidade; a quarta bola da fileira chegou e também saiu.</desc>
+    <rect x="42" y="6" width="156" height="6" class="traco preenche" />
+    <line x1="60" y1="12" x2="41.5" y2="60.6" class="traco-fino" />
+    <circle cx="38.0" cy="70.0" r="10" class="traco preenche" />
+    <line x1="80" y1="12" x2="61.5" y2="60.6" class="traco-fino" />
+    <circle cx="58.0" cy="70.0" r="10" class="traco" />
+    <line x1="100" y1="12" x2="81.5" y2="60.6" class="traco-fino" />
+    <circle cx="78.0" cy="70.0" r="10" class="traco preenche" />
+    <line x1="120" y1="12" x2="101.5" y2="60.6" class="traco-fino" />
+    <circle cx="98.0" cy="70.0" r="10" class="traco" />
+    <line x1="140" y1="12" x2="140.0" y2="64.0" class="traco-fino" />
+    <circle cx="140.0" cy="74.0" r="10" class="traco preenche" />
+    <line x1="160" y1="12" x2="160.0" y2="64.0" class="traco-fino" />
+    <circle cx="160.0" cy="74.0" r="10" class="traco" />
+    <line x1="180" y1="12" x2="180.0" y2="64.0" class="traco-fino" />
+    <circle cx="180.0" cy="74.0" r="10" class="traco preenche" />
+    <line x1="60" y1="91" x2="84" y2="91" class="traco" />
+    <path d="M 84 91 L 78 88 L 78 94 Z" class="traco preenche" />
+    <rect x="262" y="6" width="156" height="6" class="traco preenche" />
+    <line x1="280" y1="12" x2="280.0" y2="64.0" class="traco-fino" />
+    <circle cx="280.0" cy="74.0" r="10" class="traco preenche" />
+    <line x1="300" y1="12" x2="300.0" y2="64.0" class="traco-fino" />
+    <circle cx="300.0" cy="74.0" r="10" class="traco" />
+    <line x1="320" y1="12" x2="320.0" y2="64.0" class="traco-fino" />
+    <circle cx="320.0" cy="74.0" r="10" class="traco preenche" />
+    <line x1="340" y1="12" x2="358.5" y2="60.6" class="traco-fino" />
+    <circle cx="362.0" cy="70.0" r="10" class="traco" />
+    <line x1="360" y1="12" x2="378.5" y2="60.6" class="traco-fino" />
+    <circle cx="382.0" cy="70.0" r="10" class="traco preenche" />
+    <line x1="380" y1="12" x2="398.5" y2="60.6" class="traco-fino" />
+    <circle cx="402.0" cy="70.0" r="10" class="traco" />
+    <line x1="400" y1="12" x2="418.5" y2="60.6" class="traco-fino" />
+    <circle cx="422.0" cy="70.0" r="10" class="traco preenche" />
+    <line x1="420" y1="91" x2="444" y2="91" class="traco" />
+    <path d="M 444 91 L 438 88 L 438 94 Z" class="traco preenche" />
+    <text x="120" y="112" class="rotulo-fraco" text-anchor="middle">antes: 4 bolas chegam</text>
+    <text x="340" y="112" class="rotulo-fraco" text-anchor="middle">depois: saem as 4 da outra ponta</text>
+  </svg>
+</figure>
+
+Para massas diferentes, com o alvo parado, a velocidade do corpo que bate, depois do choque elástico, é:
+
+**Fórmula: colisão elástica com alvo parado**
+
+**v1 depois = (m1 − m2) ÷ (m1 + m2) × v1 antes**
+
+- **m1**: a massa do corpo que bate.
+- **m2**: a massa do alvo, parado antes do choque.
+- **v1 antes, v1 depois**: a velocidade do corpo que bate, antes e depois. Resultado negativo quer dizer que ele volta.
+- **Em palavras:** quanto mais **próximas** as massas, mais o corpo que bate é freado; com massas iguais, ele para. Alvo muito mais pesado: o corpo volta quase com a mesma velocidade. Alvo muito mais leve: o corpo quase não perde velocidade.
+- **Quando usar:** quando o enunciado dá essa fórmula e pergunta qual alvo freia mais. Compare o **tamanho** (módulo) do resultado, sem o sinal.
+
+**Exemplo resolvido.** Uma partícula de massa 1 bate elasticamente num núcleo parado de massa 7. Com que fração da velocidade ela fica? E se o alvo tivesse massa 1?
+
+1. Massa 7: (1 − 7) ÷ (1 + 7) = −6 ÷ 8 = −0,75. Ela volta com 75% da velocidade.
+2. Massa 1: (1 − 1) ÷ (1 + 1) = 0. Ela para.
+3. Resposta: 0,75 da velocidade, voltando; com massas iguais, zero.
+
+**Erro comum.** Escolher o alvo pelo sinal (o "mais negativo") em vez do tamanho, ou achar que o alvo mais pesado freia mais.
+
+Na prova, a velocidade pode aparecer como υ, a letra grega "úpsilon", que parece um v. Índices como em mn e ms querem dizer "m do nêutron" e "m da substância", e não multiplicações.
+
+Notação dos núcleos: em ⁷₃Li (lítio), o número de cima, 7, é o **número de massa**: prótons mais nêutrons. Como próton e nêutron têm quase a mesma massa, o núcleo tem cerca de 7 vezes a massa de um nêutron. O número de baixo, 3, é o número de prótons. Para comparar massas com a de um nêutron, use o número de cima, e a massa do nêutron vale 1.
+
+### Armadilhas típicas do INEP
+
+1. **Achar que o airbag muda o impulso**: ele muda o tempo e o pico da força.
+2. **Olhar a área do gráfico** quando a pergunta é sobre a força máxima: olhe o pico.
+3. **Somar velocidades** em vez de quantidades de movimento, ou esquecer os sinais.
+4. **Somar direto** quantidades perpendiculares: use o retângulo e a diagonal.
+5. **Confundir força com energia dissipada**: voltar dá mais força; parar contra uma parede dissipa mais energia.
+6. **Tirar uma bola só** do pêndulo de bolas iguais: saem, da ponta oposta, tantas bolas quantas chegaram.
 
 ## Tópicos-Chave para Revisão
 
 <div className="topico">
 
-A **quantidade de movimento (Q = m·v)** é uma grandeza vetorial que representa a "resistência" de um corpo a parar ou mudar de direção; depende tanto da massa quanto da velocidade, então um corpo pesado e lento pode ter o mesmo Q que um corpo leve e rápido.
+#### 1. Quantidade de movimento
 
-O **impulso (I = F·Δt)** representa o efeito acumulado de uma força durante um intervalo de tempo; quando a força varia com o tempo, o impulso é obtido pela área sob o gráfico força × tempo, não por uma multiplicação simples.
+**Q = m × v**, em kg·m/s, com **sentido**: quem vai para o lado oposto tem sinal negativo.
 
-O **Teorema do Impulso (I = ΔQ = m·v_final − m·v_inicial)** é a equação que conecta tudo: ele diz que a força aplicada por um tempo é responsável por qualquer mudança na quantidade de movimento de um corpo. Essa fórmula é a chave para resolver praticamente qualquer questão de "força de impacto", "tempo de colisão" ou "desaceleração".
+#### 2. Impulso
 
-A relação entre **força e tempo em situações de impacto** é inversamente proporcional para um mesmo ΔQ: aumentar o tempo de frenagem (com airbag, cinto, colchão de segurança, tapete de pouso) diminui a força necessária, reduzindo o risco de lesão. Essa é a lógica por trás de quase toda questão de segurança que o ENEM traz.
+**F × Δt = m × Δv**: mesma variação de velocidade e **mais tempo**, menos força; a área do gráfico é o impulso, e o **pico** é o que machuca.
 
-O **Princípio da Conservação da Quantidade de Movimento** (m₁v₁ + m₂v₂ = m₁v₁' + m₂v₂') vale sempre que o sistema for isolado de forças externas relevantes; é o que explica recuo de armas, propulsão de foguetes e colisões entre veículos ou carrinhos de laboratório.
+#### 3. Conservação
 
-O caráter **vetorial** da quantidade de movimento é um ponto crítico: em colisões que não acontecem em linha reta (como cruzamentos), é preciso decompor o problema em componentes de direção (geralmente x e y) antes de aplicar a conservação.
+**Q total antes = Q total depois**; corpos que **grudam** saem com (m1 + m2) × v.
 
-Nas **colisões inelásticas**, os corpos ficam grudados e seguem juntos com velocidade comum após o choque: a quantidade de movimento se conserva, mas a energia cinética não. Nas **colisões elásticas**, tanto a quantidade de movimento quanto a energia cinética se conservam.
+#### 4. Duas direções
+
+Conserve Q em **cada direção**; o total é a **diagonal** (Pitágoras); quantidades iguais: 45°, e saiu a 45°: quantidades iguais.
+
+#### 5. Colisões e energia
+
+**Elástica** conserva Ec; grudar, ou parar contra uma parede, dissipa mais; voltar dá mais força. **v1 depois = (m1 − m2) ÷ (m1 + m2) × v1 antes**: massas próximas freiam mais. Bolas iguais: n chegam, saem **n da ponta oposta**.
 
 </div>
 
-## Teste de Fogo
+## Questões do ENEM
 
 *Marque uma alternativa em cada questão e confira tudo de uma vez no botão do fim.*
 
-**Questão 1 (ENEM 2019)**
-Em qualquer obra de construção civil é fundamental a utilização de equipamentos de proteção individual, tal como capacetes. Por exemplo, a queda livre de um tijolo de massa 2,5 kg de uma altura de 5 m, cujo impacto contra um capacete pode durar até 0,5 s, resulta em uma força impulsiva média maior do que o peso do tijolo. Suponha que a aceleração gravitacional seja 10 m/s² e que o efeito de resistência do ar seja desprezível.
+**Questão 1**
 
-A força impulsiva média gerada por esse impacto equivale ao peso de quantos tijolos iguais?
+*ENEM 2017 · 2º dia · caderno azul · questão 99*
 
-A) 2
-B) 5
-C) 10
-D) 20
-E) 50
-
-**Questão 2 (ENEM 2023 – PPL, 2ª aplicação)**
-Esteiras e escadas rolantes são dispositivos que deslocam, a velocidade constante, os objetos neles colocados, por meio de sistemas de controle com sensores. Quando a massa total do dispositivo varia, seja pelo acréscimo ou pela retirada de objetos, a ação de forças impulsivas mantém a velocidade constante. Como exemplo, considere que a massa total diminua de 1200 kg para 1000 kg em um intervalo de tempo de 0,10 s, e que, então, seja aplicada uma força impulsiva constante de 250 N para manter constante a velocidade.
-
-No exemplo mencionado, o valor da velocidade constante do dispositivo rolante é, em m/s,
-
-A) 0,011
-B) 0,021
-C) 0,025
-D) 0,125
-E) 0,500
-
-**Questão 3 (ENEM 2016)**
-O trilho de ar é um dispositivo utilizado em laboratórios de física para analisar movimentos em que corpos de prova (carrinhos) podem se mover com atrito desprezível. A figura ilustra um trilho horizontal com dois carrinhos (1 e 2) em que se realiza um experimento para obter a massa do carrinho 2. No instante em que o carrinho 1, de massa 150,0 g, passa a se mover com velocidade escalar constante, o carrinho 2 está em repouso. No momento em que o carrinho 1 se choca com o carrinho 2, ambos passam a se movimentar juntos com velocidade escalar constante. Os sensores eletrônicos distribuídos ao longo do trilho determinam as posições e registram os instantes associados à passagem de cada carrinho, gerando os dados do experimento (o carrinho 1, antes da colisão, tinha velocidade constante superior à velocidade constante do conjunto após a colisão).
+Em uma colisão frontal entre dois automóveis, a força que o cinto de segurança exerce sobre o tórax e abdômen do motorista pode causar lesões graves nos órgãos internos. Pensando na segurança do seu produto, um fabricante de automóveis realizou testes em cinco modelos diferentes de cinto. Os testes simularam uma colisão de 0,30 segundo de duração, e os bonecos que representavam os ocupantes foram equipados com acelerômetros. Esse equipamento registra o módulo da desaceleração do boneco em função do tempo. Os parâmetros como massa dos bonecos, dimensões dos cintos e velocidade imediatamente antes e após o impacto foram os mesmos para todos os testes. O resultado final obtido está no gráfico de aceleração por tempo.
 
 <figure class="figura">
-  <svg viewBox="0 0 460 200" role="img" aria-labelledby="fig-trilho-t fig-trilho-d">
-    <title id="fig-trilho-t">Trilho de ar com dois carrinhos e os dados dos sensores</title>
-    <desc id="fig-trilho-d">Antes da colisão, o carrinho 1, de 150 gramas, percorre 20 centímetros em 0,50 segundo, o que dá 0,40 metro por segundo. O carrinho 2 está parado. Depois da colisão os dois seguem juntos e percorrem 15 centímetros em 1,00 segundo, o que dá 0,15 metro por segundo.</desc>
-    <line x1="20" y1="70" x2="440" y2="70" class="traco" />
-    <rect x="60" y="46" width="46" height="24" rx="3" class="traco preenche" />
-    <text x="83" y="62" class="rotulo" text-anchor="middle">1</text>
-    <rect x="250" y="46" width="46" height="24" rx="3" class="traco" />
-    <text x="273" y="62" class="rotulo" text-anchor="middle">2</text>
-    <path d="M116 34 L176 34" class="traco" />
-    <path d="M166 29 L176 34 L166 39" class="traco" />
-    <text x="146" y="26" class="rotulo-fraco" text-anchor="middle">v₁</text>
-    <text x="273" y="34" class="rotulo-fraco" text-anchor="middle">repouso</text>
-    <text x="20" y="108" class="rotulo">Antes da colisão</text>
-    <text x="20" y="126" class="rotulo-fraco">carrinho 1: 150,0 g percorre 20 cm em 0,50 s → v₁ = 0,40 m/s</text>
-    <text x="20" y="142" class="rotulo-fraco">carrinho 2: em repouso</text>
-    <text x="20" y="166" class="rotulo">Depois da colisão</text>
-    <text x="20" y="184" class="rotulo-fraco">conjunto (1 + 2): percorre 15 cm em 1,00 s → v = 0,15 m/s</text>
-  </svg>
-  <figcaption>
-    <b>Dados dos sensores.</b> Registros de posição e tempo antes e depois do
-    choque, com os carrinhos seguindo juntos após a colisão.
-  </figcaption>
+
+![Gráfico de aceleração, de 0 a 200 m/s², em função do tempo, de 0 a 0,30 s, com cinco curvas. Cinto 1: pico de cerca de 150 m/s² perto de 0,08 s. Cinto 2: curva baixa e larga, com pico de cerca de 65 m/s² perto de 0,15 s. Cinto 3: pico de cerca de 190 m/s² perto de 0,15 s. Cinto 4: pico de cerca de 85 m/s² perto de 0,21 s. Cinto 5: pico de cerca de 170 m/s² perto de 0,28 s](./img/impulso-e-quantidade-de-movimento/q1.png)
+
 </figure>
 
+Qual modelo de cinto oferece menor risco de lesão interna ao motorista?
 
-Com base nos dados experimentais, o valor da massa do carrinho 2 é igual a
+A) 1\
+B) 2\
+C) 3\
+D) 4\
+E) 5
 
-A) 50,0 g
-B) 250,0 g
-C) 300,0 g
-D) 450,0 g
-E) 600,0 g
+**Questão 2**
 
-**Questão 4 (ENEM 2014)**
-Para entender os movimentos dos corpos, Galileu discutiu o movimento de uma esfera de metal em dois planos inclinados sem atrito, com a possibilidade de se alterarem os ângulos de inclinação. Na descrição do experimento, quando a esfera de metal é abandonada para descer um plano inclinado de um determinado nível, ela sempre atinge, no plano ascendente, no máximo, um nível igual àquele em que foi abandonada.
+*ENEM 2022 · 2º dia · caderno azul · questão 105*
 
-Se o ângulo de inclinação do plano de subida for reduzido a zero, a esfera
+Em um autódromo, os carros podem derrapar em uma curva e bater na parede de proteção. Para diminuir o impacto de uma batida, pode-se colocar na parede uma barreira de pneus, isso faz com que a colisão seja mais demorada e o carro retorne com velocidade reduzida. Outra opção é colocar uma barreira de blocos de um material que se deforma, tornando-a tão demorada quanto a colisão com os pneus, mas que não permite a volta do carro após a colisão.
 
-A) manterá sua velocidade constante, pois o impulso resultante sobre ela será nulo.
-B) manterá sua velocidade constante, pois o impulso da descida continuará a empurrá-la.
-C) diminuirá gradativamente a sua velocidade, pois não haverá mais impulso para empurrá-la.
-D) diminuirá gradativamente a sua velocidade, pois o impulso resultante será contrário ao seu movimento.
-E) aumentará gradativamente a sua velocidade, pois não haverá nenhum impulso contrário ao seu movimento.
+Comparando as duas situações, como ficam a força média exercida sobre o carro e a energia mecânica dissipada?
 
-**Questão 5 (ENEM 2018)**
-Em desenhos animados é comum vermos a personagem tentando impulsionar um barco soprando ar contra a vela para compensar a falta de vento. Algumas vezes usam o próprio fôlego, foles ou ventiladores. Estudantes de um laboratório didático resolveram investigar essa possibilidade. Para isso, usaram dois pequenos carros de plástico, A e B, instalaram sobre estes pequenas ventoinhas e fixaram verticalmente uma cartolina de curvatura parabólica para desempenhar uma função análoga à vela de um barco. No carro A, a ventoinha está direcionada diretamente para a vela (situação análoga aos desenhos animados). No carro B, inverteu-se o sentido da ventoinha, que passa a soprar para fora, longe da vela, mantendo-se as mesmas características físicas do barco, massa e formato da cartolina. Com os carros orientados dessa forma, os estudantes ligaram as ventoinhas, aguardaram o fluxo de ar ficar permanente e determinaram os módulos das velocidades médias dos carros A (VA) e B (VB) para o mesmo intervalo de tempo.
+A) A força é maior na colisão com a barreira de pneus, e a energia dissipada é maior na colisão com a barreira de blocos.\
+B) A força é maior na colisão com a barreira de blocos, e a energia dissipada é maior na colisão com a barreira de pneus.\
+C) A força é maior na colisão com a barreira de blocos, e a energia dissipada é a mesma nas duas situações.\
+D) A força é maior na colisão com a barreira de pneus, e a energia dissipada é maior na colisão com a barreira de pneus.\
+E) A força é maior na colisão com a barreira de blocos, e a energia dissipada é maior na colisão com a barreira de blocos.
 
-A respeito das intensidades das velocidades médias e do sentido de movimento do carro A, os estudantes observaram que:
+**Questão 3**
 
-A) VA = 0; VB > 0; o carro A não se move.
-B) 0 &lt; VA &lt; VB; o carro A se move para a direita.
-C) 0 &lt; VA &lt; VB; o carro A se move para a esquerda.
-D) 0 &lt; VB &lt; VA; o carro A se move para a direita.
-E) 0 &lt; VB &lt; VA; o carro A se move para a esquerda.
+*ENEM 2021 · 2ª aplicação · 2º dia · caderno azul · questão 120*
+
+Foi realizada uma perícia técnica de um acidente de trânsito em que um carro colidiu com uma van em um cruzamento a 90°, como esquematizado na figura. A van tem massa duas vezes maior que o carro. Depois da colisão, os dois veículos permaneceram “grudados” um ao outro e deslocaram-se a um ângulo de 45° com a direção de suas velocidades iniciais. Um radar mediu o módulo da velocidade da van, imediatamente antes da colisão, encontrando 40 km/h.
+
+<figure class="figura">
+  <svg viewBox="0 0 460 300" role="img" aria-labelledby="fig-im-q3-t fig-im-q3-d">
+    <title id="fig-im-q3-t">Colisão no cruzamento</title>
+    <desc id="fig-im-q3-d">Duas ruas se cruzam em ângulo reto. O carro vem pela rua horizontal, da esquerda para a direita; a van vem pela rua vertical, de baixo para cima. Eles batem no cruzamento e, grudados, seguem na diagonal, para cima e para a direita, a 45° das duas direções. Figura redesenhada a partir da prova oficial, com os mesmos dados.</desc>
+    <line x1="200" y1="10" x2="200" y2="120" class="traco" />
+    <line x1="260" y1="10" x2="260" y2="120" class="traco" />
+    <line x1="200" y1="170" x2="200" y2="290" class="traco" />
+    <line x1="260" y1="170" x2="260" y2="290" class="traco" />
+    <line x1="20" y1="120" x2="200" y2="120" class="traco" />
+    <line x1="20" y1="170" x2="200" y2="170" class="traco" />
+    <line x1="260" y1="120" x2="440" y2="120" class="traco" />
+    <line x1="260" y1="170" x2="440" y2="170" class="traco" />
+    <rect x="70" y="136" width="44" height="18" class="traco" />
+    <line x1="120" y1="145" x2="160" y2="145" class="traco" />
+    <path d="M 166 145 L 156 140 L 156 150 Z" class="traco preenche" />
+    <text x="92" y="188" class="rotulo-fraco" text-anchor="middle">Carro</text>
+    <rect x="221" y="205" width="18" height="54" class="traco" />
+    <line x1="230" y1="199" x2="230" y2="176" class="traco" />
+    <path d="M 230 170 L 225 180 L 235 180 Z" class="traco preenche" />
+    <text x="230" y="280" class="rotulo-fraco" text-anchor="middle">Van</text>
+    <path d="M 230 131 L 234 140 L 244 137 L 238 145 L 244 153 L 234 150 L 230 159 L 226 150 L 216 153 L 222 145 L 216 137 L 226 140 Z" class="traco" />
+    <line x1="246" y1="129" x2="296" y2="79" class="tracejado" />
+    <g transform="rotate(-45 318 57)">
+      <rect x="296" y="40" width="44" height="16" class="traco" />
+      <rect x="292" y="58" width="54" height="20" class="traco" />
+    </g>
+    <line x1="340" y1="35" x2="370" y2="5" class="traco" />
+    <path d="M 374 1 L 364 6 L 369 11 Z" class="traco preenche" />
+  </svg>
+</figure>
+
+Qual o valor do módulo da velocidade do carro, em quilômetro por hora (km/h), imediatamente antes da colisão?
+
+A) 20\
+B) 20√2\
+C) 40\
+D) 40√2\
+E) 80
+
+**Questão 4**
+
+*ENEM 2014 · 1º dia · caderno azul · questão 64*
+
+O pêndulo de Newton pode ser constituído por cinco pêndulos idênticos suspensos em um mesmo suporte. Em um dado instante, as esferas de três pêndulos são deslocadas para a esquerda e liberadas, deslocando-se para a direita e colidindo elasticamente com as outras duas esferas, que inicialmente estavam paradas.
+
+<figure class="figura">
+  <svg viewBox="0 0 460 110" role="img" aria-labelledby="fig-im-q4a-t fig-im-q4a-d">
+    <title id="fig-im-q4a-t">Pêndulo de Newton antes da colisão</title>
+    <desc id="fig-im-q4a-d">Cinco pêndulos iguais presos a um suporte, com as bolas alternando cinza e branca. As três bolas da esquerda estão deslocadas para a esquerda e vêm para a direita, como indica a seta; as duas da direita estão paradas, penduradas na vertical. Figura redesenhada a partir da prova oficial, com os mesmos dados.</desc>
+    <rect x="172" y="6" width="116" height="6" class="traco preenche" />
+    <line x1="190" y1="12" x2="171.5" y2="60.6" class="traco-fino" />
+    <circle cx="168.0" cy="70.0" r="10" class="traco preenche" />
+    <line x1="210" y1="12" x2="191.5" y2="60.6" class="traco-fino" />
+    <circle cx="188.0" cy="70.0" r="10" class="traco" />
+    <line x1="230" y1="12" x2="211.5" y2="60.6" class="traco-fino" />
+    <circle cx="208.0" cy="70.0" r="10" class="traco preenche" />
+    <line x1="250" y1="12" x2="250.0" y2="64.0" class="traco-fino" />
+    <circle cx="250.0" cy="74.0" r="10" class="traco" />
+    <line x1="270" y1="12" x2="270.0" y2="64.0" class="traco-fino" />
+    <circle cx="270.0" cy="74.0" r="10" class="traco preenche" />
+    <line x1="190" y1="91" x2="214" y2="91" class="traco" />
+    <path d="M 214 91 L 208 88 L 208 94 Z" class="traco preenche" />
+  </svg>
+</figure>
+
+O movimento dos pêndulos após a primeira colisão está representado em:
+
+<figure class="figura">
+  <svg viewBox="0 0 460 222" role="img" aria-labelledby="fig-im-q4b-t fig-im-q4b-d">
+    <title id="fig-im-q4b-t">As cinco respostas possíveis do pêndulo</title>
+    <desc id="fig-im-q4b-d">Cinco desenhos do pêndulo depois da primeira colisão. A: as duas bolas da esquerda vão para a esquerda, a do meio fica parada e as duas da direita vão para a direita. B: as duas da esquerda vão para a esquerda e as três da direita vão para a direita. C: as duas da esquerda ficam paradas e as três da direita vão para a direita. D: as três da esquerda ficam paradas e as duas da direita vão para a direita. E: as quatro da esquerda ficam paradas e só a última vai para a direita, mais afastada. Figura redesenhada a partir da prova oficial, com os mesmos dados.</desc>
+    <text x="5" y="16" class="rotulo">A</text>
+    <rect x="18" y="6" width="116" height="6" class="traco preenche" />
+    <line x1="36" y1="12" x2="17.5" y2="60.6" class="traco-fino" />
+    <circle cx="14.0" cy="70.0" r="10" class="traco preenche" />
+    <line x1="56" y1="12" x2="37.5" y2="60.6" class="traco-fino" />
+    <circle cx="34.0" cy="70.0" r="10" class="traco" />
+    <line x1="76" y1="12" x2="76.0" y2="64.0" class="traco-fino" />
+    <circle cx="76.0" cy="74.0" r="10" class="traco preenche" />
+    <line x1="96" y1="12" x2="114.5" y2="60.6" class="traco-fino" />
+    <circle cx="118.0" cy="70.0" r="10" class="traco" />
+    <line x1="116" y1="12" x2="134.5" y2="60.6" class="traco-fino" />
+    <circle cx="138.0" cy="70.0" r="10" class="traco preenche" />
+    <line x1="36" y1="91" x2="14" y2="91" class="traco" />
+    <path d="M 14 91 L 20 88 L 20 94 Z" class="traco preenche" />
+    <line x1="118" y1="91" x2="142" y2="91" class="traco" />
+    <path d="M 142 91 L 136 88 L 136 94 Z" class="traco preenche" />
+    <text x="160" y="16" class="rotulo">B</text>
+    <rect x="173" y="6" width="116" height="6" class="traco preenche" />
+    <line x1="191" y1="12" x2="172.5" y2="60.6" class="traco-fino" />
+    <circle cx="169.0" cy="70.0" r="10" class="traco preenche" />
+    <line x1="211" y1="12" x2="192.5" y2="60.6" class="traco-fino" />
+    <circle cx="189.0" cy="70.0" r="10" class="traco" />
+    <line x1="231" y1="12" x2="249.5" y2="60.6" class="traco-fino" />
+    <circle cx="253.0" cy="70.0" r="10" class="traco preenche" />
+    <line x1="251" y1="12" x2="269.5" y2="60.6" class="traco-fino" />
+    <circle cx="273.0" cy="70.0" r="10" class="traco" />
+    <line x1="271" y1="12" x2="289.5" y2="60.6" class="traco-fino" />
+    <circle cx="293.0" cy="70.0" r="10" class="traco preenche" />
+    <line x1="191" y1="91" x2="169" y2="91" class="traco" />
+    <path d="M 169 91 L 175 88 L 175 94 Z" class="traco preenche" />
+    <line x1="273" y1="91" x2="297" y2="91" class="traco" />
+    <path d="M 297 91 L 291 88 L 291 94 Z" class="traco preenche" />
+    <text x="315" y="16" class="rotulo">C</text>
+    <rect x="328" y="6" width="116" height="6" class="traco preenche" />
+    <line x1="346" y1="12" x2="346.0" y2="64.0" class="traco-fino" />
+    <circle cx="346.0" cy="74.0" r="10" class="traco preenche" />
+    <line x1="366" y1="12" x2="366.0" y2="64.0" class="traco-fino" />
+    <circle cx="366.0" cy="74.0" r="10" class="traco" />
+    <line x1="386" y1="12" x2="404.5" y2="60.6" class="traco-fino" />
+    <circle cx="408.0" cy="70.0" r="10" class="traco preenche" />
+    <line x1="406" y1="12" x2="424.5" y2="60.6" class="traco-fino" />
+    <circle cx="428.0" cy="70.0" r="10" class="traco" />
+    <line x1="426" y1="12" x2="444.5" y2="60.6" class="traco-fino" />
+    <circle cx="448.0" cy="70.0" r="10" class="traco preenche" />
+    <line x1="428" y1="91" x2="452" y2="91" class="traco" />
+    <path d="M 452 91 L 446 88 L 446 94 Z" class="traco preenche" />
+    <text x="83" y="134" class="rotulo">D</text>
+    <rect x="96" y="124" width="116" height="6" class="traco preenche" />
+    <line x1="114" y1="130" x2="114.0" y2="182.0" class="traco-fino" />
+    <circle cx="114.0" cy="192.0" r="10" class="traco preenche" />
+    <line x1="134" y1="130" x2="134.0" y2="182.0" class="traco-fino" />
+    <circle cx="134.0" cy="192.0" r="10" class="traco" />
+    <line x1="154" y1="130" x2="154.0" y2="182.0" class="traco-fino" />
+    <circle cx="154.0" cy="192.0" r="10" class="traco preenche" />
+    <line x1="174" y1="130" x2="192.5" y2="178.6" class="traco-fino" />
+    <circle cx="196.0" cy="188.0" r="10" class="traco" />
+    <line x1="194" y1="130" x2="212.5" y2="178.6" class="traco-fino" />
+    <circle cx="216.0" cy="188.0" r="10" class="traco preenche" />
+    <line x1="196" y1="209" x2="220" y2="209" class="traco" />
+    <path d="M 220 209 L 214 206 L 214 212 Z" class="traco preenche" />
+    <text x="238" y="134" class="rotulo">E</text>
+    <rect x="251" y="124" width="116" height="6" class="traco preenche" />
+    <line x1="269" y1="130" x2="269.0" y2="182.0" class="traco-fino" />
+    <circle cx="269.0" cy="192.0" r="10" class="traco preenche" />
+    <line x1="289" y1="130" x2="289.0" y2="182.0" class="traco-fino" />
+    <circle cx="289.0" cy="192.0" r="10" class="traco" />
+    <line x1="309" y1="130" x2="309.0" y2="182.0" class="traco-fino" />
+    <circle cx="309.0" cy="192.0" r="10" class="traco preenche" />
+    <line x1="329" y1="130" x2="329.0" y2="182.0" class="traco-fino" />
+    <circle cx="329.0" cy="192.0" r="10" class="traco" />
+    <line x1="349" y1="130" x2="377.5" y2="173.5" class="traco-fino" />
+    <circle cx="383.0" cy="181.8" r="10" class="traco preenche" />
+    <line x1="371" y1="209" x2="395" y2="209" class="traco" />
+    <path d="M 395 209 L 389 206 L 389 212 Z" class="traco preenche" />
+  </svg>
+</figure>
+
+A) Esquema A\
+B) Esquema B\
+C) Esquema C\
+D) Esquema D\
+E) Esquema E
+
+**Questão 5**
+
+*ENEM 2024 · 2ª aplicação · 2º dia · caderno azul · questão 126*
+
+Na fissão do urânio-235, esse átomo é dividido em átomos mais leves quando bombardeado por um nêutron.
+
+Nos reatores nucleares, novas reações ocorrem a partir dos nêutrons liberados na fissão, caracterizando uma reação em cadeia. Essa reação é mais eficiente quando esses nêutrons têm energia cinética baixa. Por isso, é utilizada uma substância moderadora na qual os nêutrons possam colidir, transferindo parte da energia.
+
+Considere que essas colisões são frontais e aproximadamente elásticas, que a substância moderadora é um alvo em repouso e que as velocidades dos nêutrons, υnf, e da substância moderadora, υsf, após a colisão, são:
+
+υnf = ((mn − ms) ÷ (mn + ms)) × υ0
+
+υsf = (2mn ÷ (mn + ms)) × υ0
+
+em que mn é a massa do nêutron, ms é a massa da substância moderadora e υ0 é a velocidade inicial do nêutron.
+
+A substância moderadora que promoverá a maior redução de velocidade dos nêutrons, nesse processo de colisão, será:
+
+A) ²₁D\
+B) ⁴₂He\
+C) ¹²₆C\
+D) ¹⁴₇N\
+E) ⁹⁴₃₈Sr
