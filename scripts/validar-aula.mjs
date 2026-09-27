@@ -36,6 +36,9 @@ const APLICACOES = {
 };
 const CORES = ['azul', 'amarelo', 'branco', 'rosa', 'cinza', 'laranja', 'verde', 'roxo'];
 const ROMANOS = /^(I{1,3}|IV|V|VI{0,3}|IX|X{1,3}|XI{1,3}|XIV|XV|XVI{0,3}|XIX|XX{0,3}I{0,3}|XXI)$/;
+// Em Química e Biologia, fórmulas como OH, HCl, KCl e CO são símbolos de elementos, não siglas.
+const ELEMENTOS = new Set('H He Li Be B C N O F Ne Na Mg Al Si P S Cl Ar K Ca Sc Ti V Cr Mn Fe Co Ni Cu Zn Ga Ge As Se Br Kr Rb Sr Y Zr Nb Mo Tc Ru Rh Pd Ag Cd In Sn Sb Te I Xe Cs Ba La Ce Pr Nd Pm Sm Eu Gd Tb Dy Ho Er Tm Yb Lu Hf Ta W Re Os Ir Pt Au Hg Tl Pb Bi Po At Rn Fr Ra Ac Th Pa U Np Pu'.split(' '));
+const ehFormula = (s) => /^([A-Z][a-z]?)+$/.test(s) && s.match(/[A-Z][a-z]?/g).every((e) => ELEMENTOS.has(e));
 
 const semAcento = (t) => t.normalize('NFD').replace(/[̀-ͯ]/g, '');
 // Expoente ou índice em Unicode (10⁻⁴, 2³, log₂, Aₙ; o banco guarda os dois como "^"): troca cada caractere sobrescrito pelo dígito ou sinal comum, senão
@@ -248,6 +251,7 @@ function validar(arquivo) {
         if (ROMANOS.test(s) || vistas.has(s)) continue;
         // Em Geometria, "AB", "ABC", "DEF" são nomes de pontos (letras distintas de A a H), não siglas.
         if (materia === 'geometria' && /^[A-H]{2,4}$/.test(s) && new Set(s).size === s.length) continue;
+        if ((materia === 'quimica' || materia === 'biologia') && ehFormula(s)) continue;
         vistas.add(s);
         const depois = limpo.slice(m.index + s.length, m.index + s.length + 4);
         const antesDe = limpo.slice(Math.max(0, m.index - 2), m.index);
