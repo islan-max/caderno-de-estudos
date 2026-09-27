@@ -218,5 +218,16 @@
       "5D/3.",
       "7D/4."
     ]
+  },
+  "2013-regular-D1-azul-Q087": {
+    "nota": "alternativas são gráficos (imagem); conferido na imagem da página em 27/09/2026",
+    "alternativas": [
+      "Gráfico A",
+      "Gráfico B",
+      "Gráfico C",
+      "Gráfico D",
+      "Gráfico E"
+    ],
+    "alternativas_em_imagem": true
   }
 }
