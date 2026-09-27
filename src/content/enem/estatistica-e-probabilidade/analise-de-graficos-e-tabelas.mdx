@@ -3,165 +3,705 @@ title: "Análise de Gráficos e Tabelas"
 subject: "Estatística e Probabilidade"
 order: 1
 relevance: >
-  Imagine que alguém te entrega uma tabela cheia de números ou um gráfico cheio de barras e pergunta:
-  "e aí, o que isso significa?". É exatamente isso que o ENEM cobra aqui: não fórmulas complicadas,
-  mas a sua capacidade de ler, comparar e tirar conclusões a partir de dados organizados. Este é um
-  dos temas mais recorrentes da prova: análises de provas passadas mostram que, em uma única edição,
-  cerca de 12 das 45 questões de Matemática trazem algum gráfico ou tabela para interpretar. Ou seja,
-  é praticamente impossível passar bem no ENEM sem dominar isso.
+  Tabelas e gráficos estão em boa parte das questões de Matemática do ENEM (Exame Nacional do Ensino
+  Médio), e também em Ciências Humanas e da Natureza. A prova quase nunca pede só "leia o valor": ela
+  pede para juntar dados de duas colunas, transformar barras em setores, comparar taxas em vez de
+  valores ou perceber que um gráfico foi desenhado de um jeito que engana. Quem lê com calma o título,
+  os eixos e as unidades acerta questões que parecem difíceis só pelo tamanho.
 quickSummary: >
-  Uma tabela é uma organização de dados em linhas e colunas, e um gráfico é a mesma informação
-  desenhada visualmente (barras, linhas, setores). Antes de qualquer cálculo, identifique o que cada
-  eixo, linha ou coluna representa.
+  Antes de calcular, leia o título, o que cada eixo, linha ou coluna mede e a unidade. Numa tabela, o
+  dado está no cruzamento de uma linha com uma coluna. Num gráfico de setores, a fatia é a fração do
+  total: ângulo = fração × 360°. Para comparar grupos de tamanhos diferentes, use taxas (parte ÷ total
+  ou aumento ÷ valor antigo), não valores absolutos (as quantidades em si). Confira sempre onde o eixo vertical começa.
+resources:
+  conteudoComplementar:
+    conteudo: "Porcentagem"
+    comoAjuda: "Taxas, fatias de setores e aumentos são porcentagens. Se transformar uma fração em porcentagem travar você, revise essa aula."
+gabarito:
+  - correta: 2
+    porque: >
+      Custo = preço fixo + (consumo − franquia) × preço do MB excedente, só quando o consumo passa da
+      franquia. X, com 190 MB: no plano A paga 29,90 + 40 × 0,40 = 45,90; no B paga só 34,90, porque 190 MB
+      cabem nos 250 MB. Y, com 450 MB: no B paga 34,90 + 200 × 0,10 = 54,90; no C, 59,90. Z, com 890 MB: no B
+      paga 34,90 + 640 × 0,10 = 98,90; no C, 59,90 + 390 × 0,10 = 98,90; no D, 89,90, porque 2 GB = 2 048 MB
+      cobrem tudo. Escolhas: B, B e D.
+      Revisar: Aula Teórica › 1. Tabelas de dupla entrada
+  - correta: 0
+    porque: >
+      A taxa de aumento de cada site é (sábado − sexta) ÷ sexta. X: 9 ÷ 12 = 0,75 = 75%. Y: 21 ÷ 30 = 70%.
+      Z: 1 ÷ 10 = 10%. W: 19 ÷ 38 = 50%. U: 16 ÷ 40 = 40%. A maior taxa é a do site X, embora ele tenha
+      um dos menores tempos.
+      Revisar: Aula Teórica › 3. Gráfico de setores e taxa de aumento
+  - correta: 4
+    porque: >
+      Cada grupo junta as duas barras (Rh positivo e Rh negativo). A: 36 + 6 = 42%. AB: 3 + 2 = 5%.
+      B: 8 + 2 = 10%. O: 34 + 9 = 43%. O maior setor é o do grupo O, com 43% do círculo:
+      0,43 × 360° = 154,8°.
+      Revisar: Aula Teórica › 3. Gráfico de setores e taxa de aumento
+  - correta: 4
+    porque: >
+      No Gráfico 1, o eixo começa em 0: a razão das alturas de B por A é 30 ÷ 70 = 3/7. No Gráfico 2, o eixo
+      começa em 20, então as colunas desenhadas medem 70 − 20 = 50 e 30 − 20 = 10: a razão é 10 ÷ 50 = 1/5.
+      A diferença é 3/7 − 1/5 = 15/35 − 7/35 = 8/35.
+      Revisar: Aula Teórica › 4. Eixo que não começa em zero
+  - correta: 2
+    porque: >
+      Taxa de urbanização = urbana ÷ (urbana + rural). I: 8 000 ÷ 12 000 ≈ 0,667. II: 10 000 ÷ 18 000 ≈ 0,556.
+      III: 11 000 ÷ 16 000 ≈ 0,688. IV: 18 000 ÷ 28 000 ≈ 0,643. V: 17 000 ÷ 29 000 ≈ 0,586. A maior é a
+      do município III, embora o IV tenha a maior população urbana.
+      Revisar: Aula Teórica › 5. Taxas: parte dividida pelo total
 ---
 
-## Aula Teórica Completa
+<Accordion titulo="Palavras e siglas desta aula" dica="Consulte quando encontrar um termo novo" icone="spell-check">
 
-### Passo 1: O que é uma tabela e o que é um gráfico?
+- **ENEM** (Exame Nacional do Ensino Médio): a prova nacional que dá acesso a faculdades e bolsas.
+- **INEP** (Instituto Nacional de Estudos e Pesquisas Educacionais Anísio Teixeira): o órgão do governo que faz o ENEM.
+- **MB** (megabyte): unidade de quantidade de dados na internet.
+- **GB** (gigabyte): unidade maior de dados; 1 GB = 1 024 MB.
+- **Internet móvel**: internet usada no celular pela rede da operadora.
+- **Operadora**: a empresa que vende o serviço de telefone e internet.
+- **Franquia**: a quantidade de dados que o plano já inclui no preço fixo.
+- **Excedente**: o que passa da franquia e é cobrado à parte.
+- **Site**: página ou endereço da internet.
+- **Miniaplicativo**: programa pequeno de computador.
+- **Diagramação**: a montagem das páginas de um jornal ou revista.
+- **Tipo sanguíneo**: a classificação do sangue de uma pessoa. Os grupos são A, B, AB e O, cada um com Rh positivo ou Rh negativo.
+- **AB**: o grupo sanguíneo que tem as características dos grupos A e B ao mesmo tempo.
+- **Rh**: uma característica do sangue, positiva ou negativa, que completa o tipo sanguíneo.
+- **Respectivamente**: na mesma ordem em que os itens foram citados. "X, Y e Z consomem 10, 20 e 30, respectivamente" quer dizer X consome 10, Y consome 20 e Z consome 30.
+- **Setor circular**: fatia de um círculo, como uma fatia de pizza.
+- **Urbano e rural**: da cidade e do campo.
+- **Infraestrutura**: obras básicas de uma cidade, como ruas, esgoto e iluminação.
 
-Uma **tabela** é uma grade organizada em linhas e colunas. Cada linha geralmente representa um item (uma cidade, um produto, um ano), e cada coluna representa uma característica desse item (preço, quantidade, data). Pense nela como uma "planilha simplificada": tudo o que você precisa está ali, organizado, você só precisa saber onde olhar.
+</Accordion>
 
-Um **gráfico** é a mesma informação, só que desenhada. Os tipos mais comuns no ENEM são:
+## Antes de Começar
 
-- **Gráfico de barras/colunas:** compara categorias diferentes (ex.: vendas de cada mês).
-- **Gráfico de linhas:** mostra a evolução de algo ao longo do tempo (ex.: temperatura ao longo do dia).
-- **Gráfico de setores (pizza):** mostra como um total se divide em partes percentuais.
+**O que o ENEM cobra aqui.** A prova raramente pede só para ler um número. Os temas que costumam aparecer são estes:
 
-### Passo 2: A primeira regra de ouro, leia o enunciado ANTES de olhar os números
+- **Cruzar linha e coluna** de uma tabela e fazer uma conta com os dados.
+- **Somar barras** de um mesmo grupo num gráfico de barras agrupadas.
+- **Transformar porcentagens em fatias** de um gráfico de setores.
+- **Comparar taxas** (aumento ou parte do total) em vez de valores soltos.
+- **Perceber um eixo cortado**, que faz uma barra parecer menor do que é.
 
-Muita gente comete o erro de ir direto aos números da tabela sem entender o que a pergunta realmente quer. O enunciado sempre define um **critério de decisão** (ex.: "vai escolher a opção com **menor custo por quilo**", ou "receberá comissão baseada na **média ponderada**"). Se você não entende o critério primeiro, pode calcular a coisa certa da forma errada, ou calcular a coisa errada perfeitamente.
+**O que você precisa saber antes.**
 
-**Estratégia:** sublinhe (mentalmente ou no papel) a frase que diz *como* a decisão será tomada. Ela é o "comando real" da questão.
+- **Frações.** O denominador é o número de baixo da fração. Para subtrair frações, deixe os denominadores iguais: 3/5 − 1/4 = 12/20 − 5/20 = 7/20. Para simplificar, divida o de cima e o de baixo pelo mesmo número: 27/45 = 3/5 (dividindo os dois por 9). Revise a aula de Frações se precisar.
+- **Razão.** A razão de a para b (ou "de a pela b", ou "entre a e b") é a ÷ b, nessa ordem. A razão de 6 para 8 é 6/8 = 3/4; a razão de 8 para 6 é 8/6 = 4/3.
+- **Porcentagem.** Uma razão vira porcentagem multiplicando por 100: 0,35 = 35%. Revise a aula de Porcentagem.
+- **Comparar decimais.** Para comparar frações como 5/8 e 7/12, divida: 0,625 e 0,583. O sinal ≈ quer dizer "aproximadamente igual".
 
-### Passo 3: As ferramentas matemáticas mais usadas nessas questões
+## Aula Teórica
 
-**a) Média aritmética simples**: soma todos os valores e divide pela quantidade de valores.
+### 1. Tabelas de dupla entrada
 
-**x̄ = (x₁ + x₂ + x₃ + … + x_n) / (n)**
+Uma **tabela de dupla entrada** organiza os dados em linhas e colunas. Cada linha é um item (um plano, um ano, uma região) e cada coluna é uma informação sobre ele. O dado que você procura está no **cruzamento** da linha com a coluna. Antes de calcular, leia o cabeçalho de cada coluna e a **unidade** (reais, minutos, quilos).
 
-Onde: x̄ = média; x₁, x₂, … = cada valor da lista; $n$ = quantidade de valores.
+Às vezes a mesma tabela mistura unidades. Numa tabela de feira, por exemplo, uma linha pode estar em quilo e outra em grama, com 1 kg = 1 000 g; então 2,5 kg = 2 500 g. Converta tudo para a mesma unidade antes de comparar.
 
-**b) Média aritmética ponderada**: usada quando cada valor tem uma "importância" diferente (um peso). É a queridinha do ENEM nesse assunto.
+Muitos serviços cobram um **preço fixo** que já inclui uma quantidade (a franquia) e cobram à parte só o que passa dela (o excedente).
 
-**x̄_p = (x₁ · p₁ + x₂ · p₂ + … + x_n · p_n) / (p₁ + p₂ + … + p_n)**
+**Fórmula: custo com parte fixa e excedente**
 
-Onde: x̄_p = média ponderada; x₁, x₂, … = os valores; p₁, p₂, … = o peso (a importância) de cada valor.
+**custo = preço fixo + excedente × preço por unidade excedente**
 
-*Pense assim: se uma prova vale peso 3 e outra vale peso 1, a de peso 3 "pesa mais" na média final, não é tratada igual à outra.*
+- **preço fixo**: o valor pago de qualquer jeito, que já inclui a franquia.
+- **excedente**: uso − franquia, quando o uso passa da franquia; se não passa, o excedente é 0.
+- **preço por unidade excedente**: quanto custa cada unidade além da franquia.
+- **Em palavras:** paga-se o fixo sempre e, por cima, só o que passar do incluído.
+- **Quando usar:** planos de celular e internet, estacionamento, aluguel por tempo, contas com consumo mínimo.
 
-**c) Porcentagem e proporção dentro de tabelas**
+**Exemplo resolvido.** Uma empresa aluga bicicletas em três planos:
 
-**Valor percentual = partetotal × 100**
+| Plano | Tempo incluído | Preço fixo | Preço por minuto excedente |
+|---|---|---|---|
+| P | 30 min | R$ 6,00 | R$ 0,20 |
+| Q | 1 h | R$ 10,00 | R$ 0,15 |
+| R | 2 h | R$ 16,00 | R$ 0,15 |
 
-**d) Comparação de preços unitários** (regra de três disfarçada)
+Dado: 1 h = 60 min. Qual é o plano mais barato para quem pedala 80 minutos?
 
-Quando a tabela mostra embalagens de tamanhos diferentes a preços diferentes, o truque é sempre trazer tudo para a **mesma unidade de medida** (ex.: preço por 100g, preço por litro) antes de comparar.
+1. Converta tudo para minuto: Q inclui 60 min e R inclui 120 min.
+2. P: excedente 80 − 30 = 50 min; custo 6 + 50 × 0,20 = 6 + 10 = R$ 16,00.
+3. Q: excedente 80 − 60 = 20 min; custo 10 + 20 × 0,15 = 10 + 3 = R$ 13,00.
+4. R: 80 min cabem nos 120 min, excedente 0; custo R$ 16,00.
+5. Resposta: plano Q, com R$ 13,00.
 
-### Passo 4: Os "disfarces" que o ENEM usa
+**Erro comum.** Cobrar o preço por minuto sobre o tempo inteiro (80 × 0,20) em vez de só sobre o excedente, ou comparar "1 h" com "80 min" sem converter.
 
-- **Dados espalhados em mais de uma tabela/gráfico**: às vezes a resposta exige combinar informação de dois quadros diferentes na mesma questão.
-- **Variável desconhecida dentro da tabela** (tipo "x" e "y"): a tabela vira uma equação disfarçada; você usa a informação do texto (como uma média já dada) para montar um sistema e descobrir os valores que faltam.
-- **Números em escalas diferentes** (mil, milhão, percentual): leia sempre a legenda da tabela ("em milhares", "em R$ milhões") antes de fazer contas.
+### 2. Gráfico de barras
+
+Num **gráfico de barras**, a altura de cada barra mostra um valor, lido no eixo vertical, a "régua" em pé à esquerda do gráfico. A barra também é chamada de **coluna**. Leia o título, o que o eixo vertical mede (e em que unidade) e o que cada barra representa. Num gráfico de **barras agrupadas**, cada grupo tem duas ou mais barras, uma para cada categoria da **legenda**, o quadrinho que diz o que cada tipo de barra representa. Para saber o total de um grupo, some as barras dele.
+
+<figure class="figura">
+  <svg viewBox="0 0 460 195" role="img" aria-labelledby="fig-graf-2-t fig-graf-2-d">
+    <title id="fig-graf-2-t">Barras agrupadas: alunos por turno</title>
+    <desc id="fig-graf-2-d">Gráfico de barras agrupadas. Em cada série há duas barras: manhã (pintada) e tarde (sem pintura). 1ª série: 45 de manhã e 25 à tarde. 2ª série: 30 de manhã e 50 à tarde. 3ª série: 40 de manhã e 20 à tarde. O eixo vertical vai de 0 a 50.</desc>
+    <line x1="60" y1="170" x2="360" y2="170" class="traco" />
+    <line x1="60" y1="170" x2="60" y2="30" class="traco" />
+    <line x1="56" y1="170" x2="60" y2="170" class="traco-fino" />
+    <text x="53" y="174" class="rotulo-fraco" text-anchor="end">0</text>
+    <line x1="56" y1="142" x2="60" y2="142" class="traco-fino" />
+    <text x="53" y="146" class="rotulo-fraco" text-anchor="end">10</text>
+    <line x1="56" y1="114" x2="60" y2="114" class="traco-fino" />
+    <text x="53" y="118" class="rotulo-fraco" text-anchor="end">20</text>
+    <line x1="56" y1="86" x2="60" y2="86" class="traco-fino" />
+    <text x="53" y="90" class="rotulo-fraco" text-anchor="end">30</text>
+    <line x1="56" y1="58" x2="60" y2="58" class="traco-fino" />
+    <text x="53" y="62" class="rotulo-fraco" text-anchor="end">40</text>
+    <line x1="56" y1="30" x2="60" y2="30" class="traco-fino" />
+    <text x="53" y="34" class="rotulo-fraco" text-anchor="end">50</text>
+    <rect x="82" y="44" width="28" height="126" class="traco preenche" />
+    <text x="96" y="40" class="rotulo-fraco" text-anchor="middle">45</text>
+    <rect x="110" y="100" width="28" height="70" class="traco" />
+    <text x="124" y="96" class="rotulo-fraco" text-anchor="middle">25</text>
+    <text x="110" y="185" class="rotulo" text-anchor="middle">1ª série</text>
+    <rect x="182" y="86" width="28" height="84" class="traco preenche" />
+    <text x="196" y="82" class="rotulo-fraco" text-anchor="middle">30</text>
+    <rect x="210" y="30" width="28" height="140" class="traco" />
+    <text x="224" y="26" class="rotulo-fraco" text-anchor="middle">50</text>
+    <text x="210" y="185" class="rotulo" text-anchor="middle">2ª série</text>
+    <rect x="282" y="58" width="28" height="112" class="traco preenche" />
+    <text x="296" y="54" class="rotulo-fraco" text-anchor="middle">40</text>
+    <rect x="310" y="114" width="28" height="56" class="traco" />
+    <text x="324" y="110" class="rotulo-fraco" text-anchor="middle">20</text>
+    <text x="310" y="185" class="rotulo" text-anchor="middle">3ª série</text>
+    <rect x="380" y="60" width="12" height="12" class="traco preenche" />
+    <text x="398" y="70" class="rotulo-fraco">manhã</text>
+    <rect x="380" y="82" width="12" height="12" class="traco" />
+    <text x="398" y="92" class="rotulo-fraco">tarde</text>
+    <text x="60" y="18" class="rotulo-fraco">alunos</text>
+  </svg>
+</figure>
+
+**Exemplo resolvido.** O gráfico mostra quantos alunos de cada série estudam de manhã e à tarde. Qual série tem mais alunos no total? E que porcentagem de todos os alunos ela representa?
+
+1. 1ª série: 45 + 25 = 70. 2ª série: 30 + 50 = 80. 3ª série: 40 + 20 = 60.
+2. A maior é a 2ª série, com 80 alunos, embora a maior barra de manhã seja a da 1ª série.
+3. Total da escola: 70 + 80 + 60 = 210 alunos.
+4. Porcentagem: 80 ÷ 210 ≈ 0,381 ≈ 38,1%.
+5. Resposta: 2ª série, com cerca de 38,1% dos alunos.
+
+**Erro comum.** Olhar só a barra mais alta e esquecer de somar as barras do mesmo grupo. A pergunta é sobre o grupo, não sobre uma barra.
+
+### 3. Gráfico de setores e taxa de aumento
+
+Num **gráfico de setores** (o "gráfico de pizza"), o círculo inteiro é o total e cada fatia é uma parte. A fatia ocupa do círculo a mesma fração que a parte ocupa do total. Como o círculo tem 360°, dá para achar o ângulo de cada fatia.
+
+<figure class="figura">
+  <svg viewBox="0 0 460 215" role="img" aria-labelledby="fig-graf-3-t fig-graf-3-d">
+    <title id="fig-graf-3-t">Gráfico de setores: orçamento de uma família</title>
+    <desc id="fig-graf-3-d">Círculo dividido em quatro fatias, no sentido horário a partir do alto: moradia 35%, alimentação 25%, transporte 15% e outros 25%. Cada fatia ocupa do círculo a mesma fração que a porcentagem dela.</desc>
+    <path d="M 230 105 L 230 30 A 75 75 0 0 1 290.7 149.1 Z" class="traco preenche" />
+    <text x="311.1" y="67.7" class="rotulo" text-anchor="start">moradia 35%</text>
+    <path d="M 230 105 L 290.7 149.1 A 75 75 0 0 1 185.9 165.7 Z" class="traco" />
+    <text x="244.2" y="204.9" class="rotulo" text-anchor="middle">alimentação 25%</text>
+    <path d="M 230 105 L 185.9 165.7 A 75 75 0 0 1 155 105 Z" class="traco preenche" />
+    <text x="148.9" y="150.3" class="rotulo" text-anchor="end">transporte 15%</text>
+    <path d="M 230 105 L 155 105 A 75 75 0 0 1 230 30 Z" class="traco" />
+    <text x="165.7" y="44.7" class="rotulo" text-anchor="end">outros 25%</text>
+  </svg>
+</figure>
+
+**Fórmula: ângulo de um setor**
+
+**ângulo do setor = (parte ÷ total) × 360°**
+
+- **parte**: o valor da fatia.
+- **total**: a soma de todas as partes (100% quando os dados estão em porcentagem).
+- **Em palavras:** a fração do total vira a mesma fração da volta completa.
+- **Quando usar:** para montar um gráfico de setores ou ler o ângulo de uma fatia.
+
+**Exemplo resolvido.** No orçamento da figura, qual é o ângulo da fatia "moradia"? E da fatia "transporte"?
+
+1. Moradia: 35% = 0,35; 0,35 × 360° = 126°.
+2. Transporte: 15% = 0,15; 0,15 × 360° = 54°.
+3. Confira: as fatias somam 35 + 25 + 15 + 25 = 100%, ou seja, 360°.
+4. Resposta: 126° e 54°.
+
+**Erro comum.** Multiplicar a porcentagem por 100 em vez de 360, ou esquecer de juntar as partes que a pergunta manda juntar antes de calcular o ângulo.
+
+Quando dois gráficos mostram a mesma coisa em momentos diferentes, a pergunta costuma ser sobre o **aumento relativo**. Os totais dos dois gráficos podem ser diferentes, então o tamanho da fatia engana: compare os valores.
+
+**Fórmula: taxa de aumento**
+
+**taxa de aumento = (novo − antigo) ÷ antigo**
+
+- **antigo**: o valor no primeiro momento.
+- **novo**: o valor no segundo momento.
+- **Em palavras:** quanto o valor cresceu, em relação ao que era antes. Multiplique por 100 para ter a porcentagem.
+- **Quando usar:** "maior taxa de aumento", "maior crescimento percentual", "aumentou quantos por cento".
+
+**Exemplo resolvido.** Numa biblioteca, os empréstimos de romance passaram de 20 para 26 e os de aventura, de 15 para 18. Qual gênero teve a maior taxa de aumento?
+
+1. Romance: (26 − 20) ÷ 20 = 6 ÷ 20 = 0,3 = 30%.
+2. Aventura: (18 − 15) ÷ 15 = 3 ÷ 15 = 0,2 = 20%.
+3. Resposta: romance, com 30%.
+
+**Erro comum.** Comparar só o aumento em unidades (6 contra 3) ou dividir pelo valor novo. A divisão é sempre pelo valor **antigo**.
+
+### 4. Eixo que não começa em zero
+
+Às vezes o eixo vertical de um gráfico de barras não começa em zero. Os valores continuam certos, mas as barras ficam com alturas desproporcionais: a barra desenhada mostra só o pedaço acima do início do eixo.
+
+<figure class="figura">
+  <svg viewBox="0 0 460 215" role="img" aria-labelledby="fig-graf-4-t fig-graf-4-d">
+    <title id="fig-graf-4-t">O mesmo dado com o eixo inteiro e com o eixo cortado</title>
+    <desc id="fig-graf-4-d">Dois gráficos de barras com os mesmos valores: P = 80 e Q = 60. No da esquerda, o eixo começa em 0 e a barra Q tem três quartos da altura da barra P. No da direita, o eixo começa em 52: a barra P sobe 28 unidades acima do início do eixo e a barra Q só 8, então Q parece ter só cerca de dois sétimos da altura de P.</desc>
+    <line x1="50" y1="170" x2="200" y2="170" class="traco" />
+    <line x1="50" y1="170" x2="50" y2="30" class="traco" />
+    <line x1="46" y1="170" x2="50" y2="170" class="traco-fino" />
+    <text x="43" y="174" class="rotulo-fraco" text-anchor="end">0</text>
+    <line x1="46" y1="135" x2="50" y2="135" class="traco-fino" />
+    <line x1="50" y1="135" x2="200" y2="135" class="tracejado" />
+    <text x="43" y="139" class="rotulo-fraco" text-anchor="end">20</text>
+    <line x1="46" y1="100" x2="50" y2="100" class="traco-fino" />
+    <line x1="50" y1="100" x2="200" y2="100" class="tracejado" />
+    <text x="43" y="104" class="rotulo-fraco" text-anchor="end">40</text>
+    <line x1="46" y1="65" x2="50" y2="65" class="traco-fino" />
+    <line x1="50" y1="65" x2="200" y2="65" class="tracejado" />
+    <text x="43" y="69" class="rotulo-fraco" text-anchor="end">60</text>
+    <line x1="46" y1="30" x2="50" y2="30" class="traco-fino" />
+    <line x1="50" y1="30" x2="200" y2="30" class="tracejado" />
+    <text x="43" y="34" class="rotulo-fraco" text-anchor="end">80</text>
+    <rect x="69.5" y="30" width="36" height="140" class="traco preenche" />
+    <text x="87.5" y="26" class="rotulo-fraco" text-anchor="middle">80</text>
+    <text x="87.5" y="185" class="rotulo" text-anchor="middle">P</text>
+    <rect x="144.5" y="65" width="36" height="105" class="traco preenche" />
+    <text x="162.5" y="61" class="rotulo-fraco" text-anchor="middle">60</text>
+    <text x="162.5" y="185" class="rotulo" text-anchor="middle">Q</text>
+    <line x1="290" y1="170" x2="440" y2="170" class="traco" />
+    <line x1="290" y1="170" x2="290" y2="30" class="traco" />
+    <line x1="286" y1="170" x2="290" y2="170" class="traco-fino" />
+    <text x="283" y="174" class="rotulo-fraco" text-anchor="end">52</text>
+    <line x1="286" y1="130" x2="290" y2="130" class="traco-fino" />
+    <line x1="290" y1="130" x2="440" y2="130" class="tracejado" />
+    <text x="283" y="134" class="rotulo-fraco" text-anchor="end">60</text>
+    <line x1="286" y1="80" x2="290" y2="80" class="traco-fino" />
+    <line x1="290" y1="80" x2="440" y2="80" class="tracejado" />
+    <text x="283" y="84" class="rotulo-fraco" text-anchor="end">70</text>
+    <line x1="286" y1="30" x2="290" y2="30" class="traco-fino" />
+    <line x1="290" y1="30" x2="440" y2="30" class="tracejado" />
+    <text x="283" y="34" class="rotulo-fraco" text-anchor="end">80</text>
+    <rect x="309.5" y="30" width="36" height="140" class="traco preenche" />
+    <text x="327.5" y="26" class="rotulo-fraco" text-anchor="middle">80</text>
+    <text x="327.5" y="185" class="rotulo" text-anchor="middle">P</text>
+    <rect x="384.5" y="130" width="36" height="40" class="traco preenche" />
+    <text x="402.5" y="126" class="rotulo-fraco" text-anchor="middle">60</text>
+    <text x="402.5" y="185" class="rotulo" text-anchor="middle">Q</text>
+    <text x="125" y="205" class="rotulo" text-anchor="middle">eixo a partir de 0</text>
+    <text x="365" y="205" class="rotulo" text-anchor="middle">eixo a partir de 52</text>
+  </svg>
+</figure>
+
+**Fórmula: altura desenhada de uma barra**
+
+**altura desenhada = valor − início do eixo**
+
+- **valor**: o número que a barra representa, lido no eixo.
+- **início do eixo**: o valor onde o eixo vertical começa (0 num gráfico inteiro).
+- **Em palavras:** a barra só mostra o que passa do início do eixo.
+- **Quando usar:** para comparar o tamanho visual de barras num gráfico cortado com o de um gráfico inteiro.
+
+**Exemplo resolvido.** Na figura, P = 80 e Q = 60. Qual é a razão da altura de Q pela altura de P no gráfico com o eixo a partir de 0? E no gráfico com o eixo a partir de 52? Qual é a diferença entre as duas razões?
+
+1. Eixo a partir de 0: as alturas são os próprios valores. Razão 60 ÷ 80 = 3/4.
+2. Eixo a partir de 52: alturas 80 − 52 = 28 e 60 − 52 = 8. Razão 8 ÷ 28 = 2/7 (dividindo os dois por 4).
+3. Diferença: 3/4 − 2/7 = 21/28 − 8/28 = 13/28.
+4. Resposta: 3/4, 2/7 e 13/28.
+
+**Erro comum.** Achar que, como os valores estão certos, as razões entre as alturas são iguais nos dois gráficos. No gráfico cortado, subtraia o início do eixo antes de dividir.
+
+### 5. Taxas: parte dividida pelo total
+
+Para comparar grupos de tamanhos diferentes, não compare as quantidades: compare as **taxas**. A taxa diz que fração do grupo tem a característica pedida. Quando os dados vêm em dois gráficos ou duas colunas separadas, o total é a soma das duas partes.
+
+**Fórmula: taxa**
+
+**taxa = parte ÷ total**
+
+- **parte**: quantos têm a característica pedida.
+- **total**: o grupo inteiro (muitas vezes, a soma de duas partes).
+- **Em palavras:** que fração do grupo tem a característica.
+- **Quando usar:** taxa de aprovação, de urbanização, de acerto, de ocupação; sempre que a pergunta for "proporcionalmente, qual é maior".
+
+**Exemplo resolvido.** Três turmas tiveram estes resultados:
+
+| Turma | Aprovados | Reprovados |
+|---|---|---|
+| X | 18 | 7 |
+| Y | 21 | 14 |
+| Z | 25 | 15 |
+
+Qual turma teve a maior taxa de aprovação?
+
+1. Totais: X 18 + 7 = 25; Y 21 + 14 = 35; Z 25 + 15 = 40.
+2. Taxas: X 18 ÷ 25 = 0,72; Y 21 ÷ 35 = 0,6; Z 25 ÷ 40 = 0,625.
+3. Resposta: turma X, com 72%, embora tenha o menor número de aprovados.
+
+**Erro comum.** Dividir a parte pela outra parte (aprovados ÷ reprovados) em vez de dividir pelo total, ou escolher o grupo com mais aprovados sem calcular a taxa.
+
+### Armadilhas típicas do INEP
+
+1. **Esquecer a unidade** ou não converter (hora e minuto, quilo e grama).
+2. **Cobrar o excedente sobre o total** em vez de só sobre o que passa da franquia.
+3. **Olhar uma barra só** quando a pergunta é sobre o grupo inteiro.
+4. **Comparar valores absolutos** (as quantidades em si, sem dividir pelo total) quando a pergunta pede taxa ou aumento percentual.
+5. **Dividir pelo valor novo** na taxa de aumento.
+6. **Não perceber o eixo cortado** e comparar alturas como se ele começasse em zero.
 
 ## Tópicos-Chave para Revisão
 
 <div className="topico">
 
-Uma tabela é uma organização de dados em **linhas e colunas**, e um gráfico é a mesma informação **desenhada visualmente** (barras, linhas, setores). Antes de qualquer cálculo, identifique o que cada eixo, linha ou coluna representa.
+#### 1. Tabelas
 
-A primeira coisa a fazer sempre é entender o **critério de decisão** do enunciado: a frase que diz como a resposta será escolhida (menor custo, maior média, maior aumento absoluto). Sem isso, você pode calcular perfeitamente a coisa errada.
+**custo = preço fixo + excedente × preço por unidade excedente**. Procure o dado no **cruzamento** de linha e coluna e confira a **unidade**.
 
-A **média aritmética simples** soma todos os valores e divide pela quantidade deles: x̄ = (x₁+x₂+…+x_n) / (n).
+#### 2. Barras
 
-A **média ponderada** é usada quando os valores têm "pesos" diferentes: ela é a estrela das questões de tabela no ENEM: x̄_p = (x₁ p₁ + x₂ p₂ + …) / (p₁+p₂+…). Sempre confira se o enunciado te dá o peso de cada valor (pode ser quantidade de meses, quantidade de alunos, importância de um critério).
+Leia o **título** e o **eixo vertical**; em barras agrupadas, some as barras do mesmo grupo.
 
-Quando a tabela mostra uma **letra desconhecida** (como x e y), isso significa que você vai montar um **sistema de equações** usando as informações do texto (como uma média total já fornecida) para descobrir esses valores.
+#### 3. Setores e aumento
 
-Para comparar **preços de embalagens diferentes**, sempre converta tudo para a mesma unidade de medida (por exemplo, preço por 100 gramas ou por litro) antes de decidir qual é mais barato.
+**ângulo do setor = (parte ÷ total) × 360°** e **taxa de aumento = (novo − antigo) ÷ antigo**. Compare valores, não o tamanho das fatias.
 
-A **porcentagem dentro de tabelas** segue sempre a mesma lógica: percentual = partetotal × 100, e é essencial para achar quantidade real de pessoas/casos a partir de uma fração percentual.
+#### 4. Eixo cortado
 
-Fique atento a **mudanças de escala** (milhares, milhões, percentual) na legenda da tabela: ignorar isso é uma das formas mais comuns de errar sem perceber.
+**altura desenhada = valor − início do eixo**. Confira sempre onde o **eixo** começa.
+
+#### 5. Taxas
+
+**taxa = parte ÷ total**; para comparar grupos de tamanhos diferentes, use a **taxa**, não a quantidade.
 
 </div>
 
-## Teste de Fogo
+## Questões do ENEM
 
-*Questões sem gabarito: resolva primeiro, depois confira com o professor ou com a IA.*
+*Marque uma alternativa em cada questão e confira tudo de uma vez no botão do fim.*
 
-**Questão 1 (ENEM 2021)**
+**Questão 1**
 
-Uma grande rede de supermercados adota um sistema de avaliação dos faturamentos de suas filiais, considerando a média de faturamento mensal em milhão. A matriz da rede paga uma comissão para os representantes dos supermercados que atingirem uma média de faturamento mensal (M), conforme apresentado no quadro:
+*ENEM 2017 · 2ª aplicação · 2º dia · caderno azul · questão 178*
 
-| Comissão | Média de faturamento mensal (M) |
-|---|---|
-| I | 1 ≤ M &lt; 2 |
-| II | 2 ≤ M &lt; 4 |
-| III | 4 ≤ M &lt; 5 |
-| IV | 5 ≤ M &lt; 6 |
-| V | M ≥ 6 |
+Os consumidores X, Y e Z desejam trocar seus planos de internet móvel na tentativa de obterem um serviço de melhor qualidade. Após pesquisarem, escolheram uma operadora que oferece cinco planos para diferentes perfis, conforme apresentado no quadro.
 
-Um supermercado da rede obteve os faturamentos num dado ano, conforme apresentado no quadro:
+<figure class="figura">
 
-| Faturamento mensal (em milhão de real) | Quantidade de meses |
-|---|---|
-| 3,5 | 3 |
-| 2,5 | 2 |
-| 5 | 2 |
-| 3 | 4 |
-| 7,5 | 1 |
+| Plano | Franquia | Preço mensal da assinatura | Preço por MB excedente |
+|---|---|---|---|
+| A | 150 MB | R$ 29,90 | R$ 0,40 |
+| B | 250 MB | R$ 34,90 | R$ 0,10 |
+| C | 500 MB | R$ 59,90 | R$ 0,10 |
+| D | 2 GB | R$ 89,90 | R$ 0,10 |
+| E | 5 GB | R$ 119,90 | R$ 0,10 |
 
-Nas condições apresentadas, os representantes desse supermercado avaliam que receberão, no ano seguinte, a comissão de tipo:
+</figure>
 
-a) I b) II c) III d) IV e) V
+Dado: 1 GB = 1 024 MB
 
----
+Em cada plano, o consumidor paga um valor fixo (preço mensal da assinatura) pela franquia contratada e um valor variável, que depende da quantidade de MB utilizado além da franquia. Considere que a velocidade máxima de acesso seja a mesma, independentemente do plano, que os consumos mensais de X, Y e Z são de 190 MB, 450 MB e 890 MB, respectivamente, e que cada um deles escolherá apenas um plano.
 
-**Questão 2 (ENEM 2021)**
+Com base nos dados do quadro, as escolhas dos planos com menores custos para os consumidores X, Y e Z, respectivamente, são
 
-Em um estudo realizado pelo IBGE em quatro estados e no Distrito Federal, com mais de 5 mil pessoas com 10 anos ou mais, observou-se que a leitura ocupa, em média, apenas seis minutos do dia de cada pessoa. Na faixa de idade de 10 a 24 anos, a média diária é de três minutos. No grupo de idades entre 24 e 60 anos, o tempo médio diário dedicado à leitura é de 5 minutos. Entre os mais velhos, com 60 anos ou mais, a média é de 12 minutos.
+A) A, C e C.\
+B) A, B e D.\
+C) B, B e D.\
+D) B, C e C.\
+E) B, C e D.
 
-A quantidade de pessoas entrevistadas de cada faixa etária seguiu a distribuição percentual descrita no quadro:
+**Questão 2**
 
-| Faixa etária | Percentual de entrevistados |
-|---|---|
-| De 10 a 24 anos | x |
-| Entre 24 e 60 anos | y |
-| A partir de 60 anos | x |
+*ENEM 2017 · 2º dia · caderno azul · questão 169*
 
-Os valores de x e y do quadro são, respectivamente, iguais a:
+Quanto tempo você fica conectado à internet? Para responder a essa pergunta foi criado um miniaplicativo de computador que roda na área de trabalho, para gerar automaticamente um gráfico de setores, mapeando o tempo que uma pessoa acessa cinco sites visitados. Em um computador, foi observado que houve um aumento significativo do tempo de acesso da sexta-feira para o sábado, nos cinco sites mais acessados. A seguir, temos os dados do miniaplicativo para esses dias.
 
-a) 10 e 80 b) 10 e 90 c) 20 e 60 d) 20 e 80 e) 25 e 50
+<figure class="figura">
+  <svg viewBox="0 0 520 225" role="img" aria-labelledby="fig-graf-q2-t fig-graf-q2-d">
+    <title id="fig-graf-q2-t">Tempo de acesso aos cinco sites na sexta e no sábado</title>
+    <desc id="fig-graf-q2-d">Dois gráficos de setores. Sexta-feira, em minuto: site X 12, site Y 30, site Z 10, site W 38 e site U 40. Sábado, em minuto: site X 21, site Y 51, site Z 11, site W 57 e site U 56. Figura redesenhada a partir da prova oficial, com os mesmos dados.</desc>
+    <path d="M 135 120 L 135 50 A 70 70 0 0 1 173.4 61.4 Z" class="traco preenche" />
+    <text x="159.6" y="41.6" class="rotulo" text-anchor="start">Site X 12</text>
+    <path d="M 135 120 L 173.4 61.4 A 70 70 0 0 1 197.7 151 Z" class="traco" />
+    <text x="218" y="101.4" class="rotulo" text-anchor="start">Site Y 30</text>
+    <path d="M 135 120 L 197.7 151 A 70 70 0 0 1 176.1 176.6 Z" class="traco preenche" />
+    <text x="200.7" y="179.5" class="rotulo" text-anchor="start">Site Z 10</text>
+    <path d="M 135 120 L 176.1 176.6 A 70 70 0 0 1 69.5 144.8 Z" class="traco" />
+    <text x="110.4" y="206.4" class="rotulo" text-anchor="end">Site W 38</text>
+    <path d="M 135 120 L 69.5 144.8 A 70 70 0 0 1 135 50 Z" class="traco preenche" />
+    <text x="64.2" y="75.1" class="rotulo" text-anchor="end">Site U 40</text>
+    <path d="M 385 120 L 385 50 A 70 70 0 0 1 428.6 65.3 Z" class="traco preenche" />
+    <text x="413.4" y="42.8" class="rotulo" text-anchor="start">Site X 21</text>
+    <path d="M 385 120 L 428.6 65.3 A 70 70 0 0 1 436.8 167.1 Z" class="traco" />
+    <text x="470.7" y="117.1" class="rotulo" text-anchor="start">Site Y 51</text>
+    <path d="M 385 120 L 436.8 167.1 A 70 70 0 0 1 417.4 182.1 Z" class="traco preenche" />
+    <text x="437.5" y="192.1" class="rotulo" text-anchor="start">Site Z 11</text>
+    <path d="M 385 120 L 417.4 182.1 A 70 70 0 0 1 316.8 135.6 Z" class="traco" />
+    <text x="348.9" y="202.1" class="rotulo" text-anchor="end">Site W 57</text>
+    <path d="M 385 120 L 316.8 135.6 A 70 70 0 0 1 385 50 Z" class="traco preenche" />
+    <text x="317.8" y="70.4" class="rotulo" text-anchor="end">Site U 56</text>
+    <text x="135" y="22" class="rotulo" text-anchor="middle">Tempo de acesso na sexta-feira (minuto)</text>
+    <text x="385" y="22" class="rotulo" text-anchor="middle">Tempo de acesso no sábado (minuto)</text>
+  </svg>
+</figure>
 
----
+Analisando os gráficos do computador, a maior taxa de aumento no tempo de acesso, da sexta-feira para o sábado, foi no site
 
-**Questão 3 (ENEM PPL 2012)**
+A) X.\
+B) Y.\
+C) Z.\
+D) W.\
+E) U.
 
-Uma pesquisa foi realizada com a intenção de conhecer o que as pessoas sabem sobre o diabetes. Utilizou-se um questionário respondido por pessoas na entrada de estações do metrô de São Paulo. Um dos gráficos mostrou os percentuais de resposta à pergunta "Você conhece alguém com diabetes?": **37%** responderam "sim". Entre os que responderam "sim", um segundo gráfico mostrou onde essa pessoa conhecida está: **15%** indicaram "na escola".
+**Questão 3**
 
-O percentual do número total de entrevistados que conhecem pessoas diabéticas na escola é mais aproximado por:
+*ENEM 2014 · 2ª aplicação · 2º dia · caderno cinza · questão 161*
 
-a) 6% b) 15% c) 37% d) 41% e) 52%
+Uma revista publicará os dados, apresentados no gráfico, sobre como os tipos sanguíneos estão distribuídos entre a população brasileira. Contudo, o editor dessa revista solicitou que esse gráfico seja publicado na forma de setores, em que cada grupo esteja representado por um setor circular.
 
----
+<figure class="figura">
+  <svg viewBox="0 0 470 215" role="img" aria-labelledby="fig-graf-q3-t fig-graf-q3-d">
+    <title id="fig-graf-q3-t">Tipos sanguíneos na população brasileira</title>
+    <desc id="fig-graf-q3-d">Gráfico de barras agrupadas, em porcentagem da população brasileira. Grupo A: 36 Rh positivo e 6 Rh negativo. Grupo AB: 3 e 2. Grupo B: 8 e 2. Grupo O: 34 e 9. Figura redesenhada a partir da prova oficial, com os mesmos dados.</desc>
+    <line x1="70" y1="190" x2="370" y2="190" class="traco" />
+    <line x1="70" y1="190" x2="70" y2="30" class="traco" />
+    <line x1="66" y1="190" x2="70" y2="190" class="traco-fino" />
+    <text x="63" y="194" class="rotulo-fraco" text-anchor="end">0</text>
+    <line x1="66" y1="170" x2="70" y2="170" class="traco-fino" />
+    <text x="63" y="174" class="rotulo-fraco" text-anchor="end">5</text>
+    <line x1="66" y1="150" x2="70" y2="150" class="traco-fino" />
+    <text x="63" y="154" class="rotulo-fraco" text-anchor="end">10</text>
+    <line x1="66" y1="130" x2="70" y2="130" class="traco-fino" />
+    <text x="63" y="134" class="rotulo-fraco" text-anchor="end">15</text>
+    <line x1="66" y1="110" x2="70" y2="110" class="traco-fino" />
+    <text x="63" y="114" class="rotulo-fraco" text-anchor="end">20</text>
+    <line x1="66" y1="90" x2="70" y2="90" class="traco-fino" />
+    <text x="63" y="94" class="rotulo-fraco" text-anchor="end">25</text>
+    <line x1="66" y1="70" x2="70" y2="70" class="traco-fino" />
+    <text x="63" y="74" class="rotulo-fraco" text-anchor="end">30</text>
+    <line x1="66" y1="50" x2="70" y2="50" class="traco-fino" />
+    <text x="63" y="54" class="rotulo-fraco" text-anchor="end">35</text>
+    <line x1="66" y1="30" x2="70" y2="30" class="traco-fino" />
+    <text x="63" y="34" class="rotulo-fraco" text-anchor="end">40</text>
+    <rect x="81.5" y="46" width="26" height="144" class="traco preenche" />
+    <text x="94.5" y="42" class="rotulo-fraco" text-anchor="middle">36</text>
+    <rect x="107.5" y="166" width="26" height="24" class="traco" />
+    <text x="120.5" y="162" class="rotulo-fraco" text-anchor="middle">6</text>
+    <text x="107.5" y="205" class="rotulo" text-anchor="middle">Grupo A</text>
+    <rect x="156.5" y="178" width="26" height="12" class="traco preenche" />
+    <text x="169.5" y="174" class="rotulo-fraco" text-anchor="middle">3</text>
+    <rect x="182.5" y="182" width="26" height="8" class="traco" />
+    <text x="195.5" y="178" class="rotulo-fraco" text-anchor="middle">2</text>
+    <text x="182.5" y="205" class="rotulo" text-anchor="middle">Grupo AB</text>
+    <rect x="231.5" y="158" width="26" height="32" class="traco preenche" />
+    <text x="244.5" y="154" class="rotulo-fraco" text-anchor="middle">8</text>
+    <rect x="257.5" y="182" width="26" height="8" class="traco" />
+    <text x="270.5" y="178" class="rotulo-fraco" text-anchor="middle">2</text>
+    <text x="257.5" y="205" class="rotulo" text-anchor="middle">Grupo B</text>
+    <rect x="306.5" y="54" width="26" height="136" class="traco preenche" />
+    <text x="319.5" y="50" class="rotulo-fraco" text-anchor="middle">34</text>
+    <rect x="332.5" y="154" width="26" height="36" class="traco" />
+    <text x="345.5" y="150" class="rotulo-fraco" text-anchor="middle">9</text>
+    <text x="332.5" y="205" class="rotulo" text-anchor="middle">Grupo O</text>
+    <text x="310" y="16" class="rotulo" text-anchor="middle">Tipos sanguíneos</text>
+    <text x="70" y="22" class="rotulo-fraco">% da população brasileira</text>
+    <rect x="385" y="80" width="12" height="12" class="traco preenche" />
+    <text x="403" y="90" class="rotulo-fraco">Rh positivo</text>
+    <rect x="385" y="102" width="12" height="12" class="traco" />
+    <text x="403" y="112" class="rotulo-fraco">Rh negativo</text>
+  </svg>
+</figure>
 
-**Questão 4 (ENEM PPL 2012)**
+O ângulo do maior desses setores medirá, em graus,
 
-Uma coleta de dados em mais de 5 mil sites da internet apresentou os conteúdos de interesse de cada faixa etária. Para a faixa etária de 0 a 17 anos, um dos dados obtidos foi que **9%** dessa faixa etária demonstra preferência pelo conteúdo "horóscopo".
+A) 108,0.\
+B) 122,4.\
+C) 129,6.\
+D) 151,2.\
+E) 154,8.
 
-Selecionando, ao acaso, uma pessoa dessa faixa etária, a probabilidade de que ela **não** tenha preferência por horóscopo é:
+**Questão 4**
 
-a) 0,09 b) 0,10 c) 0,11 d) 0,79 e) 0,91
+*ENEM 2017 · 2º dia · caderno azul · questão 165*
 
----
+O resultado de uma pesquisa eleitoral, sobre a preferência dos eleitores em relação a dois candidatos, foi representado por meio do Gráfico 1.
 
-**Questão 5 (ENEM PPL 2012: adaptada de questão sobre comparação de preços)**
+<figure class="figura">
+  <svg viewBox="0 0 400 250" role="img" aria-labelledby="fig-graf-q4a-t fig-graf-q4a-d">
+    <title id="fig-graf-q4a-t">Gráfico 1</title>
+    <desc id="fig-graf-q4a-d">Gráfico de barras com o eixo dos eleitores, em porcentagem, de 0 a 70, com linhas a cada 10. A coluna do candidato A chega a 70 e a do candidato B chega a 30. Figura redesenhada a partir da prova oficial, com os mesmos dados.</desc>
+    <line x1="70" y1="200" x2="310" y2="200" class="traco" />
+    <line x1="70" y1="200" x2="70" y2="25" class="traco" />
+    <line x1="66" y1="200" x2="70" y2="200" class="traco-fino" />
+    <text x="63" y="204" class="rotulo-fraco" text-anchor="end">0</text>
+    <line x1="66" y1="175" x2="70" y2="175" class="traco-fino" />
+    <line x1="70" y1="175" x2="310" y2="175" class="tracejado" />
+    <text x="63" y="179" class="rotulo-fraco" text-anchor="end">10</text>
+    <line x1="66" y1="150" x2="70" y2="150" class="traco-fino" />
+    <line x1="70" y1="150" x2="310" y2="150" class="tracejado" />
+    <text x="63" y="154" class="rotulo-fraco" text-anchor="end">20</text>
+    <line x1="66" y1="125" x2="70" y2="125" class="traco-fino" />
+    <line x1="70" y1="125" x2="310" y2="125" class="tracejado" />
+    <text x="63" y="129" class="rotulo-fraco" text-anchor="end">30</text>
+    <line x1="66" y1="100" x2="70" y2="100" class="traco-fino" />
+    <line x1="70" y1="100" x2="310" y2="100" class="tracejado" />
+    <text x="63" y="104" class="rotulo-fraco" text-anchor="end">40</text>
+    <line x1="66" y1="75" x2="70" y2="75" class="traco-fino" />
+    <line x1="70" y1="75" x2="310" y2="75" class="tracejado" />
+    <text x="63" y="79" class="rotulo-fraco" text-anchor="end">50</text>
+    <line x1="66" y1="50" x2="70" y2="50" class="traco-fino" />
+    <line x1="70" y1="50" x2="310" y2="50" class="tracejado" />
+    <text x="63" y="54" class="rotulo-fraco" text-anchor="end">60</text>
+    <line x1="66" y1="25" x2="70" y2="25" class="traco-fino" />
+    <line x1="70" y1="25" x2="310" y2="25" class="tracejado" />
+    <text x="63" y="29" class="rotulo-fraco" text-anchor="end">70</text>
+    <rect x="108" y="25" width="44" height="175" class="traco preenche" />
+    <text x="130" y="215" class="rotulo" text-anchor="middle">A</text>
+    <rect x="228" y="125" width="44" height="75" class="traco preenche" />
+    <text x="250" y="215" class="rotulo" text-anchor="middle">B</text>
+    <text x="70" y="16" class="rotulo-fraco">Eleitores (%)</text>
+    <text x="318" y="222" class="rotulo-fraco">Candidato</text>
+    <text x="190" y="240" class="rotulo" text-anchor="middle">Gráfico 1</text>
+  </svg>
+</figure>
 
-Uma pesquisa de preços feita em três supermercados obteve os seguintes valores para a mesma especiaria:
-- No supermercado A: nozes a granel, R$ 24,00 o quilograma.
-- No supermercado B: embalagens fechadas de 250 gramas por R$ 3,00.
-- No supermercado C: nozes a granel, R$ 1,50 cada 100 gramas.
+Ao ser divulgado esse resultado em jornal, o Gráfico 1 foi cortado durante a diagramação, como mostra o Gráfico 2.
 
-A sequência dos supermercados, em ordem **crescente** do valor da noz, é:
+<figure class="figura">
+  <svg viewBox="0 0 400 220" role="img" aria-labelledby="fig-graf-q4b-t fig-graf-q4b-d">
+    <title id="fig-graf-q4b-t">Gráfico 2</title>
+    <desc id="fig-graf-q4b-d">O mesmo gráfico cortado: o eixo dos eleitores, em porcentagem, começa em 20 e vai até 70, com linhas a cada 10. A coluna do candidato A chega a 70 e a do candidato B chega a 30. Figura redesenhada a partir da prova oficial, com os mesmos dados.</desc>
+    <line x1="70" y1="170" x2="310" y2="170" class="traco" />
+    <line x1="70" y1="170" x2="70" y2="25" class="traco" />
+    <line x1="66" y1="170" x2="70" y2="170" class="traco-fino" />
+    <text x="63" y="174" class="rotulo-fraco" text-anchor="end">20</text>
+    <line x1="66" y1="141" x2="70" y2="141" class="traco-fino" />
+    <line x1="70" y1="141" x2="310" y2="141" class="tracejado" />
+    <text x="63" y="145" class="rotulo-fraco" text-anchor="end">30</text>
+    <line x1="66" y1="112" x2="70" y2="112" class="traco-fino" />
+    <line x1="70" y1="112" x2="310" y2="112" class="tracejado" />
+    <text x="63" y="116" class="rotulo-fraco" text-anchor="end">40</text>
+    <line x1="66" y1="83" x2="70" y2="83" class="traco-fino" />
+    <line x1="70" y1="83" x2="310" y2="83" class="tracejado" />
+    <text x="63" y="87" class="rotulo-fraco" text-anchor="end">50</text>
+    <line x1="66" y1="54" x2="70" y2="54" class="traco-fino" />
+    <line x1="70" y1="54" x2="310" y2="54" class="tracejado" />
+    <text x="63" y="58" class="rotulo-fraco" text-anchor="end">60</text>
+    <line x1="66" y1="25" x2="70" y2="25" class="traco-fino" />
+    <line x1="70" y1="25" x2="310" y2="25" class="tracejado" />
+    <text x="63" y="29" class="rotulo-fraco" text-anchor="end">70</text>
+    <rect x="108" y="25" width="44" height="145" class="traco preenche" />
+    <text x="130" y="185" class="rotulo" text-anchor="middle">A</text>
+    <rect x="228" y="141" width="44" height="29" class="traco preenche" />
+    <text x="250" y="185" class="rotulo" text-anchor="middle">B</text>
+    <text x="70" y="16" class="rotulo-fraco">Eleitores (%)</text>
+    <text x="318" y="192" class="rotulo-fraco">Candidato</text>
+    <text x="190" y="210" class="rotulo" text-anchor="middle">Gráfico 2</text>
+  </svg>
+</figure>
 
-a) A, B, C b) B, A, C c) B, C, A d) C, A, B e) C, B, A
+Apesar de os valores apresentados estarem corretos e a largura das colunas ser a mesma, muitos leitores criticaram o formato do Gráfico 2 impresso no jornal, alegando que houve prejuízo visual para o candidato B.
+
+A diferença entre as razões da altura da coluna B pela coluna A nos gráficos 1 e 2 é
+
+A) 0\
+B) 1/2\
+C) 1/5\
+D) 2/15\
+E) 8/35
+
+**Questão 5**
+
+*ENEM 2019 · 2º dia · caderno azul · questão 174*
+
+A taxa de urbanização de um município é dada pela razão entre a população urbana e a população total do município (isto é, a soma das populações rural e urbana). Os gráficos apresentam, respectivamente, a população urbana e a população rural de cinco municípios (I, II, III, IV, V) de uma mesma região estadual. Em reunião entre o governo do estado e os prefeitos desses municípios, ficou acordado que o município com maior taxa de urbanização receberá um investimento extra em infraestrutura.
+
+<figure class="figura">
+  <svg viewBox="0 0 510 215" role="img" aria-labelledby="fig-graf-q5-t fig-graf-q5-d">
+    <title id="fig-graf-q5-t">População urbana e população rural dos cinco municípios</title>
+    <desc id="fig-graf-q5-d">Dois gráficos de barras. População urbana: I 8 000, II 10 000, III 11 000, IV 18 000 e V 17 000. População rural: I 4 000, II 8 000, III 5 000, IV 10 000 e V 12 000. Figura redesenhada a partir da prova oficial, com os mesmos dados.</desc>
+    <line x1="62" y1="190" x2="232" y2="190" class="traco" />
+    <line x1="62" y1="190" x2="62" y2="30" class="traco" />
+    <line x1="58" y1="190" x2="62" y2="190" class="traco-fino" />
+    <text x="55" y="194" class="rotulo-fraco" text-anchor="end">0</text>
+    <line x1="58" y1="174" x2="62" y2="174" class="traco-fino" />
+    <text x="55" y="178" class="rotulo-fraco" text-anchor="end">2 000</text>
+    <line x1="58" y1="158" x2="62" y2="158" class="traco-fino" />
+    <text x="55" y="162" class="rotulo-fraco" text-anchor="end">4 000</text>
+    <line x1="58" y1="142" x2="62" y2="142" class="traco-fino" />
+    <text x="55" y="146" class="rotulo-fraco" text-anchor="end">6 000</text>
+    <line x1="58" y1="126" x2="62" y2="126" class="traco-fino" />
+    <text x="55" y="130" class="rotulo-fraco" text-anchor="end">8 000</text>
+    <line x1="58" y1="110" x2="62" y2="110" class="traco-fino" />
+    <text x="55" y="114" class="rotulo-fraco" text-anchor="end">10 000</text>
+    <line x1="58" y1="94" x2="62" y2="94" class="traco-fino" />
+    <text x="55" y="98" class="rotulo-fraco" text-anchor="end">12 000</text>
+    <line x1="58" y1="78" x2="62" y2="78" class="traco-fino" />
+    <text x="55" y="82" class="rotulo-fraco" text-anchor="end">14 000</text>
+    <line x1="58" y1="62" x2="62" y2="62" class="traco-fino" />
+    <text x="55" y="66" class="rotulo-fraco" text-anchor="end">16 000</text>
+    <line x1="58" y1="46" x2="62" y2="46" class="traco-fino" />
+    <text x="55" y="50" class="rotulo-fraco" text-anchor="end">18 000</text>
+    <line x1="58" y1="30" x2="62" y2="30" class="traco-fino" />
+    <text x="55" y="34" class="rotulo-fraco" text-anchor="end">20 000</text>
+    <rect x="70" y="126" width="18" height="64" class="traco preenche" />
+    <text x="79" y="122" class="rotulo-fraco" text-anchor="middle">8 000</text>
+    <text x="79" y="205" class="rotulo" text-anchor="middle">I</text>
+    <rect x="104" y="110" width="18" height="80" class="traco preenche" />
+    <text x="113" y="106" class="rotulo-fraco" text-anchor="middle">10 000</text>
+    <text x="113" y="205" class="rotulo" text-anchor="middle">II</text>
+    <rect x="138" y="102" width="18" height="88" class="traco preenche" />
+    <text x="147" y="98" class="rotulo-fraco" text-anchor="middle">11 000</text>
+    <text x="147" y="205" class="rotulo" text-anchor="middle">III</text>
+    <rect x="172" y="46" width="18" height="144" class="traco preenche" />
+    <text x="181" y="42" class="rotulo-fraco" text-anchor="middle">18 000</text>
+    <text x="181" y="205" class="rotulo" text-anchor="middle">IV</text>
+    <rect x="206" y="54" width="18" height="136" class="traco preenche" />
+    <text x="215" y="50" class="rotulo-fraco" text-anchor="middle">17 000</text>
+    <text x="215" y="205" class="rotulo" text-anchor="middle">V</text>
+    <text x="147" y="16" class="rotulo" text-anchor="middle">População urbana</text>
+    <line x1="322" y1="190" x2="492" y2="190" class="traco" />
+    <line x1="322" y1="190" x2="322" y2="30" class="traco" />
+    <line x1="318" y1="190" x2="322" y2="190" class="traco-fino" />
+    <text x="315" y="194" class="rotulo-fraco" text-anchor="end">0</text>
+    <line x1="318" y1="167.1" x2="322" y2="167.1" class="traco-fino" />
+    <text x="315" y="171.1" class="rotulo-fraco" text-anchor="end">2 000</text>
+    <line x1="318" y1="144.3" x2="322" y2="144.3" class="traco-fino" />
+    <text x="315" y="148.3" class="rotulo-fraco" text-anchor="end">4 000</text>
+    <line x1="318" y1="121.4" x2="322" y2="121.4" class="traco-fino" />
+    <text x="315" y="125.4" class="rotulo-fraco" text-anchor="end">6 000</text>
+    <line x1="318" y1="98.6" x2="322" y2="98.6" class="traco-fino" />
+    <text x="315" y="102.6" class="rotulo-fraco" text-anchor="end">8 000</text>
+    <line x1="318" y1="75.7" x2="322" y2="75.7" class="traco-fino" />
+    <text x="315" y="79.7" class="rotulo-fraco" text-anchor="end">10 000</text>
+    <line x1="318" y1="52.9" x2="322" y2="52.9" class="traco-fino" />
+    <text x="315" y="56.9" class="rotulo-fraco" text-anchor="end">12 000</text>
+    <line x1="318" y1="30" x2="322" y2="30" class="traco-fino" />
+    <text x="315" y="34" class="rotulo-fraco" text-anchor="end">14 000</text>
+    <rect x="330" y="144.3" width="18" height="45.7" class="traco preenche" />
+    <text x="339" y="140.3" class="rotulo-fraco" text-anchor="middle">4 000</text>
+    <text x="339" y="205" class="rotulo" text-anchor="middle">I</text>
+    <rect x="364" y="98.6" width="18" height="91.4" class="traco preenche" />
+    <text x="373" y="94.6" class="rotulo-fraco" text-anchor="middle">8 000</text>
+    <text x="373" y="205" class="rotulo" text-anchor="middle">II</text>
+    <rect x="398" y="132.9" width="18" height="57.1" class="traco preenche" />
+    <text x="407" y="128.9" class="rotulo-fraco" text-anchor="middle">5 000</text>
+    <text x="407" y="205" class="rotulo" text-anchor="middle">III</text>
+    <rect x="432" y="75.7" width="18" height="114.3" class="traco preenche" />
+    <text x="441" y="71.7" class="rotulo-fraco" text-anchor="middle">10 000</text>
+    <text x="441" y="205" class="rotulo" text-anchor="middle">IV</text>
+    <rect x="466" y="52.9" width="18" height="137.1" class="traco preenche" />
+    <text x="475" y="48.9" class="rotulo-fraco" text-anchor="middle">12 000</text>
+    <text x="475" y="205" class="rotulo" text-anchor="middle">V</text>
+    <text x="407" y="16" class="rotulo" text-anchor="middle">População rural</text>
+  </svg>
+</figure>
+
+Segundo o acordo, qual município receberá o investimento extra?
+
+A) I\
+B) II\
+C) III\
+D) IV\
+E) V
