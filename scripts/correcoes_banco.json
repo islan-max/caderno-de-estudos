@@ -279,5 +279,38 @@
       "¹⁴₇N",
       "⁹⁴₃₈Sr"
     ]
+  },
+  "2022-ppl-D2-azul-Q107": {
+    "nota": "alternativas são desenhos da trajetória do feixe (imagem); conferido na imagem da página em 27/09/2026",
+    "alternativas": [
+      "Esquema A",
+      "Esquema B",
+      "Esquema C",
+      "Esquema D",
+      "Esquema E"
+    ],
+    "alternativas_em_imagem": true
+  },
+  "2015-ppl-D1-branco-Q058": {
+    "nota": "alternativas são esquemas do olho (imagem); conferido na imagem da página em 27/09/2026",
+    "alternativas": [
+      "Esquema A",
+      "Esquema B",
+      "Esquema C",
+      "Esquema D",
+      "Esquema E"
+    ],
+    "alternativas_em_imagem": true
+  },
+  "2022-ppl-D2-azul-Q115": {
+    "nota": "alternativas com sinais de desigualdade embaralhadas e marca-d'água no texto; conferido na imagem da página em 27/09/2026",
+    "texto": "Na área de comunicações, a demanda por grande volume de dados exige uma transmissão em alta frequência. Uma inovação nesse sentido foi o desenvolvimento da fibra óptica, que faz uso da luz como portadora de sinais. A fibra óptica é um meio de propagação da luz formada por duas camadas de vidro, com índices de refração diferentes. Considere que a camada externa da fibra apresente índice de refração n2, e a camada interna, índice de refração n1, como ilustrado na figura. O objetivo dessa diferença é obter a condição de reflexão interna total do sinal óptico que se encontre na camada interna, de forma que ele se propague por toda a extensão da fibra. A tecnologia envolvida na confecção das fibras ópticas deve garantir que o ângulo de refração e a relação entre n1 e n2 sejam, respectivamente,",
+    "alternativas": [
+      "45° e n2 < n1.",
+      "nulo e n2 > n1.",
+      "nulo e n2 < n1.",
+      "90° e n2 > n1.",
+      "90° e n2 < n1."
+    ]
   }
 }
