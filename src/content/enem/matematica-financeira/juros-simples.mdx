@@ -3,144 +3,406 @@ title: "Juros Simples"
 subject: "Matemática Financeira"
 order: 1
 relevance: >
-  Juro é o preço que se paga pelo uso do dinheiro de outra pessoa durante um tempo. No regime de juros
-  simples, esse preço é sempre calculado sobre o valor emprestado no início, nunca sobre o que já foi
-  acumulado. É o regime mais fácil de calcular e o mais comum em situações de curto prazo: multa de
-  atraso, empréstimo entre pessoas, carnê de loja, desconto por pagamento antecipado. No ENEM, juros
-  simples aparecem quase sempre em duas formas: uma conta direta com carnê ou empréstimo, ou uma
-  comparação com juros compostos para mostrar que os dois regimes só coincidem no primeiro período.
-  Costuma haver 1 a 2 questões de matemática financeira por prova.
+  Juros são o "aluguel" do dinheiro: quem empresta cobra, quem aplica recebe. O ENEM (Exame Nacional do
+  Ensino Médio) cobra o tema em situações do dia a dia: financiar um carro, escolher a aplicação que rende
+  mais depois de taxas e impostos, decidir se vale pegar um empréstimo para quitar uma dívida. As contas
+  são curtas; o difícil é montar cada opção sem esquecer nenhuma parte e comparar os totais certos.
 quickSummary: >
-  Em juros simples o juro de cada período é sempre calculado sobre o capital inicial: J = C × i × t, e o
-  montante é M = C × (1 + i × t). A taxa e o tempo precisam estar na mesma unidade, e o crescimento é
-  linear.
+  i% de um valor é valor × i ÷ 100. Nos juros simples, os juros de cada período são sempre sobre o
+  capital inicial: J = C × i × t e M = C + J = C × (1 + i × t), com taxa e tempo na mesma unidade. O
+  rendimento líquido é o rendimento menos taxas e impostos; um imposto "sobre o ganho" é uma porcentagem
+  do rendimento, não do valor aplicado. Para decidir entre opções, calcule o total de cada uma.
+resources:
+  conteudoComplementar:
+    conteudo: "Porcentagem"
+    comoAjuda: "Juros, taxas e impostos são porcentagens. Se transformar porcentagem em decimal travar você, revise essa aula."
+gabarito:
+  - correta: 2
+    porque: >
+      O valor financiado é o preço do carro novo menos o que a loja paga pelo usado; com juros simples por um
+      ano, o total é financiado × (1 + taxa). A: 15 000 × 1,18 = 17 700. B: 14 000 × 1,20 = 16 800. C: 14 500 × 1,19
+      = 17 255. O menor total é 16 800, na loja B.
+      Revisar: Aula Teórica › 2. Juros simples
+  - correta: 0
+    porque: >
+      Básica: 0,542% de 10 000 = 54,20; menos a taxa fixa de 0,30, sobram 53,90. Pessoal: 0,560% de 10 000 = 56,00;
+      a taxa é 3,8% de 56,00 = 2,128, e sobram 56,00 − 2,128, cerca de 53,87. A Básica rende mais: 53,90.
+      Revisar: Aula Teórica › 3. Rendimento líquido: taxas e impostos
+  - correta: 3
+    porque: >
+      Poupança: 0,560% de 500 = 2,80, sem imposto: montante 502,80. CDB: 0,876% de 500 = 4,38; o imposto é 4% do ganho,
+      4% de 4,38 = 0,1752. O montante exato é 500 + 4,38 − 0,1752 = 504,2048, cerca de 504,20; a alternativa mais próxima é
+      504,21 (a prova cortou o imposto em 0,17). O CDB é melhor.
+      Revisar: Aula Teórica › 3. Rendimento líquido: taxas e impostos
+  - correta: 4
+    porque: >
+      Quitar hoje: cheque especial 12 × 150 − 2 × 150 = 1 500; cartão 5 × 80 = 400 com 25% de desconto = 300. Com o
+      empréstimo, paga-se o valor × 1,25. Totais: renegociar 18 × 125 = 2 250; tudo emprestado (1 800 × 1,25) = 2 250;
+      pagar tudo nos prazos 1 800 + 400 = 2 200; emprestar só o cheque 1 875 + 400 = 2 275; emprestar só o cartão
+      300 × 1,25 = 375, mais 1 800 do cheque = 2 175. O menor é 2 175.
+      Revisar: Aula Teórica › 4. Comparar opções
+  - correta: 0
+    porque: >
+      O retorno é o rendimento menos o imposto, ou seja, rendimento × (1 − taxa do IR). I: 900 × 0,88 = 792. II: 700 × 0,91
+      = 637. III: 300 × 0,80 = 240. IV: 500 × 0,90 = 450. V: 1 000 × 0,78 = 780. O maior é o investimento I.
+      Revisar: Aula Teórica › 3. Rendimento líquido: taxas e impostos
 ---
 
-## Aula Teórica Completa
+<Accordion titulo="Palavras e siglas desta aula" dica="Consulte quando encontrar um termo novo" icone="spell-check">
 
-**As quatro peças do problema.** Toda questão de juros usa as mesmas quatro grandezas, e a primeira coisa a fazer numa prova é identificar cada uma delas no enunciado.
+- **ENEM** (Exame Nacional do Ensino Médio): a prova nacional que dá acesso a faculdades e bolsas.
+- **INEP** (Instituto Nacional de Estudos e Pesquisas Educacionais Anísio Teixeira): o órgão do governo que faz o ENEM.
+- **IR** (imposto de renda): imposto cobrado sobre ganhos, como o rendimento de uma aplicação.
+- **CDB** (certificado de depósito bancário): uma aplicação em que se empresta dinheiro ao banco em troca de rendimento.
+- **Desembolsar**: tirar dinheiro do bolso para pagar.
+- **Incidir** ou **incidência**: ser cobrado sobre um valor.
+- **Aferir**: medir.
+- **Retorno financeiro**: quanto uma aplicação devolve de ganho.
+- **Fundo de investimento**: aplicação em que o banco junta o dinheiro de vários investidores.
+- **Capital**: o valor aplicado ou emprestado no começo.
+- **Montante**: o capital mais os juros, o valor no fim.
+- **Financiar**: pagar uma compra em prestações, com juros.
+- **Aplicação** ou **investimento**: dinheiro guardado num banco ou fundo para render.
+- **Rendimento**: quanto uma aplicação ganha num período.
+- **Poupança**: aplicação simples dos bancos; no ENEM costuma aparecer sem imposto.
+- **Isento**: que não paga imposto.
+- **Taxa administrativa**: valor que o banco cobra para cuidar da aplicação.
+- **Cheque especial**: dinheiro que o banco empresta automaticamente quando a conta fica negativa.
+- **Quitar**: pagar toda a dívida de uma vez.
+- **Renegociar**: combinar novas condições de pagamento de uma dívida.
 
-Capital (C) é o valor inicial, também chamado de principal ou valor presente. É o dinheiro que foi emprestado, aplicado ou financiado no começo da história.
+</Accordion>
 
-Taxa (i) é o percentual cobrado por período de tempo. A letra i vem do inglês "interest" (juro). Ela SEMPRE vem acompanhada de uma unidade de tempo: 2% ao mês, 15% ao ano, 0,5% ao dia. Nas contas, a taxa entra em forma decimal: 2% vira 0,02; 15% vira 0,15.
+## Antes de Começar
 
-Tempo (t) é a quantidade de períodos durante os quais o dinheiro ficou emprestado ou aplicado.
+**O que o ENEM cobra aqui.** A prova quase nunca pede só "calcule os juros". Os temas que costumam aparecer são estes:
 
-Juro (J) é o valor pago pelo uso do dinheiro, em reais. Montante (M) é o total no final: o capital de volta mais o juro, ou seja, M = C + J. O montante também é chamado de valor futuro ou valor de resgate.
+- **Calcular o total de um financiamento** com juros simples.
+- **Calcular uma porcentagem pequena**, como 0,5% de um valor.
+- **Descontar taxas e impostos** do rendimento de uma aplicação.
+- **Comparar opções** (lojas, aplicações, formas de pagar uma dívida) e escolher a melhor.
 
-**A ideia de juros simples.** No regime de juros simples, todo período rende exatamente o mesmo juro, porque a taxa é sempre aplicada sobre o capital inicial C, e não sobre o valor que já foi acumulado. Se você empresta R$ 1.000,00 a 5% ao mês, ganha R$ 50,00 no primeiro mês, R$ 50,00 no segundo, R$ 50,00 no terceiro, e assim por diante, para sempre. O juro de cada mês é 0,05 × 1.000 = 50, e nunca muda.
+**O que você precisa saber antes.**
 
-Como cada período rende C × i, em t períodos o juro total é essa parcela repetida t vezes:
+- **Porcentagem.** i% quer dizer i em cada 100: 7% = 7/100 = 0,07. Revise a aula de Porcentagem.
+- **Decimais.** Para dividir por 100, ande com a vírgula duas casas para a esquerda: 0,65 ÷ 100 = 0,0065. Revise a aula de Frações.
+- **Aumento percentual.** Aumentar 6% é multiplicar por 1,06; diminuir 6% é multiplicar por 0,94.
+- **Centavos.** Dinheiro tem só duas casas depois da vírgula. Quando uma conta dá mais casas, arredonde para o centavo mais próximo: 3% de 5,45 = 0,1635, cerca de R$ 0,16. O sinal ≈ quer dizer "aproximadamente igual". Se a resposta exata não estiver entre as alternativas, marque a mais próxima: às vezes a prova corta os centavos em vez de arredondar.
 
-J = C × i × t
+## Aula Teórica
 
-E o montante é o capital mais os juros acumulados:
+### 1. Porcentagem de um valor
 
-M = C + J = C + C × i × t = C × (1 + i × t)
+Juros, taxas e impostos quase sempre vêm em porcentagem. Para calcular i% de um valor, multiplique o valor pela porcentagem escrita como decimal.
 
-Nas duas fórmulas, C é o capital inicial em reais, i é a taxa em forma decimal, t é o número de períodos e J e M saem em reais. Colocar o C em evidência na segunda fórmula é o mesmo truque do fator multiplicativo da porcentagem: (1 + i × t) é o fator que transforma o capital no montante.
+**Fórmula: porcentagem de um valor**
 
-**Um exemplo completo.** Uma pessoa pega emprestados R$ 5.000,00 a juros simples de 2% ao mês, para pagar tudo de uma vez em 8 meses. Primeiro, a taxa em decimal: 2% = 0,02. Depois, o juro: J = 5.000 × 0,02 × 8 = 800. Portanto, ela pagará R$ 800,00 de juros. O montante é M = 5.000 + 800 = R$ 5.800,00. Pelo fator, daria no mesmo: M = 5.000 × (1 + 0,02 × 8) = 5.000 × 1,16 = 5.800.
+**i% de V = V × i ÷ 100**
 
-**A regra que mais derruba candidato: taxa e tempo na mesma unidade.** Se a taxa é ao mês, o tempo tem que estar em meses. Se a taxa é ao ano, o tempo tem que estar em anos. Suponha um capital de R$ 6.000,00 aplicado a 15% ao ano durante 8 meses. Existem dois caminhos corretos, e os dois dão o mesmo resultado.
+- **V**: o valor sobre o qual a porcentagem **incide** (é cobrada ou calculada).
+- **i**: a porcentagem (o número antes do %).
+- **Em palavras:** divida a porcentagem por 100 e multiplique pelo valor.
+- **Quando usar:** rendimentos, juros de um período, impostos, descontos.
 
-Primeiro caminho: converter o tempo para anos. Oito meses são 8/12 de ano, ou seja, 2/3 de ano. Então J = 6.000 × 0,15 × (8/12) = 6.000 × 0,10 = 600 reais.
+Porcentagens pequenas, como 0,65%, são comuns em aplicações. Elas funcionam do mesmo jeito: 0,65% = 0,65 ÷ 100 = 0,0065.
 
-Segundo caminho: converter a taxa para o mês. Em juros simples, taxas de períodos diferentes são proporcionais: basta dividir ou multiplicar. Uma taxa de 15% ao ano equivale a 15 ÷ 12 = 1,25% ao mês. Então J = 6.000 × 0,0125 × 8 = 600 reais. Mesmo valor. Essa proporcionalidade direta entre taxas só vale em juros simples: em juros compostos ela é falsa.
+**Exemplo resolvido.** Uma aplicação rende 0,65% ao mês. Quanto rendem R$ 2 000,00 em um mês? E R$ 780,00?
 
-**Isolar qualquer uma das letras.** Como J = C × i × t tem quatro letras, conhecendo três você descobre a quarta. Para achar a taxa: i = J ÷ (C × t). Se um empréstimo de R$ 800,00 gerou R$ 144,00 de juros em 4 meses, então i = 144 ÷ (800 × 4) = 144 ÷ 3.200 = 0,045, ou seja, 4,5% ao mês. Para achar o tempo: t = J ÷ (C × i). Para achar o capital: C = J ÷ (i × t). Não é preciso decorar quatro fórmulas, só saber isolar.
+1. 0,65% = 0,0065.
+2. 2 000 × 0,0065 = 13,00.
+3. 780 × 0,0065 = 5,07.
+4. Resposta: R$ 13,00 e R$ 5,07.
 
-**Crescimento linear.** Como o juro por período é fixo, os montantes formam uma sequência em que se soma sempre o mesmo valor: uma progressão aritmética. Num gráfico com o tempo no eixo horizontal e o montante no eixo vertical, os juros simples desenham uma reta. Aliás, M = C × (1 + i × t) pode ser reescrito como M = C + (C × i) × t, que é exatamente o formato de uma função afim: valor inicial C mais uma taxa constante de variação (C × i) multiplicada pelo tempo. Reconhecer esse formato é útil, porque o ENEM adora dar um gráfico e pedir para identificar qual curva corresponde a qual regime.
+**Erro comum.** Tratar 0,65% como 0,65 (multiplicar 2 000 por 0,65 dá 1 300, cem vezes mais). Divida sempre por 100.
 
-**Comparação com juros compostos.** Em juros compostos, cada período rende sobre o montante já acumulado, e não sobre o capital inicial: é o "juro sobre juro". Compare R$ 1.000,00 a 10% por período durante 3 períodos.
+### 2. Juros simples
 
-Em juros simples: cada período rende sempre 100 reais, então o montante final é 1.000 × (1 + 0,10 × 3) = 1.000 × 1,3 = R$ 1.300,00.
+Nos **juros simples**, os juros de cada período são calculados sempre sobre o **capital inicial**. Por isso, em cada período os juros são iguais.
 
-Em juros compostos: o primeiro período rende 100 (chegando a 1.100), o segundo rende 110 (chegando a 1.210) e o terceiro rende 121, chegando a R$ 1.331,00.
+**Fórmula: juros simples**
 
-Três conclusões que o ENEM cobra: no primeiro período os dois regimes dão exatamente o mesmo valor; a partir do segundo período, o montante composto é maior; e a diferença entre eles cresce cada vez mais rápido conforme o tempo passa. Um detalhe menos conhecido: para tempos menores que um período (por exemplo, meio mês), o juro simples é ligeiramente maior que o composto.
+**J = C × i × t; M = C + J = C × (1 + i × t)**
 
-**Aplicação típica: compra à vista contra compra parcelada.** O ENEM adora a situação em que a loja oferece um preço à vista e um plano em parcelas. O raciocínio é sempre o mesmo: some tudo o que será pago no plano parcelado (entrada mais todas as parcelas), compare com o preço à vista e veja quanto se pagou a mais. Se uma televisão custa R$ 1.500,00 à vista, ou entrada de R$ 300,00 mais 3 parcelas de R$ 420,00, o total a prazo é 300 + 3 × 420 = 300 + 1.260 = R$ 1.560,00. Pagou-se R$ 60,00 a mais. Esse acréscimo pode ser lido de duas maneiras: 60 ÷ 1.500 = 0,04, ou seja, 4% a mais que o preço à vista; ou 60 ÷ 1.200 = 0,05, ou seja, 5% sobre o valor efetivamente financiado (o preço à vista menos a entrada). Leia com atenção qual das duas o comando pede.
+- **C**: o capital, o valor inicial.
+- **i**: a taxa de juros por período, aqui já em decimal (2% ao mês = 0,02).
+- **t**: o número de períodos, na mesma unidade da taxa.
+- **J**: os juros.
+- **M**: o montante, capital mais juros.
+- **Em palavras:** os juros de um período são i × C; em t períodos, são t vezes isso. Como M = C + C × i × t, separe o C que aparece nas duas partes: M = C × (1 + i × t), e o "1" é o próprio capital.
+- **Quando usar:** quando o enunciado diz "juros simples".
 
-**Armadilhas típicas do INEP:** (1) usar a taxa em porcentagem em vez de decimal, multiplicando por 2 no lugar de 0,02 e chegando a valores cem vezes maiores; (2) esquecer de compatibilizar taxa e tempo, aplicando uma taxa anual a um número de meses; (3) responder o juro J quando a pergunta pediu o montante M, ou o contrário, o comando costuma dizer "quanto pagará no total" (montante) ou "quanto pagará de juros" (juro); (4) calcular o acréscimo percentual do parcelamento sobre a base errada, usando o preço à vista quando o pedido é sobre o valor financiado; (5) aplicar a proporcionalidade de taxas (dividir a taxa anual por 12) em questões que dizem explicitamente "juros compostos", onde essa conversão não vale; (6) supor que a entrada rende juros, a entrada é paga na hora e por isso é abatida do valor financiado.
+A taxa e o tempo precisam estar na **mesma unidade**. Uma taxa de 24% ao ano, em juros simples, equivale a 2% ao mês. Se a taxa **não diz "ao mês" nem "ao ano"** ("juros de 7% sobre o valor do empréstimo"), ela vale **uma vez só** para o prazo todo: não multiplique pelo número de meses.
+
+O esquema abaixo mostra o exemplo a seguir, mês a mês: os juros de cada mês são sempre 2% de 3 500, ou seja, 70.
+
+<figure class="figura">
+  <svg viewBox="0 0 460 200" role="img" aria-labelledby="fig-js-1-t fig-js-1-d">
+    <title id="fig-js-1-t">Montante em juros simples</title>
+    <desc id="fig-js-1-d">Cinco colunas, do mês 0 ao mês 4, para R$ 3 500,00 a 2% ao mês em juros simples. Cada coluna tem uma parte de baixo igual, o capital de 3 500, e em cima uma parte pintada com os juros acumulados, que cresce 70 a cada mês. Os montantes são 3 500, 3 570, 3 640, 3 710 e 3 780.</desc>
+    <rect x="45" y="80" width="44" height="100" class="traco" />
+    <text x="67" y="195" class="rotulo-fraco" text-anchor="middle">mês 0</text>
+    <text x="67" y="75" class="rotulo-fraco" text-anchor="middle">3 500</text>
+    <rect x="125" y="80" width="44" height="100" class="traco" />
+    <rect x="125" y="66" width="44" height="14" class="traco preenche" />
+    <text x="147" y="195" class="rotulo-fraco" text-anchor="middle">mês 1</text>
+    <text x="147" y="61" class="rotulo-fraco" text-anchor="middle">3 570</text>
+    <rect x="205" y="80" width="44" height="100" class="traco" />
+    <rect x="205" y="52" width="44" height="28" class="traco preenche" />
+    <text x="227" y="195" class="rotulo-fraco" text-anchor="middle">mês 2</text>
+    <text x="227" y="47" class="rotulo-fraco" text-anchor="middle">3 640</text>
+    <rect x="285" y="80" width="44" height="100" class="traco" />
+    <rect x="285" y="38" width="44" height="42" class="traco preenche" />
+    <text x="307" y="195" class="rotulo-fraco" text-anchor="middle">mês 3</text>
+    <text x="307" y="33" class="rotulo-fraco" text-anchor="middle">3 710</text>
+    <rect x="365" y="80" width="44" height="100" class="traco" />
+    <rect x="365" y="24" width="44" height="56" class="traco preenche" />
+    <text x="387" y="195" class="rotulo-fraco" text-anchor="middle">mês 4</text>
+    <text x="387" y="19" class="rotulo-fraco" text-anchor="middle">3 780</text>
+    <text x="67" y="135" class="rotulo-fraco" text-anchor="middle">capital</text>
+    <text x="45" y="30" class="rotulo-fraco">+70 por mês</text>
+  </svg>
+</figure>
+
+**Exemplo resolvido.** Um capital de R$ 3 500,00 é aplicado a juros simples de 2% ao mês durante 4 meses. Quanto são os juros e o montante?
+
+1. i = 2% = 0,02; t = 4 meses (a taxa é mensal, o tempo está em meses).
+2. J = 3 500 × 0,02 × 4 = 280.
+3. M = 3 500 + 280 = 3 780.
+4. Resposta: juros de R$ 280,00; montante de R$ 3 780,00.
+
+Numa compra financiada com **entrada**, os juros só incidem sobre o que falta pagar: o **valor financiado** é o preço menos a entrada. A entrada pode ser em dinheiro ou em um bem usado que a loja aceita; o valor que a loja paga pelo bem sai do preço.
+
+**Exemplo resolvido.** Um curso custa R$ 4 000,00. O aluno dá R$ 1 500,00 de entrada e financia o resto a juros simples de 16% ao ano, por um ano. Quanto paga no financiamento?
+
+1. Valor financiado: 4 000 − 1 500 = 2 500.
+2. Por um ano: M = 2 500 × (1 + 0,16 × 1) = 2 500 × 1,16 = 2 900.
+3. Resposta: R$ 2 900,00 no financiamento (além dos R$ 1 500,00 de entrada).
+
+**Erro comum.** Calcular os juros sobre o preço cheio em vez do valor financiado, ou misturar taxa anual com tempo em meses.
+
+### 3. Rendimento líquido: taxas e impostos
+
+Na prova, "taxa" tem dois sentidos. A **taxa de rendimento** é o ganho da aplicação; a **taxa administrativa** é uma cobrança do banco. O **rendimento bruto** é o que a aplicação ganha; o **rendimento líquido** é o que sobra depois de taxas e impostos. Leia com atenção sobre o que cada cobrança incide.
+
+- **Taxa fixa** (por exemplo, R$ 1,50 por mês): subtraia o valor direto.
+- Taxa ou imposto **sobre o ganho** (ou sobre o rendimento): é uma porcentagem do **rendimento**, não do valor aplicado.
+
+**Fórmula: rendimento líquido com imposto sobre o ganho**
+
+**rendimento líquido = rendimento × (1 − taxa)**
+
+- **rendimento**: o ganho bruto do período.
+- **taxa**: a porcentagem cobrada sobre o ganho, em decimal (15% = 0,15).
+- **Em palavras:** se o imposto leva 15% do ganho, sobram 85% dele.
+- **Quando usar:** impostos e taxas cobrados como porcentagem do rendimento.
+
+**Exemplo resolvido.** R$ 6 000,00 ficam aplicados por 3 meses a juros simples de 0,7% ao mês, com uma taxa fixa de R$ 1,50 por mês. Qual é o rendimento líquido?
+
+1. Rendimento: 6 000 × 0,007 × 3 = 126,00.
+2. Taxas: 3 × 1,50 = 4,50.
+3. Líquido: 126,00 − 4,50 = 121,50.
+4. Resposta: R$ 121,50.
+
+**Exemplo resolvido.** R$ 4 000,00 ficam aplicados por 2 meses a juros simples de 0,95% ao mês, com imposto de 15% sobre o ganho. Qual é o montante no fim?
+
+1. Rendimento: 4 000 × 0,0095 × 2 = 76,00.
+2. Líquido: 76,00 × (1 − 0,15) = 76,00 × 0,85 = 64,60.
+3. Montante: 4 000 + 64,60 = 4 064,60.
+4. Resposta: R$ 4 064,60.
+
+**Erro comum.** Calcular o imposto sobre o valor aplicado (15% de 4 000) em vez de sobre o ganho, ou escolher pela maior taxa de rendimento sem descontar as cobranças.
+
+### 4. Comparar opções
+
+Muitas questões dão várias formas de fazer a mesma coisa (pagar uma dívida, comprar em lojas diferentes) e pedem a mais barata. Monte **cada opção por completo**, com todos os pagamentos, e compare os **totais**.
+
+- **Desconto em porcentagem:** 15% de desconto é pagar 85% do total.
+- **Desconto em parcelas:** "uma parcela de desconto" quer dizer pagar uma parcela a menos.
+- **Pegar dinheiro emprestado:** paga-se o valor emprestado × (1 + taxa).
+- **Opções mistas:** uma parte de um jeito e outra de outro; some as partes.
+
+**Exemplo resolvido.** Uma televisão custa 8 parcelas de R$ 250,00. A loja oferece dois descontos para quem paga à vista: 15% sobre o total, ou uma parcela de desconto. Um banco empresta o dinheiro necessário com juros de 6% para o prazo todo. Qual é a opção mais barata?
+
+1. Parcelado: 8 × 250 = 2 000.
+2. À vista com 15%: 2 000 × 0,85 = 1 700. À vista com uma parcela de desconto: 2 000 − 250 = 1 750. O melhor desconto é o de 15%.
+3. Pegando os 1 700 emprestados no banco: devolve 1 700 × 1,06 = 1 802.
+4. Comparação: 1 802 é menor que 2 000.
+5. Resposta: pegar o empréstimo e pagar à vista com 15% de desconto, gastando R$ 1 802,00.
+
+**Erro comum.** Comparar só os descontos, ou esquecer os juros do empréstimo. Compare sempre o total gasto em cada opção.
+
+### Armadilhas típicas do INEP
+
+1. **Esquecer de dividir por 100** porcentagens pequenas como 0,5%.
+2. **Calcular juros sobre o preço cheio** em vez do valor financiado.
+3. **Misturar unidades** de taxa e tempo (ano e mês), ou multiplicar pelo número de meses uma taxa que vale para o prazo todo.
+4. **Cobrar o imposto sobre o valor aplicado** em vez de sobre o ganho.
+5. **Escolher a maior taxa de rendimento** sem descontar taxas e impostos.
+6. **Esquecer uma opção** ou uma parte dela ao comparar.
 
 ## Tópicos-Chave para Revisão
 
 <div className="topico">
 
-Em juros simples o juro de cada período é sempre calculado sobre o capital inicial: J = C × i × t, e o montante é M = C × (1 + i × t). A taxa e o tempo precisam estar na mesma unidade, e o crescimento é linear.
+#### 1. Porcentagem
 
-As quatro grandezas são capital C (valor inicial, também chamado de principal ou valor presente), taxa i (percentual por período, usada em decimal na conta), tempo t (número de períodos) e juro J (valor pago pelo uso do dinheiro); o montante M é a soma capital mais juro, também chamado de valor futuro.
+**i% de V = V × i ÷ 100**; porcentagens pequenas também se **dividem** por **100**.
 
-Converter taxa em decimal é obrigatório antes de qualquer conta: 2% vira 0,02, 15% vira 0,15, 0,5% vira 0,005. O fator (1 + i × t) transforma diretamente o capital em montante, sem precisar calcular o juro separadamente.
+#### 2. Juros simples
 
-Compatibilizar unidades pode ser feito de dois jeitos equivalentes: converter o tempo para a unidade da taxa (8 meses viram 8/12 de ano) ou converter a taxa para a unidade do tempo dividindo proporcionalmente (15% ao ano viram 1,25% ao mês). Essa proporcionalidade direta entre taxas só é válida em juros simples.
+**J = C × i × t; M = C + J = C × (1 + i × t)**, com **taxa** e **tempo** na mesma unidade.
 
-Isolando as letras da fórmula J = C × i × t obtém-se i = J ÷ (C × t), t = J ÷ (C × i) e C = J ÷ (i × t), o que resolve qualquer questão em que a incógnita não seja o juro.
+#### 3. Rendimento líquido
 
-O crescimento em juros simples é linear porque cada período soma sempre o mesmo valor C × i, formando uma progressão aritmética; no gráfico montante por tempo, juros simples desenham uma reta, enquanto juros compostos desenham uma curva que se afasta cada vez mais dessa reta.
+**rendimento líquido = rendimento × (1 − taxa)** quando a taxa incide sobre o **ganho**; taxa **fixa** se subtrai direto.
 
-Comparados no mesmo capital e mesma taxa, os regimes coincidem exatamente no primeiro período e, a partir do segundo, o montante composto passa a ser maior, com diferença crescente ao longo do tempo.
+#### 4. Comparar
 
-Em compras a prazo, o total pago é a entrada mais a soma de todas as parcelas; o acréscimo em relação ao preço à vista pode ser expresso como percentual do preço à vista ou como percentual do valor financiado (preço à vista menos entrada), e o enunciado sempre indica qual das duas bases usar.
+Monte cada **opção** inteira e compare os **totais** gastos. Um **desconto em parcelas** é uma parcela a menos; uma taxa sem "ao mês" vale **uma vez só** no prazo todo.
 
 </div>
 
-## Teste de Fogo
+## Questões do ENEM
 
-*Questões sem gabarito: resolva primeiro, depois confira com o professor ou com a IA.*
+*Marque uma alternativa em cada questão e confira tudo de uma vez no botão do fim.*
 
-**Questão 1 (estilo ENEM: autoral)**
-Um trabalhador tomou um empréstimo de R$ 1.200,00 em uma cooperativa de crédito, que cobra juros simples de 2,5% ao mês. Ficou combinado que ele quitaria toda a dívida, de uma única vez, ao final de 6 meses.
+**Questão 1**
 
-O valor total, em reais, que ele deverá pagar à cooperativa ao final desse prazo é
+*ENEM 2018 · 2ª aplicação · 2º dia · caderno azul · questão 145*
 
-a) 1.230,00
-b) 1.380,00
-c) 1.392,00
-d) 1.500,00
-e) 1.800,00
+Um rapaz possui um carro usado e deseja utilizá-lo como parte do pagamento na compra de um carro novo. Ele sabe que, mesmo assim, terá que financiar parte do valor da compra.
 
-**Questão 2 (estilo ENEM: autoral)**
-Uma pessoa emprestou R$ 800,00 a um amigo, no regime de juros simples, e recebeu de volta, ao final de 4 meses, o valor emprestado acrescido de R$ 144,00 de juros.
+Depois de escolher o modelo desejado, o rapaz faz uma pesquisa sobre as condições de compra em três lojas diferentes. Em cada uma, é informado sobre o valor que a loja pagaria por seu carro usado, no caso de a compra ser feita na própria loja. Nas três lojas são cobrados juros simples sobre o valor a ser financiado, e a duração do financiamento é de um ano. O rapaz escolherá a loja em que o total, em real, a ser desembolsado será menor. O quadro resume o resultado da pesquisa.
 
-A taxa mensal de juros cobrada nesse empréstimo foi de
+<figure class="figura">
 
-a) 1,8%
-b) 4,0%
-c) 4,5%
-d) 18,0%
-e) 45,0%
+| Loja | Valor oferecido pelo carro usado (R$) | Valor do carro novo (R$) | Percentual de juros (%) |
+|---|---|---|---|
+| A | 13 500,00 | 28 500,00 | 18 ao ano |
+| B | 13 000,00 | 27 000,00 | 20 ao ano |
+| C | 12 000,00 | 26 500,00 | 19 ao ano |
 
-**Questão 3 (estilo ENEM: autoral)**
-Um pequeno produtor rural obteve um financiamento de R$ 6.000,00 para a compra de sementes, no regime de juros simples, à taxa de 15% ao ano. O contrato prevê a quitação integral após 8 meses.
+</figure>
 
-O valor dos juros, em reais, que esse produtor pagará ao final do contrato é
+A quantia a ser desembolsada pelo rapaz, em real, será
 
-a) 60,00
-b) 100,00
-c) 600,00
-d) 900,00
-e) 7.200,00
+A) 14 000.\
+B) 15 000.\
+C) 16 800.\
+D) 17 255.\
+E) 17 700.
 
-**Questão 4 (estilo ENEM: autoral)**
-Duas instituições financeiras oferecem aplicações para um mesmo capital de R$ 2.000,00, pelo prazo de 3 meses, ambas com taxa de 10% ao mês. A instituição A remunera o capital no regime de juros simples e a instituição B, no regime de juros compostos.
+**Questão 2**
 
-A diferença entre os montantes obtidos nas duas instituições ao final dos 3 meses, em reais, é
+*ENEM 2020 · digital · 2º dia · caderno azul · questão 169*
 
-a) 20,00
-b) 62,00
-c) 66,00
-d) 262,00
-e) 662,00
+Um investidor deseja aplicar R$ 10 000,00 durante um mês em um dos fundos de investimento de um banco. O agente de investimentos desse banco apresentou dois tipos de aplicações financeiras: a aplicação Básica e a aplicação Pessoal, cujas informações de rendimentos e descontos de taxas administrativas mensais são apresentadas no quadro.
 
-**Questão 5 (estilo ENEM: autoral)**
-Uma loja de eletrodomésticos anuncia uma televisão por R$ 1.500,00 à vista. Como alternativa, oferece o pagamento em um plano com entrada de R$ 300,00 no ato da compra e mais 3 parcelas mensais iguais de R$ 420,00.
+<figure class="figura">
 
-O acréscimo do valor total pago no plano parcelado, em relação ao preço à vista, corresponde a
+| Aplicação | Taxa de rendimento mensal | Taxa administrativa mensal |
+|---|---|---|
+| Básica | 0,542% | R$ 0,30 |
+| Pessoal | 0,560% | 3,8% sobre o rendimento mensal |
 
-a) 4%
-b) 5%
-c) 12%
-d) 20%
-e) 40%
+</figure>
+
+Consideradas as taxas de rendimento e administrativa, qual aplicação fornecerá maior valor de rendimento líquido a esse investidor e qual será esse valor?
+
+A) Básica, com rendimento líquido de R$ 53,90.\
+B) Básica, com rendimento líquido de R$ 54,50.\
+C) Pessoal, com rendimento líquido de R$ 56,00.\
+D) Pessoal, com rendimento líquido de R$ 58,12.\
+E) Pessoal, com rendimento líquido de R$ 59,80.
+
+**Questão 3**
+
+*ENEM 2011 · 2º dia · caderno azul · questão 157*
+
+Um jovem investidor precisa escolher qual investimento lhe trará maior retorno financeiro em uma aplicação de R$ 500,00. Para isso, pesquisa o rendimento e o imposto a ser pago em dois investimentos: poupança e CDB (certificado de depósito bancário). As informações obtidas estão resumidas no quadro:
+
+<figure class="figura">
+
+|  | Rendimento mensal (%) | IR (imposto de renda) |
+|---|---|---|
+| POUPANÇA | 0,560 | ISENTO |
+| CDB | 0,876 | 4% (sobre o ganho) |
+
+</figure>
+
+Para o jovem investidor, ao final de um mês, a aplicação mais vantajosa é
+
+A) a poupança, pois totalizará um montante de R$ 502,80.\
+B) a poupança, pois totalizará um montante de R$ 500,56.\
+C) o CDB, pois totalizará um montante de R$ 504,38.\
+D) o CDB, pois totalizará um montante de R$ 504,21.\
+E) o CDB, pois totalizará um montante de R$ 500,87.
+
+**Questão 4**
+
+*ENEM 2009 · 2º dia · caderno azul · questão 178*
+
+João deve 12 parcelas de R$ 150,00 referentes ao cheque especial de seu banco e cinco parcelas de R$ 80,00 referentes ao cartão de crédito. O gerente do banco lhe ofereceu duas parcelas de desconto no cheque especial, caso João quitasse esta dívida imediatamente ou, na mesma condição, isto é, quitação imediata, com 25% de desconto na dívida do cartão. João também poderia renegociar suas dívidas em 18 parcelas mensais de R$ 125,00. Sabendo desses termos, José, amigo de João, ofereceu-lhe emprestar o dinheiro que julgasse necessário pelo tempo de 18 meses, com juros de 25% sobre o total emprestado.
+
+A opção que dá a João o menor gasto seria
+
+A) renegociar suas dívidas com o banco.\
+B) pegar emprestado de José o dinheiro referente à quitação das duas dívidas.\
+C) recusar o empréstimo de José e pagar todas as parcelas pendentes nos devidos prazos.\
+D) pegar emprestado de José o dinheiro referente à quitação do cheque especial e pagar as parcelas do cartão de crédito.\
+E) pegar emprestado de José o dinheiro referente à quitação do cartão de crédito e pagar as parcelas do cheque especial.
+
+**Questão 5**
+
+*ENEM 2020 · digital · 2º dia · caderno azul · questão 175*
+
+Um investidor pretende aplicar R$ 100 000,00 no mercado financeiro. Para isso pesquisou cinco investimentos distintos, aferindo os rendimentos mensais, em real, de cada um deles. Para decidir em qual aplicar seu dinheiro, considerou também a incidência mensal de Imposto de Renda (IR) sobre o respectivo rendimento. Avaliou que o maior retorno financeiro virá da aplicação em um único investimento: aquele em que a diferença entre o rendimento mensal e o imposto que incidir sobre ele seja a maior possível. Os dados levantados pelo investidor sobre rendimento e imposto referentes à aplicação encontram-se a seguir.
+
+<figure class="figura">
+  <svg viewBox="0 0 460 230" role="img" aria-labelledby="fig-js-q5-t fig-js-q5-d">
+    <title id="fig-js-q5-t">Rendimento de cada investimento por mês</title>
+    <desc id="fig-js-q5-d">Gráfico de barras com o rendimento mensal de cada investimento: I, R$ 900,00; II, R$ 700,00; III, R$ 300,00; IV, R$ 500,00; V, R$ 1 000,00. Figura redesenhada a partir da prova oficial, com os mesmos dados.</desc>
+    <text x="230" y="16" class="rotulo" text-anchor="middle">Rendimento de cada investimento por mês</text>
+    <line x1="30" y1="190" x2="430" y2="190" class="traco" />
+    <rect x="55" y="55" width="50" height="135" class="traco preenche" />
+    <rect x="135" y="85" width="50" height="105" class="traco preenche" />
+    <rect x="215" y="145" width="50" height="45" class="traco preenche" />
+    <rect x="295" y="115" width="50" height="75" class="traco preenche" />
+    <rect x="375" y="40" width="50" height="150" class="traco preenche" />
+    <text x="80" y="49" class="rotulo-fraco" text-anchor="middle">R$ 900,00</text>
+    <text x="160" y="79" class="rotulo-fraco" text-anchor="middle">R$ 700,00</text>
+    <text x="240" y="139" class="rotulo-fraco" text-anchor="middle">R$ 300,00</text>
+    <text x="320" y="109" class="rotulo-fraco" text-anchor="middle">R$ 500,00</text>
+    <text x="400" y="34" class="rotulo-fraco" text-anchor="middle">R$ 1 000,00</text>
+    <text x="80" y="206" class="rotulo-fraco" text-anchor="middle">Investimento</text>
+    <text x="80" y="220" class="rotulo-fraco" text-anchor="middle">I</text>
+    <text x="160" y="206" class="rotulo-fraco" text-anchor="middle">Investimento</text>
+    <text x="160" y="220" class="rotulo-fraco" text-anchor="middle">II</text>
+    <text x="240" y="206" class="rotulo-fraco" text-anchor="middle">Investimento</text>
+    <text x="240" y="220" class="rotulo-fraco" text-anchor="middle">III</text>
+    <text x="320" y="206" class="rotulo-fraco" text-anchor="middle">Investimento</text>
+    <text x="320" y="220" class="rotulo-fraco" text-anchor="middle">IV</text>
+    <text x="400" y="206" class="rotulo-fraco" text-anchor="middle">Investimento</text>
+    <text x="400" y="220" class="rotulo-fraco" text-anchor="middle">V</text>
+  </svg>
+</figure>
+
+<figure class="figura">
+
+| Investimento | Incidência de IR sobre o rendimento (por mês) |
+|---|---|
+| I | 12% |
+| II | 9% |
+| III | 20% |
+| IV | 10% |
+| V | 22% |
+
+</figure>
+
+O investidor decidiu fazer a aplicação no investimento
+
+A) I.\
+B) II.\
+C) III.\
+D) IV.\
+E) V.
