@@ -3,146 +3,363 @@ title: "Juros Compostos"
 subject: "Matemática Financeira"
 order: 2
 relevance: >
-  Juros compostos são o regime em que o juro de cada período passa a fazer parte do capital e, no
-  período seguinte, também rende juro: é o famoso "juro sobre juro". Praticamente todo dinheiro do
-  mundo real funciona assim: poupança, CDB, financiamento de carro e de imóvel, cheque especial e o
-  rotativo do cartão de crédito. O ENEM cobra esse tema quase sempre fornecendo uma tabela de potências
-  na própria prova, justamente porque não quer testar sua habilidade de multiplicar muitas vezes, e sim
-  se você sabe montar a expressão certa, escolher a linha correta da tabela e interpretar o resultado.
-  Costuma aparecer junto com uma comparação contra juros simples.
+  Nos juros compostos, os juros de cada período entram na conta do período seguinte: é o "juro sobre
+  juro" das aplicações, do cartão de crédito e dos financiamentos. O ENEM (Exame Nacional do Ensino
+  Médio) cobra o tema de vários jeitos: aumentos e perdas em sequência, uma dívida que cresce enquanto se
+  paga o mínimo, quanto tempo leva para um valor dobrar, quanto vale hoje um pagamento futuro. Quase
+  tudo se resolve com uma ideia só: multiplicar pelo fator (1 + taxa) a cada período.
 quickSummary: >
-  Em juros compostos o juro incide sobre o montante já acumulado, e não sobre o capital inicial, o que
-  dá M = C × (1 + i) elevado a t. O crescimento é exponencial, e por isso o montante composto ultrapassa
-  o simples a partir do segundo período.
+  Aumentar i% é multiplicar por (1 + i); diminuir i% é multiplicar por (1 − i); variações seguidas se
+  multiplicam. Nos juros compostos, M = C × (1 + i)ⁿ. Para achar o tempo, use logaritmo:
+  n = log(M ÷ C) ÷ log(1 + i). Para trazer um pagamento futuro para hoje, divida por (1 + i)ⁿ.
+resources:
+  conteudoComplementar:
+    conteudo: "Funções Logarítmicas"
+    comoAjuda: "Para descobrir em quantos meses um valor dobra, usa-se logaritmo. Se as propriedades do log travarem você, revise essa aula."
+gabarito:
+  - correta: 1
+    porque: >
+      O valor à vista é a soma dos pagamentos trazidos para hoje. O de 202,00 vence em 1 mês: 202 ÷ 1,01 = 200.
+      O de 204,02 vence em 2 meses: 204,02 ÷ 1,01² = 204,02 ÷ 1,0201 = 200. Valor à vista: 200 + 200 = 400,00.
+      Revisar: Aula Teórica › 5. Valor de hoje de um pagamento futuro
+  - correta: 3
+    porque: >
+      Desde dezembro de 2011 o mínimo é 20%, então em 2012 vale 20%, e não 15%. Em 01/03 a fatura é 1 000; pagando 20%,
+      sobram 800, que com juros de 10% viram 880 em 01/04. Pagando 20% de 880, sobram 704, que com 10% viram
+      704 × 1,1 = 774,40 em 01/05.
+      Revisar: Aula Teórica › 3. Dívida com pagamentos e juros
+  - correta: 2
+    porque: >
+      Perder 30% deixa 0,70 da quantia inicial x. O que foi perdido é 0,30x, e recuperar 20% disso é 0,06x. Sobram
+      0,70x + 0,06x = 0,76x = 3 800, então x = 3 800 ÷ 0,76 = 5 000.
+      Revisar: Aula Teórica › 1. Variações seguidas: o fator multiplicativo
+  - correta: 1
+    porque: >
+      Duplicar é chegar a 200 × 2: 200 × 1,05ⁿ = 400, ou seja, 1,05ⁿ = 2. Tirando o log: n × log 1,05 = log 2,
+      então n = 0,30 ÷ 0,02 = 15 meses. A menor carência que alcança isso é a de 15 meses, do plano B.
+      Revisar: Aula Teórica › 4. Quanto tempo leva: logaritmo
+  - correta: 4
+    porque: >
+      Na loja, o preço vira C × 1,0365; no consumidor, C × 1,0365². O imposto pago é esse valor menos C:
+      C × (1,0365² − 1) = C × (1 + 2 × 0,0365 + 0,0365² − 1) = 2C × 0,0365 + C × 0,0365².
+      Revisar: Aula Teórica › 1. Variações seguidas: o fator multiplicativo
 ---
 
-## Aula Teórica Completa
+<Accordion titulo="Palavras e siglas desta aula" dica="Consulte quando encontrar um termo novo" icone="spell-check">
 
-**A diferença que muda tudo.** Em juros simples, a taxa é sempre aplicada sobre o capital inicial, então cada período rende exatamente o mesmo valor. Em juros compostos, ao final de cada período o juro ganho é incorporado ao capital, e o período seguinte rende sobre esse total já aumentado. Por isso o juro cresce a cada período: é juro sobre juro, também chamado de capitalização composta.
+- **ENEM** (Exame Nacional do Ensino Médio): a prova nacional que dá acesso a faculdades e bolsas.
+- **INEP** (Instituto Nacional de Estudos e Pesquisas Educacionais Anísio Teixeira): o órgão do governo que faz o ENEM.
+- **CMN** (Conselho Monetário Nacional): o órgão do governo que define regras para bancos e cartões.
+- **PIS** (Programa de Integração Social): imposto federal cobrado sobre as vendas.
+- **Cofins** (Contribuição para o Financiamento da Seguridade Social): outro imposto federal sobre as vendas.
+- **Fator**: o número pelo qual se multiplica um valor (1,03 para um aumento de 3%).
+- **Fatura**: a conta mensal do cartão de crédito.
+- **Saldo devedor**: quanto ainda falta pagar de uma dívida.
+- **Vencimento**: a data em que um pagamento deve ser feito.
+- **Carência**: tempo mínimo em que o dinheiro fica aplicado sem poder ser mexido.
+- **Nota fiscal**: o documento da venda, com o valor do produto.
+- **À vista**: pago todo de uma vez, no ato da compra.
+- **Abatido**: descontado.
+- **Fundo de investimentos**: aplicação em que o banco junta o dinheiro de vários investidores.
+- **Ações**: pedaços de uma empresa comprados como investimento; o valor delas sobe e desce.
+- **Cumulativo**: que se acumula; um imposto cumulativo é cobrado de novo em cada etapa.
 
-**Construindo a fórmula do zero.** Chame de C o capital inicial (o valor aplicado ou emprestado no começo) e de i a taxa por período, em forma decimal (5% vira 0,05). Ao final do primeiro período, o montante é o capital mais o juro: C + C × i, que colocando C em evidência fica C × (1 + i). O número (1 + i) é o fator de capitalização: exatamente o mesmo fator multiplicativo de aumento que você já usa em porcentagem.
+</Accordion>
 
-No segundo período, esse novo valor é multiplicado de novo pelo mesmo fator: C × (1 + i) × (1 + i). No terceiro, de novo. Depois de t períodos, o capital foi multiplicado t vezes pelo fator, e escrevemos:
+## Antes de Começar
 
-M = C × (1 + i) elevado a t
+**O que o ENEM cobra aqui.** A prova raramente pede só a fórmula dos juros compostos. Os temas que costumam aparecer são estes:
 
-Aqui, M é o montante final em reais, C é o capital inicial em reais, i é a taxa em decimal por período, e t é o número de períodos. A expressão "(1 + i) elevado a t" significa multiplicar (1 + i) por ele mesmo t vezes. Por exemplo, "1,05 elevado a 3" é 1,05 × 1,05 × 1,05 = 1,157625.
+- **Juntar aumentos e perdas seguidos** num fator só.
+- **Acompanhar uma dívida** que recebe pagamentos e juros mês a mês.
+- **Achar o tempo** para um valor dobrar, usando logaritmo.
+- **Trazer pagamentos futuros para hoje** (valor à vista).
+- **Separar o imposto ou os juros** do valor final.
 
-O juro total não tem fórmula própria: é a diferença J = M − C.
+**O que você precisa saber antes.**
 
-**Um exemplo passo a passo.** Aplique R$ 1.000,00 a 10% ao mês por 3 meses. Primeiro mês: 1.000 × 1,10 = 1.100 (rendeu 100). Segundo mês: 1.100 × 1,10 = 1.210 (rendeu 110, mais que o primeiro). Terceiro mês: 1.210 × 1,10 = 1.331 (rendeu 121). Pela fórmula, M = 1.000 × (1,10 elevado a 3) = 1.000 × 1,331 = R$ 1.331,00, e o juro total foi J = 1.331 − 1.000 = R$ 331,00. Repare que os rendimentos mensais foram crescendo: 100, 110, 121.
+- **Porcentagem.** 3,5% = 0,035; aumentar 3,5% é multiplicar por 1,035. Revise a aula de Porcentagem.
+- **Potências.** 1,2³ = 1,2 × 1,2 × 1,2 = 1,728. Revise a aula de Potências e Raízes.
+- **Produto notável.** (1 + x)² = 1 + 2x + x². Por exemplo, (1 + 0,2)² = 1 + 0,4 + 0,04 = 1,44.
+- **Logaritmo.** log é o logaritmo na base 10: o expoente que o 10 precisa ter para dar o número (log 100 = 2). A propriedade que mais se usa é log(aⁿ) = n × log a. Revise a aula de Funções Logarítmicas.
+- **Juros simples.** Juros sempre sobre o capital inicial; o **montante** é o capital mais os juros, o valor total acumulado. Revise a aula de Juros Simples.
 
-**Crescimento exponencial contra crescimento linear.** Em juros simples o montante cresce somando sempre a mesma parcela, o que desenha uma reta. Em juros compostos, o montante é multiplicado sempre pelo mesmo fator, o que desenha uma curva que sobe cada vez mais depressa: crescimento exponencial. A comparação em números: R$ 1.000,00 a 10% por período, ao longo de 10 períodos, viram 1.000 × (1 + 0,10 × 10) = R$ 2.000,00 em juros simples, mas 1.000 × (1,10 elevado a 10) = 1.000 × 2,5937 = R$ 2.593,70 em juros compostos. No primeiro período os dois regimes empatam; a partir do segundo, o composto abre vantagem, e essa vantagem cresce cada vez mais rápido.
+## Aula Teórica
 
-Consequência prática: quando você é o investidor, quer juros compostos e prazos longos. Quando você é o devedor, juros compostos e prazos longos são exatamente o que arruína o orçamento.
+### 1. Variações seguidas: o fator multiplicativo
 
-**Usar a tabela de potências fornecida na prova.** O ENEM não espera que você multiplique 1,05 por ele mesmo dez vezes na mão. Ele fornece uma tabela do tipo "1,05 elevado a 4 vale 1,2155" e cabe a você localizar a linha certa. O procedimento é sempre este: identifique C, identifique i em decimal, identifique t, escreva M = C × (fator), procure na tabela o valor de (1 + i) elevado a t e multiplique.
+Aumentar um valor em i% é multiplicá-lo por **(1 + i)**, com i em decimal; diminuir i% é multiplicá-lo por **(1 − i)**. Quando há várias variações seguidas, cada uma incide sobre o valor **já modificado**: multiplique os fatores.
 
-Exemplo: R$ 800,00 aplicados a 5% ao mês por 4 meses, com a tabela informando que 1,05 elevado a 4 vale 1,2155. Então M = 800 × 1,2155 = R$ 972,40, e o rendimento foi de R$ 172,40. O erro clássico aqui é pegar a linha do expoente errado por não ter contado direito quantos períodos se passaram.
+**Fórmula: variações seguidas**
 
-**Achar o tempo usando a tabela.** Questões do tipo "quantos meses são necessários para o capital dobrar" se resolvem pelo caminho inverso. Dobrar significa que o montante é 2 vezes o capital, ou seja, o fator acumulado precisa chegar a 2. Se a taxa é 5% ao mês, procure na tabela a partir de qual expoente o valor de 1,05 elevado a t passa de 2. Sabendo que 1,05 elevado a 14 vale aproximadamente 1,9799 e que 1,05 elevado a 15 vale aproximadamente 2,0789, a resposta é 15 meses: o menor número inteiro de períodos em que o objetivo é alcançado. Note que o capital some da conta: o tempo para dobrar não depende de quanto se aplicou.
+**valor final = valor inicial × (1 ± i₁) × (1 ± i₂) × …**
 
-**Taxas equivalentes.** Em juros simples, converter taxa entre unidades de tempo é proporcional: basta dividir por 12 para passar de ano para mês. Em juros compostos isso é FALSO, e essa diferença cai na prova. Duas taxas são equivalentes quando, aplicadas ao mesmo capital pelo mesmo prazo total, produzem o mesmo montante. Como o crescimento é multiplicativo, a relação entre taxa mensal e taxa anual é:
+- **i₁, i₂, …**: as taxas de cada variação, em decimal.
+- **+**: para aumento; **−**: para redução.
+- **Em palavras:** cada porcentagem incide sobre o resultado da anterior, e não sobre o valor inicial.
+- **Quando usar:** aumentos e descontos seguidos, impostos cobrados em várias etapas, perdas e ganhos de uma aplicação.
 
-1 + taxa anual = (1 + taxa mensal) elevado a 12
+**Exemplo resolvido.** Um produto sobe 50% e depois cai 50%. O preço final é maior, menor ou igual ao inicial? E se um valor V sofre duas cobranças seguidas de 4%, quanto de V é só cobrança?
 
-Exemplo: 1% ao mês não é 12% ao ano. O cálculo correto é 1,01 elevado a 12, que vale aproximadamente 1,1268, ou seja, 12,68% ao ano. A diferença parece pequena em um ano, mas se acumula em prazos longos. Do mesmo modo, 2% ao mês equivalem a 1,02 elevado a 3 por trimestre, que vale aproximadamente 1,0612, isto é, 6,12% ao trimestre, e não 6%.
+1. Fatores: 1,50 × 0,50 = 0,75. O preço final é 25% menor que o inicial.
+2. Duas cobranças de 4%: o total é V × 1,04² = V × 1,0816. Esse é o valor final, com as cobranças.
+3. A parte que é só cobrança é o total menos V: V × 1,04² − V = V × (1,0816 − 1) = V × 0,0816.
+4. Pelo produto notável, 1,04² − 1 = 2 × 0,04 + 0,04², então a cobrança é 2V × 0,04 + V × 0,04² = 0,08V + 0,0016V.
+5. Resposta: 25% menor; a cobrança é 8,16% de V (e não só 8%).
 
-**Rotativo do cartão de crédito.** É o exemplo mais dramático e o preferido do ENEM. Uma taxa de 15% ao mês parece administrável, mas em um ano ela vira 1,15 elevado a 12, que vale aproximadamente 5,35. Ou seja, a dívida fica cerca de 5,35 vezes maior, o que corresponde a um juro de aproximadamente 435% ao ano. Uma dívida de R$ 1.000,00 não paga durante 12 meses vira cerca de R$ 5.350,00. É por isso que a mesma taxa "por mês" produz manchetes de centenas por cento "por ano".
+Às vezes a porcentagem incide sobre **outra parte**, não sobre o valor todo. Escreva cada parte em função do valor inicial x.
 
-**Poupança e financiamento.** Na poupança, o rendimento é creditado mês a mês sobre o saldo, então é capitalização composta com taxa baixa; o efeito só fica visível em prazos longos. Em financiamentos com parcelas fixas, cada parcela paga uma parte de juro e uma parte de amortização (redução da dívida), e no início a maior fatia da parcela é juro. O ENEM não cobra o cálculo completo de financiamento com parcelas, mas cobra a leitura correta desse comportamento e o cálculo do valor total pago, que é o número de parcelas multiplicado pelo valor de cada uma.
+**Exemplo resolvido.** Um clube perdeu 40% dos sócios num ano. No ano seguinte, recuperou 35% dos sócios que tinha perdido e ficou com 7 400 sócios. Quantos sócios tinha no começo?
 
-**Armadilhas típicas do INEP:** (1) dividir a taxa anual por 12 para achar a mensal em regime composto, quando o correto é usar a raiz do fator, ou seja, a relação 1 + taxa anual = (1 + taxa mensal) elevado a 12; (2) confundir o montante M com o juro J, a fórmula entrega o montante, e o juro exige subtrair o capital; (3) escolher a linha errada da tabela de potências por contar mal o número de períodos, especialmente quando o enunciado fala em "após 2 anos" e a taxa é mensal (são 24 períodos); (4) somar taxas de períodos diferentes, como se 3% ao mês por 4 meses fosse 12% acumulados, o acumulado é 1,03 elevado a 4, aproximadamente 12,55%; (5) aplicar juros compostos onde o enunciado diz juros simples, ou o contrário: a palavra-chave está sempre escrita no texto; (6) esquecer que, no primeiro período, os dois regimes dão exatamente o mesmo valor, o que torna errada qualquer alternativa que afirme diferença já no primeiro mês.
+1. Depois da perda, ficam 0,60x.
+2. Os perdidos são 0,40x; recuperar 35% deles é 0,35 × 0,40x = 0,14x.
+3. Total: 0,60x + 0,14x = 0,74x = 7 400.
+4. x = 7 400 ÷ 0,74 = 10 000.
+5. Resposta: 10 000 sócios.
+
+**Erro comum.** Somar as porcentagens: subir 50% e cair 50% não "dá zero". Outro erro é esquecer o termo i² ao expandir (1 + i)²: V × (1 + 2 × 0,04) não é o total certo. Também não calcule a recuperação sobre o valor atual; ela é sobre o que foi perdido.
+
+### 2. Juros compostos
+
+Nos **juros compostos**, os juros de cada período são calculados sobre o montante do período anterior, que já inclui os juros passados. É o "juro sobre juro".
+
+**Fórmula: montante em juros compostos**
+
+**M = C × (1 + i)ⁿ**
+
+- **C**: o capital inicial.
+- **i**: a taxa por período, em decimal.
+- **n**: o número de períodos, na mesma unidade da taxa.
+- **M**: o montante no fim.
+- **Em palavras:** a cada período, o valor é multiplicado por (1 + i).
+- **Quando usar:** aplicações, dívidas e financiamentos com "juros compostos", "rendimento mensal constante" ou juros cobrados sobre o saldo.
+
+O esquema abaixo compara R$ 8 000,00 a 25% ao mês em juros simples e em juros compostos, como no exemplo a seguir.
+
+<figure class="figura">
+  <svg viewBox="0 0 460 215" role="img" aria-labelledby="fig-jc-1-t fig-jc-1-d">
+    <title id="fig-jc-1-t">Juros simples e compostos lado a lado</title>
+    <desc id="fig-jc-1-d">Barras duplas para os meses 1, 2 e 3, com R$ 8 000,00 a 25% ao mês. Em juros simples, sem pintura: 10 000, 12 000 e 14 000. Em juros compostos, pintadas: 10 000, 12 500 e 15 625. A diferença cresce a cada mês.</desc>
+    <line x1="40" y1="190" x2="440" y2="190" class="traco" />
+    <rect x="80" y="90" width="40" height="100" class="traco" />
+    <rect x="120" y="90" width="40" height="100" class="traco preenche" />
+    <rect x="210" y="70" width="40" height="120" class="traco" />
+    <rect x="250" y="65" width="40" height="125" class="traco preenche" />
+    <rect x="340" y="50" width="40" height="140" class="traco" />
+    <rect x="380" y="33.75" width="40" height="156.25" class="traco preenche" />
+    <text x="100" y="84" class="rotulo-fraco" text-anchor="middle">10 000</text>
+    <text x="140" y="84" class="rotulo-fraco" text-anchor="middle">10 000</text>
+    <text x="230" y="64" class="rotulo-fraco" text-anchor="middle">12 000</text>
+    <text x="270" y="59" class="rotulo-fraco" text-anchor="middle">12 500</text>
+    <text x="360" y="44" class="rotulo-fraco" text-anchor="middle">14 000</text>
+    <text x="400" y="28" class="rotulo-fraco" text-anchor="middle">15 625</text>
+    <text x="120" y="206" class="rotulo" text-anchor="middle">mês 1</text>
+    <text x="250" y="206" class="rotulo" text-anchor="middle">mês 2</text>
+    <text x="380" y="206" class="rotulo" text-anchor="middle">mês 3</text>
+    <rect x="44" y="12" width="10" height="10" class="traco" />
+    <text x="58" y="21" class="rotulo-fraco">simples</text>
+    <rect x="44" y="28" width="10" height="10" class="traco preenche" />
+    <text x="58" y="37" class="rotulo-fraco">compostos</text>
+  </svg>
+</figure>
+
+**Exemplo resolvido.** R$ 8 000,00 são aplicados a juros compostos de 25% ao mês. Qual é o montante depois de 3 meses? Quanto seria em juros simples?
+
+1. Mês 1: 8 000 × 1,25 = 10 000. Mês 2: 10 000 × 1,25 = 12 500. Mês 3: 12 500 × 1,25 = 15 625.
+2. Pela fórmula: 8 000 × 1,25³ = 8 000 × 1,953125 = 15 625.
+3. Em juros simples, os juros de cada mês são 25% de 8 000 = 2 000: 8 000 + 3 × 2 000 = 14 000.
+4. Resposta: R$ 15 625,00 em juros compostos, contra R$ 14 000,00 em juros simples.
+
+**Erro comum.** Multiplicar a taxa pelo número de meses (3 × 25% = 75%) em juros compostos. Isso é juros simples; nos compostos, a taxa incide sobre o valor que já cresceu.
+
+### 3. Dívida com pagamentos e juros
+
+Numa dívida que recebe pagamentos, siga a ordem de cada ciclo: primeiro **subtraia o pagamento**, depois aplique os **juros sobre o que sobrou** (o saldo devedor). Se o pagamento é uma porcentagem, calcule essa porcentagem sobre o saldo daquele dia.
+
+Quando o enunciado dá **datas**, conte os ciclos de "paga e cobra juros". O primeiro pagamento costuma ser no próprio dia inicial. "A dívida na data final" é o saldo **antes** do pagamento daquele dia. Se o texto conta que uma regra mudou, use a regra que vale **na data** da conta.
+
+**Exemplo resolvido.** Em 10/03, uma pessoa tem saldo de R$ 2 500,00 no crediário de uma loja. Ela paga sempre 25% do saldo no dia 10 de cada mês, e a loja cobra juros de 8% sobre o que sobra, para o mês seguinte. Qual é a dívida em 10/05?
+
+1. De 10/03 a 10/05 há 2 ciclos: o de 10/03 e o de 10/04.
+2. 10/03: paga 25% de 2 500 = 625; sobram 1 875. Com juros: 1 875 × 1,08 = 2 025 em 10/04.
+3. 10/04: paga 25% de 2 025 = 506,25; sobram 1 518,75. Com juros: 1 518,75 × 1,08 = 1 640,25 em 10/05.
+4. Atalho: cada ciclo multiplica o saldo por 0,75 × 1,08.
+5. Resposta: R$ 1 640,25 (antes do pagamento de 10/05).
+
+**Erro comum.** Aplicar os juros antes de descontar o pagamento, pagar também no último dia, calcular a porcentagem sempre sobre o saldo inicial, ou usar uma regra que já não valia na data.
+
+### 4. Quanto tempo leva: logaritmo
+
+Para saber em quantos períodos um valor chega a um alvo (dobrar, triplicar), a incógnita fica no expoente: (1 + i)ⁿ = M ÷ C. Tire o logaritmo dos dois lados.
+
+**Fórmula: tempo em juros compostos**
+
+**n = log(M ÷ C) ÷ log(1 + i)**
+
+- **M ÷ C**: quantas vezes o valor deve crescer (2 para dobrar).
+- **log**: o logaritmo, cujos valores aproximados a prova costuma dar.
+- **n**: o número de períodos.
+- **Em palavras:** log(aⁿ) = n × log a, então o expoente sai dividindo os logaritmos.
+- **Quando usar:** "em quantos meses", "qual o prazo", "quando o valor duplica".
+
+Se n der um número quebrado, **arredonde para cima**: antes disso o alvo ainda não foi alcançado. Se a questão der prazos prontos (planos, carências) e pedir o menor que atinge o objetivo, escolha o **menor prazo maior ou igual a n**.
+
+**Exemplo resolvido.** Em quantos meses um valor aplicado a 25% ao mês triplica? Use log 3 = 0,48 e log 1,25 = 0,10. Se houver planos de 3, 5 e 8 meses, qual é o menor que garante triplicar?
+
+1. Triplicar: 1,25ⁿ = 3.
+2. Logaritmo: n × log 1,25 = log 3, ou seja, n × 0,10 = 0,48.
+3. n = 0,48 ÷ 0,10 = 4,8. Arredondando para cima: 5 meses (com 4 meses, 1,25⁴ ≈ 2,44 ainda não triplicou).
+4. Entre 3, 5 e 8 meses, o menor que é maior ou igual a 4,8 é o de 5 meses.
+5. Resposta: 5 meses; o plano de 5 meses.
+
+**Erro comum.** Fazer como em juros simples: triplicar é ganhar 2 vezes o capital em juros, e 2 ÷ 0,25 = 8 meses. Nos compostos isso não vale; o certo é 5 meses. Lembre também que o capital inicial se cancela: só importa quantas vezes o valor cresce.
+
+### 5. Valor de hoje de um pagamento futuro
+
+Um pagamento que vence daqui a n períodos, com juros compostos de i por período, vale **hoje** menos do que o seu valor. Para trazê-lo para hoje, desfaça os juros: divida por (1 + i)ⁿ. O valor à vista de uma compra parcelada é a soma dos valores de hoje de todas as parcelas.
+
+**Fórmula: valor de hoje**
+
+**valor de hoje = P ÷ (1 + i)ⁿ**
+
+- **P**: o valor do pagamento futuro.
+- **n**: em quantos períodos ele vence.
+- **i**: a taxa de juros por período, em decimal.
+- **Em palavras:** é o valor que, aplicado hoje com esses juros, vira P no vencimento.
+- **Quando usar:** "valor à vista", "valor atual", quitar ou antecipar parcelas.
+
+Sem calculadora, divisões como 312,12 ÷ 1,0404 ficam mais fáceis se você testar um valor redondo e conferir multiplicando: 300 × 1,0404 = 312,12, então a divisão dá 300.
+
+**Exemplo resolvido.** Uma pessoa quer quitar hoje as duas últimas prestações de um empréstimo com juros compostos de 2% ao mês. Faltam R$ 255,00, que vencem em 1 mês, e R$ 312,12, que vencem em 2 meses. Quanto paga hoje?
+
+1. Prestação de 1 mês: 255 ÷ 1,02 = 250.
+2. Prestação de 2 meses: 312,12 ÷ 1,02² = 312,12 ÷ 1,0404 = 300.
+3. Valor de hoje: 250 + 300 = 550.
+4. Resposta: R$ 550,00 (pagando nas datas, seriam 255 + 312,12 = 567,12).
+
+**Erro comum.** Somar as prestações (567,12), que é o total pago nas datas, com juros, e não o valor de hoje.
+
+### Armadilhas típicas do INEP
+
+1. **Somar porcentagens seguidas** em vez de multiplicar os fatores.
+2. **Calcular a recuperação** sobre o valor atual em vez de sobre o que foi perdido.
+3. **Usar juros simples** onde o enunciado diz juros compostos.
+4. **Aplicar os juros antes do pagamento** numa dívida, ou contar errado os ciclos pelas datas.
+5. **Esquecer o termo i²** ao expandir (1 + i)².
+6. **Somar as parcelas** quando a pergunta pede o valor à vista.
 
 ## Tópicos-Chave para Revisão
 
 <div className="topico">
 
-Em juros compostos o juro incide sobre o montante já acumulado, e não sobre o capital inicial, o que dá M = C × (1 + i) elevado a t. O crescimento é exponencial, e por isso o montante composto ultrapassa o simples a partir do segundo período.
+#### 1. Fator multiplicativo
 
-O número (1 + i) é o fator de capitalização, o mesmo fator multiplicativo de aumento usado em porcentagem; aplicá-lo t vezes seguidas é o que gera a potência da fórmula, e o juro total é sempre obtido por subtração, J = M − C, pois não existe fórmula direta para ele.
+**valor final = valor inicial × (1 ± i₁) × (1 ± i₂) × …**; porcentagens seguidas se **multiplicam**, não se **somam**.
 
-O rendimento de cada período cresce ao longo do tempo porque a base aumenta: R$ 1.000,00 a 10% rendem 100 no primeiro mês, 110 no segundo e 121 no terceiro, chegando a um montante de 1.331 em três meses.
+#### 2. Montante
 
-Comparado ao regime simples com mesmo capital e mesma taxa, o composto empata no primeiro período e depois abre vantagem crescente: em dez períodos a 10%, o simples leva R$ 1.000,00 a R$ 2.000,00 e o composto, a R$ 2.593,70.
+**M = C × (1 + i)ⁿ**: juro sobre **juro**, com taxa e **tempo** na mesma unidade.
 
-Para usar a tabela de potências fornecida na prova, identifique C, converta i para decimal, conte com cuidado o número de períodos t, localize o valor de (1 + i) elevado a t e multiplique pelo capital; contar mal os períodos, sobretudo quando o prazo vem em anos e a taxa é mensal, é o erro mais frequente.
+#### 3. Dívida
 
-Para achar o tempo, procure na tabela o menor expoente cujo fator alcança o objetivo: dobrar o capital exige fator 2, e a 5% ao mês isso ocorre em 15 meses, já que 1,05 elevado a 14 é cerca de 1,9799 e 1,05 elevado a 15 é cerca de 2,0789. O tempo de dobrar não depende do valor aplicado.
+Primeiro o **pagamento**, depois os **juros** sobre o saldo; conte os ciclos pelas datas.
 
-Taxas equivalentes em regime composto não são proporcionais: vale 1 + taxa anual = (1 + taxa mensal) elevado a 12, de modo que 1% ao mês corresponde a cerca de 12,68% ao ano e 2% ao mês corresponde a cerca de 6,12% ao trimestre.
+#### 4. Tempo
 
-O rotativo do cartão de crédito mostra o efeito exponencial no extremo: 15% ao mês significam 1,15 elevado a 12 ao ano, cerca de 5,35 vezes a dívida original, o que equivale a aproximadamente 435% ao ano.
+**n = log(M ÷ C) ÷ log(1 + i)**; o **capital** se cancela e n quebrado se **arredonda** para cima. Entre prazos prontos, escolha o **menor** maior ou igual a n.
+
+#### 5. Valor de hoje
+
+**valor de hoje = P ÷ (1 + i)ⁿ**; o valor **à vista** é a soma das **parcelas** trazidas para hoje.
 
 </div>
 
-## Teste de Fogo
+## Questões do ENEM
 
-*Questões sem gabarito: resolva primeiro, depois confira com o professor ou com a IA.*
+*Marque uma alternativa em cada questão e confira tudo de uma vez no botão do fim.*
 
-**Questão 1 (estilo ENEM: autoral)**
-Uma pessoa aplicou R$ 800,00 em um investimento que rende juros compostos à taxa de 5% ao mês e manteve o dinheiro aplicado por 4 meses, sem realizar depósitos ou retiradas.
+**Questão 1**
 
-Utilize os valores aproximados: 1,05 elevado a 3 vale 1,1576 e 1,05 elevado a 4 vale 1,2155.
+*ENEM 2019 · 2º dia · caderno azul · questão 150*
 
-O montante disponível para resgate ao final do quarto mês, em reais, é aproximadamente
+Uma pessoa se interessou em adquirir um produto anunciado em uma loja. Negociou com o gerente e conseguiu comprá-lo a uma taxa de juros compostos de 1% ao mês. O primeiro pagamento será um mês após a aquisição do produto, e no valor de R$ 202,00. O segundo pagamento será efetuado um mês após o primeiro, e terá o valor de R$ 204,02. Para concretizar a compra, o gerente emitirá uma nota fiscal com o valor do produto à vista negociado com o cliente, correspondendo ao financiamento aprovado.
 
-a) 926,10
-b) 960,00
-c) 972,40
-d) 1.000,00
-e) 1.215,50
+O valor à vista, em real, que deverá constar na nota fiscal é de
 
-**Questão 2 (estilo ENEM: autoral)**
-Um consumidor deixou de pagar a fatura do cartão de crédito e entrou no crédito rotativo, cuja taxa é de 10% ao mês, no regime de juros compostos. O valor não pago da fatura era de R$ 500,00, e ele permaneceu três meses sem quitar nada da dívida nem fazer novas compras.
+A) 398,02.\
+B) 400,00.\
+C) 401,94.\
+D) 404,00.\
+E) 406,02.
 
-O valor dos juros acumulados nesses três meses, em reais, é
+**Questão 2**
 
-a) 150,00
-b) 165,50
-c) 500,00
-d) 650,00
-e) 665,50
+*ENEM 2013 · 2ª aplicação · 2º dia · caderno cinza · questão 171*
 
-**Questão 3 (estilo ENEM: autoral)**
-Um banco divulga que determinada aplicação rende 2% ao mês, no regime de juros compostos. Um cliente quer saber a que taxa trimestral essa aplicação corresponde, ou seja, qual taxa aplicada uma única vez a cada trimestre produziria o mesmo montante.
+O Conselho Monetário Nacional (CMN) determinou novas regras sobre o pagamento mínimo da fatura do cartão de crédito, a partir do mês de agosto de 2011. A partir de então, o pagamento mensal não poderá ser inferior a 15% do valor total da fatura. Em dezembro daquele ano, outra alteração foi efetuada: daí em diante, o valor mínimo a ser pago seria de 20% da fatura.
 
-Sabendo que 1,02 elevado a 3 vale aproximadamente 1,0612, a taxa trimestral equivalente é de aproximadamente
+Disponível em: http://g1.globo.com. Acesso em: 29 fev. 2012.
 
-a) 0,67%
-b) 2,00%
-c) 6,00%
-d) 6,12%
-e) 8,00%
+Um determinado consumidor possuía no dia do vencimento, 01/03/2012, uma dívida de R$ 1 000,00 na fatura de seu cartão de crédito. Se não houver pagamento do valor total da fatura, são cobrados juros de 10% sobre o saldo devedor para a próxima fatura. Para quitar sua dívida, optou por pagar sempre o mínimo da fatura a cada mês e não efetuar mais nenhuma compra.
 
-**Questão 4 (estilo ENEM: autoral)**
-Dois investidores aplicaram, cada um, R$ 10.000,00 pelo prazo de 5 meses, à mesma taxa de 4% ao mês. O primeiro escolheu uma aplicação em regime de juros simples e o segundo, uma aplicação em regime de juros compostos.
+A dívida desse consumidor em 01/05/2012 será de
 
-Considere 1,04 elevado a 5 igual a 1,2167.
+A) R$ 600,00.\
+B) R$ 640,00.\
+C) R$ 722,50.\
+D) R$ 774,40.\
+E) R$ 874,22.
 
-A diferença entre os montantes obtidos pelos dois investidores ao final dos 5 meses, em reais, é de aproximadamente
+**Questão 3**
 
-a) 16,70
-b) 167,00
-c) 400,00
-d) 2.000,00
-e) 2.167,00
+*ENEM 2011 · 2º dia · caderno azul · questão 160*
 
-**Questão 5 (estilo ENEM: autoral)**
-Uma cooperativa oferece a seus associados uma aplicação com rendimento de 5% ao mês, em regime de juros compostos. Um associado deseja saber em quantos meses, no mínimo, o valor aplicado terá dobrado, considerando que ele não fará novos depósitos nem retiradas.
+Uma pessoa aplicou certa quantia em ações. No primeiro mês, ela perdeu 30% do total do investimento e, no segundo mês, recuperou 20% do que havia perdido. Depois desses dois meses, resolveu tirar o montante de R$ 3 800,00 gerado pela aplicação.
 
-Considere os valores aproximados de 1,05 elevado a t indicados a seguir:
+A quantia inicial que essa pessoa aplicou em ações corresponde ao valor de
 
-t igual a 12, fator 1,7959
-t igual a 13, fator 1,8856
-t igual a 14, fator 1,9799
-t igual a 15, fator 2,0789
-t igual a 16, fator 2,1829
+A) R$ 4 222,22.\
+B) R$ 4 523,80.\
+C) R$ 5 000,00.\
+D) R$ 13 300,00.\
+E) R$ 17 100,00.
 
-O número mínimo de meses necessário é
+**Questão 4**
 
-a) 12
-b) 13
-c) 14
-d) 15
-e) 20
+*ENEM 2019 · 2ª aplicação · 2º dia · caderno azul · questão 169*
+
+Uma pessoa fez um depósito inicial de R$ 200,00 em um Fundo de Investimentos que possui rendimento constante sob juros compostos de 5% ao mês. Esse Fundo possui cinco planos de carência (tempo mínimo necessário de rendimento do Fundo sem movimentação do cliente). Os planos são:
+
+- Plano A: carência de 10 meses;
+- Plano B: carência de 15 meses;
+- Plano C: carência de 20 meses;
+- Plano D: carência de 28 meses;
+- Plano E: carência de 40 meses.
+
+O objetivo dessa pessoa é deixar essa aplicação rendendo até que o valor inicialmente aplicado duplique, quando somado aos juros do Fundo. Considere as aproximações: log 2 = 0,30 e log 1,05 = 0,02.
+
+Para que essa pessoa atinja seu objetivo apenas no período de carência, mas com a menor carência possível, deverá optar pelo plano
+
+A) A.\
+B) B.\
+C) C.\
+D) D.\
+E) E.
+
+**Questão 5**
+
+*ENEM 2020 · 2ª aplicação · 2º dia · caderno azul · questão 142*
+
+Um imposto é dito cumulativo se incide em duas ou mais etapas da circulação de mercadorias, sem que na etapa posterior possa ser abatido o montante pago na etapa anterior. PIS e Cofins são exemplos de impostos cumulativos e correspondem a um percentual total de 3,65%, que incide em cada etapa da comercialização de um produto.
+
+Considere um produto com preço inicial C. Suponha que ele é revendido para uma loja pelo preço inicial acrescido dos impostos descritos. Em seguida, o produto é revendido por essa loja ao consumidor pelo valor pago acrescido novamente dos mesmos impostos.
+
+Disponível em: www.centraltributaria.com.br. Acesso em: 15 jul. 2015 (adaptado).
+
+Qual a expressão algébrica que corresponde ao valor pago em impostos pelo consumidor?
+
+A) C × 0,0365\
+B) 2C × 0,0365\
+C) C × 1,0365²\
+D) C × (1 + 2 × 0,0365)\
+E) 2C × 0,0365 + C × 0,0365²

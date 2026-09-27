@@ -177,5 +177,16 @@
       "5/6",
       "5/14"
     ]
+  },
+  "2020-ppl-D2-azul-Q142": {
+    "nota": "parênteses e expoente perdidos na D; as 'figuras' eram as alternativas C e E em imagem, já em texto; conferido na imagem da página em 27/09/2026",
+    "alternativas": [
+      "C × 0,0365",
+      "2C × 0,0365",
+      "C × 1,0365²",
+      "C × (1 + 2 × 0,0365)",
+      "2C × 0,0365 + C × 0,0365²"
+    ],
+    "figuras": []
   }
 }
