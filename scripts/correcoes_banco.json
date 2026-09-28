@@ -583,5 +583,45 @@
         ]
       }
     ]
+  },
+  "2009-regular-D1-azul-Q026": {
+    "nota": "índices das fórmulas extraídos como expoentes; conferido na imagem da página em 28/09/2026",
+    "texto": "O processo de industrialização tem gerado sérios problemas de ordem ambiental, econômica e social, entre os quais se pode citar a chuva ácida. Os ácidos usualmente presentes em maiores proporções na água da chuva são o H₂CO₃, formado pela reação do CO₂ atmosférico com a água, o HNO₃, o HNO₂, o H₂SO₄ e o H₂SO₃. Esses quatro últimos são formados principalmente a partir da reação da água com os óxidos de nitrogênio e de enxofre gerados pela queima de combustíveis fósseis. A formação de chuva mais ou menos ácida depende não só da concentração do ácido formado, como também do tipo de ácido. Essa pode ser uma informação útil na elaboração de estratégias para minimizar esse problema ambiental. Se consideradas concentrações idênticas, quais dos ácidos citados no texto conferem maior acidez às águas das chuvas?",
+    "alternativas": [
+      "HNO₃ e HNO₂.",
+      "H₂SO₄ e H₂SO₃.",
+      "H₂SO₃ e HNO₂.",
+      "H₂SO₄ e HNO₃.",
+      "H₂CO₃ e H₂SO₃."
+    ]
+  },
+  "2014-regular-D1-azul-Q088": {
+    "nota": "índices das fórmulas extraídos como expoentes; conferido na imagem da página em 28/09/2026",
+    "texto": "Grandes fontes de emissão do gás dióxido de enxofre são as indústrias de extração de cobre e níquel, em decorrência da oxidação dos minérios sulfurados. Para evitar a liberação desses óxidos na atmosfera e a consequente formação da chuva ácida, o gás pode ser lavado, em um processo conhecido como dessulfurização, conforme mostrado na equação (1). CaCO₃ (s) + SO₂ (g) → CaSO₃ (s) + CO₂ (g) (1) Por sua vez, o sulfito de cálcio formado pode ser oxidado, com o auxílio do ar atmosférico, para a obtenção do sulfato de cálcio, como mostrado na equação (2). Essa etapa é de grande interesse porque o produto da reação, popularmente conhecido como gesso, é utilizado para fins agrícolas. 2 CaSO₃ (s) + O₂ (g) → 2 CaSO₄ (s) (2) As massas molares dos elementos carbono, oxigênio, enxofre e cálcio são iguais a 12 g/mol, 16 g/mol, 32 g/mol e 40 g/mol, respectivamente. BAIRD, C. Química ambiental. Porto Alegre: Bookman, 2002 (adaptado). Considerando um rendimento de 90% no processo, a massa de gesso obtida, em gramas, por mol de gás retido é mais próxima de"
+  },
+  "2014-regular-D1-azul-Q048": {
+    "nota": "legenda da figura colada no texto; figura inteira em img/quimica-ambiental/q3.png; conferido na imagem da página em 28/09/2026",
+    "texto": "A liberação dos gases clorofluorcarbonos (CFCs) na atmosfera pode provocar depleção de ozônio (O₃) na estratosfera. O ozônio estratosférico é responsável por absorver parte da radiação ultravioleta emitida pelo Sol, a qual é nociva aos seres vivos. Esse processo, na camada de ozônio, é ilustrado simplificadamente na figura. Quimicamente, a destruição do ozônio na atmosfera por gases CFCs é decorrência da",
+    "figuras": [
+      {
+        "pagina": 16,
+        "bbox": [
+          296,
+          153,
+          552,
+          300
+        ]
+      }
+    ]
+  },
+  "2020-ppl-D2-azul-Q101": {
+    "nota": "índices das fórmulas extraídos como expoentes; conferido na imagem da página em 28/09/2026",
+    "alternativas": [
+      "CdS e Zn(OH)₂",
+      "Pb(OH)₂ e Na₂S",
+      "Ni(OH)₂ e Cr(C₂H₅)₂",
+      "CdSO₄ e Pb(CH₃CO₂)₂",
+      "Hg(CH₃)₂ e Ca(CH₃CO₂)₂"
+    ]
   }
 }
