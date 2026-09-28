@@ -392,5 +392,25 @@
   "2019-ppl-D2-azul-Q116": {
     "nota": "índices das fórmulas extraídos como expoentes; conferido na imagem da página em 28/09/2026",
     "texto": "O processo de calagem consiste na diminuição da acidez do solo usando compostos inorgânicos, sendo o mais usado o calcário dolomítico, que é constituído de carbonato de cálcio (CaCO₃) e carbonato de magnésio (MgCO₃). Além de aumentarem o pH do solo, esses compostos são fontes de cálcio e magnésio, nutrientes importantes para os vegetais. Os compostos contidos no calcário dolomítico elevam o pH do solo, pois"
+  },
+  "2012-regular-D1-azul-Q059": {
+    "nota": "índices das fórmulas extraídos como expoentes; conferido na imagem da página em 28/09/2026",
+    "texto": "No Japão, um movimento nacional para a promoção da luta contra o aquecimento global leva o slogan: 1 pessoa, 1 dia, 1 kg de CO₂ a menos! A ideia é cada pessoa reduzir em 1 kg a quantidade de CO₂ emitida todo dia, por meio de pequenos gestos ecológicos, como diminuir a queima de gás de cozinha. Um hamburguer ecológico? É pra já! Disponível em: http://lqes.iqm.unicamp.br. Acesso em: 24 fev. 2012 (adaptado). Considerando um processo de combustão completa de um gás de cozinha composto exclusivamente por butano (C₄H₁₀), a mínima quantidade desse gás que um japonês deve deixar de queimar para atender à meta diária, apenas com esse gesto, é de Dados: CO₂ (44 g/mol); C₄H₁₀ (58 g/mol)"
+  },
+  "2015-regular-D1-azul-Q076": {
+    "nota": "índices das fórmulas extraídos como expoentes; conferido na imagem da página em 28/09/2026",
+    "texto": "Para proteger estruturas de aço da corrosão, a indústria utiliza uma técnica chamada galvanização. Um metal bastante utilizado nesse processo é o zinco, que pode ser obtido a partir de um minério denominado esfalerita (ZnS), de pureza 75%. Considere que a conversão do minério em zinco metálico tem rendimento de 80% nesta sequência de equações químicas: 2 ZnS + 3 O₂ → 2 ZnO + 2 SO₂ ZnO + CO → Zn + CO₂ Considere as massas molares: ZnS (97 g/mol); O₂ (32 g/mol); ZnO (81 g/mol); SO₂ (64 g/mol); CO (28 g/mol); CO₂ (44 g/mol); e Zn (65 g/mol). Que valor mais próximo de massa de zinco metálico, em quilogramas, será produzido a partir de 100 kg de esfalerita?"
+  },
+  "2017-regular-D2-azul-Q122": {
+    "nota": "rótulos da equação estrutural colados no texto; conferido na imagem da página em 28/09/2026",
+    "texto": "O ácido acetilsalicílico, AAS (massa molar igual a 180 g/mol), é sintetizado a partir da reação do ácido salicílico (massa molar igual a 138 g/mol) com anidrido acético, usando-se ácido sulfúrico como catalisador, conforme a equação química: Após a síntese, o AAS é purificado e o rendimento final é de aproximadamente 50%. Devido às suas propriedades farmacológicas (antitérmico, analgésico, anti-inflamatório e antitrombótico), o AAS é utilizado como medicamento na forma de comprimidos, nos quais se emprega tipicamente uma massa de 500 mg dessa substância. Uma indústria farmacêutica pretende fabricar um lote de 900 mil comprimidos, de acordo com as especificações do texto. Qual é a massa de ácido salicílico, em kg, que deve ser empregada para esse fim?"
+  },
+  "2023-ppl-D2-azul-Q095": {
+    "nota": "índices das fórmulas extraídos como expoentes; conferido na imagem da página em 28/09/2026",
+    "texto": "Um carro sedã apresenta tipicamente 200 kg de alumínio distribuídos pelo chassi, motor e cabine. Uma amostra de bauxita, principal fonte natural do metal, é composta por 50% em massa de óxido de alumínio (Al₂O₃). Considere a massa molar do alumínio (Al) igual a 27 g mol⁻¹ e a do oxigênio (O) igual a 16 g mol⁻¹. A massa de bauxita que deve ser empregada para produzir o alumínio usado na fabricação de um carro desse modelo é mais próxima de"
+  },
+  "2025-regular-D2-azul-Q131": {
+    "nota": "índices e expoentes das fórmulas trocados; conferido na imagem da página em 28/09/2026",
+    "texto": "O Brasil é o maior produtor mundial de nióbio (massa molar = 93 g mol⁻¹), metal utilizado na fabricação de vários tipos de aço: automotivos, estruturais e inoxidáveis. O processo utilizado na produção do nióbio é a redução aluminotérmica de Nb₂O₅ com excesso de 10% de Al (massa molar = 27 g mol⁻¹), em relação à quantidade estequiométrica da reação, representada pela equação química: 3 Nb₂O₅ (s) + 10 Al (s) → 6 Nb (s) + 5 Al₂O₃ (s) Uma engenheira metalúrgica estimou a massa de alumínio necessária para produzir 9,3 kg de nióbio, nas condições descritas, para a produção de um lote de peças de aço encomendado por uma indústria, considerando um rendimento de 100%. Disponível em: www.cbmm.com.br. Acesso em: 17 out. 2015 (adaptado). A massa de alumínio, em quilograma, estimada pela engenheira é mais próxima de"
   }
 }
