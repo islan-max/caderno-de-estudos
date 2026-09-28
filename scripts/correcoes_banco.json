@@ -379,5 +379,18 @@
   "2019-regular-D2-azul-Q112": {
     "nota": "conteúdo do quadro colado no texto; conferido na imagem da página em 27/09/2026",
     "texto": "Os hidrocarbonetos são moléculas orgânicas com uma série de aplicações industriais. Por exemplo, eles estão presentes em grande quantidade nas diversas frações do petróleo e normalmente são separados por destilação fracionada, com base em suas temperaturas de ebulição. O quadro apresenta as principais frações obtidas na destilação do petróleo em diferentes faixas de temperaturas. Na fração 4, a separação dos compostos ocorre em temperaturas mais elevadas porque"
+  },
+  "2018-ppl-D2-azul-Q104": {
+    "nota": "números e rótulos da escala de cores colados no texto; a 'figura' era só um pedaço da escala; conferido na imagem da página em 28/09/2026",
+    "texto": "O suco de repolho-roxo pode ser utilizado como indicador ácido-base em diferentes soluções. Para isso, basta misturar um pouco desse suco à solução desejada e comparar a coloração final com a escala indicadora de pH, com valores de 1 a 14, mostrada a seguir. Utilizando-se o indicador ácido-base e a escala para determinar o pH da saliva humana e do suco gástrico, têm-se, respectivamente, as cores",
+    "figuras": []
+  },
+  "2022-ppl-D2-azul-Q106": {
+    "nota": "índices das fórmulas extraídos como expoentes; conferido na imagem da página em 28/09/2026",
+    "texto": "Solos ácidos apresentam baixo valor de pH, e o plantio de culturas nesse meio acarreta baixa produção agrícola. Entretanto, esse problema pode ser contornado adicionando-se substâncias que, ao entrarem em contato com a água, liberam íons OH⁻, que neutralizam os íons H₃O⁺ presentes no solo e elevam o seu pH. Para esse objetivo, um agricultor tem comercialmente à disposição as espécies químicas enumeradas: I – KCl II – MgO III – NH₄Br IV – AlCl₃ V – P₂O₅ Para a correção do pH desse solo, o agricultor deverá utilizar a espécie química indicada pelo número"
+  },
+  "2019-ppl-D2-azul-Q116": {
+    "nota": "índices das fórmulas extraídos como expoentes; conferido na imagem da página em 28/09/2026",
+    "texto": "O processo de calagem consiste na diminuição da acidez do solo usando compostos inorgânicos, sendo o mais usado o calcário dolomítico, que é constituído de carbonato de cálcio (CaCO₃) e carbonato de magnésio (MgCO₃). Além de aumentarem o pH do solo, esses compostos são fontes de cálcio e magnésio, nutrientes importantes para os vegetais. Os compostos contidos no calcário dolomítico elevam o pH do solo, pois"
   }
 }
