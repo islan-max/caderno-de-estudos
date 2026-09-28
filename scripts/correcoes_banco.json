@@ -623,5 +623,28 @@
       "CdSO₄ e Pb(CH₃CO₂)₂",
       "Hg(CH₃)₂ e Ca(CH₃CO₂)₂"
     ]
+  },
+  "2012-regular-D1-azul-Q079": {
+    "nota": "rótulos das estruturas colados no texto; figura inteira em img/bioquimica/q2.png; conferido na imagem da página em 28/09/2026",
+    "texto": "O armazenamento de certas vitaminas no organismo apresenta grande dependência de sua solubilidade. Por exemplo, vitaminas hidrossolúveis devem ser incluídas na dieta diária, enquanto vitaminas lipossolúveis são armazenadas em quantidades suficientes para evitar doenças causadas pela sua carência. A seguir são apresentadas as estuturas químicas de cinco vitaminas necessárias ao organismo. Dentre as vitaminas apresentadas na figura, aquela que necessita de maior suplementação diária é",
+    "figuras": [
+      {
+        "pagina": 28,
+        "bbox": [
+          56,
+          130,
+          529,
+          370
+        ]
+      }
+    ]
+  },
+  "2022-regular-D2-azul-Q120": {
+    "nota": "conteúdo do quadro colado no texto; índices como expoente; conferido na imagem da página em 28/09/2026",
+    "texto": "Em uma aula prática de bioquímica, para medir a atividade catalítica da enzima catalase, foram realizados seis ensaios independentes, nas mesmas condições, variando-se apenas a temperatura. A catalase decompõe o peróxido de hidrogênio (H₂O₂), produzindo água e oxigênio. Os resultados dos ensaios estão apresentados no quadro. Os diferentes resultados dos ensaios justificam-se pelo(a)"
+  },
+  "2019-regular-D2-azul-Q117": {
+    "nota": "conteúdo do quadro colado no texto; expoentes da unidade; conferido na imagem da página em 28/09/2026",
+    "texto": "Em uma aula experimental de calorimetria, uma professora queimou 2,5 g de castanha-de-caju crua para aquecer 350 g de água, em um recipiente apropriado para diminuir as perdas de calor. Com base na leitura da tabela nutricional a seguir e da medida da temperatura da água, após a queima total do combustível, ela concluiu que 50% da energia disponível foi aproveitada. O calor específico da água é 1 cal g⁻¹ °C⁻¹, e sua temperatura inicial era de 20 °C. Qual foi a temperatura da água, em grau Celsius, medida ao final do experimento?"
   }
 }
