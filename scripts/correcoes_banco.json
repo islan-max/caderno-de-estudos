@@ -412,5 +412,35 @@
   "2025-regular-D2-azul-Q131": {
     "nota": "índices e expoentes das fórmulas trocados; conferido na imagem da página em 28/09/2026",
     "texto": "O Brasil é o maior produtor mundial de nióbio (massa molar = 93 g mol⁻¹), metal utilizado na fabricação de vários tipos de aço: automotivos, estruturais e inoxidáveis. O processo utilizado na produção do nióbio é a redução aluminotérmica de Nb₂O₅ com excesso de 10% de Al (massa molar = 27 g mol⁻¹), em relação à quantidade estequiométrica da reação, representada pela equação química: 3 Nb₂O₅ (s) + 10 Al (s) → 6 Nb (s) + 5 Al₂O₃ (s) Uma engenheira metalúrgica estimou a massa de alumínio necessária para produzir 9,3 kg de nióbio, nas condições descritas, para a produção de um lote de peças de aço encomendado por uma indústria, considerando um rendimento de 100%. Disponível em: www.cbmm.com.br. Acesso em: 17 out. 2015 (adaptado). A massa de alumínio, em quilograma, estimada pela engenheira é mais próxima de"
+  },
+  "2014-regular-D1-azul-Q056": {
+    "nota": "índice da fórmula extraído como expoente; conferido na imagem da página em 28/09/2026",
+    "texto": "Diesel é uma mistura de hidrocarbonetos que também apresenta enxofre em sua composição. Esse enxofre é um componente indesejável, pois o trióxido de enxofre gerado é um dos grandes causadores da chuva ácida. Nos anos 1980, não havia regulamentação e era utilizado óleo diesel com 13 000 ppm de enxofre. Em 2009, o diesel passou a ter 1 800 ppm de enxofre (S1800) e, em seguida, foi inserido no mercado o diesel S500 (500 ppm). Em 2012, foi difundido o diesel S50, com 50 ppm de enxofre em sua composição. Atualmente, é produzido um diesel com teores de enxofre ainda menores. Os impactos da má qualidade do óleo diesel brasileiro. Disponível em: www.cnt.org.br. Acesso em: 20 dez. 2012 (adaptado). A substituição do diesel usado nos anos 1980 por aquele difundido em 2012 permitiu uma redução percentual de emissão de SO₃ de"
+  },
+  "2015-regular-D1-azul-Q055": {
+    "nota": "índice e carga do íon nitrato extraídos como expoente; conferido na imagem da página em 28/09/2026",
+    "texto": "A hidroponia pode ser definida como uma técnica de produção de vegetais sem necessariamente a presença de solo. Uma das formas de implementação é manter as plantas com suas raízes suspensas em meio líquido, de onde retiram os nutrientes essenciais. Suponha que um produtor de rúcula hidropônica precise ajustar a concentração do íon nitrato (NO₃⁻) para 0,009 mol/L em um tanque de 5 000 litros e, para tanto, tem em mãos uma solução comercial nutritiva de nitrato de cálcio 90 g/L. As massas molares dos elementos N, O e Ca são iguais a 14 g/mol, 16 g/mol e 40 g/mol, respectivamente. Qual o valor mais próximo do volume da solução nutritiva, em litros, que o produtor deve adicionar ao tanque?"
+  },
+  "2022-regular-D2-azul-Q108": {
+    "nota": "rótulos da equação estrutural colados no texto; figuras eram pedaços da equação (recorte único em img/solucoes/q4.png); conferido na imagem da página em 28/09/2026",
+    "texto": "O ácido tartárico é o principal ácido do vinho e está diretamente relacionado com sua qualidade. Na avaliação de um vinho branco em produção, uma analista neutralizou uma alíquota de 25,0 mL do vinho com NaOH a 0,10 mol L⁻¹, consumindo um volume igual a 8,0 mL dessa base. A reação para esse processo de titulação é representada pela equação química: A concentração de ácido tartárico no vinho analisado é mais próxima de:",
+    "alternativas": [
+      "1,8 g L⁻¹",
+      "2,4 g L⁻¹",
+      "3,6 g L⁻¹",
+      "4,8 g L⁻¹",
+      "9,6 g L⁻¹"
+    ],
+    "figuras": [
+      {
+        "pagina": 8,
+        "bbox": [
+          88,
+          568,
+          478,
+          653
+        ]
+      }
+    ]
   }
 }
