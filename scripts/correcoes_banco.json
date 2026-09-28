@@ -462,5 +462,38 @@
   "2009-regular-D1-azul-Q043": {
     "nota": "conteúdo do quadro colado no texto e índices como expoente; conferido na imagem da página em 28/09/2026",
     "texto": "Nas últimas décadas, o efeito estufa tem-se intensificado de maneira preocupante, sendo esse efeito muitas vezes atribuído à intensa liberação de CO₂ durante a queima de combustíveis fósseis para geração de energia. O quadro traz as entalpias-padrão de combustão a 25 ºC (ΔH°₂₅) do metano, do butano e do octano. À medida que aumenta a consciência sobre os impactos ambientais relacionados ao uso da energia, cresce a importância de se criar políticas de incentivo ao uso de combustíveis mais eficientes. Nesse sentido, considerando-se que o metano, o butano e o octano sejam representativos do gás natural, do gás liquefeito de petróleo (GLP) e da gasolina, respectivamente, então, a partir dos dados fornecidos, é possível concluir que, do ponto de vista da quantidade de calor obtido por mol de CO₂ gerado, a ordem crescente desses três combustíveis é"
+  },
+  "2012-regular-D1-azul-Q049": {
+    "nota": "rótulos das estruturas colados no texto; conferido na imagem da página em 28/09/2026",
+    "texto": "A produção mundial de alimentos poderia se reduzir a 40% da atual sem a aplicação de controle sobre as pragas agrícolas. Por outro lado, o uso frequente dos agrotóxicos pode causar contaminação em solos, águas superficiais e subterrâneas, atmosfera e alimentos. Os biopesticidas, tais como a piretrina e a coronopilina, têm sido uma alternativa na diminuição dos prejuízos econômicos, sociais e ambientais gerados pelos agrotóxicos. Identifique as funções orgânicas presentes simultaneamente nas estruturas dos dois biopesticidas apresentados:",
+    "figuras": [
+      {
+        "pagina": 17,
+        "bbox": [
+          300,
+          214,
+          544,
+          479
+        ]
+      }
+    ]
+  },
+  "2014-regular-D1-azul-Q077": {
+    "nota": "índices das fórmulas extraídos como expoentes; conferido na imagem da página em 28/09/2026",
+    "alternativas": [
+      "CH₃–(CH)₂–CH(OH)–CO–NH–CH₃.",
+      "CH₃–(CH)₂–CH(CH₃)–CO–NH–CH₃.",
+      "CH₃–(CH)₂–CH(CH₃)–CO–NH₂.",
+      "CH₃–CH₂–CH(CH₃)–CO–NH–CH₃.",
+      "C₆H₅–CH₂–CO–NH–CH₃."
+    ]
+  },
+  "2015-regular-D1-azul-Q077": {
+    "nota": "rótulos do esquema colados no texto; conferido na imagem da página em 28/09/2026",
+    "texto": "Hidrocarbonetos podem ser obtidos em laboratório por descarboxilação oxidativa anódica, processo conhecido como eletrossíntese de Kolbe. Essa reação é utilizada na síntese de hidrocarbonetos diversos, a partir de óleos vegetais, os quais podem ser empregados como fontes alternativas de energia, em substituição aos hidrocarbonetos fósseis. O esquema ilustra simplificadamente esse processo. AZEVEDO, D. C.; GOULART, M. O. F. Estereosseletividade em reações eletródicas. Química Nova, n. 2, 1997 (adaptado). Com base nesse processo, o hidrocarboneto produzido na eletrólise do ácido 3,3-dimetil-butanoico é o"
+  },
+  "2019-ppl-D2-azul-Q097": {
+    "nota": "hífen de fim de linha no nome oficial; conferido na imagem da página em 28/09/2026",
+    "texto": "O ácido ricinoleico, um ácido graxo funcionalizado, cuja nomenclatura oficial é ácido D-(−)-12-hidroxi-octadec-cis-9-enoico, é obtido da hidrólise ácida do óleo de mamona. As aplicações do ácido ricinoleico na indústria são inúmeras, podendo ser empregado desde a fabricação de cosméticos até a síntese de alguns polímeros. Para uma amostra de solução desse ácido, o uso de um polarímetro permite determinar o ângulo de"
   }
 }
