@@ -442,5 +442,25 @@
         ]
       }
     ]
+  },
+  "2015-regular-D1-azul-Q084": {
+    "nota": "rótulos do diagrama colados no texto e índices como expoente; conferido na imagem da página em 28/09/2026",
+    "texto": "O aproveitamento de resíduos florestais vem se tornando cada dia mais atrativo, pois eles são uma fonte renovável de energia. A figura representa a queima de um bio-óleo extraído do resíduo de madeira, sendo ΔH₁ a variação de entalpia devido à queima de 1 g desse bio-óleo, resultando em gás carbônico e água líquida, e ΔH₂ a variação de entalpia envolvida na conversão de 1 g de água no estado gasoso para o estado líquido. A variação de entalpia, em kJ, para a queima de 5 g desse bio-óleo resultando em CO₂ (gasoso) e H₂O (gasoso) é:"
+  },
+  "2019-ppl-D2-azul-Q131": {
+    "nota": "conteúdo do quadro colado no texto e índices como expoente; conferido na imagem da página em 28/09/2026",
+    "texto": "O gás hidrogênio é considerado um ótimo combustível — o único produto da combustão desse gás é o vapor de água, como mostrado na equação química. 2 H₂ (g) + O₂ (g) → 2 H₂O (g) Um cilindro contém 1 kg de hidrogênio e todo esse gás foi queimado. Nessa reação, são rompidas e formadas ligações químicas que envolvem as energias listadas no quadro. Massas molares (g/mol): H₂ = 2; O₂ = 32; H₂O = 18. Qual é a variação da entalpia, em quilojoule, da reação de combustão do hidrogênio contido no cilindro?"
+  },
+  "2017-regular-D2-azul-Q124": {
+    "nota": "índices como expoente e notação ΔᵣH° embaralhada; conferido na imagem da página em 28/09/2026",
+    "texto": "O ferro é encontrado na natureza na forma de seus minérios, tais como a hematita (α-Fe₂O₃), a magnetita (Fe₃O₄) e a wustita (FeO). Na siderurgia, o ferro-gusa é obtido pela fusão de minérios de ferro em altos fornos em condições adequadas. Uma das etapas nesse processo é a formação de monóxido de carbono. O CO (gasoso) é utilizado para reduzir o FeO (sólido), conforme a equação química: FeO (s) + CO (g) → Fe (s) + CO₂ (g) Considere as seguintes equações termoquímicas: Fe₂O₃ (s) + 3 CO (g) → 2 Fe (s) + 3 CO₂ (g) ΔᵣH° = −25 kJ/mol de Fe₂O₃ 3 FeO (s) + CO₂ (g) → Fe₃O₄ (s) + CO (g) ΔᵣH° = −36 kJ/mol de CO₂ 2 Fe₃O₄ (s) + CO₂ (g) → 3 Fe₂O₃ (s) + CO (g) ΔᵣH° = +47 kJ/mol de CO₂ O valor mais próximo de ΔᵣH°, em kJ/mol de FeO, para a reação indicada do FeO (sólido) com o CO (gasoso) é"
+  },
+  "2011-regular-D1-azul-Q050": {
+    "nota": "conteúdo do quadro colado no texto e índices como expoente; conferido na imagem da página em 28/09/2026",
+    "texto": "Um dos problemas dos combustíveis que contêm carbono é que sua queima produz dióxido de carbono. Portanto, uma característica importante, ao se escolher um combustível, é analisar seu calor de combustão (ΔH°c), definido como a energia liberada na queima completa de um mol de combustível no estado padrão. O quadro seguinte relaciona algumas substâncias que contêm carbono e seu ΔH°c. ATKINS, P. Princípios de Química. Bookman, 2007 (adaptado). Neste contexto, qual dos combustíveis, quando queimado completamente, libera mais dióxido de carbono no ambiente pela mesma quantidade de energia produzida?"
+  },
+  "2009-regular-D1-azul-Q043": {
+    "nota": "conteúdo do quadro colado no texto e índices como expoente; conferido na imagem da página em 28/09/2026",
+    "texto": "Nas últimas décadas, o efeito estufa tem-se intensificado de maneira preocupante, sendo esse efeito muitas vezes atribuído à intensa liberação de CO₂ durante a queima de combustíveis fósseis para geração de energia. O quadro traz as entalpias-padrão de combustão a 25 ºC (ΔH°₂₅) do metano, do butano e do octano. À medida que aumenta a consciência sobre os impactos ambientais relacionados ao uso da energia, cresce a importância de se criar políticas de incentivo ao uso de combustíveis mais eficientes. Nesse sentido, considerando-se que o metano, o butano e o octano sejam representativos do gás natural, do gás liquefeito de petróleo (GLP) e da gasolina, respectivamente, então, a partir dos dados fornecidos, é possível concluir que, do ponto de vista da quantidade de calor obtido por mol de CO₂ gerado, a ordem crescente desses três combustíveis é"
   }
 }
