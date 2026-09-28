@@ -495,5 +495,93 @@
   "2019-ppl-D2-azul-Q097": {
     "nota": "hífen de fim de linha no nome oficial; conferido na imagem da página em 28/09/2026",
     "texto": "O ácido ricinoleico, um ácido graxo funcionalizado, cuja nomenclatura oficial é ácido D-(−)-12-hidroxi-octadec-cis-9-enoico, é obtido da hidrólise ácida do óleo de mamona. As aplicações do ácido ricinoleico na indústria são inúmeras, podendo ser empregado desde a fabricação de cosméticos até a síntese de alguns polímeros. Para uma amostra de solução desse ácido, o uso de um polarímetro permite determinar o ângulo de"
+  },
+  "2015-ppl-D1-branco-Q069": {
+    "nota": "rótulos da equação colados no texto; figura (equação) em img/polimeros/q1.png; conferido na imagem da página em 28/09/2026",
+    "texto": "O poli(ácido lático) ou PLA é um material de interesse tecnológico por ser um polímero biodegradável e bioabsorvível. O ácido lático, um metabólito comum no organismo humano, é a matéria-prima para produção do PLA, de acordo com a equação química simplificada: Que tipo de polímero de condensação é formado nessa reação?",
+    "figuras": [
+      {
+        "pagina": 24,
+        "bbox": [
+          100,
+          138,
+          592,
+          254
+        ]
+      }
+    ]
+  },
+  "2019-regular-D2-azul-Q124": {
+    "nota": "rótulos do esquema colados no texto; figura inteira em img/polimeros/q2.png; conferido na imagem da página em 28/09/2026",
+    "texto": "Uma das técnicas de reciclagem química do polímero PET [poli(tereftalato de etileno)] gera o tereftalato de metila e o etanodiol, conforme o esquema de reação, e ocorre por meio de uma reação de transesterificação. O composto A, representado no esquema de reação, é o",
+    "figuras": [
+      {
+        "pagina": 13,
+        "bbox": [
+          36,
+          126,
+          540,
+          213
+        ]
+      }
+    ]
+  },
+  "2017-ppl-D2-azul-Q120": {
+    "nota": "rótulos dos monômeros colados no texto; figura inteira em img/polimeros/q3.png; conferido na imagem da página em 28/09/2026",
+    "texto": "Os polímeros são materiais amplamente utilizados na sociedade moderna, alguns deles na fabricação de embalagens e filmes plásticos, por exemplo. Na figura estão relacionadas as estruturas de alguns monômeros usados na produção de polímeros de adição comuns. Dentre os homopolímeros formados a partir dos monômeros da figura, aquele que apresenta solubilidade em água é",
+    "figuras": [
+      {
+        "pagina": 10,
+        "bbox": [
+          40,
+          520,
+          552,
+          650
+        ]
+      }
+    ]
+  },
+  "2020-regular-D2-azul-Q100": {
+    "nota": "rótulo da figura no texto e índices como expoente; conferido na imagem da página em 28/09/2026",
+    "texto": "Nos dias atuais, o amplo uso de objetos de plástico gera bastante lixo, que muitas vezes é eliminado pela população por meio da queima. Esse procedimento é prejudicial ao meio ambiente por lançar substâncias poluentes. Para constatar esse problema, um estudante analisou a decomposição térmica do policloreto de vinila (PVC), um tipo de plástico, cuja estrutura é representada na figura. Para realizar esse experimento, o estudante colocou uma amostra de filme de PVC em um tubo de ensaio e o aqueceu, promovendo a decomposição térmica. Houve a liberação majoritária de um gás diatômico heteronuclear que foi recolhido em um recipiente acoplado ao tubo de ensaio. Esse gás, quando borbulhado em solução alcalina diluída contendo indicador ácido-base, alterou a cor da solução. Além disso, em contato com uma solução aquosa de carbonato de sódio (Na₂CO₃), liberou gás carbônico. Qual foi o gás liberado majoritariamente na decomposição térmica desse tipo de plástico?",
+    "alternativas": [
+      "H₂",
+      "Cl₂",
+      "CO",
+      "CO₂",
+      "HCl"
+    ],
+    "figuras": [
+      {
+        "pagina": 5,
+        "bbox": [
+          84,
+          518,
+          220,
+          608
+        ]
+      }
+    ]
+  },
+  "2024-ppl-D2-azul-Q097": {
+    "nota": "alternativas em imagem (estruturas); figura com as 5 opções em img/polimeros/q5-alternativas.png; conferido na imagem da página em 28/09/2026",
+    "alternativas": [
+      "Estrutura A",
+      "Estrutura B",
+      "Estrutura C",
+      "Estrutura D",
+      "Estrutura E"
+    ],
+    "figuras": [
+      {
+        "pagina": 5,
+        "bbox": [
+          32,
+          468,
+          154,
+          744
+        ]
+      }
+    ]
   }
 }
