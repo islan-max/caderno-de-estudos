@@ -252,8 +252,8 @@ function validar(arquivo) {
         // Em Geometria, "AB", "ABC", "DEF" são nomes de pontos (letras distintas de A a H), não siglas.
         if (materia === 'geometria' && /^[A-H]{2,4}$/.test(s) && new Set(s).size === s.length) continue;
         if ((materia === 'quimica' || materia === 'biologia') && ehFormula(s)) continue;
-        // Em Biologia, genótipos e gametas (AA, AB, AABB) e cromossomos sexuais (XX, XY, XXY) são notação genética, não siglas.
-        if (materia === 'biologia' && (/^[A-H]{2}$/.test(s) || /^([A-H])\1([A-H])\2$/.test(s) || /^X+Y*$/.test(s))) continue;
+        // Em Biologia, genótipos e gametas (AA, RR, AB, AABB) e cromossomos sexuais (XX, XY, XXY) são notação genética, não siglas.
+        if (materia === 'biologia' && (/^[A-H]{2}$/.test(s) || /^([A-Z])\1(([A-Z])\3)?$/.test(s) || /^X+Y*$/.test(s))) continue;
         vistas.add(s);
         const depois = limpo.slice(m.index + s.length, m.index + s.length + 4);
         const antesDe = limpo.slice(Math.max(0, m.index - 2), m.index);
