@@ -654,5 +654,15 @@
   "2022-regular-D2-azul-Q121": {
     "nota": "conteúdo da tabela colado no texto; conferido na imagem da página em 28/09/2026",
     "texto": "Antimicrobianos são substâncias naturais ou sintéticas que têm capacidade de matar ou inibir o crescimento de microrganismos. A tabela apresenta uma lista de antimicrobianos hipotéticos, bem como suas ações e efeitos sobre o metabolismo microbiano. Qual dos antimicrobianos deve ser utilizado para curar uma infecção causada por um fungo sem afetar as bactérias da microbiota normal do organismo?"
+  },
+  "2024-ppl-D2-azul-Q111": {
+    "nota": "índices de O2 e CO2 extraídos como expoente; conferido na imagem da página em 28/09/2026",
+    "alternativas": [
+      "afinidade pelo O₂, maximizando a captação desse gás.",
+      "capacidade de tamponamento, evitando alterações de pH no sangue.",
+      "afinidade pelo CO₂, facilitando seu transporte para eliminação nos pulmões.",
+      "velocidade no transporte de gases, aumentando a eficiência de troca gasosa.",
+      "solubilidade de gases no plasma, melhorando seu transporte nos tecidos."
+    ]
   }
 }
