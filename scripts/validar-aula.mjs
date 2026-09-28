@@ -480,7 +480,8 @@ function validar(arquivo) {
         erro(q.linhaFonte, `questão ${q.n}: não está no banco do INEP (${ano} ${aplicacao} D${dia} ${cor} Q${num}${lingua ? ' ' + lingua : ''}). Use \`banco_inep.py localizar\` ou corrija a fonte`);
         return;
       }
-      if (achadas.length > 1 && !lingua) {
+      // Na prova digital, as questões comuns saem repetidas nos cadernos de inglês e de espanhol (lingua null nas duas).
+      if (achadas.length > 1 && !lingua && achadas.some((b) => b.lingua)) {
         erro(q.linhaFonte, `questão ${q.n}: é questão de língua estrangeira; acrescente " · inglês" ou " · espanhol" à fonte`);
         return;
       }
