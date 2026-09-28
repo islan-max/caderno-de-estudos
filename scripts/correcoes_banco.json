@@ -672,5 +672,40 @@
   "2022-digital-D2-azul-Q102": {
     "nota": "prova digital: a 'figura' era o quadro de texto da própria questão, que não tem figura; conferido na imagem da página em 28/09/2026",
     "figuras": []
+  },
+  "2021-digital-D2-azul-Q129": {
+    "nota": "prova digital: a 'figura' era o quadro de texto da própria questão, que não tem figura; conferido na imagem da página em 28/09/2026",
+    "figuras": []
+  },
+  "2023-regular-D2-azul-Q103": {
+    "nota": "rodapé da página colado na alternativa E; conferido na imagem da página em 28/09/2026",
+    "alternativas": [
+      "Fruto.",
+      "Esporo.",
+      "Semente.",
+      "Tubo polínico.",
+      "Vaso condutor."
+    ]
+  },
+  "2023-regular-D2-azul-Q097": {
+    "nota": "índices de CO2 e O2 extraídos como expoente; conferido na imagem da página em 28/09/2026",
+    "alternativas": [
+      "acúmulo de gás etileno.",
+      "redução da umidade do ar.",
+      "aumento da concentração de CO₂.",
+      "diminuição da intensidade luminosa.",
+      "isolamento do contato com O₂ atmosférico."
+    ]
+  },
+  "2021-digital-D2-azul-Q098": {
+    "nota": "prova digital: alternativas C, D e E embaralhadas na extração e 'figura' que era o quadro da própria questão; conferido na imagem da página em 28/09/2026",
+    "figuras": [],
+    "alternativas": [
+      "aves, porque a pequena circulação e a grande circulação estão presentes.",
+      "répteis, porque a mistura de sangue é minimizada por um metabolismo lento.",
+      "crocodilianos, porque a separação dos ventrículos impede a mistura sanguínea.",
+      "peixes, porque a circulação é simples, ocorrendo uma passagem única pelo coração.",
+      "anfíbios, porque pressões diferenciais isolam temporalmente o sangue venoso do arterial."
+    ]
   }
 }
