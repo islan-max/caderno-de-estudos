@@ -3,157 +3,436 @@ title: "Genética"
 subject: "Biologia"
 order: 4
 relevance: >
-  Genética estuda como as características passam de pais para filhos: cor dos olhos, tipo sanguíneo,
-  doenças hereditárias. É um dos temas mais frequentes da prova de Ciências da Natureza, com uma ou
-  duas questões por edição. O INEP quase nunca pede definição decorada; ele entrega um heredograma
-  (a "árvore genealógica" da família), uma tabela de tipos sanguíneos ou um caso clínico e pede que
-  você calcule a probabilidade de um descendente ter determinada característica, ou que identifique
-  se a herança é dominante, recessiva ou ligada ao sexo.
+  Genética estuda como as características passam de pais para filhos. O ENEM (Exame Nacional do Ensino
+  Médio) cobra o tema com doenças hereditárias, heredogramas (as "árvores genealógicas" com símbolos) e as
+  leis de Mendel. Quase sempre a pergunta é "qual é o padrão de herança?" ou "qual é a chance de um filho
+  nascer com a característica?". Saber montar o quadro de cruzamento e ler um heredograma resolve a maior
+  parte das questões.
 quickSummary: >
-  Gene é a receita, alelo é a versão dessa receita, genótipo é o par de alelos que o indivíduo tem e
-  fenótipo é a característica que aparece; todo cálculo genético sai do quadro de Punnett, que cruza
-  os gametas possíveis de cada progenitor.
+  Cada pessoa tem dois alelos de cada gene autossômico, um vindo do pai e outro da mãe. O alelo recessivo só aparece em
+  dose dupla. Pais sem a doença com um filho doente indicam herança recessiva. O quadro de cruzamento dá as
+  chances de cada filho, e cada filho é um sorteio independente. Genes no cromossomo X seguem regras próprias:
+  um pai com doença dominante ligada ao X passa a doença a todas as filhas. Genes próximos no mesmo
+  cromossomo tendem a ser herdados juntos.
+resources:
+  conteudoComplementar:
+    conteudo: "Biotecnologia"
+    comoAjuda: "A próxima aula mostra como o DNA dos genes estudados aqui é lido, cortado e transferido entre organismos."
+gabarito:
+  - correta: 3
+    porque: >
+      O gene está no cromossomo 7, que é um autossomo, e por isso homens e mulheres são afetados igualmente. Pais sem a
+      doença têm filhos com ela, o que só acontece se a herança for recessiva.
+      Revisar: Aula Teórica › 3. Heredogramas
+  - correta: 2
+    porque: >
+      A mulher é portadora (Aa). O homem é normal, mas o pai dele era doente (aa) e lhe passou um alelo a: ele também é Aa.
+      Aa × Aa dá aa em 1 de 4 casas, 25%, e os filhos anteriores não mudam essa chance.
+      Revisar: Aula Teórica › 2. Primeira lei de Mendel e probabilidade
+  - correta: 3
+    porque: >
+      A filha 11 é doente e os pais 7 e 8 não: a herança é recessiva, e como o pai 7 é normal, é autossômica. Os dois
+      são Aa. O filho 10 é normal: entre AA, Aa e Aa, ele é portador em 2 de 3 casos, cerca de 67%.
+      Revisar: Aula Teórica › 3. Heredogramas
+  - correta: 3
+    porque: >
+      Todos os homens afetados têm todas as filhas afetadas e nenhum filho homem afetado. É o padrão da herança dominante
+      ligada ao X: o pai passa o seu X a todas as filhas e o Y a todos os filhos.
+      Revisar: Aula Teórica › 4. Herança ligada ao sexo
+  - correta: 3
+    porque: >
+      A distribuição independente vale para genes em cromossomos diferentes. Genes próximos no mesmo cromossomo
+      vão juntos para o mesmo gameta, a menos que ocorra permutação entre eles.
+      Revisar: Aula Teórica › 5. Segunda lei de Mendel e ligação gênica
 ---
 
-## Aula Teórica Completa
+<Accordion titulo="Palavras e siglas desta aula" dica="Consulte quando encontrar um termo novo" icone="spell-check">
 
-**Gene, alelo e locus.** Dentro do núcleo de cada célula existem os cromossomos, que são longos fios de DNA enrolados. Um gene é um trecho desse fio que carrega a receita de uma característica: por exemplo, "cor da flor". O locus (plural: loci) é o endereço fixo desse gene no cromossomo: o gene da cor da flor fica sempre no mesmo ponto, em todos os indivíduos da espécie.
+- **ENEM** (Exame Nacional do Ensino Médio): a prova nacional que dá acesso a faculdades e bolsas.
+- **INEP** (Instituto Nacional de Estudos e Pesquisas Educacionais Anísio Teixeira): o órgão do governo que faz o ENEM.
+- **DNA** (ácido desoxirribonucleico): a molécula que guarda as informações genéticas.
+- **PAH** (fenilalanina hidroxilase): o gene, e a enzima, que transforma o aminoácido fenilalanina.
+- **Hereditário**: que passa de pais para filhos pelos genes.
+- **Gameta**: a célula reprodutiva (espermatozoide ou óvulo), com um só alelo de cada gene.
+- **Prole**: os filhos de um cruzamento.
+- **Genitores**: o pai e a mãe.
+- **Cones**: células do olho que percebem as cores.
+- **Anomalia**: característica fora do comum, em geral uma doença.
+- **Mutação**: mudança no DNA de um gene.
+- **Hemofilia**: doença hereditária em que o sangue demora muito a coagular.
 
-Alelo é uma versão possível daquele gene: a receita "cor da flor" pode vir na versão "roxa" ou "branca". Como recebemos um cromossomo do pai e um da mãe, temos dois alelos para cada característica. Convenção de escrita: o alelo dominante recebe letra maiúscula (V) e o recessivo, a mesma letra em minúscula (v).
+</Accordion>
 
-**Dominante e recessivo.** Dominante é o alelo que se manifesta mesmo em uma única cópia: ele "fala mais alto". Recessivo só se manifesta quando as duas cópias são recessivas, sem nenhum dominante para encobri-lo. É por isso que uma característica recessiva pode pular gerações: fica escondida em quem tem uma cópia só.
+## Antes de Começar
 
-**Genótipo x fenótipo.** Genótipo é o par de alelos escrito no DNA: VV, Vv ou vv. Fenótipo é o que aparece: flor roxa ou branca, olho castanho ou azul. Genótipo é a receita guardada, fenótipo é o bolo que saiu do forno. Genótipos diferentes podem dar o mesmo fenótipo (VV e Vv dão flor roxa igualzinha) e é essa ambiguidade que o ENEM explora.
+**O que o ENEM cobra aqui.** A prova descreve uma doença hereditária, mostra um heredograma ou cita as leis de Mendel. Os temas que costumam aparecer são estes:
 
-Um detalhe importante: o fenótipo é o genótipo somado à influência do ambiente, alimentação, sol e temperatura interferem em altura e cor da pele.
+- **Padrão de herança**: dominante ou recessivo, autossômico ou ligado ao sexo.
+- **Probabilidade**: a chance de um filho nascer com a característica.
+- **Heredogramas**: descobrir o genótipo de cada pessoa.
+- **Leis de Mendel**: segregação, distribuição independente e as exceções.
 
-**Homozigoto e heterozigoto.** Homozigoto tem os dois alelos iguais, VV ou vv. Heterozigoto tem os dois alelos diferentes, Vv, e é chamado de portador porque carrega o recessivo escondido e pode passá-lo adiante sem nunca manifestá-lo. Repare numa consequência prática: um indivíduo de fenótipo recessivo só pode ser vv, então o genótipo dele é conhecido com certeza. Já um indivíduo de fenótipo dominante pode ser VV ou Vv, e para descobrir qual é preciso olhar os descendentes ou os pais.
+**O que você precisa saber antes.**
 
-**Primeira Lei de Mendel.** Também chamada de Lei da Segregação dos Fatores, ou lei da pureza dos gametas. Enunciado simples: cada característica é determinada por um par de alelos, que se separam na formação dos gametas (óvulo e espermatozoide), de modo que cada gameta leva apenas um alelo do par.
+- **Divisão celular.** A meiose forma os gametas com metade dos cromossomos (aula de Citologia).
+- **Probabilidade.** Chance = casos favoráveis ÷ casos possíveis; 1 em 4 = 1/4 = 25% (aula de Probabilidade Simples, em Estatística e Probabilidade).
+- **Fração em porcentagem.** Divida e multiplique por 100: 1/5 = 1 ÷ 5 × 100 = 20%. O sinal ≈ quer dizer "aproximadamente": 1/6 ≈ 17%. Entre números, × é multiplicação; entre genótipos (Aa × Aa), quer dizer cruzamento.
 
-Traduzindo: se o indivíduo é Vv, metade dos gametas dele leva V e metade leva v. Se é VV, todos os gametas levam V. O gameta nunca leva os dois, e por isso se diz que ele é "puro".
+## Aula Teórica
 
-**Quadro de Punnett.** É a tabelinha que organiza o cruzamento: nas laterais vão os gametas possíveis de cada progenitor e, dentro das casas, as combinações. Cruzando Vv com Vv, os gametas são V e v de cada lado, e as quatro casas resultantes são VV, Vv, Vv e vv. A leitura desse resultado é o cruzamento mais cobrado do ENEM. Proporção genotípica: 1 VV para 2 Vv para 1 vv, isto é, 25%, 50% e 25%. Proporção fenotípica: 3 dominantes para 1 recessivo, isto é, 75% e 25%. Grave o par heterozigoto vezes heterozigoto igual a três para um: ele aparece em prova o tempo todo.
+### 1. Genes, alelos e cromossomos
 
-Outro cruzamento útil é o cruzamento-teste: cruza-se o indivíduo dominante de genótipo desconhecido com um vv. Se aparecer qualquer filho recessivo, o desconhecido era heterozigoto.
+O DNA (ácido desoxirribonucleico) de uma célula humana está dividido em **46 cromossomos**, que formam **23 pares**. Em cada par, um cromossomo veio do pai e o outro veio da mãe.
 
-**Probabilidade em cruzamentos.** Duas regras resolvem quase tudo.
+- Os pares 1 a 22 são os **autossomos**: iguais em homens e mulheres.
+- O par 23 é o dos **cromossomos sexuais**: XX na mulher, XY no homem.
 
-Regra do "e" (multiplicação): quando dois eventos independentes precisam acontecer juntos, multiplicam-se as probabilidades, chance de o casal Vv vezes Vv ter um filho recessivo e do sexo feminino = 1/4 × 1/2 = 1/8. Regra do "ou" (soma): quando basta um evento ou outro, somam-se, chance de o filho ser VV ou vv = 1/4 + 1/4 = 1/2.
+Um **gene** é um trecho do cromossomo com a receita de uma característica. Como os cromossomos vêm em pares, cada pessoa tem **duas cópias** de cada gene autossômico. As versões diferentes de um mesmo gene são os **alelos**. Na escrita, usa-se uma letra: maiúscula para um alelo (A) e minúscula para o outro (a).
 
-Duas armadilhas de probabilidade: cada gestação é um evento independente, então ter três filhos afetados não diminui a chance do quarto, continua 1/4. E "probabilidade de nascer uma criança afetada" é diferente de "probabilidade de, entre os filhos já nascidos e afetados, ocorrer tal coisa"; leia o comando com atenção.
+- **Genótipo**: o par de alelos da pessoa (AA, Aa ou aa).
+- **Fenótipo**: a característica que aparece (cor, doença, tipo de ervilha).
+- **Homozigoto**: tem dois alelos iguais (AA ou aa). **Heterozigoto**: tem dois alelos diferentes (Aa).
+- **Dominante**: o alelo que aparece mesmo em dose única (A). **Recessivo**: o alelo que só aparece em dose dupla (aa).
+- **Portador**: pessoa Aa numa doença recessiva. Ela não tem a doença, mas carrega o alelo e pode passá-lo aos filhos.
+- **Codominância**: quando os dois alelos aparecem juntos no heterozigoto, sem um dominar o outro. Exemplo: o tipo sanguíneo AB, em que os alelos do tipo A e do tipo B se manifestam juntos.
 
-**Segunda Lei de Mendel.** Chamada de Lei da Segregação Independente. Enunciado: quando se analisam duas ou mais características ao mesmo tempo, os alelos de uma se separam nos gametas independentemente dos alelos da outra, desde que os genes estejam em cromossomos diferentes (ou muito afastados no mesmo cromossomo).
+**Exemplo resolvido.** Em ervilhas, o alelo V (semente amarela) domina o alelo v (semente verde). Qual é a cor de uma planta Vv, e ela é homozigota ou heterozigota?
 
-Na prática, um indivíduo VvRr produz quatro tipos de gametas em igual proporção: VR, Vr, vR e vr. E o cruzamento VvRr vezes VvRr dá a proporção fenotípica clássica 9 para 3 para 3 para 1, ou seja, 9/16 com as duas características dominantes, 3/16 com a primeira dominante e a segunda recessiva, 3/16 com o inverso e 1/16 com as duas recessivas.
+1. Vv tem um alelo dominante V: a semente é amarela.
+2. Os dois alelos são diferentes: é heterozigota.
+3. Resposta: amarela e heterozigota.
 
-Truque para não montar um quadro de 16 casas: resolva cada característica separadamente pela 1ª Lei e multiplique. Chance de ser recessivo para as duas = 1/4 × 1/4 = 1/16.
+**Erro comum.** Achar que "dominante" quer dizer "mais comum" na população. Dominante só quer dizer que o alelo aparece em dose única; um alelo dominante pode ser raro.
 
-**Heredogramas: como ler.** Heredograma é a árvore genealógica de uma família com a indicação de quem tem a característica estudada. As convenções são fixas: quadrado é homem e círculo é mulher; símbolo preenchido é afetado e vazio é não afetado; a linha horizontal entre dois símbolos é o casamento, e a vertical que desce dela leva aos filhos, em ordem de nascimento. Cada geração recebe um número romano e cada indivíduo, um arábico.
+### 2. Primeira lei de Mendel e probabilidade
 
-O roteiro de leitura é sempre o mesmo. Primeiro, descubra se a herança é dominante ou recessiva. A pista de ouro: se dois pais não afetados têm um filho afetado, a característica é obrigatoriamente recessiva, os pais eram heterozigotos e o alelo estava escondido. Também vale o contrário: se dois pais afetados têm um filho não afetado, a característica é dominante.
+Gregor Mendel, estudando ervilhas no século XIX, descobriu que os dois alelos de um gene **se separam** na formação dos gametas: cada gameta leva **um só** alelo. É a **primeira lei de Mendel**, ou lei da **segregação**. Na fecundação, o filho recebe um alelo do pai e um da mãe.
 
-Segundo, descubra se é autossômica (gene em cromossomo comum) ou ligada ao sexo: se a característica é recessiva e aparece em muito mais homens que mulheres, suspeite de herança ligada ao X. Terceiro, preencha os genótipos de que você tem certeza: todo afetado por doença recessiva é homozigoto recessivo, e a partir dele você deduz que ambos os pais carregavam pelo menos um alelo recessivo.
+Mendel também notou que, cruzando duas linhagens puras diferentes (AA com aa), todos os filhos saem iguais, Aa. É a lei da **uniformidade**.
 
-**Herança ligada ao sexo.** O sexo humano é determinado por um par de cromossomos: mulher é XX, homem é XY. O cromossomo X é grande e carrega centenas de genes que nada têm a ver com sexo; o Y é pequeno e carrega pouca coisa além dos genes de masculinização. A consequência é decisiva: o homem tem uma única cópia dos genes do X. Se ela vier com o alelo recessivo da doença, não há segunda cópia para encobrir, e ele manifesta a doença. A mulher, com dois X, precisaria de duas cópias recessivas para manifestar, o que é bem mais raro; com uma cópia só, ela é portadora e não apresenta sintomas.
+Da primeira lei vem uma regra muito usada: se o pai ou a mãe de uma pessoa é aa, essa pessoa recebeu **obrigatoriamente** um alelo a.
 
-Por isso daltonismo e hemofilia, os dois exemplos clássicos, são muito mais comuns em homens. E há um padrão que o ENEM adora: como o homem recebe o X da mãe e o Y do pai, um pai daltônico nunca transmite daltonismo aos filhos homens (ele passa o Y para eles), mas passa o X afetado para todas as filhas, que se tornam portadoras.
+Para ver as chances de um cruzamento, como Aa × Aa (lê-se "Aa cruzado com Aa"), monte o **quadro de Punnett**, também chamado de quadro de cruzamento. Os gametas de um genitor vão em cima e os do outro ao lado. Cada casa é um filho possível, com a mesma chance.
 
-**Codominância e dominância incompleta.** Nem toda herança é do tipo dominante-ou-recessivo. Na dominância incompleta, o heterozigoto exibe um fenótipo intermediário, uma mistura. O caso clássico é a flor maravilha: vermelha (VV) cruzada com branca (BB) gera descendentes rosa (VB). A proporção fenotípica do cruzamento entre dois rosas passa a ser 1 vermelho para 2 rosas para 1 branco, e não 3 para 1: aqui, fenótipo e genótipo têm a mesma proporção, porque cada genótipo tem aparência própria.
+<figure class="figura">
+  <svg viewBox="0 0 460 170" role="img" aria-labelledby="fig-ge-1-t fig-ge-1-d">
+    <title id="fig-ge-1-t">Quadro de Punnett do cruzamento Aa × Aa</title>
+    <desc id="fig-ge-1-d">Um quadro de duas linhas e duas colunas. Em cima, os gametas do pai: A e a. Ao lado, os gametas da mãe: A e a. As quatro casas são AA, Aa, Aa e aa; a casa aa está destacada. Ao lado do quadro: 1 AA para 2 Aa para 1 aa; 3 casas com o alelo dominante e 1 casa aa, com chance de 1 em 4.</desc>
+    <line x1="170" y1="40" x2="290" y2="40" class="traco" />
+    <line x1="170" y1="40" x2="170" y2="160" class="traco" />
+    <line x1="170" y1="100" x2="290" y2="100" class="traco" />
+    <line x1="230" y1="40" x2="230" y2="160" class="traco" />
+    <line x1="170" y1="160" x2="290" y2="160" class="traco" />
+    <line x1="290" y1="40" x2="290" y2="160" class="traco" />
+    <rect x="230" y="100" width="60" height="60" class="traco preenche" />
+    <text x="200" y="30" class="rotulo" text-anchor="middle">A</text>
+    <text x="156" y="75" class="rotulo" text-anchor="middle">A</text>
+    <text x="260" y="30" class="rotulo" text-anchor="middle">a</text>
+    <text x="156" y="135" class="rotulo" text-anchor="middle">a</text>
+    <text x="200" y="75" class="rotulo" text-anchor="middle">AA</text>
+    <text x="260" y="75" class="rotulo" text-anchor="middle">Aa</text>
+    <text x="200" y="135" class="rotulo" text-anchor="middle">Aa</text>
+    <text x="260" y="135" class="rotulo" text-anchor="middle">aa</text>
+    <text x="230" y="14" class="rotulo-fraco" text-anchor="middle">gametas do pai (Aa)</text>
+    <text x="140" y="78" class="rotulo-fraco" text-anchor="end">gametas</text>
+    <text x="140" y="92" class="rotulo-fraco" text-anchor="end">da mãe (Aa)</text>
+    <text x="314" y="80" class="rotulo-fraco">1 AA : 2 Aa : 1 aa</text>
+    <text x="314" y="98" class="rotulo-fraco">3 com o dominante</text>
+    <text x="314" y="116" class="rotulo-fraco">1 aa (recessivo): 1/4</text>
+  </svg>
+</figure>
 
-Na codominância, o heterozigoto exibe as duas características ao mesmo tempo, lado a lado, sem mistura. Em bovinos, o cruzamento de pelagem vermelha com branca gera o padrão ruão, com pelos vermelhos e brancos intercalados. O tipo sanguíneo AB é o exemplo humano.
+No cruzamento Aa × Aa, as quatro casas dão 1 AA : 2 Aa : 1 aa (lê-se "1 para 2 para 1"). Se A é dominante, 3 em 4 mostram o alelo dominante e **1 em 4 (25%)** é aa.
 
-**Sistema ABO.** O tipo sanguíneo é determinado por um gene com três alelos possíveis na população, o que se chama alelos múltiplos (cada pessoa continua tendo apenas dois deles). Os alelos são I-A, I-B e i. Os alelos I-A e I-B são dominantes sobre i e codominantes entre si.
+Cada filho é um **sorteio novo**. A chance não muda com os filhos que já nasceram, como uma moeda não "lembra" das jogadas anteriores.
 
-Os genótipos e fenótipos ficam assim: tipo A vem de I-A I-A ou I-A i; tipo B vem de I-B I-B ou I-B i; tipo AB vem de I-A I-B (codominância); tipo O vem apenas de ii.
+**Exemplo resolvido.** Em ervilhas, o alelo R (semente lisa) domina r (semente rugosa). Cruzam-se uma planta Rr e uma planta rr. Qual é a chance de sair uma semente rugosa?
 
-O que define a compatibilidade são duas coisas: os antígenos (chamados aglutinogênios), que ficam na superfície da hemácia, e os anticorpos (aglutininas), que circulam no plasma. Cada pessoa produz anticorpos contra o antígeno que ela não tem. Quem é A tem antígeno A e anticorpo anti-B. Quem é B tem antígeno B e anticorpo anti-A. Quem é AB tem os dois antígenos e nenhum anticorpo. Quem é O não tem antígeno nenhum e tem os dois anticorpos.
+1. Gametas de Rr: R ou r. Gametas de rr: só r.
+2. Quadro: Rr, Rr, rr, rr.
+3. Rugosas (rr): 2 de 4.
+4. Resposta: 1/2, ou 50%.
 
-Daí sai a regra da transfusão: se o sangue doado carrega um antígeno contra o qual o receptor tem anticorpo, ocorre aglutinação, as hemácias grudam e o paciente pode morrer. Por isso o tipo O é doador universal (não tem antígeno para ser atacado) e o tipo AB é receptor universal (não tem anticorpo para atacar ninguém).
+**Erro comum.** Esquecer que o genótipo de alguém pode ser descoberto pelos pais. Uma pessoa sem a doença recessiva, filha de alguém aa, não pode ser AA: ela é Aa.
 
-**Fator Rh.** É um gene independente do ABO. O alelo R, que produz o antígeno Rh na hemácia, é dominante sobre r. Assim, Rh positivo pode ser RR ou Rr, e Rh negativo é obrigatoriamente rr.
+### 3. Heredogramas
 
-A diferença crucial em relação ao ABO: a pessoa Rh negativa não nasce com anticorpo anti-Rh. Ela só passa a produzi-lo depois de ser sensibilizada, isto é, depois de ter contato com sangue Rh positivo. Isso explica a eritroblastose fetal, ou doença hemolítica do recém-nascido: uma mãe Rh negativa que gera um primeiro filho Rh positivo pode se sensibilizar no parto e, numa gestação seguinte de outro filho Rh positivo, seus anticorpos atravessam a placenta e destroem as hemácias do bebê. A prevenção é a aplicação de soro com anticorpos anti-Rh na mãe logo após o primeiro parto.
+O **heredograma** mostra uma família com símbolos: **quadrado** para homem, **círculo** para mulher, símbolo **preenchido** para quem tem a característica. Um traço horizontal liga o casal, e os filhos ficam pendurados numa linha abaixo.
 
-**Armadilhas típicas do INEP:** (1) confundir proporção genotípica (1:2:1) com fenotípica (3:1) no cruzamento entre heterozigotos; (2) achar que os filhos anteriores mudam a probabilidade do próximo, cada gestação é independente e a chance se repete; (3) inverter a regra de ouro do heredograma, esquecendo que pais normais com filho afetado indicam herança recessiva; (4) tratar dominância incompleta como codominância, na primeira há mistura (rosa), na segunda as duas características aparecem separadas (ruão, AB); (5) trocar antígeno por anticorpo na transfusão, invertendo doador universal e receptor universal; (6) supor que a mãe Rh negativa já tem anticorpo anti-Rh na primeira gestação, quando ela precisa ser sensibilizada antes.
+Atenção: alguns enunciados chamam de "portador" quem tem a doença. Confie na legenda: símbolo preenchido é quem tem a característica.
+
+Para descobrir se uma característica é dominante ou recessiva, procure estes casos:
+
+- Pais **sem** a característica com um filho que a tem: ela é **recessiva**. Os pais são Aa, e o filho recebeu um a de cada um.
+- Pais **com** a característica com um filho que não a tem: ela é **dominante**. Os pais são Aa, e o filho é aa.
+
+Para saber se é **autossômica** ou **ligada ao sexo**, veja onde fica o gene e como a característica se distribui. Se o enunciado diz que o gene está num cromossomo de 1 a 22, a herança é autossômica, e homens e mulheres são afetados na mesma proporção.
+
+Às vezes a pergunta dá uma informação a mais sobre o filho. Se um casal Aa × Aa tem um filho **sem** a doença recessiva, a casa aa do quadro está descartada. Sobram três casas igualmente prováveis (AA, Aa, Aa), e a chance é contada só entre elas.
+
+**Exemplo resolvido.** Um casal em que os dois têm uma doença tem uma filha sem a doença. A doença é dominante ou recessiva?
+
+1. Se fosse recessiva, os dois pais seriam aa e só teriam filhos aa, todos doentes.
+2. Nasceu uma filha sem a doença: a doença não pode ser recessiva.
+3. Resposta: dominante (os pais são Aa e a filha é aa).
+
+**Exemplo resolvido.** Em ervilhas, R (semente lisa) domina r (rugosa). Cruzam-se duas plantas Rr. Entre as sementes **lisas**, que fração é RR?
+
+1. Quadro de Rr × Rr: RR, Rr, Rr, rr.
+2. Já se sabe que a semente é lisa: a casa rr sai da conta.
+3. Sobram RR, Rr, Rr; RR é 1 delas.
+4. Resposta: 1/3, ou cerca de 33%.
+
+**Erro comum.** Contar as quatro casas do quadro quando já se sabe que a pessoa não tem a doença. Nesse caso, a casa aa sai da conta.
+
+### 4. Herança ligada ao sexo
+
+Os genes do cromossomo X seguem regras próprias, porque o homem tem **um só X** (XY) e a mulher tem dois (XX). Na escrita, põe-se o alelo acima do X: por exemplo, Xᴴ é o X com o alelo normal (H, dominante), e Xʰ é o X com o alelo da doença (h).
+
+- O pai passa o seu **X** para **todas as filhas** e o seu **Y** para **todos os filhos**.
+- A mãe passa um dos seus dois X para cada filho ou filha.
+
+Três padrões aparecem:
+
+- **Recessiva ligada ao X** (como a hemofilia): o homem com um só alelo recessivo já tem a doença, porque não tem outro X para compensar. Por isso há **muito mais homens** afetados. O homem nunca é portador: ou tem o alelo e a doença, ou não tem o alelo. As filhas de um homem afetado com uma mulher sem o alelo (XᴴXᴴ) recebem o X dele e ficam **portadoras**, sem a doença. Uma filha só é afetada se o pai também for; por isso, **filha afetada de pai normal** descarta essa herança.
+- **Dominante ligada ao X**: um homem afetado passa o seu X a **todas as filhas**, que ficam **todas afetadas**. Os filhos homens dele recebem o Y e **não** são afetados. Uma mulher afetada (heterozigota) passa a doença a cerca de metade dos filhos, de ambos os sexos.
+- **Ligada ao Y**: só homens são afetados, e o pai passa a característica a **todos os filhos homens**.
+
+Na herança **autossômica**, o pai passa um dos seus dois alelos a cada filho ou filha, sem relação com o sexo. Por isso ela não produz o padrão "pai afetado, todas as filhas afetadas e nenhum filho homem".
+
+**Exemplo resolvido.** A hemofilia é recessiva e ligada ao X. Uma mulher portadora (XᴴXʰ) tem filhos com um homem sem a doença (XᴴY). Qual é a chance de um **filho homem** do casal ter hemofilia?
+
+1. Todo filho homem recebe o Y do pai e um X da mãe.
+2. A mãe passa Xᴴ ou Xʰ, com chances iguais.
+3. O filho XʰY tem hemofilia.
+4. Resposta: 1/2, ou 50% dos filhos homens.
+
+**Erro comum.** Achar que, só porque a doença aparece nos dois sexos, ela é autossômica. As heranças ligadas ao X também aparecem em homens e mulheres; o que as denuncia é a forma como passam de pai para filhos e filhas.
+
+### 5. Segunda lei de Mendel e ligação gênica
+
+A **segunda lei de Mendel**, ou lei da **distribuição independente**, diz que os alelos de genes diferentes se separam independentemente uns dos outros na formação dos gametas. Por exemplo, um indivíduo AaBb (heterozigoto nos dois genes) forma quatro tipos de gameta com a mesma chance: AB, Ab, aB e ab.
+
+Essa lei vale para genes em **cromossomos diferentes**. Genes que ficam **perto um do outro no mesmo cromossomo** fogem da regra. Eles estão presos à mesma molécula de DNA e tendem a ir **juntos** para o mesmo gameta: é a **ligação gênica**. Eles só se separam quando, na meiose, os dois cromossomos do par trocam pedaços entre si. Essa troca é a **permutação** (ou crossing-over), rara entre genes muito próximos.
+
+<figure class="figura">
+  <svg viewBox="0 0 460 205" role="img" aria-labelledby="fig-ge-2-t fig-ge-2-d">
+    <title id="fig-ge-2-t">Genes ligados e genes independentes</title>
+    <desc id="fig-ge-2-d">À esquerda, um par de cromossomos com os genes A e B bem próximos num deles e a e b no outro: eles vão juntos para os gametas, que saem AB ou ab; Ab e aB só aparecem se houver permutação. À direita, o gene A (com a) está no par 1 e o gene B (com b) no par 2: eles se separam de forma independente, e os gametas AB, Ab, aB e ab têm a mesma chance.</desc>
+    <rect x="70" y="30" width="22" height="110" rx="11" class="traco" />
+    <line x1="70" y1="58" x2="92" y2="58" class="traco" />
+    <text x="64" y="63" class="rotulo" text-anchor="end">A</text>
+    <line x1="70" y1="74" x2="92" y2="74" class="traco" />
+    <text x="64" y="79" class="rotulo" text-anchor="end">B</text>
+    <rect x="110" y="30" width="22" height="110" rx="11" class="traco" />
+    <line x1="110" y1="58" x2="132" y2="58" class="traco" />
+    <text x="138" y="63" class="rotulo">a</text>
+    <line x1="110" y1="74" x2="132" y2="74" class="traco" />
+    <text x="138" y="79" class="rotulo">b</text>
+    <text x="101" y="158" class="rotulo-fraco" text-anchor="middle">um par de cromossomos</text>
+    <text x="101" y="180" class="rotulo" text-anchor="middle">ligados: gametas AB e ab</text>
+    <text x="101" y="196" class="rotulo-fraco" text-anchor="middle">(Ab e aB só com permutação)</text>
+    <rect x="240" y="30" width="22" height="110" rx="11" class="traco" />
+    <line x1="240" y1="58" x2="262" y2="58" class="traco" />
+    <text x="234" y="63" class="rotulo" text-anchor="end">A</text>
+    <rect x="275" y="30" width="22" height="110" rx="11" class="traco" />
+    <line x1="275" y1="58" x2="297" y2="58" class="traco" />
+    <text x="303" y="63" class="rotulo">a</text>
+    <rect x="350" y="30" width="22" height="110" rx="11" class="traco" />
+    <line x1="350" y1="96" x2="372" y2="96" class="traco" />
+    <text x="344" y="101" class="rotulo" text-anchor="end">B</text>
+    <rect x="385" y="30" width="22" height="110" rx="11" class="traco" />
+    <line x1="385" y1="96" x2="407" y2="96" class="traco" />
+    <text x="413" y="101" class="rotulo">b</text>
+    <text x="268" y="158" class="rotulo-fraco" text-anchor="middle">par 1</text>
+    <text x="378" y="158" class="rotulo-fraco" text-anchor="middle">par 2</text>
+    <text x="323" y="180" class="rotulo" text-anchor="middle">independentes: AB, Ab, aB, ab</text>
+    <text x="323" y="196" class="rotulo-fraco" text-anchor="middle">(as quatro com a mesma chance)</text>
+  </svg>
+</figure>
+
+Outras coisas podem dar errado na meiose, mas não são a regra que limita a segunda lei. A meiose tem duas divisões, e na primeira os cromossomos de cada par se separam: é a **disjunção**. Às vezes um par **não se separa** (não disjunção), e o gameta fica com um cromossomo a mais ou a menos, como na síndrome de Down. Mudanças no número ou na forma dos cromossomos são as **alterações cromossômicas**. São erros que acontecem de vez em quando, não a regra.
+
+A dominância também não muda a segregação: dominante ou recessivo, cada alelo vai para os gametas da mesma forma. A dominância só decide qual alelo aparece no fenótipo.
+
+**Exemplo resolvido.** Os genes A e B ficam em cromossomos diferentes. Qual é a chance de um cruzamento AaBb × AaBb dar um filho aabb?
+
+1. Os genes se distribuem independentemente: calcula-se cada um separado.
+2. Aa × Aa dá aa com chance 1/4; Bb × Bb dá bb com chance 1/4.
+3. Eventos independentes: multiplicam-se as chances. 1/4 × 1/4 = 1/16.
+4. Resposta: 1/16.
+
+**Erro comum.** Multiplicar as chances de dois genes que estão no mesmo cromossomo, bem próximos. Como eles vão juntos, não são independentes.
+
+### Armadilhas típicas do INEP
+
+1. **Cada filho recebe um alelo de cada genitor**: filho de alguém aa tem pelo menos um a.
+2. **Filhos anteriores não mudam a chance** do próximo.
+3. Pais **sem** a característica com filho que a tem: **recessiva**.
+4. **Informação a mais sobre o filho** (já se sabe que é normal): refaça a conta só com as casas que sobram.
+5. **Pai com doença dominante ligada ao X**: todas as filhas afetadas, nenhum filho homem.
+6. **Distribuição independente** vale para genes em cromossomos diferentes; genes próximos no mesmo cromossomo vão juntos.
 
 ## Tópicos-Chave para Revisão
 
 <div className="topico">
 
-Gene é o trecho de DNA com a receita de uma característica, locus é o endereço fixo dele no cromossomo e alelo é cada versão possível dessa receita; recebemos um alelo do pai e um da mãe, escritos como letra maiúscula para o dominante e minúscula para o recessivo.
+#### 1. Conceitos
 
-Genótipo é o par de alelos que o indivíduo carrega e fenótipo é a característica que aparece, resultado do genótipo mais a influência do ambiente; homozigoto tem alelos iguais (VV ou vv) e heterozigoto tem alelos diferentes (Vv), sendo o portador que esconde o recessivo: por isso o fenótipo recessivo revela o genótipo com certeza, e o dominante não.
+**Alelos** em pares, um de cada genitor; **dominante** aparece em dose única, **recessivo** só em dose dupla (aa); **portador** é Aa; **autossomos** (1 a 22) e **sexuais** (XX, XY).
 
-Primeira Lei de Mendel é a segregação dos fatores: o par de alelos se separa na formação dos gametas e cada gameta leva apenas um alelo, garantindo a pureza dos gametas; o quadro de Punnett cruza esses gametas, e no cruzamento Vv por Vv a proporção genotípica é 1 VV para 2 Vv para 1 vv e a fenotípica é 3 dominantes para 1 recessivo, e o cruzamento-teste com um vv revela se o dominante era homozigoto ou heterozigoto.
+#### 2. Primeira lei
 
-Probabilidade usa a regra do "e" multiplicando e a regra do "ou" somando, e cada gestação é um evento independente, de modo que filhos anteriores não alteram a chance do próximo.
+Cada gameta leva **um alelo**; **Aa × Aa** = 1 AA : 2 Aa : 1 aa; **cada filho é um sorteio novo**.
 
-Segunda Lei de Mendel é a segregação independente, válida para genes em cromossomos diferentes: VvRr produz quatro gametas (VR, Vr, vR, vr) e o cruzamento de dois di-híbridos dá 9:3:3:1, mas o caminho mais rápido é resolver cada característica pela 1ª Lei e multiplicar.
+<figure class="figura">
+  <svg viewBox="0 0 460 90" role="img" aria-labelledby="fig-ge-1-rev-t fig-ge-1-rev-d">
+    <title id="fig-ge-1-rev-t">Quadro de Aa × Aa (resumo)</title>
+    <desc id="fig-ge-1-rev-d">Quadro com as casas AA, Aa, Aa e aa; a casa aa, destacada, tem chance de 1 em 4.</desc>
+    <line x1="190" y1="12" x2="262" y2="12" class="traco" />
+    <line x1="190" y1="12" x2="190" y2="84" class="traco" />
+    <line x1="190" y1="48" x2="262" y2="48" class="traco" />
+    <line x1="226" y1="12" x2="226" y2="84" class="traco" />
+    <line x1="190" y1="84" x2="262" y2="84" class="traco" />
+    <line x1="262" y1="12" x2="262" y2="84" class="traco" />
+    <rect x="226" y="48" width="36" height="36" class="traco preenche" />
+    <text x="208" y="35" class="rotulo" text-anchor="middle">AA</text>
+    <text x="244" y="35" class="rotulo" text-anchor="middle">Aa</text>
+    <text x="208" y="71" class="rotulo" text-anchor="middle">Aa</text>
+    <text x="244" y="71" class="rotulo" text-anchor="middle">aa</text>
+    <text x="278" y="53" class="rotulo-fraco">aa: 1/4</text>
+  </svg>
+</figure>
 
-Heredograma usa quadrado para homem, círculo para mulher, símbolo preenchido para afetado e linha horizontal para casamento; se pais não afetados têm filho afetado a herança é recessiva, se pais afetados têm filho normal a herança é dominante, e forte predominância de homens afetados sugere herança ligada ao X.
+#### 3. Heredogramas
 
-Herança ligada ao sexo ocorre em genes do cromossomo X: o homem XY tem cópia única e manifesta o recessivo diretamente, enquanto a mulher XX precisa de duas cópias e com uma só é portadora, o que explica daltonismo e hemofilia serem mais frequentes em homens e o pai afetado transmitir o alelo a todas as filhas e a nenhum filho homem.
+Pais normais com filho afetado: **recessiva**; pais afetados com filho normal: **dominante**; já se sabe que é normal: descarte a casa **aa**.
 
-Sistema ABO tem alelos múltiplos I-A, I-B e i, com I-A e I-B dominantes sobre i e codominantes entre si; antígenos ficam nas hemácias e anticorpos no plasma, cada pessoa produz anticorpo contra o antígeno que não tem, e por isso O é doador universal e AB é receptor universal. O fator Rh é gene independente, com R dominante sobre r, e o Rh negativo (rr) só produz anticorpo anti-Rh após sensibilização, o que explica a eritroblastose fetal na segunda gestação de filho Rh positivo e sua prevenção com soro anti-Rh após o primeiro parto.
+#### 4. Ligada ao sexo
+
+O pai passa o **X às filhas** e o **Y aos filhos**; **recessiva ligada ao X**: mais homens; **dominante ligada ao X**: pai afetado, **todas as filhas** afetadas.
+
+#### 5. Segunda lei
+
+Genes em **cromossomos diferentes**: independentes, multiplica as chances; genes **próximos no mesmo cromossomo**: herdados **juntos** (ligação gênica).
+
+<figure class="figura">
+  <svg viewBox="0 0 460 108" role="img" aria-labelledby="fig-ge-2-rev-t fig-ge-2-rev-d">
+    <title id="fig-ge-2-rev-t">Genes ligados e independentes (resumo)</title>
+    <desc id="fig-ge-2-rev-d">À esquerda, A e B próximos no mesmo cromossomo vão juntos para os gametas. À direita, A e B em pares diferentes se separam de forma independente.</desc>
+    <rect x="90" y="10" width="16" height="70" rx="8" class="traco" />
+    <line x1="90" y1="30" x2="106" y2="30" class="traco" />
+    <text x="85" y="35" class="rotulo" text-anchor="end">A</text>
+    <line x1="90" y1="42" x2="106" y2="42" class="traco" />
+    <text x="85" y="47" class="rotulo" text-anchor="end">B</text>
+    <rect x="120" y="10" width="16" height="70" rx="8" class="traco" />
+    <line x1="120" y1="30" x2="136" y2="30" class="traco" />
+    <text x="141" y="35" class="rotulo">a</text>
+    <line x1="120" y1="42" x2="136" y2="42" class="traco" />
+    <text x="141" y="47" class="rotulo">b</text>
+    <text x="113" y="100" class="rotulo-fraco" text-anchor="middle">ligados: vão juntos</text>
+    <rect x="270" y="10" width="16" height="70" rx="8" class="traco" />
+    <line x1="270" y1="30" x2="286" y2="30" class="traco" />
+    <text x="265" y="35" class="rotulo" text-anchor="end">A</text>
+    <rect x="296" y="10" width="16" height="70" rx="8" class="traco" />
+    <line x1="296" y1="30" x2="312" y2="30" class="traco" />
+    <text x="317" y="35" class="rotulo">a</text>
+    <rect x="350" y="10" width="16" height="70" rx="8" class="traco" />
+    <line x1="350" y1="55" x2="366" y2="55" class="traco" />
+    <text x="345" y="60" class="rotulo" text-anchor="end">B</text>
+    <rect x="376" y="10" width="16" height="70" rx="8" class="traco" />
+    <line x1="376" y1="55" x2="392" y2="55" class="traco" />
+    <text x="397" y="60" class="rotulo">b</text>
+    <text x="333" y="100" class="rotulo-fraco" text-anchor="middle">pares diferentes: independentes</text>
+  </svg>
+</figure>
 
 </div>
 
-## Teste de Fogo
+## Questões do ENEM
 
-*Questões sem gabarito: resolva primeiro, depois confira com o professor ou com a IA.*
+*Marque uma alternativa em cada questão e confira tudo de uma vez no botão do fim.*
 
-**Questão 1 (estilo ENEM: autoral)**
-A fenilcetonúria é uma doença metabólica hereditária determinada por um alelo recessivo autossômico. Um casal em que nenhum dos dois apresenta a doença procurou aconselhamento genético após o nascimento do primeiro filho, que foi diagnosticado com fenilcetonúria pelo teste do pezinho. O casal deseja ter outro filho e pergunta qual a chance de a criança também apresentar a doença.
+**Questão 1**
 
-A probabilidade de o segundo filho desse casal nascer com fenilcetonúria é de
+*ENEM 2023 · 2ª aplicação · 2º dia · caderno azul · questão 113*
 
-a) 0%, pois a chance já se esgotou no primeiro filho.
-b) 25%.
-c) 50%.
-d) 75%.
-e) 100%, pois ambos os pais são portadores do alelo.
+A incapacidade de perceber certas cores é denominada daltonismo. Um tipo raro é classificado de tritanomalia e corresponde a um defeito nos cones sensíveis à cor azul. O gene responsável pela herança situa-se no cromossomo 7, permitindo que homens e mulheres sejam igualmente afetados. Além disso, casais sem tritanomalia podem ter crianças com a herança.
 
-**Questão 2 (estilo ENEM: autoral)**
-Em um heredograma de três gerações de uma família, verifica-se que a característica em estudo aparece somente em indivíduos do sexo masculino. Uma das mulheres da geração I, não afetada, teve dois filhos homens afetados e uma filha não afetada; essa filha, casada com um homem não afetado, teve um filho homem afetado. Nenhuma mulher da família apresenta a característica.
+O padrão dessa herança rara é
 
-Esse padrão de ocorrência é compatível com uma herança
+A) ligado ao X e recessivo.\
+B) ligado ao Y e recessivo.\
+C) ligado ao X e dominante.\
+D) autossômico e recessivo.\
+E) autossômico e dominante.
 
-a) autossômica dominante, transmitida igualmente a ambos os sexos.
-b) autossômica recessiva, manifestada apenas em homozigotos.
-c) recessiva ligada ao cromossomo X, em que as mulheres atuam como portadoras.
-d) dominante ligada ao cromossomo X, em que os pais afetados transmitem a todos os filhos.
-e) determinada por genes do cromossomo Y, transmitida de pai para filho homem.
+**Questão 2**
 
-**Questão 3 (estilo ENEM: autoral)**
-Em um atendimento de emergência, um paciente com sangue do tipo O, Rh negativo, precisa de transfusão urgente. O banco de sangue do hospital dispõe, naquele momento, apenas de bolsas dos tipos A positivo, B positivo, AB positivo e O positivo, além de uma única bolsa O negativo.
+*ENEM 2015 · 2ª aplicação · 1º dia · caderno branco · questão 66*
 
-A escolha da bolsa O negativo é obrigatória nesse caso porque o paciente
+A fenilcetonúria é uma doença hereditária autossômica recessiva, associada à mutação do gene PAH, que limita a metabolização do aminoácido fenilalanina. Por isso, é obrigatório, por lei, que as embalagens de alimentos, como refrigerantes dietéticos, informem a presença de fenilalanina em sua composição. Uma mulher portadora de mutação para o gene PAH tem três filhos normais, com um homem normal, cujo pai sofria de fenilcetonúria, devido à mesma mutação no gene PAH encontrada em um dos alelos da mulher.
 
-a) não possui anticorpos no plasma, aceitando qualquer sangue disponível.
-b) possui os antígenos A e B nas hemácias, que reagiriam com o plasma doado.
-c) possui anticorpos anti-A e anti-B e não possui o antígeno Rh, podendo reagir contra os demais sangues.
-d) produz naturalmente anticorpos contra o próprio antígeno O presente em suas hemácias.
-e) é considerado receptor universal, mas apenas para bolsas de sangue Rh negativo.
+Qual a probabilidade de a quarta criança gerada por esses pais apresentar fenilcetonúria?
 
-**Questão 4 (estilo ENEM: autoral)**
-Em bovinos de determinada raça, o cruzamento entre animais de pelagem vermelha e animais de pelagem branca produz descendentes de pelagem ruã, na qual se observam, ao microscópio, pelos vermelhos e pelos brancos distribuídos lado a lado, sem formação de uma cor intermediária. O cruzamento entre dois animais ruões produz descendentes vermelhos, ruões e brancos.
+A) 0%\
+B) 12,5%\
+C) 25%\
+D) 50%\
+E) 75%
 
-O tipo de interação entre os alelos responsáveis por essa pelagem e a proporção fenotípica esperada entre os filhotes de dois animais ruões são, respectivamente,
+**Questão 3**
 
-a) dominância completa e 3 vermelhos para 1 branco.
-b) dominância incompleta e 3 ruões para 1 branco.
-c) codominância e 1 vermelho para 2 ruões para 1 branco.
-d) codominância e 9 vermelhos para 3 ruões para 3 brancos para 1 vermelho.
-e) alelos múltiplos e 1 vermelho para 1 branco.
+*ENEM 2017 · 2ª aplicação · 2º dia · caderno azul · questão 113*
 
-**Questão 5 (estilo ENEM: autoral)**
-Em ervilhas, a cor amarela da semente é determinada pelo alelo dominante V e a cor verde pelo alelo recessivo v; a superfície lisa é determinada pelo alelo dominante R e a superfície rugosa pelo alelo recessivo r. Os dois genes estão localizados em cromossomos diferentes. Um pesquisador cruzou duas plantas heterozigotas para as duas características (VvRr) e obteve um grande número de sementes.
+O heredograma mostra a incidência de uma anomalia genética em um grupo familiar.
 
-A proporção esperada de sementes verdes e rugosas entre os descendentes desse cruzamento é de
+<figure class="figura">
 
-a) 1 em 16.
-b) 3 em 16.
-c) 4 em 16.
-d) 9 em 16.
-e) 12 em 16.
+![Heredograma com três gerações. Primeira geração: casal 1 (homem sem anomalia) e 2 (mulher com anomalia); casal 3 (homem com anomalia) e 4 (mulher sem anomalia). Segunda geração: filhos de 1 e 2 são 5 e 6 (mulheres sem anomalia) e 7 (homem sem anomalia); filhos de 3 e 4 são 8 (mulher sem anomalia) e 9 (homem sem anomalia). O homem 7 e a mulher 8 formam um casal. Terceira geração, filhos de 7 e 8: 10 (homem sem anomalia), 11 (mulher com anomalia), 12 e 13 (mulheres sem anomalia). Legenda: símbolo preenchido indica anomalia; círculo é mulher e quadrado é homem.](./img/genetica/q3.png)
+
+</figure>
+
+O indivíduo representado pelo número 10, preocupado em transmitir o alelo para a anomalia genética a seus filhos, calcula que a probabilidade de ele ser portador desse alelo é de
+
+A) 0%.\
+B) 25%.\
+C) 50%.\
+D) 67%.\
+E) 75%.
+
+**Questão 4**
+
+*ENEM 2014 · 1º dia · caderno azul · questão 74*
+
+<figure class="figura">
+
+![Dois heredogramas; símbolo preenchido indica a doença. Esquerda: quatro irmãos (uma mulher afetada, um homem e uma mulher não afetados, um homem afetado). O homem afetado tem, com uma mulher não afetada, cinco filhos: as três filhas são afetadas e os dois filhos homens não. Direita: um homem não afetado e uma mulher afetada têm quatro filhos: um homem afetado, uma mulher não afetada, uma mulher afetada e um homem não afetado. Esse homem afetado tem, com uma mulher não afetada, dez filhos: as cinco filhas são afetadas e os cinco filhos homens não. Uma dessas filhas afetadas tem, com um homem não afetado, quatro filhos: um homem não afetado, um homem afetado, uma mulher afetada e uma mulher não afetada.](./img/genetica/q4.png)
+
+</figure>
+
+No heredograma, os símbolos preenchidos representam pessoas portadoras de um tipo raro de doença genética. Os homens são representados pelos quadrados e as mulheres, pelos círculos.
+
+Qual é o padrão de herança observado para essa doença?
+
+A) Dominante autossômico, pois a doença aparece em ambos os sexos.\
+B) Recessivo ligado ao sexo, pois não ocorre a transmissão do pai para os filhos.\
+C) Recessivo ligado ao Y, pois a doença é transmitida dos pais heterozigotos para os filhos.\
+D) Dominante ligado ao sexo, pois todas as filhas de homens afetados também apresentam a doença.\
+E) Codominante autossômico, pois a doença é herdada pelos filhos de ambos os sexos, tanto do pai quanto da mãe.
+
+**Questão 5**
+
+*ENEM 2019 · 2º dia · caderno azul · questão 110*
+
+Com base nos experimentos de plantas de Mendel, foram estabelecidos três princípios básicos, que são conhecidos como leis da uniformidade, segregação e distribuição independente. A lei da distribuição independente refere-se ao fato de que os membros de pares diferentes de genes segregam-se independentemente, uns dos outros, para a prole.
+
+TURNPENNY, P. D. **Genética médica**. Rio de Janeiro: Elsevier, 2009 (adaptado).
+
+Hoje, sabe-se que isso nem sempre é verdade. Por quê?
+
+A) A distribuição depende do caráter de dominância ou recessividade do gene.\
+B) Os organismos nem sempre herdam cada um dos genes de cada um dos genitores.\
+C) As alterações cromossômicas podem levar a falhas na segregação durante a meiose.\
+D) Os genes localizados fisicamente próximos no mesmo cromossomo tendem a ser herdados juntos.\
+E) O cromossomo que contém dois determinados genes pode não sofrer a disjunção na primeira fase da meiose.
