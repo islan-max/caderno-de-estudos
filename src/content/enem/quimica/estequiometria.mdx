@@ -3,175 +3,495 @@ title: "Estequiometria"
 subject: "Química"
 order: 4
 relevance: >
-  Estequiometria é a matemática das reações químicas: dada uma quantidade de reagente, quanto de
-  produto se forma? É o conteúdo mais cobrado de química no ENEM, presente em praticamente todas
-  as edições, geralmente em 2 a 4 questões. O INEP quase nunca pede a conta pela conta: ele
-  embrulha o cálculo em um contexto industrial ou ambiental: quantas toneladas de CO2 uma frota
-  emite, quanto de princípio ativo há em um comprimido, quanta cal é preciso para tratar um
-  efluente, e espera que você monte a proporção correta a partir da equação balanceada.
+  Estequiometria é a conta das reações químicas: com tanto de reagente, quanto de produto se forma? E, ao
+  contrário, quanto de matéria-prima é preciso para fabricar uma quantidade de produto? O ENEM (Exame
+  Nacional do Ensino Médio) quase nunca pede a conta solta: ele a coloca numa indústria, numa mina ou num
+  problema ambiental. Aparecem minério impuro, rendimento abaixo de 100%, reagente em excesso e unidades
+  misturadas (mg, g, kg). Quem domina o caminho massa → mol → mol → massa resolve quase todas.
 quickSummary: >
-  Toda estequiometria é uma regra de três montada sobre os coeficientes da equação balanceada,
-  que dizem a proporção em mols entre as substâncias. A conta só funciona depois de converter
-  tudo para mol.
+  Os coeficientes da equação balanceada dizem a proporção em mol entre as substâncias. Transforme massa em
+  mol com a massa molar, use a proporção e volte para massa. Depois ajuste: pureza e rendimento multiplicam
+  no caminho de ida e dividem no caminho de volta; excesso de X% soma X% à quantidade calculada.
+resources:
+  conteudoComplementar:
+    conteudo: "Soluções"
+    comoAjuda: "Concentração em g/L e em mol/L usa a mesma ponte entre massa e mol desta aula."
+gabarito:
+  - correta: 1
+    porque: >
+      Na combustão completa, C₄H₁₀ + 13/2 O₂ → 4 CO₂ + 5 H₂O: 58 g de butano geram 4 × 44 = 176 g de CO₂. Para
+      1 kg de CO₂: 1 × 58 ÷ 176 ≈ 0,33 kg de butano.
+      Revisar: Aula Teórica › 3. De massa para massa
+  - correta: 3
+    porque: >
+      Al₂O₃ = 102 g/mol, com 2 × 27 = 54 g de alumínio. Para 200 kg de Al: 200 × 102 ÷ 54 ≈ 378 kg de Al₂O₃. Como a
+      bauxita só tem 50% disso, divide-se por 0,5: ≈ 756 kg.
+      Revisar: Aula Teórica › 4. Quanto de um elemento há num composto
+  - correta: 2
+    porque: >
+      Pela sequência, 1 ZnS dá 1 Zn. 100 kg de minério têm 75 kg de ZnS; 75 × 65 ÷ 97 ≈ 50,3 kg de zinco teórico;
+      com rendimento de 80%, 50,3 × 0,8 ≈ 40 kg.
+      Revisar: Aula Teórica › 6. Reações em sequência
+  - correta: 3
+    porque: >
+      900 mil × 500 mg = 450 kg de AAS. A proporção é 1 para 1: 450 × 138 ÷ 180 = 345 kg de ácido salicílico se o
+      rendimento fosse 100%. Com 50%, é preciso o dobro: 345 ÷ 0,5 = 690 kg.
+      Revisar: Aula Teórica › 5. Pureza e rendimento
+  - correta: 4
+    porque: >
+      9,3 kg de nióbio são 100 mol. Pela equação, 6 Nb pedem 10 Al: 100 × 10 ÷ 6 ≈ 166,7 mol de Al, ou 4,5 kg. Com 10%
+      a mais: 4,5 × 1,1 ≈ 5,0 kg.
+      Revisar: Aula Teórica › 7. Reagente em excesso
 ---
 
-## Aula Teórica Completa
+<Accordion titulo="Palavras e siglas desta aula" dica="Consulte quando encontrar um termo novo" icone="spell-check">
 
-**O problema que o mol resolve.** Átomos são pequenos demais para serem contados um a um, mas as reações químicas acontecem por unidade: um átomo reage com outro átomo, uma molécula com outra molécula. Precisamos então de uma forma de contar átomos usando algo que possamos medir, que é a massa. A solução foi criar uma unidade de contagem gigante, do mesmo jeito que "dúzia" significa 12 e "resma" significa 500. Essa unidade é o **mol**.
+- **ENEM** (Exame Nacional do Ensino Médio): a prova nacional que dá acesso a faculdades e bolsas.
+- **INEP** (Instituto Nacional de Estudos e Pesquisas Educacionais Anísio Teixeira): o órgão do governo que faz o ENEM.
+- **AAS** (ácido acetilsalicílico): o princípio ativo da aspirina.
+- **Minério**: rocha de onde se tira um metal ou outra substância útil.
+- **Bauxita**: minério de onde se tira o alumínio.
+- **Esfalerita**: minério de onde se tira o zinco; é formado principalmente por sulfeto de zinco (ZnS).
+- **Galvanização**: cobrir o aço com uma camada de zinco para ele não enferrujar.
+- **Síntese**: produção de uma substância a partir de outras, por reação química.
+- **Redução aluminotérmica**: jeito de tirar um metal do seu óxido usando alumínio, que "rouba" o oxigênio.
+- **Antitérmico**: que baixa a febre.
+- **Analgésico**: que alivia a dor.
+- **Antitrombótico**: que dificulta a formação de coágulos no sangue.
+- **Slogan**: frase curta de campanha, fácil de lembrar.
+- **Sedã**: tipo de carro com porta-malas separado.
+- **Chassi**: a estrutura de base do carro.
 
-Um mol é um pacote com 6,02 × 10²³ unidades. Esse número se chama **constante de Avogadro**. Um mol de átomos de ferro são 6,02 × 10²³ átomos de ferro; um mol de moléculas de água são 6,02 × 10²³ moléculas de água. O número parece arbitrário, mas foi escolhido justamente para que a conta a seguir fique fácil.
+</Accordion>
 
-**Massa molar: a ponte entre gramas e mols.** A **massa molar** é a massa, em gramas, de um mol da substância, e sua unidade é g/mol. O truque é que a massa molar de um elemento é exatamente o número decimal que aparece no quadrinho da tabela periódica, só que lido em gramas por mol: hidrogênio 1 g/mol, carbono 12 g/mol, nitrogênio 14 g/mol, oxigênio 16 g/mol, sódio 23 g/mol, enxofre 32 g/mol, cloro 35,5 g/mol, cálcio 40 g/mol, ferro 56 g/mol.
+## Antes de Começar
 
-Para uma substância composta, some as massas dos átomos da fórmula. A água, H2O, tem dois hidrogênios (2 × 1 = 2) e um oxigênio (16), totalizando 18 g/mol. O gás carbônico, CO2, tem 12 + 2 × 16 = 44 g/mol. O carbonato de cálcio, CaCO3, tem 40 + 12 + 3 × 16 = 100 g/mol.
+**O que o ENEM cobra aqui.** A prova dá uma equação química (ou pede que você a monte), as massas molares e uma quantidade conhecida. Você precisa achar outra quantidade. Os temas que costumam aparecer são estes:
 
-Com isso, a fórmula mais usada de toda a química quantitativa:
+- **Massa de produto** formada a partir de uma massa de reagente, ou o contrário.
+- **Combustão completa**, em que você mesmo escreve e acerta a equação.
+- **Minério impuro**: só uma parte da amostra é a substância útil.
+- **Rendimento** menor que 100%: sai menos produto do que a conta prevê.
+- **Reações em sequência**, em que o produto de uma vira reagente da outra.
+- **Reagente em excesso**: coloca-se mais do que o necessário, de propósito.
 
-número de mols = massa (em gramas) ÷ massa molar (em g/mol)
+**O que você precisa saber antes.**
 
-E, na direção contrária: massa = número de mols × massa molar. Aqui, número de mols é quantos "pacotes" de 6,02 × 10²³ unidades você tem, massa é o que a balança marca e massa molar é quantos gramas pesa um pacote.
+- **Regra de três.** Se 2 kg custam R$ 10, 6 kg custam 6 × 10 ÷ 2 = R$ 30. Toda conta desta aula termina numa regra de três (aula de Regra de Três, em Matemática Básica).
+- **Porcentagem como número decimal.** 60% = 60 ÷ 100 = 0,6; 25% a mais = × 1,25 (aula de Porcentagem).
+- **Potências de 10.** 10³ = 1 000; 10⁶ = 1 000 000. Um número como 6,0 × 10²³ é 6 seguido de 23 zeros.
+- **Fórmula química.** Em H₂O, o número pequeno embaixo (o **índice**) conta os átomos: 2 de hidrogênio e 1 de oxigênio. Sem índice, é 1 (aula de Ligações Químicas).
 
-**Volume molar dos gases.** Para gases existe um atalho: nas **CNTP** (condições normais de temperatura e pressão, ou seja, 0 grau Celsius e 1 atmosfera), um mol de qualquer gás ocupa sempre 22,4 litros. Esse valor é o **volume molar**. Então:
+## Aula Teórica
 
-número de mols de gás = volume (em litros) ÷ 22,4 L/mol
+### 1. Mol e massa molar
 
-Atenção: esse 22,4 vale só nas CNTP. Se o enunciado disser outra condição, como 25 graus Celsius e 1 atm, ele vai fornecer o volume molar correspondente (nesse caso, aproximadamente 24,5 L/mol). Sempre use o valor que a questão der.
+Átomos são pequenos demais para contar um a um. Por isso a química conta em **pacotes**, como a dúzia conta ovos de 12 em 12. O pacote da química se chama **mol**: 1 mol é 6,0 × 10²³ unidades (a **constante de Avogadro**). Um mol de moléculas de água são 6,0 × 10²³ moléculas de água.
 
-**Balanceamento: por que ele vem antes de tudo.** Numa reação química, átomos não são criados nem destruídos, apenas rearranjados, é a lei da conservação das massas, de Lavoisier. Por isso a equação precisa ter o mesmo número de átomos de cada elemento nos dois lados. Os números colocados na frente das fórmulas para conseguir isso são os **coeficientes estequiométricos**.
+A **massa molar** (M) é a massa de 1 mol de uma substância, em g/mol (gramas por mol). A prova também escreve **g mol⁻¹**: o expoente −1 quer dizer "por", então g mol⁻¹ é o mesmo que g/mol.
 
-Veja a combustão do metano. Escrita sem balancear, ficaria CH4 + O2 → CO2 + H2O, o que está errado: do lado esquerdo há 4 hidrogênios e do direito apenas 2. Colocando 2 na frente da água, os hidrogênios se acertam, mas agora há 4 oxigênios do lado direito (2 no CO2 e 2 nas duas águas) contra 2 do esquerdo; colocando 2 na frente do O2, tudo fecha:
+Para achar a massa molar, some as massas dos átomos da fórmula, cada uma vezes o seu índice. As massas dos elementos vêm na questão ou na tabela periódica. Em g/mol: H = 1, C = 12, N = 14, O = 16, S = 32, Ca = 40, Fe = 56.
 
-CH4 + 2 O2 → CO2 + 2 H2O
+**Fórmula: número de mols**
 
-Método prático para balancear rapidamente: comece pelo carbono, depois ajuste o hidrogênio e deixe o oxigênio por último, porque ele costuma aparecer em vários compostos.
+**n = m ÷ M**
 
-**O que os coeficientes realmente significam.** Este é o coração da estequiometria. Os coeficientes indicam a **proporção em mols** entre as substâncias: nunca a proporção em massa. Na equação acima, lemos: 1 mol de CH4 reage com 2 mols de O2 produzindo 1 mol de CO2 e 2 mols de H2O. Se você dobrar tudo, a proporção se mantém: 5 mols de metano exigem 10 mols de oxigênio e geram 5 mols de gás carbônico.
+- **n**: quantidade de matéria, em mol.
+- **m**: massa da amostra, em gramas (g).
+- **M**: massa molar da substância, em g/mol.
+- **Em palavras:** quantos pacotes de 1 mol cabem naquela massa.
+- **Quando usar:** sempre que precisar passar de massa para mol. Para o caminho inverso, **m = n × M**.
 
-Para gases, e só para gases nas mesmas condições, a proporção em mols também vale como proporção em volume. Mas para massa, nunca: 1 mol de CH4 pesa 16 g enquanto 2 mols de O2 pesam 64 g, e a proporção 1 para 2 dos coeficientes não corresponde à proporção de massa 16 para 64.
+**Exemplo resolvido.** Quantos mols há em 350 g de carbonato de cálcio (CaCO₃), o principal componente do calcário?
 
-**O roteiro que resolve qualquer questão de estequiometria.** Sempre os mesmos quatro passos:
+1. Átomos: 1 Ca, 1 C e 3 O.
+2. Massa molar: 40 + 12 + 3 × 16 = 40 + 12 + 48 = 100 g/mol.
+3. Fórmula: n = m ÷ M.
+4. Substituir: n = 350 ÷ 100.
+5. Resposta: 3,5 mol de CaCO₃.
 
-Passo 1: escreva e balanceie a equação química.
+**Erro comum.** Esquecer o índice. Em CaCO₃ há **3** oxigênios: são 48 g, não 16 g.
 
-Passo 2: converta o dado que a questão forneceu para mols (dividindo massa pela massa molar, ou volume por 22,4 L/mol, ou dividindo o número de partículas por 6,02 × 10²³).
+### 2. Equação balanceada: a receita da reação
 
-Passo 3: use os coeficientes numa regra de três para achar quantos mols da substância pedida estão envolvidos.
+Uma **equação química** é a receita da reação. À esquerda da seta (→, lê-se "forma") ficam os **reagentes**; à direita, os **produtos**. O número grande na frente de cada fórmula é o **coeficiente**: quantas unidades (ou quantos mols) participam. Sem número, o coeficiente é 1.
 
-Passo 4: converta o resultado de volta para a unidade que a questão pede, seja gramas, litros ou número de partículas.
+Numa reação, nenhum átomo some nem aparece do nada. Por isso a equação precisa estar **balanceada**: o número de átomos de cada elemento é igual dos dois lados.
 
-Um exemplo completo. Quantos gramas de CO2 são liberados ao queimar 80 g de metano? Passo 1: CH4 + 2 O2 → CO2 + 2 H2O. Passo 2: a massa molar do CH4 é 12 + 4 = 16 g/mol, então 80 ÷ 16 = 5 mols de metano. Passo 3: a proporção é 1 mol de CH4 para 1 mol de CO2, logo formam-se 5 mols de CO2. Passo 4: a massa molar do CO2 é 44 g/mol, então 5 × 44 = 220 g de gás carbônico.
+A **combustão completa** de um combustível feito de carbono e hidrogênio (e às vezes oxigênio) é a queima com oxigênio suficiente. Ela sempre forma **gás carbônico (CO₂) e água (H₂O)**. Muitas questões só dizem "combustão completa": a equação fica por sua conta.
 
-**Reagente limitante e reagente em excesso.** Quando a questão dá as quantidades de **dois** reagentes ao mesmo tempo, ela está pedindo isto. A analogia é a de montar sanduíches: com 10 fatias de pão e 20 fatias de queijo, e cada sanduíche exigindo 2 pães e 1 queijo, você faz 5 sanduíches e o pão acaba primeiro. O pão é o **reagente limitante** (ele limita o quanto de produto se forma) e o queijo é o **reagente em excesso** (sobra).
+**Exemplo resolvido.** Monte a equação da combustão completa do etanol (C₂H₆O), o álcool combustível.
 
-Como descobrir qual é o limitante: converta os dois reagentes para mols, divida o número de mols de cada um pelo seu próprio coeficiente na equação, e o menor resultado indica o limitante. Todo o cálculo do produto deve ser feito a partir do limitante: usar o reagente em excesso é o erro mais frequente do tema.
+1. Esqueleto: C₂H₆O + O₂ → CO₂ + H₂O.
+2. Carbono: há 2 à esquerda, então 2 CO₂.
+3. Hidrogênio: há 6 à esquerda; cada H₂O tem 2, então 3 H₂O.
+4. Oxigênio à direita: 2 × 2 + 3 × 1 = 7. À esquerda, o etanol já traz 1; faltam 6, que são 3 O₂.
+5. Resposta: C₂H₆O + 3 O₂ → 2 CO₂ + 3 H₂O. Conferência: C 2 = 2; H 6 = 6; O 1 + 6 = 7 = 4 + 3.
 
-**Pureza.** Matéria-prima industrial quase nunca é pura. Se um enunciado diz "200 g de calcário com 80% de pureza em CaCO3", isso significa que só 80% daquela massa é realmente carbonato de cálcio: 200 × 0,80 = 160 g. A parte impura não reage e deve ser descartada da conta. A pureza se aplica **antes** de qualquer cálculo, sobre o reagente.
+Às vezes o oxigênio só fecha com fração. No etano (C₂H₆): C₂H₆ + 7/2 O₂ → 2 CO₂ + 3 H₂O. A fração pode ficar (a proporção vale do mesmo jeito) ou tudo pode ser multiplicado por 2: 2 C₂H₆ + 7 O₂ → 4 CO₂ + 6 H₂O. O que importa é a proporção entre as substâncias.
 
-**Rendimento.** Na prática, a reação raramente converte tudo. O **rendimento** compara o que se obteve de verdade com o máximo teoricamente possível:
+Algumas questões desenham as moléculas com a **fórmula estrutural** (os átomos ligados por traços) em vez da fórmula comum. A leitura é igual: cada desenho sem número na frente vale 1. Uma fórmula escrita **em cima da seta** é o catalisador: ele ajuda a reação, mas não entra na conta.
 
-rendimento (em porcentagem) = (massa real obtida ÷ massa teórica calculada) × 100
+**Erro comum.** Mexer no índice para balancear (trocar H₂O por H₂O₂, por exemplo). Isso cria outra substância. Só se mudam os coeficientes.
 
-Se o rendimento é dado no enunciado, calcule primeiro a massa teórica pelo roteiro normal e depois multiplique pelo rendimento em forma decimal. Um rendimento de 75% sobre 220 g teóricos dá 220 × 0,75 = 165 g. O rendimento se aplica **depois** de todo o cálculo, sobre o produto. Em questões que combinam os dois, a ordem é: corrija a pureza no início, calcule normalmente, e aplique o rendimento no final.
+### 3. De massa para massa
 
-**Armadilhas típicas do INEP:** (1) usar os coeficientes como proporção de massa, eles são proporção de mols, e só viram proporção de volume no caso de gases nas mesmas condições; (2) esquecer de balancear a equação e montar a regra de três com proporção errada; (3) diante de dois reagentes com quantidades dadas, calcular pelo reagente errado em vez de identificar o limitante; (4) misturar unidades, deixando massa em quilogramas ou toneladas na hora de dividir pela massa molar em g/mol; (5) usar 22,4 L/mol quando o enunciado especificou outra condição de temperatura e pressão e forneceu outro volume molar; (6) aplicar a pureza no produto e o rendimento no reagente, invertendo a ordem correta; (7) responder o número de mols quando a questão pediu massa, ou vice-versa, o INEP costuma colocar as duas possibilidades entre as alternativas.
+Os coeficientes dão a proporção **em mol**, não em gramas. Por isso a conta tem três passos: massa → mol, mol → mol pela proporção, mol → massa. O esquema abaixo mostra o caminho.
+
+<figure class="figura">
+  <svg viewBox="0 0 460 110" role="img" aria-labelledby="fig-est-1-t fig-est-1-d">
+    <title id="fig-est-1-t">O caminho da estequiometria</title>
+    <desc id="fig-est-1-d">Quatro caixas em fila: massa de A, mols de A, mols de B, massa de B. Da primeira para a segunda, divide-se pela massa molar de A. Da segunda para a terceira, usa-se a proporção dos coeficientes. Da terceira para a quarta, multiplica-se pela massa molar de B.</desc>
+    <rect x="6" y="14" width="76" height="46" rx="6" class="traco" />
+    <text x="44" y="34" class="rotulo" text-anchor="middle">massa</text>
+    <text x="44" y="50" class="rotulo" text-anchor="middle">de A</text>
+    <rect x="130" y="14" width="76" height="46" rx="6" class="traco preenche" />
+    <text x="168" y="34" class="rotulo" text-anchor="middle">mols</text>
+    <text x="168" y="50" class="rotulo" text-anchor="middle">de A</text>
+    <rect x="254" y="14" width="76" height="46" rx="6" class="traco preenche" />
+    <text x="292" y="34" class="rotulo" text-anchor="middle">mols</text>
+    <text x="292" y="50" class="rotulo" text-anchor="middle">de B</text>
+    <rect x="378" y="14" width="76" height="46" rx="6" class="traco" />
+    <text x="416" y="34" class="rotulo" text-anchor="middle">massa</text>
+    <text x="416" y="50" class="rotulo" text-anchor="middle">de B</text>
+    <line x1="86" y1="37" x2="122" y2="37" class="traco" />
+    <polygon points="126,37 118,33 118,41" class="traco" />
+    <line x1="210" y1="37" x2="246" y2="37" class="traco" />
+    <polygon points="250,37 242,33 242,41" class="traco" />
+    <line x1="334" y1="37" x2="370" y2="37" class="traco" />
+    <polygon points="374,37 366,33 366,41" class="traco" />
+    <text x="106" y="84" class="rotulo-fraco" text-anchor="middle">÷ massa molar</text>
+    <text x="106" y="98" class="rotulo-fraco" text-anchor="middle">de A</text>
+    <text x="230" y="84" class="rotulo-fraco" text-anchor="middle">× proporção dos</text>
+    <text x="230" y="98" class="rotulo-fraco" text-anchor="middle">coeficientes</text>
+    <text x="354" y="84" class="rotulo-fraco" text-anchor="middle">× massa molar</text>
+    <text x="354" y="98" class="rotulo-fraco" text-anchor="middle">de B</text>
+  </svg>
+</figure>
+
+Na prática, dá para juntar os três passos numa só regra de três: escreva, embaixo de cada substância, **coeficiente × massa molar**. Essa linha é a proporção em massa, e ela vale em g, kg ou toneladas (t), desde que as duas substâncias fiquem na mesma unidade.
+
+**Fórmula: proporção em massa**
+
+**massa de B = massa de A × (coef. de B × M de B) ÷ (coef. de A × M de A)**
+
+- **A**: a substância cuja massa é dada.
+- **B**: a substância cuja massa é pedida.
+- **coef.**: o coeficiente de cada uma na equação balanceada.
+- **M**: a massa molar de cada uma, em g/mol.
+- **Em palavras:** a massa pedida está para a massa dada assim como "coeficiente × massa molar" de uma está para o da outra.
+- **Quando usar:** em toda questão que dá uma massa e pede outra, na mesma reação.
+
+**Exemplo resolvido.** Aquecido, o calcário se decompõe: CaCO₃ → CaO + CO₂. O CaO é a cal virgem (massa molar 56 g/mol). Quanta cal virgem se obtém de 2 t de CaCO₃ puro? E quanto CaCO₃ é preciso para obter 7 kg de CaO?
+
+1. Proporção: 1 CaCO₃ para 1 CaO. Embaixo de cada um: 1 × 100 = 100 e 1 × 56 = 56.
+2. Ida: 100 t de CaCO₃ dão 56 t de CaO; 2 t dão 2 × 56 ÷ 100 = 1,12 t de CaO.
+3. Volta: 56 kg de CaO vêm de 100 kg de CaCO₃; 7 kg vêm de 7 × 100 ÷ 56 = 12,5 kg de CaCO₃.
+4. Resposta: 1,12 t de cal virgem; 12,5 kg de calcário puro.
+
+Quando a pergunta pede a quantidade exata, sem sobra, é a conta direta pela proporção. E, se as alternativas vêm com "mais próximo de", arredonde só no fim.
+
+**Erro comum.** Usar só as massas molares e esquecer o coeficiente. Se a equação diz 1 para 3, a massa do segundo é 3 × a massa molar dele.
+
+### 4. Quanto de um elemento há num composto
+
+Às vezes a questão fala de um **elemento** (o ferro, o alumínio) que está preso num composto (um óxido). A fórmula do composto diz a proporção: em Fe₂O₃, cada 1 mol do óxido tem 2 mol de ferro.
+
+Em massa: Fe₂O₃ = 2 × 56 + 3 × 16 = 112 + 48 = 160 g/mol, dos quais 112 g são de ferro. Então o ferro é 112 ÷ 160 = 0,7 = 70% da massa do óxido.
+
+Quando o composto está misturado com outras coisas (terra, rocha), a amostra é **impura**. A **pureza** (ou o **teor**) é a porcentagem da amostra que é a substância útil. "X% em massa" quer dizer X g da substância em cada 100 g da amostra.
+
+**Fórmula: pureza**
+
+**massa da substância pura = massa da amostra × pureza**
+
+- **pureza**: em número decimal (70% = 0,7).
+- **Em palavras:** só a parte pura da amostra entra na reação.
+- **Quando usar:** quando o enunciado dá a porcentagem de uma substância numa amostra, num minério ou num produto.
+- **Caminho de volta:** se você sabe quanto de substância pura precisa e quer a amostra, **divida** pela pureza: massa da amostra = massa pura ÷ pureza.
+
+**Exemplo resolvido.** Uma siderúrgica (fábrica de aço) quer 63 kg de ferro. Ela usa um minério em que 60% da massa é Fe₂O₃. Quanto minério é preciso?
+
+1. Ferro no óxido: 112 kg de Fe em cada 160 kg de Fe₂O₃.
+2. Óxido necessário: 63 × 160 ÷ 112 = 90 kg de Fe₂O₃.
+3. Minério: o óxido é só 60% dele, então divida: 90 ÷ 0,6 = 150 kg.
+4. Conferência: 150 kg × 0,6 = 90 kg de óxido, e 90 × 112 ÷ 160 = 63 kg de ferro.
+5. Resposta: 150 kg de minério.
+
+**Erro comum.** No caminho de volta, multiplicar pela pureza em vez de dividir. A amostra impura precisa ser **maior** que a massa pura, nunca menor.
+
+### 5. Pureza e rendimento
+
+O **rendimento** diz quanto do produto previsto pela conta realmente se obtém. Um rendimento de 60% quer dizer que sai 60% do que a equação promete: parte se perde na purificação, parte não reage.
+
+**Fórmula: rendimento**
+
+**produto real = produto teórico × rendimento**
+
+- **produto teórico**: o que a conta da equação dá (rendimento de 100%).
+- **rendimento**: em número decimal (60% = 0,6).
+- **Em palavras:** a fábrica só recebe uma fração do que a química promete.
+- **Quando usar:** quando o enunciado dá o rendimento da reação ou do processo.
+- **Caminho de volta:** para garantir uma quantidade real de produto, a matéria-prima tem de ser **maior**: divida pelo rendimento.
+
+A pureza e o rendimento se encaixam no caminho da seção 3, como mostra o esquema abaixo. Na ida, os dois multiplicam; na volta, os dois dividem.
+
+<figure class="figura">
+  <svg viewBox="0 0 460 110" role="img" aria-labelledby="fig-est-2-t fig-est-2-d">
+    <title id="fig-est-2-t">Onde entram a pureza e o rendimento</title>
+    <desc id="fig-est-2-d">Quatro caixas em fila: amostra impura, reagente puro, produto teórico, produto real. Da amostra para o reagente puro, multiplica-se pela pureza. Do reagente puro para o produto teórico, usa-se a proporção da equação. Do produto teórico para o produto real, multiplica-se pelo rendimento. No caminho de volta, divide-se.</desc>
+    <rect x="6" y="14" width="76" height="46" rx="6" class="traco" />
+    <text x="44" y="34" class="rotulo" text-anchor="middle">amostra</text>
+    <text x="44" y="50" class="rotulo" text-anchor="middle">impura</text>
+    <rect x="130" y="14" width="76" height="46" rx="6" class="traco preenche" />
+    <text x="168" y="34" class="rotulo" text-anchor="middle">reagente</text>
+    <text x="168" y="50" class="rotulo" text-anchor="middle">puro</text>
+    <rect x="254" y="14" width="76" height="46" rx="6" class="traco preenche" />
+    <text x="292" y="34" class="rotulo" text-anchor="middle">produto</text>
+    <text x="292" y="50" class="rotulo" text-anchor="middle">teórico</text>
+    <rect x="378" y="14" width="76" height="46" rx="6" class="traco" />
+    <text x="416" y="34" class="rotulo" text-anchor="middle">produto</text>
+    <text x="416" y="50" class="rotulo" text-anchor="middle">real</text>
+    <line x1="86" y1="37" x2="122" y2="37" class="traco" />
+    <polygon points="126,37 118,33 118,41" class="traco" />
+    <line x1="210" y1="37" x2="246" y2="37" class="traco" />
+    <polygon points="250,37 242,33 242,41" class="traco" />
+    <line x1="334" y1="37" x2="370" y2="37" class="traco" />
+    <polygon points="374,37 366,33 366,41" class="traco" />
+    <text x="106" y="84" class="rotulo-fraco" text-anchor="middle">× pureza</text>
+    <text x="230" y="84" class="rotulo-fraco" text-anchor="middle">× proporção</text>
+    <text x="230" y="98" class="rotulo-fraco" text-anchor="middle">em massa</text>
+    <text x="354" y="84" class="rotulo-fraco" text-anchor="middle">× rendimento</text>
+  </svg>
+</figure>
+
+**Exemplo resolvido.** Caminho de ida: um forno de cal (caieira) aquece 400 kg de calcário com 90% de CaCO₃. O rendimento do forno é de 60%. Quanta cal virgem (CaO) sai?
+
+1. Pureza: 400 × 0,9 = 360 kg de CaCO₃.
+2. Proporção (seção 3): 360 × 56 ÷ 100 = 201,6 kg de CaO teórico.
+3. Rendimento: 201,6 × 0,6 ≈ 121 kg de CaO (≈ quer dizer "aproximadamente").
+4. Resposta: cerca de 121 kg de cal virgem.
+
+Caminho de volta: com o mesmo forno (60%), quanto CaCO₃ puro é preciso para obter de fato 42 kg de CaO?
+
+1. Produto teórico: se só 60% aparece, a conta precisa prever 42 ÷ 0,6 = 70 kg de CaO.
+2. Proporção: 70 × 100 ÷ 56 = 125 kg de CaCO₃.
+3. Conferência: 125 kg dão 70 kg de CaO teórico; 70 × 0,6 = 42 kg reais.
+4. Resposta: 125 kg de CaCO₃.
+
+Cuidado com as **unidades**. Um remédio costuma vir em miligramas (mg): 1 g = 1 000 mg e 1 kg = 1 000 g = 1 000 000 mg. "Mil" é 1 000, e "1 milhão" é 1 000 000. Exemplo: 300 mil cápsulas de 150 mg somam 300 000 × 150 = 45 000 000 mg, que dividido por 1 000 000 dá 45 kg.
+
+**Erro comum.** Aplicar o rendimento na direção errada. Se a pergunta é "quanto reagente usar" para obter um produto, o rendimento baixo **aumenta** a quantidade de reagente: divida por ele.
+
+### 6. Reações em sequência
+
+Às vezes o produto sai de várias reações seguidas: o produto de uma é reagente da seguinte. Não é preciso calcular etapa por etapa. Siga o elemento que interessa e ache a **proporção total** entre a primeira substância e a última.
+
+**Exemplo resolvido.** O ácido sulfúrico (H₂SO₄, 98 g/mol) é feito a partir de enxofre (S, 32 g/mol) nesta sequência:
+
+S + O₂ → SO₂\
+2 SO₂ + O₂ → 2 SO₃\
+SO₃ + H₂O → H₂SO₄
+
+Quanto ácido sai de 16 t de enxofre?
+
+1. Primeira etapa: 1 S dá 1 SO₂.
+2. Segunda: 2 SO₂ dão 2 SO₃, ou seja, 1 para 1.
+3. Terceira: 1 SO₃ dá 1 H₂SO₄.
+4. Proporção total: 1 S → 1 H₂SO₄. Em massa: 32 t de S → 98 t de ácido.
+5. Regra de três: 16 × 98 ÷ 32 = 49 t de H₂SO₄.
+
+Se as etapas tiverem coeficientes diferentes, multiplique as proporções. Se o enunciado der um rendimento para o processo todo, aplique-o uma vez só, no fim.
+
+**Erro comum.** Somar as massas molares de todas as substâncias intermediárias. Elas não importam: só a primeira e a última entram na regra de três. A questão pode dar massas molares que não servem para a conta; use só as de que precisa.
+
+### 7. Reagente em excesso
+
+Na indústria, é comum colocar **mais** de um reagente do que a equação pede, para ter certeza de que o outro (o mais caro) reaja todo. O reagente que sobra é o reagente em **excesso**. O que acaba primeiro e decide quanto produto se forma é o **reagente limitante**.
+
+A **quantidade estequiométrica** é a quantidade exata que a equação pede. "Excesso de X% em relação à quantidade estequiométrica" quer dizer: calcule a quantidade exata e some X% a ela.
+
+**Fórmula: quantidade com excesso**
+
+**quantidade usada = quantidade estequiométrica × (1 + X ÷ 100)**
+
+- **X**: a porcentagem de excesso.
+- **Em palavras:** 25% a mais é multiplicar por 1,25.
+- **Quando usar:** quando o enunciado diz que um reagente é colocado "em excesso de X%".
+
+**Exemplo resolvido.** A amônia sai da reação N₂ + 3 H₂ → 2 NH₃ (H₂ = 2 g/mol; NH₃ = 17 g/mol). Uma fábrica quer 34 kg de NH₃ e usa hidrogênio com 25% de excesso. Quanto H₂ ela coloca?
+
+1. Mols de amônia: 34 kg ÷ 17 g/mol. Em kg, a conta dá **quilomols** (kmol, 1 kmol = 1 000 mol): 34 ÷ 17 = 2 kmol.
+2. Proporção: 2 NH₃ pedem 3 H₂, então 2 kmol de NH₃ pedem 3 kmol de H₂.
+3. Massa estequiométrica: 3 kmol × 2 g/mol = 6 kg de H₂.
+4. Excesso: 6 × 1,25 = 7,5 kg.
+5. Resposta: 7,5 kg de H₂.
+
+Quando a proporção não é redonda (como 3 para 7), faça a regra de três com fração: 7 ÷ 3 ≈ 2,33 de um para cada 1 do outro. O "(s)" ao lado de uma fórmula indica **sólido**; "(g)", gás; "(l)", líquido. Isso não muda a conta.
+
+**Erro comum.** Esquecer o excesso e marcar a quantidade estequiométrica, que costuma estar entre as alternativas. Ou fazer o contrário: tirar X% em vez de somar.
+
+### Armadilhas típicas do INEP
+
+1. **Usar a proporção em gramas direto dos coeficientes**: os coeficientes contam mols; multiplique pela massa molar.
+2. **Esquecer o índice** na massa molar (O₃ são 3 oxigênios).
+3. **Não balancear** a combustão antes de usar a proporção.
+4. **Multiplicar** pela pureza ou pelo rendimento **no caminho de volta**: na volta, divide-se.
+5. **Parar no meio**: calcular o óxido e esquecer o minério, ou o produto teórico e esquecer o rendimento. As alternativas trazem esses valores intermediários.
+6. **Misturar unidades**: mg com kg, "mil" com "milhão".
+7. **Ignorar o excesso** ou tirá-lo em vez de somá-lo.
 
 ## Tópicos-Chave para Revisão
 
 <div className="topico">
 
-Toda estequiometria é uma regra de três montada sobre os coeficientes da equação balanceada, que dizem a proporção em mols entre as substâncias. A conta só funciona depois de converter tudo para mol.
+#### 1. Mol e massa molar
 
-Mol é uma unidade de contagem que vale 6,02 × 10²³ unidades, valor conhecido como constante de Avogadro, e serve para contar átomos e moléculas por meio de algo mensurável, que é a massa.
+**Mol** é um pacote de 6,0 × 10²³ unidades; a **massa molar** soma as massas dos átomos (com os **índices**): **n = m ÷ M** e **m = n × M**; g mol⁻¹ = g/mol.
 
-Massa molar é a massa de um mol em gramas por mol e coincide com o número da tabela periódica, somando-se os átomos no caso de compostos (H2O dá 18 g/mol, CO2 dá 44 g/mol, CaCO3 dá 100 g/mol); a conversão fundamental é número de mols = massa ÷ massa molar, e no sentido inverso massa = número de mols × massa molar.
+#### 2. Equação balanceada
 
-Para gases nas CNTP, ou seja, a 0 grau Celsius e 1 atmosfera, um mol de qualquer gás ocupa 22,4 litros, de modo que número de mols = volume em litros ÷ 22,4; fora das CNTP, o enunciado fornece o volume molar correto e é ele que deve ser usado.
+Os **coeficientes** dão a proporção em mol; a **combustão completa** sempre forma **CO₂ + H₂O**; balanceie C, depois H, depois O; sem número, vale 1, também na **fórmula estrutural**; o que está em cima da seta é **catalisador**.
 
-Balancear é garantir o mesmo número de átomos de cada elemento nos dois lados, conforme a lei de conservação das massas de Lavoisier, ajustando os coeficientes estequiométricos e começando pelo carbono, depois o hidrogênio e por último o oxigênio, como em CH4 + 2 O2 → CO2 + 2 H2O.
+#### 3. De massa para massa
 
-Os coeficientes representam proporção em mols e, apenas para gases nas mesmas condições, também proporção em volume, jamais proporção em massa; o roteiro de resolução é balancear, converter o dado para mols, aplicar a regra de três dos coeficientes e converter o resultado para a unidade pedida.
+Caminho **massa → mol → mol → massa**: escreva **coeficiente × massa molar** embaixo de cada substância e faça a **regra de três**: **massa de B = massa de A × (coef. de B × M de B) ÷ (coef. de A × M de A)**.
 
-Quando o enunciado fornece as quantidades de dois reagentes, é preciso identificar o reagente limitante dividindo os mols de cada reagente pelo seu próprio coeficiente e escolhendo o menor resultado; o produto se calcula sempre a partir do limitante, e o outro reagente é o que está em excesso e sobra.
+<figure class="figura">
+  <svg viewBox="0 0 460 70" role="img" aria-labelledby="fig-est-1-rev-t fig-est-1-rev-d">
+    <title id="fig-est-1-rev-t">O caminho da estequiometria (resumo)</title>
+    <desc id="fig-est-1-rev-d">Massa de A, dividida pela massa molar de A, dá mols de A; pela proporção dos coeficientes, mols de B; multiplicando pela massa molar de B, massa de B.</desc>
+    <rect x="6" y="10" width="76" height="30" rx="6" class="traco" />
+    <text x="44" y="29" class="rotulo" text-anchor="middle">massa A</text>
+    <rect x="130" y="10" width="76" height="30" rx="6" class="traco preenche" />
+    <text x="168" y="29" class="rotulo" text-anchor="middle">mol A</text>
+    <rect x="254" y="10" width="76" height="30" rx="6" class="traco preenche" />
+    <text x="292" y="29" class="rotulo" text-anchor="middle">mol B</text>
+    <rect x="378" y="10" width="76" height="30" rx="6" class="traco" />
+    <text x="416" y="29" class="rotulo" text-anchor="middle">massa B</text>
+    <line x1="86" y1="25" x2="122" y2="25" class="traco" />
+    <polygon points="126,25 118,21 118,29" class="traco" />
+    <line x1="210" y1="25" x2="246" y2="25" class="traco" />
+    <polygon points="250,25 242,21 242,29" class="traco" />
+    <line x1="334" y1="25" x2="370" y2="25" class="traco" />
+    <polygon points="374,25 366,21 366,29" class="traco" />
+    <text x="106" y="60" class="rotulo-fraco" text-anchor="middle">÷ M(A)</text>
+    <text x="230" y="60" class="rotulo-fraco" text-anchor="middle">× proporção</text>
+    <text x="354" y="60" class="rotulo-fraco" text-anchor="middle">× M(B)</text>
+  </svg>
+</figure>
 
-Pureza se aplica no reagente e antes do cálculo, multiplicando a massa bruta pela porcentagem de substância útil, enquanto rendimento se aplica no produto e depois do cálculo, multiplicando a massa teórica pela porcentagem obtida, conforme rendimento = (massa real ÷ massa teórica) × 100.
+#### 4. Elemento no composto e pureza
+
+A **fórmula** diz quanto do elemento há no composto (Fe₂O₃: 112 g de Fe em 160 g); **massa da substância pura = massa da amostra × pureza**; para achar a amostra, **divida** pela pureza.
+
+#### 5. Rendimento
+
+O **rendimento** entra assim: **produto real = produto teórico × rendimento**; para garantir um produto, **divida** a matéria-prima pelo rendimento; confira **unidades** (1 kg = 1 000 000 mg).
+
+#### 6. Reações em sequência
+
+Ache a **proporção total** entre a primeira e a última substância seguindo o **elemento**; os **intermediários** não entram na conta.
+
+#### 7. Reagente em excesso
+
+Com **excesso** de X%: **quantidade usada = quantidade estequiométrica × (1 + X ÷ 100)**; o **reagente limitante** acaba primeiro e decide o produto.
 
 </div>
 
-## Teste de Fogo
+## Questões do ENEM
 
-*Questões sem gabarito: resolva primeiro, depois confira com o professor ou com a IA.*
+*Marque uma alternativa em cada questão e confira tudo de uma vez no botão do fim.*
 
-**Questão 1 (estilo ENEM: autoral)**
-A queima de combustíveis fósseis é a principal fonte antrópica de gás carbônico na atmosfera. O octano, C8H18, é um dos componentes da gasolina, e sua combustão completa pode ser representada pela equação química balanceada:
+**Questão 1**
 
-2 C8H18 + 25 O2 → 16 CO2 + 18 H2O
+*ENEM 2012 · 1º dia · caderno azul · questão 59*
 
-Considere as massas molares, em g/mol: C8H18 igual a 114 e CO2 igual a 44.
+No Japão, um movimento nacional para a promoção da luta contra o aquecimento global leva o *slogan*: **1 pessoa, 1 dia, 1 kg de CO₂ a menos!** A ideia é cada pessoa reduzir em 1 kg a quantidade de CO₂ emitida todo dia, por meio de pequenos gestos ecológicos, como diminuir a queima de gás de cozinha.
 
-A massa de gás carbônico lançada na atmosfera pela queima completa de 1.140 g de octano, em gramas, é mais próxima de
+Um hamburguer ecológico? É pra já! Disponível em: http://lqes.iqm.unicamp.br. Acesso em: 24 fev. 2012 (adaptado).
 
-a) 440.
-b) 1.140.
-c) 1.760.
-d) 3.520.
-e) 7.040.
+Considerando um processo de combustão completa de um gás de cozinha composto exclusivamente por butano (C₄H₁₀), a mínima quantidade desse gás que um japonês deve deixar de queimar para atender à meta diária, apenas com esse gesto, é de
 
-**Questão 2 (estilo ENEM: autoral)**
-Uma indústria de fertilizantes produz amônia pelo processo de Haber-Bosch, em que nitrogênio e hidrogênio gasosos reagem segundo a equação:
+Dados: CO₂ (44 g/mol); C₄H₁₀ (58 g/mol)
 
-N2 + 3 H2 → 2 NH3
+A) 0,25 kg.\
+B) 0,33 kg.\
+C) 1,0 kg.\
+D) 1,3 kg.\
+E) 3,0 kg.
 
-Em um reator, foram introduzidos 14 kg de N2 e 6 kg de H2. Considere as massas molares, em g/mol: N2 igual a 28, H2 igual a 2 e NH3 igual a 17.
+**Questão 2**
 
-Nessas condições, a massa máxima de amônia que pode ser obtida, em quilogramas, é
+*ENEM 2023 · 2ª aplicação · 2º dia · caderno azul · questão 95*
 
-a) 8,5.
-b) 17,0.
-c) 25,5.
-d) 34,0.
-e) 51,0.
+Um carro sedã apresenta tipicamente 200 kg de alumínio distribuídos pelo chassi, motor e cabine. Uma amostra de bauxita, principal fonte natural do metal, é composta por 50% em massa de óxido de alumínio (Al₂O₃). Considere a massa molar do alumínio (Al) igual a 27 g mol⁻¹ e a do oxigênio (O) igual a 16 g mol⁻¹.
 
-**Questão 3 (estilo ENEM: autoral)**
-Efluentes industriais contendo ácido sulfúrico precisam ser neutralizados antes do descarte em corpos d'água. Uma estação de tratamento utiliza cal hidratada para essa finalidade, conforme a reação:
+A massa de bauxita que deve ser empregada para produzir o alumínio usado na fabricação de um carro desse modelo é mais próxima de
 
-H2SO4 + Ca(OH)2 → CaSO4 + 2 H2O
+A) 378 kg.\
+B) 400 kg.\
+C) 637 kg.\
+D) 756 kg.\
+E) 1 512 kg.
 
-Um lote de efluente contém 490 kg de H2SO4. Considere as massas molares, em g/mol: H2SO4 igual a 98 e Ca(OH)2 igual a 74.
+**Questão 3**
 
-A massa mínima de cal hidratada necessária para neutralizar completamente esse lote, em quilogramas, é
+*ENEM 2015 · 1º dia · caderno azul · questão 76*
 
-a) 74.
-b) 148.
-c) 370.
-d) 490.
-e) 740.
+Para proteger estruturas de aço da corrosão, a indústria utiliza uma técnica chamada galvanização. Um metal bastante utilizado nesse processo é o zinco, que pode ser obtido a partir de um minério denominado esfalerita (ZnS), de pureza 75%. Considere que a conversão do minério em zinco metálico tem rendimento de 80% nesta sequência de equações químicas:
 
-**Questão 4 (estilo ENEM: autoral)**
-O carbonato de cálcio é decomposto termicamente em fornos industriais para a produção de cal virgem, matéria-prima da construção civil, segundo a equação:
+2 ZnS + 3 O₂ → 2 ZnO + 2 SO₂\
+ZnO + CO → Zn + CO₂
 
-CaCO3 → CaO + CO2
+Considere as massas molares: ZnS (97 g/mol); O₂ (32 g/mol); ZnO (81 g/mol); SO₂ (64 g/mol); CO (28 g/mol); CO₂ (44 g/mol); e Zn (65 g/mol).
 
-Uma indústria processou 500 kg de calcário com 80% de pureza em CaCO3. O processo apresentou rendimento de 90%. Considere as massas molares, em g/mol: CaCO3 igual a 100 e CaO igual a 56.
+Que valor mais próximo de massa de zinco metálico, em quilogramas, será produzido a partir de 100 kg de esfalerita?
 
-A massa de cal virgem efetivamente obtida, em quilogramas, é mais próxima de
+A) 25\
+B) 33\
+C) 40\
+D) 50\
+E) 54
 
-a) 202.
-b) 224.
-c) 252.
-d) 280.
-e) 400.
+**Questão 4**
 
-**Questão 5 (estilo ENEM: autoral)**
-Um comprimido efervescente contém bicarbonato de sódio, que em meio ácido libera gás carbônico, responsável pelas bolhas. A reação pode ser representada de forma simplificada por:
+*ENEM 2017 · 2º dia · caderno azul · questão 122*
 
-NaHCO3 + HCl → NaCl + H2O + CO2
+O ácido acetilsalicílico, AAS (massa molar igual a 180 g/mol), é sintetizado a partir da reação do ácido salicílico (massa molar igual a 138 g/mol) com anidrido acético, usando-se ácido sulfúrico como catalisador, conforme a equação química:
 
-Um comprimido contém 4,2 g de NaHCO3, cuja massa molar é 84 g/mol. Considere que todo o bicarbonato reage e que o gás liberado é medido nas CNTP, em que o volume molar é 22,4 L/mol.
+<figure class="figura">
 
-O volume de gás carbônico liberado por um comprimido, em litros, é
+![Equação da síntese do AAS em fórmulas estruturais: ácido salicílico mais anidrido acético, com H₂SO₄ sobre a seta, formam ácido acetilsalicílico mais ácido acético; nenhuma substância tem número na frente.](./img/estequiometria/q4.png)
 
-a) 0,56.
-b) 1,12.
-c) 2,24.
-d) 4,48.
-e) 22,4.
+</figure>
+
+Após a síntese, o AAS é purificado e o rendimento final é de aproximadamente 50%. Devido às suas propriedades farmacológicas (antitérmico, analgésico, anti-inflamatório e antitrombótico), o AAS é utilizado como medicamento na forma de comprimidos, nos quais se emprega tipicamente uma massa de 500 mg dessa substância.
+
+Uma indústria farmacêutica pretende fabricar um lote de 900 mil comprimidos, de acordo com as especificações do texto. Qual é a massa de ácido salicílico, em kg, que deve ser empregada para esse fim?
+
+A) 293\
+B) 345\
+C) 414\
+D) 690\
+E) 828
+
+**Questão 5**
+
+*ENEM 2025 · 2º dia · caderno azul · questão 131*
+
+O Brasil é o maior produtor mundial de nióbio (massa molar = 93 g mol⁻¹), metal utilizado na fabricação de vários tipos de aço: automotivos, estruturais e inoxidáveis. O processo utilizado na produção do nióbio é a redução aluminotérmica de Nb₂O₅ com excesso de 10% de Al (massa molar = 27 g mol⁻¹), em relação à quantidade estequiométrica da reação, representada pela equação química:
+
+3 Nb₂O₅ (s) + 10 Al (s) → 6 Nb (s) + 5 Al₂O₃ (s)
+
+Uma engenheira metalúrgica estimou a massa de alumínio necessária para produzir 9,3 kg de nióbio, nas condições descritas, para a produção de um lote de peças de aço encomendado por uma indústria, considerando um rendimento de 100%.
+
+Disponível em: www.cbmm.com.br. Acesso em: 17 out. 2015 (adaptado).
+
+A massa de alumínio, em quilograma, estimada pela engenheira é mais próxima de
+
+A) 2,7 kg.\
+B) 3,0 kg.\
+C) 4,1 kg.\
+D) 4,5 kg.\
+E) 5,0 kg.
