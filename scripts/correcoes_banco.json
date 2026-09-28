@@ -646,5 +646,13 @@
   "2019-regular-D2-azul-Q117": {
     "nota": "conteúdo do quadro colado no texto; expoentes da unidade; conferido na imagem da página em 28/09/2026",
     "texto": "Em uma aula experimental de calorimetria, uma professora queimou 2,5 g de castanha-de-caju crua para aquecer 350 g de água, em um recipiente apropriado para diminuir as perdas de calor. Com base na leitura da tabela nutricional a seguir e da medida da temperatura da água, após a queima total do combustível, ela concluiu que 50% da energia disponível foi aproveitada. O calor específico da água é 1 cal g⁻¹ °C⁻¹, e sua temperatura inicial era de 20 °C. Qual foi a temperatura da água, em grau Celsius, medida ao final do experimento?"
+  },
+  "2017-regular-D2-azul-Q116": {
+    "nota": "rótulos da figura colados no texto; figura com crédito de livro, redesenhada em SVG na aula; conferido na imagem da página em 28/09/2026",
+    "texto": "Visando explicar uma das propriedades da membrana plasmática, fusionou-se uma célula de camundongo com uma célula humana, formando uma célula híbrida. Em seguida, com o intuito de marcar as proteínas de membrana, dois anticorpos foram inseridos no experimento, um específico para as proteínas de membrana do camundongo e outro para as proteínas de membrana humana. Os anticorpos foram visualizados ao microscópio por meio de fluorescência de cores diferentes. ALBERTS, B. et al. Biologia molecular da célula. Porto Alegre: Artes Médicas, 1997 (adaptado). A mudança observada da etapa 3 para a etapa 4 do experimento ocorre porque as proteínas"
+  },
+  "2022-regular-D2-azul-Q121": {
+    "nota": "conteúdo da tabela colado no texto; conferido na imagem da página em 28/09/2026",
+    "texto": "Antimicrobianos são substâncias naturais ou sintéticas que têm capacidade de matar ou inibir o crescimento de microrganismos. A tabela apresenta uma lista de antimicrobianos hipotéticos, bem como suas ações e efeitos sobre o metabolismo microbiano. Qual dos antimicrobianos deve ser utilizado para curar uma infecção causada por um fungo sem afetar as bactérias da microbiota normal do organismo?"
   }
 }
