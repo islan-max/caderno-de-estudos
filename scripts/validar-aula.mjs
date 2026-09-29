@@ -443,7 +443,7 @@ function validar(arquivo) {
       if (depois.length && j < questoes.length - 1) erro(L(teste.ini + q.k + iA + 6), 'nada entre a alternativa E e a próxima questão');
       q.alternativas = alts.map((l) => l.replace(/^[A-E]\) /, '').replace(/\\$/, '').trim());
       q.temFigura = bloco.slice(0, iA).some((l) => /<figure class="figura">/.test(l));
-      q.remeteProva = bloco.slice(0, iA).some((l) => /(Texto-base|Foto|Tirinha|Cartaz|Desenho): ver prova oficial/.test(l));
+      q.remeteProva = bloco.slice(0, iA).some((l) => /(Texto-base|Foto|Pintura|Tirinha|Cartaz|Desenho): ver prova oficial/.test(l));
     });
   }
 
