@@ -141,7 +141,7 @@ function validar(arquivo) {
   corpo.forEach((l, i) => {
     if (/^-{3,}\s*$/.test(l)) erro(L(i), '"---" no corpo quebra o MDX');
     if (/[{}]/.test(l)) erro(L(i), 'chaves { } não podem aparecer no texto');
-    if (/(?<!R)\$[^$\s][^$]*\$/.test(l)) erro(L(i), 'LaTeX ($…$) não funciona no site: use Unicode');
+    if (/(?<!R)\$[^$\s\d][^$]*\$/.test(l)) erro(L(i), 'LaTeX ($…$) não funciona no site: use Unicode');
     if (/\d\s*\*\s*\d/.test(l)) erro(L(i), 'use × ou · para multiplicar, nunca *');
     if (/[A-Za-zÀ-ú0-9]_[A-Za-zÀ-ú0-9]/.test(l) && !/^\s*</.test(l) && !/\]\(\.\/img\//.test(l)) erro(L(i), '"_" no meio de palavra vira itálico no MDX');
     const semTagsMenos = l.replace(/<[^>]*>/g, ' ');
