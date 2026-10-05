@@ -873,5 +873,28 @@
   "2017-ppl-D1-branco-Q090": {
     "nota": "a 'figura' detectada é a folha de redação da página seguinte; a questão é só texto; conferido na imagem da página em 05/10/2026",
     "figuras": []
+  },
+  "2023-regular-D1-azul-Q090": {
+    "nota": "figura era a folha de rascunho da redação (página 32); rodapé colado na alternativa E; crédito de Machado de Assis faltava no texto; conferido na imagem da página 31 em 05/10/2026",
+    "texto": "Não tinha outra filosofia. Nem eu. Não digo que a Universidade me não tivesse ensinado alguma; mas eu decorei-lhe só as fórmulas, o vocabulário, o esqueleto. Tratei-a como tratei o latim; embolsei três versos de Virgílio, dois de Horácio, uma dúzia de locuções morais e políticas, para as despesas da conversação. Tratei-os como tratei a história e a jurisprudência. Colhi de todas as cousas a fraseologia, a casca, a ornamentação. ASSIS, M. Memórias póstumas de Brás Cubas. Belo Horizonte: Autêntica, 1999. A descrição crítica do personagem de Machado de Assis assemelha-se às características dos sofistas, contestados pelos filósofos gregos da Antiguidade, porque se mostra alinhada à",
+    "alternativas": [
+      "elaboração conceitual de entendimentos.",
+      "utilização persuasiva do discurso.",
+      "narração alegórica dos rapsodos.",
+      "investigação empírica da physis.",
+      "expressão pictográfica da pólis."
+    ],
+    "figuras": [],
+    "regioes": [
+      {
+        "pagina": 31,
+        "bbox": [
+          0,
+          515,
+          567,
+          745
+        ]
+      }
+    ]
   }
 }
