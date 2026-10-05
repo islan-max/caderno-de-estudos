@@ -911,5 +911,19 @@
       "conhecimento, sua natureza e condições."
     ],
     "alternativas_em_imagem": false
+  },
+  "2025-regular-D1-azul-Q090": {
+    "nota": "segunda região era só o código de barras do alto da página 32; questão inteira na página 31; conferido na imagem em 05/10/2026",
+    "regioes": [
+      {
+        "pagina": 31,
+        "bbox": [
+          283.5,
+          405.1,
+          566.9,
+          708.4
+        ]
+      }
+    ]
   }
 }
