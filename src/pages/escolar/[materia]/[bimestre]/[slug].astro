@@ -1,6 +1,7 @@
 ---
 import { secaoVisivel } from '../../../../lib/secoes';
 import Tema from '../../../../layouts/Tema.astro';
+import Accordion from '../../../../components/Accordion.astro';
 import { getCollection, render } from 'astro:content';
 import { bimestreLabel as bimLabelFn } from '../../../../lib/slug';
 import { u } from '../../../../lib/url';
@@ -10,14 +11,14 @@ export async function getStaticPaths() {
   if (!secaoVisivel('escolar')) return [];
   const aulas = await getCollection('escolar');
   return aulas.map((aula) => {
-    const [materia, bimestre, semana] = aula.id.split('/');
-    return { params: { materia, bimestre, semana } };
+    const [materia, bimestre, slugAula] = aula.id.split('/');
+    return { params: { materia, bimestre, slug: slugAula } };
   });
 }
 
-const { materia, bimestre, semana } = Astro.params;
+const { materia, bimestre, slug } = Astro.params;
 const entries = await getCollection('escolar');
-const entry = entries.find((aula) => aula.id === `${materia}/${bimestre}/${semana}`);
+const entry = entries.find((e) => e.id === `${materia}/${bimestre}/${slug}`);
 if (!entry) return Astro.redirect(u('/escolar'));
 const Content = (await render(entry)).Content;
 const subjectLabel = entry.data.subject;
@@ -30,6 +31,8 @@ const subjectLabel = entry.data.subject;
   quickSummary={entry.data.quickSummary}
   resources={entry.data.resources}
   active="escolar"
+  aulaId={`escolar/${materia}/${bimestre}/${slug}`}
+  gabarito={entry.data.gabarito}
   breadcrumb={[
     { label: 'Escolar', href: u('/escolar') },
     { label: subjectLabel, href: u(`/escolar/${materia}/`) },
@@ -37,5 +40,6 @@ const subjectLabel = entry.data.subject;
     { label: entry.data.title },
   ]}
 >
-  {Content && <Content />}
+  {/* Componente que o MDX da aula usa sem import. */}
+  {Content && <Content components={{ Accordion }} />}
 </Tema>

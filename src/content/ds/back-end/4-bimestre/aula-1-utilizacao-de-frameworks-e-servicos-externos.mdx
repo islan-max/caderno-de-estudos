@@ -1,0 +1,511 @@
+---
+title: "Utilização de Frameworks e Serviços Externos"
+subject: "Back-End"
+order: 1
+relevance: >
+  Quase nenhum sistema de verdade funciona sozinho: o pagamento é feito por um banco, o mapa vem de outra empresa,
+  o servidor roda na nuvem. O back-end (a parte do sistema que roda no servidor) é quem conversa com esses serviços
+  externos. Quem sabe integrar com segurança, tratar respostas e erros e escolher entre chamar a API (Application
+  Programming Interface, ou interface de programação de aplicações) direto ou usar um SDK (Software Development Kit,
+  ou kit de desenvolvimento) entrega sistemas que não quebram quando o serviço de fora falha.
+quickSummary: >
+  Integrar é ligar o seu back-end a serviços de terceiros por meio de APIs. Três cuidados resolvem quase tudo:
+  autenticar do jeito certo (chave de API, OAuth 2.0 ou JWT, sempre por HTTPS e com segredo fora do código), tratar
+  toda resposta (converter o JSON, conferir o status, registrar o erro) e centralizar a conversa numa camada própria
+  ou num SDK. Os serviços de nuvem (AWS, Azure, Google Cloud) hospedam tudo isso e precisam ser configurados com
+  segurança.
+gabarito:
+  - correta: 0
+    porque: >
+      Ferramentas de integração (clientes HTTP, SDKs, frameworks) escondem os detalhes da conversa com o serviço
+      externo: formato da requisição, conversão do JSON, erros. Elas não substituem a autenticação, não deixam o
+      código mais complexo e não criam telas.
+      Revisar: A Aula › 1.3 Ferramentas de integração
+  - correta: 2
+    porque: >
+      O JWT (JSON Web Token) é assinado e carrega a identidade, então o servidor valida sem guardar sessão. Isso
+      escala bem. Chave de API serve para casos simples e de baixo risco, senha em texto puro e autenticação
+      desligada são falhas graves.
+      Revisar: A Aula › 1.4 Autenticação
+  - correta: 1
+    porque: >
+      Resposta externa nunca é confiável por padrão: converta os dados (parsing), confira o status e trate os erros.
+      Ignorar códigos de erro, supor que tudo deu certo ou reenviar sem validar causam falhas e até cobrança dupla.
+      Revisar: A Aula › 1.5 Tratamento de respostas
+---
+
+<Accordion titulo="Palavras e siglas desta aula" dica="Consulte quando encontrar um termo novo" icone="spell-check">
+
+- **API** (Application Programming Interface, interface de programação de aplicações): o "cardápio" de um serviço. Lista o que você pode pedir e como pedir.
+- **AWS** (Amazon Web Services), **Azure** (da Microsoft) e **Google Cloud**: as três maiores nuvens do mercado.
+- **BigQuery**: serviço do Google Cloud para analisar quantidades enormes de dados.
+- **Blob Storage**: serviço da Azure para guardar arquivos (objetos).
+- **CI/CD** (integração contínua e entrega contínua): rotina automática que testa e publica o código.
+- **Compute Engine**: servidores virtuais do Google Cloud.
+- **EC2** (Elastic Compute Cloud): servidores virtuais da AWS.
+- **GKE**, **EKS** e **AKS**: Kubernetes gerenciado do Google Cloud, da AWS e da Azure.
+- **HTTP** (HyperText Transfer Protocol) e **HTTPS** (HTTP Seguro): o protocolo da web. O HTTPS embaralha os dados no caminho.
+- **IAM** (Identity and Access Management): o controle de quem pode fazer o quê na nuvem.
+- **JSON** (JavaScript Object Notation): formato de texto para trocar dados, como `{"taxa": 5.1}`.
+- **JWT** (JSON Web Token): "crachá" digital assinado que prova quem é o usuário.
+- **Kubernetes**: sistema que liga, desliga e distribui contêineres (programas empacotados) em vários servidores.
+- **OAuth 2.0**: protocolo que deixa um app acessar dados seus em outro serviço sem saber a sua senha.
+- **RDS** (Relational Database Service): banco de dados relacional gerenciado da AWS.
+- **S3** (Simple Storage Service): armazenamento de arquivos da AWS.
+- **SDK** (Software Development Kit, kit de desenvolvimento): pacote pronto com bibliotecas, documentação e exemplos para usar um serviço.
+- **SQL Database**: banco relacional gerenciado da Azure.
+- **Spoofing**: se passar por outra pessoa ou sistema para enganar o servidor.
+- **VPC** (Virtual Private Cloud): rede privada dentro da nuvem.
+
+</Accordion>
+
+## Antes de Começar
+
+**O que esta aula cobre.** Três blocos, nesta ordem: como o seu back-end conversa com APIs de terceiros, como os SDKs facilitam essa conversa e como configurar os serviços de nuvem onde tudo isso roda. Os três usam o mesmo exemplo: um aplicativo de serviços financeiros, o **Financial Services Application**, que faz transações, mostra saldos e investe, e que depende de bancos, meios de pagamento e câmbio de outras empresas.
+
+**O que você precisa saber antes.**
+
+- **Requisição e resposta HTTP.** O seu programa pede (requisição) e o serviço responde (resposta). A resposta traz um **código de status**: 200 é "deu certo", 404 é "não achei", 500 é "o servidor errou".
+- **JSON.** Texto organizado em pares nome e valor. É o formato que quase toda API usa para responder.
+- **Variável de ambiente.** Um valor guardado fora do código, no sistema onde o programa roda. Serve para guardar senhas e chaves sem escrevê-las no arquivo do programa.
+
+## A Aula
+
+### 1. Integração com APIs de terceiros
+
+#### 1.1 Por que integrar
+
+Imagine que você abriu uma lanchonete. Você não planta o trigo nem cria a vaca: compra do fornecedor. Integrar é isso: em vez de construir um sistema de pagamento do zero, você **usa o de quem já fez**, por meio da API dele. Ganha tempo, mas passa a **depender** do fornecedor. Quase toda dificuldade desta aula nasce dessa dependência.
+
+#### 1.2 O que costuma dar errado
+
+Para o Financial Services Application, as dificuldades típicas são:
+
+- **O serviço cai ou demora.** O banco está fora do ar e o seu app fica esperando.
+- **O formato muda.** O fornecedor lança uma versão nova e o campo que você lia sumiu.
+- **Limite de uso.** Muitas APIs bloqueiam quem faz pedidos demais por minuto (*rate limit*, limite de taxa).
+- **Segurança.** Chaves vazadas, dados sensíveis trafegando sem proteção.
+- **Cada fornecedor fala de um jeito.** Um usa JSON, outro XML, cada um com seus códigos de erro.
+
+A boa notícia: existem ferramentas e práticas para cada um desses problemas. É o que vem a seguir.
+
+#### 1.3 Ferramentas de integração
+
+**Ferramentas de integração** são bibliotecas, frameworks ou camadas de código que facilitam a comunicação entre sistemas. Elas escondem detalhes (como montar a requisição), padronizam o tratamento de erros e **centralizam** a conversa com o serviço externo num só lugar.
+
+A analogia é um **tradutor profissional**: o seu sistema fala com ele, e ele cuida de falar com cada estrangeiro.
+
+<figure class="figura">
+  <svg viewBox="0 0 560 190" role="img" aria-labelledby="fig-be-camada-t fig-be-camada-d">
+    <title id="fig-be-camada-t">Camada de integração entre o back-end e os serviços externos</title>
+    <desc id="fig-be-camada-d">O back-end do aplicativo fala com uma camada de integração, que faz a conversa com três serviços externos: banco, pagamento e câmbio. A camada traduz dados, autentica, trata erros e registra logs.</desc>
+    <defs>
+      <marker id="seta-be-camada" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+        <path d="M1,1 L9,5 L1,9" class="traco" />
+      </marker>
+    </defs>
+    <rect x="10" y="60" width="120" height="70" rx="8" class="traco" />
+    <text x="70" y="90" class="rotulo" text-anchor="middle">Seu back-end</text>
+    <text x="70" y="108" class="rotulo-fraco" text-anchor="middle">regras do negócio</text>
+    <rect x="210" y="30" width="140" height="130" rx="8" class="traco preenche" />
+    <text x="280" y="58" class="rotulo" text-anchor="middle">Camada de integração</text>
+    <text x="280" y="80" class="rotulo-fraco" text-anchor="middle">cliente HTTP ou SDK</text>
+    <text x="280" y="96" class="rotulo-fraco" text-anchor="middle">autenticação</text>
+    <text x="280" y="112" class="rotulo-fraco" text-anchor="middle">tratamento de erros</text>
+    <text x="280" y="128" class="rotulo-fraco" text-anchor="middle">logs</text>
+    <rect x="430" y="10" width="120" height="44" rx="8" class="traco" />
+    <text x="490" y="37" class="rotulo" text-anchor="middle">API do banco</text>
+    <rect x="430" y="73" width="120" height="44" rx="8" class="traco" />
+    <text x="490" y="100" class="rotulo" text-anchor="middle">API de pagamento</text>
+    <rect x="430" y="136" width="120" height="44" rx="8" class="traco" />
+    <text x="490" y="163" class="rotulo" text-anchor="middle">API de câmbio</text>
+    <line x1="130" y1="95" x2="208" y2="95" class="traco" marker-end="url(#seta-be-camada)" />
+    <line x1="350" y1="80" x2="428" y2="34" class="traco" marker-end="url(#seta-be-camada)" />
+    <line x1="350" y1="95" x2="428" y2="95" class="traco" marker-end="url(#seta-be-camada)" />
+    <line x1="350" y1="110" x2="428" y2="158" class="traco" marker-end="url(#seta-be-camada)" />
+  </svg>
+</figure>
+
+Ferramentas que aparecem nos exemplos da aula, por linguagem:
+
+| Ferramenta | Linguagem | Para que serve |
+|---|---|---|
+| **Axios** | JavaScript (Node.js) | Cliente HTTP: faz a requisição, converte o JSON, trata erros |
+| **Retrofit** | Java (e Android) | Cliente HTTP: descreve a API como uma interface e converte o JSON |
+| **Spring Integration** | Java | Monta fluxos de mensagens entre o back-end e outros sistemas |
+| **Express.js** | JavaScript (Node.js) | Framework web: recebe as requisições que chegam ao seu servidor |
+
+**Atenção a um detalhe.** O material original diz que o Express.js usa *middlewares* (funções que rodam no meio do caminho de uma requisição) para tratar chamadas a APIs de câmbio. Na prática, os middlewares do Express tratam as requisições que **chegam** ao seu servidor. Para **chamar** uma API de fora, você usa um cliente HTTP (Axios, ou o `fetch` que já vem no Node.js moderno) dentro de uma camada de serviço. O Express e o cliente HTTP trabalham juntos, mas têm papéis diferentes.
+
+**Framework ou biblioteca?** Na **biblioteca**, você chama o código dela quando quer. No **framework**, é ele quem chama o seu código: ele define a estrutura e você preenche os espaços. O Spring e o Express são frameworks. O Axios é uma biblioteca.
+
+#### 1.4 Autenticação: provar quem você é
+
+**Autenticação** é o processo que verifica **quem** está pedindo. Em integração com serviços financeiros, ela é crucial: sem ela, qualquer um acessaria dados e transações.
+
+| Método | O que é | Quando usar | Cuidado |
+|---|---|---|---|
+| **API Key** (chave de API) | Texto longo que **identifica o seu aplicativo** | Casos simples e de baixo risco, ou combinada com outras proteções | Quem tem a chave, usa. Se vazar, vale para qualquer um |
+| **OAuth 2.0** | Protocolo de **autorização**: o usuário permite que seu app acesse os dados dele em outro serviço, sem entregar a senha. O app recebe um **token de acesso** com prazo e permissões limitadas | Acessar dados de bancos, redes sociais e serviços de terceiros em nome do usuário | É mais complexo de implementar |
+| **JWT** (JSON Web Token) | Token **assinado digitalmente** que leva informações de identidade. O servidor confere a assinatura sem precisar guardar sessão (*stateless*, sem estado) | Autenticação que precisa escalar para muitos servidores | O conteúdo é assinado, **não escondido**: não ponha senha nem dado secreto dentro dele |
+
+Duas correções de entendimento que evitam confusão:
+
+- O OAuth 2.0 cuida de **autorização** (o que o app pode acessar). Quem prova a identidade da pessoa costuma ser um complemento chamado OpenID Connect, que se apoia no OAuth 2.0.
+- Em servidor falando com servidor, sem usuário no meio, o OAuth 2.0 tem o fluxo *client credentials* (credenciais do cliente): o seu back-end troca a própria identidade por um token de acesso.
+
+**Cuidados com tokens e chaves:**
+
+- **Expiração e renovação.** Token bom dura pouco. Quando vence, o sistema pede outro (*refresh*, renovação) sem incomodar o usuário.
+- **Segredo fora do código.** Chave de API nunca vai escrita no arquivo do programa nem sobe para o Git. Guarde em variável de ambiente ou num cofre de segredos (*secrets manager*).
+- **HTTPS sempre.** O HTTPS embaralha o conteúdo no caminho (criptografia em trânsito), de modo que ninguém no meio lê o token.
+- **Validação rigorosa no servidor.** Confira a assinatura, a validade e quem emitiu o token. Sem isso, um invasor pode fazer **spoofing**: se passar por um usuário ou sistema legítimo.
+
+#### 1.5 Tratamento de respostas
+
+Resposta de serviço externo **nunca é confiável por padrão**: pode vir com erro, vazia ou com dados diferentes do esperado. Tratar a resposta tem três partes:
+
+1. **Parsing (análise).** Converter o texto (JSON ou XML) em um objeto que o programa consegue usar.
+2. **Tratamento de erros.** Conferir o código de status, respostas vazias e dados inesperados.
+3. **Logs e monitoramento.** Registrar o que veio e o que deu errado, para investigar depois.
+
+O que cada família de status pede:
+
+| Status | Significa | O que fazer |
+|---|---|---|
+| **2xx** (200, 201, 204) | Deu certo | Fazer o parsing e seguir. Não existe só o 200: 201 é "criado" e 204 é "sem conteúdo" |
+| **4xx** (400, 401, 403, 404) | Erro **seu**: pedido errado, sem permissão, não encontrado | **Não repetir igual.** Corrigir o pedido ou renovar a credencial (401) |
+| **429** | Você passou do limite de uso | Esperar o tempo indicado e tentar de novo |
+| **5xx** (500, 503) | Erro **do outro lado** | Tentar de novo com limite e espera crescente (*backoff*), depois desistir com mensagem amigável |
+| **Sem resposta** | Demorou demais (*timeout*) | Definir um prazo máximo e tratar como falha |
+
+<figure class="figura">
+  <svg viewBox="0 0 560 230" role="img" aria-labelledby="fig-be-resp-t fig-be-resp-d">
+    <title id="fig-be-resp-t">Como decidir o que fazer com a resposta de um serviço externo</title>
+    <desc id="fig-be-resp-d">Depois da requisição, o sistema verifica se houve resposta no prazo. Se não houve, trata como falha e registra. Se houve, olha o status: 2xx segue para o parsing; 4xx corrige o pedido sem repetir igual; 429 ou 5xx tenta de novo com espera crescente. Todos os caminhos de erro terminam com um registro no log.</desc>
+    <defs>
+      <marker id="seta-be-resp" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+        <path d="M1,1 L9,5 L1,9" class="traco" />
+      </marker>
+    </defs>
+    <rect x="10" y="85" width="110" height="50" rx="8" class="traco" />
+    <text x="65" y="108" class="rotulo" text-anchor="middle">Requisição</text>
+    <text x="65" y="124" class="rotulo-fraco" text-anchor="middle">com prazo (timeout)</text>
+    <line x1="120" y1="110" x2="168" y2="110" class="traco" marker-end="url(#seta-be-resp)" />
+    <rect x="170" y="85" width="110" height="50" rx="8" class="traco preenche" />
+    <text x="225" y="108" class="rotulo" text-anchor="middle">Veio resposta?</text>
+    <text x="225" y="124" class="rotulo-fraco" text-anchor="middle">olhar o status</text>
+    <line x1="280" y1="100" x2="338" y2="40" class="traco" marker-end="url(#seta-be-resp)" />
+    <line x1="280" y1="110" x2="338" y2="110" class="traco" marker-end="url(#seta-be-resp)" />
+    <line x1="280" y1="120" x2="338" y2="180" class="traco" marker-end="url(#seta-be-resp)" />
+    <rect x="340" y="15" width="210" height="50" rx="8" class="traco" />
+    <text x="445" y="36" class="rotulo" text-anchor="middle">2xx: parsing e seguir</text>
+    <text x="445" y="52" class="rotulo-fraco" text-anchor="middle">conferir se os campos existem</text>
+    <rect x="340" y="85" width="210" height="50" rx="8" class="traco" />
+    <text x="445" y="106" class="rotulo" text-anchor="middle">4xx: corrigir o pedido</text>
+    <text x="445" y="122" class="rotulo-fraco" text-anchor="middle">não repetir igual; registrar</text>
+    <rect x="340" y="155" width="210" height="60" rx="8" class="traco" />
+    <text x="445" y="176" class="rotulo" text-anchor="middle">429, 5xx ou timeout</text>
+    <text x="445" y="192" class="rotulo-fraco" text-anchor="middle">tentar de novo com espera crescente,</text>
+    <text x="445" y="206" class="rotulo-fraco" text-anchor="middle">com limite; registrar</text>
+  </svg>
+</figure>
+
+**Cuidado com repetir pedidos em operações de dinheiro.** Se você reenviar "transferir R$ 100" depois de um timeout, e o primeiro pedido tinha chegado, o dinheiro sai **duas vezes**. A solução é a **idempotência**: mandar junto uma **chave de idempotência** (um código único do pedido, geralmente no cabeçalho `Idempotency-Key`) para o serviço reconhecer que é o mesmo pedido e não repetir. Nem todo serviço aceita; confira na documentação dele. Sem esse recurso, **consulte o resultado antes de repetir**, nunca reenvie às cegas.
+
+#### 1.6 Exemplo prático: consultar o câmbio
+
+Cenário: o back-end pede a taxa de câmbio a uma API externa e recebe um JSON. O endereço abaixo é **fictício**, só para ilustrar. O código usa o `fetch` que já vem no Node.js (versões atuais) e uma chave guardada em variável de ambiente:
+
+```js
+const CHAVE = process.env.CAMBIO_API_KEY; // segredo fora do código
+
+async function buscarTaxa(de, para) {
+  const url = `https://api.exemplo-cambio.com/v1/taxa?de=${de}&para=${para}`;
+  try {
+    const resposta = await fetch(url, {
+      headers: { Authorization: `Bearer ${CHAVE}` },
+      signal: AbortSignal.timeout(5000), // desiste após 5 segundos
+    });
+
+    if (!resposta.ok) {
+      // status fora de 2xx: registrar e devolver erro amigável
+      console.error('Câmbio falhou', resposta.status, new Date().toISOString());
+      throw new Error('Não foi possível consultar o câmbio agora.');
+    }
+
+    const dados = await resposta.json(); // parsing do JSON
+    if (typeof dados.taxa !== 'number') {
+      throw new Error('Resposta do câmbio em formato inesperado.');
+    }
+    return dados.taxa;
+  } catch (erro) {
+    console.error('Erro na integração de câmbio:', erro.message);
+    throw erro;
+  }
+}
+```
+
+O que cada parte faz: a chave sai da **variável de ambiente**; o **timeout** evita esperar para sempre; `resposta.ok` é verdadeiro para qualquer 2xx; o `json()` faz o **parsing**; a checagem do tipo protege contra **dado inesperado**; o `console.error` é o **registro** para análise posterior.
+
+#### 1.7 Estudo de caso: resposta estranha numa transferência
+
+Situação: durante uma transferência, o serviço externo devolve uma resposta inesperada e a equipe quer liberar a operação rápido. Um bom relatório para a equipe de operações cobre três pontos:
+
+1. **Isolar o problema pela camada de integração.** Como toda chamada passa por um só lugar, os logs dessa camada mostram o pedido enviado, a resposta recebida e o horário. Dá para ver se o erro é do fornecedor ou do seu código sem mexer no resto do sistema.
+2. **Verificar a autenticação.** Conferir se o token estava válido e não expirado, se a chave é a correta e se o canal era HTTPS. Isso mostra se a operação pode ter sido comprometida.
+3. **Ajustar o tratamento de respostas.** Validar o formato antes de usar, tratar o status, usar chave de idempotência e **não** confirmar a transferência ao usuário enquanto a resposta não for confiável. Segurança vem antes de velocidade.
+
+### 2. SDKs: kits prontos para serviços externos
+
+#### 2.1 O que é um SDK
+
+Um **SDK** (Software Development Kit, kit de desenvolvimento) é um pacote com **bibliotecas, documentação e exemplos** para usar um serviço. Compare:
+
+- **API** é o cardápio: o que você pode pedir e como.
+- **SDK** é o garçom treinado: já sabe montar o pedido do jeito certo, anotar, repetir quando der erro e entregar a resposta pronta.
+
+Com SDK, em vez de montar o endereço, os cabeçalhos e converter o JSON à mão, você chama uma função como "criar pagamento". O SDK faz a conversa HTTP por baixo.
+
+Exemplos reais: SDKs de **pagamento** (PayPal, Stripe), o **Google Maps** (mapas e geolocalização), o **login social** (Facebook), e o **AWS SDK** (usar os serviços da AWS).
+
+#### 2.2 Configurar um SDK
+
+A configuração tem três passos:
+
+1. **Instalar** o SDK no projeto (no Node.js, com o `npm install`).
+2. **Informar as credenciais**: chave de API, token ou papel de acesso. Sempre fora do código.
+3. **Ajustar os parâmetros**: região, tempo máximo de espera, ambiente de **teste** ou de **produção**.
+
+Exemplo verificado na documentação oficial do AWS SDK para JavaScript (versão 3): enviar um arquivo ao S3.
+
+```js
+import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
+
+const s3 = new S3Client({ region: "us-east-1" });
+
+const comando = new PutObjectCommand({
+  Bucket: "meu-bucket",
+  Key: "contratos/contrato-123.pdf",
+  Body: conteudoDoArquivo,
+});
+
+await s3.send(comando);
+```
+
+Repare no que **não** aparece: nenhuma chave escrita no código. O AWS SDK procura as credenciais sozinho (variáveis de ambiente, perfil da máquina ou o papel da própria máquina na nuvem). É o desenho recomendado: o código não carrega segredo.
+
+**Boas práticas ao configurar:**
+
+- Use o **ambiente de teste** (*sandbox*, ou modo de teste) do serviço até o fluxo estar certo. PayPal e Stripe oferecem isso.
+- **Fixe a versão** do SDK no projeto, para uma atualização não quebrar o sistema de surpresa.
+- Chaves **secretas** só no servidor. Nunca no código do navegador ou do aplicativo, onde qualquer pessoa consegue ler.
+- Dê à chave **só as permissões necessárias** (privilégio mínimo).
+
+#### 2.3 Vantagens e riscos
+
+| Vantagens | Riscos |
+|---|---|
+| Padroniza a comunicação com a API | Você fica **dependente** do fornecedor (troca de serviço custa caro) |
+| Menos código escrito e menos erro de digitação | Mais uma dependência para manter atualizada |
+| Costuma trazer repetição automática, conversão de dados e tratamento de erros | SDK desatualizado pode ter falhas de segurança |
+| Acompanha as novidades do serviço e facilita atualizações | Pode pesar mais do que uma chamada HTTP simples |
+
+**Quando preferir a API direta?** Para uma chamada simples e única, um cliente HTTP basta. **Quando preferir o SDK?** Quando o serviço é grande, tem autenticação complicada ou o fornecedor mantém um SDK oficial confiável.
+
+#### 2.4 Estudo de caso: o SDK do PayPal que não funciona
+
+Um colega escreve: "Estamos com dificuldade para integrar o SDK do PayPal no app financeiro. Como configurar a chave de API e os parâmetros de segurança?" Uma resposta direta e útil:
+
+1. Comece no **ambiente de teste** do serviço, com as chaves de teste.
+2. Guarde a chave **secreta** em variável de ambiente ou num cofre de segredos, nunca no repositório.
+3. Faça as chamadas pelo **back-end**, em **HTTPS**. O navegador só recebe o resultado.
+4. Confira os **parâmetros de segurança** da documentação: moeda, valor, retorno do pagamento. Se o serviço avisar o resultado por **webhook** (aviso que o serviço envia ao seu servidor), **valide a assinatura** do aviso antes de confiar.
+5. Troque as chaves de teste pelas de produção só no fim, mantendo a configuração em arquivo separado por ambiente.
+
+Para o gestor, o relatório de benefícios resume assim: SDK configurado direito **reduz o tempo de desenvolvimento** (menos código à mão), **aumenta a confiabilidade** (tratamento de erros embutido) e **facilita atualizações** (basta subir a versão do SDK). E sobre segurança: uma configuração errada, como chave exposta ou permissões demais, vira porta de entrada para fraude.
+
+### 3. Configuração de serviços na nuvem
+
+#### 3.1 O que é a nuvem
+
+**Computação em nuvem** é alugar servidores, armazenamento e bancos de dados de uma empresa, pela internet, pagando pelo uso. É como a conta de luz: você não tem usina, só paga o que consome. As três maiores empresas são a **AWS** (Amazon), a **Azure** (Microsoft) e o **Google Cloud**.
+
+Um ponto importante é o **modelo de responsabilidade compartilhada**: o provedor cuida da segurança **da** nuvem (prédios, máquinas físicas, rede deles), e você cuida da segurança **na** nuvem (quem acessa, como configura, que dados guarda). Boa parte dos vazamentos vem de configuração errada do cliente, não de invasão ao provedor.
+
+#### 3.2 Equivalências entre as três nuvens
+
+Cada nuvem usa nomes diferentes para a mesma ideia. A tabela segue a comparação publicada pelo próprio Google Cloud:
+
+| Função | AWS | Azure | Google Cloud |
+|---|---|---|---|
+| Servidor virtual | **EC2** | Virtual Machines | **Compute Engine** |
+| Armazenamento de arquivos | **S3** | **Blob Storage** | Cloud Storage |
+| Banco relacional gerenciado | **RDS** | **SQL Database** | Cloud SQL |
+| Função sob demanda (*serverless*) | Lambda | Azure Functions | Cloud Run functions |
+| Kubernetes gerenciado | EKS | AKS | GKE |
+| Análise de grandes dados | Redshift | Synapse Analytics | **BigQuery** |
+
+Em negrito estão os serviços citados no roteiro da aula. **Banco "gerenciado"** significa que a nuvem cuida de instalação, atualização e cópias de segurança, e você cuida dos dados.
+
+#### 3.3 Configurar para alta disponibilidade e escalabilidade
+
+Dois objetivos aparecem sempre:
+
+- **Alta disponibilidade:** o sistema continua no ar mesmo se uma parte falhar. Solução: rodar em **mais de uma zona** (prédios separados do mesmo provedor) e usar um **balanceador de carga**, que distribui os pedidos entre os servidores e para de mandar para o que caiu.
+- **Escalabilidade:** o sistema aguenta mais usuários. Solução: **escalonamento automático** (*autoscaling*), que liga mais servidores quando a procura sobe e desliga quando desce.
+
+<figure class="figura">
+  <svg viewBox="0 0 560 250" role="img" aria-labelledby="fig-be-nuvem-t fig-be-nuvem-d">
+    <title id="fig-be-nuvem-t">Arquitetura simples do aplicativo financeiro na nuvem</title>
+    <desc id="fig-be-nuvem-d">Usuários acessam por um balanceador de carga, que distribui os pedidos entre dois servidores de aplicação em zonas diferentes. Os servidores usam um banco de dados gerenciado e um armazenamento de arquivos. Tudo fica dentro de uma rede privada, com o controle de acesso IAM em volta.</desc>
+    <defs>
+      <marker id="seta-be-nuvem" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+        <path d="M1,1 L9,5 L1,9" class="traco" />
+      </marker>
+    </defs>
+    <rect x="130" y="8" width="420" height="234" rx="10" class="tracejado" />
+    <text x="140" y="26" class="rotulo-fraco">Rede privada (VPC) com acesso controlado (IAM)</text>
+    <rect x="8" y="105" width="90" height="40" rx="8" class="traco" />
+    <text x="53" y="130" class="rotulo" text-anchor="middle">Usuários</text>
+    <line x1="98" y1="125" x2="158" y2="125" class="traco" marker-end="url(#seta-be-nuvem)" />
+    <rect x="160" y="100" width="100" height="50" rx="8" class="traco preenche" />
+    <text x="210" y="122" class="rotulo" text-anchor="middle">Balanceador</text>
+    <text x="210" y="138" class="rotulo-fraco" text-anchor="middle">de carga</text>
+    <line x1="260" y1="115" x2="318" y2="75" class="traco" marker-end="url(#seta-be-nuvem)" />
+    <line x1="260" y1="135" x2="318" y2="175" class="traco" marker-end="url(#seta-be-nuvem)" />
+    <rect x="320" y="50" width="110" height="50" rx="8" class="traco" />
+    <text x="375" y="72" class="rotulo" text-anchor="middle">Servidor 1</text>
+    <text x="375" y="88" class="rotulo-fraco" text-anchor="middle">zona A</text>
+    <rect x="320" y="150" width="110" height="50" rx="8" class="traco" />
+    <text x="375" y="172" class="rotulo" text-anchor="middle">Servidor 2</text>
+    <text x="375" y="188" class="rotulo-fraco" text-anchor="middle">zona B</text>
+    <line x1="430" y1="75" x2="468" y2="95" class="traco" marker-end="url(#seta-be-nuvem)" />
+    <line x1="430" y1="175" x2="468" y2="155" class="traco" marker-end="url(#seta-be-nuvem)" />
+    <rect x="470" y="70" width="72" height="44" rx="8" class="traco" />
+    <text x="506" y="89" class="rotulo" text-anchor="middle">Banco</text>
+    <text x="506" y="104" class="rotulo-fraco" text-anchor="middle">gerenciado</text>
+    <rect x="470" y="136" width="72" height="44" rx="8" class="traco" />
+    <text x="506" y="155" class="rotulo" text-anchor="middle">Arquivos</text>
+    <text x="506" y="170" class="rotulo-fraco" text-anchor="middle">(S3 e afins)</text>
+  </svg>
+</figure>
+
+Lista de configuração segura, em ordem:
+
+1. **Região.** Escolha onde os dados ficam. As três nuvens têm região no Brasil (São Paulo), o que ajuda na latência e em regras de proteção de dados, como a LGPD (Lei Geral de Proteção de Dados).
+2. **Rede.** Coloque o banco numa **rede privada** (VPC), sem endereço público. Abra no **firewall** só as portas necessárias.
+3. **Acesso (IAM).** Dê a cada pessoa e a cada sistema **o mínimo de permissão** (privilégio mínimo). Ative a verificação em duas etapas para quem administra.
+4. **Segredos.** Use o serviço de segredos da nuvem. Nunca deixe senha em arquivo de texto.
+5. **Dados.** Ative **cópia de segurança** automática e **criptografia** dos dados guardados.
+6. **Observação.** Ligue **logs, métricas e alertas**, incluindo alerta de **custo**, para não levar um susto na conta.
+
+#### 3.4 O aplicativo financeiro em cada nuvem
+
+O roteiro da aula dá estes exemplos de uso, que mostram como o mesmo sistema pode ser montado:
+
+- **AWS:** uma instância **EC2** hospeda o back-end; o **S3** guarda os documentos dos clientes; o **RDS** guarda os dados dos clientes.
+- **Azure:** **máquinas virtuais** processam as transações; o **SQL Database** guarda os dados. Integra bem com o ecossistema Microsoft.
+- **Google Cloud:** o **Compute Engine** processa uma análise de risco e o **BigQuery** analisa grandes volumes de dados. Destaque em dados e inteligência artificial.
+
+**Qual escolher?** Não existe "a melhor" em tudo. Compare por: **serviços de que você precisa**, **custo**, **o que a equipe já domina**, **regiões disponíveis** e **integração com o que a empresa já usa**. Uma equipe que vive no ecossistema Microsoft tende a ir de Azure; quem quer análise pesada de dados olha o BigQuery; quem quer o catálogo mais amplo e mais material de estudo costuma olhar a AWS. Em caso de dúvida, faça um **projeto-piloto pequeno** em cada uma e meça custo e facilidade.
+
+A pergunta "qual a principal vantagem do RDS na AWS?" tem resposta direta: **você não administra o banco**. A AWS instala, atualiza, faz cópias de segurança e pode manter um banco reserva em outra zona. Sua equipe foca nos dados e no código.
+
+#### 3.5 Um passo adiante: Kubernetes
+
+Quando o sistema vira muitos serviços pequenos (microsserviços), cada um num contêiner, alguém precisa ligá-los, reiniciar os que caem e criar mais cópias quando a carga sobe. Esse alguém é o **Kubernetes**. As três nuvens vendem o Kubernetes pronto (EKS, AKS e GKE). Com ele, o **monitoramento em tempo real** é ainda mais importante, porque a aplicação tem muitas peças em movimento.
+
+**Nota sobre o material original.** O resumo final da Aula 3 fala só de Kubernetes e microsserviços, embora o roteiro da aula trate de AWS, Azure e Google Cloud. Esta aula junta os dois assuntos: primeiro configurar a nuvem, depois orquestrar os contêineres nela.
+
+#### 3.6 Para ir além
+
+- Comparação oficial entre serviços de AWS, Azure e Google Cloud: `cloud.google.com/docs/get-started/aws-azure-gcp-service-comparison`
+- O que é um SDK (AWS): `aws.amazon.com/pt/what-is/sdk/`
+- Vídeo indicado no material da aula: "Veja como criar uma API Rest no CodeIgniter 4 de forma simples e rápida", de Rafael Pinheiro (YouTube), para praticar a criação de uma API e o teste dela no Postman.
+
+## Tópicos-Chave para Revisão
+
+<div className="topico">
+
+#### 1. Para que servem as ferramentas de integração
+
+Elas **abstraem** a complexidade da conversa com **serviços externos** e **centralizam** a lógica numa **camada de integração**, deixando o sistema mais robusto e fácil de manter.
+
+#### 2. Cliente HTTP, biblioteca e framework
+
+**Axios** e **Retrofit** são **clientes HTTP** (chamam a API de fora). O **Spring** e o **Express** são **frameworks**: eles definem a estrutura e **chamam o seu código**. O middleware do Express trata o que **chega**, não o que o seu servidor **envia**.
+
+#### 3. Métodos de autenticação
+
+A **API Key** identifica o app e serve para casos simples. O **OAuth 2.0** é um protocolo de **autorização** com **token** limitado. O **JWT** é um token **assinado** que permite autenticação **stateless**, ideal para **escalar**.
+
+#### 4. Cuidados com tokens e segredos
+
+Tokens precisam de **expiração** e **renovação**. Segredo fica em **variável de ambiente** ou **cofre**, nunca no Git. O tráfego vai por **HTTPS** e o servidor faz **validação rigorosa** para barrar **spoofing**.
+
+#### 5. Tratamento de respostas
+
+Três partes: **parsing** do JSON, **tratamento de erros** (status, resposta vazia, dado inesperado) e **logs**. Olhe a **família do status**: 4xx pede correção, 429 e 5xx pedem **nova tentativa com espera**.
+
+#### 6. Repetição segura de pedidos
+
+Repetir sem validar pode cobrar duas vezes. Use **chave de idempotência**, **limite de tentativas** e **backoff**. Sem esse recurso, **consulte o resultado** antes de reenviar.
+
+#### 7. O que é e para que serve um SDK
+
+**SDK** é um **kit** com bibliotecas, documentação e exemplos que **padroniza** a integração com um serviço, reduz o **tempo de desenvolvimento** e aumenta a **confiabilidade**. O risco é a **dependência** do fornecedor.
+
+#### 8. Configurar um SDK
+
+**Instalar**, informar **chaves e tokens** fora do código e ajustar **parâmetros de segurança**. Teste no **sandbox**, **fixe a versão** e dê só o **privilégio mínimo**.
+
+#### 9. As três nuvens
+
+**EC2**, **Virtual Machines** e **Compute Engine** são servidores; **S3**, **Blob Storage** e **Cloud Storage** guardam arquivos; **RDS**, **SQL Database** e **Cloud SQL** são bancos **gerenciados**; **BigQuery** analisa grandes dados.
+
+#### 10. Configuração segura na nuvem
+
+Escolha a **região**, isole o banco numa **rede privada (VPC)**, use **IAM** com **privilégio mínimo**, guarde **segredos** no cofre, ative **backup** e **alertas**. A **alta disponibilidade** vem de várias **zonas** e do **balanceador**; a **escalabilidade**, do **autoscaling**.
+
+</div>
+
+## Pause e Responda
+
+*Marque uma alternativa em cada questão e confira tudo de uma vez no botão do fim.*
+
+**Questão 1**
+
+*Pause e Responda S22A1a · Integração com APIs de terceiros*
+
+Qual das seguintes alternativas melhor define o papel das ferramentas de integração em um sistema back-end?
+
+A) Abstrair a complexidade das comunicações com serviços externos.\
+B) Substituir a necessidade de autenticação nas chamadas de API.\
+C) Aumentar a complexidade do código para maior segurança.\
+D) Elaborar interfaces gráficas para o usuário final.\
+E) Guardar as senhas dos usuários dentro do próprio código-fonte.
+
+**Questão 2**
+
+*Pause e Responda S22A1b · Integração com APIs de terceiros*
+
+Em um cenário de integração com serviços externos, qual método de autenticação oferece um mecanismo robusto e escalável?
+
+A) API Keys para todos os casos.\
+B) Armazenamento de senhas em texto plano.\
+C) JWT (JSON Web Token) para sessões sem estado.\
+D) Desabilitar autenticação para agilizar a comunicação.\
+E) Compartilhar um único usuário e senha entre todos os sistemas.
+
+**Questão 3**
+
+*Pause e Responda S22A1c · Integração com APIs de terceiros*
+
+Qual é a melhor prática ao tratar respostas de serviços externos em um ambiente back-end?
+
+A) Ignorar os códigos de erro e focar apenas no conteúdo.\
+B) Realizar parsing dos dados e implementar tratamento de erros robusto.\
+C) Assumir que todas as respostas estarão corretas.\
+D) Reenviar automaticamente a mesma requisição sem validação.\
+E) Mostrar ao usuário a mensagem de erro técnica completa, sem registrar nada.

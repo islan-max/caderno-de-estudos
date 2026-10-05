@@ -5,11 +5,19 @@
 // vira um "check" e o item recebe data-vista="true" (aplicado em JS a partir
 // do armazenamento local). A diferença é discreta de propósito: o item
 // continua legível e clicável, só perde o destaque de "pendente".
-import type { AulaIndexada } from '../lib/aulas';
 import Icone from './Icone.astro';
 
+// Só o que a trilha usa. `pronta: false` (aba DS) mostra a aula como "Em breve", sem link.
+interface ItemTrilha {
+  id: string;
+  titulo: string;
+  resumo: string;
+  href: string;
+  pronta?: boolean;
+}
+
 interface Props {
-  aulas: AulaIndexada[];
+  aulas: ItemTrilha[];
   accent?: string;
 }
 const { aulas, accent = 'enem' } = Astro.props;
@@ -18,20 +26,33 @@ const { aulas, accent = 'enem' } = Astro.props;
 <ol class="trilha" style={`--accent: var(--color-${accent});`}>
   {aulas.map((aula, i) => (
     <li class="trilha__item" data-aula-id={aula.id} style={`--i: ${i}`} data-surgir>
-      <a href={aula.href} class="trilha__link">
-        <span class="trilha__marca" aria-hidden="true">
-          <span class="trilha__numero">{String(i + 1).padStart(2, '0')}</span>
-          <Icone nome="check" class="trilha__check" />
-        </span>
-        <span class="trilha__corpo">
-          <span class="trilha__titulo">{aula.titulo}</span>
-          <span class="trilha__resumo">{aula.resumo}</span>
-        </span>
-        <span class="trilha__ir">
-          <span class="trilha__ir-texto">Abrir</span>
-          <Icone nome="arrow-right" />
-        </span>
-      </a>
+      {aula.pronta === false ? (
+        <div class="trilha__link trilha__link--breve">
+          <span class="trilha__marca" aria-hidden="true">
+            <span class="trilha__numero">{String(i + 1).padStart(2, '0')}</span>
+          </span>
+          <span class="trilha__corpo">
+            <span class="trilha__titulo">{aula.titulo}</span>
+            <span class="trilha__resumo">{aula.resumo}</span>
+          </span>
+          <span class="trilha__breve">Em breve</span>
+        </div>
+      ) : (
+        <a href={aula.href} class="trilha__link">
+          <span class="trilha__marca" aria-hidden="true">
+            <span class="trilha__numero">{String(i + 1).padStart(2, '0')}</span>
+            <Icone nome="check" class="trilha__check" />
+          </span>
+          <span class="trilha__corpo">
+            <span class="trilha__titulo">{aula.titulo}</span>
+            <span class="trilha__resumo">{aula.resumo}</span>
+          </span>
+          <span class="trilha__ir">
+            <span class="trilha__ir-texto">Abrir</span>
+            <Icone nome="arrow-right" />
+          </span>
+        </a>
+      )}
     </li>
   ))}
 </ol>
@@ -173,6 +194,28 @@ const { aulas, accent = 'enem' } = Astro.props;
     .trilha__ir {
       display: inline-flex;
     }
+  }
+
+  /* Aula ainda não escrita (aba DS): aparece na trilha, sem link e mais apagada. */
+  .trilha__link--breve {
+    opacity: 0.62;
+    cursor: default;
+  }
+  .trilha__link--breve:hover {
+    border-color: var(--color-line);
+    background: color-mix(in srgb, var(--color-paper-dark) 22%, var(--color-surface));
+    transform: none;
+    box-shadow: none;
+  }
+  .trilha__breve {
+    align-self: center;
+    flex-shrink: 0;
+    font-family: var(--font-display);
+    font-size: 0.66rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-ink-soft);
   }
 
   /* ------------------------------------------------------------- vista

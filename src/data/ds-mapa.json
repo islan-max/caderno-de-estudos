@@ -1,0 +1,2563 @@
+{
+  "_aviso": "Gerado por scripts/mapear-ds.mjs. Títulos com acento restaurado automaticamente; conferir.",
+  "materias": [
+    {
+      "slug": "back-end",
+      "nome": "Back-End",
+      "bimestres": [
+        {
+          "numero": 1,
+          "slug": "1-bimestre",
+          "aulas": [
+            {
+              "pos": 1,
+              "semana": 1,
+              "slug": "aula-1-fundamentos-de-programacao-back-end",
+              "titulo": "Fundamentos de Programação Back-End",
+              "topicos": [
+                "Introdução ao desenvolvimento back-end",
+                "Configuração do ambiente de desenvolvimento back-end",
+                "Estrutura básica de uma aplicação back-end"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 2,
+              "semana": 2,
+              "slug": "aula-2-redes-e-seguranca-em-desenvolvimento-para-web",
+              "titulo": "Redes e Segurança em Desenvolvimento para Web",
+              "topicos": [
+                "Fundamentos de redes e protocolos",
+                "Segurança em desenvolvimento para web",
+                "Controle de versão com Git"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 3,
+              "semana": 3,
+              "slug": "aula-3-bancos-de-dados",
+              "titulo": "Bancos de Dados",
+              "topicos": [
+                "Aplicação prática de bancos de dados com sistemas back-end",
+                "Banco de dados relacionais com MySQL",
+                "Banco de dados não relacionais com MongoDB"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 4,
+              "semana": 4,
+              "slug": "aula-4-apis-e-servicos-web",
+              "titulo": "APIs e Serviços Web",
+              "topicos": [
+                "Introdução às APIs",
+                "Desenvolvimento de APIs com Node.js",
+                "Desenvolvimento de APIs com Django"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 5,
+              "semana": 5,
+              "slug": "aula-5-linguagens-de-programacao-back-end-node-js",
+              "titulo": "Linguagens de programação Back-End: Node.js",
+              "topicos": [
+                "Introdução ao Node.js",
+                "Primeiros passos com Node.js",
+                "Aplicações avançadas com Node.js"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 6,
+              "semana": 6,
+              "slug": "aula-6-linguagens-de-programacao-back-end-python",
+              "titulo": "Linguagens de programação Back-End: Python",
+              "topicos": [
+                "Introdução ao Python para back-end",
+                "Primeiros passos com Django",
+                "Primeiros passos com C#"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 7,
+              "semana": 7,
+              "slug": "aula-7-aplicacoes-praticas-avancadas",
+              "titulo": "Aplicações Práticas Avançadas",
+              "topicos": [
+                "Implementação de autenticação e autorização",
+                "Integração com APIs externas",
+                "Implementação de WebSockets para comunicação em tempo real"
+              ],
+              "pausas": 3
+            }
+          ]
+        },
+        {
+          "numero": 2,
+          "slug": "2-bimestre",
+          "aulas": [
+            {
+              "pos": 1,
+              "semana": 8,
+              "slug": "aula-1-aplicacoes",
+              "titulo": "Aplicações",
+              "topicos": [
+                "Arquitetura monolítica vs. microsserviços",
+                "Design patterns para back-end",
+                "Escalabilidade e performance"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 2,
+              "semana": 9,
+              "slug": "aula-2-desenvolvimento-de-apis",
+              "titulo": "Desenvolvimento de APIs",
+              "topicos": [
+                "RESTful APIs",
+                "GraphQL",
+                "Segurança em APIs"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 3,
+              "semana": 10,
+              "slug": "aula-3-banco-de-dados-avancado",
+              "titulo": "Banco de Dados Avançado",
+              "topicos": [
+                "Banco de dados NoSQL",
+                "Otimização de consultas",
+                "Transações e consistência"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 4,
+              "semana": 11,
+              "slug": "aula-4-seguranca-em-aplicacoes-back-end",
+              "titulo": "Segurança em Aplicações Back-End",
+              "topicos": [
+                "Métodos de autenticação",
+                "Autorização baseada em funções",
+                "Segurança em microsserviços"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 5,
+              "semana": 12,
+              "slug": "aula-5-ferramentas-avancadas-para-desenvolvimento-back-end",
+              "titulo": "Ferramentas Avançadas para Desenvolvimento Back-End",
+              "topicos": [
+                "Docker e containers",
+                "Integração Contínua (CI) e a Entrega Contínua (CD)",
+                "Ferramentas de monitoramento"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 6,
+              "semana": 13,
+              "slug": "aula-6-tdd-e-testes-automatizados",
+              "titulo": "TDD e Testes Automatizados",
+              "topicos": [
+                "Introdução ao TDD",
+                "Testes de integração",
+                "Testes de performance"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 7,
+              "semana": 14,
+              "slug": "aula-7-integracao-e-comunicacao-entre-sistemas",
+              "titulo": "Integração e Comunicação entre Sistemas",
+              "topicos": [
+                "Mensageria e filas",
+                "Integração com serviços externos",
+                "Orquestração de microsserviços"
+              ],
+              "pausas": 3
+            }
+          ]
+        },
+        {
+          "numero": 3,
+          "slug": "3-bimestre",
+          "aulas": [
+            {
+              "pos": 1,
+              "semana": 15,
+              "slug": "aula-1-fundamentos-de-servidores-e-seguranca",
+              "titulo": "Fundamentos de Servidores e Segurança",
+              "topicos": [
+                "Introdução aos servidores web",
+                "Criação de APIs seguras",
+                "Testes de segurança em aplicações"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 2,
+              "semana": 16,
+              "slug": "aula-2-configuracao-e-seguranca-de-apis",
+              "titulo": "Configuração e Segurança de APIs",
+              "topicos": [
+                "Implementação de Cross-Origin Resource Sharing (CORS)",
+                "Segurança em autenticação e autorização",
+                "Monitoramento de segurança"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 3,
+              "semana": 17,
+              "slug": "aula-3-introducao-aos-frameworks-e-integracao",
+              "titulo": "Introdução aos Frameworks e Integração",
+              "topicos": [
+                "Introdução aos frameworks back-end",
+                "Integração com serviços de terceiros",
+                "Gerenciamento de dependências"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 4,
+              "semana": 18,
+              "slug": "aula-4-desenvolvimento-de-microsservicos-e-mensageria",
+              "titulo": "Desenvolvimento de Microsserviços e Mensageria",
+              "topicos": [
+                "Desenvolvimento de microsserviços",
+                "Mensageria e filas",
+                "Automação de tarefas"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 5,
+              "semana": 19,
+              "slug": "aula-5-servidores-web-avancados",
+              "titulo": "Servidores Web Avançados",
+              "topicos": [
+                "Integração contínua e deploy contínuo (CI-CD)",
+                "Implementação de servidores web",
+                "Segurança em banco de dados"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 6,
+              "semana": 20,
+              "slug": "aula-6-arquitetura-serverless-e-pagamentos",
+              "titulo": "Arquitetura Serverless e Pagamentos",
+              "topicos": [
+                "Testes automatizados de segurança",
+                "Arquitetura serverless",
+                "Integração com serviços de pagamento"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 7,
+              "semana": 21,
+              "slug": "aula-7-gestao-de-configuracoes-e-monitoramento",
+              "titulo": "Gestão de Configurações e Monitoramento",
+              "topicos": [
+                "Gestão de configurações e segredos: Aula complementar",
+                "Monitoramento e logs: Aula complementar",
+                "Orquestração de microsserviços: Aula complementar"
+              ],
+              "pausas": 3
+            }
+          ]
+        },
+        {
+          "numero": 4,
+          "slug": "4-bimestre",
+          "aulas": [
+            {
+              "pos": 1,
+              "semana": 22,
+              "slug": "aula-1-utilizacao-de-frameworks-e-servicos-externos",
+              "titulo": "Utilização de Frameworks e Serviços Externos",
+              "topicos": [
+                "Integração com APIs de terceiros",
+                "Uso de kits de desenvolvimento de software (SDKs) para serviços externos",
+                "Configuração de serviços na nuvem"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 2,
+              "semana": 23,
+              "slug": "aula-2-avancos-com-frameworks-back-end",
+              "titulo": "Avanços com Frameworks Back-End",
+              "topicos": [
+                "Desenvolvimento com Express.js",
+                "Utilização de Django",
+                "Integração contínua com Jenkins"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 3,
+              "semana": 24,
+              "slug": "aula-3-praticas-de-seguranca-em-servidores-web",
+              "titulo": "Práticas de Segurança em Servidores Web",
+              "topicos": [
+                "Configuração de servidores seguros",
+                "Segurança em APIs",
+                "Monitoramento de segurança"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 4,
+              "semana": 25,
+              "slug": "aula-4-implementacao-e-manutencao-de-apis-seguras",
+              "titulo": "Implementação e Manutenção de APIs Seguras",
+              "topicos": [
+                "Implementação de OAuth",
+                "Utilização de JSON Web Token (JWT)",
+                "Auditoria e logs de segurança"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 5,
+              "semana": 26,
+              "slug": "aula-5-seguranca-e-manutencao-de-servidores-web",
+              "titulo": "Segurança e Manutenção de Servidores Web",
+              "topicos": [
+                "Atualizações e patches de segurança",
+                "Backup e recuperação de dados",
+                "Gestão de crises e incidentes"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 6,
+              "semana": 27,
+              "slug": "aula-6-utilizacao-avancada-de-frameworks-back-end",
+              "titulo": "Utilização Avançada de Frameworks Back-End",
+              "topicos": [
+                "Desenvolvimento com Spring Boot",
+                "Desenvolvimento com Flask",
+                "Integração de microsserviços"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 7,
+              "semana": 28,
+              "slug": "aula-7-integracao-e-testes-de-servicos-externos",
+              "titulo": "Integração e Testes de Serviços Externos",
+              "topicos": [
+                "Testes de integração com APIs: Aula complementar",
+                "Testes de carga e performance: Aula complementar",
+                "Monitoramento de APIs em produção: Aula complementar"
+              ],
+              "pausas": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "banco-de-dados",
+      "nome": "Banco de dados",
+      "bimestres": [
+        {
+          "numero": 1,
+          "slug": "1-bimestre",
+          "aulas": [
+            {
+              "pos": 1,
+              "semana": 1,
+              "slug": "aula-1-levantamento-de-dados-e-conceitos-fundamentais",
+              "titulo": "Levantamento de Dados e Conceitos Fundamentais",
+              "topicos": [
+                "Introdução a modelagem de banco de dados",
+                "Levantamento de requisitos e análise de dados",
+                "Modelo Entidade-Relacionamento (ER)",
+                "Ferramentas de modelagem de banco de dados"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 2,
+              "semana": 2,
+              "slug": "aula-2-tipos-de-relacionamentos",
+              "titulo": "Tipos de Relacionamentos",
+              "topicos": [
+                "Relacionamentos um-para-um",
+                "Relacionamentos um-para-muitos",
+                "Relacionamentos muitos-para-muitos",
+                "Resolução de relacionamentos complexos"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 3,
+              "semana": 3,
+              "slug": "aula-3-primeira-e-segunda-formas-normais",
+              "titulo": "Primeira e Segunda Formas Normais",
+              "topicos": [
+                "Introdução às formas normais",
+                "Primeira Forma Normal (1NF)",
+                "Segunda Forma Normal (2NF)",
+                "Casos práticos de normalização: 1NF e 2NF"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 4,
+              "semana": 4,
+              "slug": "aula-4-terceira-forma-normal-e-boyce-codd",
+              "titulo": "Terceira Forma Normal e Boyce-Codd",
+              "topicos": [
+                "Terceira Forma Normal (3NF)",
+                "Forma Normal de Boyce-Codd (BCNF)",
+                "Casos práticos de normalização: 3NF e BCNF",
+                "Resumo e revisão das formas normais"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 5,
+              "semana": 5,
+              "slug": "aula-5-introducao-aos-comandos-sql",
+              "titulo": "Introdução aos Comandos SQL",
+              "topicos": [
+                "Introdução ao SQL",
+                "Comandos de criação (CREATE)",
+                "Comandos de leitura (SELECT)",
+                "Comandos de atualização (UPDATE)"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 6,
+              "semana": 6,
+              "slug": "aula-6-introducao-aos-comandos-sql",
+              "titulo": "Introdução aos Comandos SQL",
+              "topicos": [
+                "Comandos de deleção (DELETE)",
+                "Joins e subqueries",
+                "Views e índices",
+                "Transações e controle de concorrência"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 7,
+              "semana": 7,
+              "slug": "aula-7-aplicacoes-praticas-de-sql",
+              "titulo": "Aplicações Práticas de SQL",
+              "topicos": [
+                "Implementação de segurança em bancos de dados",
+                "Backup e recuperação de dados",
+                "Otimização de consultas SQL",
+                "Casos práticos de desenvolvimento com SQL"
+              ],
+              "pausas": 3
+            }
+          ]
+        },
+        {
+          "numero": 2,
+          "slug": "2-bimestre",
+          "aulas": [
+            {
+              "pos": 1,
+              "semana": 8,
+              "slug": "aula-1-clausulas-select",
+              "titulo": "Cláusulas Select",
+              "topicos": [
+                "Introdução às cláusulas Select",
+                "Funções de agregação",
+                "Cláusulas de junção (JOIN)",
+                "Subconsultas e consultas aninhadas"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 2,
+              "semana": 9,
+              "slug": "aula-2-clausulas-select-avancadas",
+              "titulo": "Cláusulas Select Avançadas",
+              "topicos": [
+                "Operadores de conjunto",
+                "Cláusula HAVING",
+                "Consultas complexas com SQL",
+                "Práticas de escrita de consultas eficientes"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 3,
+              "semana": 10,
+              "slug": "aula-3-comandos-sql-crud",
+              "titulo": "Comandos SQL (CRUD)",
+              "topicos": [
+                "Inserção de dados (INSERT)",
+                "Atualização de dados (UPDATE)",
+                "Exclusão de dados (DELETE)",
+                "Transações e controle de concorrência"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 4,
+              "semana": 11,
+              "slug": "aula-4-comandos-avancados-de-sql-crud",
+              "titulo": "Comandos Avançados de SQL (CRUD)",
+              "topicos": [
+                "Comandos MERGE",
+                "Backup e restauração de dados",
+                "Importação e exportação de dados",
+                "Procedimentos armazenados e funções"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 5,
+              "semana": 12,
+              "slug": "aula-5-diferenca-entre-ddl-e-dml",
+              "titulo": "Diferença entre DDL e DML",
+              "topicos": [
+                "Conceitos de Data Definition Language (DDL) e Data Manipulation Language (DML)",
+                "Comandos DDL",
+                "Criação de tabelas e índices",
+                "Modificação de estruturas de dados"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 6,
+              "semana": 13,
+              "slug": "aula-6-comandos-dml-avancados",
+              "titulo": "Comandos DML Avançados",
+              "topicos": [
+                "Inserção de dados em tabelas relacionadas",
+                "Atualização de dados em tabelas relacionadas",
+                "Exclusão de dados em tabelas relacionadas",
+                "Trigger e automação de tarefas"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 7,
+              "semana": 14,
+              "slug": "aula-7-analise-e-modelagem-de-dados",
+              "titulo": "Análise e Modelagem de Dados",
+              "topicos": [
+                "Normalização de banco de dados",
+                "Modelagem de dados com UML",
+                "Análise de dados com SQL",
+                "Projeto final de modelagem e desenvolvimento"
+              ],
+              "pausas": 3
+            }
+          ]
+        },
+        {
+          "numero": 3,
+          "slug": "3-bimestre",
+          "aulas": [
+            {
+              "pos": 1,
+              "semana": 15,
+              "slug": "aula-1-sgbd-relacional",
+              "titulo": "SGBD Relacional",
+              "topicos": [
+                "Introdução aos SGBDs relacionais",
+                "Modelagem de dados relacional",
+                "Normalização de banco de dados",
+                "SQL básico para SGBD relacional"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 2,
+              "semana": 16,
+              "slug": "aula-2-sgbd-relacional",
+              "titulo": "SGBD Relacional",
+              "topicos": [
+                "Chaves primárias e estrangeiras",
+                "Índices em bancos de dados relacionais",
+                "Transações em bancos de dados relacionais",
+                "Vistas em bancos de dados relacionais"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 3,
+              "semana": 17,
+              "slug": "aula-3-clausulas-select",
+              "titulo": "Cláusulas Select",
+              "topicos": [
+                "Cláusula Select básica",
+                "Cláusula Select com funções de agregação",
+                "Cláusula Select com junções",
+                "Subconsultas e consultas aninhadas"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 4,
+              "semana": 18,
+              "slug": "aula-4-clausulas-select",
+              "titulo": "Cláusulas Select",
+              "topicos": [
+                "Cláusula Select com funções de janela",
+                "Cláusula Select com Common Table Expressions (CTE)",
+                "Cláusula Select com UNION e UNION ALL",
+                "Cláusula Select com CASE"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 5,
+              "semana": 19,
+              "slug": "aula-5-ddl-x-dml",
+              "titulo": "DDL X DML",
+              "topicos": [
+                "Diferenças entre DDL e DML: Aula complementar",
+                "Comandos DDL: Aula complementar",
+                "Comandos DML: Aula complementar",
+                "Transações com DML: Aula complementar"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 6,
+              "semana": 20,
+              "slug": "aula-6-sgbd-relacional",
+              "titulo": "SGBD Relacional",
+              "topicos": [
+                "Backup e recuperação de dados",
+                "Monitoramento de performance",
+                "Segurança em bancos de dados relacionais",
+                "Configuração de alta disponibilidade"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 7,
+              "semana": 21,
+              "slug": "aula-7-sgbd-relacional",
+              "titulo": "SGBD Relacional",
+              "topicos": [
+                "Migração de dados",
+                "Indexação avançada",
+                "Armazenamento de dados em nuvem",
+                "Tópicos avançados em sgbds relacionais"
+              ],
+              "pausas": 3
+            }
+          ]
+        },
+        {
+          "numero": 4,
+          "slug": "4-bimestre",
+          "aulas": [
+            {
+              "pos": 1,
+              "semana": 22,
+              "slug": "aula-1-introducao-aos-bancos-de-dados-nosql",
+              "titulo": "Introdução aos Bancos de Dados NoSQL",
+              "topicos": [
+                "Conceitos e tipos de bancos de dados NoSQL",
+                "Comparação entre SQL e NoSQL",
+                "Arquitetura de bancos de dados NoSQL",
+                "Modelagem de dados em bancos NoSQL"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 2,
+              "semana": 23,
+              "slug": "aula-2-ferramentas-e-tecnologias-nosql",
+              "titulo": "Ferramentas e Tecnologias NoSQL",
+              "topicos": [
+                "Introdução ao MongoDB",
+                "Introdução ao Cassandra",
+                "Introdução ao Redis",
+                "Introdução ao Neo4j"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 3,
+              "semana": 24,
+              "slug": "aula-3-operacoes-e-consultas-em-bancos-nosql",
+              "titulo": "Operações e Consultas em Bancos NoSQL",
+              "topicos": [
+                "CRUD no MongoDB",
+                "Consultas avançadas no MongoDB",
+                "Operações no Cassandra",
+                "Consultas no Redis"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 4,
+              "semana": 25,
+              "slug": "aula-4-arquitetura-e-escalabilidade-de-bancos-nosql",
+              "titulo": "Arquitetura e Escalabilidade de Bancos NoSQL",
+              "topicos": [
+                "Replicação de dados no MongoDB",
+                "Sharding no MongoDB",
+                "Escalabilidade no Cassandra",
+                "Escalabilidade no Redis"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 5,
+              "semana": 26,
+              "slug": "aula-5-seguranca-e-backup-em-bancos-nosql",
+              "titulo": "Segurança e Backup em Bancos NoSQL",
+              "topicos": [
+                "Segurança no MongoDB",
+                "Backup e recuperação no MongoDB",
+                "Segurança no Cassandra",
+                "Backup e recuperação no Cassandra"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 6,
+              "semana": 27,
+              "slug": "aula-6-performance-e-monitoramento-em-bancos-nosql",
+              "titulo": "Performance e Monitoramento em Bancos NoSQL",
+              "topicos": [
+                "Monitoramento de performance no MongoDB",
+                "Otimização de consultas no MongoDB",
+                "Monitoramento de performance no Cassandra",
+                "Otimização de consultas no Cassandra"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 7,
+              "semana": 28,
+              "slug": "aula-7-casos-de-uso-e-aplicacoes-de-bancos-nosql",
+              "titulo": "Casos de Uso e Aplicações de Bancos NoSQL",
+              "topicos": [
+                "Aplicações de MongoDB: Aula complementar",
+                "Aplicações de Cassandra: Aula complementar",
+                "Aplicações de Redis: Aula complementar",
+                "Aplicações de Neo4j: Aula complementar"
+              ],
+              "pausas": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "front-end",
+      "nome": "Front-End",
+      "bimestres": [
+        {
+          "numero": 1,
+          "slug": "1-bimestre",
+          "aulas": [
+            {
+              "pos": 1,
+              "semana": 1,
+              "slug": "aula-1-fundamentos-de-programacao-front-end",
+              "titulo": "Fundamentos de Programação Front-End",
+              "topicos": [
+                "Introdução ao desenvolvimento front-end",
+                "Configuração do ambiente de desenvolvimento front-end",
+                "Estrutura básica de uma aplicação front-end"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 2,
+              "semana": 2,
+              "slug": "aula-2-desenvolvimento-de-interfaces-e-usabilidade",
+              "titulo": "Desenvolvimento de Interfaces e Usabilidade",
+              "topicos": [
+                "Fundamentos de usabilidade e UX-UI design",
+                "Prototipagem e ferramentas de design",
+                "Design responsivo e mobile-first"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 3,
+              "semana": 3,
+              "slug": "aula-3-desenvolvimento-de-interfaces-com-html-e-css",
+              "titulo": "Desenvolvimento de Interfaces com HTML e CSS",
+              "topicos": [
+                "Introdução ao HTML",
+                "Introdução ao CSS",
+                "Estilização avançada com CSS"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 4,
+              "semana": 4,
+              "slug": "aula-4-introducao-ao-javascript",
+              "titulo": "Introdução ao JavaScript",
+              "topicos": [
+                "Fundamentos do JavaScript",
+                "Manipulação do Document Object Model (DOM) com JavaScript",
+                "Programação assíncrona com JavaScript"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 5,
+              "semana": 5,
+              "slug": "aula-5-linguagens-de-programacao-front-end-react",
+              "titulo": "Linguagens de programação Front-End: React",
+              "topicos": [
+                "Introdução ao React",
+                "Estado e propriedades no React",
+                "Roteamento no React"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 6,
+              "semana": 6,
+              "slug": "aula-6-linguagens-de-programacao-front-end-vue-js",
+              "titulo": "Linguagens de programação Front-End: Vue.js",
+              "topicos": [
+                "Introdução ao Vue.js",
+                "Data binding e diretivas no Vue.js",
+                "Gerenciamento de estado com Vuex"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 7,
+              "semana": 7,
+              "slug": "aula-7-aplicacoes-praticas-avancadas",
+              "titulo": "Aplicações Práticas Avançadas",
+              "topicos": [
+                "Implementação de animações e transições avançadas",
+                "Integração com APIs externas",
+                "Implementação de Progressive Web Apps (PWA)"
+              ],
+              "pausas": 3
+            }
+          ]
+        },
+        {
+          "numero": 2,
+          "slug": "2-bimestre",
+          "aulas": [
+            {
+              "pos": 1,
+              "semana": 8,
+              "slug": "aula-1-frameworks-e-bibliotecas-javascript",
+              "titulo": "Frameworks e Bibliotecas JavaScript",
+              "topicos": [
+                "Introdução ao React",
+                "Componentes e ciclo de vida no React",
+                "Estado e gerenciamento de eventos no React"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 2,
+              "semana": 9,
+              "slug": "aula-2-estilizacao-e-layout",
+              "titulo": "Estilização e Layout",
+              "topicos": [
+                "CSS avançado e pré-processadores",
+                "Frameworks de CSS",
+                "Design responsivo"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 3,
+              "semana": 10,
+              "slug": "aula-3-gerenciamento-de-estado",
+              "titulo": "Gerenciamento de Estado",
+              "topicos": [
+                "Introdução ao Redux",
+                "Middleware no Redux",
+                "Ferramentas de debugging no Redux"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 4,
+              "semana": 11,
+              "slug": "aula-4-testes-e-qualidade-de-codigo",
+              "titulo": "Testes e Qualidade de Código",
+              "topicos": [
+                "Testes unitários com Jest",
+                "Testes de integração com React Testing Library",
+                "Testes end-to-end com Cypress"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 5,
+              "semana": 12,
+              "slug": "aula-5-performance-e-otimizacao",
+              "titulo": "Performance e Otimização",
+              "topicos": [
+                "Técnicas de otimização de performance",
+                "Ferramentas de análise de performance",
+                "Melhorias de performance em aplicações React"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 6,
+              "semana": 13,
+              "slug": "aula-6-acessibilidade-e-internacionalizacao",
+              "titulo": "Acessibilidade e Internacionalização",
+              "topicos": [
+                "Princípios de acessibilidade",
+                "Ferramentas para testes de acessibilidade",
+                "Internacionalização em aplicações React"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 7,
+              "semana": 14,
+              "slug": "aula-7-pwa-e-aplicacoes-modernas",
+              "titulo": "PWA e Aplicações Modernas",
+              "topicos": [
+                "Introdução a Progressive Web Apps (PWAs)",
+                "Push notifications em PWAs",
+                "Deploy e manutenção de PWAs"
+              ],
+              "pausas": 3
+            }
+          ]
+        },
+        {
+          "numero": 3,
+          "slug": "3-bimestre",
+          "aulas": [
+            {
+              "pos": 1,
+              "semana": 15,
+              "slug": "aula-1-estilizacao-e-performance-de-paginas-web",
+              "titulo": "Estilização e Performance de Páginas Web",
+              "topicos": [
+                "CSS grid e layouts responsivos",
+                "Ferramentas de desenvolvimento front-end",
+                "Performance de aplicações web"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 2,
+              "semana": 16,
+              "slug": "aula-2-animacoes-e-pre-processadores-css",
+              "titulo": "Animações e Pré-processadores CSS",
+              "topicos": [
+                "Animações avançadas com CSS e JavaScript",
+                "Pré-processadores CSS",
+                "Ferramentas de build e automação"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 3,
+              "semana": 17,
+              "slug": "aula-3-integracao-com-apis-externas",
+              "titulo": "Integração com APIs Externas",
+              "topicos": [
+                "Integração com APIs externas",
+                "WebSockets e comunicação em tempo real",
+                "GraphQL no front-end"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 4,
+              "semana": 18,
+              "slug": "aula-4-ci-cd-e-testes-automatizados",
+              "titulo": "CI-CD e Testes Automatizados",
+              "topicos": [
+                "CI-CD para front-end",
+                "Testes automatizados para front-end",
+                "Testes de performance para front-end"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 5,
+              "semana": 19,
+              "slug": "aula-5-tecnicas-avancadas-de-css-e-mobile-first",
+              "titulo": "Técnicas Avançadas de CSS e Mobile-First",
+              "topicos": [
+                "Técnicas avançadas de CSS",
+                "Desenvolvimento mobile-first",
+                "Gerenciamento de estado com Redux"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 6,
+              "semana": 20,
+              "slug": "aula-6-acessibilidade-e-animacoes-interativas",
+              "titulo": "Acessibilidade e Animações Interativas",
+              "topicos": [
+                "Acessibilidade em aplicações web: Aula complementar",
+                "Animações e interações avançadas: Aula complementar",
+                "Testes de acessibilidade automatizados: Aula complementar"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 7,
+              "semana": 21,
+              "slug": "aula-7-servicos-de-autenticacao-e-monitoramento",
+              "titulo": "Serviços de Autenticação e Monitoramento",
+              "topicos": [
+                "Integração com serviços de autenticação",
+                "Monitoramento e logs para front-end",
+                "Progressive Web Apps (PWA)"
+              ],
+              "pausas": 3
+            }
+          ]
+        },
+        {
+          "numero": 4,
+          "slug": "4-bimestre",
+          "aulas": [
+            {
+              "pos": 1,
+              "semana": 22,
+              "slug": "aula-1-avancando-na-integracao-com-servicos-externos",
+              "titulo": "Avançando na Integração com Serviços Externos",
+              "topicos": [
+                "Integração com APIs RESTful",
+                "Integração com GraphQL",
+                "Autenticação com OAuth e JWT"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 2,
+              "semana": 23,
+              "slug": "aula-2-tecnicas-de-esteiras-de-entrega-continua",
+              "titulo": "Técnicas de Esteiras de Entrega Contínua",
+              "topicos": [
+                "Configuração de pipelines CI/CD",
+                "Testes automatizados com Jest e Cypress",
+                "Deploy contínuo com Docker e Kubernetes"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 3,
+              "semana": 24,
+              "slug": "aula-3-ferramentas-avancadas-para-estilizacao",
+              "titulo": "Ferramentas Avançadas para Estilização",
+              "topicos": [
+                "Utilização de pré: processadores CSS",
+                "Implementação de design responsivo",
+                "Animações e transições com CSS e JavaScript"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 4,
+              "semana": 25,
+              "slug": "aula-4-performance-e-otimizacao-de-aplicacoes-web",
+              "titulo": "Performance e Otimização de Aplicações Web",
+              "topicos": [
+                "Técnicas de lazy loading",
+                "Minificação de recursos",
+                "Análise de performance com Lighthouse"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 5,
+              "semana": 26,
+              "slug": "aula-5-ferramentas-de-desenvolvimento-moderno",
+              "titulo": "Ferramentas de Desenvolvimento Moderno",
+              "topicos": [
+                "Uso de Webpack para gerenciamento de módulos",
+                "Automatização de tarefas com Gulp",
+                "Configuração de ESLint e Prettier"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 6,
+              "semana": 27,
+              "slug": "aula-6-integracao-de-servicos-externos-e-ci-cd",
+              "titulo": "Integração de Serviços Externos e CI/CD",
+              "topicos": [
+                "Integração com Firebase",
+                "Utilização de API do Google Maps",
+                "Configuração de CI/CD com GitHub Actions"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 7,
+              "semana": 28,
+              "slug": "aula-7-testes-e-monitoramento-de-aplicacoes",
+              "titulo": "Testes e Monitoramento de Aplicações",
+              "topicos": [
+                "Implementação de testes end: to: end: Aula complementar",
+                "Monitoramento de performance com New Relic: Aula complementar",
+                "Logging e análise de erros: Aula complementar"
+              ],
+              "pausas": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "inteligencia-artificial",
+      "nome": "Inteligência Artificial",
+      "bimestres": [
+        {
+          "numero": 1,
+          "slug": "1-bimestre",
+          "aulas": [
+            {
+              "pos": 1,
+              "semana": 1,
+              "slug": "aula-1-introducao-a-inteligencia-artificial",
+              "titulo": "Introdução à Inteligência Artificial",
+              "topicos": [
+                "O que e inteligência artificial-",
+                "História da IA",
+                "A IA no cotidiano"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 2,
+              "semana": 2,
+              "slug": "aula-2-tipos-de-ia-e-aplicacoes-e-impacto-da-inteligencia-artificial",
+              "titulo": "Tipos de IA e Aplicações e Impacto da Inteligência Artificial",
+              "topicos": [
+                "Tipos de IA",
+                "Impactos sociais e éticos",
+                "IA e tomada de decisão"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 3,
+              "semana": 3,
+              "slug": "aula-3-introducao-aos-fundamentos-da-ia-generativa",
+              "titulo": "Introdução aos Fundamentos da IA Generativa",
+              "topicos": [
+                "O que e IA generativa-",
+                "Como a IA aprende a gerar-",
+                "Exemplos de aplicação da IA generativa"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 4,
+              "semana": 4,
+              "slug": "aula-4-modelos-e-algoritmos-para-geracao-de-conteudo",
+              "titulo": "Modelos e Algoritmos para Geração de Conteúdo",
+              "topicos": [
+                "Principais modelos geradores",
+                "Comparação entre algoritmos",
+                "Casos reais com algoritmos geradores"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 5,
+              "semana": 5,
+              "slug": "aula-5-implementacao-de-redes-generativas-adversariais-gans",
+              "titulo": "Implementação de Redes Generativas Adversariais (GANs)",
+              "topicos": [
+                "O que e uma GAN-",
+                "Funcionamento interno de uma GAN",
+                "Análise visual dos resultados de GANs"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 6,
+              "semana": 6,
+              "slug": "aula-6-introducao-as-aplicacoes-praticas-da-ia-generativa",
+              "titulo": "Introdução às Aplicações Práticas da IA Generativa",
+              "topicos": [
+                "IA generativa na criação de imagens e textos",
+                "Aplicações em Saúde, Engenharia e Segurança",
+                "Criação guiada com ferramentas de IA generativa"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 7,
+              "semana": 7,
+              "slug": "aula-7-implementacao-de-uma-rede-generativa-adversarial-gan-para-arte",
+              "titulo": "Implementação de uma Rede Generativa Adversarial GAN para Arte",
+              "topicos": [
+                "Etapas do treinamento de uma GAN",
+                "Avaliação e melhoria de resultados",
+                "Refinamento dos resultados gerados pela GAN"
+              ],
+              "pausas": 3
+            }
+          ]
+        },
+        {
+          "numero": 2,
+          "slug": "2-bimestre",
+          "aulas": [
+            {
+              "pos": 1,
+              "semana": 8,
+              "slug": "aula-1-modelos-de-difusao-conceitos-essenciais",
+              "titulo": "Modelos de Difusão: Conceitos Essenciais",
+              "topicos": [
+                "Por que modelos de difusão-",
+                "Processo de ruído e variância",
+                "Reconstrução passo a passo"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 2,
+              "semana": 9,
+              "slug": "aula-2-treinando-e-avaliando-modelos-de-difusao",
+              "titulo": "Treinando e Avaliando Modelos de Difusão",
+              "topicos": [
+                "Dataset e pré-processamento",
+                "Ciclo de treino: Scheduler e otimizador",
+                "Métricas FID e Inception Score"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 3,
+              "semana": 10,
+              "slug": "aula-3-transfer-learning-na-geracao-de-imagens",
+              "titulo": "Transfer Learning na Geração de Imagens",
+              "topicos": [
+                "Pesos pré-treinados e tokenização de conceitos",
+                "DreamBooth: Inserindo conceitos personalizados",
+                "Avaliação criativa: Mix de estilos"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 4,
+              "semana": 11,
+              "slug": "aula-4-fine-tuning-e-prompt-engineering",
+              "titulo": "Fine-Tuning e Prompt Engineering",
+              "topicos": [
+                "Anatomia do prompt eficaz",
+                "Fine-tuning com low-rank adaptation (LoRA)",
+                "Oficina de cocriação de arte"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 5,
+              "semana": 12,
+              "slug": "aula-5-deploy-e-inferencia-acelerada",
+              "titulo": "Deploy e inferência acelerada",
+              "topicos": [
+                "Otimização ONNX &amp; TensorRT",
+                "Dockerizando serviço de geração: Aula Complementar",
+                "Escalonamento horizontal com Kubernetes"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 6,
+              "semana": 13,
+              "slug": "aula-6-arquitetura-do-chatgpt-transformers-e-atencao",
+              "titulo": "Arquitetura do ChatGPT: transformers e atenção",
+              "topicos": [
+                "Embeddings e atenção multicabeça",
+                "Decodificação autorregressiva e temperatura",
+                "Chat completion pipeline: Aula Complementar"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 7,
+              "semana": 14,
+              "slug": "aula-7-limitacoes-alucinacoes-e-uso-responsavel-do-chatgpt",
+              "titulo": "Limitações, alucinações e uso responsável do ChatGPT",
+              "topicos": [
+                "Identificando e reduzindo alucinações",
+                "Segurança, privacidade e conformidade",
+                "Feedback humano e melhoria contínua: Aula Complementar"
+              ],
+              "pausas": 3
+            }
+          ]
+        },
+        {
+          "numero": 3,
+          "slug": "3-bimestre",
+          "aulas": [
+            {
+              "pos": 1,
+              "semana": 15,
+              "slug": "aula-1-introducao-a-ia-historia-areas-e-impacto",
+              "titulo": "Introdução à IA: história, áreas e impacto",
+              "topicos": [
+                "Evolução da IA: 1950 → hoje",
+                "Evolução da IA: 1950 → hoje",
+                "Evolução da IA: 1950 → hoje"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 2,
+              "semana": 16,
+              "slug": "aula-2-aprendizado-supervisionado-pipeline-de-ml",
+              "titulo": "Aprendizado supervisionado: pipeline de ML",
+              "topicos": [
+                "Etapas do pipeline (Dataset → Modelo → Métrica)",
+                "Conjunto de dados: Qualidade e labeling",
+                "Ferramenta scikit-learn: Fluxo Básico"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 3,
+              "semana": 17,
+              "slug": "aula-3-pre-processamento-e-feature-engineering",
+              "titulo": "Pré-Processamento e Feature Engineering",
+              "topicos": [
+                "Normalização e padronização",
+                "Codificação de variáveis categóricas",
+                "Seleção e criação de Features"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 4,
+              "semana": 18,
+              "slug": "aula-4-do-modelo-a-acao-introducao-aos-agentes",
+              "titulo": "Do Modelo à Ação: Introdução aos Agentes",
+              "topicos": [
+                "O que define um agente de IA-",
+                "Raciocínio (reasoning) e planejamento",
+                "Arquiteturas reativas vs deliberativas"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 5,
+              "semana": 19,
+              "slug": "aula-5-etica-e-governanca-em-sistemas-agenticos",
+              "titulo": "Ética e Governança em Sistemas Agênticos",
+              "topicos": [
+                "Autonomia e Responsabilidade Jurídica",
+                "Vieses em Ações Autônomas",
+                "Alinhamento de Objetivos (Goal Alignment)"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 6,
+              "semana": 20,
+              "slug": "aula-6-agentes-com-rag-e-memoria",
+              "titulo": "Agentes com RAG e Memória",
+              "topicos": [
+                "Arquitetura RAG",
+                "Bancos de Vetores",
+                "Persistência de Memória"
+              ],
+              "pausas": 3
+            }
+          ]
+        },
+        {
+          "numero": 4,
+          "slug": "4-bimestre",
+          "aulas": [
+            {
+              "pos": 1,
+              "semana": 21,
+              "slug": "aula-1-ferramentas-e-orquestracao-multiagente",
+              "titulo": "Ferramentas e Orquestração Multiagente",
+              "topicos": [
+                "Function Calling e Uso de APIs",
+                "Frameworks de Orquestração",
+                "Colaboração Multiagente"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 2,
+              "semana": 22,
+              "slug": "aula-2-projeto-pratico-concepcao-e-planejamento",
+              "titulo": "Projeto Prático: Concepção e Planejamento",
+              "topicos": [
+                "Identificação do problema e requisitos",
+                "Definição de papéis dos agentes",
+                "Design da arquitetura do sistema"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 3,
+              "semana": 23,
+              "slug": "aula-3-projeto-pratico-desenvolvimento-i",
+              "titulo": "Projeto Prático: Desenvolvimento I",
+              "topicos": [
+                "Configuração do ambiente de Dev",
+                "Codificação de agentes individuais",
+                "Integração de memória e RAG no projeto"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 4,
+              "semana": 24,
+              "slug": "aula-4-projeto-pratico-desenvolvimento-ii",
+              "titulo": "Projeto Prático: Desenvolvimento II",
+              "topicos": [
+                "Implementação da Orquestração",
+                "Conexão com Ferramentas Externas (Tools)",
+                "Refinamento da Comunicação Inter: agentes"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 5,
+              "semana": 25,
+              "slug": "aula-5-projeto-pratico-testes-e-refinamento",
+              "titulo": "Projeto Prático: Testes e Refinamento",
+              "topicos": [
+                "Testes de usabilidade e confiabilidade",
+                "Ajuste de prompts e mitigação de alucinações",
+                "Coleta de feedback e melhoria contínua"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 6,
+              "semana": 26,
+              "slug": "aula-6-projeto-pratico-deploy-e-apresentacao",
+              "titulo": "Projeto Prático: Deploy e apresentação",
+              "topicos": [
+                "Preparação para o mercado",
+                "Pitch e demonstração do produto",
+                "Carreira em IA"
+              ],
+              "pausas": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "programacao-mobile",
+      "nome": "Programação Mobile",
+      "bimestres": [
+        {
+          "numero": 1,
+          "slug": "1-bimestre",
+          "aulas": [
+            {
+              "pos": 1,
+              "semana": 1,
+              "slug": "aula-1-introducao-ao-desenvolvimento-de-aplicacoes-moveis",
+              "titulo": "Introdução ao Desenvolvimento de Aplicações Móveis",
+              "topicos": [
+                "Introdução ao desenvolvimento de aplicações móveis",
+                "Visão geral das plataformas móveis (Android, iOS)",
+                "Ferramentas e Ambiente de Desenvolvimento Integrado (IDE)",
+                "Configuração do ambiente de desenvolvimento"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 2,
+              "semana": 2,
+              "slug": "aula-2-estrutura-e-ciclo-de-vida-de-aplicacoes-moveis",
+              "titulo": "Estrutura e Ciclo de Vida de Aplicações Móveis",
+              "topicos": [
+                "Estrutura básica de uma aplicação móvel",
+                "Ciclo de vida de uma aplicação móvel",
+                "Componentes principais de uma aplicação (Activity, Fragment)",
+                "Implementação de um projeto simples"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 3,
+              "semana": 3,
+              "slug": "aula-3-fundamentos-da-programacao-mobile",
+              "titulo": "Fundamentos da Programação Mobile",
+              "topicos": [
+                "Linguagens de programação para mobile (Kotlin, Swift)",
+                "Estruturas de controle e lógica de programação",
+                "Boas práticas de codificação",
+                "Exercícios de programação básica"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 4,
+              "semana": 4,
+              "slug": "aula-4-interatividade-e-navegacao",
+              "titulo": "Interatividade e Navegação",
+              "topicos": [
+                "Eventos e listeners",
+                "Navegação entre telas (Intents)",
+                "Passagem de dados entre telas",
+                "Implementação de navegação básica"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 5,
+              "semana": 5,
+              "slug": "aula-5-aplicacoes-moveis",
+              "titulo": "Aplicações móveis",
+              "topicos": [
+                "Introdução ao consumo de APIs",
+                "Requisições HTTP e formatos de dados (JSON, XML)",
+                "Manipulação de dados recebidos de APIs",
+                "Projeto de integração com uma API pública"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 6,
+              "semana": 6,
+              "slug": "aula-6-introducao-a-multithreading-e-background-tasks",
+              "titulo": "Introdução a Multithreading e Background Tasks",
+              "topicos": [
+                "Conceitos de multithreading em aplicações móveis",
+                "Uso de AsyncTask e Coroutines (Android)",
+                "Gerenciamento de tarefas em background",
+                "Implementação de tarefas em background"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 7,
+              "semana": 7,
+              "slug": "aula-7-finalizacao-de-projetos-e-revisao",
+              "titulo": "Finalização de Projetos e Revisão",
+              "topicos": [
+                "Revisão dos conceitos abordados",
+                "Melhorias e refatoração de código",
+                "Preparação e apresentação de projetos",
+                "Feedback e discussão sobre os projetos desenvolvidos"
+              ],
+              "pausas": 3
+            }
+          ]
+        },
+        {
+          "numero": 2,
+          "slug": "2-bimestre",
+          "aulas": [
+            {
+              "pos": 1,
+              "semana": 8,
+              "slug": "aula-1-introducao-ao-armazenamento-de-dados-em-aplicacoes-moveis",
+              "titulo": "Introdução ao Armazenamento de Dados em Aplicações Móveis",
+              "topicos": [
+                "Conceitos básicos de armazenamento de dados",
+                "Ferramentas de armazenamento de dados",
+                "Estrutura de banco de dados em aplicações móveis",
+                "Boas práticas no armazenamento de dados"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 2,
+              "semana": 9,
+              "slug": "aula-2-implementacao-de-banco-de-dados",
+              "titulo": "Implementação de Banco de Dados",
+              "topicos": [
+                "Configuração do ambiente de desenvolvimento",
+                "Criação de banco de dados",
+                "Operações CRUD",
+                "Sincronização de dados"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 3,
+              "semana": 10,
+              "slug": "aula-3-fundamentos-de-interfaces-com-o-usuario",
+              "titulo": "Fundamentos de Interfaces com o Usuário",
+              "topicos": [
+                "Introdução a Interface do Usuário e a Experiencao do Usuário (UI-UX)",
+                "Ferramentas de design de interface",
+                "Componentes de Interface de Usuário (UI)",
+                "Boas práticas de design de interface"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 4,
+              "semana": 11,
+              "slug": "aula-4-desenvolvimento-de-interfaces-com-o-usuario",
+              "titulo": "Desenvolvimento de Interfaces com o Usuário",
+              "topicos": [
+                "Introdução ao desenvolvimento de interfaces",
+                "Layouts e navegação",
+                "Animações e transições",
+                "Projeto de Interface de Usuário (UI)"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 5,
+              "semana": 12,
+              "slug": "aula-5-avancando-com-repositorios-de-dados",
+              "titulo": "Avançando com Repositórios de Dados",
+              "topicos": [
+                "Introdução aos repositórios",
+                "Implementação de repositórios",
+                "Testes de repositórios",
+                "Boas práticas de repositórios"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 6,
+              "semana": 13,
+              "slug": "aula-6-melhoria-e-otimizacao-de-interfaces-com-o-usuario",
+              "titulo": "Melhoria e Otimização de Interfaces com o Usuário",
+              "topicos": [
+                "Avaliação de interfaces de usuário",
+                "Melhorias de interface baseadas em feedback",
+                "Otimização de desempenho de interfaces",
+                "Projeto de melhoria de interface"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 7,
+              "semana": 14,
+              "slug": "aula-7-integracao-de-repositorios-com-apis-externas",
+              "titulo": "Integração de Repositórios com APIs Externas",
+              "topicos": [
+                "Introdução a integração com APIs",
+                "Implementação de requisições HTTP",
+                "Manipulação de dados recebidos",
+                "Projeto de integração com API pública"
+              ],
+              "pausas": 3
+            }
+          ]
+        },
+        {
+          "numero": 3,
+          "slug": "3-bimestre",
+          "aulas": [
+            {
+              "pos": 1,
+              "semana": 15,
+              "slug": "aula-1-componentes-avancados-de-interface",
+              "titulo": "Componentes Avançados de Interface",
+              "topicos": [
+                "Componentes personalizados",
+                "Animações avançadas",
+                "Gerenciamento de estados complexos",
+                "Integração com APIs gráficas"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 2,
+              "semana": 16,
+              "slug": "aula-2-acessibilidade-e-usabilidade",
+              "titulo": "Acessibilidade e Usabilidade",
+              "topicos": [
+                "Princípios de acessibilidade",
+                "Testes de usabilidade",
+                "Ferramentas de acessibilidade",
+                "Interface adaptativa"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 3,
+              "semana": 17,
+              "slug": "aula-3-banco-de-dados-avancados",
+              "titulo": "Banco de Dados Avançados",
+              "topicos": [
+                "Banco de dados relacional vs. NoSQL",
+                "Firebase para armazenamento de dados",
+                "Sincronização de dados off-line",
+                "Criptografia de dados"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 4,
+              "semana": 18,
+              "slug": "aula-4-integracao-com-servicos-de-terceiros",
+              "titulo": "Integração com Serviços de Terceiros",
+              "topicos": [
+                "Integração com APIs externas",
+                "Utilização de serviços de back-end como serviço (BaaS)",
+                "Integração com serviços de mensageria",
+                "Monitoramento e logs"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 5,
+              "semana": 19,
+              "slug": "aula-5-armazenamento-em-nuvem",
+              "titulo": "Armazenamento em Nuvem",
+              "topicos": [
+                "Armazenamento de dados em nuvem: Aula complementar",
+                "Integração com AWS S3: Aula complementar",
+                "Segurança de dados em nuvem: Aula complementar",
+                "Backup e recuperação de dados na nuvem: Aula complementar"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 6,
+              "semana": 20,
+              "slug": "aula-6-design-e-experiencia-do-usuario-ux",
+              "titulo": "Design e Experiência do Usuário (UX)",
+              "topicos": [
+                "Fundamentos de Experiência do Usuário (UX)",
+                "Prototipagem e wireframes",
+                "Design de interação",
+                "Testes de usabilidade com usuários reais"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 7,
+              "semana": 21,
+              "slug": "aula-7-implementacao-e-melhoria-continua",
+              "titulo": "Implementação e Melhoria Contínua",
+              "topicos": [
+                "Refatoração de código",
+                "Otimização de performance de interface",
+                "Feedback contínuo e iteração",
+                "Projeto de interface de usuário"
+              ],
+              "pausas": 3
+            }
+          ]
+        },
+        {
+          "numero": 4,
+          "slug": "4-bimestre",
+          "aulas": [
+            {
+              "pos": 1,
+              "semana": 22,
+              "slug": "aula-1-configuracoes-iniciais-para-publicacao-nas-stores",
+              "titulo": "Configurações Iniciais para Publicação nas Stores",
+              "topicos": [
+                "Configuração de contas de desenvolvedor",
+                "Requisitos para publicação",
+                "Preparação de recursos visuais",
+                "Testes e debugging para publicação"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 2,
+              "semana": 23,
+              "slug": "aula-2-preparativos-finais-para-publicacao",
+              "titulo": "Preparativos Finais para Publicação",
+              "topicos": [
+                "Otimização de performance",
+                "Verificação de segurança",
+                "Testes de usabilidade",
+                "Configuração de build e release"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 3,
+              "semana": 24,
+              "slug": "aula-3-submissao-e-revisao-de-aplicativos",
+              "titulo": "Submissão e Revisão de Aplicativos",
+              "topicos": [
+                "Processo de submissão",
+                "Gerenciamento de feedback de revisão",
+                "Correções e atualizações",
+                "Configuração de build e release"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 4,
+              "semana": 25,
+              "slug": "aula-4-estrategias-de-marketing-para-aplicativos",
+              "titulo": "Estratégias de Marketing para Aplicativos",
+              "topicos": [
+                "Estratégias de App Store Optimization (ASO)",
+                "Marketing digital para aplicativos",
+                "Redes sociais e engajamento",
+                "Análise de métricas de desempenho"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 5,
+              "semana": 26,
+              "slug": "aula-5-planejamento-de-lancamento-de-aplicativos",
+              "titulo": "Planejamento de Lançamento de Aplicativos",
+              "topicos": [
+                "Cronograma de lançamento",
+                "Estratégias de pré: lançamento",
+                "Colaboração com influenciadores internos do segmento",
+                "Gerenciamento de feedback pós: lançamento"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 6,
+              "semana": 27,
+              "slug": "aula-6-gerenciamento-de-versoes-e-atualizacoes",
+              "titulo": "Gerenciamento de Versões e Atualizações",
+              "topicos": [
+                "Controle de versão",
+                "Atualizações incrementais",
+                "Atualizações de segurança",
+                "Comunicação de atualizações"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 7,
+              "semana": 28,
+              "slug": "aula-7-melhoria-continua-e-suporte",
+              "titulo": "Melhoria Contínua e Suporte",
+              "topicos": [
+                "Análise de desempenho e métricas: Aula complementar",
+                "Suporte ao usuário: Aula complementar",
+                "Gestão de crises e solução de problemas: Aula complementar",
+                "Planejamento de ciclo de vida do produto: Aula complementar"
+              ],
+              "pausas": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "projeto-multidisciplinar",
+      "nome": "Projeto Multidisciplinar",
+      "bimestres": [
+        {
+          "numero": 1,
+          "slug": "1-bimestre",
+          "aulas": [
+            {
+              "pos": 1,
+              "semana": 1,
+              "slug": "aula-1-conceitos-e-definicoes-de-projeto-e-estrutura-do-projeto-multidisciplinar",
+              "titulo": "Conceitos e definições de projeto e estrutura do projeto multidisciplinar",
+              "topicos": [
+                "Conceitos e definições",
+                "Ciclo de vida de um projeto",
+                "Processo criativo"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 2,
+              "semana": 2,
+              "slug": "aula-2-design-thinking",
+              "titulo": "Design Thinking",
+              "topicos": [
+                "Introdução ao Design Thinking",
+                "Empatia e ideação do problema-desafio do projeto",
+                "Problema-desafio do Projeto Multidisciplinar"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 3,
+              "semana": 3,
+              "slug": "aula-3-planejamento-e-organizacao-do-projeto",
+              "titulo": "Planejamento e Organização do Projeto",
+              "topicos": [
+                "Scrum",
+                "Definindo a justificativa e a finalidade do projeto",
+                "Estabelecendo os objetivos do projeto"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 4,
+              "semana": 4,
+              "slug": "aula-4-detalhamento-e-partes-interessadas-do-projeto",
+              "titulo": "Detalhamento e Partes Interessadas do Projeto",
+              "topicos": [
+                "Descrição do produto ou serviço",
+                "Mapeamento de partes interessadas",
+                "Retrospectiva: produto ou serviço e partes interessadas"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 5,
+              "semana": 5,
+              "slug": "aula-5-gestao-de-projetos-detalhamento-e-entregas",
+              "titulo": "Gestão de Projetos: Detalhamento e Entregas",
+              "topicos": [
+                "Identificação e coleta de requisitos",
+                "Organização do product backlog",
+                "Definição das entregas do projeto"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 6,
+              "semana": 6,
+              "slug": "aula-6-gestao-de-projetos-analise-de-riscos",
+              "titulo": "Gestão de Projetos: Análise de Riscos",
+              "topicos": [
+                "Identificação e avaliação de riscos",
+                "Análise e apresentação do escopo",
+                "Retorno e revisão (retrô): escopo parcial"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 7,
+              "semana": 7,
+              "slug": "aula-7-cronograma-do-projeto-tecnicas-e-praticas",
+              "titulo": "Cronograma do Projeto: Técnicas e Práticas",
+              "topicos": [
+                "Conceitos e importância do cronograma",
+                "Ferramentas e técnicas para criar cronogramas",
+                "Planejamento de marcos e prazos"
+              ],
+              "pausas": 3
+            }
+          ]
+        },
+        {
+          "numero": 2,
+          "slug": "2-bimestre",
+          "aulas": [
+            {
+              "pos": 1,
+              "semana": 8,
+              "slug": "aula-1-analise-de-viabilidade-tipos-e-importancia",
+              "titulo": "Análise de viabilidade: tipos e importância",
+              "topicos": [
+                "Conceitos e tipos de viabilidade",
+                "Viabilidade técnica",
+                "Riscos técnicos e intervenções"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 2,
+              "semana": 9,
+              "slug": "aula-2-analise-de-viabilidade-economica-e-financeira",
+              "titulo": "Análise de Viabilidade: Econômica e Financeira",
+              "topicos": [
+                "Custo e retorno do investimento",
+                "Gestão de riscos financeiros",
+                "Revisão e análise financeira"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 3,
+              "semana": 10,
+              "slug": "aula-3-analise-de-viabilidade-mercado",
+              "titulo": "Análise de viabilidade: mercado",
+              "topicos": [
+                "Análise de demanda e público-alvo",
+                "Concorrência e posição de mercado",
+                "Análise de tendências de mercado"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 4,
+              "semana": 11,
+              "slug": "aula-4-analise-de-viabilidade-ambiental",
+              "titulo": "Análise de Viabilidade: Ambiental",
+              "topicos": [
+                "Impacto ambiental do projeto",
+                "Normas e regulamentos ambientais",
+                "Sustentabilidade e projetos"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 5,
+              "semana": 12,
+              "slug": "aula-5-analise-de-priorizacao-das-funcionalidades",
+              "titulo": "Análise de Priorização das Funcionalidades",
+              "topicos": [
+                "Identificação das funcionalidades",
+                "Priorização de funcionalidades",
+                "Gestão de conflitos em projetos"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 6,
+              "semana": 13,
+              "slug": "aula-6-introducao-a-produto-minimo-viavel-mvp",
+              "titulo": "Introdução a Produto Mínimo Viável (MVP)",
+              "topicos": [
+                "Conceito de Produto Mínimo Viável (MVP)",
+                "Tipos de MVP",
+                "Desenvolvimento inicial do MVP"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 7,
+              "semana": 14,
+              "slug": "aula-7-revisao-e-ajuste-de-cronograma-e-escopo",
+              "titulo": "Revisão e Ajuste de Cronograma e Escopo",
+              "topicos": [
+                "Ajustes do escopo e do cronograma",
+                "Revisão do cronograma do projeto",
+                "Métodos de ajuste de cronograma"
+              ],
+              "pausas": 3
+            }
+          ]
+        },
+        {
+          "numero": 3,
+          "slug": "3-bimestre",
+          "aulas": [
+            {
+              "pos": 1,
+              "semana": 15,
+              "slug": "aula-1-desenvolvimento-de-mvp-parte-1",
+              "titulo": "Desenvolvimento de MVP (Parte 1)",
+              "topicos": [
+                "Introdução a MVP",
+                "Planejamento do MVP",
+                "Desenvolvimento do MVP (parte 1)"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 2,
+              "semana": 16,
+              "slug": "aula-2-desenvolvimento-de-mvp-parte-2",
+              "titulo": "Desenvolvimento de MVP (Parte 2)",
+              "topicos": [
+                "Desenvolvimento do MVP (parte 2)",
+                "Desenvolvimento do MVP (parte 3)",
+                "Retrospectiva"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 3,
+              "semana": 17,
+              "slug": "aula-3-pesquisa-e-melhoria-continua",
+              "titulo": "Pesquisa e melhoria contínua",
+              "topicos": [
+                "Coleta de feedback",
+                "Análise de feedback",
+                "Desempenho de produto, processo e pessoas"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 4,
+              "semana": 18,
+              "slug": "aula-4-sustentabilidade-e-inovacao",
+              "titulo": "Sustentabilidade e inovação",
+              "topicos": [
+                "Inovando com sustentabilidade (Objetivos de Desenvolvimento Sustentável: ODS)",
+                "Sustentabilidade aplicada ao MVP",
+                "Retrospectiva"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 5,
+              "semana": 19,
+              "slug": "aula-5-praticas-inovadoras-em-gestao-de-projetos",
+              "titulo": "Práticas Inovadoras em Gestão de Projetos",
+              "topicos": [
+                "Metodologias inovadoras: Aula complementar",
+                "Ferramentas de inovação (parte 1): Aula complementar",
+                "Ferramentas de inovação (parte 2): Aula complementar"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 6,
+              "semana": 20,
+              "slug": "aula-6-refinamento-e-implementacao-de-melhorias",
+              "titulo": "Refinamento e Implementação de Melhorias",
+              "topicos": [
+                "Refinamento do MVP",
+                "Ajustes finais do MVP",
+                "Retrospectiva"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 7,
+              "semana": 21,
+              "slug": "aula-7-execucao-e-avaliacao-final-de-mvp",
+              "titulo": "Execução e Avaliação Final de MVP",
+              "topicos": [
+                "Revisão completa do MVP",
+                "Acompanhamento e monitoramento do MVP",
+                "Avaliação final e documentação do MVP"
+              ],
+              "pausas": 3
+            }
+          ]
+        },
+        {
+          "numero": 4,
+          "slug": "4-bimestre",
+          "aulas": [
+            {
+              "pos": 1,
+              "semana": 22,
+              "slug": "aula-1-avaliacao-final-do-publico-alvo",
+              "titulo": "Avaliação Final do Público-Alvo",
+              "topicos": [
+                "Avaliação do público: alvo: pesquisa final (parte 1)",
+                "Avaliação do público: alvo: pesquisa final (parte 2)",
+                "Ajustes com base na avaliação do público"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 2,
+              "semana": 23,
+              "slug": "aula-2-ajustes-finais-do-projeto",
+              "titulo": "Ajustes finais do projeto",
+              "topicos": [
+                "Monitoramento de indicadores",
+                "Documentação de resultados",
+                "Retrospectiva"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 3,
+              "semana": 24,
+              "slug": "aula-3-comunicando-o-projeto-marketing",
+              "titulo": "Comunicando o Projeto: Marketing",
+              "topicos": [
+                "Introdução a marketing de projetos",
+                "Estratégias de marketing digital",
+                "Planejamento de comunicação"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 4,
+              "semana": 25,
+              "slug": "aula-4-save",
+              "titulo": "SAVE",
+              "topicos": [
+                "Introdução e implementação da metodologia SAVE: Aula complementar",
+                "Avaliação da metodologia SAVE: Aula complementar",
+                "Retrospectiva: Aula complementar"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 5,
+              "semana": 26,
+              "slug": "aula-5-de-olho-no-futuro",
+              "titulo": "De Olho no Futuro",
+              "topicos": [
+                "Avaliação de resultados",
+                "Reflexão sobre o impacto do projeto",
+                "Planejamento dos próximos passos"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 6,
+              "semana": 27,
+              "slug": "aula-6-apresentacao-parte-1",
+              "titulo": "Apresentação (Parte 1)",
+              "topicos": [
+                "Preparação para apresentação",
+                "Simulação de apresentação (parte 1)",
+                "Simulação de apresentação (parte 2)"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 7,
+              "semana": 28,
+              "slug": "aula-7-apresentacao-parte-2",
+              "titulo": "Apresentação (Parte 2)",
+              "topicos": [
+                "Apresentação do projeto (parte 1)",
+                "Apresentação do projeto (parte 2)",
+                "Apresentação do projeto (parte 3)"
+              ],
+              "pausas": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "versionamento-de-codigo",
+      "nome": "Versionamento de Código",
+      "bimestres": [
+        {
+          "numero": 1,
+          "slug": "1-bimestre",
+          "aulas": [
+            {
+              "pos": 1,
+              "semana": 1,
+              "slug": "aula-1-fundamentos-do-versionamento-de-codigo",
+              "titulo": "Fundamentos do Versionamento de Código",
+              "topicos": [
+                "O que e versionamento de código-",
+                "Por que versionar um código-",
+                "Conceitos de repositório e histórico"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 2,
+              "semana": 2,
+              "slug": "aula-2-conhecendo-as-ferramentas-existentes-no-mercado",
+              "titulo": "Conhecendo as ferramentas existentes no mercado",
+              "topicos": [
+                "Visão geral das ferramentas de versionamento",
+                "Comparando ferramentas",
+                "Repositórios públicos x privados"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 3,
+              "semana": 3,
+              "slug": "aula-3-introducao-ao-github",
+              "titulo": "Introdução ao GitHub",
+              "topicos": [
+                "Criando conta e navegando no GitHub",
+                "Criando e gerenciando repositórios",
+                "Histórico e commits via web"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 4,
+              "semana": 4,
+              "slug": "aula-4-colaboracao-e-fluxo-de-trabalho-com-o-github",
+              "titulo": "Colaboração e Fluxo de Trabalho com o GitHub",
+              "topicos": [
+                "Compartilhamento e permissões",
+                "Clonagem e modificação",
+                "Comentários, issues e histórico"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 5,
+              "semana": 5,
+              "slug": "aula-5-fluxo-de-trabalho-individual-com-git",
+              "titulo": "Fluxo de Trabalho Individual com Git",
+              "topicos": [
+                "Git local: repositório e init",
+                "Commit e histórico",
+                "Modificações e reversões"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 6,
+              "semana": 6,
+              "slug": "aula-6-trabalho-em-equipe-com-branches-e-pull-requests",
+              "titulo": "Trabalho em Equipe com Branches e Pull Requests",
+              "topicos": [
+                "O que e um branch-",
+                "Merge e conflitos",
+                "Pull Request no GitHub"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 7,
+              "semana": 7,
+              "slug": "aula-7-gerenciamento-avancado-de-fluxo-de-trabalho-e-boas-praticas",
+              "titulo": "Gerenciamento Avançado de Fluxo de Trabalho e Boas Práticas",
+              "topicos": [
+                "O que e integração contínua-",
+                "GitHub Actions — fundamentos",
+                "Simulação de pipeline automatizado"
+              ],
+              "pausas": 3
+            }
+          ]
+        },
+        {
+          "numero": 2,
+          "slug": "2-bimestre",
+          "aulas": [
+            {
+              "pos": 1,
+              "semana": 8,
+              "slug": "aula-1-integracao-continua-ci-conceitos-e-configuracao-inicial",
+              "titulo": "Integração Contínua (CI): conceitos e configuração inicial",
+              "topicos": [
+                "Por que Integração Contínua-",
+                "Estrutura de um workflow no GitHub Actions",
+                "Interpretando resultados e badges de status"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 2,
+              "semana": 9,
+              "slug": "aula-2-entrega-continua-cd-deploy-automatico-em-staging",
+              "titulo": "Entrega Contínua (CD): deploy automático em staging",
+              "topicos": [
+                "Conceitos de CD e pipeline de promoção",
+                "Configure-once, deploy-many: segredos e variáveis",
+                "Rollback rápido e Canary Release"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 3,
+              "semana": 10,
+              "slug": "aula-3-boas-praticas-de-versionamento-semver-e-conventional-commits",
+              "titulo": "Boas Práticas de Versionamento: SemVer e Conventional Commits",
+              "topicos": [
+                "Semantic Versioning (SemVer) na prática",
+                "Conventional Commits: padronizando mensagens",
+                "Git Tag e Release Notes automatizados"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 4,
+              "semana": 11,
+              "slug": "aula-4-estrategias-avancadas-de-branching-gitflow-trunk-based",
+              "titulo": "Estratégias Avançadas de Branching (GitFlow, Trunk-Based)",
+              "topicos": [
+                "GitFlow: release, develop e hotfix",
+                "Trunk-Based Development &amp; Feature Flags",
+                "Monorepo vs. Multi-repo: implicações de estratégia"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 5,
+              "semana": 12,
+              "slug": "aula-5-git-hooks-e-pre-commit-automatizado",
+              "titulo": "Git Hooks e Pré-Commit automatizado",
+              "topicos": [
+                "Visão geral dos hooks do Git",
+                "Implementando Lint e teste no pré-commit",
+                "Git Hooks compartilhados e centralizados: Aula Complementar"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 6,
+              "semana": 13,
+              "slug": "aula-6-notificacoes-de-pipeline-mensageria",
+              "titulo": "Notificações de pipeline & mensageria",
+              "topicos": [
+                "Criando webhooks de status de build",
+                "Bots de mensageria: Slack App básico",
+                "Etiqueta de alerta e comunicação humanizada: Aula Complementar"
+              ],
+              "pausas": 3
+            }
+          ]
+        },
+        {
+          "numero": 3,
+          "slug": "3-bimestre",
+          "aulas": [
+            {
+              "pos": 1,
+              "semana": 15,
+              "slug": "aula-1-git-basico-repositorio-commit-e-historico",
+              "titulo": "Git Básico: repositório, commit e histórico",
+              "topicos": [
+                "Inicialização e snapshot de arquivos",
+                "Visualização de histórico e reversão",
+                ".gitignore e boas práticas"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 2,
+              "semana": 16,
+              "slug": "aula-2-branching-e-estrategias-de-fluxo-git-flow-trunk-based",
+              "titulo": "Branching e estratégias de fluxo (Git Flow, Trunk Based)",
+              "topicos": [
+                "Branch, merge e fast-forward",
+                "Estratégia Git Flow",
+                "Trunk Based Development"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 3,
+              "semana": 17,
+              "slug": "aula-3-colaboracao-remota-pull-request-code-review",
+              "titulo": "Colaboração remota: Pull Request, Code Review",
+              "topicos": [
+                "Fork, Push e Pull Request",
+                "Técnicas de Code Review",
+                "Resolvendo conflitos complexos"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 4,
+              "semana": 18,
+              "slug": "aula-4-tagging-releases-e-versionamento-semantico",
+              "titulo": "Tagging, releases e versionamento semântico",
+              "topicos": [
+                "Git tag annotated × lightweight",
+                "Versionamento semântico (SemVer)",
+                "Geração de changelog automático"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 5,
+              "semana": 19,
+              "slug": "aula-5-fundamentos-de-mensageria-conceitos-de-fila-topico-e-garantias",
+              "titulo": "Fundamentos de mensageria: conceitos de fila, tópico e garantias",
+              "topicos": [
+                "Produtor, consumidor e corretor",
+                "Comparação RabbitMQ × Kafka × SQS",
+                "Modelagem de domínio orientada a eventos"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 6,
+              "semana": 20,
+              "slug": "aula-6-rabbitmq-conceitos-e-operacao-basica",
+              "titulo": "RabbitMQ: conceitos e operação básica",
+              "topicos": [
+                "Exchanges, Filas e Estrtegias de Roteamento",
+                "ACK, NACK e Redrive Policy",
+                "Ferramenta Management UI"
+              ],
+              "pausas": 3
+            }
+          ]
+        },
+        {
+          "numero": 4,
+          "slug": "4-bimestre",
+          "aulas": [
+            {
+              "pos": 1,
+              "semana": 21,
+              "slug": "aula-1-git-workflows-avancados",
+              "titulo": "Git Workflows avançados",
+              "topicos": [
+                "Revisão Git e motivação para Workflows",
+                "Implementando GitFlow na prática",
+                "Trunk: Based Development & Feature Flags"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 2,
+              "semana": 22,
+              "slug": "aula-2-pull-request-code-review-eficaz",
+              "titulo": "Pull Request & Code Review eficaz",
+              "topicos": [
+                "Anatomia de um Pull Request",
+                "Boas práticas de Code Review",
+                "Integração de checks automatizados"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 3,
+              "semana": 23,
+              "slug": "aula-3-monorepo-polyrepo",
+              "titulo": "Monorepo × Polyrepo",
+              "topicos": [
+                "Conceitos e ferramentas para Monorepo",
+                "Polyrepo com pipelines independentes",
+                "Estudo comparativo: Google × Netflix"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 4,
+              "semana": 24,
+              "slug": "aula-4-rabbitmq-avancado-routing-dead-letter-queues",
+              "titulo": "RabbitMQ avançado: Routing & Dead-Letter Queues",
+              "topicos": [
+                "Exchanges Direct e Topic",
+                "Dead-Letter Exchange e TTL",
+                "Laboratório: Simulação de falha"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 5,
+              "semana": 25,
+              "slug": "aula-5-kafka-streams-basico",
+              "titulo": "Kafka Streams básico",
+              "topicos": [
+                "Arquitetura Kafka Streams",
+                "Join e Window",
+                "Deploy em Docker Compose"
+              ],
+              "pausas": 3
+            },
+            {
+              "pos": 6,
+              "semana": 26,
+              "slug": "aula-6-observabilidade-em-mensageria",
+              "titulo": "Observabilidade em mensageria",
+              "topicos": [
+                "Métricas essenciais de Kafka: RabbitMQ",
+                "Logs estruturados",
+                "Tracing distribuído com OpenTelemetry + Jaeger"
+              ],
+              "pausas": 3
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

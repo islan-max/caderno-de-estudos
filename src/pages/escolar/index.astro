@@ -3,56 +3,49 @@ import SecaoOculta from '../../components/SecaoOculta.astro';
 import { secaoVisivel } from '../../lib/secoes';
 import Base from '../../layouts/Base.astro';
 import HelpTip from '../../components/HelpTip.astro';
-import { buildMateriaBimestreTree } from '../../lib/slug';
 import { u } from '../../lib/url';
-import { listarEntradas } from '../../lib/lessonsRepo';
+import { materiasEscolar } from '../../lib/escolar';
 
 // Seção oculta (src/lib/secoes.ts): a rota continua existindo (links antigos não
 // quebram), mas some da navegação e não gera nenhuma página interna.
 const oculta = !secaoVisivel('escolar');
 
-const entries = await listarEntradas('escolar');
-const tree = buildMateriaBimestreTree(entries);
-const materias = [...tree.values()].sort((a, b) => a.label.localeCompare(b.label));
+const materias = (await materiasEscolar()).map((m) => ({ ...m, total: m.bimestres.reduce((n, b) => n + b.aulas.length, 0) }));
 ---
 
-<Base title="Escolar" active="escolar" description="Conteúdo de sala de aula, por matéria">
+<Base title="Escolar" active="escolar" description="Aulas de sala de aula, por matéria e bimestre">
   {oculta ? (
-    <SecaoOculta nome="A trilha Escolar" />
+    <SecaoOculta nome="Escolar" />
   ) : (
   <Fragment>
   <div class="flex items-center gap-2 mb-2">
     <p class="font-mono text-xs uppercase tracking-widest" style="color: var(--color-escolar)">escolar</p>
     <HelpTip title="Como funciona a aba Escolar">
-      Aqui o conteúdo segue a ordem da sala de aula: matéria, depois bimestre, depois semana. Use
-      para revisar uma aula específica ou repor o que você faltou.
+      Material das aulas de sala, para ler enquanto o professor explica. Cada matéria é dividida em
+      bimestres, e cada bimestre em aulas. As questões ficam na apostila.
     </HelpTip>
   </div>
   <h1 class="font-display text-3xl md:text-4xl font-bold text-ink mb-3">Matérias</h1>
   <p class="font-body text-ink-soft max-w-lg mb-10 leading-relaxed">
-    Conteúdo de sala de aula organizado por matéria, bimestre e semana.
+    Escolha uma matéria, depois o bimestre e a aula.
   </p>
 
-  {materias.length === 0 ? (
-    <p class="font-body text-ink-soft">Nenhuma matéria publicada ainda.</p>
-  ) : (
-    <ul class="grid sm:grid-cols-2 gap-4 list-none p-0 m-0">
-      {materias.map((m) => (
-        <li>
-          <a
-            href={u(`/escolar/${m.slug}/`)}
-            class="block rounded-lg border-2 p-5 hover:-translate-y-0.5 transition-transform"
-            style="border-color: var(--color-escolar); background-color: var(--color-escolar-soft);"
-          >
-            <h2 class="font-display text-xl font-bold text-ink mb-1">{m.label}</h2>
-            <p class="font-mono text-xs text-ink-soft">
-              {m.bimestres.size} {m.bimestres.size === 1 ? 'bimestre' : 'bimestres'}
-            </p>
-          </a>
-        </li>
-      ))}
-    </ul>
-  )}
+  <ul class="grid sm:grid-cols-2 gap-4 list-none p-0 m-0">
+    {materias.map((m) => (
+      <li>
+        <a
+          href={u(`/escolar/${m.slug}/`)}
+          class="block rounded-lg border-2 p-5 hover:-translate-y-0.5 transition-transform"
+          style="border-color: var(--color-escolar); background-color: var(--color-escolar-soft);"
+        >
+          <h2 class="font-display text-xl font-bold text-ink mb-1">{m.nome}</h2>
+          <p class="font-mono text-xs text-ink-soft">
+            {m.bimestres.length} {m.bimestres.length === 1 ? 'bimestre' : 'bimestres'} · {m.total} {m.total === 1 ? 'aula' : 'aulas'}
+          </p>
+        </a>
+      </li>
+    ))}
+  </ul>
 </Fragment>
   )}
 </Base>

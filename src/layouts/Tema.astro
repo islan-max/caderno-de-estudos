@@ -50,7 +50,8 @@ const {
 const pai = [...breadcrumb].reverse().find((b) => b.href);
 // Cor de destaque da página: a da matéria, quando houver; senão a da seção.
 const destaque = materia ?? active;
-const corDaMateria = materia ? `--materia: var(--color-${materia}); --materia-soft: var(--color-${materia}-soft);` : '';
+// Sem matéria própria (aba DS), a aula usa a cor da seção nos destaques e nas figuras.
+const corDaMateria = `--materia: var(--color-${destaque}); --materia-soft: var(--color-${destaque}-soft);`;
 ---
 
 <Base
