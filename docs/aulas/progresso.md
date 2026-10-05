@@ -146,7 +146,7 @@ Status: `pendente`, `em andamento`, `concluída`, `bloqueada`. Questões: ids do
 |---|---|---|---|---|---|
 | redacao/redacao-dissertativo-argumentativa | 3 | pendente |  |  | veio de lingua-portuguesa |
 | redacao/proposta-de-intervencao | 8 | pendente |  |  | veio de lingua-portuguesa |
-| redacao/regras-da-nota-zero | 1 | pendente |  |  | nova |
+| redacao/regras-da-nota-zero | 1 | concluída | 5 questões autorais (sem banco INEP) | d9d9d31 | revisor: PASS na 3ª leitura (rodada 1: princípios do INEP incompletos; "vale como prova inteira" sem fonte; cópia e anulação; erros comuns e exemplos espelhando Q2, Q3 e Q5; palavras difíceis; instrução da prática ambígua; rodada 2: exemplo da seção 4 ambíguo entre fuga e tangência, Q1-D defensável, "números" sem fonte); fatos conferidos na Cartilha do Participante 2024 do INEP (.cache/redacao/cartilha-2024.txt); prática de escrita sobre o tema oficial de 2023; glossário com 17 itens; 5 figuras SVG + 2 compactas |
 | redacao/leitura-da-proposta-e-recorte-do-tema | 2 | pendente |  |  | nova |
 | redacao/repertorio-sociocultural | 4 | pendente |  |  | nova |
 | redacao/projeto-de-texto-e-argumentacao | 5 | pendente |  |  | nova |
