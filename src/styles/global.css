@@ -775,3 +775,32 @@ html[data-links="sim"] main a:not([class]) {
     transition-duration: 0.001ms;
   }
 }
+
+/* Código dentro do texto (aulas de DS): sem as aspas que o plugin de tipografia põe em volta,
+   com um fundo leve para destacar do texto. Blocos de código (pre) não são afetados. */
+.prose-tema :not(pre) > code {
+  font-weight: 500;
+  font-size: 0.88em;
+  padding: 0.12em 0.4em;
+  border-radius: 0.3rem;
+  background: color-mix(in srgb, var(--color-ink) 7%, transparent);
+}
+.prose-tema :not(pre) > code::before,
+.prose-tema :not(pre) > code::after {
+  content: none;
+}
+
+/* Blocos de código das aulas: papel do caderno, borda da cor da seção, paleta que acompanha o tema. */
+.prose-tema pre.astro-code {
+  background: color-mix(in srgb, var(--color-paper-dark) 30%, var(--color-surface));
+  border: 1px solid var(--color-line);
+  border-left: 3px solid var(--materia, var(--color-ink-soft));
+  border-radius: 0.5rem;
+  color: var(--color-ink);
+  padding: 1rem 1.15rem;
+  font-size: 0.84rem;
+  line-height: 1.7;
+}
+.prose-tema pre.astro-code code { background: none; padding: 0; font-weight: 400; }
+.prose-tema pre.astro-code span { color: var(--shiki-light); }
+html[data-tema="escuro"] .prose-tema pre.astro-code span { color: var(--shiki-dark); }

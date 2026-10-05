@@ -1,52 +1,44 @@
 ---
 import { secaoVisivel } from '../../../../lib/secoes';
 import Base from '../../../../layouts/Base.astro';
-import { getCollection } from 'astro:content';
-import { buildMateriaBimestreTree, splitSlug, semanaLabel } from '../../../../lib/slug';
+import TrilhaAulas from '../../../../components/TrilhaAulas.astro';
 import { u } from '../../../../lib/url';
-import { listarEntradas } from '../../../../lib/lessonsRepo';
+import { materiasEscolar } from '../../../../lib/escolar';
 
 export async function getStaticPaths() {
   // Seção oculta (src/lib/secoes.ts): nenhuma rota é gerada.
   if (!secaoVisivel('escolar')) return [];
-  const aulas = await getCollection('escolar');
-  return [...new Set(aulas.map((aula) => aula.id.split('/').slice(0, 2).join('/')))].map((path) => {
-    const [materia, bimestre] = path.split('/');
-    return { params: { materia, bimestre } };
-  });
+  return (await materiasEscolar()).flatMap((m) => m.bimestres.map((b) => ({ params: { materia: m.slug, bimestre: b.slug } })));
 }
 
 const { materia, bimestre } = Astro.params;
-const tree = buildMateriaBimestreTree(await listarEntradas('escolar'));
-const materiaNode = materia ? tree.get(materia) : undefined;
-const bim = bimestre ? materiaNode?.bimestres.get(bimestre) : undefined;
-if (!materiaNode || !bim) return Astro.redirect(u('/escolar'));
-const materiaLabel = materiaNode.label;
-const bimestreLabel = bim.label;
-const semanas = bim.semanas;
+const mat = (await materiasEscolar()).find((m) => m.slug === materia);
+const bim = mat?.bimestres.find((b) => b.slug === bimestre);
+if (!mat || !bim) return Astro.redirect(u('/escolar'));
+
+// Cada aula junta todo o conteúdo da semana: a trilha mostra os tópicos como resumo.
+const itens = bim.aulas.map((a) => ({
+  id: a.id,
+  titulo: a.titulo,
+  resumo: a.resumo,
+  href: u(`/escolar/${mat.slug}/${bim.slug}/${a.slug}/`),
+}));
 ---
 
-<Base title={`${materiaLabel} · ${bimestreLabel}`} active="escolar" description={`Semanas de ${materiaLabel}, ${bimestreLabel}`}>
-  <nav class="font-mono text-xs text-ink-soft mb-4 flex flex-wrap gap-1">
+<Base
+  title={`${mat.nome} · ${bim.label}`}
+  active="escolar"
+  description={`Aulas de ${mat.nome}, ${bim.label}`}
+  voltar={{ href: u(`/escolar/${mat.slug}/`), label: mat.nome }}
+>
+  <nav class="font-mono text-xs text-ink-soft mb-4 flex flex-wrap gap-1" aria-label="Você está aqui">
     <a href={u('/escolar')} class="hover:text-ink underline underline-offset-2">Escolar</a>
     <span>/</span>
-    <a href={u(`/escolar/${materia}/`)} class="hover:text-ink underline underline-offset-2">{materiaLabel}</a>
+    <a href={u(`/escolar/${mat.slug}/`)} class="hover:text-ink underline underline-offset-2">{mat.nome}</a>
     <span>/</span>
-    <span class="text-ink">{bimestreLabel}</span>
+    <span class="text-ink">{bim.label}</span>
   </nav>
-  <h1 class="font-display text-3xl md:text-4xl font-bold text-ink mb-8">{bimestreLabel}</h1>
+  <h1 class="font-display text-3xl md:text-4xl font-bold text-ink mb-8">{bim.label}</h1>
 
-  <ul class="flex flex-col gap-3 list-none p-0 m-0">
-    {semanas.map((s) => (
-      <li>
-        <a
-          href={u(`/escolar/${materia}/${bimestre}/${splitSlug(s.id)[2]}/`)}
-          class="flex items-center justify-between gap-4 rounded-md border border-paper-dark px-5 py-4 hover:border-escolar transition-colors bg-white/50"
-        >
-          <span class="font-mono text-xs text-ink-soft shrink-0">{semanaLabel(splitSlug(s.id)[2])}</span>
-          <span class="font-body text-ink font-medium flex-1 text-right">{s.data.title}</span>
-        </a>
-      </li>
-    ))}
-  </ul>
+  <TrilhaAulas aulas={itens} accent="escolar" />
 </Base>

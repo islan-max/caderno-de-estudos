@@ -3,20 +3,17 @@ import SecaoOculta from '../../components/SecaoOculta.astro';
 import { secaoVisivel } from '../../lib/secoes';
 import Base from '../../layouts/Base.astro';
 import HelpTip from '../../components/HelpTip.astro';
-import { buildMateriaBimestreTree } from '../../lib/slug';
 import { u } from '../../lib/url';
-import { listarEntradas } from '../../lib/lessonsRepo';
+import { materiasDs, contarAulas } from '../../lib/dsMapa';
 
 // Seção oculta (src/lib/secoes.ts): a rota continua existindo (links antigos não
 // quebram), mas some da navegação e não gera nenhuma página interna.
 const oculta = !secaoVisivel('ds');
 
-const entries = await listarEntradas('ds');
-const tree = buildMateriaBimestreTree(entries);
-const materias = [...tree.values()].sort((a, b) => a.label.localeCompare(b.label));
+const materias = (await materiasDs()).map((m) => ({ ...m, ...contarAulas(m.bimestres) }));
 ---
 
-<Base title="Desenvolvimento de Sistemas" active="ds" description="Material do curso de Desenvolvimento de Sistemas, por matéria">
+<Base title="Desenvolvimento de Sistemas" active="ds" description="Aulas do curso de Desenvolvimento de Sistemas, por matéria e bimestre">
   {oculta ? (
     <SecaoOculta nome="Desenvolvimento de Sistemas" />
   ) : (
@@ -24,35 +21,32 @@ const materias = [...tree.values()].sort((a, b) => a.label.localeCompare(b.label
   <div class="flex items-center gap-2 mb-2">
     <p class="font-mono text-xs uppercase tracking-widest" style="color: var(--color-ds)">desenvolvimento de sistemas</p>
     <HelpTip title="Como funciona a aba de Desenvolvimento de Sistemas">
-      Material do curso técnico, organizado por matéria, bimestre e semana, com explicações em
-      linguagem simples.
+      Cada matéria é dividida em bimestres, e cada bimestre em aulas. Cada aula junta tudo o que
+      foi visto na semana e termina com as perguntas do "Pause e Responda".
     </HelpTip>
   </div>
   <h1 class="font-display text-3xl md:text-4xl font-bold text-ink mb-3">Matérias</h1>
   <p class="font-body text-ink-soft max-w-lg mb-10 leading-relaxed">
-    Material do curso técnico, organizado por matéria, bimestre e semana.
+    Escolha uma matéria, depois o bimestre e a aula. As aulas marcadas como "em breve" já estão no
+    mapa e chegam aos poucos.
   </p>
 
-  {materias.length === 0 ? (
-    <p class="font-body text-ink-soft">Nenhuma matéria publicada ainda.</p>
-  ) : (
-    <ul class="grid sm:grid-cols-2 gap-4 list-none p-0 m-0">
-      {materias.map((m) => (
-        <li>
-          <a
-            href={u(`/ds/${m.slug}/`)}
-            class="block rounded-lg border-2 p-5 hover:-translate-y-0.5 transition-transform"
-            style="border-color: var(--color-ds); background-color: var(--color-ds-soft);"
-          >
-            <h2 class="font-display text-xl font-bold text-ink mb-1">{m.label}</h2>
-            <p class="font-mono text-xs text-ink-soft">
-              {m.bimestres.size} {m.bimestres.size === 1 ? 'bimestre' : 'bimestres'}
-            </p>
-          </a>
-        </li>
-      ))}
-    </ul>
-  )}
+  <ul class="grid sm:grid-cols-2 gap-4 list-none p-0 m-0">
+    {materias.map((m) => (
+      <li>
+        <a
+          href={u(`/ds/${m.slug}/`)}
+          class="block rounded-lg border-2 p-5 hover:-translate-y-0.5 transition-transform"
+          style="border-color: var(--color-ds); background-color: var(--color-ds-soft);"
+        >
+          <h2 class="font-display text-xl font-bold text-ink mb-1">{m.nome}</h2>
+          <p class="font-mono text-xs text-ink-soft">
+            {m.bimestres.length} {m.bimestres.length === 1 ? 'bimestre' : 'bimestres'} · {m.prontas} de {m.total} {m.total === 1 ? 'aula pronta' : 'aulas prontas'}
+          </p>
+        </a>
+      </li>
+    ))}
+  </ul>
 </Fragment>
   )}
 </Base>

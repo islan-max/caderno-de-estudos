@@ -41,21 +41,19 @@ export const SECOES: Secao[] = [
     cor: 'var(--color-escolar)',
     corSuave: 'var(--color-escolar-soft)',
     icone: 'book-open',
-    // Temporariamente fora do ar enquanto o material é revisado.
-    visivel: false,
+    visivel: true,
     descricao:
       'O conteúdo passado em sala de aula, organizado por matéria, bimestre e semana — para quem faltou ou quer revisar.',
   },
   {
     chave: 'ds',
-    label: 'Desenvolvimento de Sistemas',
+    label: 'DS',
     labelLongo: 'Desenvolvimento de Sistemas',
     href: '/ds',
     cor: 'var(--color-ds)',
     corSuave: 'var(--color-ds-soft)',
     icone: 'code',
-    // Temporariamente fora do ar enquanto o material é revisado.
-    visivel: false,
+    visivel: true,
     descricao: 'Material do curso técnico, em linguagem simples, para reforçar o que foi visto em aula.',
   },
 ];

@@ -19,6 +19,14 @@ export default defineConfig({
     defaultStrategy: 'viewport',
   },
 
+  // Código das aulas: duas paletas (claro e escuro); o CSS escolhe a do tema do site.
+  markdown: {
+    shikiConfig: {
+      themes: { light: 'github-light', dark: 'github-dark' },
+      defaultColor: false,
+    },
+  },
+
   vite: {
     plugins: [tailwindcss()]
   }
