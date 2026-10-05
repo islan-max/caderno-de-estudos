@@ -925,5 +925,20 @@
         ]
       }
     ]
+  },
+  "2024-ppl-D1-azul-Q083": {
+    "nota": "trecho do Texto II perdido na extração; conferido na imagem da página 29 em 05/10/2026",
+    "texto": "TEXTO I Justiça chilena condena ex-militares pelo sequestro e assassinato de Victor Jara Às vésperas dos 50 anos do golpe militar, a Justiça chilena condenou sete militares aposentados pelo sequestro e assassinato do cantor Victor Jara, em 1973. A Comissão Chilena de Direitos Humanos estima que 3,2 mil cidadãos morreram pelas mãos de agentes do Estado, sendo que, desses, 1 192 permanecem desaparecidos. Cerca de 33 mil pessoas foram torturadas e presas por motivos políticos, além de cerca de 200 mil pessoas que precisaram se exilar durante o período de repressão de Augusto Pinochet. Disponível em: www.brasildefato.com.br. Acesso em: 17 out. 2023 (adaptado). TEXTO II “Justiça tardia não é justiça”, diz juiz que prendeu o ditador chileno Augusto Pinochet Durante as cerimônias para lembrar os 50 anos do golpe de Estado no Chile, o magistrado que ordenou a prisão do general Augusto Pinochet, em 1998, admitiu que a justiça não foi feita e advertiu o mundo sobre o risco representado por golpes de Estado e ditaduras. “Minha leitura é a de que nunca mais haja golpes militares frente a uma democracia. Precisamos sempre defender a democracia, discordar dentro dela e dialogar por ela, a fim de consolidá-la. No entanto, em nenhum caso devemos acabar com ela e dar as costas para os cidadãos, que são os que sofrem as consequências”. Disponível em: www.correiobraziliense.com.br. Acesso em: 17 out. 2023 (adaptado). A situação mencionada nos textos ressalta a importância da justiça para a"
+  },
+  "2022-ppl-D1-azul-Q064": {
+    "nota": "alternativa C truncada na extração; conferida na imagem da página 25 em 05/10/2026",
+    "alternativas": [
+      "desvalorização de suas demandas na resistência.",
+      "direcionamento da ação militante contra a violência doméstica.",
+      "enfraquecimento da atuação nos movimentos subversivos.",
+      "ressignificação da memória acerca do engajamento político.",
+      "limitação da participação das trabalhadoras em manifestações."
+    ],
+    "alternativas_em_imagem": false
   }
 }
