@@ -108,9 +108,9 @@ O solo se forma devagar, ao longo de milhares de anos, e pode ser estragado em p
     <line x1="110" y1="20" x2="110" y2="60" class="traco" />
     <polygon points="110,68 104,56 116,56" class="preenche" />
     <text x="122" y="34" class="rotulo-fraco">água da irrigação</text>
-    <path d="M 280 64 q 6 -8 0 -16 q -6 -8 0 -16" fill="none" class="traco" />
-    <path d="M 320 64 q 6 -8 0 -16 q -6 -8 0 -16" fill="none" class="traco" />
-    <path d="M 360 64 q 6 -8 0 -16 q -6 -8 0 -16" fill="none" class="traco" />
+    <path d="M 280 64 q 6 -8 0 -16 q -6 -8 0 -16" class="traco" />
+    <path d="M 320 64 q 6 -8 0 -16 q -6 -8 0 -16" class="traco" />
+    <path d="M 360 64 q 6 -8 0 -16 q -6 -8 0 -16" class="traco" />
     <polygon points="280,24 275,34 285,34" class="preenche" />
     <polygon points="320,24 315,34 325,34" class="preenche" />
     <polygon points="360,24 355,34 365,34" class="preenche" />
@@ -125,11 +125,11 @@ Para achar a causa certa, **case o problema com o seu mecanismo**: sal vem de á
 
 **Exemplo resolvido.** Na bacia do rio Murray, na Austrália, fazendas irrigadas por décadas passaram a ter manchas brancas no chão, onde nada cresce. O que aconteceu?
 
-1. A região é seca, e a água da irrigação evapora rápido.
+1. A região é seca; a irrigação faz subir o lençol de água subterrânea, que traz sais, e a água evapora rápido na superfície.
 2. As manchas brancas são sais deixados na superfície.
 3. Resposta: salinização provocada pela irrigação.
 
-**Erro comum.** Achar que qualquer mudança na lavoura saliniza a terra. O que deixa sal é água que evapora sem ter por onde escoar.
+**Erro comum.** Achar que qualquer mudança na lavoura saliniza a terra. O que deixa sal no campo é água que evapora em cima da própria terra plantada, sem drenagem para levar o excesso.
 
 ### 2. Água na cidade
 
@@ -139,8 +139,8 @@ Quando a cidade cresce, o chão é coberto por asfalto, concreto e telhados: fic
 
 <figure class="figura">
   <svg viewBox="0 0 460 150" role="img" aria-labelledby="fig-amb-2-t fig-amb-2-d">
-    <title id="fig-amb-2-t">Chuva no asfalto e na área verde</title>
-    <desc id="fig-amb-2-d">Dois quadros com chuva caindo. À esquerda, chão impermeável: as setas da água correm para os lados, sobre a superfície; a legenda diz escorre. À direita, área verde com plantas: as setas da água entram no solo; a legenda diz infiltra.</desc>
+    <title id="fig-amb-2-t">Chuva no asfalto e na terra</title>
+    <desc id="fig-amb-2-d">Dois quadros com chuva caindo. À esquerda, chão impermeável: as setas da água correm para os lados, sobre a superfície; a legenda diz escorre. À direita, terra com plantas: as setas da água entram no solo; a legenda diz infiltra.</desc>
     <text x="115" y="16" class="rotulo" text-anchor="middle">asfalto</text>
     <line x1="80" y1="28" x2="80" y2="58" class="traco-fino" />
     <line x1="115" y1="28" x2="115" y2="58" class="traco-fino" />
@@ -152,7 +152,7 @@ Quando a cidade cresce, o chão é coberto por asfalto, concreto e telhados: fic
     <polygon points="208,64 198,59 198,69" class="preenche" />
     <text x="115" y="110" class="rotulo-fraco" text-anchor="middle">escorre</text>
     <line x1="230" y1="10" x2="230" y2="140" class="tracejado" />
-    <text x="345" y="16" class="rotulo" text-anchor="middle">área verde</text>
+    <text x="345" y="16" class="rotulo" text-anchor="middle">terra com plantas</text>
     <line x1="310" y1="28" x2="310" y2="58" class="traco-fino" />
     <line x1="345" y1="28" x2="345" y2="58" class="traco-fino" />
     <line x1="380" y1="28" x2="380" y2="58" class="traco-fino" />
@@ -180,11 +180,11 @@ Quando a cidade cresce, o chão é coberto por asfalto, concreto e telhados: fic
 
 Para cada medida, pergunte: **ela aumenta ou diminui a infiltração?**
 
-**Exemplo resolvido.** Uma cidade transforma um estacionamento asfaltado num jardim de chuva, com terra e plantas, que recebe a água do telhado vizinho. O que acontece nas chuvas?
+**Exemplo resolvido.** Uma cidade constrói um piscinão embaixo de uma praça. Numa chuva forte, ele enche e esvazia devagar nas horas seguintes. O que muda no córrego?
 
-1. A água passa a entrar na terra do jardim.
-2. Menos água corre pelas ruas.
-3. Resposta: o risco de alagamento diminui.
+1. Parte da água fica guardada em vez de correr toda de uma vez.
+2. O córrego recebe a mesma água, mas espalhada no tempo.
+3. Resposta: o pico da cheia diminui, e o córrego transborda menos.
 
 **Erro comum.** Achar que qualquer obra nova ajuda a escoar a chuva. Se ela cobre mais chão, a enchente piora.
 
@@ -198,6 +198,8 @@ O desmatamento costuma seguir uma sequência:
 2. **Madeira**: as árvores de valor são retiradas e vendidas.
 3. **Pecuária**: a área é queimada e vira pasto; o gado ocupa a maior parte da área desmatada.
 4. **Lavoura**: anos depois, parte das terras vira soja ou milho.
+
+A grilagem abre a cadeia: sem tomar a terra, os outros passos não acontecem.
 
 <figure class="figura">
   <svg viewBox="0 0 460 70" role="img" aria-labelledby="fig-amb-3-t fig-amb-3-d">
@@ -229,7 +231,7 @@ Estradas abertas na floresta facilitam todos esses passos. Por isso, a maior par
 2. Longe das estradas, o acesso é difícil e caro.
 3. Resposta: a estrada abre caminho para todas as etapas do desmatamento.
 
-**Erro comum.** Achar que a última atividade a chegar é a causa do desmatamento. Olhe o começo da cadeia.
+**Erro comum.** Achar que a floresta é derrubada de uma vez, no meio da mata fechada. Ela é comida pelas bordas, a partir das estradas, passo a passo.
 
 ### 4. Desertificação
 
@@ -237,20 +239,20 @@ Pense num pasto do sertão com bois demais: o capim some, o chão fica exposto, 
 
 **Desertificação** é a perda da capacidade de produzir das terras **áridas, semiáridas e subúmidas secas**, causada pelo uso humano junto com as secas. As causas mais comuns:
 
-- retirada da vegetação (lenha, carvão, abertura de lavouras);
 - **superpastoreio**;
-- mineração sem controle;
-- uso intensivo do solo sem descanso.
+- corte da mata para lenha e carvão;
+- plantio seguido, sem deixar a terra descansar;
+- garimpo e mineração.
 
 Desertificação **não** é o mesmo que deserto natural, como o Saara: é a degradação de terras que antes produziam. No Brasil, os núcleos mais graves ficam no semiárido nordestino, como Gilbués (Piauí), Irauçuba (Ceará), o Seridó (Rio Grande do Norte e Paraíba) e Cabrobó (Pernambuco).
 
-Há muitos nomes de problemas ambientais. Para escolher o certo, pergunte **onde** o problema acontece (ar, água ou solo) e **qual é o efeito** descrito: o da desertificação é a terra seca que deixa de produzir.
+Há muitos nomes de problemas ambientais. Para escolher o certo, olhe o **efeito** descrito: o da desertificação é a terra seca que deixa de produzir, e não uma substância que suja o ar, a água ou o chão.
 
-**Exemplo resolvido.** No Sahel, ao sul do Saara, aldeias cortaram árvores para lenha e aumentaram os rebanhos durante décadas. Muitas terras de lavoura viraram areia. Que processo é esse?
+**Exemplo resolvido.** No Sahel, ao sul do Saara, aldeias plantaram faixas de árvores e limitaram o número de animais em cada pasto. Por que isso freia a desertificação?
 
-1. A região é semiárida.
-2. A vegetação foi retirada, e o pasto foi usado em excesso.
-3. Resposta: desertificação.
+1. As raízes seguram o solo, e as copas quebram o vento.
+2. Com menos animais, o capim volta a cobrir o chão.
+3. Resposta: com a vegetação de volta, o solo fica protegido e volta a produzir.
 
 **Erro comum.** Achar que desertificação é só falta de chuva. A seca agrava, mas a causa central é o uso humano da terra.
 
@@ -262,18 +264,18 @@ Existem visões diferentes sobre como proteger a natureza:
 
 | Visão | Ideia central |
 |---|---|
-| **Preservacionismo** | a natureza é **intocável**; nenhum uso econômico, em nenhuma hipótese |
+| **Preservacionismo** | a natureza deve ficar **intocada**; as pessoas só observam, sem tirar recursos |
 | **Conservacionismo** | usar os recursos **com controle**, sem esgotá-los |
 | **Desenvolvimento sustentável** | atender às necessidades de hoje sem comprometer as das próximas gerações |
 
-O SNUC (Sistema Nacional de Unidades de Conservação), de 2000, divide as áreas protegidas em dois grupos:
+O SNUC (Sistema Nacional de Unidades de Conservação), criado pela Lei 9.985/2000, divide as áreas protegidas em dois grupos:
 
 - **Proteção integral**: não se pode explorar os recursos (parques nacionais, reservas biológicas). Só pesquisa, visita controlada ou nem isso.
-- **Uso sustentável**: moradores podem usar os recursos com regras (reservas extrativistas, florestas nacionais).
+- **Uso sustentável**: comunidades podem usar os recursos com regras (reservas extrativistas, florestas nacionais).
 
-Para reconhecer a visão de um texto, procure a palavra-chave: "intocável", "proibido" indicam preservação; "usar", "manejar", "sem esgotar" indicam conservação.
+Para reconhecer a visão de um texto, procure as pistas: "intocada", "santuário", "sem presença humana" indicam preservação; "usar", "manejar", "sem esgotar" indicam conservação.
 
-**Exemplo resolvido.** Numa reserva extrativista do Acre, famílias coletam castanha e látex, mas não podem derrubar a floresta. Que visão orienta essa área?
+**Exemplo resolvido.** Numa reserva extrativista do Acre, famílias coletam castanha e látex e só podem abrir pequenas roças, sem derrubar a floresta. Que visão orienta essa área?
 
 1. Há uso econômico dos recursos.
 2. O uso tem limites para não esgotar a floresta.
@@ -286,7 +288,7 @@ Para reconhecer a visão de um texto, procure a palavra-chave: "intocável", "pr
 1. **Mecanismo certo**: case cada problema com o processo que o produz.
 2. **Problema vizinho**: uma alternativa pode descrever outro dano ambiental, verdadeiro, mas que não é o do texto.
 3. **Aumenta ou diminui?**: veja o sentido do efeito de cada medida.
-4. **Onde acontece**: ar, água ou solo; não troque o meio.
+4. **Efeito descrito**: case o nome do problema com o efeito que o texto mostra.
 5. **Começo da cadeia**: se o texto aponta quem age primeiro, a causa está nesse passo.
 6. **Palavra-chave da visão**: "intocável" e "uso controlado" não são a mesma coisa.
 7. **Causa × agravante**: a seca agrava a desertificação, mas não a explica sozinha.
@@ -322,21 +324,36 @@ Chão **impermeabilizado** → água escorre → **enchente**. Reduz: o que aume
 <figure class="figura">
   <svg viewBox="0 0 460 44" role="img" aria-labelledby="fig-amb-2-rev-t fig-amb-2-rev-d">
     <title id="fig-amb-2-rev-t">Cidade (resumo)</title>
-    <desc id="fig-amb-2-rev-d">Duas caixas: asfalto, a água escorre; área verde, a água infiltra.</desc>
+    <desc id="fig-amb-2-rev-d">Duas caixas: chão coberto, a água escorre; chão com terra, a água infiltra.</desc>
     <rect x="10" y="8" width="215" height="28" rx="6" class="traco" />
-    <text x="117.5" y="26" class="rotulo" text-anchor="middle">asfalto: escorre</text>
+    <text x="117.5" y="26" class="rotulo" text-anchor="middle">chão coberto: escorre</text>
     <rect x="235" y="8" width="215" height="28" rx="6" class="traco" />
-    <text x="342.5" y="26" class="rotulo" text-anchor="middle">área verde: infiltra</text>
+    <text x="342.5" y="26" class="rotulo" text-anchor="middle">chão com terra: infiltra</text>
   </svg>
 </figure>
 
 #### 3. Amazônia
 
-**Grilagem** de terras públicas → madeira → **gado** → lavoura. Arco do desmatamento, perto das estradas.
+**Grilagem** de terras públicas → madeira → **gado** → lavoura. **Arco do desmatamento**, perto das estradas.
+
+<figure class="figura">
+  <svg viewBox="0 0 460 44" role="img" aria-labelledby="fig-amb-3-rev-t fig-amb-3-rev-d">
+    <title id="fig-amb-3-rev-t">Desmatamento (resumo)</title>
+    <desc id="fig-amb-3-rev-d">Quatro caixas em sequência: terra, madeira, gado, lavoura.</desc>
+    <rect x="10" y="8" width="102" height="28" rx="6" class="traco" />
+    <text x="61" y="26" class="rotulo" text-anchor="middle">terra</text>
+    <rect x="122" y="8" width="102" height="28" rx="6" class="traco" />
+    <text x="173" y="26" class="rotulo" text-anchor="middle">madeira</text>
+    <rect x="234" y="8" width="102" height="28" rx="6" class="traco" />
+    <text x="285" y="26" class="rotulo" text-anchor="middle">gado</text>
+    <rect x="346" y="8" width="104" height="28" rx="6" class="traco" />
+    <text x="398" y="26" class="rotulo" text-anchor="middle">lavoura</text>
+  </svg>
+</figure>
 
 #### 4. Desertificação
 
-Perda de produtividade das **terras secas** por desmatamento, **superpastoreio** e mineração. Não é deserto natural.
+Terras secas que **deixam de produzir** por uso humano: **superpastoreio**, lenha, solo sem descanso. A seca agrava. Não é deserto natural.
 
 #### 5. Proteção
 
