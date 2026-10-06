@@ -1,0 +1,205 @@
+---
+import Documento from '../layouts/Documento.astro';
+import { u } from '../lib/url';
+---
+
+<Documento
+  title="Declaração de Acessibilidade"
+  subtitle="O que o Caderno de Estudos já faz para ser usado por todas as pessoas, onde ainda falha e como relatar um problema."
+  icone="universal-access"
+  atualizado="6 de outubro de 2026"
+  description="Declaração de acessibilidade do Caderno de Estudos: padrão adotado (WCAG 2.2 nível AA), recursos disponíveis, limitações conhecidas e canal para relatar barreiras."
+>
+  <div class="destaque">
+    <p>
+      <strong>Em uma frase:</strong> buscamos conformidade com o nível AA das diretrizes WCAG 2.2.
+      Hoje o site está em <strong>conformidade parcial</strong>: foi revisado por quem o mantém,
+      com verificadores automáticos e testes manuais, mas ainda não passou por auditoria externa
+      nem por testes sistemáticos com pessoas com deficiência.
+    </p>
+  </div>
+
+  <h2>1. Padrão e nível de conformidade</h2>
+  <ul>
+    <li>
+      <strong>Padrão adotado:</strong> Web Content Accessibility Guidelines (WCAG) 2.2, do W3C,
+      que organiza a acessibilidade em quatro princípios: perceptível, operável, compreensível e
+      robusto.
+    </li>
+    <li><strong>Nível buscado:</strong> AA.</li>
+    <li>
+      <strong>Marco legal considerado:</strong> Lei Brasileira de Inclusão da Pessoa com
+      Deficiência (Lei nº 13.146/2015), que trata a acessibilidade na internet como direito.
+    </li>
+    <li>
+      <strong>Situação atual:</strong> conformidade parcial, avaliada pelo próprio mantenedor em
+      outubro de 2026. Não há certificação nem auditoria de terceiros.
+    </li>
+  </ul>
+
+  <h2>2. Recursos de acessibilidade disponíveis</h2>
+  <h3>Painel de acessibilidade</h3>
+  <p>
+    O botão com o ícone de acessibilidade, no topo de todas as páginas, abre um painel com ajustes
+    que ficam salvos neste navegador e valem para o site inteiro:
+  </p>
+  <ul>
+    <li>três tamanhos de texto (padrão, grande e maior);</li>
+    <li>espaçamento de leitura (entrelinha, letras e palavras mais abertas);</li>
+    <li>alto contraste;</li>
+    <li>redução de animações (também respeitamos a preferência do sistema operacional);</li>
+    <li>sublinhado em todos os links, para não depender só da cor;</li>
+    <li>atalhos de uma tecla (<kbd>/</kbd>, <kbd>←</kbd>, <kbd>→</kbd>) que podem ser desligados.</li>
+  </ul>
+  <p>
+    Há ainda o tema claro e o tema escuro, no interruptor ao lado do painel.
+  </p>
+
+  <h3>Teclado</h3>
+  <ul>
+    <li>
+      Tudo o que se faz com o mouse pode ser feito só com o teclado: menus, botões, quiz, painéis
+      e a busca. <kbd>Tab</kbd> e <kbd>Shift</kbd> + <kbd>Tab</kbd> percorrem os controles em
+      ordem lógica, e o foco é sempre visível.
+    </li>
+    <li>
+      O link "Pular para o conteúdo" é o primeiro item de todas as páginas.
+    </li>
+    <li>
+      A busca abre com <kbd>Ctrl</kbd> + <kbd>K</kbd>, move o destaque com <kbd>↑</kbd> e
+      <kbd>↓</kbd>, abre a aula com <kbd>Enter</kbd> e fecha com <kbd>Esc</kbd>. Todos os painéis
+      fecham com <kbd>Esc</kbd>.
+    </li>
+    <li>
+      No quiz, as alternativas são botões de opção nativos: as setas escolhem e o botão
+      "Corrigir respostas" mantém o foco no resultado.
+    </li>
+  </ul>
+
+  <h3>Leitores de tela e tecnologias assistivas</h3>
+  <ul>
+    <li>
+      A página usa as regiões nativas do HTML (cabeçalho, navegação, conteúdo principal e rodapé)
+      e uma hierarquia de títulos sem saltos, para navegar por títulos e por regiões.
+    </li>
+    <li>
+      Os diagramas das aulas são SVG com título e descrição em texto; as imagens de prova trazem
+      texto alternativo que descreve o que há nelas.
+    </li>
+    <li>
+      Ícones decorativos são ignorados pelo leitor de tela. Quando um ícone carrega informação (aula
+      já vista, link que abre em nova aba), a mesma informação está escrita em texto.
+    </li>
+    <li>
+      Erros e acertos do quiz, o progresso e a contagem de linhas da folha de redação são
+      informados em texto, nunca só por cor.
+    </li>
+    <li>
+      Os avisos curtos ("Tema escuro ativado", "Aula marcada como vista") são anunciados por uma
+      região viva.
+    </li>
+    <li>
+      Em modo de cores forçadas (Alto Contraste do Windows), barras de progresso, alternativa
+      marcada e aba atual continuam distinguíveis.
+    </li>
+  </ul>
+
+  <h3>Visual e leitura</h3>
+  <ul>
+    <li>
+      Os pares de cor de texto e de fundo foram medidos e atendem ao mínimo de 4,5:1 (3:1 para
+      ícones e bordas de controles) nos temas claro e escuro, com e sem alto contraste.
+    </li>
+    <li>
+      O texto pode ser ampliado até 200% pelo navegador sem sobreposição nem corte, e o conteúdo se
+      reorganiza em telas estreitas, sem rolagem horizontal da página.
+    </li>
+    <li>Não há conteúdo piscando, carrossel automático, vídeo ou áudio que toque sozinho.</li>
+    <li>
+      Estado, acerto, erro e progresso sempre vêm com texto ou ícone, além da cor.
+    </li>
+  </ul>
+
+  <h2>3. Limitações conhecidas</h2>
+  <p>
+    Em respeito à transparência, estas são as barreiras que ainda existem e que a equipe conhece:
+  </p>
+  <ul>
+    <li>
+      <strong>Idioma de trechos estrangeiros:</strong> textos em inglês dentro das aulas de Língua
+      Estrangeira não estão marcados com o idioma correto (<code>lang="en"</code>), e o leitor de
+      tela pode lê-los com pronúncia do português. A correção ainda não foi feita e está na
+      lista de pendências do projeto.
+    </li>
+    <li>
+      <strong>Fórmulas e símbolos:</strong> as expressões matemáticas e químicas são escritas em
+      texto e símbolos Unicode, sem marcação matemática (MathML). Leitores de tela podem lê-las de
+      forma pouco natural.
+    </li>
+    <li>
+      <strong>Imagens de provas antigas:</strong> o texto alternativo descreve a figura, mas pode não
+      reproduzir cada dado de gráficos e esquemas complexos. Nesses casos, o enunciado da questão
+      traz o essencial em texto.
+    </li>
+    <li>
+      <strong>Materiais de terceiros:</strong> vídeos, cursos e PDFs indicados em "Para ir além" ficam em
+      outros sites. Legendas, transcrições e acessibilidade deles dependem de quem os publica.
+    </li>
+    <li>
+      <strong>Folha de redação:</strong> a contagem de linhas é aproximada, porque depende da largura
+      da tela. Ela serve como guia, não como medida oficial.
+    </li>
+    <li>
+      <strong>Navegação sem recarregar a página:</strong> o site troca de página sem recarregar. Os
+      leitores de tela anunciam o novo título, mas o foco volta ao início do documento. Se algo
+      parecer fora do lugar, recarregue a página.
+    </li>
+    <li>
+      <strong>Sem testes com usuários:</strong> não houve testes sistemáticos com pessoas com
+      deficiência nem com todos os leitores de tela. Podem existir barreiras que ainda não vimos.
+    </li>
+  </ul>
+
+  <h2>4. Como ajudamos a manter</h2>
+  <p>
+    As regras de acessibilidade do projeto, com o passo a passo para quem escreve aulas, estão em
+    <code>docs/acessibilidade.md</code>, no repositório. Dois verificadores rodam a cada alteração
+    do site: um confere o HTML gerado (títulos, nomes de links e botões, imagens, referências ARIA)
+    e outro confere o contraste das cores nos quatro modos de exibição.
+  </p>
+
+  <h2>5. Relate uma barreira</h2>
+  <p>
+    Se você não conseguiu usar alguma parte do site, ou se o conteúdo ficou difícil de entender, nos
+    avise. Ajuda muito saber:
+  </p>
+  <ul>
+    <li>o endereço da página;</li>
+    <li>o que você tentou fazer e o que aconteceu;</li>
+    <li>o navegador, o aparelho e a tecnologia assistiva que usa (leitor de tela, ampliador, comando de voz…).</li>
+  </ul>
+  <p>Você pode escrever por:</p>
+  <ul>
+    <li>
+      <a href="https://github.com/islan-max/caderno-de-estudos/issues" target="_blank" rel="noopener noreferrer"
+        >Issues do repositório no GitHub<span class="apenas-leitor"> (abre em nova aba)</span></a
+      >, o canal preferido, porque deixa o histórico público;
+    </li>
+    <li>
+      <a href="https://instagram.com/islan.max" target="_blank" rel="noopener noreferrer"
+        >Instagram @islan.max<span class="apenas-leitor"> (abre em nova aba)</span></a
+      >, por mensagem direta.
+    </li>
+  </ul>
+  <p>
+    O projeto é mantido por uma pessoa só, de forma independente, e por isso não há prazo garantido
+    de resposta. Relatos de acessibilidade são tratados com prioridade sobre novos conteúdos.
+  </p>
+
+  <h2>6. Outras páginas relacionadas</h2>
+  <p>
+    Veja também a <a href={u('/privacidade')}>Política de Privacidade</a>, que explica quais
+    preferências de acessibilidade ficam salvas no seu navegador, e os
+    <a href={u('/termos')}>Termos de Uso</a>.
+  </p>
+</Documento>

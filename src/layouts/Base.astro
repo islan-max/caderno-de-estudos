@@ -107,7 +107,7 @@ const borderColor = cor ?? (active ? accentByTab[active] : 'var(--color-line)');
     <!-- Miniatura da marca: entra quando a marca grande sai da tela e sai
          quando ela volta. Quem controla é um IntersectionObserver, não a
          posição de rolagem — assim não há cálculo por quadro. -->
-    <a href={u('/')} class="marca-mini" data-marca-mini aria-hidden="true" tabindex="-1">
+    <a href={u('/')} class="marca-mini" data-marca-mini aria-hidden="true" tabindex="-1" aria-label="Caderno de Estudos, ir para o início">
       <span class="marca-mini__texto">CE</span>
       <span class="marca-mini__ponto">.</span>
     </a>
@@ -130,7 +130,7 @@ const borderColor = cor ?? (active ? accentByTab[active] : 'var(--color-line)');
     <main
       class="flex-1 max-w-5xl mx-auto w-full px-3 sm:px-4 md:px-10"
       id="conteudo"
-      aria-label="Conteúdo principal"
+      tabindex="-1"
       transition:animate={fade({ duration: '0.12s' })}
     >
       <div
@@ -152,7 +152,8 @@ const borderColor = cor ?? (active ? accentByTab[active] : 'var(--color-line)');
 
     <Rodape transition:animate="none" />
 
-    <div id="toasts" transition:persist aria-live="polite"></div>
+    <!-- Região viva única: cada toast novo é anunciado uma vez, sem role próprio. -->
+    <div id="toasts" transition:persist role="status" aria-live="polite"></div>
     <Paineis />
 
     <script>
@@ -242,9 +243,12 @@ const borderColor = cor ?? (active ? accentByTab[active] : 'var(--color-line)');
       }
       .cabecalho__linha {
         display: flex;
+        /* Quebra de linha em qualquer largura: com o texto ampliado (ou o tamanho de fonte
+           do navegador em 200%) a marca e as ferramentas não cabem lado a lado. */
+        flex-wrap: wrap;
         align-items: center;
         justify-content: space-between;
-        gap: 0.75rem;
+        gap: 0 0.75rem;
         max-width: 64rem;
         margin: 0 auto;
         width: 100%;
@@ -344,10 +348,9 @@ const borderColor = cor ?? (active ? accentByTab[active] : 'var(--color-line)');
       }
       .voltar__rotulo {
         font-family: var(--font-display);
-        font-size: 0.6rem;
+        font-size: 0.66rem;
         text-transform: uppercase;
         letter-spacing: 0.1em;
-        opacity: 0.7;
       }
       .voltar__destino {
         font-family: var(--font-display);

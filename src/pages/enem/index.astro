@@ -195,10 +195,13 @@ for (const a of aulas) {
     transform: translateY(-2px);
     box-shadow: var(--shadow-soft);
   }
+  /* Sem opacity (derrubaria o contraste do texto): borda tracejada + cor suave. */
   .materia--vazia {
-    opacity: 0.55;
     border-style: dashed;
     background: transparent;
+  }
+  .materia--vazia .materia__nome {
+    color: var(--color-ink-soft);
   }
   .materia__icone {
     font-size: 0.9rem;

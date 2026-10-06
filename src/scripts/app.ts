@@ -70,7 +70,7 @@ export function toast(mensagem: string, icone = 'circle-check') {
 
   const el = document.createElement('div');
   el.className = 'toast';
-  el.setAttribute('role', 'status');
+  // Sem role próprio: quem anuncia é a região viva #toasts (Base.astro).
   el.innerHTML = `<i class="fa-solid fa-${icone}" aria-hidden="true"></i><span></span>`;
   el.querySelector('span')!.textContent = mensagem;
   pilha.appendChild(el);
@@ -125,7 +125,9 @@ function aplicarTexto(nivel: NivelTexto) {
   else raiz.dataset.texto = nivel;
 
   document.querySelectorAll<HTMLElement>('[data-acao="texto"]').forEach((btn) => {
-    btn.setAttribute('title', `Tamanho do texto: ${nivel}`);
+    const rotulo = `Tamanho do texto: ${nivel}. Ative para trocar`;
+    btn.setAttribute('title', rotulo);
+    btn.setAttribute('aria-label', rotulo);
     btn.dataset.nivel = nivel;
   });
   marcarNivelTexto();
@@ -161,7 +163,11 @@ function marcar(id: string, vista: boolean) {
 function refletirProgresso() {
   const p = vistas();
   document.querySelectorAll<HTMLElement>('[data-aula-id]').forEach((el) => {
-    el.dataset.vista = String(Boolean(p[el.dataset.aulaId!]));
+    const vista = Boolean(p[el.dataset.aulaId!]);
+    el.dataset.vista = String(vista);
+    // O check verde é só visual: o leitor de tela recebe a mesma informação em texto.
+    const sr = el.querySelector('[data-vista-texto]');
+    if (sr) sr.textContent = vista ? 'Aula já vista.' : '';
   });
 
   document.querySelectorAll<HTMLElement>('[data-progresso-de]').forEach((el) => {
@@ -194,7 +200,8 @@ function atualizarBotaoVista() {
   if (!btn) return;
   const id = btn.dataset.aula!;
   const vista = Boolean(vistas()[id]);
-  btn.setAttribute('aria-pressed', String(vista));
+  // Sem aria-pressed: o próprio rótulo muda ("Marcar como vista" / "Aula concluída").
+  // Os dois juntos fariam o leitor dizer "Aula concluída, pressionado".
   btn.dataset.vista = String(vista);
   const icone = btn.querySelector('i');
   if (icone) icone.className = `fa-solid fa-${vista ? 'circle-check' : 'circle'}`;
@@ -266,12 +273,13 @@ function filtrarBusca() {
   lista.innerHTML = resultados
     .map(
       (a, i) => `
-      <li>
-        <a class="busca-item" href="${a.h}" data-indice="${i}" data-vista="${Boolean(p[a.id])}">
+      <li role="presentation">
+        <a class="busca-item" id="busca-item-${i}" role="option" aria-selected="false" tabindex="-1"
+           href="${a.h}" data-indice="${i}" data-vista="${Boolean(p[a.id])}">
           <i class="fa-solid fa-${a.i} fa-duo busca-item__icone" aria-hidden="true"></i>
           <span class="busca-item__texto">
             <span class="busca-item__titulo">${escapar(a.t)}</span>
-            <span class="busca-item__meta">${escapar(a.m)} · ${escapar(a.a)}</span>
+            <span class="busca-item__meta">${escapar(a.m)} · ${escapar(a.a)}${p[a.id] ? '<span class="apenas-leitor"> · aula já vista</span>' : ''}</span>
           </span>
           <i class="fa-solid fa-${p[a.id] ? 'circle-check' : 'arrow-right'} busca-item__marca" aria-hidden="true"></i>
         </a>
@@ -280,6 +288,7 @@ function filtrarBusca() {
     .join('');
 
   vazio.hidden = resultados.length > 0;
+  if (!resultados.length) campo.removeAttribute('aria-activedescendant');
   if (contador) {
     contador.textContent = termo
       ? `${resultados.length} ${resultados.length === 1 ? 'resultado' : 'resultados'}`
@@ -298,7 +307,12 @@ function destacarBusca(indiceAlvo: number) {
   const itens = document.querySelectorAll<HTMLElement>('#busca .busca-item');
   if (!itens.length) return;
   const alvo = (indiceAlvo + itens.length) % itens.length;
-  itens.forEach((el, i) => el.setAttribute('data-ativo', String(i === alvo)));
+  itens.forEach((el, i) => {
+    el.setAttribute('data-ativo', String(i === alvo));
+    el.setAttribute('aria-selected', String(i === alvo));
+  });
+  // O foco fica no campo; o leitor de tela acompanha o destaque por aqui.
+  document.querySelector('#busca [data-busca-campo]')?.setAttribute('aria-activedescendant', itens[alvo].id);
   itens[alvo].scrollIntoView({ block: 'nearest' });
 }
 
@@ -452,6 +466,18 @@ function ehCampoDeTexto(alvo: EventTarget | null): boolean {
   );
 }
 
+/** Atalhos de UMA tecla (/, ← →) podem ser desligados no painel de acessibilidade
+ *  (WCAG 2.1.4). Ctrl+K tem modificador e fica sempre ativo. */
+function atalhosDeUmaTecla(): boolean {
+  return document.documentElement.dataset.atalhos !== 'nao';
+}
+
+/** Com a página ampliada a ponto de rolar na horizontal, as setas ← → são de rolagem. */
+function rolaNaHorizontal(): boolean {
+  const raiz = document.documentElement;
+  return raiz.scrollWidth > raiz.clientWidth + 1;
+}
+
 function ligarAtalhos() {
   if ((window as any).__cdtAtalhos) return;
   (window as any).__cdtAtalhos = true;
@@ -482,14 +508,17 @@ function ligarAtalhos() {
       return;
     }
 
-    if (ehCampoDeTexto(e.target) || e.ctrlKey || e.metaKey || e.altKey) return;
+    if (e.defaultPrevented || ehCampoDeTexto(e.target) || e.ctrlKey || e.metaKey || e.altKey || e.shiftKey) return;
+    if (!atalhosDeUmaTecla() || document.querySelector('dialog[open]')) return;
 
     if (e.key === '/') {
       e.preventDefault();
       abrirBusca();
-    } else if (e.key === 'ArrowLeft') {
-      document.querySelector<HTMLAnchorElement>('[data-pager="anterior"]')?.click();
-    } else if (e.key === 'ArrowRight') {
+    } else if (e.key === 'ArrowLeft' && !rolaNaHorizontal()) {
+      // O pager do fim da aula (aula anterior) tem prioridade sobre o botão "voltar" do topo.
+      (document.querySelector<HTMLAnchorElement>('.pager [data-pager="anterior"]') ??
+        document.querySelector<HTMLAnchorElement>('[data-pager="anterior"]'))?.click();
+    } else if (e.key === 'ArrowRight' && !rolaNaHorizontal()) {
       document.querySelector<HTMLAnchorElement>('[data-pager="proxima"]')?.click();
     }
   });
@@ -523,6 +552,8 @@ function ligarAtalhos() {
           return;
         }
         case 'zerar-progresso': {
+          // Apaga dados do usuário sem volta: pede confirmação (WCAG 3.3.4).
+          if (!confirm('Zerar todo o progresso deste navegador? Isso não pode ser desfeito.')) return;
           if (gravar(CHAVE_PROGRESSO, {})) {
             try {
               localStorage.removeItem(CHAVE_ULTIMA);
@@ -646,14 +677,20 @@ function aplicarA11y(p: Preferencias) {
     if (p[chave]) raiz.dataset[chave] = 'sim';
     else delete raiz.dataset[chave];
   }
+  // "atalhos" é o contrário das outras: vem LIGADO, e só o valor false o desliga.
+  const atalhos = p.atalhos !== false;
+  if (atalhos) delete raiz.dataset.atalhos;
+  else raiz.dataset.atalhos = 'nao';
   document.querySelectorAll<HTMLElement>('[data-a11y]').forEach((btn) => {
-    btn.setAttribute('aria-checked', String(Boolean(p[btn.dataset.a11y!])));
+    const chave = btn.dataset.a11y!;
+    const ligada = chave === 'atalhos' ? atalhos : Boolean(p[chave]);
+    btn.setAttribute('aria-checked', String(ligada));
   });
 }
 
 function alternarA11y(chave: string) {
   const p = preferencias();
-  p[chave] = !p[chave];
+  p[chave] = chave === 'atalhos' ? p.atalhos === false : !p[chave];
   gravar(CHAVE_A11Y, p);
   aplicarA11y(p);
 
@@ -662,8 +699,10 @@ function alternarA11y(chave: string) {
     contraste: 'Alto contraste',
     movimento: 'Animações reduzidas',
     links: 'Links sublinhados',
+    atalhos: 'Atalhos de uma tecla',
   };
-  toast(`${nomes[chave]}: ${p[chave] ? 'ligado' : 'desligado'}`, 'universal-access');
+  const ligada = chave === 'atalhos' ? p.atalhos !== false : Boolean(p[chave]);
+  toast(`${nomes[chave]}: ${ligada ? 'ligado' : 'desligado'}`, 'universal-access');
 }
 
 function marcarNivelTexto() {

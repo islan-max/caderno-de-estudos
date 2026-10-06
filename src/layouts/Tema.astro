@@ -69,7 +69,7 @@ const corDaMateria = `--materia: var(--color-${destaque}); --materia-soft: var(-
         {b.href ? (
           <a href={b.href} class="hover:text-ink underline underline-offset-2">{b.label}</a>
         ) : (
-          <span class="text-ink">{b.label}</span>
+          <span class="text-ink" aria-current="page">{b.label}</span>
         )}
       </Fragment>
     ))}
@@ -92,7 +92,6 @@ const corDaMateria = `--materia: var(--color-${destaque}); --materia-soft: var(-
         data-aula={aulaId}
         data-titulo={title}
         data-materia={subject}
-        aria-pressed="false"
       >
         <Icone nome="circle" />
         <span data-rotulo>Marcar como vista</span>
@@ -100,7 +99,7 @@ const corDaMateria = `--materia: var(--color-${destaque}); --materia-soft: var(-
       <button type="button" class="acao" data-acao="copiar-link">
         <Icone nome="link" /> Copiar link
       </button>
-      <button type="button" class="acao acao--so-icone" data-acao="texto" data-nivel="normal" title="Tamanho do texto">
+      <button type="button" class="acao acao--so-icone" data-acao="texto" data-nivel="normal" title="Tamanho do texto" aria-label="Tamanho do texto: normal. Ative para trocar">
         <Icone nome="font" />
       </button>
     </div>

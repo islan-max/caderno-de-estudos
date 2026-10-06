@@ -17,3 +17,8 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run build
+      # Acessibilidade: o contraste lê os tokens de src/styles/global.css; o verificador
+      # do HTML usa o jsdom da pasta scripts/. Ver docs/acessibilidade.md.
+      - run: node scripts/checar-contraste.mjs
+      - run: npm ci --prefix scripts
+      - run: node scripts/checar-acessibilidade.mjs

@@ -23,6 +23,10 @@ Cada aula usa o frontmatter com `title`, `subject`, `relevance`, `quickSummary` 
 
 As aulas do ENEM seguem o padrão descrito em `PROMPT_AULA_ENEM.mdx`: estrutura, imagens, marcação do Teste de Fogo e validação. Para gerar uma aula nova, cole esse arquivo numa conversa com uma IA e informe a matéria e o tema.
 
+## Acessibilidade
+
+O site busca conformidade com o WCAG 2.2 nível AA. As decisões, o passo a passo para novos componentes e para quem escreve aulas, e os verificadores (`scripts/checar-acessibilidade.mjs` e `scripts/checar-contraste.mjs`) estão em `docs/acessibilidade.md`. A página pública é a Declaração de Acessibilidade (`/acessibilidade`).
+
 ## Publicação
 
 Todo push para a branch `main` executa o build estático e publica o resultado no GitHub Pages. Para este repositório, a publicação usa a base `/caderno-de-estudos/` (`islan-max.github.io/caderno-de-estudos/`).

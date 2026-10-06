@@ -2,6 +2,7 @@
 // Diálogos globais: paleta de busca e painel de progresso.
 // Ficam no fim do <body> e são reaproveitados por todas as páginas.
 import Icone from './Icone.astro';
+import { u } from '../lib/url';
 ---
 
 <!-- ------------------------------------------------------------ busca -->
@@ -12,6 +13,8 @@ import Icone from './Icone.astro';
 
   <div class="busca__campo">
     <Icone nome="magnifying-glass" class="busca__lupa" />
+    <!-- Padrão "combobox com lista": o foco fica no campo e as setas movem o
+         destaque entre os resultados (aria-activedescendant, ver app.ts). -->
     <input
       type="search"
       data-busca-campo
@@ -19,14 +22,20 @@ import Icone from './Icone.astro';
       autocomplete="off"
       spellcheck="false"
       aria-label="Buscar aula"
+      role="combobox"
+      aria-autocomplete="list"
+      aria-expanded="true"
+      aria-controls="busca-lista"
+      aria-describedby="busca-contador"
     />
   </div>
 
-  <p class="busca__contador" data-busca-contador>Sugestões do que ainda falta ver</p>
+  <!-- Região viva: quem usa leitor de tela ouve "12 resultados" ao digitar. -->
+  <p class="busca__contador" id="busca-contador" data-busca-contador role="status">Sugestões do que ainda falta ver</p>
 
-  <ul class="busca__lista" data-busca-lista></ul>
+  <ul class="busca__lista" id="busca-lista" data-busca-lista role="listbox" aria-label="Resultados da busca"></ul>
 
-  <p class="busca__vazio" data-busca-vazio hidden>
+  <p class="busca__vazio" data-busca-vazio hidden role="status">
     <Icone nome="circle-info" /> Nenhuma aula encontrada com esse termo.
   </p>
 
@@ -83,9 +92,9 @@ import Icone from './Icone.astro';
         <span class="a11y__desc">Aumenta o corpo do texto sem quebrar o layout.</span>
       </div>
       <div class="a11y__opcoes" role="group" aria-labelledby="a11y-texto">
-        <button type="button" class="a11y__opcao" data-texto-nivel="normal">A</button>
-        <button type="button" class="a11y__opcao a11y__opcao--medio" data-texto-nivel="grande">A</button>
-        <button type="button" class="a11y__opcao a11y__opcao--grande" data-texto-nivel="maior">A</button>
+        <button type="button" class="a11y__opcao" data-texto-nivel="normal" aria-label="Tamanho padrão" title="Tamanho padrão">A</button>
+        <button type="button" class="a11y__opcao a11y__opcao--medio" data-texto-nivel="grande" aria-label="Tamanho grande" title="Tamanho grande">A</button>
+        <button type="button" class="a11y__opcao a11y__opcao--grande" data-texto-nivel="maior" aria-label="Tamanho maior" title="Tamanho maior">A</button>
       </div>
     </div>
 
@@ -152,6 +161,25 @@ import Icone from './Icone.astro';
         aria-labelledby="a11y-links"
       ><span class="a11y__bolinha"></span></button>
     </div>
+
+    <div class="a11y__linha">
+      <div class="a11y__info">
+        <span class="a11y__nome" id="a11y-atalhos">Atalhos de uma tecla</span>
+        <span class="a11y__desc">
+          A barra <kbd>/</kbd> abre a busca e as setas <kbd>&larr;</kbd> <kbd>&rarr;</kbd> trocam de
+          aula. Desligue se ativa sem querer, por exemplo ao usar comando de voz ou rolar a tela
+          ampliada. <kbd>Ctrl</kbd> + <kbd>K</kbd> continua funcionando.
+        </span>
+      </div>
+      <button
+        type="button"
+        class="a11y__chave"
+        data-a11y="atalhos"
+        role="switch"
+        aria-checked="true"
+        aria-labelledby="a11y-atalhos"
+      ><span class="a11y__bolinha"></span></button>
+    </div>
   </div>
 
   <h3 class="a11y__subtitulo"><Icone nome="keyboard" /> Atalhos de teclado</h3>
@@ -162,6 +190,12 @@ import Icone from './Icone.astro';
     <li><kbd>Esc</kbd> fecha qualquer painel aberto</li>
     <li>No quiz, <kbd>&uarr;</kbd> <kbd>&darr;</kbd> escolhem a alternativa</li>
   </ul>
+
+  <p class="a11y__rodape">
+    <Icone nome="universal-access" />
+    <a href={u('/acessibilidade')}>Declaração de acessibilidade</a>: o que o site já oferece,
+    limites conhecidos e como relatar uma barreira.
+  </p>
 </dialog>
 
 <style>
@@ -323,7 +357,7 @@ import Icone from './Icone.astro';
     place-items: center;
     width: 2.1rem;
     height: 2.1rem;
-    border: 1px solid var(--color-line);
+    border: 1px solid var(--color-controle);
     border-radius: 0.5rem;
     background: transparent;
     color: var(--color-ink-soft);
@@ -352,7 +386,7 @@ import Icone from './Icone.astro';
     width: 3rem;
     height: 1.7rem;
     padding: 0;
-    border: 1px solid var(--color-line);
+    border: 1px solid var(--color-controle);
     border-radius: 999px;
     background: var(--color-paper-dark);
     cursor: pointer;
@@ -401,6 +435,24 @@ import Icone from './Icone.astro';
     font-size: 0.82rem;
     color: var(--color-ink-soft);
   }
+  .a11y__rodape {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    margin: 1.4rem 0 0;
+    padding-top: 1rem;
+    border-top: 1px solid var(--color-line);
+    font-family: var(--font-body);
+    font-size: 0.82rem;
+    line-height: 1.55;
+    color: var(--color-ink-soft);
+  }
+  .a11y__rodape a {
+    color: var(--color-escolar);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .a11y__desc kbd,
   .a11y__atalhos kbd {
     display: inline-block;
     padding: 0.08rem 0.35rem;
@@ -426,7 +478,13 @@ import Icone from './Icone.astro';
     align-items: center;
     gap: 0.6rem;
     padding: 0.15rem 2.4rem 0.85rem 0.2rem;
-    border-bottom: 1px solid var(--color-line);
+    border-bottom: 1px solid var(--color-controle);
+  }
+  /* O campo tira o contorno do navegador: o anel vai no conjunto lupa + campo. */
+  .busca__campo:focus-within {
+    outline: 2px solid var(--color-escolar);
+    outline-offset: 2px;
+    border-radius: 0.4rem;
   }
   .busca__lupa {
     color: var(--color-ink-soft);
@@ -529,21 +587,18 @@ import Icone from './Icone.astro';
     min-width: 0;
     flex: 1;
   }
+  /* Sem reticências: com texto ampliado, o título cortado esconderia a aula. */
   .busca-item__titulo {
     font-family: var(--font-display);
     font-size: 0.9rem;
     font-weight: 600;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    overflow-wrap: anywhere;
   }
   .busca-item__meta {
     font-family: var(--font-body);
     font-size: 0.74rem;
     color: var(--color-ink-soft);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    overflow-wrap: anywhere;
   }
   .busca-item__marca {
     flex-shrink: 0;

@@ -130,6 +130,12 @@ function montarQuestao(q: Questao, indice: number): HTMLElement {
     letra.setAttribute('aria-hidden', 'true');
     letra.textContent = LETRAS[i].toUpperCase();
 
+    // A letra desenhada é aria-hidden; o leitor de tela recebe a mesma letra em texto,
+    // porque o gabarito depois fala "Resposta correta: C".
+    const letraLeitor = document.createElement('span');
+    letraLeitor.className = 'apenas-leitor';
+    letraLeitor.textContent = 'Alternativa ' + LETRAS[i].toUpperCase() + ': ';
+
     const corpo = document.createElement('span');
     corpo.className = 'quiz__texto';
     corpo.textContent = texto;
@@ -138,7 +144,7 @@ function montarQuestao(q: Questao, indice: number): HTMLElement {
     marca.className = 'quiz__marca';
     marca.setAttribute('aria-hidden', 'true');
 
-    rotulo.append(radio, letra, corpo, marca);
+    rotulo.append(radio, letra, letraLeitor, corpo, marca);
     lista.appendChild(rotulo);
   });
 
@@ -202,6 +208,8 @@ export function montarQuiz() {
   placar.className = 'quiz__placar';
   placar.setAttribute('role', 'status');
   placar.setAttribute('aria-live', 'polite');
+  // Recebe o foco depois de corrigir: o botão "Corrigir" some e o foco não pode se perder.
+  placar.tabIndex = -1;
 
   acoes.append(corrigir, refazer, placar);
   form.appendChild(acoes);
@@ -225,6 +233,9 @@ export function montarQuiz() {
     placar.removeAttribute('data-nota');
     corrigir.hidden = false;
     refazer.hidden = true;
+    // "Refazer" some ao ser ativado: devolve o foco ao começo do quiz.
+    const primeira = form.querySelector<HTMLInputElement>('.quiz__questao input[type="radio"]');
+    primeira?.focus({ preventScroll: true });
     form.querySelector<HTMLElement>('.quiz__questao')?.scrollIntoView({ block: 'center' });
   }
 
@@ -253,9 +264,10 @@ export function montarQuiz() {
 
       const resposta = bloco.querySelector<HTMLElement>('.quiz__resposta')!;
       const letra = LETRAS[chave.correta].toUpperCase();
-      resposta.textContent = chave.porque
-        ? 'Resposta correta: ' + letra + '. ' + chave.porque
-        : 'Resposta correta: ' + letra + '.';
+      // O resultado é dito em texto (não só pela cor e pelo ícone da alternativa).
+      const veredito = escolha < 0 ? 'Sem resposta.' : acertou ? 'Você acertou.' : 'Você errou.';
+      resposta.textContent =
+        veredito + ' Resposta correta: ' + letra + '.' + (chave.porque ? ' ' + chave.porque : '');
       resposta.hidden = false;
     });
 
@@ -268,6 +280,7 @@ export function montarQuiz() {
 
     corrigir.hidden = true;
     refazer.hidden = false;
+    placar.focus({ preventScroll: true });
 
     const w = window as unknown as { cdt?: { toast?: (m: string, i?: string) => void } };
     w.cdt?.toast?.(
