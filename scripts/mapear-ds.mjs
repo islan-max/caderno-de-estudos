@@ -106,12 +106,15 @@ function acentuar(titulo) {
   });
 }
 
+// Nomes de matéria com a grafia certa (as pastas vêm como o material escreve).
+const NOMES = { 'Banco de dados': 'Banco de Dados' };
+
 // Ajustes de redação nos títulos (typos e hífens das pastas do material).
 const TROCAS = [
   [/[‑‒–]/g, '-'],
   [/exixtentes/gi, 'existentes'],
   [/Back - End/g, 'Back-End'],
-  [/Público - Alvo/g, 'Público-Alvo'],
+  [/Público - Alvo/gi, (m) => m.replace(' - ', '-')],
   [/CI - CD/g, 'CI/CD'],
   [/Dead - Letter/g, 'Dead-Letter'],
   [/Introdução a Inteligência/g, 'Introdução à Inteligência'],
@@ -130,7 +133,7 @@ const saida = {
   _aviso: 'Gerado por scripts/mapear-ds.mjs. Títulos com acento restaurado automaticamente; conferir.',
   materias: materias.map((mat) => ({
     slug: slug(mat.nome),
-    nome: mat.nome,
+    nome: NOMES[mat.nome] ?? mat.nome,
     bimestres: mat.bimestres.map((b) => ({
       numero: b.numero,
       slug: `${b.numero}-bimestre`,

@@ -1,0 +1,422 @@
+---
+title: "Configurações Iniciais para Publicação nas Stores"
+subject: "Programação Mobile"
+order: 1
+relevance: >
+  Um aplicativo só chega ao usuário se passar pelas lojas (Google Play e App Store), e as lojas não aceitam qualquer
+  coisa: exigem conta de desenvolvedor, assinatura digital, textos e imagens no formato certo, políticas cumpridas e
+  testes feitos. Muita gente termina o código e trava nessa última etapa. Quem conhece o caminho completo evita
+  rejeição, atraso de lançamento e correria de última hora.
+quickSummary: >
+  Publicar um app tem cinco blocos: criar a conta de desenvolvedor em cada loja (Google Play: taxa única de US$ 25;
+  Apple: US$ 99 por ano), assinar o app com chaves e certificados que você guarda com cuidado, cumprir os requisitos e
+  as políticas, preparar ícone, screenshots e textos nos tamanhos pedidos e testar bem antes de enviar. Cada loja
+  tem regras próprias, e ignorar uma delas é a causa mais comum de rejeição.
+gabarito:
+  - correta: 0
+    porque: >
+      O ícone é a primeira coisa que o usuário vê nos resultados e na página do app, então influencia a decisão de
+      abrir ou baixar. Ele é obrigatório nas duas lojas e aparece na versão final, não só nos testes.
+      Revisar: A Aula › 3.1 O ícone
+  - correta: 0
+    porque: >
+      As screenshots devem mostrar telas reais, atraentes, com as funcionalidades principais. Imagens genéricas,
+      de redes sociais ou sem ligação com o app violam as regras e afastam usuários. Também é preciso cobrir os
+      tipos de aparelho que o app suporta, como tablets.
+      Revisar: A Aula › 3.2 Screenshots
+  - correta: 1
+    porque: >
+      No Google Play o vídeo promocional é indicado por um link do YouTube. Na App Store, o app preview (de 15 a 30
+      segundos) é enviado direto no App Store Connect. Os dois vídeos são opcionais.
+      Revisar: A Aula › 3.3 Vídeo promocional
+---
+
+<Accordion titulo="Palavras e siglas desta aula" dica="Consulte quando encontrar um termo novo" icone="spell-check">
+
+- **Store** (loja): a loja de aplicativos, como o Google Play e a App Store.
+- **Google Play Console**: o site onde você gerencia seus apps no Google Play.
+- **App Store Connect**: o site da Apple onde você envia e gerencia apps.
+- **AAB** (Android App Bundle): arquivo de publicação do Android. O Google Play gera, a partir dele, o APK certo para cada aparelho.
+- **APK** (Android Package): arquivo de instalação do Android.
+- **Keystore**: arquivo que guarda a chave privada usada para assinar o app.
+- **Upload key** (chave de envio): a chave com que você assina o arquivo que envia ao Google Play.
+- **App signing key** (chave de assinatura do app): a chave com que o Google assina o app entregue ao usuário.
+- **Certificado digital e provisioning profile** (perfil de provisionamento): na Apple, provam quem você é e para quais aparelhos o app pode ser instalado.
+- **Info.plist**: arquivo de configuração de um app iOS, onde ficam, por exemplo, os textos que explicam por que o app pede uma permissão.
+- **TestFlight**: ferramenta da Apple para distribuir versões de teste a testadores.
+- **D-U-N-S Number**: número de identificação de empresas, de 9 dígitos, usado pela Apple para contas de empresa.
+- **Debugging** (depuração): procurar e corrigir erros no código.
+- **Logcat**: janela do Android Studio que mostra os registros (logs) do app em execução.
+- **HIG** (Human Interface Guidelines): guia de design da Apple, que as apps de iOS devem seguir.
+- **Screenshot** (captura de tela): imagem da tela do app, exibida na página da loja.
+
+</Accordion>
+
+## Antes de Começar
+
+**O que esta aula cobre.** O caminho entre "o app está pronto" e "o app está na loja": contas de desenvolvedor, assinatura, requisitos e políticas, recursos visuais e testes. Tudo gira em torno de um exemplo: o **BeautyScheduler**, um app de agendamento para manicure, cabeleireiro e estética.
+
+**O que você precisa saber antes.**
+
+- **O que é um app nativo**: um aplicativo instalado no celular, feito para Android ou iOS.
+- **Build** (compilação): transformar o código em um arquivo que pode ser instalado ou enviado à loja.
+- **Permissão**: autorização que o usuário dá ao app para usar recursos do celular (câmera, calendário, notificações).
+
+## A Aula
+
+### 1. Configuração de contas de desenvolvedor
+
+#### 1.1 O caminho até a loja
+
+Antes de chegar à loja, o app passa por várias etapas. Uma visão geral:
+
+<figure class="figura">
+  <svg viewBox="0 0 560 150" role="img" aria-labelledby="fig-mob-fluxo-t fig-mob-fluxo-d">
+    <title id="fig-mob-fluxo-t">Etapas para publicar um app nas lojas</title>
+    <desc id="fig-mob-fluxo-d">Seis etapas em sequência: conta de desenvolvedor, assinatura e build, recursos visuais e textos, testes, envio para a loja e revisão da loja, com a publicação no final.</desc>
+    <defs>
+      <marker id="seta-mob-fluxo" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+        <path d="M1,1 L9,5 L1,9" class="traco" />
+      </marker>
+    </defs>
+    <rect x="4" y="40" width="82" height="70" rx="8" class="traco preenche" />
+    <text x="45" y="68" class="rotulo" text-anchor="middle">1. Conta</text>
+    <text x="45" y="86" class="rotulo-fraco" text-anchor="middle">de dev</text>
+    <rect x="98" y="40" width="82" height="70" rx="8" class="traco" />
+    <text x="139" y="68" class="rotulo" text-anchor="middle">2. Build</text>
+    <text x="139" y="86" class="rotulo-fraco" text-anchor="middle">e assinatura</text>
+    <rect x="192" y="40" width="82" height="70" rx="8" class="traco" />
+    <text x="233" y="68" class="rotulo" text-anchor="middle">3. Textos</text>
+    <text x="233" y="86" class="rotulo-fraco" text-anchor="middle">e imagens</text>
+    <rect x="286" y="40" width="82" height="70" rx="8" class="traco" />
+    <text x="327" y="68" class="rotulo" text-anchor="middle">4. Testes</text>
+    <text x="327" y="86" class="rotulo-fraco" text-anchor="middle">e correções</text>
+    <rect x="380" y="40" width="82" height="70" rx="8" class="traco" />
+    <text x="421" y="68" class="rotulo" text-anchor="middle">5. Envio</text>
+    <text x="421" y="86" class="rotulo-fraco" text-anchor="middle">à loja</text>
+    <rect x="474" y="40" width="82" height="70" rx="8" class="traco" />
+    <text x="515" y="68" class="rotulo" text-anchor="middle">6. Revisão</text>
+    <text x="515" y="86" class="rotulo-fraco" text-anchor="middle">e publicação</text>
+    <line x1="86" y1="75" x2="96" y2="75" class="traco" marker-end="url(#seta-mob-fluxo)" />
+    <line x1="180" y1="75" x2="190" y2="75" class="traco" marker-end="url(#seta-mob-fluxo)" />
+    <line x1="274" y1="75" x2="284" y2="75" class="traco" marker-end="url(#seta-mob-fluxo)" />
+    <line x1="368" y1="75" x2="378" y2="75" class="traco" marker-end="url(#seta-mob-fluxo)" />
+    <line x1="462" y1="75" x2="472" y2="75" class="traco" marker-end="url(#seta-mob-fluxo)" />
+  </svg>
+</figure>
+
+As lojas ajudam o app a chegar às pessoas: concentram os usuários, cuidam do download e da atualização e conferem segurança e qualidade. O preço é seguir as regras delas.
+
+#### 1.2 Conta no Google Play
+
+A **conta de desenvolvedor do Google Play** é obrigatória para publicar no Android. Com ela você usa o **Google Play Console**, onde gerencia seus apps, acompanha métricas e, se quiser, monetiza.
+
+**Passo a passo:**
+
+1. **Faça login** com uma conta Google. Use um e-mail **dedicado ao desenvolvimento** (não a sua conta pessoal) e, se o app for de uma empresa, um e-mail corporativo.
+2. **Pague a taxa de inscrição**: **US$ 25, uma única vez**, por cartão de crédito ou débito (cartão pré-pago não é aceito). Ao contrário da Apple, não é anual.
+3. **Preencha o perfil de desenvolvedor**: nome (aparece para os usuários na loja), e-mail de suporte e, para empresas, site e telefone.
+4. **Conclua o registro e a verificação de identidade**: o Google exige documento oficial e cartão no seu nome legal. O material fala em ativação "em até 48 horas", mas o prazo varia, principalmente por causa da verificação, então não deixe para a véspera do lançamento.
+
+**Atenção a uma regra nova.** O material da aula não cita, mas hoje vale para contas **pessoais criadas depois de 13 de novembro de 2023**: antes de publicar na produção, é preciso rodar um **teste fechado com pelo menos 12 testadores, inscritos de forma contínua por no mínimo 14 dias**. Depois, você pede o acesso à produção e o Google costuma responder em até sete dias. Quem quer lançar em data marcada precisa começar esse teste com antecedência. Contas de organização têm verificação do negócio própria.
+
+**Configurações importantes no Play Console:**
+
+- **Assinatura do app (Play App Signing).** Hoje, novos apps entram no Play App Signing. Funciona assim: **você** assina o arquivo que envia com a **upload key** e o **Google** guarda a **app signing key**, usada para assinar o app entregue aos usuários. Vantagem: se você perder a upload key, dá para pedir uma nova ao Google. Ainda assim, **guarde o keystore em lugar seguro**, com senha forte.
+- **Políticas e normas.** Leia as políticas do Google (conteúdo proibido, coleta de dados, permissões). App que viola as regras é rejeitado ou removido.
+- **Formato do arquivo: AAB.** O **Android App Bundle** é o formato exigido para apps novos desde 2021. O Google Play gera a partir dele o APK ideal para cada aparelho, o que reduz o tamanho do download.
+- **Versão de destino (target API).** Apps novos e atualizações precisam mirar uma versão recente do Android. Pela documentação do Google Play, a exigência a partir de **31 de agosto de 2026** é o **Android 16 (API 36)**, com possibilidade de pedir prorrogação até 1º de novembro de 2026. Esse número muda todo ano, então confira a página oficial antes de publicar.
+
+**Exemplo com o BeautyScheduler.** Você gera o **AAB** no Android Studio (menu *Build > Generate Signed Bundle/APK*), assina com o keystore, envia ao Play Console e, no envio, **declara as permissões** que o app usa (calendário, notificações) e explica **para que** usa cada uma.
+
+#### 1.3 Conta na Apple (Apple Developer Program)
+
+A conta da Apple é indispensável para distribuir apps para iPhone, iPad e Mac, e dá acesso ao **Xcode**, ao **TestFlight** e ao **App Store Connect**.
+
+**Tipos de conta:**
+
+- **Individual**: para desenvolvedores independentes. O **seu nome** aparece na loja.
+- **Organização (empresa)**: exige ser uma entidade legal com **D-U-N-S Number**, site funcional e e-mail do domínio da empresa. O nome da **empresa** aparece na loja.
+
+**Passo a passo:**
+
+1. Acesse o Apple Developer e entre com sua **conta Apple** (o antigo "Apple ID"), com verificação em duas etapas.
+2. Escolha **Individual** ou **Organização**.
+3. Pague a **taxa anual**: **US$ 99 por ano** (o valor aparece em moeda local na hora). Há isenção para algumas instituições sem fins lucrativos, educacionais e governamentais.
+4. **Verificação de identidade**: a Apple confere nome legal, e-mail, telefone e endereço, e pode pedir documentos ou ligar.
+5. Depois da aprovação, use o **App Store Connect** para enviar apps.
+
+**Configurações essenciais no Apple Developer e no Xcode:**
+
+- **Certificados digitais**: assinam o app. Existem os de **desenvolvimento** (testes no aparelho) e os de **distribuição** (publicação). O Xcode pode gerenciar a assinatura de forma automática.
+- **Provisioning profiles**: dizem **quais aparelhos** e **qual app** podem usar aquela assinatura. Úteis para testes.
+- **Monetização**: compras dentro do app (*in-app purchases*) e assinaturas são configuradas no App Store Connect.
+
+**Exemplo com o BeautyScheduler.** Cria o certificado de distribuição, configura o perfil no Xcode e usa o **TestFlight** para validar a versão com testadores antes de mandar para a App Store.
+
+#### 1.4 Google Play e Apple lado a lado
+
+| Item | Google Play | App Store (Apple) |
+|---|---|---|
+| Taxa | **US$ 25, única** | **US$ 99, por ano** |
+| Arquivo de envio | **AAB** | **Build do Xcode (arquivo .ipa, enviado pelo Xcode)** |
+| Assinatura | Upload key (sua) + app signing key (do Google) | Certificados e provisioning profiles da Apple |
+| Painel | Google Play Console | App Store Connect |
+| Testes | Faixas de teste (interno, fechado, aberto) | TestFlight |
+| Conta de empresa | Verificação do negócio | **D-U-N-S Number** obrigatório |
+
+#### 1.5 Assinatura digital: o que é e por que existe
+
+A **assinatura digital** prova duas coisas: que o app **veio de você** e que **ninguém o alterou** no caminho. Sem ela, a loja não aceita o arquivo. Em termos práticos, é como o lacre de um envelope: quem recebe confere se o lacre é seu e está intacto.
+
+**No Android**, a chave fica num **keystore**. O Android Studio assina o AAB pelo menu *Build > Generate Signed Bundle/APK*, e cria o keystore se você ainda não tiver um. Para criar pela linha de comando:
+
+```bash
+keytool -genkeypair -v -keystore my-release-key.jks -keyalg RSA -keysize 2048 -validity 10000 -alias meu-alias
+```
+
+O material mostra o `jarsigner` para assinar manualmente. Um ponto de atenção: o exemplo dele usa um **APK**, mas o `jarsigner` é a ferramenta que serve para assinar **AAB** pela linha de comando. Para **APK**, a ferramenta indicada pela documentação do Android é o `apksigner`. No dia a dia, o caminho mais simples é deixar o Android Studio ou o Gradle assinarem.
+
+```bash
+jarsigner -verbose -keystore my-release-key.jks app-release.aab meu-alias
+```
+
+**Nunca coloque a senha do keystore no código ou no Git.** A própria documentação do Android recomenda guardá-la num arquivo `keystore.properties`, que fica fora do controle de versão (no `.gitignore`), e lê-lo no `build.gradle`.
+
+**No iOS**, o Xcode e o portal Apple Developer cuidam dos certificados e perfis. Os cuidados são os mesmos: guardar o que for sigiloso e **não perder o acesso**, porque sem a assinatura certa você não consegue publicar atualizações.
+
+#### 1.6 Situação de pressão: o lançamento amanhã às 9h
+
+O cenário do material: o BeautyScheduler será lançado nas duas lojas amanhã às 9h, o cliente já divulgou a data e chegam dois avisos: o **Google Play rejeitou o app por termos proibidos na descrição** e o **App Store Connect não processa o app por erro no certificado**. Restam 6 horas. Uma forma de priorizar:
+
+1. **Entenda cada problema antes de agir.** Leia a mensagem exata de cada console.
+2. **Comece pelo que tem solução mais rápida e certa.** A descrição do Google Play é só texto: tire os termos proibidos e reenvie.
+3. **Em paralelo, trate o certificado.** Confira se o certificado é de **distribuição**, se não expirou e se o perfil de provisionamento corresponde ao app, e reenvie.
+4. **Comunique o cliente cedo e com clareza**, com fatos: o que aconteceu, o que está sendo feito e quando haverá novidade. Não prometa o que não depende de você: a **revisão das lojas tem prazo próprio**.
+5. **Proponha um plano B**: se uma loja atrasar, lançar na outra e na seguinte assim que liberar.
+6. **Cuide de si**: dividir tarefas, fazer pausas curtas e registrar o que foi feito evita erro por cansaço.
+
+### 2. Requisitos para publicação
+
+#### 2.1 Por que apps são rejeitados
+
+As duas lojas têm revisão (automática e humana). Os motivos mais comuns de rejeição são:
+
+- **Violar políticas de conteúdo** (conteúdo proibido, descrição enganosa ou com termos vetados, uso indevido de marcas).
+- **Pedir permissões demais** ou sem explicar o motivo.
+- **Coletar dados sem informar** e sem política de privacidade.
+- **Falhas técnicas**: o app trava, não abre ou tem funções quebradas.
+- **Metadados inadequados**: nome, ícone ou capturas de tela que não correspondem ao app.
+- **Palavras-chave em excesso** (*keyword stuffing*) no nome ou na descrição.
+
+#### 2.2 Requisitos técnicos
+
+| Plataforma | O que a loja pede |
+|---|---|
+| **Android** | **AAB** assinado; **target API** dentro da exigência vigente; permissões declaradas; formulário de **segurança dos dados** (Data safety) e política de privacidade quando o app coleta dados |
+| **iOS** | Build assinado com certificado e perfil de **distribuição**; **textos de uso** no **Info.plist** para cada recurso sensível; **política de privacidade** e informações de privacidade do app; respeito às **Human Interface Guidelines** |
+
+**Permissões.** Peça só o que o app precisa (princípio do **mínimo necessário**). No Android, elas ficam no `AndroidManifest.xml`:
+
+```xml
+<uses-permission android:name="android.permission.READ_CALENDAR" />
+<uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+```
+
+No iOS, para cada recurso sensível (câmera, localização, contatos), o `Info.plist` precisa de uma frase que explica o motivo ao usuário. Exemplo para a câmera:
+
+```xml
+<key>NSCameraUsageDescription</key>
+<string>Usamos a câmera para você anexar uma foto de referência ao agendamento.</string>
+```
+
+Sem essa explicação, o app é recusado ou fecha ao pedir a permissão. A frase deve ser **honesta e específica**: "para anexar uma foto ao agendamento" é aceito; "necessário para o app funcionar" não.
+
+APIs sensíveis, como a de saúde (HealthKit), exigem ainda uma **declaração de uso**.
+
+#### 2.3 Checklist de requisitos antes de enviar
+
+1. Conta de desenvolvedor ativa e verificada nas duas lojas.
+2. Arquivo no formato certo (AAB; build iOS assinado) e **assinado**.
+3. Versão do app **maior** que a anterior (no Android, o *versionCode*; no iOS, o número do build).
+4. Permissões **mínimas**, declaradas e explicadas.
+5. **Política de privacidade** publicada e acessível por link.
+6. Informações de privacidade e segurança dos dados preenchidas.
+7. Textos e imagens dentro dos limites (seção 3).
+8. App testado em aparelhos reais (seção 4).
+
+### 3. Preparação de recursos visuais
+
+A página do app na loja é a sua vitrine. Muita gente decide em poucos segundos olhando o ícone, as capturas de tela e o título.
+
+#### 3.1 O ícone
+
+O ícone é **o primeiro elemento visual que atrai o usuário**: aparece em buscas, listas e no celular, e é obrigatório nas duas lojas. Um ícone de alta qualidade é nítido, simples, reconhecível em tamanho pequeno e coerente com o app.
+
+| | Google Play | App Store |
+|---|---|---|
+| Tamanho | **512 × 512 px** | **1024 × 1024 px** |
+| Formato | PNG de 32 bits, até 1024 KB | PNG **sem transparência** |
+
+**Erro comum.** Colocar texto pequeno no ícone: ele fica ilegível. Prefira um símbolo forte.
+
+#### 3.2 Screenshots
+
+As capturas de tela devem **mostrar o app de verdade**: telas atraentes e as **funcionalidades principais**, com pouco texto por cima. Regras que valem lembrar:
+
+- **Nada de imagens genéricas**, de redes sociais ou de outro app. Elas violam as regras e enganam o usuário.
+- **Cubra os tipos de aparelho que o app suporta**. Se o app roda em tablet, entregue capturas de tablet.
+
+| | Google Play | App Store |
+|---|---|---|
+| Quantidade | **mínimo de 2** (somando os tipos de aparelho) | de **1 a 10 por tamanho de tela** |
+| Formato | JPEG ou PNG de 24 bits (sem transparência) | JPEG ou PNG, **sem transparência** |
+| Tamanho | lados de 320 a 3840 px (o maior lado até 2 vezes o menor) | tamanhos exatos por aparelho (por exemplo, 1179 × 2556 px para iPhone com Dynamic Island) |
+
+Na Apple, é obrigatório ter capturas para o iPhone com Dynamic Island e, se o app suporta iPad, para o iPad de 13 polegadas.
+
+#### 3.3 Vídeo promocional
+
+O vídeo é **opcional** nas duas lojas, mas funciona de forma **diferente**:
+
+- **Google Play**: você **informa um link do YouTube** (vídeo público ou não listado, sem anúncios e sem monetização).
+- **App Store**: o **app preview** é **enviado direto** no App Store Connect, com **15 a 30 segundos**, até 3 por tamanho de tela e idioma, em formato .mov, .m4v ou .mp4.
+
+#### 3.4 Textos da página
+
+| Campo | Google Play | App Store |
+|---|---|---|
+| Nome | **30 caracteres** | **30 caracteres** |
+| Descrição curta | **80 caracteres** | Subtítulo: **30 caracteres** |
+| Descrição completa | **4 000 caracteres** | **4 000 caracteres** |
+| Palavras-chave | (usa o texto da descrição) | até **100 bytes** |
+
+**Correção ao material.** O slide diz que o nome no Google Play pode ter 50 caracteres, mas a ajuda oficial do Google Play fala em **30**. As palavras-chave da Apple são limitadas em **bytes**, não em caracteres: acentos podem ocupar mais de 1 byte.
+
+**Dica de redação.** Evite superlativos como "o melhor" ou "nº 1", e não repita palavras-chave: as duas lojas penalizam isso.
+
+### 4. Testes e debugging para publicação
+
+Publicar sem testar é pedir avaliações ruins. Os testes antes do envio têm dois objetivos: achar erros e conferir se o app funciona em **aparelhos e versões diferentes**.
+
+#### 4.1 Onde testar
+
+- **Faixas de teste do Google Play**: **teste interno** (poucas pessoas, rápido), **fechado** (grupo escolhido, necessário para contas pessoais novas) e **aberto** (qualquer um que entrar).
+- **TestFlight (Apple)**: até **100 testadores internos** (usuários da sua conta no App Store Connect) e até **10 000 testadores externos**. O primeiro build para testadores externos passa por uma **revisão** da Apple. Cada build fica disponível por até **90 dias**.
+- **Relatório de pré-lançamento do Google Play** (*pre-launch report*): testa o app automaticamente em aparelhos antes da publicação e mostra falhas de estabilidade, desempenho e acessibilidade.
+- **Firebase Test Lab**: roda testes em aparelhos reais e virtuais na nuvem, no Android e no iOS. **Atenção:** a documentação oficial do Firebase informa que ele está **descontinuado**, com desligamento previsto para **30 de setembro de 2027**, e indica a migração para a Developer Device Platform do Google Cloud. O material da aula ainda o cita, mas hoje vale conhecer a alternativa.
+- **Aparelhos reais**: sempre. O emulador não mostra tudo (desempenho, câmera, sensores).
+
+**Tipos de teste úteis:** **manual** (você usa o app como o cliente), **automatizado** (código que repete o teste) e o **robô** do Test Lab (explora o app sozinho, sem escrever código).
+
+#### 4.2 Técnicas de debugging
+
+- **Logs**: registre o que o app faz e os erros. No Android, o **Logcat** mostra tudo em tempo real; no iOS, o console do Xcode.
+- **Depuração remota em aparelho real**: conecte o celular ao computador e use o Android Studio ou o Xcode para pausar o app (*breakpoints*) e ver as variáveis.
+- **Relatórios de falha** (*crash reports*): depois de publicado, o Play Console e o App Store Connect mostram onde o app fecha sozinho.
+- **Reproduzir o erro**: anote os passos exatos, o modelo do aparelho e a versão do sistema.
+
+**Exemplo com o BeautyScheduler.** Um usuário diz que "o app fecha ao marcar um horário". Passos: reproduzir no aparelho dele (ou parecido), abrir o Logcat, achar a linha do erro, corrigir, testar de novo e só então gerar uma nova versão.
+
+#### 4.3 Antes do botão "enviar"
+
+1. **Versão certa** (e número de build maior que o anterior).
+2. **Teste de instalação limpa** (instalar do zero e abrir).
+3. **Teste sem internet** e com internet lenta.
+4. **Teste de permissões**: negar e aceitar cada uma.
+5. **Teste em vários tamanhos de tela** e versões do sistema.
+6. **Erros conhecidos** corrigidos ou documentados.
+
+## Tópicos-Chave para Revisão
+
+<div className="topico">
+
+#### 1. Conta no Google Play
+
+Taxa **única de US$ 25**, uso do **Play Console**, e-mail **dedicado** e **verificação de identidade**. Contas pessoais novas (depois de 13/11/2023) precisam de **teste fechado** com **12 testadores por 14 dias**.
+
+#### 2. Assinatura no Android
+
+**Play App Signing**: você assina com a **upload key** (guarde o **keystore**) e o Google guarda a **app signing key**. Apps novos usam **AAB**, e o **target API** é exigido todo ano.
+
+#### 3. Conta na Apple
+
+**US$ 99 por ano**, conta **Individual** ou **Organização** (**D-U-N-S Number**), acesso ao **Xcode**, **TestFlight** e **App Store Connect**.
+
+#### 4. Certificados da Apple
+
+**Certificados** de desenvolvimento e de distribuição assinam o app. Os **provisioning profiles** definem quais aparelhos e qual app podem usar a assinatura.
+
+#### 5. Por que apps são rejeitados
+
+**Políticas violadas**, **permissões demais**, **dados coletados sem aviso**, **falhas técnicas** e **metadados enganosos**. Ler as políticas de cada loja evita retrabalho.
+
+#### 6. Requisitos técnicos
+
+**AAB** assinado, permissões **declaradas**, **política de privacidade**, **Data safety** (Google) e **Info.plist** com textos de uso (Apple). Peça só o **mínimo necessário**.
+
+#### 7. Ícone
+
+É o **primeiro elemento visual** que atrai o usuário e é **obrigatório nas duas lojas**: **512 × 512 px** no Google Play e **1024 × 1024 px sem transparência** na App Store.
+
+#### 8. Screenshots
+
+Mostre **telas reais** e as **funcionalidades principais**, sem imagens genéricas, e cubra os **aparelhos suportados** (inclusive **tablet**). Google: **mínimo 2**; Apple: **1 a 10** por tamanho.
+
+#### 9. Vídeo promocional
+
+**Opcional** nas duas lojas. **Google Play**: link do **YouTube**. **App Store**: **app preview** enviado **direto**, de **15 a 30 segundos**.
+
+#### 10. Limites de texto
+
+Nome com **30 caracteres** nas duas lojas, descrição curta de **80** no Google Play, subtítulo de **30** na Apple, descrição de **4 000** nas duas e palavras-chave de até **100 bytes** na Apple.
+
+#### 11. Testes antes da publicação
+
+**Teste interno, fechado e aberto** no Google Play, **TestFlight** na Apple, **relatório de pré-lançamento**, aparelhos **reais** e, em outro caminho, o **Firebase Test Lab** (em descontinuação).
+
+#### 12. Debugging
+
+Use **logs** (**Logcat**, console do Xcode), **depuração remota** em aparelho real e **crash reports**. Reproduza o erro com **passos exatos** antes de corrigir.
+
+</div>
+
+## Pause e Responda
+
+*Marque uma alternativa em cada questão e confira tudo de uma vez no botão do fim.*
+
+**Questão 1**
+
+*Pause e Responda S22A3a · Preparação de recursos visuais*
+
+Qual é a importância de criar um ícone de aplicação de alta qualidade para as lojas de aplicativos? Indique a alternativa correta.
+
+A) É o primeiro elemento visual que atrai usuários.\
+B) É apenas estético e não afeta a aceitação do app.\
+C) Só é obrigatório para a App Store, mas não para o Google Play.\
+D) É usado apenas em testes beta, não na versão final.\
+E) Substitui a necessidade de descrição e de screenshots.
+
+**Questão 2**
+
+*Pause e Responda S22A3b · Preparação de recursos visuais*
+
+O que deve ser priorizado ao criar screenshots para um aplicativo? Indique a alternativa correta.
+
+A) Mostrar telas com designs atraentes e funcionalidades.\
+B) Criar screenshots apenas para smartphones, ignorando tablets.\
+C) Usar apenas imagens genéricas, sem conexão com o app.\
+D) Reutilizar imagens de redes sociais sem adaptá-las.\
+E) Usar telas de outro aplicativo para o seu parecer mais bonito.
+
+**Questão 3**
+
+*Pause e Responda S22A3c · Preparação de recursos visuais*
+
+Qual é a principal diferença na submissão de vídeos promocionais para o Google Play e a App Store? Indique a alternativa correta.
+
+A) O Google Play exige upload direto; a App Store usa links.\
+B) No Google Play, o vídeo vai pelo YouTube; na App Store, direto.\
+C) A App Store permite vídeos curtos; o Google Play, de até 10 min.\
+D) O Google Play não exige vídeos; a App Store exige obrigatoriamente.\
+E) Nenhuma das duas lojas aceita vídeo promocional.

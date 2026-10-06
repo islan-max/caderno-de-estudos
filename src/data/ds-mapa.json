@@ -369,7 +369,7 @@
     },
     {
       "slug": "banco-de-dados",
-      "nome": "Banco de dados",
+      "nome": "Banco de Dados",
       "bimestres": [
         {
           "numero": 1,
@@ -2147,8 +2147,8 @@
               "slug": "aula-1-avaliacao-final-do-publico-alvo",
               "titulo": "Avaliação Final do Público-Alvo",
               "topicos": [
-                "Avaliação do público: alvo: pesquisa final (parte 1)",
-                "Avaliação do público: alvo: pesquisa final (parte 2)",
+                "Avaliação do público-alvo: pesquisa final (parte 1)",
+                "Avaliação do público-alvo: pesquisa final (parte 2)",
                 "Ajustes com base na avaliação do público"
               ],
               "pausas": 3

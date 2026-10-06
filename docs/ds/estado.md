@@ -29,6 +29,9 @@ O material é ponto de partida, não verdade: erros, premissas fracas e itens de
 |---|---|---|---|
 | Back-End | 4º | 1 · Utilização de Frameworks e Serviços Externos | Semana 22 |
 | Inteligência Artificial | 4º | 1 · Ferramentas e Orquestração Multiagente | Semana 21 |
+| Projeto Multidisciplinar | 4º | 1 · Avaliação Final do Público-Alvo | Semana 22 |
+| Programação Mobile | 4º | 1 · Configurações Iniciais para Publicação nas Stores | Semana 22 |
+| Banco de Dados | 4º | 1 · Introdução aos Bancos de Dados NoSQL | Semana 22 |
 
 ## Correções e complementos feitos no material
 
@@ -46,6 +49,32 @@ O material é ponto de partida, não verdade: erros, premissas fracas e itens de
 
 ## Pendências
 
-- 189 aulas ainda "em breve".
+- 186 aulas ainda "em breve".
 - `scripts/checar-quiz.mjs` e `scripts/validar-aula.mjs` são só do ENEM; nas aulas de DS o quiz foi conferido no navegador (3 questões × 5 alternativas, gabarito 3 de 3).
 - Aba "Escolar" continua oculta (não foi mexida).
+
+## Correções feitas nas aulas de 06/10/2026
+
+**Programação Mobile (semana 22)**
+- Nome do app no Google Play: o material diz 50 caracteres; a ajuda do Google diz 30. Palavras-chave da Apple: limite é em bytes (100), não caracteres.
+- Regra nova não citada: contas pessoais do Google Play criadas depois de 13/11/2023 precisam de teste fechado (12 testadores, 14 dias) antes de publicar. Target API: Android 16 (API 36) desde 31/08/2026.
+- O exemplo de `jarsigner` usava APK; ele serve para AAB (APK usa `apksigner`). Play App Signing: upload key (sua) e app signing key (do Google).
+- Firebase Test Lab está descontinuado (desligamento em 30/09/2027, segundo a documentação do Firebase).
+- As respostas oficiais do Pause e Responda (ícone, screenshots, vídeo) foram confirmadas: Google Play usa link do YouTube; App Store, app preview enviado direto (15 a 30 s).
+
+**Banco de Dados (semana 22)**
+- NoSQL = "Not Only SQL". Bancos de colunas: o material mistura colunar analítico (BigQuery, Redshift) com colunas largas (Cassandra, HBase).
+- `db.collection.insert()` está obsoleto no mongosh (insertOne e insertMany). MongoDB tem transações ACID com vários documentos desde 4.0 (réplicas) e 4.2 (sharding).
+- A distribuição melhora latência e disponibilidade; não melhora a consistência nem elimina falhas de hardware.
+
+**Projeto Multidisciplinar (semana 22)**
+- O material só descreve atividades; a aula acrescenta método (jornada do cliente, SBI, NPS, matriz impacto × esforço) e o cuidado de que colegas não são sempre o público real.
+
+**Pause e Responda:** os três materiais tinham 4 alternativas; foi acrescentada a 5ª (E). O gabarito não vinha no material e foi marcado pelo conteúdo.
+
+## Aba Escolar (desde 05/10/2026)
+
+- Mesma estrutura de DS, mas sem seção de questões ("aula pura"; as questões ficam na apostila).
+- Aulas de revisão dadas pelo professor antes do material do bimestre: arquivo `revisao-<n>-<tema>.mdx`, `order` negativo (-100 + n) e rótulo R<n> na trilha.
+- Prontas: Matemática 4º bim (R1 Conjuntos e Venn; Aula 1 sem material; Aula 2 Grandezas, parte 1) e Língua Portuguesa 4º bim (Aula 1, Moçambique, parte 1).
+- Textos protegidos (poema, conto, letra de música) não são reproduzidos: ficam resumo, análise e link da fonte.

@@ -1,0 +1,488 @@
+---
+title: "Introdução aos Bancos de Dados NoSQL"
+subject: "Banco de Dados"
+order: 1
+relevance: >
+  Redes sociais, lojas virtuais e serviços de streaming guardam bilhões de registros e atendem milhões de pessoas ao
+  mesmo tempo, em vários países. Os bancos relacionais (SQL) continuam excelentes, mas nem sempre são a melhor
+  ferramenta para esse tipo de volume e variedade de dados. Os bancos NoSQL nasceram para isso. Saber quando usar
+  cada um, e como os dados são organizados e distribuídos, é uma decisão que um desenvolvedor toma o tempo todo.
+quickSummary: >
+  NoSQL ("não só SQL") reúne bancos que não seguem o modelo de tabelas rígidas: chave-valor, documentos, colunas
+  e grafos. Eles são feitos para distribuir dados em vários servidores (escalabilidade horizontal), com alta
+  disponibilidade e esquema flexível, muitas vezes aceitando consistência eventual. Não substituem o SQL: cada
+  um resolve melhor um tipo de problema, e é comum usar os dois no mesmo sistema.
+gabarito:
+  - correta: 2
+    porque: >
+      Ao espalhar o banco por várias regiões, os dados ficam perto dos usuários (menos latência) e o sistema
+      continua no ar mesmo que uma região falhe (mais disponibilidade). A distribuição costuma tornar a
+      consistência mais difícil, usa mais servidores e não elimina falhas de hardware: ela convive com elas.
+      Revisar: A Aula › 3.1 Arquitetura distribuída
+  - correta: 0
+    porque: >
+      Escalar horizontalmente é acrescentar mais servidores e dividir dados e carga entre eles. Aumentar a
+      capacidade de uma só máquina é escalar na vertical.
+      Revisar: A Aula › 3.2 Escalabilidade horizontal e vertical
+  - correta: 1
+    porque: >
+      Com crescimento contínuo de dados e de usuários, a escala horizontal permite continuar acrescentando
+      servidores. A vertical bate num limite físico e de preço.
+      Revisar: A Aula › 3.2 Escalabilidade horizontal e vertical
+---
+
+<Accordion titulo="Palavras e siglas desta aula" dica="Consulte quando encontrar um termo novo" icone="spell-check">
+
+- **SQL** (Structured Query Language, linguagem de consulta estruturada): a linguagem dos bancos relacionais.
+- **NoSQL** ("Not Only SQL", não só SQL): bancos de dados que usam outros modelos além das tabelas relacionais.
+- **ANSI** (American National Standards Institute): instituto que ajudou a padronizar o SQL. Cada banco NoSQL costuma ter a sua própria forma de consultar.
+- **SGBD** (Sistema de Gerenciamento de Banco de Dados): o programa que guarda e gerencia os dados.
+- **Esquema**: a estrutura definida para os dados (quais colunas e tipos cada tabela tem).
+- **JSON** (JavaScript Object Notation) e **BSON** (Binary JSON): formatos para escrever documentos. O BSON é a versão binária, mais rápida, que o MongoDB usa.
+- **ACID** (Atomicidade, Consistência, Isolamento, Durabilidade): garantias das transações. Ou tudo acontece, ou nada.
+- **BASE** (Basically Available, Soft state, Eventual consistency): "basicamente disponível, estado flexível, consistência eventual".
+- **CAP** (Consistency, Availability, Partition tolerance): teorema sobre os limites de um sistema distribuído.
+- **Nó**: cada servidor de um banco distribuído. Um conjunto deles é um **cluster**.
+- **Shard** (fragmento): cada pedaço de um banco dividido entre servidores.
+- **Réplica**: cópia dos dados em outro servidor.
+- **Latência**: o tempo de espera entre pedir e receber.
+- **TTL** (Time To Live, tempo de vida): prazo depois do qual um dado é apagado sozinho.
+- **Cypher** e **CQL**: linguagens de consulta do Neo4j (grafos) e do Cassandra (colunas).
+
+</Accordion>
+
+## Antes de Começar
+
+**O que esta aula cobre.** O que são os bancos NoSQL e por que existem, os quatro tipos, como se comparam ao SQL, como funcionam por dentro (distribuição, replicação e escala) e como modelar os dados em cada um. O fio condutor é um exemplo de loja virtual (e-commerce) em crescimento.
+
+**O que você precisa saber antes.**
+
+- **Banco relacional**: dados em **tabelas** de linhas e colunas, ligadas por **chaves** (primária e estrangeira), consultadas com SQL.
+- **Normalização**: separar os dados em várias tabelas para não repetir informação (vista nas semanas de formas normais).
+- **Transação**: um conjunto de operações que deve ser executado por inteiro ou não ser executado.
+
+## A Aula
+
+### 1. Conceitos e tipos de bancos NoSQL
+
+#### 1.1 Por que surgiram os NoSQL
+
+Os bancos relacionais foram criados nos anos 1970 e resolvem muito bem dados organizados e transações. Com a internet, apareceram novos desafios:
+
+- **Volume enorme** de dados, vindo de muita gente ao mesmo tempo.
+- **Dados variados**: textos de redes sociais, imagens, vídeos, registros de eventos (logs), nem todos cabem bem numa tabela.
+- **Muitas leituras e escritas por segundo.**
+- **Usuários espalhados pelo mundo**, que esperam resposta rápida e o serviço sempre no ar.
+
+Daí vieram os bancos **NoSQL**. O nome é **"Not Only SQL"** (não só SQL), e não "não usa SQL" ou "contra o SQL". A ideia é ter outras opções além da tabela.
+
+**Características que costumam aparecer** (o "costumam" é importante: depende do banco):
+
+1. **Escalabilidade horizontal**: crescer acrescentando servidores.
+2. **Esquema flexível**: cada registro pode ter campos diferentes.
+3. **Alta disponibilidade**: continuar funcionando quando partes falham.
+4. **Alto desempenho** de leitura e escrita.
+5. **Consistência eventual** em muitos casos: durante um curto tempo, cópias diferentes do dado podem divergir até se sincronizarem.
+
+**Atenção a duas ideias fáceis demais** (o material as simplifica):
+
+- **"Relacional só escala na vertical."** É a regra geral, mas bancos relacionais também podem usar réplicas e *sharding*, e existem bancos SQL feitos para ser distribuídos. A diferença é que, no NoSQL, a distribuição costuma ser **parte do projeto** do banco.
+- **"NoSQL não tem transação."** Depende. O MongoDB, por exemplo, tem **transações ACID com vários documentos** desde a versão 4.0 (em réplicas) e a 4.2 (em clusters com *sharding*), segundo a documentação oficial, mas elas custam desempenho, e o recomendado é modelar os dados para precisar delas só quando for necessário.
+
+#### 1.2 Os quatro tipos principais
+
+<figure class="figura">
+  <svg viewBox="0 0 560 330" role="img" aria-labelledby="fig-bd-tipos-t fig-bd-tipos-d">
+    <title id="fig-bd-tipos-t">Os quatro tipos de banco NoSQL</title>
+    <desc id="fig-bd-tipos-d">Chave-valor: chaves ligadas a valores, como sessao:42 apontando para os dados da sessão. Documentos: um documento com campos e uma lista de itens, escrito em JSON. Colunas: linhas identificadas por uma chave, com colunas diferentes em cada linha. Grafos: nós ligados por arestas, como Ana segue Bia e Bia segue Caio.</desc>
+    <defs>
+      <marker id="seta-bd-tipos" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+        <path d="M1,1 L9,5 L1,9" class="traco" />
+      </marker>
+    </defs>
+    <rect x="5" y="5" width="270" height="150" rx="8" class="traco" />
+    <text x="140" y="26" class="rotulo" text-anchor="middle">Chave-valor</text>
+    <rect x="25" y="42" width="85" height="26" rx="4" class="traco preenche" />
+    <text x="67" y="59" class="rotulo-fraco" text-anchor="middle">sessao:42</text>
+    <rect x="150" y="42" width="105" height="26" rx="4" class="traco" />
+    <text x="202" y="59" class="rotulo-fraco" text-anchor="middle">usuário Ana, tema</text>
+    <rect x="25" y="82" width="85" height="26" rx="4" class="traco preenche" />
+    <text x="67" y="99" class="rotulo-fraco" text-anchor="middle">carrinho:7</text>
+    <rect x="150" y="82" width="105" height="26" rx="4" class="traco" />
+    <text x="202" y="99" class="rotulo-fraco" text-anchor="middle">3 itens</text>
+    <line x1="110" y1="55" x2="148" y2="55" class="traco" marker-end="url(#seta-bd-tipos)" />
+    <line x1="110" y1="95" x2="148" y2="95" class="traco" marker-end="url(#seta-bd-tipos)" />
+    <text x="140" y="140" class="rotulo-fraco" text-anchor="middle">Redis, DynamoDB</text>
+    <rect x="285" y="5" width="270" height="150" rx="8" class="traco" />
+    <text x="420" y="26" class="rotulo" text-anchor="middle">Documentos</text>
+    <rect x="320" y="38" width="200" height="82" rx="4" class="traco preenche" />
+    <text x="332" y="56" class="rotulo-fraco">cliente: "Ana"</text>
+    <text x="332" y="72" class="rotulo-fraco">itens: [ mouse, teclado ]</text>
+    <text x="332" y="88" class="rotulo-fraco">endereço: cidade, CEP</text>
+    <text x="332" y="104" class="rotulo-fraco">(outro doc. pode ter outros campos)</text>
+    <text x="420" y="140" class="rotulo-fraco" text-anchor="middle">MongoDB, CouchDB</text>
+    <rect x="5" y="170" width="270" height="150" rx="8" class="traco" />
+    <text x="140" y="191" class="rotulo" text-anchor="middle">Colunas (famílias de colunas)</text>
+    <rect x="25" y="204" width="60" height="26" rx="4" class="traco preenche" />
+    <text x="55" y="221" class="rotulo-fraco" text-anchor="middle">chave 1</text>
+    <rect x="95" y="204" width="75" height="26" rx="4" class="traco" />
+    <text x="132" y="221" class="rotulo-fraco" text-anchor="middle">nome, cidade</text>
+    <rect x="25" y="240" width="60" height="26" rx="4" class="traco preenche" />
+    <text x="55" y="257" class="rotulo-fraco" text-anchor="middle">chave 2</text>
+    <rect x="95" y="240" width="110" height="26" rx="4" class="traco" />
+    <text x="150" y="257" class="rotulo-fraco" text-anchor="middle">nome, e-mail, idade</text>
+    <text x="140" y="305" class="rotulo-fraco" text-anchor="middle">Cassandra, HBase</text>
+    <rect x="285" y="170" width="270" height="150" rx="8" class="traco" />
+    <text x="420" y="191" class="rotulo" text-anchor="middle">Grafos</text>
+    <circle cx="340" cy="250" r="22" class="traco preenche" />
+    <text x="340" y="254" class="rotulo-fraco" text-anchor="middle">Ana</text>
+    <circle cx="420" cy="225" r="22" class="traco" />
+    <text x="420" y="229" class="rotulo-fraco" text-anchor="middle">Bia</text>
+    <circle cx="500" cy="250" r="22" class="traco" />
+    <text x="500" y="254" class="rotulo-fraco" text-anchor="middle">Caio</text>
+    <line x1="360" y1="243" x2="396" y2="231" class="traco" marker-end="url(#seta-bd-tipos)" />
+    <line x1="441" y1="231" x2="477" y2="243" class="traco" marker-end="url(#seta-bd-tipos)" />
+    <text x="378" y="226" class="rotulo-fraco" text-anchor="middle">segue</text>
+    <text x="462" y="226" class="rotulo-fraco" text-anchor="middle">segue</text>
+    <text x="420" y="305" class="rotulo-fraco" text-anchor="middle">Neo4j, Amazon Neptune</text>
+  </svg>
+</figure>
+
+| Tipo | Como guarda | Bom para | Exemplos |
+|---|---|---|---|
+| **Chave-valor** | Pares únicos de chave e valor. Você busca pela chave | Sessões de usuário, carrinho, **cache**, preferências | Redis, DynamoDB |
+| **Documentos** | Documentos em JSON ou BSON, cada um com estrutura própria | Dados semiestruturados, catálogos, perfis, conteúdo | MongoDB, CouchDB |
+| **Colunas** (*wide-column*) | Linhas identificadas por uma chave, com colunas agrupadas em famílias | Muita **escrita**, séries de eventos, grandes volumes | Cassandra, HBase |
+| **Grafos** | **Nós** (entidades) ligados por **arestas** (relações) | Redes sociais, recomendações, detecção de fraude | Neo4j, Amazon Neptune |
+
+**Duas correções importantes ao material:**
+
+- O material diz que os bancos de colunas "armazenam dados em colunas em vez de linhas". Isso descreve os bancos **colunares analíticos** (como o BigQuery e o Redshift). O Cassandra e o HBase pertencem a outra família, a de **colunas largas** (*wide-column*): os dados são organizados por **chave de linha**, e as colunas são agrupadas em famílias. O que une os dois é o foco em **grandes volumes**.
+- O **DynamoDB** funciona como chave-valor, mas também aceita documentos. As fronteiras entre os tipos não são rígidas: muitos bancos misturam modelos (**multimodelo**).
+
+### 2. Comparação entre SQL e NoSQL
+
+#### 2.1 Os dois lado a lado
+
+| Critério | SQL (relacional) | NoSQL |
+|---|---|---|
+| **Modelo** | Tabelas, linhas e colunas | Chave-valor, documentos, colunas, grafos |
+| **Esquema** | **Rígido**: definido antes de guardar | **Flexível**: pode mudar com os dados |
+| **Relacionamentos** | **Chaves estrangeiras** e `JOIN` | **Documentos embutidos** (ou referências), arestas em grafos |
+| **Consulta** | SQL, padronizado (ANSI/ISO) | Cada banco tem a sua forma (API, MQL, Cypher, CQL) |
+| **Transações** | **ACID**, o ponto forte | Varia: do eventual ao ACID |
+| **Escala** | Costuma crescer na **vertical**; horizontal exige mais trabalho | Pensado para **horizontal** |
+| **Quando brilha** | Dados estruturados, regras de integridade, relatórios | Volume enorme, dados variados, disponibilidade e velocidade |
+
+**Não é uma disputa.** O que existe é **adequação ao problema**. Muitos sistemas usam **mais de um** banco, uma prática chamada de **persistência poliglota**.
+
+#### 2.2 Mesmo dado, dois modelos
+
+Um pedido de loja virtual, em cada mundo.
+
+**Em SQL**, os dados ficam em tabelas separadas, ligadas por chaves:
+
+```sql
+CREATE TABLE pedido (
+  id INT PRIMARY KEY,
+  cliente VARCHAR(80) NOT NULL,
+  total DECIMAL(10,2) NOT NULL
+);
+
+CREATE TABLE item_pedido (
+  id INT PRIMARY KEY,
+  pedido_id INT NOT NULL REFERENCES pedido(id),
+  produto VARCHAR(80) NOT NULL,
+  quantidade INT NOT NULL,
+  preco DECIMAL(10,2) NOT NULL
+);
+
+INSERT INTO pedido (id, cliente, total) VALUES (1, 'Ana', 109.80);
+INSERT INTO item_pedido (id, pedido_id, produto, quantidade, preco)
+VALUES (1, 1, 'Mouse', 1, 59.90), (2, 1, 'Cabo USB', 1, 49.90);
+```
+
+Para ler o pedido com os itens, usa-se um `JOIN`.
+
+**Em MongoDB (documentos)**, o pedido é **um documento só**, com os itens dentro de uma lista (*array*):
+
+```js
+db.pedidos.insertOne({
+  cliente: "Ana",
+  total: 109.80,
+  itens: [
+    { produto: "Mouse",    quantidade: 1, preco: 59.90 },
+    { produto: "Cabo USB", quantidade: 1, preco: 49.90 }
+  ]
+})
+
+db.pedidos.find({ "itens.produto": "Mouse" })
+```
+
+Uma leitura traz o pedido completo, sem `JOIN`. Esse é o ganho do modelo de documentos: **o que é lido junto fica guardado junto**.
+
+**Correção ao material.** O material de apoio cita `db.collection.insert()`. Na documentação do MongoDB, esse método está **obsoleto no `mongosh`**. Use `insertOne()` (um documento) ou `insertMany()` (vários).
+
+#### 2.3 Escolher entre SQL e NoSQL
+
+Perguntas que ajudam, nesta ordem:
+
+1. **Os dados são bem estruturados e cheios de relações?** Tende ao SQL.
+2. **Preciso de transações rigorosas** (dinheiro, estoque)? Tende ao SQL.
+3. **A estrutura varia muito ou muda toda hora?** Tende a documentos.
+4. **O volume e a taxa de escrita são enormes e distribuídos?** Tende a colunas ou documentos distribuídos.
+5. **O valor está nas conexões entre as coisas?** Tende a grafos.
+6. **Preciso de acesso ultrarrápido por uma chave?** Tende ao chave-valor (cache).
+
+#### 2.4 Caso: o e-commerce em crescimento
+
+Uma startup de e-commerce cresce rápido e precisa guardar dados de clientes, produtos, pedidos e o histórico de navegação. Uma boa resposta divide por **tipo de dado**:
+
+| Dado | Necessidade | Opção adequada |
+|---|---|---|
+| **Pedidos e pagamentos** | Precisão, segurança, transações **ACID** | **Relacional** (por exemplo, PostgreSQL) |
+| **Histórico de navegação** (milhões de eventos por dia) | Escrita muito alta, volume grande, consulta por usuário e período | **Colunas** (Cassandra) ou documentos distribuídos |
+| **Catálogo de produtos** | Atributos diferentes por tipo de produto | **Documentos** (MongoDB) |
+| **Sessão e carrinho** | Leitura e escrita muito rápidas, dados temporários | **Chave-valor** (Redis), com TTL |
+| **"Quem comprou isto também comprou"** | Conexões entre clientes e produtos | **Grafo** (Neo4j) |
+
+Como lidar com opiniões diferentes na equipe sem perder o foco: (1) **definam critérios** antes de discutir ferramentas (desempenho, custo, segurança, equipe), (2) **testem** as hipóteses com um protótipo pequeno, em vez de só opinar, e (3) **decidam por dados**, registrando o motivo. Combinar bancos é válido, desde que a equipe saiba **operar** cada um.
+
+### 3. Arquitetura de bancos de dados NoSQL
+
+#### 3.1 Arquitetura distribuída
+
+Num banco **distribuído**, os dados ficam em **vários servidores (nós)** que trabalham juntos, e não em um só. Duas técnicas combinadas:
+
+- **Particionamento (*sharding*)**: divide o conjunto de dados em **pedaços** (*shards*), e cada nó guarda um pedaço. Assim, o trabalho e o espaço se dividem.
+- **Replicação**: guarda **cópias** de cada pedaço em outros nós. Se um nó cair, outra cópia assume.
+
+<figure class="figura">
+  <svg viewBox="0 0 560 220" role="img" aria-labelledby="fig-bd-shard-t fig-bd-shard-d">
+    <title id="fig-bd-shard-t">Particionamento e replicação em um banco distribuído</title>
+    <desc id="fig-bd-shard-d">Os dados são divididos em três pedaços, A, B e C, cada um guardado em um nó diferente. Cada pedaço tem uma cópia em outro nó: o nó 1 guarda A e a cópia de C, o nó 2 guarda B e a cópia de A, o nó 3 guarda C e a cópia de B. Se um nó cair, as cópias garantem que todos os pedaços continuem disponíveis.</desc>
+    <rect x="195" y="5" width="170" height="36" rx="8" class="traco preenche" />
+    <text x="280" y="28" class="rotulo" text-anchor="middle">Dados da aplicação</text>
+    <rect x="10" y="100" width="165" height="100" rx="8" class="traco" />
+    <text x="92" y="122" class="rotulo" text-anchor="middle">Nó 1</text>
+    <rect x="25" y="135" width="60" height="50" rx="4" class="traco preenche" />
+    <text x="55" y="165" class="rotulo-fraco" text-anchor="middle">A</text>
+    <rect x="100" y="135" width="60" height="50" rx="4" class="tracejado" />
+    <text x="130" y="157" class="rotulo-fraco" text-anchor="middle">cópia</text>
+    <text x="130" y="171" class="rotulo-fraco" text-anchor="middle">de C</text>
+    <rect x="198" y="100" width="165" height="100" rx="8" class="traco" />
+    <text x="280" y="122" class="rotulo" text-anchor="middle">Nó 2</text>
+    <rect x="213" y="135" width="60" height="50" rx="4" class="traco preenche" />
+    <text x="243" y="165" class="rotulo-fraco" text-anchor="middle">B</text>
+    <rect x="288" y="135" width="60" height="50" rx="4" class="tracejado" />
+    <text x="318" y="157" class="rotulo-fraco" text-anchor="middle">cópia</text>
+    <text x="318" y="171" class="rotulo-fraco" text-anchor="middle">de A</text>
+    <rect x="385" y="100" width="165" height="100" rx="8" class="traco" />
+    <text x="467" y="122" class="rotulo" text-anchor="middle">Nó 3</text>
+    <rect x="400" y="135" width="60" height="50" rx="4" class="traco preenche" />
+    <text x="430" y="165" class="rotulo-fraco" text-anchor="middle">C</text>
+    <rect x="475" y="135" width="60" height="50" rx="4" class="tracejado" />
+    <text x="505" y="157" class="rotulo-fraco" text-anchor="middle">cópia</text>
+    <text x="505" y="171" class="rotulo-fraco" text-anchor="middle">de B</text>
+    <line x1="240" y1="41" x2="92" y2="98" class="traco-fino" />
+    <line x1="280" y1="41" x2="280" y2="98" class="traco-fino" />
+    <line x1="320" y1="41" x2="467" y2="98" class="traco-fino" />
+  </svg>
+</figure>
+
+**A vantagem para uma empresa global: melhor latência e disponibilidade em várias regiões.** Colocando nós e réplicas em regiões diferentes (por exemplo, Brasil, Europa e Ásia):
+
+- O usuário é atendido por um nó **perto dele**: **menos latência**.
+- Se uma região inteira falhar, as outras continuam atendendo: **mais disponibilidade**.
+
+O que a distribuição **não** faz: não deixa a consistência **melhor** (com várias cópias, mantê-las iguais é um desafio), não reduz a infraestrutura (usa **mais** servidores) e **não elimina** falhas de hardware (elas continuam acontecendo, só que o sistema está preparado para suportá-las).
+
+#### 3.2 Escalabilidade horizontal e vertical
+
+<figure class="figura">
+  <svg viewBox="0 0 560 190" role="img" aria-labelledby="fig-bd-escala-t fig-bd-escala-d">
+    <title id="fig-bd-escala-t">Escalabilidade vertical e horizontal</title>
+    <desc id="fig-bd-escala-d">Na escalabilidade vertical, um único servidor fica maior, com mais memória e processador, até chegar ao limite físico e de preço. Na escalabilidade horizontal, são acrescentados mais servidores do mesmo tamanho, e os dados e a carga são divididos entre eles.</desc>
+    <text x="140" y="22" class="rotulo" text-anchor="middle">Vertical: servidor maior</text>
+    <rect x="115" y="120" width="40" height="40" rx="4" class="traco" />
+    <rect x="115" y="75" width="40" height="85" rx="4" class="traco" />
+    <rect x="115" y="30" width="40" height="130" rx="4" class="traco preenche" />
+    <text x="140" y="178" class="rotulo-fraco" text-anchor="middle">tem limite físico e de preço</text>
+    <text x="420" y="22" class="rotulo" text-anchor="middle">Horizontal: mais servidores</text>
+    <rect x="320" y="110" width="40" height="50" rx="4" class="traco" />
+    <rect x="370" y="110" width="40" height="50" rx="4" class="traco" />
+    <rect x="420" y="110" width="40" height="50" rx="4" class="traco" />
+    <rect x="470" y="110" width="40" height="50" rx="4" class="traco preenche" />
+    <rect x="520" y="110" width="30" height="50" rx="4" class="tracejado" />
+    <text x="420" y="178" class="rotulo-fraco" text-anchor="middle">acrescenta nós e divide dados e carga</text>
+  </svg>
+</figure>
+
+| | **Vertical** | **Horizontal** |
+|---|---|---|
+| O que é | **Aumentar a capacidade de um único servidor** (mais memória, processador, disco) | **Adicionar servidores** e **distribuir dados e carga** entre eles |
+| Limite | Físico e de preço: máquinas muito grandes ficam caríssimas | Praticamente não há teto: basta acrescentar nós |
+| Risco | Se o servidor cai, tudo cai | A falha de um nó é absorvida pelos outros (com réplicas) |
+| Complexidade | Simples de começar | Mais complexa: é preciso dividir e replicar dados |
+
+Para uma empresa em que o **volume de dados e de usuários só aumenta**, a escolha mais eficaz é a **horizontal**, pois é a que acompanha o crescimento sem esbarrar em um teto.
+
+#### 3.3 Consistência, disponibilidade e o teorema CAP
+
+Com dados em vários nós, existe um impasse. O **teorema CAP** diz que, quando a rede entre os nós falha (**partição**), o sistema precisa escolher entre:
+
+- **Consistência (C)**: todos veem o mesmo dado no mesmo instante; ou
+- **Disponibilidade (A)**: todos continuam sendo atendidos, mesmo que com dado ligeiramente atrasado.
+
+Em funcionamento normal, dá para ter as duas coisas em boa medida. Muitos NoSQL **priorizam disponibilidade** e usam a **consistência eventual** (o modelo **BASE**): se ninguém escrever mais, todas as cópias acabam iguais. Bancos relacionais tradicionais priorizam o **ACID**. Vários bancos NoSQL permitem **escolher o nível de consistência** por operação: mais forte (mais lento) ou mais fraco (mais rápido).
+
+**Exemplo.** Numa rede social, você curte uma foto e um amigo em outro continente vê o número de curtidas atrasado por um segundo: sem problema, é consistência eventual. Já no **saldo bancário**, ver um valor desatualizado é inaceitável: pede consistência forte.
+
+### 4. Modelagem de dados em bancos NoSQL
+
+A regra de ouro muda: no relacional, você modela **os dados** (normalizando) e depois escreve as consultas. No NoSQL, você costuma modelar **a partir das consultas**: "como minha aplicação vai ler isto?" e organiza os dados para essa leitura ser rápida.
+
+#### 4.1 Documentos: embutir ou referenciar
+
+**Embutir** (colocar dentro do documento) quando os dados são lidos **juntos** e pertencem a um só dono: os itens de um pedido, os endereços de um cliente.
+
+**Referenciar** (guardar o `id` do outro documento) quando o dado é **compartilhado**, **cresce sem limite** ou **muda muito**: o cadastro de um produto usado em milhares de pedidos.
+
+```js
+// Referenciando o cliente (que é usado em muitos pedidos)
+db.pedidos.insertOne({
+  clienteId: ObjectId("..."),
+  itens: [ { produto: "Mouse", quantidade: 1, preco: 59.90 } ]
+})
+```
+
+**Cuidado.** Embutir demais faz o documento crescer sem controle e **duplica** dados, e atualizar todas as cópias é trabalhoso. Por isso, decida caso a caso.
+
+#### 4.2 Chave-valor: o desenho da chave é tudo
+
+Como só se busca pela **chave**, ela precisa dizer o que o valor é. Um padrão comum é usar prefixos separados por dois-pontos. Exemplos em Redis:
+
+```
+SET sessao:42 "usuario=Ana;tema=escuro" EX 3600
+GET sessao:42
+INCR visitas:home
+```
+
+O `EX 3600` dá ao dado um **tempo de vida (TTL)** de 3 600 segundos: depois disso ele some sozinho, perfeito para sessões. O `INCR` soma 1 a um contador, de forma atômica. O Redis guarda tudo **na memória**, por isso é tão rápido, e é muito usado como **cache**.
+
+#### 4.3 Grafos: entidades e relações
+
+No grafo, o que você guarda são **nós** (as coisas) e **arestas** (as relações entre elas), e ambos podem ter **propriedades**. Exemplo em **Cypher**, a linguagem do Neo4j:
+
+```cypher
+CREATE (ana:Pessoa {nome: "Ana"})-[:SEGUE]->(bia:Pessoa {nome: "Bia"})
+CREATE (bia)-[:SEGUE]->(caio:Pessoa {nome: "Caio"})
+
+MATCH (a:Pessoa {nome: "Ana"})-[:SEGUE]->()-[:SEGUE]->(sugestao)
+RETURN sugestao.nome
+```
+
+A segunda consulta pergunta: "quem é seguido por quem Ana segue?" (uma sugestão de amizade). Em SQL isso exigiria vários `JOIN`s, e fica lento quando as ligações são muitas.
+
+#### 4.4 Colunas: uma tabela para cada consulta
+
+No Cassandra, a modelagem parte das consultas. Para "ver os últimos eventos de um usuário", a tabela é organizada com o **usuário como chave de partição** (define em qual nó o dado fica) e o **horário como ordenação**. Se outra consulta é necessária, cria-se **outra tabela** para ela, mesmo repetindo dados.
+
+#### 4.5 Qual modelo para qual necessidade
+
+| Necessidade | Estrutura |
+|---|---|
+| Objetos completos, com estrutura variável | **Documentos** |
+| Acesso instantâneo por identificador, cache, sessões | **Chave-valor** |
+| Volume imenso de escrita, séries de eventos | **Colunas** |
+| Relações complexas entre entidades | **Grafos** |
+
+## Tópicos-Chave para Revisão
+
+<div className="topico">
+
+#### 1. O que é NoSQL
+
+**"Not Only SQL"**: bancos que usam modelos além das tabelas, com **esquema flexível** e foco em **distribuição**, **alta disponibilidade** e **desempenho**. Não seguem o padrão **ANSI** do SQL.
+
+#### 2. Por que surgiram
+
+**Volume** enorme, **dados variados**, muitas **leituras e escritas** e usuários no mundo todo. Não substituem o SQL: são **outra opção**.
+
+#### 3. Os quatro tipos
+
+**Chave-valor** (Redis, DynamoDB), **documentos** (MongoDB, CouchDB), **colunas** (Cassandra, HBase) e **grafos** (Neo4j, Neptune). Existem bancos **multimodelo**.
+
+#### 4. SQL ou NoSQL
+
+**SQL**: **esquema rígido**, **JOIN**, **ACID**, escala vertical por tradição. **NoSQL**: **esquema flexível**, dados embutidos, escala **horizontal**. Escolha pelo **problema**, e use mais de um se precisar (**persistência poliglota**).
+
+#### 5. Modelo de documentos
+
+Um pedido vira **um documento** com a lista de itens **embutida**: uma leitura traz tudo, sem **JOIN**. No MongoDB use **insertOne** e **insertMany**; o **insert** está obsoleto.
+
+#### 6. Dados financeiros
+
+Pedidos e pagamentos pedem **precisão** e **transações ACID**: em geral **relacional**. Sessões e cache combinam com **chave-valor**, e recomendações com **grafos**.
+
+#### 7. Arquitetura distribuída
+
+Dados em vários **nós**, com **sharding** (dividir) e **replicação** (copiar). Vantagem para empresa global: **menor latência** e **maior disponibilidade** em várias regiões.
+
+#### 8. O que a distribuição não faz
+
+Não garante **mais consistência**, usa **mais servidores** e **não elimina** falhas de hardware: apenas as **suporta** com réplicas.
+
+#### 9. Escalabilidade
+
+**Vertical**: **aumentar um único servidor** (tem limite). **Horizontal**: **adicionar servidores** e **distribuir dados e carga**. Para crescimento contínuo, a **horizontal**.
+
+#### 10. CAP e consistência eventual
+
+Com falha de rede, escolhe-se entre **consistência** e **disponibilidade**. Muitos NoSQL usam **consistência eventual** (**BASE**) para ganhar velocidade e disponibilidade.
+
+#### 11. Modelagem
+
+No NoSQL modela-se **a partir das consultas**. Em documentos, **embutir** o que é lido junto e **referenciar** o que é compartilhado. Em chave-valor, a **chave** é o desenho. Em grafos, **nós** e **arestas**.
+
+</div>
+
+## Pause e Responda
+
+*Marque uma alternativa em cada questão e confira tudo de uma vez no botão do fim.*
+
+**Questão 1**
+
+*Pause e Responda S22A3a · Arquitetura de bancos de dados NoSQL*
+
+Qual é a principal vantagem de uma arquitetura distribuída em bancos de dados NoSQL para uma empresa global?
+
+A) Maior consistência dos dados em todos os nós.\
+B) Menor necessidade de infraestrutura e servidores.\
+C) Melhor latência e disponibilidade em várias regiões.\
+D) Eliminação completa de falhas de hardware.\
+E) Dispensar qualquer cópia de segurança dos dados.
+
+**Questão 2**
+
+*Pause e Responda S22A3b · Arquitetura de bancos de dados NoSQL*
+
+A escalabilidade horizontal, característica dos bancos NoSQL, envolve principalmente:
+
+A) Adicionar novos servidores para distribuir dados e carga.\
+B) Reduzir o número de cópias de dados no sistema.\
+C) Aumentar a capacidade de um único servidor.\
+D) Remover automaticamente dados desatualizados.\
+E) Desligar as réplicas para concentrar os dados num só nó.
+
+**Questão 3**
+
+*Pause e Responda S22A3c · Arquitetura de bancos de dados NoSQL*
+
+Qual das seguintes abordagens de escalabilidade seria mais eficaz para lidar com o aumento do volume de dados e usuários da DataConnect?
+
+A) Escalabilidade vertical.\
+B) Escalabilidade horizontal.\
+C) Replicação síncrona.\
+D) Escalabilidade em camadas.\
+E) Trocar o servidor por um único equipamento muito mais caro e desligar o restante.
