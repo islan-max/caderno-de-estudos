@@ -17,6 +17,7 @@ const documentos = [
   { href: '/termos', label: 'Termos de Uso', icone: 'file-contract' },
   { href: '/lgpd', label: 'LGPD', icone: 'scale-balanced' },
   { href: '/uso-de-ia', label: 'Uso de IA', icone: 'robot' },
+  { href: '/acessibilidade', label: 'Acessibilidade', icone: 'universal-access' },
 ];
 const atual = Astro.url.pathname.replace(/\/+$/, '');
 ---
@@ -24,7 +25,7 @@ const atual = Astro.url.pathname.replace(/\/+$/, '');
 <Base title={title} description={description} voltar={{ href: u('/'), label: 'Início' }}>
   <nav class="doc-abas" aria-label="Documentos legais">
     {documentos.map((d) => (
-      <a href={u(d.href)} class="doc-aba" data-atual={atual.endsWith(d.href)}>
+      <a href={u(d.href)} class="doc-aba" data-atual={atual.endsWith(d.href)} aria-current={atual.endsWith(d.href) ? 'page' : undefined}>
         <Icone nome={d.icone} /> {d.label}
       </a>
     ))}
@@ -46,9 +47,9 @@ const atual = Astro.url.pathname.replace(/\/+$/, '');
   <footer class="doc-rodape">
     <p>
       <Icone nome="envelope" /> Dúvidas sobre este documento? Fale comigo pelo
-      <a href="https://github.com/islan-max" target="_blank" rel="noopener noreferrer">GitHub (@islan-max)</a>
+      <a href="https://github.com/islan-max" target="_blank" rel="noopener noreferrer">GitHub (@islan-max)<span class="apenas-leitor"> (abre em nova aba)</span></a>
       ou pelo
-      <a href="https://instagram.com/islan.max" target="_blank" rel="noopener noreferrer">Instagram (@islan.max)</a>.
+      <a href="https://instagram.com/islan.max" target="_blank" rel="noopener noreferrer">Instagram (@islan.max)<span class="apenas-leitor"> (abre em nova aba)</span></a>.
     </p>
   </footer>
 </Base>

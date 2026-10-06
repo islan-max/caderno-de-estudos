@@ -16,22 +16,26 @@
   --color-paper-dark: #ded9c4;
   --color-surface: #f4f2ea;
   --color-ink: #1f2a44;
-  --color-ink-soft: #5b6478;
+  --color-ink-soft: #565f72;
 
-  --color-enem: #c4432b;
+  --color-enem: #ae3c26;
   --color-enem-soft: #f1dbd2;
   --color-escolar: #2e5c8a;
   --color-escolar-soft: #dbe5f0;
-  --color-ds: #3f7d58;
+  --color-ds: #386f4e;
   --color-ds-soft: #dbebe0;
 
   --color-line: #c9c2a8;
+  /* Borda de CONTROLE (campo de texto, alternativa do quiz, interruptor): é o
+     que mostra onde o controle está, então precisa de 3:1 contra o fundo
+     (WCAG 1.4.11). --color-line é decorativa/divisória e fica de fora disso. */
+  --color-controle: #7a7560;
   /* Pauta do papel: mais fraca que --color-line de propósito (é fundo
      decorativo, não divisória de componente). No claro as duas se confundem,
      então usam o mesmo tom; no escuro a pauta guarda o tom antigo, discreto,
      enquanto --color-line fica mais forte para bordas e divisórias. */
   --color-pauta: var(--color-line);
-  --color-ok: #3f7d58;
+  --color-ok: #386f4e;
 
   /* Altura da pauta do caderno. Toda a métrica vertical é múltipla disso. */
   --rule: 35px;
@@ -149,6 +153,7 @@ html[data-tema="escuro"] {
   --color-ink: #e7e4da;
   --color-ink-soft: #9ba3b2;
   --color-line: #606c88;
+  --color-controle: #7f8aa6;
   --color-pauta: #2b3140;
 
   --color-enem: #e58a70;
@@ -248,6 +253,18 @@ html[data-texto="maior"] body {
     outline-offset: 3px;
     border-radius: 4px;
   }
+  /* O alvo de "Pular para o conteúdo" recebe foco por script, não por teclado:
+     o anel ali só poluiria a tela inteira. */
+  main:focus {
+    outline: none;
+  }
+
+  /* Texto ampliado a 200%: palavras longas quebram em vez de empurrar a página para o lado
+     (WCAG 1.4.4 e 1.4.10). "anywhere" também reduz a largura mínima de itens flex e grid. */
+  main,
+  .rodape {
+    overflow-wrap: anywhere;
+  }
 
   a,
   button {
@@ -294,6 +311,7 @@ html[data-contraste="sim"] {
   --color-ink: #0b0f18;
   --color-ink-soft: #333c4d;
   --color-line: #7d7a68;
+  --color-controle: #5f5b49;
   --color-surface: #fffdf7;
   --color-paper: #f2efe4;
 }
@@ -301,6 +319,7 @@ html[data-contraste="sim"][data-tema="escuro"] {
   --color-ink: #ffffff;
   --color-ink-soft: #d2d7e0;
   --color-line: #6b7488;
+  --color-controle: #9aa4bd;
   --color-surface: #14171d;
   --color-paper: #0a0c10;
 }
@@ -309,6 +328,14 @@ html[data-contraste="sim"] :is(.paper-sheet, .quiz__questao, .quiz__alternativa)
 }
 html[data-contraste="sim"] :focus-visible {
   outline-width: 3px;
+}
+
+/* Quem aumenta o texto ou o espaçamento não pode perder palavras: o resumo das
+   aulas deixa de ser cortado em duas linhas (WCAG 1.4.4 e 1.4.12). */
+html:is([data-texto="maior"], [data-espacamento="sim"]) .trilha__resumo {
+  display: block;
+  -webkit-line-clamp: unset;
+  overflow: visible;
 }
 
 /* Reduzir animações: mesmo efeito de prefers-reduced-motion, no controle
@@ -378,6 +405,33 @@ html[data-links="sim"] main a:not([class]) {
 }
 .prose-tema :is(h2, h3, h4) {
   font-family: var(--font-display);
+}
+/* Tabela dentro de contêiner rolável (src/lib/niveis-de-titulo.mjs): a tabela larga
+   rola dentro da própria caixa, sem alargar a página. */
+.tabela-rolavel {
+  max-width: 100%;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+}
+.tabela-rolavel > table {
+  margin: 0;
+}
+
+/* Título rebaixado por rehype-niveis-de-titulo (era h4 sob h2, agora h3): mantém o
+   visual do nível que o autor escreveu. */
+.prose-tema h3[data-visual="h4"] {
+  font-size: 1em;
+  line-height: 1.5;
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+}
+.prose-tema h2[data-visual="h3"] {
+  border-top: 0;
+  padding-top: 0;
+  font-size: 1.25em;
+  line-height: 1.6;
+  margin-top: 1.6em;
+  margin-bottom: 0.6em;
 }
 .prose-tema h2 {
   border-top: 2px solid var(--color-line);
@@ -465,6 +519,9 @@ html[data-links="sim"] main a:not([class]) {
 }
 
 .quiz__questao {
+  /* <fieldset> nunca encolhe abaixo do conteúdo: sem isto o quiz alarga a página em telas estreitas. */
+  min-width: 0;
+  overflow-wrap: anywhere;
   border: 1px solid var(--color-line);
   border-radius: 0.85rem;
   padding: 1.1rem 1.15rem 1rem;
@@ -512,14 +569,14 @@ html[data-links="sim"] main a:not([class]) {
   align-items: flex-start;
   gap: 0.7rem;
   padding: 0.6rem 2.4rem 0.6rem 0.7rem;
-  border: 1px solid var(--color-line);
+  border: 1px solid var(--color-controle);
   border-radius: 0.6rem;
   background: var(--color-surface);
   cursor: pointer;
   transition: border-color 0.18s var(--ease), background-color 0.18s var(--ease);
 }
 .quiz__alternativa:hover {
-  border-color: color-mix(in srgb, var(--color-ink) 30%, var(--color-line));
+  border-color: var(--color-ink);
 }
 /* Depois de corrigir os inputs ficam desabilitados: o cursor avisa. */
 .quiz__alternativa:has(input:disabled) {
@@ -544,7 +601,7 @@ html[data-links="sim"] main a:not([class]) {
   width: 1.6rem;
   height: 1.6rem;
   border-radius: 999px;
-  border: 1.5px solid var(--color-line);
+  border: 1.5px solid var(--color-controle);
   background: var(--color-paper);
   font-family: var(--font-display);
   font-size: 0.7rem;
@@ -664,12 +721,13 @@ html[data-links="sim"] main a:not([class]) {
 .quiz__botao--principal {
   background: var(--color-ok);
   border-color: var(--color-ok);
-  color: #fff;
+  /* "paper" e não #fff: no tema escuro o verde é claro e o branco não passaria. */
+  color: var(--color-paper);
 }
 .quiz__botao--principal:hover {
   background: color-mix(in srgb, var(--color-ok) 85%, #000);
   border-color: color-mix(in srgb, var(--color-ok) 85%, #000);
-  color: #fff;
+  color: var(--color-paper);
 }
 .quiz__placar {
   margin: 0;
@@ -804,3 +862,36 @@ html[data-links="sim"] main a:not([class]) {
 .prose-tema pre.astro-code code { background: none; padding: 0; font-weight: 400; }
 .prose-tema pre.astro-code span { color: var(--shiki-light); }
 html[data-tema="escuro"] .prose-tema pre.astro-code span { color: var(--shiki-dark); }
+
+/* ---------------------------------------------------------------------------
+ * Cores forçadas (Alto Contraste do Windows e equivalentes)
+ * O navegador troca as cores do autor por cores do sistema e descarta fundos:
+ * o que só se distinguia pelo fundo (barras de progresso, alternativa marcada,
+ * aba atual) some. Aqui devolvemos uma pista que não depende de cor de fundo.
+ * ------------------------------------------------------------------------- */
+@media (forced-colors: active) {
+  [data-progresso-barra],
+  .prog-barra i,
+  .leitura i {
+    forced-color-adjust: none;
+    background: Highlight !important;
+  }
+  .prog-anel {
+    forced-color-adjust: none;
+    background: conic-gradient(Highlight calc(var(--pct) * 1%), Canvas 0) !important;
+    border: 1px solid CanvasText;
+  }
+  .quiz__alternativa:has(input:checked) {
+    outline: 3px solid Highlight;
+    outline-offset: -3px;
+  }
+  .quiz__alternativa[data-estado="certa"],
+  .quiz__alternativa[data-estado="errada"] {
+    border-width: 3px;
+  }
+  .toast,
+  .figura,
+  .paper-sheet {
+    border: 1px solid CanvasText;
+  }
+}

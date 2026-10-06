@@ -31,7 +31,7 @@ const hasAny = va || cg || hasMateriais || cc;
     class="not-prose my-10 border-t-2 border-line pt-8"
     style={`--res-accent: var(--color-${accent}); --res-soft: var(--color-${accent}-soft);`}
   >
-    <h3 class="font-display text-xl md:text-2xl font-bold text-ink mb-1">Para ir além</h3>
+    <h2 class="font-display text-xl md:text-2xl font-bold text-ink mb-1">Para ir além</h2>
     <p class="font-body text-sm text-ink-soft mb-6">
       Material extra escolhido a dedo pra fixar este tema. Vale o clique.
     </p>
@@ -43,7 +43,7 @@ const hasAny = va || cg || hasMateriais || cc;
           <span class="res-body">
             <span class="res-kicker">Vídeo aula{va.duracao ? ` · ${va.duracao}` : ''}</span>
             <span class="res-title">{va.motivo ?? 'Veja este tema explicado em vídeo'}</span>
-            <span class="res-cta">Assistir agora <Icone nome="arrow-right" class="res-arrow" /></span>
+            <span class="res-cta">Assistir agora <Icone nome="arrow-right" class="res-arrow" /><span class="apenas-leitor"> (abre em nova aba)</span></span>
           </span>
         </a>
       )}
@@ -60,7 +60,7 @@ const hasAny = va || cg || hasMateriais || cc;
                 ? `Curso completo, indicado para ${cg.indicadoPara}`
                 : 'Curso completo pra dominar o assunto de vez'}
             </span>
-            <span class="res-cta">Começar o curso <Icone nome="arrow-right" class="res-arrow" /></span>
+            <span class="res-cta">Começar o curso <Icone nome="arrow-right" class="res-arrow" /><span class="apenas-leitor"> (abre em nova aba)</span></span>
           </span>
         </a>
       )}
@@ -148,7 +148,7 @@ const hasAny = va || cg || hasMateriais || cc;
     color: var(--color-ink);
     line-height: 1.45;
     margin-bottom: 0.5rem;
-    overflow-wrap: break-word;
+    overflow-wrap: anywhere;
   }
   .res-note {
     font-family: var(--font-body);
@@ -162,6 +162,7 @@ const hasAny = va || cg || hasMateriais || cc;
     font-size: 0.8rem;
     color: var(--res-accent);
     display: inline-flex;
+    flex-wrap: wrap;
     align-items: center;
     gap: 0.3rem;
     margin-top: auto;
@@ -183,7 +184,7 @@ const hasAny = va || cg || hasMateriais || cc;
     font-size: 0.82rem;
     color: var(--color-ink);
     line-height: 1.45;
-    overflow-wrap: break-word;
+    overflow-wrap: anywhere;
   }
   .res-row b {
     font-weight: 600;

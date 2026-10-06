@@ -65,7 +65,9 @@ const campo = `redacao-${id}`;
       <span data-folha-linhas>0 de {linhas} linhas</span>
       <span class="folha__ponto" aria-hidden="true">·</span>
       <span data-folha-palavras>0 palavras</span>
-      <span class="folha__estado" data-folha-estado></span>
+      <!-- Aviso em texto: a cor do contador sozinha não basta (WCAG 1.4.1). -->
+      <span class="folha__aviso" data-folha-aviso></span>
+      <span class="folha__estado" data-folha-estado role="status"></span>
     </p>
     <div class="folha__acoes">
       <button type="button" class="folha__botao" data-folha-limpar>
@@ -110,6 +112,7 @@ const campo = `redacao-${id}`;
     const rotLinhas = folha.querySelector<HTMLElement>('[data-folha-linhas]')!;
     const rotPalavras = folha.querySelector<HTMLElement>('[data-folha-palavras]')!;
     const estado = folha.querySelector<HTMLElement>('[data-folha-estado]')!;
+    const aviso = folha.querySelector<HTMLElement>('[data-folha-aviso]')!;
     const limpar = folha.querySelector<HTMLButtonElement>('[data-folha-limpar]')!;
     let espera = 0;
 
@@ -138,7 +141,16 @@ const campo = `redacao-${id}`;
       const palavras = campo.value.trim() ? campo.value.trim().split(/\s+/).length : 0;
       rotLinhas.textContent = usadas + ' de ' + total + ' linhas';
       rotPalavras.textContent = palavras + (palavras === 1 ? ' palavra' : ' palavras');
-      folha.dataset.situacao = usadas === 0 ? 'vazia' : usadas < minimo ? 'curta' : usadas > total ? 'longa' : 'ok';
+      const situacao = usadas === 0 ? 'vazia' : usadas < minimo ? 'curta' : usadas > total ? 'longa' : 'ok';
+      folha.dataset.situacao = situacao;
+      aviso.textContent =
+        situacao === 'curta'
+          ? 'abaixo do mínimo de ' + minimo + ' linhas'
+          : situacao === 'longa'
+            ? 'acima das ' + total + ' linhas da folha'
+            : situacao === 'ok'
+              ? 'dentro do limite'
+              : '';
     }
 
     campo.value = lerRascunho(id);
@@ -231,14 +243,16 @@ const campo = `redacao-${id}`;
     position: relative;
     display: flex;
     margin: 0 0.75rem;
-    border: 1px solid var(--color-line);
+    border: 1px solid var(--color-controle);
     border-radius: 0.5rem;
     background: var(--color-surface);
     overflow: hidden;
   }
+  /* O campo tira o contorno do navegador: o anel (2px, sólido) vai na folha inteira. */
   .folha__papel:focus-within {
     border-color: var(--folha-tinta);
-    box-shadow: 0 0 0 3px color-mix(in srgb, var(--folha-tinta) 18%, transparent);
+    outline: 2px solid var(--color-escolar);
+    outline-offset: 2px;
   }
 
   .folha__numeros {
@@ -261,7 +275,6 @@ const campo = `redacao-${id}`;
     font-weight: 600;
     font-variant-numeric: tabular-nums;
     color: var(--color-ink-soft);
-    opacity: 0.8;
   }
   /* Linha 7: o mínimo para a redação não ser zerada. */
   .folha__numeros li.folha__numero--minimo {
@@ -300,7 +313,7 @@ const campo = `redacao-${id}`;
   }
   .folha__campo::placeholder {
     color: var(--color-ink-soft);
-    opacity: 0.7;
+    opacity: 1;
   }
 
   /* ------------------------------------------------------------- rodapé */
@@ -332,10 +345,13 @@ const campo = `redacao-${id}`;
   .folha[data-situacao='longa'] [data-folha-linhas] {
     color: var(--color-enem);
   }
+  .folha__aviso:not(:empty)::before {
+    content: '·';
+    margin-right: 0.4rem;
+  }
   .folha__estado {
     font-weight: 500;
     font-style: italic;
-    opacity: 0.8;
   }
   .folha__estado:not(:empty)::before {
     content: '·';

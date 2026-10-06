@@ -6,13 +6,21 @@ import Icone from './Icone.astro';
 ---
 
 <div class="ferramentas" role="group" aria-label="Ferramentas do caderno">
-  <button type="button" class="ferramenta ferramenta--busca" data-acao="busca" title="Buscar aula (Ctrl + K)">
+  <button
+    type="button"
+    class="ferramenta ferramenta--busca"
+    data-acao="busca"
+    title="Buscar aula (Ctrl + K)"
+    aria-label="Buscar aula"
+    aria-haspopup="dialog"
+    aria-keyshortcuts="Control+K"
+  >
     <Icone nome="magnifying-glass" />
     <span class="ferramenta__texto">Buscar aula</span>
     <kbd class="ferramenta__atalho">Ctrl K</kbd>
   </button>
 
-  <button type="button" class="ferramenta" data-abre="progresso" title="Meu progresso" aria-label="Meu progresso">
+  <button type="button" class="ferramenta" data-abre="progresso" title="Meu progresso" aria-label="Meu progresso" aria-haspopup="dialog">
     <Icone nome="chart-simple" />
     <span class="ferramenta__texto ferramenta__texto--md">Progresso</span>
   </button>
@@ -23,6 +31,7 @@ import Icone from './Icone.astro';
     data-acao="acessibilidade"
     title="Acessibilidade"
     aria-label="Opções de acessibilidade"
+    aria-haspopup="dialog"
   >
     <Icone nome="universal-access" />
   </button>
@@ -33,17 +42,18 @@ import Icone from './Icone.astro';
     data-acao="tema"
     aria-pressed="false"
     title="Usar o tema escuro"
-    aria-label="Alternar entre tema claro e escuro"
+    aria-label="Tema escuro"
   >
     <Icone nome="sun" class="tema-switch__icone tema-switch__icone--sol" />
     <Icone nome="moon" class="tema-switch__icone tema-switch__icone--lua" />
-    <span class="tema-switch__bolha"></span>
+    <span class="tema-switch__bolha" aria-hidden="true"></span>
   </button>
 </div>
 
 <style>
   .ferramentas {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     gap: 0.35rem;
   }
@@ -136,18 +146,6 @@ import Icone from './Icone.astro';
     }
   }
 
-  .sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
-  }
-
   /* -------------------------------------------------------- interruptor de tema
      Trilho com sol e lua nas pontas e uma bolha que desliza entre eles — o
      mesmo gesto de um interruptor físico. Some as duas larguras (trilho e
@@ -181,13 +179,14 @@ import Icone from './Icone.astro';
     z-index: 1;
     font-size: 0.76rem;
     color: var(--color-ink-soft);
-    opacity: 0.55;
+    /* 0,8 mantém o ícone do lado "desligado" com 3:1 de contraste (WCAG 1.4.11). */
+    opacity: 0.8;
     transition: color 0.25s var(--ease), opacity 0.25s var(--ease);
   }
   /* O sol é o lado "ligado" no tema claro; a lua, no escuro. O outro ícone
      fica visível, só apagado — ninguém precisa adivinhar que ali tem um sol. */
   .tema-switch[aria-pressed='false'] .tema-switch__icone--sol {
-    color: #b8860b;
+    color: #8a6200;
     opacity: 1;
   }
   .tema-switch[aria-pressed='true'] .tema-switch__icone--lua {

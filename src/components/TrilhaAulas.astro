@@ -48,6 +48,9 @@ const { aulas, accent = 'enem' } = Astro.props;
           <span class="trilha__corpo">
             <span class="trilha__titulo">{aula.titulo}</span>
             <span class="trilha__resumo">{aula.resumo}</span>
+            <!-- A marca de "vista" é só um ícone: o texto abaixo leva a mesma informação
+                 ao leitor de tela. Quem o preenche é refletirProgresso() em app.ts. -->
+            <span class="apenas-leitor" data-vista-texto></span>
           </span>
           <span class="trilha__ir">
             <span class="trilha__ir-texto">Abrir</span>
@@ -200,8 +203,13 @@ const { aulas, accent = 'enem' } = Astro.props;
 
   /* Aula ainda não escrita (aba DS): aparece na trilha, sem link e mais apagada. */
   .trilha__link--breve {
-    opacity: 0.62;
     cursor: default;
+    border-style: dashed;
+  }
+  /* Sem opacity: ela derrubaria o contraste do texto abaixo de 4,5:1. A pista de
+     "ainda não disponível" é a borda tracejada, o texto "Em breve" e a cor suave. */
+  .trilha__link--breve .trilha__titulo {
+    color: var(--color-ink-soft);
   }
   .trilha__link--breve:hover {
     border-color: var(--color-line);
@@ -241,9 +249,6 @@ const { aulas, accent = 'enem' } = Astro.props;
   .trilha__item[data-vista='true'] .trilha__titulo {
     color: var(--color-ink-soft);
     font-weight: 600;
-  }
-  .trilha__item[data-vista='true'] .trilha__resumo {
-    opacity: 0.75;
   }
   .trilha__item[data-vista='true'] .trilha__marca {
     background: color-mix(in srgb, var(--color-ok) 16%, var(--color-surface));

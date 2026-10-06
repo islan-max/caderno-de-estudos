@@ -27,7 +27,7 @@ const tabs = [
 
 <!-- z-index: a folha (.paper-sheet, z 5) cobre a base das abas inativas (z 1-4),
      como divisórias coladas nas folhas de trás; só a aba ativa (z 30) fica na frente. -->
-<nav class="flex items-end gap-1.5 md:gap-2 px-3 sm:px-4 md:px-10 flex-wrap" aria-label="Categorias">
+<nav class="flex items-end gap-1.5 md:gap-2 px-3 sm:px-4 md:px-10 flex-wrap" aria-label="Seções do caderno">
   <div class="flex gap-1.5 md:gap-2 flex-wrap">
     {tabs.map((tab, i) => {
       const isActive = active === tab.key;
@@ -102,6 +102,14 @@ const tabs = [
   @media (max-width: 400px) {
     .tab__icone {
       display: none;
+    }
+  }
+  /* Cores forçadas descartam o fundo que distingue a aba atual: o sublinhado a
+     mantém identificável. */
+  @media (forced-colors: active) {
+    .tab[data-active='true'] {
+      text-decoration: underline;
+      text-underline-offset: 4px;
     }
   }
 </style>
