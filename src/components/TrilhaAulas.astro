@@ -14,6 +14,8 @@ interface ItemTrilha {
   resumo: string;
   href: string;
   pronta?: boolean;
+  /** Texto no lugar do número da posição (ex.: R1 numa revisão). */
+  marca?: string;
 }
 
 interface Props {
@@ -29,7 +31,7 @@ const { aulas, accent = 'enem' } = Astro.props;
       {aula.pronta === false ? (
         <div class="trilha__link trilha__link--breve">
           <span class="trilha__marca" aria-hidden="true">
-            <span class="trilha__numero">{String(i + 1).padStart(2, '0')}</span>
+            <span class="trilha__numero">{aula.marca ?? String(i + 1).padStart(2, '0')}</span>
           </span>
           <span class="trilha__corpo">
             <span class="trilha__titulo">{aula.titulo}</span>
@@ -40,7 +42,7 @@ const { aulas, accent = 'enem' } = Astro.props;
       ) : (
         <a href={aula.href} class="trilha__link">
           <span class="trilha__marca" aria-hidden="true">
-            <span class="trilha__numero">{String(i + 1).padStart(2, '0')}</span>
+            <span class="trilha__numero">{aula.marca ?? String(i + 1).padStart(2, '0')}</span>
             <Icone nome="check" class="trilha__check" />
           </span>
           <span class="trilha__corpo">

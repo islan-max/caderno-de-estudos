@@ -9,6 +9,8 @@ export interface AulaEscolar {
   titulo: string;
   resumo: string;
   ordem: number;
+  /** Rótulo da posição: "R1" nas revisões, o número da aula nas demais. */
+  marca: string;
 }
 export interface BimestreEscolar {
   slug: string;
@@ -26,6 +28,8 @@ export async function materiasEscolar(): Promise<MateriaEscolar[]> {
   const materias = new Map<string, MateriaEscolar>();
   for (const a of aulas) {
     const [m, b, slug] = a.id.split('/');
+    // Aulas de revisão dadas antes do material do bimestre: revisao-<n>-<tema>, com order negativo.
+    const revisao = slug.match(/^revisao-(\d+)/);
     const mat = materias.get(m) ?? { slug: m, nome: a.data.subject, bimestres: [] };
     let bim = mat.bimestres.find((x) => x.slug === b);
     if (!bim) mat.bimestres.push((bim = { slug: b, label: bimestreLabel(b), aulas: [] }));
@@ -35,6 +39,7 @@ export async function materiasEscolar(): Promise<MateriaEscolar[]> {
       titulo: a.data.title,
       resumo: a.data.quickSummary ?? a.data.relevance,
       ordem: a.data.order,
+      marca: revisao ? `R${revisao[1]}` : String(a.data.order).padStart(2, '0'),
     });
     materias.set(m, mat);
   }

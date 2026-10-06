@@ -1,0 +1,476 @@
+---
+title: "Revisão: Conjuntos Numéricos e Diagrama de Venn"
+subject: "Matemática"
+order: -99
+relevance: >
+  Conjuntos são a linguagem que a matemática usa para organizar números e grupos de pessoas, e o diagrama de Venn é o
+  desenho que torna essa organização visível. Esta aula foi a revisão dada pelo professor antes do material do 4º
+  bimestre. Ela serve de base para quase tudo que vem depois: funções, probabilidade, estatística e todo problema de
+  pesquisa que pergunta "quantos fazem A e B?". No ENEM (Exame Nacional do Ensino Médio), os conjuntos costumam
+  aparecer como ferramenta de contagem, em pesquisas e porcentagens.
+quickSummary: >
+  Conjunto é uma coleção de elementos. Os conjuntos numéricos se encaixam: naturais (ℕ) dentro dos inteiros (ℤ),
+  dentro dos racionais (ℚ), dentro dos reais (ℝ), e os irracionais completam os reais. Com dois conjuntos, a união
+  (∪) junta e a interseção (∩) pega o que é comum. No diagrama de Venn, comece sempre pela interseção e depois
+  subtraia: n(A ∪ B) = n(A) + n(B) − n(A ∩ B).
+gabarito:
+  - correta: 2
+    porque: >
+      Os racionais são os números que podem virar fração com denominador diferente de zero. Entram: −3, 0, 7/2,
+      √16 = 4 e a dízima periódica 0,2525… = 25/99. Ficam de fora só √2 e π, que são irracionais. Total: 5.
+      Revisar: Aula Teórica › 2. Conjuntos numéricos
+  - correta: 1
+    porque: >
+      Quem lê livros ou quadrinhos é o total menos os que não leem nenhum: 150 − 25 = 125. Como 90 + 70 = 160 passa de
+      125, a diferença é a interseção: 160 − 125 = 35.
+      Revisar: Aula Teórica › 4. Diagrama de Venn e contagem
+  - correta: 3
+    porque: >
+      Começando pelo centro (5 nos três) e subtraindo, só A e B = 7, só A e C = 5, só B e C = 3. Então só A = 40 − 7 − 5
+      − 5 = 23, só B = 35 − 7 − 3 − 5 = 20 e só C = 30 − 5 − 3 − 5 = 17. Exatamente um: 23 + 20 + 17 = 60.
+      Revisar: Aula Teórica › 4. Diagrama de Venn e contagem
+  - correta: 0
+    porque: >
+      Os divisores de 12 são 1, 2, 3, 4, 6 e 12. Os pares de 0 a 12 são 0, 2, 4, 6, 8, 10 e 12. O que está nos dois é
+      2, 4, 6 e 12: quatro elementos.
+      Revisar: Aula Teórica › 3. Operações entre conjuntos
+  - correta: 4
+    porque: >
+      Assistem a pelo menos um canal 100% − 20% = 80%. Os dois juntos: 60% + 50% − 80% = 30%. Só A: 60% − 30% = 30%.
+      Só B: 50% − 30% = 20%. Apenas um canal: 30% + 20% = 50%. A resposta de 30% é a dos que assistem aos dois.
+      Revisar: Aula Teórica › 5. Como ler o enunciado
+---
+
+<Accordion titulo="Palavras e siglas desta aula" dica="Consulte quando encontrar um termo novo" icone="spell-check">
+
+- **ENEM** (Exame Nacional do Ensino Médio): a prova nacional do Ensino Médio.
+- **Conjunto**: uma coleção de coisas (números, pessoas, objetos) tratada como um grupo.
+- **Elemento**: cada coisa que faz parte de um conjunto.
+- **Subconjunto**: um conjunto que está todo dentro de outro.
+- **Conjunto universo (U)**: o conjunto maior, que contém tudo o que está sendo estudado no problema.
+- **Dízima periódica**: número decimal que não termina, mas repete um grupo de algarismos sempre igual, como 0,333… ou 0,2525…
+- **Disjuntos**: conjuntos sem nenhum elemento em comum.
+- **Fração geratriz**: a fração que dá origem a uma dízima periódica.
+- **Inclusão e exclusão**: o método de somar os conjuntos e depois tirar o que foi contado duas vezes.
+- **Interseção, união, diferença e complementar**: as quatro operações entre conjuntos, explicadas na seção 3.
+
+</Accordion>
+
+## Antes de Começar
+
+**O que o ENEM cobra aqui.** Raramente aparece "defina conjunto". O comum é um texto de pesquisa ("120 pessoas foram entrevistadas...") que pede **quantos** pertencem a um grupo, **quantos** a dois ao mesmo tempo ou **que porcentagem** faz uma coisa e não outra. Também aparece a classificação de números (racional ou irracional). Os temas que costumam aparecer são estes:
+
+- **Contagem com diagrama de Venn**, com dois ou três grupos.
+- **Pertinência e classificação de números** (natural, inteiro, racional, irracional, real).
+- **Linguagem do enunciado**: "pelo menos um", "exatamente um", "ambos", "nenhum".
+
+**O que você precisa saber antes.**
+
+- **Frações e decimais**: uma fração é uma divisão. 1/2 = 0,5.
+- **Porcentagem**: 50% de um grupo é metade dele.
+- **Raiz quadrada**: √16 = 4, porque 4 · 4 = 16.
+
+## Aula Teórica
+
+### 1. Conjuntos e elementos
+
+Pense numa **caixa**: o que está dentro dela é o conjunto, e cada coisa dentro é um **elemento**.
+
+Escrevemos o conjunto entre **chaves**, com os elementos separados por vírgula:
+
+**A = \{1, 2, 3\}**
+
+- Dizemos que **1 pertence a A** e escrevemos **1 ∈ A** (o símbolo ∈ lê-se "pertence a").
+- Dizemos que **5 não pertence a A** e escrevemos **5 ∉ A**.
+
+Há duas maneiras de descrever um conjunto:
+
+- **Listando** os elementos: B = \{2, 4, 6, 8\}.
+- **Pela propriedade** que os elementos têm: B = \{x | x é par e 2 ≤ x ≤ 8\}. O traço | lê-se "tal que". Leia assim: "B é o conjunto dos x tais que x é par e x está entre 2 e 8".
+
+**Conjunto vazio** é o que não tem nenhum elemento. Escreve-se **∅** ou **\{ \}**. Atenção: **\{∅\} não é vazio**: tem um elemento (o próprio vazio), como uma caixa que contém outra caixa vazia.
+
+**Subconjunto.** Se todo elemento de A também é elemento de B, A é **subconjunto** de B, ou "A está contido em B", e escrevemos **A ⊂ B**. Se existir um elemento de A que não está em B, escrevemos A ⊄ B (não está contido).
+
+- \{1, 2\} ⊂ \{1, 2, 3\}, porque o 1 e o 2 estão em \{1, 2, 3\}.
+- O vazio é subconjunto de qualquer conjunto.
+
+**Número de elementos.** Escrevemos **n(A)** para a quantidade de elementos de A. Em A = \{1, 2, 3\}, n(A) = 3.
+
+**Erro comum.** Misturar **∈** com **⊂**. O símbolo ∈ liga **elemento** a **conjunto** (2 ∈ \{1, 2, 3\}). O símbolo ⊂ liga **conjunto** a **conjunto** (\{2\} ⊂ \{1, 2, 3\}).
+
+### 2. Conjuntos numéricos
+
+Os números foram surgindo por necessidade, e cada novo conjunto **contém o anterior**:
+
+<figure class="figura">
+  <svg viewBox="0 0 460 250" role="img" aria-labelledby="fig-conj-num-t fig-conj-num-d">
+    <title id="fig-conj-num-t">Como os conjuntos numéricos se encaixam</title>
+    <desc id="fig-conj-num-d">Elipses uma dentro da outra: os naturais estão dentro dos inteiros, que estão dentro dos racionais, que estão dentro dos reais. Fora dos racionais, mas ainda dentro dos reais, ficam os irracionais, como raiz de 2 e pi.</desc>
+    <ellipse cx="230" cy="125" rx="220" ry="118" class="traco" />
+    <ellipse cx="170" cy="130" rx="150" ry="92" class="traco preenche" />
+    <ellipse cx="140" cy="136" rx="95" ry="60" class="traco preenche" />
+    <ellipse cx="115" cy="142" rx="50" ry="32" class="traco preenche" />
+    <text x="385" y="62" class="rotulo" text-anchor="middle">ℝ  reais</text>
+    <text x="170" y="52" class="rotulo" text-anchor="middle">ℚ  racionais</text>
+    <text x="140" y="94" class="rotulo" text-anchor="middle">ℤ  inteiros</text>
+    <text x="115" y="134" class="rotulo" text-anchor="middle">ℕ</text>
+    <text x="115" y="150" class="rotulo-fraco" text-anchor="middle">0, 1, 2, 3…</text>
+    <text x="203" y="136" class="rotulo-fraco" text-anchor="middle">−1, −2, −3…</text>
+    <text x="278" y="118" class="rotulo-fraco" text-anchor="middle">1/2, −2/3</text>
+    <text x="278" y="134" class="rotulo-fraco" text-anchor="middle">0,75</text>
+    <text x="278" y="150" class="rotulo-fraco" text-anchor="middle">0,333…</text>
+    <text x="385" y="105" class="rotulo" text-anchor="middle">I  irracionais</text>
+    <text x="385" y="124" class="rotulo-fraco" text-anchor="middle">√2, π, e</text>
+  </svg>
+</figure>
+
+**ℕ, os naturais.** Os números de contar: **0, 1, 2, 3, 4…** No Brasil, o zero **faz parte** dos naturais. Sem o zero, escreve-se **ℕ\*** = \{1, 2, 3…\}.
+
+**ℤ, os inteiros.** Os naturais mais os **negativos**: …, −3, −2, −1, 0, 1, 2, 3… Surgiram para falar de dívida, temperatura abaixo de zero, saldo negativo.
+
+**ℚ, os racionais.** Todo número que pode ser escrito como **fração a/b**, com a e b inteiros e **b ≠ 0** (o símbolo ≠ lê-se "diferente de"). Isso inclui:
+
+- **Inteiros**: 5 = 5/1 e −3 = −3/1.
+- **Decimais que terminam**: 0,75 = 3/4.
+- **Dízimas periódicas**: 0,333… = 1/3.
+
+**I, os irracionais.** Os números que **não** podem ser escritos como fração. Em decimal, têm **infinitas casas sem repetição**: √2 = 1,41421356…, π = 3,14159265… e o número e (cerca de 2,71828…). A raiz quadrada de um número que **não é quadrado perfeito** é sempre irracional.
+
+**ℝ, os reais.** Todos juntos: **ℝ = ℚ ∪ I**. Racionais e irracionais não têm nada em comum.
+
+**A relação entre eles:** **ℕ ⊂ ℤ ⊂ ℚ ⊂ ℝ**. Todo natural é inteiro, todo inteiro é racional, todo racional é real.
+
+**Como descobrir se um número é racional:**
+
+1. É inteiro? Então é racional.
+2. É decimal que termina? Racional.
+3. Decimal infinito com **repetição** (dízima periódica)? Racional.
+4. Raiz que não dá exata, ou decimal infinito **sem repetição**? Irracional.
+
+**Exemplo resolvido: transformar uma dízima em fração.** Escreva 0,2525… como fração.
+
+1. Chame o número de x: x = 0,2525…
+2. O grupo que repete (25) tem 2 algarismos, então multiplique por 100: 100x = 25,2525…
+3. Subtraia: 100x − x = 25,2525… − 0,2525…
+4. Calcule: 99x = 25.
+5. Resposta: x = 25/99.
+
+Com 0,333…: 10x = 3,333…, então 10x − x = 3, 9x = 3 e x = 1/3.
+
+**Erros comuns:**
+
+- Achar que **√9 é irracional**. Como √9 = 3, é natural (e, portanto, racional). Só é irracional a raiz **não exata**.
+- Achar que **toda dízima é irracional**. A dízima **periódica** é racional.
+- Achar que **0 não é natural** (aqui, é) ou que **0 é positivo** (não é nem positivo nem negativo).
+
+### 3. Operações entre conjuntos
+
+Considere A = \{1, 2, 3, 4\} e B = \{3, 4, 5, 6\}. Usaremos o diagrama de Venn: cada conjunto é uma figura fechada (geralmente um círculo) e o retângulo em volta é o **universo U**.
+
+<figure class="figura">
+  <svg viewBox="0 0 560 190" role="img" aria-labelledby="fig-ops-t fig-ops-d">
+    <title id="fig-ops-t">As quatro operações entre conjuntos em diagramas de Venn</title>
+    <desc id="fig-ops-d">Quatro diagramas com dois círculos A e B dentro de um retângulo universo. No primeiro, a união: tudo o que está em A ou em B está pintado. No segundo, a interseção: só a região comum aos dois círculos. No terceiro, a diferença A menos B: o círculo A sem a parte comum com B. No quarto, o complementar de A: tudo no retângulo que fica fora do círculo A.</desc>
+    <rect x="8" y="30" width="124" height="100" class="traco-fino" />
+    <path d="M22,80 A30 30 0 1 0 82,80 A30 30 0 1 0 22,80 Z M58,80 A30 30 0 1 0 118,80 A30 30 0 1 0 58,80 Z" class="preenche" />
+    <circle cx="52" cy="80" r="30" class="traco" />
+    <circle cx="88" cy="80" r="30" class="traco" />
+    <text x="36" y="84" class="rotulo" text-anchor="middle">A</text>
+    <text x="104" y="84" class="rotulo" text-anchor="middle">B</text>
+    <text x="18" y="46" class="rotulo-fraco">U</text>
+    <text x="70" y="152" class="rotulo" text-anchor="middle">A ∪ B</text>
+    <text x="70" y="170" class="rotulo-fraco" text-anchor="middle">união: em A ou em B</text>
+    <rect x="148" y="30" width="124" height="100" class="traco-fino" />
+    <path d="M210,56 A30 30 0 0 0 210,104 A30 30 0 0 0 210,56 Z" class="preenche" />
+    <circle cx="192" cy="80" r="30" class="traco" />
+    <circle cx="228" cy="80" r="30" class="traco" />
+    <text x="176" y="84" class="rotulo" text-anchor="middle">A</text>
+    <text x="244" y="84" class="rotulo" text-anchor="middle">B</text>
+    <text x="158" y="46" class="rotulo-fraco">U</text>
+    <text x="210" y="152" class="rotulo" text-anchor="middle">A ∩ B</text>
+    <text x="210" y="170" class="rotulo-fraco" text-anchor="middle">interseção: em A e em B</text>
+    <rect x="288" y="30" width="124" height="100" class="traco-fino" />
+    <path d="M302,80 A30 30 0 1 0 362,80 A30 30 0 1 0 302,80 Z M350,56 A30 30 0 0 0 350,104 A30 30 0 0 0 350,56 Z" class="preenche" fill-rule="evenodd" />
+    <circle cx="332" cy="80" r="30" class="traco" />
+    <circle cx="368" cy="80" r="30" class="traco" />
+    <text x="316" y="84" class="rotulo" text-anchor="middle">A</text>
+    <text x="384" y="84" class="rotulo" text-anchor="middle">B</text>
+    <text x="298" y="46" class="rotulo-fraco">U</text>
+    <text x="350" y="152" class="rotulo" text-anchor="middle">A − B</text>
+    <text x="350" y="170" class="rotulo-fraco" text-anchor="middle">diferença: em A, não em B</text>
+    <rect x="428" y="30" width="124" height="100" class="traco-fino" />
+    <path d="M428,30 H552 V130 H428 Z M460,80 A30 30 0 1 0 520,80 A30 30 0 1 0 460,80 Z" class="preenche" fill-rule="evenodd" />
+    <circle cx="490" cy="80" r="30" class="traco" />
+    <text x="490" y="84" class="rotulo" text-anchor="middle">A</text>
+    <text x="438" y="46" class="rotulo-fraco">U</text>
+    <text x="490" y="152" class="rotulo" text-anchor="middle">Aᶜ</text>
+    <text x="490" y="170" class="rotulo-fraco" text-anchor="middle">complementar: fora de A</text>
+  </svg>
+</figure>
+
+**União, A ∪ B.** Os elementos que estão **em A ou em B** (ou nos dois). Aqui, **"ou" não exclui**. Os elementos repetidos entram uma vez só.
+
+- A ∪ B = \{1, 2, 3, 4, 5, 6\}
+
+**Interseção, A ∩ B.** Os elementos que estão **em A e em B ao mesmo tempo**.
+
+- A ∩ B = \{3, 4\}
+- Se A ∩ B = ∅ (nenhum em comum), os conjuntos são **disjuntos**.
+
+**Diferença, A − B.** Os elementos que estão **em A e não estão em B**. Atenção: a ordem importa.
+
+- A − B = \{1, 2\}
+- B − A = \{5, 6\}
+
+**Complementar de A, Aᶜ** (lê-se "A complementar"). Os elementos do **universo U** que **não estão em A**. Só faz sentido dizer o complementar se você disser quem é o universo. Se U = \{1, 2, 3, 4, 5, 6\} e A = \{1, 2, 3, 4\}, então Aᶜ = \{5, 6\}.
+
+**Resumo para decorar:** ∪ é o **"ou"**, ∩ é o **"e"**, − é o **"mas não"**, e o complementar é o **"o resto do universo"**.
+
+**Exemplo resolvido.** A = \{x ∈ ℕ | x é divisor de 10\} e B = \{x ∈ ℕ | x é par e x ≤ 10\}. Quem é A ∩ B?
+
+1. Divisores de 10: A = \{1, 2, 5, 10\}.
+2. Pares de 0 a 10: B = \{0, 2, 4, 6, 8, 10\}.
+3. O que aparece nas duas listas: 2 e 10.
+4. Resposta: A ∩ B = \{2, 10\}, com 2 elementos.
+
+**Erro comum.** Esquecer de **listar tudo antes** de comparar. Escreva cada conjunto por extenso e só então procure o que é comum.
+
+### 4. Diagrama de Venn e contagem
+
+Quando o problema fala em **quantidades** ("45 alunos jogam vôlei"), o diagrama de Venn vira uma ferramenta de contagem: em vez de elementos, escrevemos **quantos** há em cada região.
+
+**Fórmula: número de elementos da união**
+
+**n(A ∪ B) = n(A) + n(B) − n(A ∩ B)**
+
+- **n(A ∪ B)**: quantos elementos estão em A ou em B.
+- **n(A)** e **n(B)**: quantos elementos tem cada conjunto.
+- **n(A ∩ B)**: quantos elementos estão nos dois.
+- **Em palavras:** some os dois conjuntos e **tire o que foi contado duas vezes**.
+- **Quando usar:** quando o enunciado der o total de cada grupo e quanto há em comum, ou der a união e pedir a interseção.
+
+**Por que subtrair?** Quem está nos dois conjuntos foi contado uma vez em n(A) e outra vez em n(B). Subtraímos uma vez a interseção para ele contar só uma vez.
+
+**Exemplo resolvido (dois conjuntos).** Em uma turma de 30 alunos, 18 praticam vôlei, 14 praticam basquete e 6 praticam os dois. Quantos praticam apenas vôlei, apenas basquete e nenhum dos dois?
+
+1. Comece pela **interseção**: os 6 que fazem os dois vão no centro.
+2. **Só vôlei**: 18 − 6 = 12.
+3. **Só basquete**: 14 − 6 = 8.
+4. **União**: 12 + 8 + 6 = 26 (ou 18 + 14 − 6 = 26).
+5. **Nenhum dos dois**: 30 − 26 = 4.
+
+<figure class="figura">
+  <svg viewBox="0 0 440 170" role="img" aria-labelledby="fig-venn2-t fig-venn2-d">
+    <title id="fig-venn2-t">Diagrama de Venn com os alunos de vôlei e basquete</title>
+    <desc id="fig-venn2-d">Dentro de um retângulo com 30 alunos, o círculo do vôlei e o círculo do basquete se cruzam. Só vôlei: 12. Nos dois: 6. Só basquete: 8. Fora dos círculos: 4.</desc>
+    <rect x="20" y="10" width="400" height="150" class="traco-fino" />
+    <circle cx="180" cy="88" r="55" class="traco preenche" />
+    <circle cx="260" cy="88" r="55" class="traco preenche" />
+    <text x="150" y="30" class="rotulo" text-anchor="middle">Vôlei</text>
+    <text x="290" y="30" class="rotulo" text-anchor="middle">Basquete</text>
+    <text x="148" y="93" class="rotulo" text-anchor="middle">12</text>
+    <text x="220" y="93" class="rotulo" text-anchor="middle">6</text>
+    <text x="292" y="93" class="rotulo" text-anchor="middle">8</text>
+    <text x="404" y="150" class="rotulo-fraco" text-anchor="end">fora dos círculos: 4</text>
+  </svg>
+</figure>
+
+**Regra de ouro do diagrama: comece sempre pelo centro** (a interseção) e vá para fora, **subtraindo**. Se você começar pelo total de cada conjunto, vai contar gente duas vezes.
+
+**Três conjuntos.** O método é o mesmo, só que o centro é a interseção dos **três**. A ordem é: (1) a interseção dos três; (2) as interseções de dois **sem** o centro (subtraia o centro de cada); (3) os que estão **só** em um conjunto (subtraia as partes já preenchidas); (4) quem está fora de todos.
+
+**Exemplo resolvido (três conjuntos).** Numa pesquisa com 40 pessoas sobre três frutas: 20 gostam de A, 18 de B e 15 de C. Gostam de A e B: 8. De A e C: 6. De B e C: 5. Gostam das três: 3.
+
+1. **Centro** (A, B e C): 3.
+2. **Só A e B**: 8 − 3 = 5. **Só A e C**: 6 − 3 = 3. **Só B e C**: 5 − 3 = 2.
+3. **Só A**: 20 − 5 − 3 − 3 = 9. **Só B**: 18 − 5 − 2 − 3 = 8. **Só C**: 15 − 3 − 2 − 3 = 7.
+4. **União**: 9 + 8 + 7 + 5 + 3 + 2 + 3 = 37.
+5. **Nenhuma das três**: 40 − 37 = 3.
+
+<figure class="figura">
+  <svg viewBox="0 0 440 230" role="img" aria-labelledby="fig-venn3-t fig-venn3-d">
+    <title id="fig-venn3-t">Diagrama de Venn com três conjuntos</title>
+    <desc id="fig-venn3-d">Três círculos A, B e C se cruzam dentro de um retângulo com 40 pessoas. Só A: 9. Só B: 8. Só C: 7. Só A e B: 5. Só A e C: 3. Só B e C: 2. Nos três: 3. Fora dos três círculos: 3.</desc>
+    <rect x="20" y="10" width="400" height="210" class="traco-fino" />
+    <circle cx="190" cy="90" r="50" class="traco preenche" />
+    <circle cx="250" cy="90" r="50" class="traco preenche" />
+    <circle cx="220" cy="142" r="50" class="traco preenche" />
+    <text x="148" y="38" class="rotulo" text-anchor="middle">A</text>
+    <text x="292" y="38" class="rotulo" text-anchor="middle">B</text>
+    <text x="220" y="208" class="rotulo" text-anchor="middle">C</text>
+    <text x="155" y="85" class="rotulo" text-anchor="middle">9</text>
+    <text x="285" y="85" class="rotulo" text-anchor="middle">8</text>
+    <text x="220" y="172" class="rotulo" text-anchor="middle">7</text>
+    <text x="220" y="62" class="rotulo" text-anchor="middle">5</text>
+    <text x="186" y="125" class="rotulo" text-anchor="middle">3</text>
+    <text x="254" y="125" class="rotulo" text-anchor="middle">2</text>
+    <text x="220" y="108" class="rotulo" text-anchor="middle">3</text>
+    <text x="404" y="208" class="rotulo-fraco" text-anchor="end">fora dos círculos: 3</text>
+  </svg>
+</figure>
+
+**Fórmula com três conjuntos** (é a mesma ideia: soma, tira o que repetiu, devolve o que tirou demais):
+
+**n(A ∪ B ∪ C) = n(A) + n(B) + n(C) − n(A ∩ B) − n(A ∩ C) − n(B ∩ C) + n(A ∩ B ∩ C)**
+
+Conferindo com o exemplo: 20 + 18 + 15 − 8 − 6 − 5 + 3 = 37. Bate com a contagem do diagrama. Na hora da prova, o **diagrama preenchido do centro para fora** costuma ser mais seguro que decorar a fórmula.
+
+**Erros comuns.**
+
+- Somar n(A) + n(B) e **esquecer de tirar a interseção**.
+- Colocar no diagrama o total de A na região "só A", sem descontar quem também é de B.
+- Esquecer de **conferir o total**: a soma de todas as regiões, mais os que ficam de fora, tem de dar o total do universo.
+
+### 5. Como ler o enunciado
+
+O diagrama só funciona se você traduzir bem as palavras. Eis o que cada expressão pede:
+
+| O enunciado diz | Quer dizer | Região do diagrama |
+|---|---|---|
+| "A **ou** B", "pelo menos um" | pelo menos um dos dois (ou ambos) | **união**: tudo que está nos círculos |
+| "A **e** B", "ambos", "os dois" | os dois ao mesmo tempo | **interseção** |
+| "**apenas** A", "somente A" | A e mais nada | só A (A sem o B) |
+| "**exatamente um**" | um e só um deles | só A + só B |
+| "**nenhum** dos dois", "nem A nem B" | fora de tudo | **fora dos círculos** (U menos a união) |
+| "**pelo menos um** de três" | qualquer região dentro de algum círculo | união dos três |
+
+**Exemplo resolvido (porcentagens).** Em uma cidade, 70% dos moradores têm celular, 40% têm computador e 15% não têm nenhum dos dois. Que porcentagem tem **apenas** celular?
+
+1. Tem pelo menos um: 100% − 15% = 85%.
+2. Tem os dois: 70% + 40% − 85% = 25%.
+3. Só celular: 70% − 25% = 45%.
+4. Conferência: 45% (só celular) + 15% (só computador, 40 − 25) + 25% (os dois) + 15% (nenhum) = 100%.
+
+**Pegadinhas.**
+
+- "Pelo menos um" **não é** "exatamente um". Em "pelo menos um", quem tem os dois também conta.
+- "Os que gostam de A" inclui quem gosta de A **e também** de B. Só o "apenas A" exclui quem gosta de B.
+- Em porcentagens, o universo vale **100%**: some e confira.
+- Leia o final da pergunta: ela pode pedir "só A", "os dois", "nenhum" ou o **total**, e a resposta muda a cada um.
+
+## Tópicos-Chave para Revisão
+
+<div className="topico">
+
+#### 1. Conjunto e elemento
+
+Conjunto é uma coleção de **elementos**, escrita entre **chaves**. **∈** liga **elemento** a **conjunto**; **⊂** liga **conjunto** a **conjunto**. O **vazio ∅** está dentro de todo conjunto.
+
+#### 2. Os conjuntos numéricos
+
+**ℕ ⊂ ℤ ⊂ ℚ ⊂ ℝ**. Os **naturais** (com o **zero**) estão nos **inteiros**, que estão nos **racionais** (**frações** a/b com **b ≠ 0**), que estão nos **reais**.
+
+#### 3. Racionais e irracionais
+
+**Racional:** inteiro, decimal que **termina** ou **dízima periódica** (0,333… = 1/3). **Irracional:** decimal infinito **sem repetição**, como **√2** e **π**. **ℝ = ℚ ∪ I**.
+
+#### 4. Raiz exata ou não
+
+**√9 = 3** é **natural**. **√2** não é exata, então é **irracional**. Só a **raiz não exata** é irracional.
+
+#### 5. Dízima em fração
+
+Chame a dízima de **x**, multiplique por **10, 100…** conforme o tamanho do **período** e **subtraia**: 0,2525… dá **99x = 25**, então **x = 25/99**.
+
+#### 6. União e interseção
+
+**A ∪ B** é o **"ou"** (tudo que está em A ou em B, sem repetir). **A ∩ B** é o **"e"** (o que está nos **dois**). **Disjuntos** têm **A ∩ B = ∅**.
+
+#### 7. Diferença e complementar
+
+**A − B** são os de **A que não estão em B** (a ordem importa). O **complementar Aᶜ** é o que falta em A para completar o **universo U**.
+
+#### 8. Contagem com dois conjuntos
+
+**n(A ∪ B) = n(A) + n(B) − n(A ∩ B)**. Subtrai-se a **interseção** para não contar duas vezes quem está nos **dois**.
+
+#### 9. Método do diagrama
+
+Comece sempre pelo **centro** (a **interseção**) e vá para fora, **subtraindo**. Confira se a **soma das regiões**, com os de fora, dá o **total do universo**.
+
+#### 10. Três conjuntos
+
+Centro = **A ∩ B ∩ C**. Cada interseção de dois **sem o centro** = interseção − centro. **n(A ∪ B ∪ C)** soma os três, **tira** as interseções de dois e **devolve** a dos três.
+
+#### 11. Linguagem do enunciado
+
+**"Pelo menos um"** = **união**. **"Ambos"** = **interseção**. **"Apenas A"** = só A. **"Exatamente um"** = só A + só B. **"Nenhum"** = **fora** dos círculos.
+
+</div>
+
+## Questões de Fixação
+
+*Marque uma alternativa em cada questão e confira tudo de uma vez no botão do fim.*
+
+**Questão 1**
+
+*Questão autoral no estilo ENEM*
+
+Na lousa, um professor escreveu os números
+
+−3; 0; 7/2; √16; √2; 0,2525…; π
+
+Quantos desses números são racionais?
+
+A) 3\
+B) 4\
+C) 5\
+D) 6\
+E) 7
+
+**Questão 2**
+
+*Questão autoral no estilo ENEM*
+
+Em uma pesquisa com 150 alunos de uma escola sobre o hábito de leitura, verificou-se que 90 leem livros, 70 leem quadrinhos e 25 não leem nem livros nem quadrinhos.
+
+Quantos desses alunos leem livros e quadrinhos?
+
+A) 15\
+B) 35\
+C) 45\
+D) 55\
+E) 65
+
+**Questão 3**
+
+*Questão autoral no estilo ENEM*
+
+Uma pesquisa com 100 pessoas perguntou quais dos serviços de vídeo A, B e C elas assinam. Os resultados foram: 40 assinam A, 35 assinam B e 30 assinam C; 12 assinam A e B; 10 assinam A e C; 8 assinam B e C; e 5 assinam os três serviços.
+
+Quantas pessoas assinam exatamente um desses serviços?
+
+A) 20\
+B) 45\
+C) 75\
+D) 60\
+E) 80
+
+**Questão 4**
+
+*Questão autoral no estilo ENEM*
+
+Considere os conjuntos A = \{x ∈ ℕ | x é divisor de 12\} e B = \{x ∈ ℕ | x é par e x ≤ 12\}, em que ℕ é o conjunto dos números naturais, incluindo o zero.
+
+Quantos elementos tem o conjunto A ∩ B?
+
+A) 4\
+B) 5\
+C) 6\
+D) 7\
+E) 8
+
+**Questão 5**
+
+*Questão autoral no estilo ENEM*
+
+Em uma cidade, 60% dos moradores assistem ao canal A, 50% assistem ao canal B e 20% não assistem a nenhum dos dois canais.
+
+Qual é a porcentagem de moradores que assistem a apenas um dos dois canais?
+
+A) 30%\
+B) 40%\
+C) 60%\
+D) 80%\
+E) 50%
