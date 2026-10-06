@@ -2,3 +2,7 @@
 #   python -m venv .cache/venv && .cache/venv/Scripts/python -m pip install -r scripts/requirements.txt
 pymupdf==1.28.2
 openpyxl==3.1.5
+
+# Subconjunto da fonte de ícones (scripts/subset-icones.py):
+fonttools
+brotli

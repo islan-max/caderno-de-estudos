@@ -2,7 +2,9 @@
  * Fontes do projeto — todas servidas localmente (nada de CDN em runtime).
  *   Inter  -> títulos, rótulos e interface   (variável, 300-800)
  *   Nunito -> texto corrido e conteúdo       (variável, 300-800 + itálico)
- *   Font Awesome 7 Free -> ícones            (solid / regular / brands)
+ *   Font Awesome 7 Free -> ícones            (solid em subconjunto / regular)
+ *     As marcas (GitHub, Instagram) são SVG inline no Rodape.astro.
+ *     O subconjunto do solid é gerado por scripts/subset-icones.py.
  *
  * Sobre o "duotone": o estilo Duotone oficial do Font Awesome é exclusivo da
  * licença Pro. Aqui reproduzimos o mesmo efeito de duas camadas usando os
@@ -69,29 +71,21 @@
   font-family: "Font Awesome 7 Free";
   font-style: normal;
   font-weight: 900;
-  font-display: block;
+  font-display: swap;
   src: url(../assets/fonts/fa-solid-900.woff2) format("woff2");
 }
 @font-face {
   font-family: "Font Awesome 7 Free";
   font-style: normal;
   font-weight: 400;
-  font-display: block;
+  font-display: swap;
   src: url(../assets/fonts/fa-regular-400.woff2) format("woff2");
-}
-@font-face {
-  font-family: "Font Awesome 7 Brands";
-  font-style: normal;
-  font-weight: 400;
-  font-display: block;
-  src: url(../assets/fonts/fa-brands-400.woff2) format("woff2");
 }
 
 /* Base do ícone */
 .fa,
 .fa-solid,
-.fa-regular,
-.fa-brands {
+.fa-regular {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   display: inline-block;
@@ -110,14 +104,9 @@
   font-family: "Font Awesome 7 Free";
   font-weight: 400;
 }
-.fa-brands {
-  font-family: "Font Awesome 7 Brands";
-  font-weight: 400;
-}
 .fa::before,
 .fa-solid::before,
-.fa-regular::before,
-.fa-brands::before {
+.fa-regular::before {
   content: var(--fa);
 }
 
@@ -306,7 +295,3 @@
 .fa-wifi { --fa: "\f1eb"; }
 .fa-database { --fa: "\f1c0"; }
 .fa-fingerprint { --fa: "\f577"; }
-
-/* Marcas */
-.fa-github { --fa: "\f09b"; }
-.fa-instagram { --fa: "\f16d"; }

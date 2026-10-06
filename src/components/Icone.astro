@@ -7,7 +7,6 @@
 interface Props {
   nome: string;
   duo?: boolean;
-  marca?: boolean;
   regular?: boolean;
   class?: string;
   /** Cor do glifo principal; o disco herda a mesma cor por padrão. */
@@ -22,7 +21,6 @@ interface Props {
 const {
   nome,
   duo = false,
-  marca = false,
   regular = false,
   class: klass = '',
   cor,
@@ -34,7 +32,7 @@ const {
 // `resto` carrega o data-astro-cid-* que o componente pai injeta: sem repassá-lo,
 // os estilos com escopo do pai não alcançariam o <i> renderizado aqui.
 
-const familia = marca ? 'fa-brands' : regular ? 'fa-regular' : 'fa-solid';
+const familia = regular ? 'fa-regular' : 'fa-solid';
 const classes = [familia, `fa-${nome}`, duo ? 'fa-duo' : '', klass].filter(Boolean).join(' ');
 const estilo = [
   cor ? `--fa-primary-color: ${cor}; color: ${cor};` : '',

@@ -53,13 +53,15 @@ const tabs = [
     align-items: center;
     gap: 0.5rem;
     background: var(--tab-soft);
-    color: var(--tab-color);
+    /* O texto puxa 30% para a cor da tinta: garante contraste ≥ 4,5:1 nos dois
+       temas. A borda mantém a cor pura da aba. Não use opacity aqui — ela
+       derrubava o contraste das abas inativas. */
+    color: color-mix(in srgb, var(--tab-color) 70%, var(--color-ink));
     border: 2px solid var(--tab-color);
     border-bottom: none;
     margin-top: 10px;
     transform: translateY(6px);
-    opacity: 0.72;
-    transition: transform 0.24s var(--ease), opacity 0.24s var(--ease), background-color 0.24s var(--ease),
+    transition: transform 0.24s var(--ease), background-color 0.24s var(--ease),
       box-shadow 0.24s var(--ease);
   }
   .tab__icone {
@@ -69,7 +71,6 @@ const tabs = [
   }
   .tab:hover {
     transform: translateY(2px);
-    opacity: 1;
     box-shadow: 0 -6px 18px -12px var(--tab-color);
   }
   .tab:hover .tab__icone {
@@ -83,7 +84,6 @@ const tabs = [
   .tab[data-active='true'] {
     margin-top: 0;
     transform: none;
-    opacity: 1;
     background: var(--color-surface);
     padding-bottom: calc(0.625rem + 3px);
     margin-bottom: -3px;

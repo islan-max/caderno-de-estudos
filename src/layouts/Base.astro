@@ -9,6 +9,7 @@ import Icone from '../components/Icone.astro';
 import { u } from '../lib/url';
 import interLatin from '../assets/fonts/inter-normal-latin.woff2';
 import nunitoLatin from '../assets/fonts/nunito-normal-latin.woff2';
+import faSolid from '../assets/fonts/fa-solid-900.woff2';
 
 interface Props {
   title: string;
@@ -70,6 +71,13 @@ const borderColor = cor ?? (active ? accentByTab[active] : 'var(--color-line)');
       as="font"
       type="font/woff2"
       href={nunitoLatin.src}
+      crossorigin
+    />
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      href={faSolid.src}
       crossorigin
     />
     <ClientRouter />
