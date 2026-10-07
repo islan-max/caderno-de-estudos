@@ -11,6 +11,10 @@
 //
 //   <Textarea id="proposta-de-intervencao" titulo="Escreva sua proposta de intervenção" />
 //
+// A folha tem tamanho FIXO: 30 linhas, sem crescer e sem o aluno poder esticá-la. O que passa
+// das 30 linhas (digitando, colando ou apertando Enter) é recusado, como na folha de papel.
+// Clicar numa linha vazia mais abaixo leva o cursor até lá, sem precisar de Enter.
+//
 // A contagem de linhas é aproximada: depende da largura da tela, e a folha
 // do ENEM tem largura fixa.
 import Icone from './Icone.astro';
@@ -117,10 +121,8 @@ const campo = `redacao-${id}`;
     let espera = 0;
 
     // Linhas ocupadas = altura do texto / altura de uma linha. A medida é feita
-    // num "espelho" invisível, fora do fluxo, com a mesma largura e fonte: o
-    // campo de verdade nunca encolhe, então a página não pula enquanto o aluno
-    // escreve ou rola. O campo tem no mínimo as 30 linhas da folha e cresce se
-    // o aluno passar delas.
+    // num "espelho" invisível, fora do fluxo, com a mesma largura e fonte. O campo de
+    // verdade tem altura fixa (as 30 linhas da folha, no CSS) e nunca muda de tamanho.
     const espelho = campo.cloneNode() as HTMLTextAreaElement;
     espelho.removeAttribute('id');
     espelho.setAttribute('aria-hidden', 'true');
@@ -128,41 +130,111 @@ const campo = `redacao-${id}`;
     espelho.style.cssText = 'position:absolute;visibility:hidden;pointer-events:none;left:0;top:0;height:0;min-height:0;';
     campo.parentElement!.appendChild(espelho);
 
-    function medir() {
+    function alturaDaLinha(): number {
+      return parseFloat(getComputedStyle(campo).lineHeight);
+    }
+
+    /** Quantas linhas (já com a quebra automática) um texto ocupa neste campo. */
+    function contarLinhas(texto: string): number {
+      if (!texto) return 0;
       const estilo = getComputedStyle(campo);
-      const lh = parseFloat(estilo.lineHeight);
       const pad = parseFloat(estilo.paddingTop) + parseFloat(estilo.paddingBottom);
       espelho.style.width = campo.clientWidth + 'px';
-      espelho.value = campo.value;
-      const conteudo = espelho.scrollHeight - pad;
-      const usadas = campo.value.trim() ? Math.max(1, Math.round(conteudo / lh)) : 0;
-      campo.style.height = Math.max(total, usadas) * lh + pad + 'px';
+      espelho.value = texto;
+      return Math.max(1, Math.round((espelho.scrollHeight - pad) / alturaDaLinha()));
+    }
+
+    function medir() {
+      // Linhas em branco no fim não contam como escritas.
+      const escrito = campo.value.replace(/\s+$/, '');
+      const usadas = contarLinhas(escrito);
 
       const palavras = campo.value.trim() ? campo.value.trim().split(/\s+/).length : 0;
       rotLinhas.textContent = usadas + ' de ' + total + ' linhas';
       rotPalavras.textContent = palavras + (palavras === 1 ? ' palavra' : ' palavras');
-      const situacao = usadas === 0 ? 'vazia' : usadas < minimo ? 'curta' : usadas > total ? 'longa' : 'ok';
+      const situacao = usadas === 0 ? 'vazia' : usadas < minimo ? 'curta' : 'ok';
       folha.dataset.situacao = situacao;
       aviso.textContent =
         situacao === 'curta'
           ? 'abaixo do mínimo de ' + minimo + ' linhas'
-          : situacao === 'longa'
-            ? 'acima das ' + total + ' linhas da folha'
-            : situacao === 'ok'
-              ? 'dentro do limite'
-              : '';
+          : situacao === 'ok'
+            ? 'dentro do limite'
+            : '';
+    }
+
+    // Último texto aceito (com a posição do cursor): é para onde se volta quando uma
+    // tecla tentaria passar das 30 linhas.
+    let ultimo = { valor: '', ini: 0, fim: 0 };
+    function lembrar() {
+      ultimo = { valor: campo.value, ini: campo.selectionStart, fim: campo.selectionEnd };
+    }
+
+    /** Maior começo do texto que cabe nas linhas da folha. */
+    function cortarParaCaber(texto: string): string {
+      let ini = 0;
+      let fim = texto.length;
+      while (ini < fim) {
+        const meio = Math.ceil((ini + fim) / 2);
+        if (contarLinhas(texto.slice(0, meio)) <= total) ini = meio;
+        else fim = meio - 1;
+      }
+      return texto.slice(0, ini);
+    }
+
+    /** Devolve true se passou do limite e o texto foi corrigido. */
+    function respeitarLimite(tipo: string): boolean {
+      if (contarLinhas(campo.value) <= total) return false;
+      if (tipo === 'insertText' || tipo === 'insertLineBreak' || tipo === 'insertParagraph') {
+        // Uma tecla só: recusa, o texto fica como estava.
+        campo.value = ultimo.valor;
+        campo.setSelectionRange(ultimo.ini, ultimo.fim);
+      } else {
+        // Colar ou arrastar texto grande: fica o que cabe.
+        campo.value = cortarParaCaber(campo.value);
+        campo.setSelectionRange(campo.value.length, campo.value.length);
+      }
+      estado.textContent = 'limite de ' + total + ' linhas da folha';
+      return true;
     }
 
     campo.value = lerRascunho(id);
+    if (contarLinhas(campo.value) > total) campo.value = cortarParaCaber(campo.value);
     medir();
+    lembrar();
 
-    campo.addEventListener('input', () => {
-      medir();
+    function salvar() {
       estado.textContent = 'salvando…';
       clearTimeout(espera);
       espera = window.setTimeout(() => {
         estado.textContent = guardarRascunho(id, campo.value) ? 'rascunho salvo' : '';
       }, 500);
+    }
+
+    campo.addEventListener('input', (e) => {
+      const limitou = respeitarLimite((e as InputEvent).inputType ?? '');
+      medir();
+      lembrar();
+      if (!limitou) salvar();
+    });
+    // A seleção muda sem o texto mudar (setas, clique): o cursor guardado acompanha.
+    document.addEventListener('selectionchange', () => {
+      if (document.activeElement === campo && campo.value === ultimo.valor) lembrar();
+    });
+
+    // Folha de papel: clicar numa linha vazia, abaixo do que já foi escrito, põe o cursor lá.
+    // O texto ganha as quebras de linha que faltam, como se o aluno tivesse apertado Enter.
+    // Clicar no meio de uma linha, ou selecionar texto, continua do jeito nativo.
+    campo.addEventListener('click', (e) => {
+      if (e.detail === 0 || campo.selectionStart !== campo.selectionEnd) return;
+      const lh = alturaDaLinha();
+      const alvo = Math.min(total - 1, Math.floor((e.clientY - campo.getBoundingClientRect().top) / lh));
+      const ocupadas = Math.max(1, contarLinhas(campo.value));
+      if (alvo <= ocupadas - 1) return;
+      campo.value += '\n'.repeat(alvo - (ocupadas - 1));
+      campo.setSelectionRange(campo.value.length, campo.value.length);
+      medir();
+      lembrar();
+      salvar();
     });
 
     limpar.addEventListener('click', () => {
@@ -171,6 +243,7 @@ const campo = `redacao-${id}`;
       guardarRascunho(id, '');
       estado.textContent = '';
       medir();
+      lembrar();
       campo.focus();
     });
 
@@ -215,7 +288,7 @@ const campo = `redacao-${id}`;
     flex-shrink: 0;
     width: 2.1rem;
     height: 2.1rem;
-    font-size: 0.9rem;
+    font-size: calc(0.9rem * var(--escala-texto, 1));
   }
   .folha__textos {
     display: flex;
@@ -225,7 +298,7 @@ const campo = `redacao-${id}`;
   }
   .folha__titulo {
     font-family: var(--font-display);
-    font-size: 0.72rem;
+    font-size: calc(0.72rem * var(--escala-texto, 1));
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.11em;
@@ -233,7 +306,7 @@ const campo = `redacao-${id}`;
   }
   .folha__dica {
     font-family: var(--font-body);
-    font-size: 0.86rem;
+    font-size: calc(0.86rem * var(--escala-texto, 1));
     line-height: 1.4;
     color: var(--color-ink-soft);
   }
@@ -243,7 +316,9 @@ const campo = `redacao-${id}`;
     position: relative;
     display: flex;
     margin: 0 0.75rem;
+    /* Sem borda embaixo: a última linha da pauta faz esse papel (ver .folha__campo). */
     border: 1px solid var(--color-controle);
+    border-bottom-width: 0;
     border-radius: 0.5rem;
     background: var(--color-surface);
     overflow: hidden;
@@ -255,26 +330,33 @@ const campo = `redacao-${id}`;
     outline-offset: 2px;
   }
 
+  /* A pauta é uma só, da borda de cima à de baixo: cada linha mede exatamente --folha-linha,
+     sem folga no topo nem no fim, e a numeração e o campo usam a mesma régua. */
   .folha__numeros {
     flex-shrink: 0;
     width: 2.4rem;
     margin: 0;
-    padding: 0.5rem 0;
+    padding: 0;
     list-style: none;
     border-right: 2px solid color-mix(in srgb, var(--folha-tinta) 35%, transparent);
     background: color-mix(in srgb, var(--color-paper-dark) 22%, var(--color-surface));
     overflow: hidden;
   }
   .folha__numeros li {
+    box-sizing: border-box;
     height: var(--folha-linha);
-    line-height: var(--folha-linha);
+    line-height: calc(var(--folha-linha) - 1px);
     padding-right: 0.45rem;
     text-align: right;
+    border-bottom: 1px solid color-mix(in srgb, var(--color-line) 75%, transparent);
     font-family: var(--font-display);
-    font-size: 0.66rem;
+    font-size: calc(0.66rem * var(--escala-texto, 1));
     font-weight: 600;
     font-variant-numeric: tabular-nums;
     color: var(--color-ink-soft);
+  }
+  .folha__numeros li:last-child {
+    border-bottom-color: var(--color-controle);
   }
   /* Linha 7: o mínimo para a redação não ser zerada. */
   .folha__numeros li.folha__numero--minimo {
@@ -287,15 +369,17 @@ const campo = `redacao-${id}`;
     flex: 1;
     min-width: 0;
     display: block;
-    min-height: calc(var(--linhas) * var(--folha-linha) + 1rem);
+    box-sizing: border-box;
+    /* Altura FIXA: exatamente as linhas da folha. Não cresce com o texto e não é redimensionável. */
+    height: calc(var(--linhas) * var(--folha-linha));
     margin: 0;
-    padding: 0.5rem 0.9rem;
+    padding: 0 0.9rem;
     border: 0;
     outline: none;
-    resize: none;
+    resize: none !important;
     overflow: hidden;
     background-color: transparent;
-    /* Pauta: uma linha a cada --folha-linha, rolando junto com o texto. */
+    /* Pauta: uma linha no pé de cada linha. A última, que fecha o papel, usa a cor da borda. */
     background-image: repeating-linear-gradient(
       to bottom,
       transparent 0,
@@ -303,13 +387,13 @@ const campo = `redacao-${id}`;
       color-mix(in srgb, var(--color-line) 75%, transparent) calc(var(--folha-linha) - 1px),
       color-mix(in srgb, var(--color-line) 75%, transparent) var(--folha-linha)
     );
-    background-position: 0 0.5rem;
-    background-attachment: local;
+    box-shadow: inset 0 -1px 0 var(--color-controle);
     font-family: var(--font-body);
-    font-size: 1rem;
+    font-size: calc(1rem * var(--escala-texto, 1));
     line-height: var(--folha-linha);
     color: var(--color-ink);
     caret-color: var(--folha-tinta);
+    cursor: text;
   }
   .folha__campo::placeholder {
     color: var(--color-ink-soft);
@@ -332,7 +416,7 @@ const campo = `redacao-${id}`;
     gap: 0.4rem;
     margin: 0;
     font-family: var(--font-display);
-    font-size: 0.78rem;
+    font-size: calc(0.78rem * var(--escala-texto, 1));
     font-weight: 600;
     color: var(--color-ink-soft);
   }
@@ -374,7 +458,7 @@ const campo = `redacao-${id}`;
     background: transparent;
     color: var(--color-ink-soft);
     font-family: var(--font-display);
-    font-size: 0.8rem;
+    font-size: calc(0.8rem * var(--escala-texto, 1));
     font-weight: 700;
     cursor: pointer;
   }
@@ -395,7 +479,7 @@ const campo = `redacao-${id}`;
     padding: 0.1rem 0.45rem;
     border-radius: 999px;
     background: color-mix(in srgb, var(--folha-tinta) 14%, transparent);
-    font-size: 0.62rem;
+    font-size: calc(0.62rem * var(--escala-texto, 1));
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.08em;

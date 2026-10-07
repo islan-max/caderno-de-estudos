@@ -159,7 +159,7 @@ const materiasComAula = new Set(aulas.map((a) => a.materia)).size;
     align-items: center;
     gap: 0.45rem;
     font-family: var(--font-display);
-    font-size: 0.68rem;
+    font-size: calc(0.68rem * var(--escala-texto, 1));
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.14em;
@@ -177,7 +177,7 @@ const materiasComAula = new Set(aulas.map((a) => a.materia)).size;
   }
   .hero__texto {
     font-family: var(--font-body);
-    font-size: 1rem;
+    font-size: calc(1rem * var(--escala-texto, 1));
     line-height: 1.7;
     color: var(--color-ink-soft);
     max-width: 38rem;
@@ -195,7 +195,7 @@ const materiasComAula = new Set(aulas.map((a) => a.materia)).size;
     background: color-mix(in srgb, var(--color-paper-dark) 30%, transparent);
     color: var(--color-ink-soft);
     font-family: var(--font-display);
-    font-size: 0.98rem;
+    font-size: calc(0.98rem * var(--escala-texto, 1));
     cursor: pointer;
     text-align: left;
   }
@@ -210,11 +210,11 @@ const materiasComAula = new Set(aulas.map((a) => a.materia)).size;
     flex: 1;
   }
   .busca-grande__lupa {
-    font-size: 0.95rem;
+    font-size: calc(0.95rem * var(--escala-texto, 1));
   }
   .busca-grande__atalho {
     font-family: var(--font-display);
-    font-size: 0.62rem;
+    font-size: calc(0.62rem * var(--escala-texto, 1));
     font-weight: 700;
     letter-spacing: 0.08em;
     padding: 0.24rem 0.45rem;
@@ -242,7 +242,7 @@ const materiasComAula = new Set(aulas.map((a) => a.materia)).size;
     align-items: center;
     gap: 0.4rem;
     font-family: var(--font-display);
-    font-size: 0.64rem;
+    font-size: calc(0.64rem * var(--escala-texto, 1));
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.12em;
@@ -265,13 +265,13 @@ const materiasComAula = new Set(aulas.map((a) => a.materia)).size;
   }
   .continuar__titulo {
     font-family: var(--font-display);
-    font-size: 1.05rem;
+    font-size: calc(1.05rem * var(--escala-texto, 1));
     font-weight: 700;
     line-height: 1.25;
   }
   .continuar__meta {
     font-family: var(--font-body);
-    font-size: 0.8rem;
+    font-size: calc(0.8rem * var(--escala-texto, 1));
     color: var(--color-ink-soft);
   }
   .continuar__seta {
@@ -283,7 +283,7 @@ const materiasComAula = new Set(aulas.map((a) => a.materia)).size;
     border-radius: 999px;
     background: var(--color-enem);
     color: var(--color-paper);
-    font-size: 0.8rem;
+    font-size: calc(0.8rem * var(--escala-texto, 1));
     transition: transform 0.24s var(--ease);
   }
   .continuar__link:hover .continuar__seta {
@@ -315,7 +315,7 @@ const materiasComAula = new Set(aulas.map((a) => a.materia)).size;
     align-items: center;
     gap: 0.45rem;
     font-family: var(--font-display);
-    font-size: 0.66rem;
+    font-size: calc(0.66rem * var(--escala-texto, 1));
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.12em;
@@ -326,12 +326,12 @@ const materiasComAula = new Set(aulas.map((a) => a.materia)).size;
     align-items: baseline;
     gap: 0.45rem;
     font-family: var(--font-display);
-    font-size: 1.15rem;
+    font-size: calc(1.15rem * var(--escala-texto, 1));
     font-weight: 700;
     margin: 0.35rem 0 0.6rem;
   }
   .painel-progresso__unidade {
-    font-size: 0.78rem;
+    font-size: calc(0.78rem * var(--escala-texto, 1));
     font-weight: 500;
     color: var(--color-ink-soft);
   }
@@ -366,7 +366,7 @@ const materiasComAula = new Set(aulas.map((a) => a.materia)).size;
     background: var(--color-surface);
     color: var(--color-ink-soft);
     font-family: var(--font-display);
-    font-size: 0.76rem;
+    font-size: calc(0.76rem * var(--escala-texto, 1));
     font-weight: 600;
     cursor: pointer;
   }
@@ -394,7 +394,7 @@ const materiasComAula = new Set(aulas.map((a) => a.materia)).size;
     align-items: center;
     gap: 0.55rem;
     font-family: var(--font-display);
-    font-size: 1rem;
+    font-size: calc(1rem * var(--escala-texto, 1));
     font-weight: 700;
     letter-spacing: -0.015em;
     margin: 0;
@@ -407,7 +407,7 @@ const materiasComAula = new Set(aulas.map((a) => a.materia)).size;
     align-items: center;
     gap: 0.35rem;
     font-family: var(--font-display);
-    font-size: 0.75rem;
+    font-size: calc(0.75rem * var(--escala-texto, 1));
     font-weight: 600;
     color: var(--color-ink-soft);
     text-decoration: none;
@@ -454,12 +454,12 @@ const materiasComAula = new Set(aulas.map((a) => a.materia)).size;
     box-shadow: var(--shadow-soft);
   }
   .area-card__icone {
-    font-size: 1rem;
+    font-size: calc(1rem * var(--escala-texto, 1));
     margin-bottom: 0.35rem;
   }
   .area-card__nome {
     font-family: var(--font-display);
-    font-size: 0.95rem;
+    font-size: calc(0.95rem * var(--escala-texto, 1));
     font-weight: 700;
     letter-spacing: -0.01em;
   }
@@ -468,7 +468,7 @@ const materiasComAula = new Set(aulas.map((a) => a.materia)).size;
     gap: 0.28rem;
     flex-wrap: wrap;
     font-family: var(--font-display);
-    font-size: 0.68rem;
+    font-size: calc(0.68rem * var(--escala-texto, 1));
     color: var(--color-ink-soft);
   }
   .area-card__trilho {
@@ -525,12 +525,12 @@ const materiasComAula = new Set(aulas.map((a) => a.materia)).size;
   }
   .dica__icone {
     flex-shrink: 0;
-    font-size: 0.85rem;
+    font-size: calc(0.85rem * var(--escala-texto, 1));
     margin-top: 0.05rem;
   }
   .dica p {
     font-family: var(--font-body);
-    font-size: 0.85rem;
+    font-size: calc(0.85rem * var(--escala-texto, 1));
     line-height: 1.6;
     color: var(--color-ink-soft);
     margin: 0;
@@ -581,7 +581,7 @@ const materiasComAula = new Set(aulas.map((a) => a.materia)).size;
     border-radius: 999px;
     border: 1px solid var(--color-line);
     color: var(--color-ink-soft);
-    font-size: 0.7rem;
+    font-size: calc(0.7rem * var(--escala-texto, 1));
     transition: transform 0.25s var(--ease), color 0.2s var(--ease);
   }
   .ajuda[open] .ajuda__seta {
@@ -613,7 +613,7 @@ const materiasComAula = new Set(aulas.map((a) => a.materia)).size;
     border-radius: 999px;
     background: color-mix(in srgb, var(--color-escolar) 18%, transparent);
     color: var(--color-escolar);
-    font-size: 0.85rem;
+    font-size: calc(0.85rem * var(--escala-texto, 1));
   }
   .aviso-secoes__texto {
     display: flex;
@@ -622,13 +622,13 @@ const materiasComAula = new Set(aulas.map((a) => a.materia)).size;
   }
   .aviso-secoes__titulo {
     font-family: var(--font-display);
-    font-size: 0.92rem;
+    font-size: calc(0.92rem * var(--escala-texto, 1));
     font-weight: 700;
     color: var(--color-ink);
   }
   .aviso-secoes__corpo {
     font-family: var(--font-body);
-    font-size: 0.85rem;
+    font-size: calc(0.85rem * var(--escala-texto, 1));
     line-height: 1.6;
     color: var(--color-ink-soft);
   }

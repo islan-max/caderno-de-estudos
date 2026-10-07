@@ -31,6 +31,35 @@ gabarito:
       especializados, passa o contexto e consolida o resultado. Trocar o LLM ou guardar histórico não são o papel
       central dele.
       Revisar: A Aula › 3.2 O papel do orquestrador
+ferramentas:
+  - nome: "Python 3"
+    uso: "Roda o código do ciclo de function calling da aula."
+    custo: "Gratuito"
+    link: "https://www.python.org/downloads/"
+  - nome: "Biblioteca anthropic (SDK da Claude API)"
+    uso: "O código da aula usa import anthropic. Instale com pip install anthropic."
+    custo: "Gratuito"
+    link: "https://pypi.org/project/anthropic/"
+  - nome: "Chave de API de um modelo de linguagem"
+    uso: "Para rodar o exemplo de verdade, guardada na variável de ambiente ANTHROPIC_API_KEY. A chamada ao modelo é cobrada por uso. Sem a chave, dá para estudar o código e a lógica do ciclo."
+    custo: "Pago por uso"
+    link: "https://console.anthropic.com"
+  - nome: "Editor de código (Visual Studio Code)"
+    uso: "Para escrever e ler os exemplos em Python."
+    custo: "Gratuito"
+    link: "https://code.visualstudio.com"
+  - nome: "Terminal"
+    uso: "Para rodar o Python, o pip install e definir a variável de ambiente. Já vem no sistema."
+  - nome: "LangGraph"
+    uso: "Framework de orquestração em grafo, apresentado na aula, para experimentar o ciclo do agente sem escrever tudo à mão."
+    custo: "Gratuito"
+    link: "https://langchain-ai.github.io/langgraph/"
+    opcional: true
+  - nome: "CrewAI"
+    uso: "Framework que organiza uma equipe de agentes com papel e meta, também citado na aula."
+    custo: "Gratuito"
+    link: "https://docs.crewai.com"
+    opcional: true
 ---
 
 <Accordion titulo="Palavras e siglas desta aula" dica="Consulte quando encontrar um termo novo" icone="spell-check">

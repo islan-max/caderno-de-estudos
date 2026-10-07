@@ -82,26 +82,29 @@ const borderColor = cor ?? (active ? accentByTab[active] : 'var(--color-line)');
     />
     <ClientRouter />
     <script is:inline>
-      // Aplica tema e tamanho de texto salvos ANTES do primeiro paint (sem flash).
+      // Aplica tema, tamanho de fonte e brilho salvos ANTES do primeiro paint (sem flash).
       (function () {
         try {
           var raiz = document.documentElement;
           var tema = JSON.parse(localStorage.getItem('cdt:tema') || '""');
-          var texto = JSON.parse(localStorage.getItem('cdt:texto') || '""');
+          var fontePx = JSON.parse(localStorage.getItem('cdt:fonte-px') || '16');
           if (tema === 'escuro') {
             raiz.dataset.tema = 'escuro';
             var meta = document.querySelector('meta[name="theme-color"]');
             if (meta) meta.setAttribute('content', '#0d0f14');
           }
-          if (texto === 'grande' || texto === 'maior') raiz.dataset.texto = texto;
+          var px = Math.max(14, Math.min(28, Number(fontePx) || 16));
+          raiz.style.setProperty('--escala-texto', String(px / 16));
+          var brilho = Math.max(75, Math.min(100, Number(JSON.parse(localStorage.getItem('cdt:brilho') || '100')) || 100));
+          if (brilho < 100) {
+            raiz.dataset.brilho = 'sim';
+            raiz.style.setProperty('--brilho', String(brilho / 100));
+          }
         } catch (e) {}
       })();
     </script>
   </head>
-  <body class="min-h-screen flex flex-col">
-    <!-- Barra fina de progresso de leitura, no topo da janela. -->
-    <div class="leitura" aria-hidden="true"><i data-leitura></i></div>
-
+  <body class="min-h-screen flex flex-col" style={`--acento: ${borderColor};`}>
     <a href="#conteudo" class="pular">Pular para o conteúdo</a>
 
     <!-- Miniatura da marca: entra quando a marca grande sai da tela e sai
@@ -111,6 +114,21 @@ const borderColor = cor ?? (active ? accentByTab[active] : 'var(--color-line)');
       <span class="marca-mini__texto">CE</span>
       <span class="marca-mini__ponto">.</span>
     </a>
+
+    <!-- Voltar ao topo: entra junto com a miniatura da marca (quando a marca grande sai
+         da tela) e sai quando ela volta. Fora de vista não recebe foco nem leitor de tela. -->
+    <button
+      type="button"
+      class="topo"
+      data-topo
+      data-acao="topo"
+      aria-hidden="true"
+      tabindex="-1"
+      aria-label="Voltar ao topo da página"
+      title="Voltar ao topo"
+    >
+      <Icone nome="arrow-up" />
+    </button>
 
     <!-- O topo troca sem animar: cruzar duas versões da marca e das abas
          deixaria um "fantasma" durante a transição. -->
@@ -161,23 +179,6 @@ const borderColor = cor ?? (active ? accentByTab[active] : 'var(--color-line)');
     </script>
 
     <style>
-      /* ------------------------------------------------------------ topo */
-      .leitura {
-        position: fixed;
-        inset: 0 0 auto 0;
-        height: 3px;
-        z-index: 80;
-        pointer-events: none;
-      }
-      .leitura i {
-        display: block;
-        height: 100%;
-        background: linear-gradient(90deg, var(--color-enem), var(--color-escolar));
-        transform: scaleX(0);
-        transform-origin: 0 50%;
-        transition: transform 0.12s linear;
-      }
-
       /* ------------------------------------------------ miniatura da marca */
       .marca-mini {
         position: fixed;
@@ -194,7 +195,7 @@ const borderColor = cor ?? (active ? accentByTab[active] : 'var(--color-line)');
         box-shadow: var(--shadow-soft);
         color: var(--color-ink);
         font-family: var(--font-display);
-        font-size: 0.85rem;
+        font-size: calc(0.85rem * var(--escala-texto, 1));
         font-weight: 800;
         letter-spacing: -0.02em;
         line-height: 1;
@@ -218,6 +219,57 @@ const borderColor = cor ?? (active ? accentByTab[active] : 'var(--color-line)');
         color: var(--color-enem);
       }
 
+      /* --------------------------------------------------- voltar ao topo */
+      .topo {
+        position: fixed;
+        right: 2.25rem;
+        bottom: 1.25rem;
+        z-index: 70;
+        display: grid;
+        place-items: center;
+        width: 2.9rem;
+        height: 2.9rem;
+        border: 1px solid var(--color-line);
+        border-radius: 999px;
+        background: var(--color-surface);
+        box-shadow: var(--shadow-lift);
+        color: var(--color-ink);
+        font-size: calc(1rem * var(--escala-texto, 1));
+        cursor: pointer;
+        /* Repouso: escondido. Só opacity e transform mudam (compositor). */
+        opacity: 0;
+        transform: translateY(10px) scale(0.92);
+        pointer-events: none;
+        transition: opacity 0.22s var(--ease), transform 0.22s var(--ease),
+          border-color 0.2s var(--ease), background-color 0.2s var(--ease);
+      }
+      .topo[data-visivel='true'] {
+        opacity: 1;
+        transform: none;
+        pointer-events: auto;
+      }
+      .topo:hover {
+        border-color: var(--color-ink);
+        background: var(--color-paper-dark);
+      }
+      .topo:hover :global(i) {
+        transform: translateY(-2px);
+      }
+      .topo :global(i) {
+        transition: transform 0.2s var(--ease);
+      }
+      @media (max-width: 639px) {
+        .topo {
+          right: 1rem;
+          bottom: 1rem;
+        }
+      }
+      @media print {
+        .topo {
+          display: none;
+        }
+      }
+
       .pular {
         position: absolute;
         left: -999px;
@@ -227,7 +279,7 @@ const borderColor = cor ?? (active ? accentByTab[active] : 'var(--color-line)');
         background: var(--color-ink);
         color: var(--color-paper);
         font-family: var(--font-display);
-        font-size: 0.8rem;
+        font-size: calc(0.8rem * var(--escala-texto, 1));
         border-radius: 0 0 0.5rem 0;
       }
       .pular:focus {
@@ -253,6 +305,20 @@ const borderColor = cor ?? (active ? accentByTab[active] : 'var(--color-line)');
         margin: 0 auto;
         width: 100%;
         padding-inline: 0.75rem;
+      }
+      /* O centro da barra de ferramentas cai no centro de uma faixa da pauta (os 34px
+         livres entre duas linhas); a barra é mais grossa que a faixa e passa um pouco das
+         duas linhas, igual para cima e para baixo. O topo da faixa vem do deslocamento da
+         pauta (--rule-offset, que muda por largura): o cabeçalho começa em 56px, que sobra
+         21px no módulo de 35, e a faixa começa em --rule-offset + 35k; a diferença é 14px.
+         Subtrai-se metade do excesso da barra sobre a faixa. Vale tanto ao lado da marca
+         quanto quando a barra desce para a linha de baixo. */
+      .cabecalho__linha > :global(.ferramentas) {
+        align-self: flex-start;
+        min-height: var(--altura);
+        margin-top: calc(
+          var(--rule-offset) + 14px - (var(--altura) - (var(--rule) - 1px)) / 2
+        );
       }
       /* Em telas estreitas a marca sozinha já ocupa a linha: as ferramentas
          descem para a linha de baixo em vez de espremer ou vazar. */
@@ -335,7 +401,7 @@ const borderColor = cor ?? (active ? accentByTab[active] : 'var(--color-line)');
         border-radius: 999px;
         background: var(--color-surface);
         border: 1px solid var(--color-line);
-        font-size: 0.7rem;
+        font-size: calc(0.7rem * var(--escala-texto, 1));
         transition: transform 0.22s var(--ease);
       }
       .voltar:hover .voltar__seta {
@@ -348,13 +414,13 @@ const borderColor = cor ?? (active ? accentByTab[active] : 'var(--color-line)');
       }
       .voltar__rotulo {
         font-family: var(--font-display);
-        font-size: 0.66rem;
+        font-size: calc(0.66rem * var(--escala-texto, 1));
         text-transform: uppercase;
         letter-spacing: 0.1em;
       }
       .voltar__destino {
         font-family: var(--font-display);
-        font-size: 0.85rem;
+        font-size: calc(0.85rem * var(--escala-texto, 1));
         font-weight: 600;
       }
 

@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "./fonts.css";
+@import "./barra-rolagem.css";
 @plugin "@tailwindcss/typography";
 
 /* ---------------------------------------------------------------------------
@@ -36,6 +37,7 @@
      enquanto --color-line fica mais forte para bordas e divisórias. */
   --color-pauta: var(--color-line);
   --color-ok: #386f4e;
+  --color-aviso: #8a5a00;
 
   /* Altura da pauta do caderno. Toda a métrica vertical é múltipla disso. */
   --rule: 35px;
@@ -163,6 +165,7 @@ html[data-tema="escuro"] {
   --color-ds: #7fc79b;
   --color-ds-soft: #1e3328;
   --color-ok: #7fc79b;
+  --color-aviso: #e0b84f;
 
   --shadow-soft: 0 1px 2px rgba(0, 0, 0, 0.55), 0 8px 26px -12px rgba(0, 0, 0, 0.75);
   --shadow-lift: 0 2px 4px rgba(0, 0, 0, 0.6), 0 20px 44px -16px rgba(0, 0, 0, 0.85);
@@ -177,15 +180,22 @@ html[data-tema="escuro"] .text-black {
   color: var(--color-ink);
 }
 
-/* Conforto de leitura: 3 níveis, guardados no navegador. */
-html[data-texto="grande"] {
-  --escala-texto: 1.09;
+/* Conforto de leitura: tamanho customizável em pixels, guardado no navegador. */
+/* Só o texto de leitura (aula e quiz) acompanha a escala; menus, abas e botões
+   ficam do tamanho de sempre, então a página não parece ampliada. */
+:root {
+  --escala-texto: 1;
+  --text-xs: calc(0.75rem * var(--escala-texto));
+  --text-sm: calc(0.875rem * var(--escala-texto));
+  --text-base: calc(1rem * var(--escala-texto));
+  --text-lg: calc(1.125rem * var(--escala-texto));
+  --text-xl: calc(1.25rem * var(--escala-texto));
+  --text-2xl: calc(1.5rem * var(--escala-texto));
+  --text-3xl: calc(1.875rem * var(--escala-texto));
+  --text-4xl: calc(2.25rem * var(--escala-texto));
+  --text-5xl: calc(3rem * var(--escala-texto));
 }
-html[data-texto="maior"] {
-  --escala-texto: 1.2;
-}
-html[data-texto="grande"] body,
-html[data-texto="maior"] body {
+.prose-tema {
   font-size: calc(1rem * var(--escala-texto));
 }
 
@@ -332,7 +342,7 @@ html[data-contraste="sim"] :focus-visible {
 
 /* Quem aumenta o texto ou o espaçamento não pode perder palavras: o resumo das
    aulas deixa de ser cortado em duas linhas (WCAG 1.4.4 e 1.4.12). */
-html:is([data-texto="maior"], [data-espacamento="sim"]) .trilha__resumo {
+html[data-espacamento="sim"] .trilha__resumo {
   display: block;
   -webkit-line-clamp: unset;
   overflow: visible;
@@ -349,6 +359,13 @@ html[data-movimento="sim"] *::after {
   scroll-behavior: auto !important;
 }
 
+/* Brilho do tema claro: escurece a página inteira (texto, figuras e imagens juntos) com um
+   filtro no <html>. No elemento raiz o filtro não vira bloco de contenção, então o que é
+   position: fixed continua preso à janela. Só vale no tema claro: o escuro já é escuro. */
+html[data-brilho="sim"]:not([data-tema="escuro"]) {
+  filter: brightness(var(--brilho, 1));
+}
+
 /* Sublinhar links: cor deixa de ser o único indicador (WCAG 1.4.1). */
 html[data-links="sim"] .prose-tema a,
 html[data-links="sim"] .doc a,
@@ -356,6 +373,31 @@ html[data-links="sim"] .rodape__lista a,
 html[data-links="sim"] main a:not([class]) {
   text-decoration: underline;
   text-underline-offset: 3px;
+}
+
+/* Troca de tema: o tema novo se revela em círculo a partir do botão (app.ts define
+   --tema-x/y/raio). Só vale durante a troca; as navegações do Astro seguem as regras
+   delas. Elementos com nome de transição saem do caminho para a revelação cobrir tudo. */
+html[data-trocando-tema] *,
+html[data-trocando-tema] *::before,
+html[data-trocando-tema] *::after {
+  view-transition-name: none !important;
+}
+html[data-trocando-tema]::view-transition-old(root),
+html[data-trocando-tema]::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+html[data-trocando-tema]::view-transition-new(root) {
+  animation: tema-revela 0.6s var(--ease) both;
+}
+@keyframes tema-revela {
+  from {
+    clip-path: circle(0 at var(--tema-x) var(--tema-y));
+  }
+  to {
+    clip-path: circle(var(--tema-raio) at var(--tema-x) var(--tema-y));
+  }
 }
 
 /* Só para leitor de tela. */
@@ -416,6 +458,63 @@ html[data-links="sim"] main a:not([class]) {
 .tabela-rolavel > table {
   margin: 0;
 }
+/* Dentro de uma figura o cartão já dá o respiro: sem a margem do contêiner, o espaço
+   em cima e embaixo da tabela não dobra. */
+.figura > .tabela-rolavel {
+  margin: 0;
+}
+
+/* Tabelas das aulas: grade completa, cabeçalho com a cor da matéria e linhas alternadas.
+   Os cantos arredondados ficam nas células das pontas (border-collapse não os aceita). */
+.prose-tema table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 1px solid var(--color-line);
+  border-radius: 0.5rem;
+  font-size: 0.92em;
+  line-height: 1.45;
+}
+.prose-tema :is(th, td) {
+  padding: 0.55em 0.8em;
+  vertical-align: top;
+  text-align: start;
+  /* O site quebra palavras em qualquer ponto (para o texto ampliado não estourar a
+     página), mas numa célula isso corta "litoral" ao meio. Aqui só quebra nos espaços;
+     o que não couber rola dentro de .tabela-rolavel. */
+  overflow-wrap: normal;
+  border-bottom: 1px solid var(--color-line);
+}
+.prose-tema :is(th, td):not(:last-child) {
+  border-inline-end: 1px solid var(--color-line);
+}
+.prose-tema thead th {
+  background: color-mix(in srgb, var(--materia, var(--color-ink)) 16%, var(--color-surface));
+  color: var(--color-ink);
+  font-weight: 700;
+  border-bottom: 2px solid color-mix(in srgb, var(--materia, var(--color-ink)) 55%, var(--color-line));
+}
+.prose-tema tbody tr:nth-child(even) td {
+  background: color-mix(in srgb, var(--color-ink) 4%, transparent);
+}
+.prose-tema tbody tr:last-child td {
+  border-bottom: 0;
+}
+.prose-tema thead tr:first-child th:first-child {
+  border-top-left-radius: calc(0.5rem - 1px);
+}
+.prose-tema thead tr:first-child th:last-child {
+  border-top-right-radius: calc(0.5rem - 1px);
+}
+.prose-tema tbody tr:last-child td:first-child {
+  border-bottom-left-radius: calc(0.5rem - 1px);
+}
+.prose-tema tbody tr:last-child td:last-child {
+  border-bottom-right-radius: calc(0.5rem - 1px);
+}
+html[data-contraste="sim"] .prose-tema :is(th, td) {
+  border-color: var(--color-controle);
+}
 
 /* Título rebaixado por rehype-niveis-de-titulo (era h4 sob h2, agora h3): mantém o
    visual do nível que o autor escreveu. */
@@ -451,6 +550,84 @@ html[data-links="sim"] main a:not([class]) {
 }
 
 /* ---------------------------------------------------------------------------
+ * Tópicos retráteis (src/scripts/topicos.ts)
+ * Cada ## da aula vira um <details>. "Antes de Começar" usa o desenho do
+ * Accordion (.acordeao); as demais seções mantêm o título de sempre.
+ * ------------------------------------------------------------------------- */
+.prose-tema .topico-retratil--antes {
+  margin: 0 0 2.25rem;
+}
+/* Glossário e "Antes de Começar" formam par com o Raio-X: ficam juntos, sem o vão de seção. */
+.prose-tema > .acordeao:first-child:has(+ .topico-retratil--antes) {
+  margin-bottom: 0.75rem;
+}
+/* O título é o <h2> da aula dentro do <summary>: tira o filete e as folgas de seção. */
+.prose-tema .acordeao__cabeca > .acordeao__textos > h2,
+.prose-tema .topico-retratil__cabeca > h2 {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+/* Cada seção é: filete, respiro, título, respiro. O respiro é igual em cima e embaixo, então
+   recolhida (só o título) a seção fica centrada entre o filete dela e o da seguinte. */
+.prose-tema .topico-retratil--secao {
+  margin-top: 0;
+  border-top: 2px solid var(--color-line);
+  interpolate-size: allow-keywords;
+}
+.topico-retratil--secao::details-content {
+  block-size: 0;
+  overflow: clip;
+  transition: block-size 0.3s var(--ease), content-visibility 0.3s var(--ease) allow-discrete;
+}
+.topico-retratil--secao[open]::details-content {
+  block-size: auto;
+}
+.topico-retratil__cabeca {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 1.4rem 0;
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+  border-radius: 0.5rem;
+}
+.topico-retratil__cabeca::-webkit-details-marker {
+  display: none;
+}
+.topico-retratil__cabeca > h2 {
+  flex: 1;
+  min-width: 0;
+}
+.topico-retratil__cabeca:focus-visible {
+  outline: 2px solid var(--materia, var(--color-ink));
+  outline-offset: 2px;
+}
+.topico-retratil__cabeca:hover .acordeao__seta {
+  color: var(--materia, var(--color-ink));
+  border-color: color-mix(in srgb, var(--materia, var(--color-ink)) 45%, var(--color-line));
+}
+.topico-retratil--secao[open] > .topico-retratil__cabeca .acordeao__seta {
+  transform: rotate(180deg);
+}
+.topico-retratil__corpo {
+  padding-bottom: 1.4rem;
+}
+.topico-retratil__corpo > :first-child {
+  margin-top: 0;
+}
+@media print {
+  .topico-retratil::details-content {
+    block-size: auto;
+    content-visibility: visible;
+  }
+  .topico-retratil__cabeca .acordeao__seta {
+    display: none;
+  }
+}
+
+/* ---------------------------------------------------------------------------
  * Figuras das aulas
  * Diagramas são SVG escrito à mão dentro do próprio MDX: acompanham o tema
  * claro/escuro (usam as variáveis de cor), escalam sem borrar, não pesam
@@ -476,7 +653,7 @@ html[data-links="sim"] main a:not([class]) {
   padding-top: 0.7rem;
   border-top: 1px solid var(--color-line);
   font-family: var(--font-display);
-  font-size: 0.76rem;
+  font-size: calc(0.76rem * var(--escala-texto, 1));
   line-height: 1.55;
   color: var(--color-ink-soft);
   text-align: center;
@@ -532,13 +709,26 @@ html[data-links="sim"] main a:not([class]) {
 .quiz__questao[data-estado='certa'] {
   border-color: color-mix(in srgb, var(--color-ok) 55%, transparent);
 }
+.quiz__questao[data-estado='vazia'] {
+  border-color: color-mix(in srgb, var(--color-aviso) 70%, transparent);
+}
+/* O rótulo "Questão N" acompanha o resultado: verde acertou, vermelho errou, amarelo em branco. */
+.quiz__questao[data-estado='certa'] .quiz__legenda {
+  color: var(--color-ok);
+}
+.quiz__questao[data-estado='errada'] .quiz__legenda {
+  color: var(--color-enem);
+}
+.quiz__questao[data-estado='vazia'] .quiz__legenda {
+  color: var(--color-aviso);
+}
 .quiz__questao[data-estado='errada'] {
   border-color: color-mix(in srgb, var(--color-enem) 55%, transparent);
 }
 
 .quiz__legenda {
   font-family: var(--font-display);
-  font-size: 0.66rem;
+  font-size: calc(0.66rem * var(--escala-texto, 1));
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.12em;
@@ -549,7 +739,7 @@ html[data-links="sim"] main a:not([class]) {
 
 .quiz__enunciado > * {
   font-family: var(--font-body);
-  font-size: 0.95rem;
+  font-size: calc(0.95rem * var(--escala-texto));
   line-height: 1.7;
   margin: 0 0 0.7rem;
 }
@@ -604,7 +794,7 @@ html[data-links="sim"] main a:not([class]) {
   border: 1.5px solid var(--color-controle);
   background: var(--color-paper);
   font-family: var(--font-display);
-  font-size: 0.7rem;
+  font-size: calc(0.7rem * var(--escala-texto, 1));
   font-weight: 700;
   color: var(--color-ink-soft);
   transition: background-color 0.18s var(--ease), color 0.18s var(--ease),
@@ -627,7 +817,7 @@ html[data-links="sim"] main a:not([class]) {
 
 .quiz__texto {
   font-family: var(--font-body);
-  font-size: 0.92rem;
+  font-size: calc(0.92rem * var(--escala-texto));
   line-height: 1.55;
   color: var(--color-ink);
 }
@@ -639,56 +829,83 @@ html[data-links="sim"] main a:not([class]) {
   transform: translateY(-50%);
   font-family: "Font Awesome 7 Free";
   font-weight: 900;
-  font-size: 0.8rem;
+  font-size: calc(0.8rem * var(--escala-texto, 1));
   opacity: 0;
   transition: opacity 0.2s var(--ease);
 }
 
 /* --------------------------------------------------------------- corrigido */
-.quiz__alternativa[data-estado='certa'] {
+.quiz__questao .quiz__alternativa[data-estado='certa'] {
   border-color: var(--color-ok);
   background: color-mix(in srgb, var(--color-ok) 12%, var(--color-surface));
 }
-.quiz__alternativa[data-estado='certa'] .quiz__letra {
+.quiz__questao .quiz__alternativa[data-estado='certa'] .quiz__letra {
   background: var(--color-ok);
   border-color: var(--color-ok);
   color: var(--color-paper);
 }
-.quiz__alternativa[data-estado='certa'] .quiz__marca {
+.quiz__questao .quiz__alternativa[data-estado='certa'] .quiz__marca {
   opacity: 1;
   color: var(--color-ok);
   content: "";
 }
-.quiz__alternativa[data-estado='certa'] .quiz__marca::before {
+.quiz__questao .quiz__alternativa[data-estado='certa'] .quiz__marca::before {
   content: "\f00c"; /* fa-check */
 }
-.quiz__alternativa[data-estado='errada'] {
+.quiz__questao .quiz__alternativa[data-estado='errada'] {
   border-color: var(--color-enem);
   background: color-mix(in srgb, var(--color-enem) 10%, var(--color-surface));
 }
-.quiz__alternativa[data-estado='errada'] .quiz__letra {
+.quiz__questao .quiz__alternativa[data-estado='errada'] .quiz__letra {
   background: var(--color-enem);
   border-color: var(--color-enem);
   color: var(--color-paper);
 }
-.quiz__alternativa[data-estado='errada'] .quiz__marca {
+.quiz__questao .quiz__alternativa[data-estado='errada'] .quiz__marca {
   opacity: 1;
   color: var(--color-enem);
 }
-.quiz__alternativa[data-estado='errada'] .quiz__marca::before {
+.quiz__questao .quiz__alternativa[data-estado='errada'] .quiz__marca::before {
   content: "\f00d"; /* fa-xmark */
+}
+/* Amarelo: a alternativa que deveria ter sido marcada (errou ou deixou em branco). */
+.quiz__questao .quiz__alternativa[data-estado='gabarito'] {
+  border-color: var(--color-aviso);
+  background: color-mix(in srgb, var(--color-aviso) 14%, var(--color-surface));
+}
+.quiz__questao .quiz__alternativa[data-estado='gabarito'] .quiz__letra {
+  background: var(--color-aviso);
+  border-color: var(--color-aviso);
+  color: var(--color-paper);
+}
+.quiz__questao .quiz__alternativa[data-estado='gabarito'] .quiz__marca {
+  opacity: 1;
+  color: var(--color-aviso);
+}
+.quiz__questao .quiz__alternativa[data-estado='gabarito'] .quiz__marca::before {
+  content: "!";
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: calc(1rem * var(--escala-texto, 1));
 }
 
 .quiz__resposta {
   margin: 0.9rem 0 0;
   padding: 0.7rem 0.9rem;
-  border-left: 3px solid var(--color-ok);
+  border-left: 3px solid var(--cor-resposta, var(--color-ok));
   border-radius: 0 0.4rem 0.4rem 0;
-  background: color-mix(in srgb, var(--color-ok) 9%, transparent);
+  background: color-mix(in srgb, var(--cor-resposta, var(--color-ok)) 9%, transparent);
   font-family: var(--font-body);
-  font-size: 0.86rem;
+  font-size: calc(0.86rem * var(--escala-texto));
   line-height: 1.6;
   color: var(--color-ink);
+}
+/* Verde: acertou. Amarelo: errou. Vermelho: não marcou nada. */
+.quiz__questao[data-estado='errada'] .quiz__resposta {
+  --cor-resposta: var(--color-aviso);
+}
+.quiz__questao[data-estado='vazia'] .quiz__resposta {
+  --cor-resposta: var(--color-enem);
 }
 
 /* ----------------------------------------------------------------- ações */
@@ -709,7 +926,7 @@ html[data-links="sim"] main a:not([class]) {
   background: transparent;
   color: var(--color-ink-soft);
   font-family: var(--font-display);
-  font-size: 0.82rem;
+  font-size: calc(0.82rem * var(--escala-texto, 1));
   font-weight: 700;
   cursor: pointer;
 }
@@ -729,15 +946,26 @@ html[data-links="sim"] main a:not([class]) {
   border-color: color-mix(in srgb, var(--color-ok) 85%, #000);
   color: var(--color-paper);
 }
+/* "Confirmar resposta": aparece sob a questão, só na correção imediata por teclado. */
+.quiz__confirmar {
+  margin-top: 0.75rem;
+}
+.quiz__resposta:focus-visible {
+  outline: 2px solid var(--cor-resposta, var(--color-ok));
+  outline-offset: 2px;
+}
 .quiz__placar {
   margin: 0;
   font-family: var(--font-display);
-  font-size: 0.85rem;
+  font-size: calc(0.85rem * var(--escala-texto, 1));
   font-weight: 700;
   color: var(--color-ink-soft);
 }
 .quiz__placar[data-nota='cheia'] {
   color: var(--color-ok);
+}
+.quiz__placar[data-nota='vazia'] {
+  color: var(--color-aviso);
 }
 .quiz__placar[data-nota='baixa'] {
   color: var(--color-enem);
@@ -771,7 +999,7 @@ html[data-links="sim"] main a:not([class]) {
   color: var(--color-ink);
   box-shadow: var(--shadow-lift);
   font-family: var(--font-display);
-  font-size: 0.82rem;
+  font-size: calc(0.82rem * var(--escala-texto, 1));
   font-weight: 600;
   line-height: 1.25;
   animation: toast-in 0.32s var(--ease) both;
@@ -856,7 +1084,7 @@ html[data-links="sim"] main a:not([class]) {
   border-radius: 0.5rem;
   color: var(--color-ink);
   padding: 1rem 1.15rem;
-  font-size: 0.84rem;
+  font-size: calc(0.84rem * var(--escala-texto, 1));
   line-height: 1.7;
 }
 .prose-tema pre.astro-code code { background: none; padding: 0; font-weight: 400; }
@@ -871,8 +1099,7 @@ html[data-tema="escuro"] .prose-tema pre.astro-code span { color: var(--shiki-da
  * ------------------------------------------------------------------------- */
 @media (forced-colors: active) {
   [data-progresso-barra],
-  .prog-barra i,
-  .leitura i {
+  .prog-barra i {
     forced-color-adjust: none;
     background: Highlight !important;
   }
@@ -886,6 +1113,7 @@ html[data-tema="escuro"] .prose-tema pre.astro-code span { color: var(--shiki-da
     outline-offset: -3px;
   }
   .quiz__alternativa[data-estado="certa"],
+  .quiz__alternativa[data-estado="gabarito"],
   .quiz__alternativa[data-estado="errada"] {
     border-width: 3px;
   }

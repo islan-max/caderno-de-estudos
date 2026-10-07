@@ -79,12 +79,12 @@ const ids = temas.map((t) => t.id).join(' ');
     margin-bottom: 1.35rem;
   }
   .materia-topo__icone {
-    font-size: 1.15rem;
+    font-size: calc(1.15rem * var(--escala-texto, 1));
     flex-shrink: 0;
   }
   .materia-topo__area {
     font-family: var(--font-display);
-    font-size: 0.64rem;
+    font-size: calc(0.64rem * var(--escala-texto, 1));
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.12em;
@@ -122,7 +122,7 @@ const ids = temas.map((t) => t.id).join(' ');
     align-items: center;
     gap: 0.45rem;
     font-family: var(--font-display);
-    font-size: 0.68rem;
+    font-size: calc(0.68rem * var(--escala-texto, 1));
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.1em;
@@ -130,7 +130,7 @@ const ids = temas.map((t) => t.id).join(' ');
   }
   .materia-progresso__num {
     font-family: var(--font-display);
-    font-size: 0.78rem;
+    font-size: calc(0.78rem * var(--escala-texto, 1));
     font-weight: 700;
     color: var(--color-ink);
     white-space: nowrap;
@@ -157,7 +157,7 @@ const ids = temas.map((t) => t.id).join(' ');
     align-items: center;
     gap: 0.5rem;
     font-family: var(--font-body);
-    font-size: 0.82rem;
+    font-size: calc(0.82rem * var(--escala-texto, 1));
     color: var(--color-ink-soft);
     margin: 0 0 1rem;
   }

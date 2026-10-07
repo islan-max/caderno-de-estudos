@@ -37,7 +37,7 @@ const { nome } = Astro.props;
     max-width: 34rem;
   }
   .oculta__icone {
-    font-size: 1.4rem;
+    font-size: calc(1.4rem * var(--escala-texto, 1));
     margin-bottom: 1.25rem;
   }
   .oculta__h1 {
@@ -50,7 +50,7 @@ const { nome } = Astro.props;
   }
   .oculta__texto {
     font-family: var(--font-body);
-    font-size: 0.98rem;
+    font-size: calc(0.98rem * var(--escala-texto, 1));
     line-height: 1.7;
     color: var(--color-ink-soft);
     margin: 0 0 1.75rem;
@@ -68,7 +68,7 @@ const { nome } = Astro.props;
     border: 1px solid var(--color-line);
     border-radius: 999px;
     font-family: var(--font-display);
-    font-size: 0.82rem;
+    font-size: calc(0.82rem * var(--escala-texto, 1));
     font-weight: 600;
     color: var(--color-ink-soft);
     text-decoration: none;

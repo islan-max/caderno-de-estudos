@@ -69,7 +69,7 @@ const atual = Astro.url.pathname.replace(/\/+$/, '');
     border: 1px solid var(--color-line);
     border-radius: 999px;
     font-family: var(--font-display);
-    font-size: 0.74rem;
+    font-size: calc(0.74rem * var(--escala-texto, 1));
     font-weight: 600;
     color: var(--color-ink-soft);
     text-decoration: none;
@@ -91,7 +91,7 @@ const atual = Astro.url.pathname.replace(/\/+$/, '');
     border-bottom: 2px solid var(--color-line);
   }
   .doc-topo__icone {
-    font-size: 1.2rem;
+    font-size: calc(1.2rem * var(--escala-texto, 1));
     margin-bottom: 0.75rem;
   }
   .doc-topo__h1 {
@@ -104,7 +104,7 @@ const atual = Astro.url.pathname.replace(/\/+$/, '');
   }
   .doc-topo__sub {
     font-family: var(--font-body);
-    font-size: 1rem;
+    font-size: calc(1rem * var(--escala-texto, 1));
     line-height: 1.65;
     color: var(--color-ink-soft);
     max-width: 42rem;
@@ -115,7 +115,7 @@ const atual = Astro.url.pathname.replace(/\/+$/, '');
     align-items: center;
     gap: 0.4rem;
     font-family: var(--font-display);
-    font-size: 0.7rem;
+    font-size: calc(0.7rem * var(--escala-texto, 1));
     text-transform: uppercase;
     letter-spacing: 0.08em;
     color: var(--color-ink-soft);
@@ -124,7 +124,7 @@ const atual = Astro.url.pathname.replace(/\/+$/, '');
 
   .doc :global(h2) {
     font-family: var(--font-display);
-    font-size: 1.15rem;
+    font-size: calc(1.15rem * var(--escala-texto, 1));
     font-weight: 700;
     letter-spacing: -0.015em;
     margin: 2.25rem 0 0.75rem;
@@ -138,14 +138,14 @@ const atual = Astro.url.pathname.replace(/\/+$/, '');
   }
   .doc :global(h3) {
     font-family: var(--font-display);
-    font-size: 0.95rem;
+    font-size: calc(0.95rem * var(--escala-texto, 1));
     font-weight: 700;
     margin: 1.5rem 0 0.5rem;
   }
   .doc :global(p),
   .doc :global(li) {
     font-family: var(--font-body);
-    font-size: 0.95rem;
+    font-size: calc(0.95rem * var(--escala-texto, 1));
     line-height: 1.75;
     color: var(--color-ink);
   }
@@ -182,7 +182,7 @@ const atual = Astro.url.pathname.replace(/\/+$/, '');
   }
   .doc :global(.destaque p) {
     margin: 0;
-    font-size: 0.9rem;
+    font-size: calc(0.9rem * var(--escala-texto, 1));
   }
 
   .doc-rodape {
@@ -196,7 +196,7 @@ const atual = Astro.url.pathname.replace(/\/+$/, '');
     gap: 0.35rem;
     align-items: center;
     font-family: var(--font-body);
-    font-size: 0.85rem;
+    font-size: calc(0.85rem * var(--escala-texto, 1));
     color: var(--color-ink-soft);
     margin: 0;
   }

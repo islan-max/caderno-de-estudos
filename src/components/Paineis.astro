@@ -7,10 +7,6 @@ import { u } from '../lib/url';
 
 <!-- ------------------------------------------------------------ busca -->
 <dialog id="busca" class="painel painel--busca" aria-label="Buscar aula">
-  <form method="dialog" class="painel__fechar-form">
-    <button class="painel__fechar" data-fecha aria-label="Fechar busca"><Icone nome="xmark" /></button>
-  </form>
-
   <div class="busca__campo">
     <Icone nome="magnifying-glass" class="busca__lupa" />
     <!-- Padrão "combobox com lista": o foco fica no campo e as setas movem o
@@ -28,12 +24,18 @@ import { u } from '../lib/url';
       aria-controls="busca-lista"
       aria-describedby="busca-contador"
     />
+    <!-- Fechar na própria linha do campo: alinha com a lupa e o texto e nunca cobre a borda. -->
+    <form method="dialog" class="painel__fechar-form">
+      <button class="painel__fechar" data-fecha aria-label="Fechar busca"><Icone nome="xmark" /></button>
+    </form>
   </div>
 
   <!-- Região viva: quem usa leitor de tela ouve "12 resultados" ao digitar. -->
   <p class="busca__contador" id="busca-contador" data-busca-contador role="status">Sugestões do que ainda falta ver</p>
 
-  <ul class="busca__lista" id="busca-lista" data-busca-lista role="listbox" aria-label="Resultados da busca"></ul>
+  <div class="busca__rolagem" data-rolagem>
+    <ul class="busca__lista" id="busca-lista" data-busca-lista role="listbox" aria-label="Resultados da busca" data-rolagem-area></ul>
+  </div>
 
   <p class="busca__vazio" data-busca-vazio hidden role="status">
     <Icone nome="circle-info" /> Nenhuma aula encontrada com esse termo.
@@ -47,155 +49,223 @@ import { u } from '../lib/url';
 </dialog>
 
 <!-- -------------------------------------------------------- progresso -->
-<dialog id="progresso" class="painel" aria-label="Meu progresso">
-  <form method="dialog" class="painel__fechar-form">
-    <button class="painel__fechar" data-fecha aria-label="Fechar progresso"><Icone nome="xmark" /></button>
-  </form>
+<dialog id="progresso" class="painel" aria-labelledby="progresso-titulo" data-rolagem>
+  <div class="painel__area" data-rolagem-area>
+    <!-- Cabeçalho fixo: o ícone, o título e o botão de fechar acompanham a rolagem. -->
+    <header class="painel__cabeca">
+      <h2 class="painel__titulo" id="progresso-titulo"><Icone nome="chart-simple" duo cor="var(--color-escolar)" /> Meu progresso</h2>
+      <form method="dialog" class="painel__fechar-form">
+        <button class="painel__fechar" data-fecha aria-label="Fechar progresso"><Icone nome="xmark" /></button>
+      </form>
+    </header>
+    <p class="painel__sub">
+      Fica salvo só neste navegador, no seu aparelho. Nada é enviado para servidor nenhum.
+    </p>
 
-  <h2 class="painel__titulo"><Icone nome="chart-simple" duo cor="var(--color-escolar)" /> Meu progresso</h2>
-  <p class="painel__sub">
-    Fica salvo só neste navegador, no seu aparelho. Nada é enviado para servidor nenhum.
-  </p>
+    <div data-painel-progresso>
+      <p class="painel__carregando">Carregando…</p>
+    </div>
 
-  <div data-painel-progresso>
-    <p class="painel__carregando">Carregando…</p>
+    <footer class="painel__rodape">
+      <button type="button" class="painel__botao" data-acao="sortear">
+        <Icone nome="dice" /> Sortear uma aula
+      </button>
+      <button type="button" class="painel__botao painel__botao--perigo" data-acao="zerar-progresso">
+        <Icone nome="rotate-left" /> Zerar progresso
+      </button>
+    </footer>
   </div>
+</dialog>
 
-  <footer class="painel__rodape">
-    <button type="button" class="painel__botao" data-acao="sortear">
-      <Icone nome="dice" /> Sortear uma aula
-    </button>
-    <button type="button" class="painel__botao painel__botao--perigo" data-acao="zerar-progresso">
-      <Icone nome="rotate-left" /> Zerar progresso
-    </button>
-  </footer>
+<!-- ------------------------------------------------------------ sumário -->
+<dialog id="sumario" class="painel painel--sumario" aria-labelledby="sumario-titulo" data-rolagem>
+  <div class="painel__area" data-rolagem-area>
+    <header class="painel__cabeca">
+      <h2 class="painel__titulo" id="sumario-titulo"><Icone nome="list-ol" duo cor="var(--color-escolar)" /> Sumário da aula</h2>
+      <form method="dialog" class="painel__fechar-form">
+        <button class="painel__fechar" data-fecha aria-label="Fechar sumário"><Icone nome="xmark" /></button>
+      </form>
+    </header>
+    <p class="painel__sub">Escolha um tópico para ir direto até ele. Se estiver recolhido, abre sozinho.</p>
+    <ol class="sumario__lista" data-sumario-lista></ol>
+  </div>
 </dialog>
 
 <!-- ---------------------------------------------------- acessibilidade -->
-<dialog id="acessibilidade" class="painel" aria-labelledby="a11y-titulo">
-  <form method="dialog" class="painel__fechar-form">
-    <button class="painel__fechar" data-fecha aria-label="Fechar acessibilidade"><Icone nome="xmark" /></button>
-  </form>
+<dialog id="acessibilidade" class="painel" aria-labelledby="a11y-titulo" data-rolagem>
+  <div class="painel__area" data-rolagem-area>
+    <header class="painel__cabeca">
+      <h2 class="painel__titulo" id="a11y-titulo">
+        <Icone nome="universal-access" duo cor="var(--color-escolar)" /> Acessibilidade
+      </h2>
+      <form method="dialog" class="painel__fechar-form">
+        <button class="painel__fechar" data-fecha aria-label="Fechar acessibilidade"><Icone nome="xmark" /></button>
+      </form>
+    </header>
+    <p class="painel__sub">
+      Ajustes de leitura e navegação. Ficam salvos neste navegador e valem para
+      todas as páginas do caderno.
+    </p>
 
-  <h2 class="painel__titulo" id="a11y-titulo">
-    <Icone nome="universal-access" duo cor="var(--color-escolar)" /> Acessibilidade
-  </h2>
-  <p class="painel__sub">
-    Ajustes de leitura e navegação. Ficam salvos neste navegador e valem para
-    todas as páginas do caderno.
-  </p>
-
-  <div class="a11y">
-    <div class="a11y__linha">
-      <div class="a11y__info">
-        <span class="a11y__nome" id="a11y-texto">Tamanho do texto</span>
-        <span class="a11y__desc">Aumenta o corpo do texto sem quebrar o layout.</span>
+    <div class="a11y">
+      <div class="a11y__linha">
+        <div class="a11y__info">
+          <span class="a11y__nome" id="a11y-texto">Tamanho do texto</span>
+          <span class="a11y__desc">
+            Aumenta ou diminui só o texto das aulas e das questões, de 14 a 28 pixels. O padrão é 16.
+          </span>
+        </div>
+        <div class="a11y__controle-fonte" data-controle-fonte>
+          <div class="a11y__trilho-fonte">
+            <input type="range" class="a11y__slider-fonte" data-slider-fonte min="14" max="28" step="1" value="16" aria-labelledby="a11y-texto" />
+            <i class="a11y__marca-padrao" aria-hidden="true"></i>
+          </div>
+          <span class="a11y__fonte-display" data-fonte-display>16px · padrão</span>
+        </div>
       </div>
-      <div class="a11y__opcoes" role="group" aria-labelledby="a11y-texto">
-        <button type="button" class="a11y__opcao" data-texto-nivel="normal" aria-label="Tamanho padrão" title="Tamanho padrão">A</button>
-        <button type="button" class="a11y__opcao a11y__opcao--medio" data-texto-nivel="grande" aria-label="Tamanho grande" title="Tamanho grande">A</button>
-        <button type="button" class="a11y__opcao a11y__opcao--grande" data-texto-nivel="maior" aria-label="Tamanho maior" title="Tamanho maior">A</button>
+
+      <div class="a11y__linha">
+        <div class="a11y__info">
+          <span class="a11y__nome" id="a11y-espaco">Espaçamento de leitura</span>
+          <span class="a11y__desc">
+            Abre as entrelinhas e afasta as letras. Ajuda quem tem dislexia ou baixa visão.
+          </span>
+        </div>
+        <button
+          type="button"
+          class="a11y__chave"
+          data-a11y="espacamento"
+          role="switch"
+          aria-checked="false"
+          aria-labelledby="a11y-espaco"
+        ><span class="a11y__bolinha"></span></button>
+      </div>
+
+      <div class="a11y__linha">
+        <div class="a11y__info">
+          <span class="a11y__nome" id="a11y-contraste">Alto contraste</span>
+          <span class="a11y__desc">Reforça bordas e escurece o texto para leitura em tela clara demais.</span>
+        </div>
+        <button
+          type="button"
+          class="a11y__chave"
+          data-a11y="contraste"
+          role="switch"
+          aria-checked="false"
+          aria-labelledby="a11y-contraste"
+        ><span class="a11y__bolinha"></span></button>
+      </div>
+
+      <div class="a11y__linha">
+        <div class="a11y__info">
+          <span class="a11y__nome" id="a11y-movimento">Reduzir animações</span>
+          <span class="a11y__desc">
+            Desliga transições e entradas animadas. Já vem ligado se o sistema pedir menos movimento.
+          </span>
+        </div>
+        <button
+          type="button"
+          class="a11y__chave"
+          data-a11y="movimento"
+          role="switch"
+          aria-checked="false"
+          aria-labelledby="a11y-movimento"
+        ><span class="a11y__bolinha"></span></button>
+      </div>
+
+      <div class="a11y__linha">
+        <div class="a11y__info">
+          <span class="a11y__nome" id="a11y-links">Sublinhar todos os links</span>
+          <span class="a11y__desc">Deixa de depender só da cor para indicar o que é clicável.</span>
+        </div>
+        <button
+          type="button"
+          class="a11y__chave"
+          data-a11y="links"
+          role="switch"
+          aria-checked="false"
+          aria-labelledby="a11y-links"
+        ><span class="a11y__bolinha"></span></button>
+      </div>
+
+      <div class="a11y__linha">
+        <div class="a11y__info">
+          <span class="a11y__nome" id="a11y-atalhos">Atalhos de uma tecla</span>
+          <span class="a11y__desc">
+            A barra <kbd>/</kbd> abre a busca e as setas <kbd>&larr;</kbd> <kbd>&rarr;</kbd> trocam de
+            aula. Desligue se ativa sem querer, por exemplo ao usar comando de voz ou rolar a tela
+            ampliada. <kbd>Ctrl</kbd> + <kbd>K</kbd> continua funcionando.
+          </span>
+        </div>
+        <button
+          type="button"
+          class="a11y__chave"
+          data-a11y="atalhos"
+          role="switch"
+          aria-checked="true"
+          aria-labelledby="a11y-atalhos"
+        ><span class="a11y__bolinha"></span></button>
+      </div>
+
+      <div class="a11y__linha">
+        <div class="a11y__info">
+          <span class="a11y__nome" id="a11y-correcao">Correção imediata das questões</span>
+          <span class="a11y__desc">
+            Ao marcar uma alternativa, o caderno já diz se está certa. Desligue para marcar todas e
+            corrigir no fim, pelo botão Corrigir respostas. Pelo teclado, confirme com o botão
+            Confirmar resposta ou com <kbd>Enter</kbd>.
+          </span>
+        </div>
+        <button
+          type="button"
+          class="a11y__chave"
+          data-a11y="correcao"
+          role="switch"
+          aria-checked="true"
+          aria-labelledby="a11y-correcao"
+        ><span class="a11y__bolinha"></span></button>
+      </div>
+
+      <div class="a11y__linha">
+        <div class="a11y__info">
+          <span class="a11y__nome" id="a11y-brilho">Brilho do tema claro</span>
+          <span class="a11y__desc">
+            Escurece o tema claro para cansar menos a vista, sem trocar para o escuro. Não altera o
+            tema escuro. Abaixo de 80% o contraste de alguns textos diminui.
+          </span>
+        </div>
+        <div class="a11y__controle-fonte" data-controle-brilho>
+          <div class="a11y__trilho-fonte">
+            <input type="range" class="a11y__slider-fonte" data-slider-brilho min="75" max="100" step="5" value="100" aria-labelledby="a11y-brilho" />
+          </div>
+          <span class="a11y__fonte-display" data-brilho-display>100% · padrão</span>
+        </div>
       </div>
     </div>
 
-    <div class="a11y__linha">
-      <div class="a11y__info">
-        <span class="a11y__nome" id="a11y-espaco">Espaçamento de leitura</span>
-        <span class="a11y__desc">
-          Abre as entrelinhas e afasta as letras. Ajuda quem tem dislexia ou baixa visão.
-        </span>
-      </div>
-      <button
-        type="button"
-        class="a11y__chave"
-        data-a11y="espacamento"
-        role="switch"
-        aria-checked="false"
-        aria-labelledby="a11y-espaco"
-      ><span class="a11y__bolinha"></span></button>
+    <div class="a11y__restaurar">
+      <button type="button" class="painel__botao" data-acao="restaurar-a11y" disabled>
+        <Icone nome="rotate-left" /> Voltar ao padrão
+      </button>
     </div>
 
-    <div class="a11y__linha">
-      <div class="a11y__info">
-        <span class="a11y__nome" id="a11y-contraste">Alto contraste</span>
-        <span class="a11y__desc">Reforça bordas e escurece o texto para leitura em tela clara demais.</span>
-      </div>
-      <button
-        type="button"
-        class="a11y__chave"
-        data-a11y="contraste"
-        role="switch"
-        aria-checked="false"
-        aria-labelledby="a11y-contraste"
-      ><span class="a11y__bolinha"></span></button>
-    </div>
+    <h3 class="a11y__subtitulo"><Icone nome="keyboard" /> Atalhos de teclado</h3>
+    <ul class="a11y__atalhos">
+      <li><kbd>Tab</kbd> percorre os controles da página</li>
+      <li><kbd>Ctrl</kbd> + <kbd>K</kbd> abre e fecha a busca; <kbd>/</kbd> também abre</li>
+      <li><kbd>&larr;</kbd> <kbd>&rarr;</kbd> trocam de aula dentro da matéria</li>
+      <li><kbd>Esc</kbd> fecha qualquer painel aberto</li>
+      <li>No quiz, <kbd>&uarr;</kbd> <kbd>&darr;</kbd> escolhem a alternativa</li>
+    </ul>
 
-    <div class="a11y__linha">
-      <div class="a11y__info">
-        <span class="a11y__nome" id="a11y-movimento">Reduzir animações</span>
-        <span class="a11y__desc">
-          Desliga transições e entradas animadas. Já vem ligado se o sistema pedir menos movimento.
-        </span>
-      </div>
-      <button
-        type="button"
-        class="a11y__chave"
-        data-a11y="movimento"
-        role="switch"
-        aria-checked="false"
-        aria-labelledby="a11y-movimento"
-      ><span class="a11y__bolinha"></span></button>
-    </div>
-
-    <div class="a11y__linha">
-      <div class="a11y__info">
-        <span class="a11y__nome" id="a11y-links">Sublinhar todos os links</span>
-        <span class="a11y__desc">Deixa de depender só da cor para indicar o que é clicável.</span>
-      </div>
-      <button
-        type="button"
-        class="a11y__chave"
-        data-a11y="links"
-        role="switch"
-        aria-checked="false"
-        aria-labelledby="a11y-links"
-      ><span class="a11y__bolinha"></span></button>
-    </div>
-
-    <div class="a11y__linha">
-      <div class="a11y__info">
-        <span class="a11y__nome" id="a11y-atalhos">Atalhos de uma tecla</span>
-        <span class="a11y__desc">
-          A barra <kbd>/</kbd> abre a busca e as setas <kbd>&larr;</kbd> <kbd>&rarr;</kbd> trocam de
-          aula. Desligue se ativa sem querer, por exemplo ao usar comando de voz ou rolar a tela
-          ampliada. <kbd>Ctrl</kbd> + <kbd>K</kbd> continua funcionando.
-        </span>
-      </div>
-      <button
-        type="button"
-        class="a11y__chave"
-        data-a11y="atalhos"
-        role="switch"
-        aria-checked="true"
-        aria-labelledby="a11y-atalhos"
-      ><span class="a11y__bolinha"></span></button>
-    </div>
+    <p class="a11y__rodape">
+      <Icone nome="universal-access" />
+      <span>
+        <a href={u('/acessibilidade')}>Declaração de acessibilidade</a>: o que o site já oferece,
+        limites conhecidos e como relatar uma barreira.
+      </span>
+    </p>
   </div>
-
-  <h3 class="a11y__subtitulo"><Icone nome="keyboard" /> Atalhos de teclado</h3>
-  <ul class="a11y__atalhos">
-    <li><kbd>Tab</kbd> percorre os controles da página</li>
-    <li><kbd>Ctrl</kbd> + <kbd>K</kbd> ou <kbd>/</kbd> abre a busca</li>
-    <li><kbd>&larr;</kbd> <kbd>&rarr;</kbd> trocam de aula dentro da matéria</li>
-    <li><kbd>Esc</kbd> fecha qualquer painel aberto</li>
-    <li>No quiz, <kbd>&uarr;</kbd> <kbd>&darr;</kbd> escolhem a alternativa</li>
-  </ul>
-
-  <p class="a11y__rodape">
-    <Icone nome="universal-access" />
-    <a href={u('/acessibilidade')}>Declaração de acessibilidade</a>: o que o site já oferece,
-    limites conhecidos e como relatar uma barreira.
-  </p>
 </dialog>
 
 <style>
@@ -211,8 +281,51 @@ import { u } from '../lib/url';
     background: var(--color-surface);
     color: var(--color-ink);
     box-shadow: var(--shadow-lift);
-    overflow: hidden auto;
+    overflow: hidden;
+  }
+  /* Painéis que rolam inteiros: o diálogo só enquadra e a área interna rola, para a
+     barra de rolagem própria (barra-rolagem.ts) ficar parada sobre a borda. */
+  .painel[data-rolagem] {
+    padding: 0;
+    /* A trilha da barra de rolagem começa abaixo do cabeçalho fixo. */
+    --folga-topo: 4.2rem;
+  }
+  .painel[data-rolagem][open] {
+    display: flex;
+    flex-direction: column;
+  }
+  .painel__area {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
     overscroll-behavior: contain;
+    /* À direita sobra a faixa da barra de rolagem (barra de 24px + 4px de recuo + respiro),
+       sem encostar nos controles. O respiro de cima fica no cabeçalho fixo, para ele colar
+       na borda ao rolar. */
+    --faixa-barra: 2.6rem;
+    padding: 0 var(--faixa-barra) 1.1rem 1.25rem;
+  }
+  /* Cabeçalho fixo dos painéis que rolam: ícone, título e botão de fechar não saem da
+     tela. Sticky dentro da área que rola; a margem negativa estende o fundo até as bordas. */
+  .painel__cabeca {
+    position: sticky;
+    top: 0;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    margin: 0 calc(-1 * var(--faixa-barra)) 1rem -1.25rem;
+    padding: 1rem 1.5rem 0.7rem 1.25rem;
+    background: var(--color-surface);
+    border-bottom: 1px solid var(--color-line);
+  }
+  .painel__cabeca .painel__titulo {
+    margin: 0;
+  }
+  .painel__cabeca .painel__fechar-form {
+    position: static;
+    flex-shrink: 0;
   }
   .painel[open] {
     animation: painel-entra 0.18s var(--ease) both;
@@ -263,20 +376,20 @@ import { u } from '../lib/url';
     align-items: center;
     gap: 0.5rem;
     font-family: var(--font-display);
-    font-size: 1.15rem;
+    font-size: calc(1.15rem * var(--escala-texto, 1));
     font-weight: 700;
     margin: 0 0 0.3rem;
   }
   .painel__sub {
     font-family: var(--font-body);
-    font-size: 0.85rem;
+    font-size: calc(0.85rem * var(--escala-texto, 1));
     color: var(--color-ink-soft);
     margin: 0 0 1.25rem;
     max-width: 30rem;
   }
   .painel__carregando {
     font-family: var(--font-body);
-    font-size: 0.85rem;
+    font-size: calc(0.85rem * var(--escala-texto, 1));
     color: var(--color-ink-soft);
   }
   .painel__rodape {
@@ -297,7 +410,7 @@ import { u } from '../lib/url';
     background: transparent;
     color: var(--color-ink-soft);
     font-family: var(--font-display);
-    font-size: 0.78rem;
+    font-size: calc(0.78rem * var(--escala-texto, 1));
     font-weight: 600;
     cursor: pointer;
   }
@@ -336,46 +449,103 @@ import { u } from '../lib/url';
   }
   .a11y__nome {
     font-family: var(--font-display);
-    font-size: 0.88rem;
+    font-size: calc(0.88rem * var(--escala-texto, 1));
     font-weight: 700;
   }
   .a11y__desc {
     font-family: var(--font-body);
-    font-size: 0.78rem;
+    font-size: calc(0.78rem * var(--escala-texto, 1));
     line-height: 1.5;
     color: var(--color-ink-soft);
     max-width: 26rem;
   }
 
-  .a11y__opcoes {
+  /* Slider de tamanho de fonte */
+  .a11y__controle-fonte {
     display: flex;
-    gap: 0.3rem;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.35rem;
     flex-shrink: 0;
   }
-  .a11y__opcao {
-    display: grid;
-    place-items: center;
-    width: 2.1rem;
-    height: 2.1rem;
-    border: 1px solid var(--color-controle);
-    border-radius: 0.5rem;
-    background: transparent;
-    color: var(--color-ink-soft);
-    font-family: var(--font-display);
-    font-size: 0.75rem;
-    font-weight: 700;
+  .a11y__trilho-fonte {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 8rem;
+  }
+  /* Risco que marca onde fica o tamanho padrão (16px = 2/14 do percurso). */
+  .a11y__marca-padrao {
+    position: absolute;
+    top: 50%;
+    left: calc(0.7rem + (100% - 1.4rem) * 0.142857);
+    width: 2px;
+    height: 0.95rem;
+    transform: translate(-50%, -50%);
+    background: var(--color-ink-soft);
+    border-radius: 1px;
+    pointer-events: none;
+  }
+  .a11y__slider-fonte {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 5px;
+    -webkit-appearance: none;
+    appearance: none;
+    background: linear-gradient(
+      to right,
+      var(--color-ink-soft),
+      var(--color-ink)
+    );
+    border-radius: 999px;
+    outline: none;
     cursor: pointer;
   }
-  .a11y__opcao--medio { font-size: 0.95rem; }
-  .a11y__opcao--grande { font-size: 1.15rem; }
-  .a11y__opcao:hover {
-    color: var(--color-ink);
-    border-color: color-mix(in srgb, var(--color-ink) 35%, var(--color-line));
-  }
-  .a11y__opcao[aria-pressed='true'] {
+  .a11y__slider-fonte::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 1.4rem;
+    height: 1.4rem;
+    border-radius: 50%;
     background: var(--color-ink);
-    border-color: var(--color-ink);
-    color: var(--color-paper);
+    border: 2px solid var(--color-paper);
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    transition: transform 0.15s var(--ease);
+  }
+  .a11y__slider-fonte::-webkit-slider-thumb:hover {
+    transform: scale(1.15);
+  }
+  .a11y__slider-fonte::-moz-range-thumb {
+    width: 1.4rem;
+    height: 1.4rem;
+    border-radius: 50%;
+    background: var(--color-ink);
+    border: 2px solid var(--color-paper);
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    transition: transform 0.15s var(--ease);
+  }
+  .a11y__slider-fonte::-moz-range-thumb:hover {
+    transform: scale(1.15);
+  }
+  .a11y__fonte-display {
+    font-family: var(--font-display);
+    font-size: calc(0.85rem * var(--escala-texto, 1));
+    font-weight: 700;
+    color: var(--color-ink);
+    white-space: nowrap;
+    text-align: center;
+  }
+  .a11y__restaurar {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 0.9rem;
+  }
+  .a11y__restaurar .painel__botao:disabled {
+    opacity: 0.5;
+    cursor: default;
   }
 
   /* Interruptor: é um <button role="switch">, então teclado e leitor de tela
@@ -417,33 +587,33 @@ import { u } from '../lib/url';
     align-items: center;
     gap: 0.45rem;
     font-family: var(--font-display);
-    font-size: 0.7rem;
+    font-size: calc(0.7rem * var(--escala-texto, 1));
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.11em;
     color: var(--color-ink-soft);
-    margin: 1.5rem 0 0.7rem;
+    margin: 1.1rem 0 0.6rem;
   }
   .a11y__atalhos {
     list-style: none;
     margin: 0;
     padding: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0.45rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+    gap: 0.5rem 1.25rem;
     font-family: var(--font-body);
-    font-size: 0.82rem;
+    font-size: calc(0.82rem * var(--escala-texto, 1));
     color: var(--color-ink-soft);
   }
   .a11y__rodape {
     display: flex;
     align-items: baseline;
     gap: 0.5rem;
-    margin: 1.4rem 0 0;
-    padding-top: 1rem;
+    margin: 1.1rem 0 0;
+    padding-top: 0.85rem;
     border-top: 1px solid var(--color-line);
     font-family: var(--font-body);
-    font-size: 0.82rem;
+    font-size: calc(0.82rem * var(--escala-texto, 1));
     line-height: 1.55;
     color: var(--color-ink-soft);
   }
@@ -459,7 +629,7 @@ import { u } from '../lib/url';
     border: 1px solid var(--color-line);
     border-radius: 4px;
     font-family: var(--font-display);
-    font-size: 0.72rem;
+    font-size: calc(0.72rem * var(--escala-texto, 1));
     color: var(--color-ink);
   }
 
@@ -477,14 +647,33 @@ import { u } from '../lib/url';
     display: flex;
     align-items: center;
     gap: 0.6rem;
-    padding: 0.15rem 2.4rem 0.85rem 0.2rem;
-    border-bottom: 1px solid var(--color-controle);
+    /* Caixa inteira: o X mora dentro dela, alinhado com a lupa e o texto. */
+    padding: 0.3rem 0.4rem 0.3rem 0.85rem;
+    border: 1px solid var(--color-controle);
+    border-radius: 0.7rem;
+    background: color-mix(in srgb, var(--color-paper-dark) 35%, var(--color-surface));
+    transition: border-color 0.18s var(--ease), box-shadow 0.18s var(--ease),
+      background-color 0.18s var(--ease);
   }
-  /* O campo tira o contorno do navegador: o anel vai no conjunto lupa + campo. */
+  /* Foco: a caixa toda muda de cor. O "anel" é um único box-shadow de 1px colado na
+     borda (borda + anel = 2px de uma cor só), sem outline com recuo, que formava
+     uma segunda camada. */
   .busca__campo:focus-within {
-    outline: 2px solid var(--color-escolar);
-    outline-offset: 2px;
-    border-radius: 0.4rem;
+    border-color: var(--color-escolar);
+    box-shadow: 0 0 0 1px var(--color-escolar);
+    background: color-mix(in srgb, var(--color-escolar) 9%, var(--color-surface));
+  }
+  .busca__campo:focus-within .busca__lupa {
+    color: var(--color-escolar);
+  }
+  .busca__campo .painel__fechar-form {
+    position: static;
+    margin: 0 0 0 auto;
+  }
+  .busca__campo .painel__fechar {
+    width: 1.9rem;
+    height: 1.9rem;
+    border-radius: 0.5rem;
   }
   .busca__lupa {
     color: var(--color-ink-soft);
@@ -496,7 +685,7 @@ import { u } from '../lib/url';
     background: transparent;
     color: var(--color-ink);
     font-family: var(--font-display);
-    font-size: 1.02rem;
+    font-size: calc(1.02rem * var(--escala-texto, 1));
     font-weight: 500;
     min-width: 0;
   }
@@ -510,16 +699,25 @@ import { u } from '../lib/url';
 
   .busca__contador {
     font-family: var(--font-display);
-    font-size: 0.66rem;
+    font-size: calc(0.66rem * var(--escala-texto, 1));
     text-transform: uppercase;
     letter-spacing: 0.1em;
     color: var(--color-ink-soft);
     margin: 0.9rem 0 0.5rem;
   }
+  .busca__rolagem {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 0;
+  }
   .busca__lista {
     list-style: none;
     margin: 0;
-    padding: 0;
+    /* Faixa da barra (16px) mais um respiro, para ela não cobrir o item nem a seta. */
+    padding: 0 1.8rem 0 0;
+    overscroll-behavior: contain;
     display: flex;
     flex-direction: column;
     gap: 0.15rem;
@@ -532,7 +730,7 @@ import { u } from '../lib/url';
     align-items: center;
     gap: 0.5rem;
     font-family: var(--font-body);
-    font-size: 0.88rem;
+    font-size: calc(0.88rem * var(--escala-texto, 1));
     color: var(--color-ink-soft);
     padding: 1.5rem 0.4rem;
   }
@@ -544,7 +742,7 @@ import { u } from '../lib/url';
     padding-top: 0.7rem;
     border-top: 1px solid var(--color-line);
     font-family: var(--font-display);
-    font-size: 0.68rem;
+    font-size: calc(0.68rem * var(--escala-texto, 1));
     color: var(--color-ink-soft);
   }
   .busca__rodape kbd {
@@ -554,12 +752,55 @@ import { u } from '../lib/url';
     border: 1px solid var(--color-line);
     border-radius: 4px;
     font-family: inherit;
-    font-size: 0.66rem;
+    font-size: calc(0.66rem * var(--escala-texto, 1));
   }
 </style>
 
 <!-- Estilos dos itens da busca ficam globais: a lista é montada em JS. -->
 <style is:global>
+/* Itens do sumário da aula: a lista é montada em JS (sumario.ts), então o estilo é global. */
+.sumario__lista,
+.sumario__sublista {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.sumario__secao + .sumario__secao {
+  margin-top: 0.35rem;
+}
+.sumario__sublista {
+  margin: 0.1rem 0 0.4rem 0.6rem;
+  padding-left: 0.8rem;
+  border-left: 2px solid var(--color-line);
+}
+.sumario__item {
+  display: block;
+  width: 100%;
+  padding: 0.5rem 0.7rem;
+  border: 0;
+  border-radius: 0.5rem;
+  background: transparent;
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  line-height: 1.4;
+  text-align: left;
+  cursor: pointer;
+  overflow-wrap: anywhere;
+}
+.sumario__item--secao {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+.sumario__item:hover {
+  background: var(--color-paper-dark);
+}
+.sumario__item:focus-visible {
+  outline: 2px solid var(--color-escolar);
+  outline-offset: -2px;
+}
+
   .busca-item {
     display: flex;
     align-items: center;
@@ -577,7 +818,7 @@ import { u } from '../lib/url';
   }
   .busca-item__icone {
     flex-shrink: 0;
-    font-size: 0.82rem;
+    font-size: calc(0.82rem * var(--escala-texto, 1));
     color: var(--color-escolar);
   }
   .busca-item__texto {
@@ -590,19 +831,19 @@ import { u } from '../lib/url';
   /* Sem reticências: com texto ampliado, o título cortado esconderia a aula. */
   .busca-item__titulo {
     font-family: var(--font-display);
-    font-size: 0.9rem;
+    font-size: calc(0.9rem * var(--escala-texto, 1));
     font-weight: 600;
     overflow-wrap: anywhere;
   }
   .busca-item__meta {
     font-family: var(--font-body);
-    font-size: 0.74rem;
+    font-size: calc(0.74rem * var(--escala-texto, 1));
     color: var(--color-ink-soft);
     overflow-wrap: anywhere;
   }
   .busca-item__marca {
     flex-shrink: 0;
-    font-size: 0.72rem;
+    font-size: calc(0.72rem * var(--escala-texto, 1));
     color: var(--color-ink-soft);
     opacity: 0.5;
   }
@@ -647,18 +888,18 @@ import { u } from '../lib/url';
     position: relative;
     z-index: 1;
     font-family: var(--font-display);
-    font-size: 1.05rem;
+    font-size: calc(1.05rem * var(--escala-texto, 1));
     font-weight: 700;
   }
   .prog-resumo__texto strong {
     display: block;
     font-family: var(--font-display);
-    font-size: 1rem;
+    font-size: calc(1rem * var(--escala-texto, 1));
     margin-bottom: 0.15rem;
   }
   .prog-resumo__texto span {
     font-family: var(--font-body);
-    font-size: 0.82rem;
+    font-size: calc(0.82rem * var(--escala-texto, 1));
     color: var(--color-ink-soft);
   }
   .prog-lista {
@@ -677,12 +918,12 @@ import { u } from '../lib/url';
   }
   .prog-linha__nome {
     font-family: var(--font-display);
-    font-size: 0.82rem;
+    font-size: calc(0.82rem * var(--escala-texto, 1));
     font-weight: 600;
   }
   .prog-linha__num {
     font-family: var(--font-display);
-    font-size: 0.72rem;
+    font-size: calc(0.72rem * var(--escala-texto, 1));
     color: var(--color-ink-soft);
   }
   .prog-barra {

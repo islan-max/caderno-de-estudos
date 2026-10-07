@@ -1,0 +1,376 @@
+/* ---------------------------------------------------------------------------
+ * Barra de rolagem: o corretivo de fita do caderno.
+ * Comportamento em src/scripts/barra-rolagem.ts.
+ *
+ * Trilho  = pauta tracejada, como a linha de destacar da folha (papel ainda não lido).
+ * Fita    = a fita corretiva que o corretivo deixa colada por onde a leitura já
+ *           passou. Ela fica no ponto mais longe a que se chegou, mesmo se voltar.
+ * Polegar = o corretivo: corpo na cor da aba/matéria da página (--acento, definida no
+ *           <body> por Base.astro), carretel no corpo e rolete na ponta, que é por onde
+ *           a fita sai.
+ * Divisórias = uma marca por seção da aula, como as abas de um fichário.
+ * Recado  = post-it com a seção atual, só enquanto arrasta ou aponta uma divisória.
+ * ------------------------------------------------------------------------- */
+
+/* Base para o que não ganha barra própria (tabelas largas, blocos de código) e
+   para quando o JS não carregou: a barra nativa, fina, nas cores do caderno. */
+body {
+  scrollbar-color: var(--acento, var(--color-ink-soft)) var(--color-paper-dark);
+}
+* {
+  scrollbar-width: thin;
+}
+
+/* A nativa só some depois que a própria foi montada (o script marca o alvo). */
+[data-barra-propria] {
+  scrollbar-width: none;
+}
+[data-barra-propria]::-webkit-scrollbar {
+  display: none;
+}
+
+.barra {
+  --larg: 24px;
+  --folga: 10px;
+  position: absolute;
+  top: var(--folga-topo, var(--folga));
+  bottom: var(--folga);
+  right: 2px;
+  width: var(--larg);
+  z-index: 5;
+  opacity: 0.6;
+  transition: opacity 0.2s var(--ease);
+  user-select: none;
+  -webkit-user-select: none;
+}
+.barra[hidden] {
+  display: none;
+}
+.barra[data-alvo='pagina'] {
+  position: fixed;
+  /* Abaixo da miniatura da marca (70); acima do conteúdo. */
+  z-index: 60;
+  /* O trilho vai de ponta a ponta da janela, colado no topo e no fim, para o corretivo
+     "tocar" o começo e o final da página. */
+  top: 0;
+  bottom: 0;
+  right: 0;
+}
+.barra[data-alvo='pagina'][data-eixo='x'] {
+  top: auto;
+  bottom: 0;
+  left: 2px;
+  right: 2px;
+  width: auto;
+  height: var(--larg);
+}
+.barra:hover,
+.barra[data-ativa],
+.barra[data-arrastando] {
+  opacity: 1;
+}
+
+/* Trilho: pauta tracejada de 2px, centrada na faixa de toque. */
+.barra {
+  --fita: #fffef8;
+}
+html[data-tema='escuro'] .barra {
+  --fita: #d9d6cb;
+}
+.barra__trilho {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 11px;
+  width: 2px;
+  background: repeating-linear-gradient(
+    to bottom,
+    var(--color-line) 0 4px,
+    transparent 4px 8px
+  );
+}
+.barra[data-eixo='x'] .barra__trilho {
+  top: 11px;
+  bottom: auto;
+  left: 0;
+  right: 0;
+  width: auto;
+  height: 2px;
+  background: repeating-linear-gradient(to right, var(--color-line) 0 4px, transparent 4px 8px);
+}
+
+/* Fita: ocupa o trilho inteiro e o script a encolhe (scale) até o ponto alcançado;
+   só transform muda a cada quadro, então a rolagem não repinta nada. */
+.barra__fita {
+  position: absolute;
+  top: 0;
+  right: -3px;
+  width: 8px;
+  height: 100%;
+  transform: scaleY(0);
+  transform-origin: 50% 0;
+  background:
+    linear-gradient(90deg, rgb(0 0 0 / 0.07), transparent 30%, transparent 70%, rgb(0 0 0 / 0.07)),
+    var(--fita);
+  border-inline: 1px solid var(--color-line);
+  will-change: transform;
+  transition: width 0.18s var(--ease), right 0.18s var(--ease);
+}
+.barra[data-eixo='x'] .barra__fita {
+  top: -3px;
+  right: auto;
+  left: 0;
+  width: 100%;
+  height: 8px;
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  background:
+    linear-gradient(180deg, rgb(0 0 0 / 0.07), transparent 30%, transparent 70%, rgb(0 0 0 / 0.07)),
+    var(--fita);
+  border-inline: 0;
+  border-block: 1px solid var(--color-line);
+}
+
+/* Corretivo: corpo de 18px (20px ao apontar/arrastar) e, na ponta, o nariz de 8px por onde
+   a fita sai (o script mede o comprimento total, 44px, já com o nariz).
+   Camadas do corpo, de cima para baixo: brilho do plástico à esquerda, sombra à direita,
+   ranhuras de pegada no meio e a cor da aba. O carretel (::before) é a janela redonda no
+   topo; o nariz (::after) termina no rolete claro, que é a fita saindo. */
+.barra__polegar {
+  position: absolute;
+  top: 0;
+  right: -8px;
+  width: 18px;
+  border-radius: 9px 9px 5px 5px;
+  background:
+    linear-gradient(90deg, rgb(255 255 255 / 0.42) 0 18%, transparent 18% 55%, rgb(0 0 0 / 0.2) 100%),
+    repeating-linear-gradient(to bottom, rgb(0 0 0 / 0.26) 0 1px, transparent 1px 3px) 50% 22px / 10px 11px no-repeat,
+    var(--acento, var(--color-ink));
+  filter: drop-shadow(0 1px 1px rgb(0 0 0 / 0.35));
+  /* O dedo que arrasta o corretivo não pode rolar a página junto. */
+  touch-action: none;
+  cursor: grab;
+  will-change: transform;
+  transition: width 0.18s var(--ease), right 0.18s var(--ease);
+}
+.barra__polegar::before {
+  content: '';
+  position: absolute;
+  top: 5px;
+  left: 50%;
+  width: 12px;
+  height: 12px;
+  margin-left: -6px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle, rgb(0 0 0 / 0.55) 0 1.6px, transparent 2px),
+    var(--fita);
+  box-shadow: inset 0 0 0 1px rgb(0 0 0 / 0.28);
+}
+.barra__polegar::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  width: 10px;
+  height: 9px;
+  margin-left: -5px;
+  border-radius: 1px 1px 5px 5px;
+  background:
+    linear-gradient(90deg, rgb(255 255 255 / 0.42) 0 25%, transparent 25% 60%, rgb(0 0 0 / 0.2) 100%),
+    linear-gradient(to bottom, var(--acento, var(--color-ink)) 0 5px, var(--fita) 5px);
+}
+.barra[data-eixo='x'] .barra__polegar {
+  top: -8px;
+  right: auto;
+  left: 0;
+  width: auto;
+  height: 18px;
+  border-radius: 9px 5px 5px 9px;
+  background:
+    linear-gradient(180deg, rgb(255 255 255 / 0.42) 0 18%, transparent 18% 55%, rgb(0 0 0 / 0.2) 100%),
+    repeating-linear-gradient(to right, rgb(0 0 0 / 0.26) 0 1px, transparent 1px 3px) 22px 50% / 11px 10px no-repeat,
+    var(--acento, var(--color-ink));
+}
+.barra[data-eixo='x'] .barra__polegar::before {
+  top: 50%;
+  left: 5px;
+  margin: -6px 0 0;
+}
+.barra[data-eixo='x'] .barra__polegar::after {
+  top: 50%;
+  bottom: auto;
+  left: auto;
+  right: -8px;
+  width: 9px;
+  height: 10px;
+  margin: -5px 0 0;
+  border-radius: 1px 5px 5px 1px;
+  background:
+    linear-gradient(180deg, rgb(255 255 255 / 0.42) 0 25%, transparent 25% 60%, rgb(0 0 0 / 0.2) 100%),
+    linear-gradient(to right, var(--acento, var(--color-ink)) 0 5px, var(--fita) 5px);
+}
+.barra:hover .barra__polegar,
+.barra[data-ativa] .barra__polegar,
+.barra[data-arrastando] .barra__polegar {
+  width: 20px;
+  right: -9px;
+}
+.barra:hover .barra__fita,
+.barra[data-ativa] .barra__fita,
+.barra[data-arrastando] .barra__fita {
+  width: 10px;
+  right: -4px;
+}
+.barra[data-eixo='x']:hover .barra__polegar,
+.barra[data-eixo='x'][data-ativa] .barra__polegar,
+.barra[data-eixo='x'][data-arrastando] .barra__polegar {
+  width: auto;
+  height: 20px;
+  top: -9px;
+  right: auto;
+}
+.barra[data-eixo='x']:hover .barra__fita,
+.barra[data-eixo='x'][data-ativa] .barra__fita,
+.barra[data-eixo='x'][data-arrastando] .barra__fita {
+  width: 100%;
+  height: 10px;
+  top: -4px;
+  right: auto;
+}
+.barra[data-arrastando] .barra__polegar {
+  cursor: grabbing;
+}
+
+/* Divisórias: aparecem junto com a barra; a da seção atual usa a cor da aba. */
+.barra__marca {
+  position: absolute;
+  right: 6px;
+  width: 9px;
+  height: 2px;
+  margin-top: -1px;
+  border-radius: 1px;
+  background: var(--color-ink-soft);
+  opacity: 0;
+  transition: opacity 0.18s var(--ease), width 0.18s var(--ease);
+  cursor: pointer;
+}
+/* Área de clique de 24px de altura, maior que a marca visível. */
+.barra__marca::before {
+  content: '';
+  position: absolute;
+  inset: -11px -5px -11px -8px;
+}
+.barra:hover .barra__marca,
+.barra[data-ativa] .barra__marca,
+.barra[data-arrastando] .barra__marca {
+  opacity: 0.75;
+}
+.barra .barra__marca[data-atual] {
+  opacity: 1;
+  width: 14px;
+  background: var(--acento, var(--color-ink));
+}
+.barra .barra__marca:hover {
+  opacity: 1;
+  width: 14px;
+}
+
+/* Recado: post-it ao lado do polegar, ligeiramente torto. */
+.barra__rotulo {
+  position: absolute;
+  right: 30px;
+  max-width: min(16rem, 62vw);
+  padding: 0.3rem 0.6rem;
+  border: 1px solid var(--color-line);
+  border-left: 3px solid var(--acento, var(--color-ink));
+  border-radius: 0.3rem;
+  background: var(--color-surface);
+  color: var(--color-ink);
+  box-shadow: var(--shadow-lift);
+  font-family: var(--font-display);
+  font-size: 0.74rem;
+  font-weight: 600;
+  line-height: 1.3;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(-50%) rotate(-1.5deg) scale(0.96);
+  transition: opacity 0.14s var(--ease), transform 0.14s var(--ease);
+}
+.barra__rotulo[data-visivel='true'] {
+  opacity: 1;
+  transform: translateY(-50%) rotate(-1.5deg);
+}
+.barra[data-eixo='x'] .barra__rotulo {
+  display: none;
+}
+
+/* Diálogos e listas: a barra mora dentro do contêiner e respeita seus cantos. */
+/* O topo real vem do script (logo abaixo do cabeçalho do painel); 3.4rem é só o
+   valor de partida. Embaixo a folga é pequena para o corretivo chegar ao fim; o
+   recuo de 4px à direita o mantém longe do canto arredondado, que o cortaria. */
+.painel .barra {
+  --folga-topo: 3.4rem;
+  --folga: 0.3rem;
+  right: 4px;
+  z-index: 3;
+}
+.painel--busca .barra {
+  right: 0;
+  --larg: 16px;
+  --folga-topo: 0.1rem;
+  --folga: 0.1rem;
+}
+.painel--busca .barra__trilho {
+  right: 7px;
+}
+
+/* Toque: faixa maior para o dedo, polegar fino e só durante a rolagem. */
+@media (pointer: coarse) {
+  .barra {
+    --larg: 28px;
+    opacity: 0;
+  }
+  .barra[data-ativa],
+  .barra[data-arrastando] {
+    opacity: 1;
+  }
+  .barra__marca {
+    display: none;
+  }
+}
+
+/* Alto contraste: trilho, fita e corretivo na tinta mais forte do tema. */
+html[data-contraste='sim'] .barra__trilho {
+  background: repeating-linear-gradient(to bottom, var(--color-ink) 0 4px, transparent 4px 8px);
+}
+html[data-contraste='sim'] .barra[data-eixo='x'] .barra__trilho {
+  background: repeating-linear-gradient(to right, var(--color-ink) 0 4px, transparent 4px 8px);
+}
+html[data-contraste='sim'] .barra__fita {
+  border-color: var(--color-ink);
+}
+html[data-contraste='sim'] .barra__polegar {
+  background: var(--color-ink);
+}
+
+/* Cores Forçadas e impressão: a barra do sistema, sem enfeite. */
+@media (forced-colors: active) {
+  .barra {
+    display: none;
+  }
+  [data-barra-propria] {
+    scrollbar-width: auto;
+  }
+  [data-barra-propria]::-webkit-scrollbar {
+    display: block;
+  }
+}
+@media print {
+  .barra {
+    display: none;
+  }
+}

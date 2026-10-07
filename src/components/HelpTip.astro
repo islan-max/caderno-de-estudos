@@ -36,7 +36,7 @@ const id = `help-${title
     background: var(--color-paper);
     color: var(--color-ink-soft);
     font-family: var(--font-mono);
-    font-size: 0.7rem;
+    font-size: calc(0.7rem * var(--escala-texto, 1));
     font-weight: 700;
     line-height: 1;
     transition: background-color 0.15s, color 0.15s, border-color 0.15s;
@@ -70,7 +70,7 @@ const id = `help-${title
     border: none;
     background: transparent;
     color: var(--color-ink-soft);
-    font-size: 1.1rem;
+    font-size: calc(1.1rem * var(--escala-texto, 1));
     line-height: 1;
   }
   .help-close:hover {

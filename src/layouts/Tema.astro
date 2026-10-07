@@ -4,6 +4,7 @@ import Recursos from '../components/Recursos.astro';
 import PaginacaoAula from '../components/PaginacaoAula.astro';
 import Icone from '../components/Icone.astro';
 import Accordion from '../components/Accordion.astro';
+import FerramentasAula from '../components/FerramentasAula.astro';
 import type { AulaIndexada } from '../lib/aulas';
 
 interface Crumb {
@@ -16,6 +17,8 @@ interface Props {
   relevance: string;
   quickSummary?: string;
   resources?: any;
+  /** Programas, contas e materiais para acompanhar e praticar a aula. */
+  ferramentas?: { nome: string; uso: string; custo?: string; link?: string; opcional: boolean }[];
   active: 'enem' | 'escolar' | 'ds';
   breadcrumb: Crumb[];
   /** Identificador da aula no progresso local, ex.: "enem/fisica/optica". */
@@ -38,6 +41,7 @@ const {
   relevance,
   quickSummary,
   resources,
+  ferramentas,
   active,
   breadcrumb,
   aulaId,
@@ -99,11 +103,19 @@ const corDaMateria = `--materia: var(--color-${destaque}); --materia-soft: var(-
       <button type="button" class="acao" data-acao="copiar-link">
         <Icone nome="link" /> Copiar link
       </button>
-      <button type="button" class="acao acao--so-icone" data-acao="texto" data-nivel="normal" title="Tamanho do texto" aria-label="Tamanho do texto: normal. Ative para trocar">
+      <button type="button" class="acao" data-abre="sumario">
+        <Icone nome="list-ol" /> Sumário
+      </button>
+      <button type="button" class="acao acao--so-icone" data-acao="texto" title="Tamanho do texto" aria-label="Tamanho do texto">
         <Icone nome="font" />
       </button>
     </div>
   )}
+
+  <!-- Sumário sempre à mão: aparece junto do botão de voltar ao topo, depois de rolar. -->
+  <button type="button" class="sumario-flutuante" data-flutuante data-abre="sumario" aria-hidden="true" tabindex="-1">
+    <Icone nome="list-ol" /> Sumário
+  </button>
 
   <!-- Raio-X do tema: o resumo e a relevância, juntos e recolhidos, para a
        aula começar direto no conteúdo sem perder essas duas informações. -->
@@ -112,6 +124,7 @@ const corDaMateria = `--materia: var(--color-${destaque}); --materia-soft: var(-
       titulo="Raio-X do tema"
       dica={active === 'enem' ? 'O essencial em poucas linhas e por que o tema cai no ENEM' : 'O essencial em poucas linhas e por que o tema importa'}
       icone="magnifying-glass"
+      rolagem={false}
     >
       {quickSummary && (
         <div class="raio-x__bloco">
@@ -126,9 +139,16 @@ const corDaMateria = `--materia: var(--color-${destaque}); --materia-soft: var(-
     </Accordion>
   </div>
 
+  {ferramentas && ferramentas.length > 0 && (
+    <div class="raio-x raio-x--ferramentas" style={`--acordeao-cor: var(--color-${destaque}); --i: 3;`} data-surgir>
+      <FerramentasAula ferramentas={ferramentas} />
+    </div>
+  )}
+
   <article
     class="prose prose-tema max-w-none"
     data-conteudo-aula
+    data-secao={active}
     data-gabarito={gabarito ? JSON.stringify(gabarito) : undefined}
   >
     <slot />
@@ -181,7 +201,7 @@ const corDaMateria = `--materia: var(--color-${destaque}); --materia-soft: var(-
     background: transparent;
     color: var(--color-ink-soft);
     font-family: var(--font-display);
-    font-size: 0.76rem;
+    font-size: calc(0.76rem * var(--escala-texto, 1));
     font-weight: 600;
     cursor: pointer;
   }
@@ -189,6 +209,52 @@ const corDaMateria = `--materia: var(--color-${destaque}); --materia-soft: var(-
     color: var(--color-ink);
     border-color: color-mix(in srgb, var(--color-ink) 32%, var(--color-line));
     background: var(--color-paper-dark);
+  }
+  /* Pílula fixa, à esquerda do botão de voltar ao topo (Base.astro). */
+  .sumario-flutuante {
+    position: fixed;
+    right: 5.75rem;
+    bottom: 1.25rem;
+    z-index: 70;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    height: 2.9rem;
+    padding: 0 1.1rem;
+    border: 1px solid var(--color-line);
+    border-radius: 999px;
+    background: var(--color-surface);
+    box-shadow: var(--shadow-lift);
+    color: var(--color-ink);
+    font-family: var(--font-display);
+    font-size: 0.82rem;
+    font-weight: 700;
+    cursor: pointer;
+    opacity: 0;
+    transform: translateY(10px) scale(0.92);
+    pointer-events: none;
+    transition: opacity 0.22s var(--ease), transform 0.22s var(--ease),
+      border-color 0.2s var(--ease), background-color 0.2s var(--ease);
+  }
+  .sumario-flutuante[data-visivel='true'] {
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+  }
+  .sumario-flutuante:hover {
+    border-color: var(--color-ink);
+    background: var(--color-paper-dark);
+  }
+  @media (max-width: 639px) {
+    .sumario-flutuante {
+      right: 4.5rem;
+      bottom: 1rem;
+    }
+  }
+  @media print {
+    .sumario-flutuante {
+      display: none;
+    }
   }
   .acao--so-icone {
     padding-inline: 0.6rem;
@@ -206,6 +272,13 @@ const corDaMateria = `--materia: var(--color-${destaque}); --materia-soft: var(-
   .raio-x :global(.acordeao) {
     margin: 0;
   }
+  /* Raio-X, ferramentas e glossário formam uma pilha de blocos recolhidos: ficam juntos. */
+  .raio-x:has(+ .raio-x--ferramentas) {
+    margin-bottom: 0.75rem;
+  }
+  .raio-x--ferramentas:has(+ [data-conteudo-aula] > .acordeao:first-child) {
+    margin-bottom: 0.75rem;
+  }
   .raio-x__bloco + .raio-x__bloco {
     margin-top: 0.95rem;
     padding-top: 0.95rem;
@@ -216,7 +289,7 @@ const corDaMateria = `--materia: var(--color-${destaque}); --materia-soft: var(-
     align-items: center;
     gap: 0.4rem;
     font-family: var(--font-display);
-    font-size: 0.66rem;
+    font-size: calc(0.66rem * var(--escala-texto, 1));
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.11em;
@@ -225,7 +298,7 @@ const corDaMateria = `--materia: var(--color-${destaque}); --materia-soft: var(-
   }
   .raio-x__texto {
     font-family: var(--font-body);
-    font-size: 0.97rem;
+    font-size: calc(0.97rem * var(--escala-texto, 1));
     line-height: 1.7;
     color: var(--color-ink);
     margin: 0;

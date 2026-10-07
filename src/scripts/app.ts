@@ -8,11 +8,14 @@
  * ------------------------------------------------------------------------- */
 
 import { montarQuiz } from './quiz';
+import { montarTopicos } from './topicos';
+import { montarSumario } from './sumario';
+import { montarBarrasDeRolagem } from './barra-rolagem';
 
 const CHAVE_TEMA = 'cdt:tema';
-const CHAVE_TEXTO = 'cdt:texto';
 const CHAVE_PROGRESSO = 'cdt:progresso';
 const CHAVE_ULTIMA = 'cdt:ultima';
+const CHAVE_FONTE_PX = 'cdt:fonte-px';
 
 type Progresso = Record<string, number>;
 
@@ -107,43 +110,124 @@ function temaAtual(): 'claro' | 'escuro' {
   return document.documentElement.dataset.tema === 'escuro' ? 'escuro' : 'claro';
 }
 
-function alternarTema() {
+/** O tema salvo é a fonte da verdade: a navegação do Astro troca os atributos do <html>. */
+function temaSalvo(): 'claro' | 'escuro' {
+  return ler<string>(CHAVE_TEMA, 'claro') === 'escuro' ? 'escuro' : 'claro';
+}
+
+function alternarTema(origem?: HTMLElement | null) {
   const novo = temaAtual() === 'escuro' ? 'claro' : 'escuro';
-  aplicarTema(novo);
   gravar(CHAVE_TEMA, novo);
+
+  const raiz = document.documentElement;
+  const reduzido =
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches || raiz.dataset.movimento === 'sim';
+
+  if (reduzido || typeof document.startViewTransition !== 'function') {
+    aplicarTema(novo);
+  } else {
+    // O tema novo se revela em círculo a partir do botão, em vez de piscar a página toda.
+    const caixa = origem?.getBoundingClientRect();
+    const x = caixa ? caixa.left + caixa.width / 2 : window.innerWidth / 2;
+    const y = caixa ? caixa.top + caixa.height / 2 : 0;
+    const raio = Math.hypot(Math.max(x, window.innerWidth - x), Math.max(y, window.innerHeight - y));
+    raiz.style.setProperty('--tema-x', `${x}px`);
+    raiz.style.setProperty('--tema-y', `${y}px`);
+    raiz.style.setProperty('--tema-raio', `${raio}px`);
+    raiz.dataset.trocandoTema = '';
+    const transicao = document.startViewTransition(() => aplicarTema(novo));
+    transicao.finished.finally(() => delete raiz.dataset.trocandoTema);
+  }
   toast(novo === 'escuro' ? 'Tema escuro ativado' : 'Tema claro ativado', novo === 'escuro' ? 'moon' : 'sun');
 }
 
 /* ------------------------------------------------------- tamanho do texto */
 
-const NIVEIS_TEXTO = ['normal', 'grande', 'maior'] as const;
-type NivelTexto = (typeof NIVEIS_TEXTO)[number];
+const FONTE_MINIMA = 14;
+const FONTE_PADRAO = 16;
+const FONTE_MAXIMA = 28;
 
-function aplicarTexto(nivel: NivelTexto) {
+function aplicarFontePx(px: number) {
   const raiz = document.documentElement;
-  if (nivel === 'normal') delete raiz.dataset.texto;
-  else raiz.dataset.texto = nivel;
+  const valor = Math.max(FONTE_MINIMA, Math.min(FONTE_MAXIMA, px));
+  // Só o texto de leitura usa a escala (ver global.css): 16px = 1.
+  raiz.style.setProperty('--escala-texto', String(valor / FONTE_PADRAO));
 
   document.querySelectorAll<HTMLElement>('[data-acao="texto"]').forEach((btn) => {
-    const rotulo = `Tamanho do texto: ${nivel}. Ative para trocar`;
-    btn.setAttribute('title', rotulo);
-    btn.setAttribute('aria-label', rotulo);
-    btn.dataset.nivel = nivel;
+    btn.setAttribute('title', `Tamanho: ${valor}px`);
+    btn.setAttribute('aria-label', `Tamanho: ${valor}px`);
   });
-  marcarNivelTexto();
+
+  const slider = document.querySelector<HTMLInputElement>('[data-slider-fonte]');
+  if (slider) {
+    slider.value = String(valor);
+    const display = slider.closest('[data-controle-fonte]')?.querySelector('[data-fonte-display]');
+    if (display) display.textContent = `${valor}px${valor === FONTE_PADRAO ? ' · padrão' : ''}`;
+    slider.setAttribute('aria-valuetext', `${valor} pixels${valor === FONTE_PADRAO ? ', tamanho padrão' : ''}`);
+  }
+  atualizarRestaurar();
 }
 
-function avancarTexto() {
-  const atual = (document.documentElement.dataset.texto ?? 'normal') as NivelTexto;
-  const proximo = NIVEIS_TEXTO[(NIVEIS_TEXTO.indexOf(atual) + 1) % NIVEIS_TEXTO.length];
-  aplicarTexto(proximo);
-  gravar(CHAVE_TEXTO, proximo);
-  const nomes: Record<NivelTexto, string> = {
-    normal: 'Texto no tamanho padrão',
-    grande: 'Texto um pouco maior',
-    maior: 'Texto no tamanho máximo',
-  };
-  toast(nomes[proximo], 'font');
+/* ------------------------------------------------------ brilho do tema claro */
+
+const CHAVE_BRILHO = 'cdt:brilho';
+const BRILHO_MINIMO = 75;
+const BRILHO_PADRAO = 100;
+
+function lerBrilho(): number {
+  return ler<number>(CHAVE_BRILHO, BRILHO_PADRAO);
+}
+
+/** Escurece só o tema claro (o CSS ignora o escuro). 100 = sem ajuste. */
+function aplicarBrilho(pct: number) {
+  const raiz = document.documentElement;
+  const valor = Math.max(BRILHO_MINIMO, Math.min(BRILHO_PADRAO, Number(pct) || BRILHO_PADRAO));
+  if (valor < BRILHO_PADRAO) {
+    raiz.dataset.brilho = 'sim';
+    raiz.style.setProperty('--brilho', String(valor / 100));
+  } else {
+    delete raiz.dataset.brilho;
+    raiz.style.removeProperty('--brilho');
+  }
+
+  const slider = document.querySelector<HTMLInputElement>('[data-slider-brilho]');
+  if (slider) {
+    const texto = `${valor}%${valor === BRILHO_PADRAO ? ' · padrão' : ''}`;
+    slider.value = String(valor);
+    slider.setAttribute('aria-valuetext', valor === BRILHO_PADRAO ? '100%, brilho padrão' : `${valor}%`);
+    const display = slider.closest('[data-controle-brilho]')?.querySelector('[data-brilho-display]');
+    if (display) display.textContent = texto;
+  }
+  atualizarRestaurar();
+}
+
+function atualizarRestaurar() {
+  const alterado =
+    lerFontePx() !== FONTE_PADRAO || lerBrilho() !== BRILHO_PADRAO || temPreferenciaA11y();
+  document.querySelectorAll<HTMLButtonElement>('[data-acao="restaurar-a11y"]').forEach((btn) => {
+    btn.disabled = !alterado;
+  });
+}
+
+function temPreferenciaA11y(): boolean {
+  const p = preferencias();
+  return Object.keys(p).some((k) => (LIGADAS_POR_PADRAO.includes(k) ? p[k] === false : p[k]));
+}
+
+/** Volta fonte e preferências de acessibilidade ao padrão. */
+function restaurarAcessibilidade() {
+  try {
+    localStorage.removeItem(CHAVE_FONTE_PX);
+    localStorage.removeItem(CHAVE_BRILHO);
+    localStorage.removeItem(CHAVE_A11Y);
+  } catch {}
+  aplicarA11y({});
+  aplicarFontePx(FONTE_PADRAO);
+  aplicarBrilho(BRILHO_PADRAO);
+}
+
+function lerFontePx(): number {
+  return ler<number>(CHAVE_FONTE_PX, FONTE_PADRAO);
 }
 
 /* --------------------------------------------------------------- progresso */
@@ -250,6 +334,10 @@ function abrirBusca(termoInicial = '') {
   campo.focus();
   campo.select();
   carregarIndice().then(() => filtrarBusca());
+}
+
+function fecharBusca() {
+  (document.getElementById('busca') as HTMLDialogElement | null)?.close();
 }
 
 function filtrarBusca() {
@@ -485,9 +573,11 @@ function ligarAtalhos() {
   document.addEventListener('keydown', (e) => {
     const buscaAberta = (document.getElementById('busca') as HTMLDialogElement | null)?.open;
 
+    // O atalho que abre a busca também a fecha.
     if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
       e.preventDefault();
-      abrirBusca();
+      if (buscaAberta) fecharBusca();
+      else abrirBusca();
       return;
     }
 
@@ -532,11 +622,18 @@ function ligarAtalhos() {
     if (acao) {
       switch (acao.dataset.acao) {
         case 'tema':
-          alternarTema();
+          alternarTema(acao);
           return;
-        case 'texto':
-          avancarTexto();
+        case 'restaurar-a11y':
+          restaurarAcessibilidade();
+          toast('Acessibilidade restaurada ao padrão', 'rotate-left');
           return;
+        case 'acessibilidade':
+        case 'texto': {
+          const dlg = document.getElementById('acessibilidade');
+          if (dlg instanceof HTMLDialogElement) dlg.showModal();
+          return;
+        }
         case 'busca':
           abrirBusca();
           return;
@@ -554,7 +651,11 @@ function ligarAtalhos() {
         case 'zerar-progresso': {
           // Apaga dados do usuário sem volta: pede confirmação (WCAG 3.3.4).
           if (!confirm('Zerar todo o progresso deste navegador? Isso não pode ser desfeito.')) return;
+          const tambemA11y = confirm(
+            'Restaurar também os ajustes de acessibilidade (tamanho do texto, contraste, espaçamento etc.) ao padrão?'
+          );
           if (gravar(CHAVE_PROGRESSO, {})) {
+            if (tambemA11y) restaurarAcessibilidade();
             try {
               localStorage.removeItem(CHAVE_ULTIMA);
             } catch {}
@@ -580,13 +681,10 @@ function ligarAtalhos() {
           });
           return;
         }
-        case 'acessibilidade': {
-          const dlg = document.getElementById('acessibilidade');
-          if (dlg instanceof HTMLDialogElement) dlg.showModal();
-          return;
-        }
         case 'topo':
-          window.scrollTo({ top: 0, behavior: 'smooth' });
+          window.scrollTo({ top: 0, behavior: movimentoReduzido() ? 'auto' : 'smooth' });
+          // O botão some ao chegar no topo: o foco vai junto, para o teclado não se perder.
+          document.querySelector<HTMLElement>('[data-marca]')?.focus({ preventScroll: true });
           return;
         case 'copiar-link': {
           navigator.clipboard
@@ -601,14 +699,6 @@ function ligarAtalhos() {
     const chave = alvo.closest<HTMLElement>('[data-a11y]');
     if (chave) {
       alternarA11y(chave.dataset.a11y!);
-      return;
-    }
-
-    const nivel = alvo.closest<HTMLElement>('[data-texto-nivel]');
-    if (nivel) {
-      const valor = nivel.dataset.textoNivel as NivelTexto;
-      aplicarTexto(valor);
-      gravar(CHAVE_TEXTO, valor);
       return;
     }
 
@@ -634,13 +724,32 @@ function ligarAtalhos() {
   });
 
   document.addEventListener('input', (e) => {
-    if ((e.target as HTMLElement)?.matches?.('[data-busca-campo]')) filtrarBusca();
+    const target = e.target as HTMLElement;
+    if (target?.matches?.('[data-busca-campo]')) {
+      filtrarBusca();
+    } else if (target?.matches?.('[data-slider-fonte]')) {
+      const slider = target as HTMLInputElement;
+      const px = Number(slider.value);
+      gravar(CHAVE_FONTE_PX, px);
+      aplicarFontePx(px);
+    } else if (target?.matches?.('[data-slider-brilho]')) {
+      const pct = Number((target as HTMLInputElement).value);
+      gravar(CHAVE_BRILHO, pct);
+      aplicarBrilho(pct);
+    }
   });
 }
 
 /* ------------------------------------------------------ miniatura da marca */
 
 let observadorMarca: IntersectionObserver | null = null;
+
+function movimentoReduzido(): boolean {
+  return (
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
+    document.documentElement.dataset.movimento === 'sim'
+  );
+}
 
 function ligarMarcaMini() {
   const marca = document.querySelector('[data-marca]');
@@ -655,6 +764,13 @@ function ligarMarcaMini() {
       // Fora de vista, a miniatura também sai da ordem de leitura e de foco.
       mini.setAttribute('aria-hidden', String(!escondida));
       mini.tabIndex = escondida ? 0 : -1;
+      // O botão "voltar ao topo" aparece junto: a marca grande fora de vista quer dizer
+      // que a página já rolou.
+      document.querySelectorAll<HTMLElement>('[data-topo], [data-flutuante]').forEach((el) => {
+        el.dataset.visivel = String(escondida);
+        el.tabIndex = escondida ? 0 : -1;
+        el.setAttribute('aria-hidden', String(!escondida));
+      });
     },
     { threshold: 0 }
   );
@@ -677,20 +793,29 @@ function aplicarA11y(p: Preferencias) {
     if (p[chave]) raiz.dataset[chave] = 'sim';
     else delete raiz.dataset[chave];
   }
-  // "atalhos" é o contrário das outras: vem LIGADO, e só o valor false o desliga.
-  const atalhos = p.atalhos !== false;
-  if (atalhos) delete raiz.dataset.atalhos;
+  // "atalhos" e "correcao" são o contrário das outras: vêm LIGADAS, e só o valor false as desliga.
+  if (ligada(p, 'atalhos')) delete raiz.dataset.atalhos;
   else raiz.dataset.atalhos = 'nao';
+  const modoAnterior = raiz.dataset.correcao;
+  if (ligada(p, 'correcao')) delete raiz.dataset.correcao;
+  else raiz.dataset.correcao = 'final';
+  if (modoAnterior !== raiz.dataset.correcao) document.dispatchEvent(new CustomEvent('cdt:correcao'));
   document.querySelectorAll<HTMLElement>('[data-a11y]').forEach((btn) => {
-    const chave = btn.dataset.a11y!;
-    const ligada = chave === 'atalhos' ? atalhos : Boolean(p[chave]);
-    btn.setAttribute('aria-checked', String(ligada));
+    btn.setAttribute('aria-checked', String(ligada(p, btn.dataset.a11y!)));
   });
+  atualizarRestaurar();
+}
+
+/** Preferências que já vêm ligadas: o que fica salvo só muda quando o usuário desliga. */
+const LIGADAS_POR_PADRAO = ['atalhos', 'correcao'];
+
+function ligada(p: Preferencias, chave: string): boolean {
+  return LIGADAS_POR_PADRAO.includes(chave) ? p[chave] !== false : Boolean(p[chave]);
 }
 
 function alternarA11y(chave: string) {
   const p = preferencias();
-  p[chave] = chave === 'atalhos' ? p.atalhos === false : !p[chave];
+  p[chave] = !ligada(p, chave);
   gravar(CHAVE_A11Y, p);
   aplicarA11y(p);
 
@@ -700,16 +825,9 @@ function alternarA11y(chave: string) {
     movimento: 'Animações reduzidas',
     links: 'Links sublinhados',
     atalhos: 'Atalhos de uma tecla',
+    correcao: 'Correção imediata das questões',
   };
-  const ligada = chave === 'atalhos' ? p.atalhos !== false : Boolean(p[chave]);
-  toast(`${nomes[chave]}: ${ligada ? 'ligado' : 'desligado'}`, 'universal-access');
-}
-
-function marcarNivelTexto() {
-  const atual = document.documentElement.dataset.texto ?? 'normal';
-  document.querySelectorAll<HTMLElement>('[data-texto-nivel]').forEach((btn) => {
-    btn.setAttribute('aria-pressed', String(btn.dataset.textoNivel === atual));
-  });
+  toast(`${nomes[chave]}: ${ligada(p, chave) ? 'ligado' : 'desligado'}`, 'universal-access');
 }
 
 /* --------------------------------------------------------- blocos retráteis */
@@ -729,38 +847,6 @@ function ligarDobras() {
   });
 }
 
-/* ----------------------------------------------------- rolagem / cabeçalho */
-
-function ligarRolagem() {
-  const barra = document.querySelector<HTMLElement>('[data-leitura]');
-  if (!barra) return;
-
-  // A altura do documento é medida fora do laço de rolagem. Lê-la a cada
-  // quadro forçava o navegador a recalcular o layout no meio da rolagem —
-  // era leitura de layout síncrona, e aparecia como engasgo.
-  let total = 0;
-  const medir = () => {
-    total = document.documentElement.scrollHeight - window.innerHeight;
-  };
-
-  let ticking = false;
-  const aoRolar = () => {
-    if (ticking) return;
-    ticking = true;
-    requestAnimationFrame(() => {
-      barra.style.transform = `scaleX(${total > 0 ? Math.min(window.scrollY / total, 1) : 0})`;
-      ticking = false;
-    });
-  };
-
-  medir();
-  aoRolar();
-  window.addEventListener('scroll', aoRolar, { passive: true });
-  window.addEventListener('resize', () => {
-    medir();
-    aoRolar();
-  });
-}
 
 /* ------------------------------------------- marcação automática da aula */
 
@@ -798,20 +884,32 @@ function ligarAulaAtual() {
 /* ---------------------------------------------------------------- arranque */
 
 function iniciar() {
-  aplicarTema(temaAtual());
-  aplicarTexto((document.documentElement.dataset.texto ?? 'normal') as NivelTexto);
+  aplicarTema(temaSalvo());
+  aplicarFontePx(lerFontePx());
+  aplicarBrilho(lerBrilho());
   aplicarA11y(preferencias());
   refletirProgresso();
   montarHub();
   ligarAtalhos();
   ligarDobras();
   ligarMarcaMini();
-  ligarRolagem();
   ligarAulaAtual();
+  // Ordem importa: o quiz lê os filhos do artigo, os tópicos os embrulham em seguida e
+  // as barras de rolagem medem a página já com os tópicos no lugar.
   montarQuiz();
+  montarTopicos();
+  montarSumario();
+  montarBarrasDeRolagem();
 }
 
 document.addEventListener('astro:page-load', iniciar);
+// Roda no documento novo, antes de pintar: evita perder tema e fonte (e o flash).
+document.addEventListener('astro:after-swap', () => {
+  aplicarTema(temaSalvo());
+  aplicarFontePx(lerFontePx());
+  aplicarBrilho(lerBrilho());
+  aplicarA11y(preferencias());
+});
 if (document.readyState !== 'loading') iniciar();
 else document.addEventListener('DOMContentLoaded', iniciar, { once: true });
 

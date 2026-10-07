@@ -52,10 +52,22 @@ import Icone from './Icone.astro';
 
 <style>
   .ferramentas {
+    /* Uma só altura e um só arredondamento para a fileira inteira: botões, busca e
+       chave de tema ocupam a mesma faixa vertical, todos em pílula (o de
+       acessibilidade, com largura igual à altura, vira um círculo). */
+    /* Um pouco mais grossa que a faixa da pauta (35px): passa das duas linhas, mas o
+       centro da barra fica no centro da faixa (ver o margin-top em Base.astro). */
+    --altura: 2.35rem;
+    --raio: 999px;
+    --icone: calc(0.92rem * var(--escala-texto, 1));
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     gap: 0.35rem;
+  }
+  .ferramentas :is(.ferramenta, .tema-switch) i {
+    font-size: var(--icone);
+    line-height: 1;
   }
 
   .ferramenta {
@@ -63,15 +75,15 @@ import Icone from './Icone.astro';
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-    height: 2.35rem;
-    min-width: 2.35rem;
+    height: var(--altura);
+    min-width: var(--altura);
     padding: 0 0.6rem;
-    border-radius: 999px;
+    border-radius: var(--raio);
     border: 1px solid var(--color-line);
     background: color-mix(in srgb, var(--color-surface) 88%, var(--color-paper));
     color: var(--color-ink-soft);
     font-family: var(--font-display);
-    font-size: 0.8rem;
+    font-size: calc(0.8rem * var(--escala-texto, 1));
     font-weight: 600;
     line-height: 1;
     cursor: pointer;
@@ -102,11 +114,11 @@ import Icone from './Icone.astro';
   .ferramenta__atalho {
     display: none;
     font-family: var(--font-display);
-    font-size: 0.62rem;
+    font-size: calc(0.62rem * var(--escala-texto, 1));
     font-weight: 700;
     letter-spacing: 0.08em;
     padding: 0.24rem 0.42rem;
-    border-radius: 6px;
+    border-radius: 0.4rem;
     border: 1px solid var(--color-line);
     background: color-mix(in srgb, var(--color-paper-dark) 55%, transparent);
     color: var(--color-ink-soft);
@@ -114,11 +126,11 @@ import Icone from './Icone.astro';
 
   /* Escala do "Aa": o botão indica visualmente o nível ativo. */
   .ferramenta[data-nivel='grande'] {
-    font-size: 0.88rem;
+    font-size: calc(0.88rem * var(--escala-texto, 1));
     color: var(--color-ink);
   }
   .ferramenta[data-nivel='maior'] {
-    font-size: 0.96rem;
+    font-size: calc(0.96rem * var(--escala-texto, 1));
     color: var(--color-ink);
     border-color: color-mix(in srgb, var(--color-ink) 40%, var(--color-line));
   }
@@ -147,24 +159,20 @@ import Icone from './Icone.astro';
   }
 
   /* -------------------------------------------------------- interruptor de tema
-     Trilho com sol e lua nas pontas e uma bolha que desliza entre eles — o
-     mesmo gesto de um interruptor físico. Some as duas larguras (trilho e
-     bolha) e a folga (--inset) para o cálculo do deslocamento nunca destoar
-     do que está desenhado. */
+     Mesma altura e mesmo raio dos outros botões. O trilho tem duas metades iguais
+     (sol | lua) e a bolha ocupa exatamente uma delas: deslocar 100% da própria
+     largura a leva à outra metade, sem conta de rem para destoar do desenho. */
   .tema-switch {
-    --trilho-w: 3.5rem;
-    --trilho-h: 1.9rem;
-    --bolha: 1.5rem;
-    --inset: 0.2rem;
+    --inset: 0.22rem;
     position: relative;
-    display: inline-flex;
-    align-items: center;
-    justify-content: space-between;
-    width: var(--trilho-w);
-    min-width: var(--trilho-w);
-    height: var(--trilho-h);
-    padding: 0 0.5rem;
-    border-radius: 999px;
+    display: inline-grid;
+    grid-template-columns: 1fr 1fr;
+    place-items: center;
+    width: 4.7rem;
+    min-width: 4.7rem;
+    height: var(--altura);
+    padding: 0 var(--inset);
+    border-radius: var(--raio);
     border: 1px solid var(--color-line);
     background: color-mix(in srgb, var(--color-ink) 7%, var(--color-surface));
     cursor: pointer;
@@ -177,40 +185,59 @@ import Icone from './Icone.astro';
   .tema-switch__icone {
     position: relative;
     z-index: 1;
-    font-size: 0.76rem;
     color: var(--color-ink-soft);
     /* 0,8 mantém o ícone do lado "desligado" com 3:1 de contraste (WCAG 1.4.11). */
     opacity: 0.8;
-    transition: color 0.25s var(--ease), opacity 0.25s var(--ease);
+    /* O ícone apagado encolhe e gira um pouco; o aceso volta ao tamanho cheio. */
+    transform: scale(0.82) rotate(var(--giro, -70deg));
+    transition: color 0.3s var(--ease), opacity 0.3s var(--ease),
+      transform 0.55s cubic-bezier(0.34, 1.5, 0.5, 1);
+  }
+  .tema-switch__icone--lua {
+    --giro: 40deg;
   }
   /* O sol é o lado "ligado" no tema claro; a lua, no escuro. O outro ícone
      fica visível, só apagado — ninguém precisa adivinhar que ali tem um sol. */
   .tema-switch[aria-pressed='false'] .tema-switch__icone--sol {
     color: #8a6200;
     opacity: 1;
+    transform: none;
   }
   .tema-switch[aria-pressed='true'] .tema-switch__icone--lua {
     color: var(--color-escolar);
     opacity: 1;
+    transform: none;
   }
   .tema-switch__bolha {
     position: absolute;
     left: var(--inset);
     top: var(--inset);
-    width: var(--bolha);
-    height: var(--bolha);
+    bottom: var(--inset);
+    width: calc((100% - 2 * var(--inset)) / 2);
     border-radius: 999px;
     background: var(--color-surface);
     box-shadow: var(--shadow-soft);
-    transition: transform 0.32s var(--ease), background-color 0.32s var(--ease);
+    /* Curva com leve passada do ponto: a bolha "assenta" no lado novo. */
+    transition: transform 0.5s cubic-bezier(0.34, 1.4, 0.5, 1), background-color 0.4s var(--ease);
   }
   .tema-switch[aria-pressed='true'] .tema-switch__bolha {
-    transform: translateX(calc(var(--trilho-w) - var(--bolha) - 2 * var(--inset)));
+    transform: translateX(100%);
     background: var(--color-paper-dark);
   }
   @media (prefers-reduced-motion: reduce) {
-    .tema-switch__bolha {
-      transition: background-color 0.32s var(--ease);
+    .tema-switch__bolha,
+    .tema-switch__icone {
+      transition: color 0.2s, opacity 0.2s, background-color 0.2s;
     }
+    .tema-switch__icone {
+      transform: none;
+    }
+  }
+  :global(html[data-movimento='sim']) .tema-switch__bolha,
+  :global(html[data-movimento='sim']) .tema-switch__icone {
+    transition: color 0.2s, opacity 0.2s, background-color 0.2s;
+  }
+  :global(html[data-movimento='sim']) .tema-switch__icone {
+    transform: none;
   }
 </style>
