@@ -272,7 +272,7 @@ import { u } from '../lib/url';
      Lugar do confirm() nativo, que alguns navegadores (e o app) bloqueiam e que então
      devolve "não" sem mostrar nada. Usado por confirmarAcao() em app.ts. -->
 <dialog id="confirmar" class="painel painel--confirmar" aria-labelledby="confirmar-titulo" aria-describedby="confirmar-texto">
-  <h2 class="painel__titulo" id="confirmar-titulo" data-confirmar-titulo></h2>
+  <h2 class="painel__titulo" id="confirmar-titulo" data-confirmar-titulo>Confirmar</h2>
   <p class="painel__sub confirmar__texto" id="confirmar-texto" data-confirmar-texto></p>
   <label class="confirmar__extra" data-confirmar-extra hidden>
     <input type="checkbox" data-confirmar-extra-caixa />
@@ -280,7 +280,7 @@ import { u } from '../lib/url';
   </label>
   <footer class="painel__rodape confirmar__acoes">
     <button type="button" class="painel__botao" data-fecha autofocus>Cancelar</button>
-    <button type="button" class="painel__botao painel__botao--perigo" data-confirmar-ok></button>
+    <button type="button" class="painel__botao painel__botao--perigo" data-confirmar-ok>Confirmar</button>
   </footer>
 </dialog>
 
