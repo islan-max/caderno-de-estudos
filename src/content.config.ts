@@ -46,6 +46,16 @@ const gabaritoSchema = z.object({
   porque: z.string().optional(),
 });
 
+// Ferramentas para acompanhar e praticar a aula (programas, contas, materiais). Cada item vira
+// uma linha no bloco "Ferramentas para esta aula"; sem a lista, o bloco não aparece.
+const ferramentaSchema = z.object({
+  nome: z.string(),
+  uso: z.string(), // para que serve nesta aula
+  custo: z.string().optional(), // ex.: "Gratuito", "US$ 25, uma vez"
+  link: z.string().url().optional(), // página oficial
+  opcional: z.boolean().default(false), // false = precisa para acompanhar a aula
+});
+
 // Schema compartilhado pelas 3 coleções (enem, escolar, ds).
 const lessonSchema = z.object({
   title: z.string(),
@@ -55,6 +65,7 @@ const lessonSchema = z.object({
   order: z.number().default(1),
   gabarito: z.array(gabaritoSchema).optional(),
   resources: resourcesSchema.optional(),
+  ferramentas: z.array(ferramentaSchema).optional(),
 });
 
 // ENEM: matéria -> tema (sem bimestre/semana)

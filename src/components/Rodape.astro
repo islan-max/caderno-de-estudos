@@ -4,71 +4,44 @@ import Icone from './Icone.astro';
 
 const ano = new Date().getFullYear();
 
+// Rótulo curto na tela; o nome completo vai no aria-label e no title.
 const legais = [
-  { href: '/privacidade', label: 'Política de Privacidade', icone: 'user-shield' },
-  { href: '/termos', label: 'Termos de Uso', icone: 'file-contract' },
-  { href: '/lgpd', label: 'Conformidade com a LGPD', icone: 'scale-balanced' },
-  { href: '/uso-de-ia', label: 'Uso de IA', icone: 'robot' },
-  { href: '/acessibilidade', label: 'Declaração de acessibilidade', icone: 'universal-access' },
+  { href: '/privacidade', curto: 'Privacidade', label: 'Política de Privacidade' },
+  { href: '/termos', curto: 'Termos', label: 'Termos de Uso' },
+  { href: '/lgpd', curto: 'LGPD', label: 'Conformidade com a LGPD' },
+  { href: '/uso-de-ia', curto: 'Uso de IA', label: 'Uso de IA' },
+  { href: '/acessibilidade', curto: 'Acessibilidade', label: 'Declaração de acessibilidade' },
 ];
 ---
 
 <footer class="rodape">
   <div class="rodape__conteudo">
-    <div class="rodape__grade">
-      <!-- Institucional -->
-      <section class="rodape__bloco rodape__bloco--marca">
-        <p class="rodape__marca">
-          Caderno de Estudos<span style="color: var(--color-enem)">.</span>
-        </p>
-        <p class="rodape__descricao">
-          Biblioteca de estudo aberta e gratuita, mantida de forma independente por <strong>Islan
-          Max</strong>. Material de apoio, sem vínculo com o INEP, o MEC ou qualquer instituição de
-          ensino. Não substitui a orientação de um professor responsável.
-        </p>
-      </section>
+    <!-- Uma faixa só, como no rodapé do GitHub: marca e ano, documentos, criador. -->
+    <div class="rodape__linha">
+      <p class="rodape__marca">
+        © {ano} Caderno de Estudos<span style="color: var(--color-enem)">.</span>
+      </p>
 
-      <!-- Legal -->
-      <nav class="rodape__bloco" aria-label="Documentos legais">
-        <h2 class="rodape__titulo">Política e termos</h2>
+      <nav aria-label="Documentos legais">
         <ul class="rodape__lista">
           {legais.map((l) => (
             <li>
-              <a href={u(l.href)}>
-                <Icone nome={l.icone} class="rodape__icone" />
-                {l.label}
-              </a>
+              <a href={u(l.href)} aria-label={l.label} title={l.label}>{l.curto}</a>
             </li>
           ))}
         </ul>
       </nav>
 
-      <!-- Redes -->
-      <nav class="rodape__bloco" aria-label="Redes sociais">
-        <h2 class="rodape__titulo">Onde me achar</h2>
-        <ul class="rodape__lista">
-          <li>
-            <a href="https://github.com/islan-max" target="_blank" rel="noopener noreferrer me">
-              <svg class="rodape__icone rodape__icone--marca" viewBox="0 0 512 512" aria-hidden="true" focusable="false"><path fill="currentColor" d="M174 397C174 399 172 401 169 401C165 401 163 400 163 397C163 395 165 394 168 394C171 394 174 395 174 397ZM143 393C142 395 144 397 147 398C150 399 153 398 153 396C154 394 152 392 149 391C146 390 144 391 143 393ZM187 391C184 392 182 394 182 396C183 398 185 399 188 399C191 398 193 396 193 394C193 392 190 391 187 391ZM253 8C114 8 8 113 8 252C8 363 78 458 178 491C190 494 195 486 195 479C195 473 195 439 195 418C195 418 125 433 110 388C110 388 98 359 82 351C82 351 59 336 84 336C84 336 109 338 122 362C144 400 181 389 195 383C197 367 204 356 211 349C155 343 99 335 99 238C99 211 106 197 122 180C120 173 111 146 125 112C146 105 194 139 194 139C214 133 236 130 257 130C278 130 300 133 320 139C320 139 368 105 389 112C402 146 394 173 391 180C407 197 417 211 417 238C417 335 358 343 302 349C311 357 319 372 319 395C319 429 319 471 319 479C319 485 324 493 336 491C436 458 504 363 504 252C504 113 392 8 253 8ZM105 353C104 354 104 356 106 358C108 360 110 360 111 359C112 358 112 356 110 354C109 352 107 352 105 353ZM94 345C94 346 95 348 97 349C98 350 100 349 101 348C102 347 101 345 99 344C97 344 95 344 94 345ZM127 380C125 382 126 385 128 387C130 389 133 389 135 388C136 386 135 383 133 381C131 379 128 379 127 380ZM115 366C114 367 114 369 115 372C117 374 120 375 121 374C123 373 123 370 121 368C120 365 117 364 115 366Z" /></svg>
-              @islan-max
-              <Icone nome="up-right-from-square" class="rodape__externo" />
-              <span class="apenas-leitor"> (abre em nova aba)</span>
-            </a>
-          </li>
-          <li>
-            <a href="https://instagram.com/islan.max" target="_blank" rel="noopener noreferrer me">
-              <svg class="rodape__icone rodape__icone--marca" viewBox="0 0 448 512" aria-hidden="true" focusable="false"><path fill="currentColor" d="M224 141C161 141 109 192 109 256C109 319 160 371 224 371C287 371 339 320 339 256C339 193 288 141 224 141ZM224 181C265 181 298 214 299 256C299 297 266 330 224 331C183 331 150 298 149 256C149 215 182 182 224 181ZM317 136C317 121 329 110 344 110C359 110 371 121 371 136C371 151 359 163 344 163C329 163 317 151 317 136ZM447 164C445 128 437 96 411 70C384 43 353 35 317 33C280 31 169 31 132 33C96 35 64 43 38 70C12 96 4 128 2 163C0 200 0 311 2 348C3 384 12 416 38 442C64 468 96 477 132 478C169 481 280 481 317 478C353 477 384 469 411 442C437 416 445 384 447 348C449 311 449 201 447 164ZM399 388C391 408 376 423 356 431C327 442 257 440 224 440C192 440 122 442 92 431C73 423 58 408 50 388C38 359 41 289 41 256C41 223 38 153 50 124C57 104 73 89 92 81C122 70 192 72 224 72C257 72 327 70 356 81C376 89 391 104 399 124C411 153 408 223 408 256C408 289 411 359 399 388Z" /></svg>
-              @islan.max
-              <Icone nome="up-right-from-square" class="rodape__externo" />
-              <span class="apenas-leitor"> (abre em nova aba)</span>
-            </a>
-          </li>
-        </ul>
-      </nav>
+      <p class="rodape__assinatura">
+        <a class="rodape__assinatura-link" href={u('/criador')}>
+          Área do criador <Icone nome="arrow-right" />
+        </a>
+      </p>
     </div>
 
-    <p class="rodape__base">
-      © {ano} Caderno de Estudos · Feito por Islan Max. Conteúdo educacional sob licença MIT.
+    <p class="rodape__nota">
+      Biblioteca de estudo aberta e gratuita, publicada por <strong>Islan Max</strong> sob licença
+      MIT. Material de apoio, sem vínculo com o INEP, o MEC ou qualquer instituição de ensino.
     </p>
   </div>
 </footer>
@@ -83,7 +56,7 @@ const legais = [
     max-width: 64rem;
     margin: 0 auto;
     width: 100%;
-    padding: 1.75rem 0.75rem 1.25rem;
+    padding: 1rem 0.75rem 1rem;
   }
   @media (min-width: 640px) {
     .rodape__conteudo {
@@ -92,79 +65,39 @@ const legais = [
   }
   @media (min-width: 768px) {
     .rodape__conteudo {
-      padding: 2rem 2.5rem 1.4rem;
+      padding: 1.1rem 2.5rem 1.1rem;
     }
   }
 
-  /* Três colunas em telas médias pra cima: a marca fica com o dobro da largura
-     das duas listas, que são curtas. */
-  .rodape__grade {
-    display: grid;
-    gap: 1.5rem;
-    grid-template-columns: 1fr;
-  }
-  @media (min-width: 560px) {
-    .rodape__grade {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-    .rodape__bloco--marca {
-      grid-column: 1 / -1;
-    }
-  }
-  @media (min-width: 880px) {
-    .rodape__grade {
-      grid-template-columns: 2fr 1.1fr 1fr;
-      gap: 2.5rem;
-      align-items: start;
-    }
-    .rodape__bloco--marca {
-      grid-column: auto;
-    }
+  /* Faixa única: quebra em linhas só quando não cabe. */
+  .rodape__linha {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.6rem 1.25rem;
   }
 
   .rodape__marca {
-    font-family: var(--font-display);
-    font-size: 0.95rem;
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    margin: 0 0 0.45rem;
-  }
-  .rodape__descricao {
-    font-family: var(--font-body);
-    font-size: 0.8rem;
-    line-height: 1.6;
-    color: var(--color-ink-soft);
     margin: 0;
-    max-width: 34rem;
-  }
-  .rodape__descricao strong {
-    color: var(--color-ink);
-    font-weight: 800;
+    font-family: var(--font-display);
+    font-size: calc(0.85rem * var(--escala-texto, 1));
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    white-space: nowrap;
   }
 
-  .rodape__titulo {
-    font-family: var(--font-display);
-    font-size: 0.64rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: var(--color-ink);
-    margin: 0 0 0.6rem;
-  }
   .rodape__lista {
     list-style: none;
     margin: 0;
     padding: 0;
     display: flex;
-    flex-direction: column;
-    gap: 0.4rem;
+    flex-wrap: wrap;
+    gap: 0.25rem 0.9rem;
   }
   .rodape__lista a {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.45rem;
     font-family: var(--font-body);
-    font-size: 0.8rem;
+    font-size: calc(0.8rem * var(--escala-texto, 1));
     color: var(--color-ink-soft);
     text-decoration: none;
   }
@@ -173,30 +106,51 @@ const legais = [
     text-decoration: underline;
     text-underline-offset: 3px;
   }
-  .rodape__icone {
+
+  /* Assinatura do criador: uma linha simples, com um toque de cor no link. */
+  .rodape__assinatura {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.3rem 0.5rem;
+    margin: 0;
+    font-family: var(--font-body);
+    font-size: calc(0.8rem * var(--escala-texto, 1));
+    color: var(--color-ink-soft);
+  }
+  .rodape__nota strong {
+    color: var(--color-ink);
+    font-weight: 800;
+  }
+  .rodape__assinatura-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    color: var(--color-enem);
+    font-family: var(--font-display);
+    font-weight: 700;
+    text-decoration: none;
+  }
+  .rodape__assinatura-link:hover {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .rodape__assinatura-link :global(i) {
     font-size: 0.8em;
-    opacity: 0.7;
-    width: 1.1em;
+    transition: transform 0.2s var(--ease);
   }
-  /* Logos em SVG inline (a fonte de marcas pesava ~100 KB para dois ícones).
-     Mesma caixa do ícone de fonte: 1,1em de largura, 1em de altura. */
-  .rodape__icone--marca {
-    display: inline-block;
-    height: 1em;
-    vertical-align: -0.115em;
-  }
-  .rodape__externo {
-    font-size: 0.6em;
-    opacity: 0.45;
+  .rodape__assinatura-link:hover :global(i) {
+    transform: translateX(3px);
   }
 
-  .rodape__base {
-    margin: 1.5rem 0 0;
-    padding-top: 0.9rem;
+  /* Aviso de independência: pequeno e discreto, numa linha (ou duas em tela estreita). */
+  .rodape__nota {
+    margin: 0.7rem 0 0;
+    padding-top: 0.7rem;
     border-top: 1px solid var(--color-line);
-    font-family: var(--font-display);
-    font-size: 0.7rem;
+    font-family: var(--font-body);
+    font-size: calc(0.72rem * var(--escala-texto, 1));
+    line-height: 1.5;
     color: var(--color-ink-soft);
-    text-align: center;
   }
 </style>

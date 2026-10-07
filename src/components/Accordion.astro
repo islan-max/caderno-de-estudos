@@ -23,11 +23,23 @@ interface Props {
   icone?: string;
   aberto?: boolean;
   class?: string;
+  /** Limita a altura do corpo e rola por dentro (listas longas, como o glossário). */
+  rolagem?: boolean;
+  /** Chave para lembrar, no navegador, se a seção ficou aberta ou fechada (ligarDobras em app.ts). */
+  dobra?: string;
 }
-const { titulo, dica, icone = 'layer-group', aberto = false, class: klass = '' } = Astro.props;
+const {
+  titulo,
+  dica,
+  icone = 'layer-group',
+  aberto = false,
+  class: klass = '',
+  rolagem = true,
+  dobra,
+} = Astro.props;
 ---
 
-<details class:list={['acordeao', klass]} open={aberto}>
+<details class:list={['acordeao', klass]} open={aberto} data-dobra={dobra}>
   <summary class="acordeao__cabeca not-prose">
     <span class="acordeao__icone"><Icone nome={icone} duo cor="var(--acordeao-tinta)" /></span>
     <span class="acordeao__textos">
@@ -36,12 +48,29 @@ const { titulo, dica, icone = 'layer-group', aberto = false, class: klass = '' }
     </span>
     <span class="acordeao__seta" aria-hidden="true"><Icone nome="chevron-down" /></span>
   </summary>
-  <div class="acordeao__corpo">
-    <slot />
-  </div>
+  {rolagem ? (
+    // O corpo só enquadra; quem rola é a área interna (assim a barra de rolagem própria,
+    // barra-rolagem.ts, fica parada sobre a borda). Com foco e nome para o teclado rolar.
+    <div class="acordeao__corpo acordeao__corpo--rolavel" data-rolagem>
+      <div class="acordeao__area" data-rolagem-area tabindex="0" role="region" aria-label={titulo}>
+        <slot />
+      </div>
+    </div>
+  ) : (
+    <div class="acordeao__corpo">
+      <slot />
+    </div>
+  )}
+  {Astro.slots.has('rodape') && (
+    // Fica fora da área que rola: ações do cartão, sempre à vista.
+    <div class="acordeao__rodape">
+      <slot name="rodape" />
+    </div>
+  )}
 </details>
 
-<style>
+<style is:global>
+  /* Global de propósito: os tópicos retráteis montados em JS (topicos.ts) usam as mesmas classes. */
   .acordeao {
     --acordeao-tinta: var(--acordeao-cor, var(--materia, var(--color-enem)));
     margin: 1.5rem 0;
@@ -93,7 +122,7 @@ const { titulo, dica, icone = 'layer-group', aberto = false, class: klass = '' }
     flex-shrink: 0;
     width: 2.1rem;
     height: 2.1rem;
-    font-size: 0.9rem;
+    font-size: calc(0.9rem * var(--escala-texto, 1));
   }
 
   .acordeao__textos {
@@ -105,7 +134,7 @@ const { titulo, dica, icone = 'layer-group', aberto = false, class: klass = '' }
   }
   .acordeao__titulo {
     font-family: var(--font-display);
-    font-size: 0.72rem;
+    font-size: calc(0.72rem * var(--escala-texto, 1));
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.11em;
@@ -113,7 +142,7 @@ const { titulo, dica, icone = 'layer-group', aberto = false, class: klass = '' }
   }
   .acordeao__dica {
     font-family: var(--font-body);
-    font-size: 0.86rem;
+    font-size: calc(0.86rem * var(--escala-texto, 1));
     line-height: 1.4;
     color: var(--color-ink-soft);
   }
@@ -128,7 +157,7 @@ const { titulo, dica, icone = 'layer-group', aberto = false, class: klass = '' }
     border: 1px solid var(--color-line);
     background: var(--color-surface);
     color: var(--color-ink-soft);
-    font-size: 0.7rem;
+    font-size: calc(0.7rem * var(--escala-texto, 1));
     transition: transform 0.3s var(--ease), color 0.2s var(--ease), border-color 0.2s var(--ease);
   }
   .acordeao__cabeca:hover .acordeao__seta {
@@ -145,31 +174,53 @@ const { titulo, dica, icone = 'layer-group', aberto = false, class: klass = '' }
     padding: 0.9rem 0.15rem 1rem;
     border-top: 1px dashed color-mix(in srgb, var(--acordeao-tinta) 30%, var(--color-line));
     font-family: var(--font-body);
-    font-size: 0.95rem;
+    font-size: calc(0.95rem * var(--escala-texto, 1));
     line-height: 1.7;
   }
-  .acordeao__corpo > :global(:first-child) {
+  .acordeao__corpo > :first-child,
+  .acordeao__area > :first-child {
     margin-top: 0;
   }
-  .acordeao__corpo > :global(:last-child) {
+  .acordeao__corpo > :last-child,
+  .acordeao__area > :last-child {
     margin-bottom: 0;
+  }
+  /* Corpo longo (glossário): altura máxima grande, pensada para cobrir boa parte da lista,
+     e rolagem por dentro. A folga da direita deixa a faixa da barra de rolagem livre. */
+  .acordeao__corpo--rolavel {
+    position: relative;
+    padding: 0.9rem 0 1rem;
+  }
+  .acordeao__area {
+    max-height: min(36rem, 70vh);
+    overflow-y: auto;
+    padding: 0 1.6rem 0 0.15rem;
+  }
+  .acordeao__rodape {
+    margin: 0 1rem;
+    padding: 0.2rem 0.15rem 1rem;
+  }
+  .acordeao__area:focus-visible {
+    outline: 2px solid var(--acordeao-tinta);
+    outline-offset: 2px;
+    border-radius: 0.3rem;
   }
   /* Glossário: cada item é uma linha de consulta rápida, com o termo na cor
      da matéria e a explicação logo depois. */
-  .acordeao__corpo :global(ul) {
+  .acordeao__corpo ul {
     padding-left: 0;
     list-style: none;
     margin: 0;
   }
-  .acordeao__corpo :global(ul > li) {
+  .acordeao__corpo ul > li {
     padding: 0.45rem 0;
     margin: 0;
     border-bottom: 1px solid color-mix(in srgb, var(--color-line) 60%, transparent);
   }
-  .acordeao__corpo :global(ul > li:last-child) {
+  .acordeao__corpo ul > li:last-child {
     border-bottom: 0;
   }
-  .acordeao__corpo :global(ul > li)::marker {
+  .acordeao__corpo ul > li::marker {
     content: '';
   }
 

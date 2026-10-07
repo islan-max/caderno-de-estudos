@@ -19,6 +19,8 @@ Mesmo padrão visual do ENEM (frontmatter com `relevance`, `quickSummary` e `gab
 4. `Tópicos-Chave para Revisão` (`<div className="topico">`)
 5. `Pause e Responda`: só as perguntas do material, no formato do quiz do ENEM (`**Questão N**`, linha de fonte em itálico, alternativas `A)` a `E)` terminadas em `\`, gabarito no frontmatter).
 
+**Ferramentas da aula.** O frontmatter aceita `ferramentas:` (lista de `nome`, `uso`, `custo`, `link`, `opcional`). Vira o bloco recolhido "Ferramentas para esta aula", entre o Raio-X e o glossário. Só entra o que a aula realmente usa (programas, contas, material); o que não é imprescindível leva `opcional: true`. Confira os links antes de publicar.
+
 O quiz exige **5 alternativas**; o Pause e Responda original tem 4, então cada pergunta ganhou uma 5ª alternativa (E) escrita para a aula. As 4 originais e a ordem delas foram mantidas.
 
 O material é ponto de partida, não verdade: erros, premissas fracas e itens desatualizados são corrigidos ou complementados dentro da aula (e avisados no texto).

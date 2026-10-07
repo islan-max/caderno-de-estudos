@@ -128,10 +128,10 @@ const { aulas, accent = 'enem' } = Astro.props;
     width: 1.85rem;
     height: 1.85rem;
     border-radius: 999px;
-    border: 1px solid var(--color-line);
+    border: 1px solid transparent;
     background: var(--color-surface);
     font-family: var(--font-display);
-    font-size: 0.7rem;
+    font-size: calc(0.7rem * var(--escala-texto, 1));
     font-weight: 700;
     color: var(--color-ink-soft);
     transition: background-color 0.3s var(--ease), color 0.3s var(--ease), border-color 0.3s var(--ease);
@@ -139,8 +139,39 @@ const { aulas, accent = 'enem' } = Astro.props;
   .trilha__marca > * {
     grid-area: 1 / 1;
   }
+  /* Anel de andamento: a borda do círculo é uma barra de progresso circular. O arco, na cor da
+     matéria, cresce com o quanto da aula já foi feito (leitura e questões, ver --anel em
+     refletirProgresso); o resto do anel fica na cor de trilho. Cheio e verde quando concluída. */
+  .trilha__marca::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: 50%;
+    /* Bordas suavizadas (meio pixel de degradê): paradas duras num conic-gradient e numa máscara
+       saem serrilhadas, sem antialiasing. */
+    background: conic-gradient(
+      var(--anel-cor, var(--accent)) 0,
+      var(--anel-cor, var(--accent)) calc(var(--anel, 0) * 1%),
+      color-mix(in srgb, var(--color-ink) 16%, transparent) calc(var(--anel, 0) * 1% + 0.7%)
+    );
+    -webkit-mask: radial-gradient(
+      farthest-side,
+      transparent calc(100% - 3.6px),
+      #000 calc(100% - 2.6px),
+      #000 calc(100% - 0.8px),
+      transparent 100%
+    );
+    mask: radial-gradient(
+      farthest-side,
+      transparent calc(100% - 3.6px),
+      #000 calc(100% - 2.6px),
+      #000 calc(100% - 0.8px),
+      transparent 100%
+    );
+    transition: background 0.4s var(--ease);
+  }
   .trilha__check {
-    font-size: 0.72rem;
+    font-size: calc(0.72rem * var(--escala-texto, 1));
     opacity: 0;
     transform: scale(0.6);
     transition: opacity 0.25s var(--ease), transform 0.25s var(--ease);
@@ -159,13 +190,13 @@ const { aulas, accent = 'enem' } = Astro.props;
   }
   .trilha__titulo {
     font-family: var(--font-display);
-    font-size: 0.98rem;
+    font-size: calc(0.98rem * var(--escala-texto, 1));
     font-weight: 650;
     line-height: 1.3;
   }
   .trilha__resumo {
     font-family: var(--font-body);
-    font-size: 0.82rem;
+    font-size: calc(0.82rem * var(--escala-texto, 1));
     line-height: 1.5;
     color: var(--color-ink-soft);
     display: -webkit-box;
@@ -181,7 +212,7 @@ const { aulas, accent = 'enem' } = Astro.props;
     align-self: center;
     flex-shrink: 0;
     font-family: var(--font-display);
-    font-size: 0.7rem;
+    font-size: calc(0.7rem * var(--escala-texto, 1));
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.08em;
@@ -221,7 +252,7 @@ const { aulas, accent = 'enem' } = Astro.props;
     align-self: center;
     flex-shrink: 0;
     font-family: var(--font-display);
-    font-size: 0.66rem;
+    font-size: calc(0.66rem * var(--escala-texto, 1));
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.08em;
@@ -251,8 +282,8 @@ const { aulas, accent = 'enem' } = Astro.props;
     font-weight: 600;
   }
   .trilha__item[data-vista='true'] .trilha__marca {
+    --anel-cor: var(--color-ok);
     background: color-mix(in srgb, var(--color-ok) 16%, var(--color-surface));
-    border-color: color-mix(in srgb, var(--color-ok) 45%, transparent);
     color: var(--color-ok);
   }
   .trilha__item[data-vista='true'] .trilha__numero {

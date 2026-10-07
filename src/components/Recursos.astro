@@ -120,7 +120,7 @@ const hasAny = va || cg || hasMateriais || cc;
     height: 2.75rem;
     border-radius: 0.55rem;
     background: var(--res-soft);
-    font-size: 0.95rem;
+    font-size: calc(0.95rem * var(--escala-texto, 1));
     flex-shrink: 0;
   }
   .res-row__icone {
@@ -135,7 +135,7 @@ const hasAny = va || cg || hasMateriais || cc;
   }
   .res-kicker {
     font-family: var(--font-mono);
-    font-size: 0.65rem;
+    font-size: calc(0.65rem * var(--escala-texto, 1));
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.08em;
@@ -144,7 +144,7 @@ const hasAny = va || cg || hasMateriais || cc;
   }
   .res-title {
     font-family: var(--font-body);
-    font-size: 0.9rem;
+    font-size: calc(0.9rem * var(--escala-texto, 1));
     color: var(--color-ink);
     line-height: 1.45;
     margin-bottom: 0.5rem;
@@ -152,14 +152,14 @@ const hasAny = va || cg || hasMateriais || cc;
   }
   .res-note {
     font-family: var(--font-body);
-    font-size: 0.8rem;
+    font-size: calc(0.8rem * var(--escala-texto, 1));
     color: var(--color-ink-soft);
     line-height: 1.5;
   }
   .res-cta {
     font-family: var(--font-display);
     font-weight: 700;
-    font-size: 0.8rem;
+    font-size: calc(0.8rem * var(--escala-texto, 1));
     color: var(--res-accent);
     display: inline-flex;
     flex-wrap: wrap;
@@ -181,7 +181,7 @@ const hasAny = va || cg || hasMateriais || cc;
   }
   .res-row {
     font-family: var(--font-body);
-    font-size: 0.82rem;
+    font-size: calc(0.82rem * var(--escala-texto, 1));
     color: var(--color-ink);
     line-height: 1.45;
     overflow-wrap: anywhere;

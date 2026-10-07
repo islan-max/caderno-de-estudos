@@ -1,0 +1,112 @@
+---
+// Uma área do ENEM sozinha: o foco fica só nas matérias dela.
+import Base from '../../../layouts/Base.astro';
+import Icone from '../../../components/Icone.astro';
+import AreaMaterias from '../../../components/AreaMaterias.astro';
+import { u } from '../../../lib/url';
+import { ENEM_AREAS } from '../../../lib/enemAreas';
+import { indiceEnem } from '../../../lib/aulas';
+
+export async function getStaticPaths() {
+  const aulas = await indiceEnem();
+  const temAula = new Set(aulas.map((a) => a.areaCurto));
+  return ENEM_AREAS.filter((a) => temAula.has(a.labelCurto)).map((area) => ({
+    params: { area: area.slug },
+    props: { area },
+  }));
+}
+
+const { area } = Astro.props;
+const aulas = await indiceEnem();
+
+const porMateria = new Map<string, string[]>();
+for (const a of aulas) {
+  porMateria.set(a.materia, [...(porMateria.get(a.materia) ?? []), a.id]);
+}
+const idsDaArea = area.subjects.flatMap((s) => porMateria.get(s.slug) ?? []);
+const comAula = area.subjects.filter((s) => (porMateria.get(s.slug) ?? []).length > 0).length;
+const resumo =
+  `${comAula} ${comAula === 1 ? 'matéria' : 'matérias'} com aulas, ` +
+  `${idsDaArea.length} ${idsDaArea.length === 1 ? 'aula' : 'aulas'} no total.`;
+---
+
+<Base
+  title={area.label}
+  active="enem"
+  cor={area.cor}
+  description={`Matérias de ${area.label} no ENEM, na ordem de aprendizado`}
+  voltar={{ href: u('/enem'), label: 'Matérias por área' }}
+>
+  <header class="topo" style={`--cor: ${area.cor}`} data-surgir>
+    <p class="topo__kicker"><Icone nome={area.icone} duo cor={area.cor} /> Área do ENEM</p>
+    <h1 class="topo__h1">{area.label}</h1>
+    <p class="topo__texto">
+      {resumo}{' '}
+      <span class="topo__contador" data-progresso-de={idsDaArea.join(' ')}
+        >Você viu <strong data-progresso-texto>0 de {idsDaArea.length}</strong>.</span
+      >
+    </p>
+  </header>
+
+  <AreaMaterias area={area} porMateria={porMateria} cabeca={false} />
+
+  <p class="outras">
+    <a href={u('/enem')}>Ver todas as áreas <Icone nome="arrow-right" /></a>
+  </p>
+</Base>
+
+<style>
+  .topo {
+    margin-bottom: 2rem;
+  }
+  .topo__kicker {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-display);
+    font-size: calc(0.68rem * var(--escala-texto, 1));
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--color-ink-soft);
+    margin: 0 0 0.6rem;
+  }
+  .topo__h1 {
+    font-family: var(--font-display);
+    font-size: clamp(1.6rem, 1.1rem + 2vw, 2.3rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.12;
+    margin: 0 0 0.7rem;
+    padding-bottom: 0.7rem;
+    border-bottom: 2px solid color-mix(in srgb, var(--cor) 45%, var(--color-line));
+  }
+  .topo__texto {
+    font-family: var(--font-body);
+    font-size: calc(0.98rem * var(--escala-texto, 1));
+    line-height: 1.7;
+    color: var(--color-ink-soft);
+    max-width: 40rem;
+    margin: 0;
+  }
+  .topo__texto strong {
+    color: var(--color-ink);
+    font-family: var(--font-display);
+  }
+  .outras {
+    margin: 2rem 0 0;
+    font-family: var(--font-display);
+    font-size: calc(0.8rem * var(--escala-texto, 1));
+    font-weight: 600;
+  }
+  .outras a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--color-ink-soft);
+    text-decoration: none;
+  }
+  .outras a:hover {
+    color: var(--color-ink);
+  }
+</style>

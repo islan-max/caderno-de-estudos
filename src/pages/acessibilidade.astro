@@ -49,7 +49,17 @@ import { u } from '../lib/url';
     <li>alto contraste;</li>
     <li>redução de animações (também respeitamos a preferência do sistema operacional);</li>
     <li>sublinhado em todos os links, para não depender só da cor;</li>
-    <li>atalhos de uma tecla (<kbd>/</kbd>, <kbd>←</kbd>, <kbd>→</kbd>) que podem ser desligados.</li>
+    <li>atalhos de uma tecla (<kbd>/</kbd>, <kbd>←</kbd>, <kbd>→</kbd>) que podem ser desligados;</li>
+    <li>
+      correção imediata das questões, que vem ligada: ao marcar uma alternativa o caderno já diz
+      se está certa. Desligada, as questões são corrigidas todas juntas, pelo botão "Corrigir
+      respostas";
+    </li>
+    <li>
+      brilho do tema claro, de 100% a 75%, para quem acha a tela clara demais mas não quer o tema
+      escuro. Abaixo de 80% o contraste de alguns textos fica abaixo do mínimo da WCAG; por isso o
+      padrão é 100% e a escolha é de quem usa.
+    </li>
   </ul>
   <p>
     Há ainda o tema claro e o tema escuro, no interruptor ao lado do painel.
@@ -66,13 +76,19 @@ import { u } from '../lib/url';
       O link "Pular para o conteúdo" é o primeiro item de todas as páginas.
     </li>
     <li>
-      A busca abre com <kbd>Ctrl</kbd> + <kbd>K</kbd>, move o destaque com <kbd>↑</kbd> e
+      A busca abre e fecha com <kbd>Ctrl</kbd> + <kbd>K</kbd>, move o destaque com <kbd>↑</kbd> e
       <kbd>↓</kbd>, abre a aula com <kbd>Enter</kbd> e fecha com <kbd>Esc</kbd>. Todos os painéis
       fecham com <kbd>Esc</kbd>.
     </li>
     <li>
-      No quiz, as alternativas são botões de opção nativos: as setas escolhem e o botão
-      "Corrigir respostas" mantém o foco no resultado.
+      No quiz, as alternativas são botões de opção nativos: as setas escolhem. Com a correção
+      imediata, mouse e toque corrigem ao marcar; pelo teclado e por leitor de tela aparece o
+      botão "Confirmar resposta" (ou <kbd>Enter</kbd>), porque as setas mudam a alternativa e
+      corrigir a cada seta travaria a primeira que passou. O foco vai para o resultado.
+    </li>
+    <li>
+      As seções das aulas recolhem e expandem com <kbd>Enter</kbd> ou <kbd>Espaço</kbd> no título,
+      e o botão "Voltar ao topo" aparece depois de rolar a página e é alcançável por <kbd>Tab</kbd>.
     </li>
   </ul>
 
