@@ -10,14 +10,13 @@ import Icone from './Icone.astro';
     type="button"
     class="ferramenta ferramenta--busca"
     data-acao="busca"
-    title="Buscar aula (Ctrl + K)"
+    title="Buscar aula"
     aria-label="Buscar aula"
     aria-haspopup="dialog"
     aria-keyshortcuts="Control+K"
   >
     <Icone nome="magnifying-glass" />
     <span class="ferramenta__texto">Buscar aula</span>
-    <kbd class="ferramenta__atalho">Ctrl K</kbd>
   </button>
 
   <button type="button" class="ferramenta" data-abre="progresso" title="Meu progresso" aria-label="Meu progresso" aria-haspopup="dialog">
@@ -105,25 +104,12 @@ import Icone from './Icone.astro';
 
   /* A busca é a ação principal: ganha largura e vira um campo falso. */
   .ferramenta--busca {
-    padding-right: 0.4rem;
+    padding-right: 1rem;
     padding-left: 0.85rem;
   }
   .ferramenta__texto {
     display: none;
   }
-  .ferramenta__atalho {
-    display: none;
-    font-family: var(--font-display);
-    font-size: calc(0.62rem * var(--escala-texto, 1));
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    padding: 0.24rem 0.42rem;
-    border-radius: 0.4rem;
-    border: 1px solid var(--color-line);
-    background: color-mix(in srgb, var(--color-paper-dark) 55%, transparent);
-    color: var(--color-ink-soft);
-  }
-
   /* Escala do "Aa": o botão indica visualmente o nível ativo. */
   .ferramenta[data-nivel='grande'] {
     font-size: calc(0.88rem * var(--escala-texto, 1));
@@ -140,16 +126,13 @@ import Icone from './Icone.astro';
       gap: 0.45rem;
     }
     .ferramenta--busca {
-      min-width: 12.5rem;
+      min-width: 8.5rem;
       justify-content: flex-start;
     }
     .ferramenta--busca .ferramenta__texto {
       display: inline;
       flex: 1;
       text-align: left;
-    }
-    .ferramenta__atalho {
-      display: inline-block;
     }
   }
   @media (min-width: 1024px) {

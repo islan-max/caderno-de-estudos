@@ -78,6 +78,10 @@ class Barra {
   ) {
     this.barra.dataset.eixo = eixo;
     this.barra.dataset.alvo = documento ? 'pagina' : 'contenedor';
+    // Nas aulas o corretivo deixa a fita por onde a leitura já passou, o que ajuda a retomar
+    // um texto longo. No resto do site (listas, painéis, navegação) essa memória não significa
+    // nada: lá a peça é um giz de cera, que só desliza pela linha e não deixa rastro.
+    this.barra.dataset.modelo = document.querySelector('[data-conteudo-aula]') ? 'corretivo' : 'giz';
     this.barra.setAttribute('aria-hidden', 'true');
     this.barra.hidden = true;
     this.trilho.append(this.fita, this.polegar);

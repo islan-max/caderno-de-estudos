@@ -268,7 +268,51 @@ import { u } from '../lib/url';
   </div>
 </dialog>
 
+<!-- ------------------------------------------------------- confirmação
+     Lugar do confirm() nativo, que alguns navegadores (e o app) bloqueiam e que então
+     devolve "não" sem mostrar nada. Usado por confirmarAcao() em app.ts. -->
+<dialog id="confirmar" class="painel painel--confirmar" aria-labelledby="confirmar-titulo" aria-describedby="confirmar-texto">
+  <h2 class="painel__titulo" id="confirmar-titulo" data-confirmar-titulo></h2>
+  <p class="painel__sub confirmar__texto" id="confirmar-texto" data-confirmar-texto></p>
+  <label class="confirmar__extra" data-confirmar-extra hidden>
+    <input type="checkbox" data-confirmar-extra-caixa />
+    <span data-confirmar-extra-texto></span>
+  </label>
+  <footer class="painel__rodape confirmar__acoes">
+    <button type="button" class="painel__botao" data-fecha autofocus>Cancelar</button>
+    <button type="button" class="painel__botao painel__botao--perigo" data-confirmar-ok></button>
+  </footer>
+</dialog>
+
 <style>
+  .painel--confirmar {
+    width: min(26rem, calc(100vw - 1.5rem));
+  }
+  .confirmar__texto {
+    max-width: none;
+    margin-bottom: 1rem;
+  }
+  .confirmar__extra {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    margin: 0 0 0.25rem;
+    font-family: var(--font-body);
+    font-size: calc(0.86rem * var(--escala-texto, 1));
+    line-height: 1.5;
+    cursor: pointer;
+  }
+  .confirmar__extra[hidden] {
+    display: none;
+  }
+  .confirmar__extra input {
+    margin-top: 0.2rem;
+    accent-color: var(--color-escolar);
+    flex-shrink: 0;
+  }
+  .confirmar__acoes {
+    justify-content: flex-end;
+  }
   .painel {
     /* Sem position própria: o `position: fixed; inset: 0; margin: auto` do
        navegador é o que centraliza o diálogo modal na tela. */

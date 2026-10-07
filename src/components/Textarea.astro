@@ -237,8 +237,21 @@ const campo = `redacao-${id}`;
       salvar();
     });
 
-    limpar.addEventListener('click', () => {
-      if (campo.value.trim() && !confirm('Apagar o texto desta folha?')) return;
+    limpar.addEventListener('click', async () => {
+      if (campo.value.trim()) {
+        // confirm() nativo é bloqueado em alguns navegadores: usa a janela da própria página.
+        const pedir = (window as unknown as { cdtConfirmar?: (p: object) => Promise<{ ok: boolean }> }).cdtConfirmar;
+        const ok = pedir
+          ? (
+              await pedir({
+                titulo: 'Apagar o texto desta folha?',
+                texto: 'Tudo o que você escreveu nesta folha será apagado deste navegador. Isso não pode ser desfeito.',
+                confirmar: 'Apagar texto',
+              })
+            ).ok
+          : confirm('Apagar o texto desta folha?');
+        if (!ok) return;
+      }
       campo.value = '';
       guardarRascunho(id, '');
       estado.textContent = '';

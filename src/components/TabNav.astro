@@ -60,9 +60,16 @@ const tabs = [
     border: 2px solid var(--tab-color);
     border-bottom: none;
     margin-top: 10px;
+    /* A aba inativa fica "enfiada" 6px atrás da folha e sobe ao passar o mouse, como as
+       divisórias de um fichário. Como o cabeçalho pinta acima da folha (ver Base.astro), a
+       parte enfiada é recortada: o recorte de baixo acompanha o deslize (8px = 6px da
+       transformação + 2px da borda da folha), e o que aparece termina sempre na borda de
+       fora da folha. Transformação e recorte usam a mesma duração e curva. As margens
+       negativas do recorte deixam o brilho e as laterais livres. */
     transform: translateY(6px);
-    transition: transform 0.24s var(--ease), background-color 0.24s var(--ease),
-      box-shadow 0.24s var(--ease);
+    clip-path: inset(-30px -30px 8px -30px);
+    transition: transform 0.24s var(--ease), clip-path 0.24s var(--ease),
+      background-color 0.24s var(--ease), box-shadow 0.24s var(--ease);
   }
   .tab__icone {
     font-size: 0.85em;
@@ -71,6 +78,7 @@ const tabs = [
   }
   .tab:hover {
     transform: translateY(2px);
+    clip-path: inset(-30px -30px 4px -30px);
     box-shadow: 0 -6px 18px -12px var(--tab-color);
   }
   .tab:hover .tab__icone {
@@ -78,22 +86,20 @@ const tabs = [
     transform: translateY(-1px);
   }
   /* A aba ativa é a MESMA folha, não um adesivo colado nela: usa o fundo da
-     folha e avança 2px por cima da borda superior dela. O resultado é a
-     lacuna de um fichário de verdade — a linha do topo se abre exatamente na
-     largura da aba, mostrando a que divisória a página aberta pertence. */
+     folha e desce exatamente até o fim da borda superior dela (2px, ver
+     Base.astro), cobrindo-a. O resultado é a lacuna de um fichário de verdade —
+     a linha do topo se abre na largura da aba e o contorno segue contínuo: sobe
+     pela lateral da aba, cruza o topo e desce pela outra lateral, sem passar da
+     borda da folha. Não desliza nem é recortada. */
   .tab[data-active='true'] {
     margin-top: 0;
     transform: none;
+    clip-path: none;
     background: var(--color-surface);
-    padding-bottom: calc(0.625rem + 3px);
-    margin-bottom: -3px;
-  }
-  @media (min-width: 768px) {
-    .tab[data-active='true'] {
-      padding-bottom: calc(0.75rem + 3px);
-    }
   }
   .tab[data-active='true']:hover {
+    transform: none;
+    clip-path: none;
     box-shadow: none;
   }
   .tab[data-active='true'] .tab__icone {

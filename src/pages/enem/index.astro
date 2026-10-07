@@ -3,6 +3,7 @@ import Base from '../../layouts/Base.astro';
 import Icone from '../../components/Icone.astro';
 import { u } from '../../lib/url';
 import { ENEM_AREAS } from '../../lib/enemAreas';
+import AreaMaterias from '../../components/AreaMaterias.astro';
 import { indiceEnem } from '../../lib/aulas';
 
 // Toda matéria das 4 áreas aparece na página, mesmo sem conteúdo publicado
@@ -31,60 +32,9 @@ for (const a of aulas) {
   </header>
 
   <div class="areas">
-    {ENEM_AREAS.map((area, ai) => {
-      const idsDaArea = area.subjects.flatMap((s) => porMateria.get(s.slug) ?? []);
-      return (
-        <section class="area" style={`--cor: ${area.cor}; --i: ${ai}`} data-surgir>
-          <header class="area__cabeca">
-            <h2 class="area__titulo">
-              <Icone nome={area.icone} duo cor={area.cor} class="area__icone" />
-              {area.label}
-            </h2>
-            {idsDaArea.length > 0 && (
-              <span class="area__contador" data-progresso-de={idsDaArea.join(' ')}
-                ><span data-progresso-texto>0 de {idsDaArea.length}</span> vistas</span
-              >
-            )}
-          </header>
-
-          <ul class="area__lista">
-            {area.subjects.map((s) => {
-              const ids = porMateria.get(s.slug) ?? [];
-              const count = ids.length;
-              return (
-                <li>
-                  {count > 0 ? (
-                    <a href={u(`/enem/${s.slug}/`)} class="materia" data-progresso-de={ids.join(' ')}>
-                      <Icone nome={s.icone} duo cor={`var(--color-${s.slug})`} class="materia__icone" />
-                      <span class="materia__corpo">
-                        <span class="materia__nome">{s.label}</span>
-                        <span class="materia__meta">
-                          <span>{count} {count === 1 ? 'aula' : 'aulas'}</span>
-                          <span aria-hidden="true">·</span>
-                          <span><span data-progresso-texto>0 de {count}</span> vistas</span>
-                        </span>
-                        <span class="materia__trilho" aria-hidden="true">
-                          <span data-progresso-barra></span>
-                        </span>
-                      </span>
-                      <Icone nome="arrow-right" class="materia__seta" />
-                    </a>
-                  ) : (
-                    <div class="materia materia--vazia">
-                      <Icone nome="hourglass-half" class="materia__icone" />
-                      <span class="materia__corpo">
-                        <span class="materia__nome">{s.label}</span>
-                        <span class="materia__meta">Material ainda não compartilhado</span>
-                      </span>
-                    </div>
-                  )}
-                </li>
-              );
-            })}
-          </ul>
-        </section>
-      );
-    })}
+    {ENEM_AREAS.map((area, ai) => (
+      <AreaMaterias area={area} porMateria={porMateria} indice={ai} />
+    ))}
   </div>
 </Base>
 
@@ -125,140 +75,5 @@ for (const a of aulas) {
     display: flex;
     flex-direction: column;
     gap: 2.5rem;
-  }
-  .area__cabeca {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    gap: 0.5rem 1rem;
-    padding-bottom: 0.7rem;
-    margin-bottom: 1rem;
-    border-bottom: 2px solid color-mix(in srgb, var(--cor) 35%, var(--color-line));
-  }
-  .area__titulo {
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-    font-family: var(--font-display);
-    font-size: calc(1rem * var(--escala-texto, 1));
-    font-weight: 700;
-    letter-spacing: -0.01em;
-    margin: 0;
-  }
-  .area__icone {
-    font-size: calc(0.9rem * var(--escala-texto, 1));
-    flex-shrink: 0;
-  }
-  .area__contador {
-    font-family: var(--font-display);
-    font-size: calc(0.68rem * var(--escala-texto, 1));
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.09em;
-    color: var(--color-ink-soft);
-    white-space: nowrap;
-  }
-  .area__contador[data-completo='true'] {
-    color: var(--color-ok);
-  }
-
-  .area__lista {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: grid;
-    gap: 0.6rem;
-    grid-template-columns: 1fr;
-  }
-  @media (min-width: 620px) {
-    .area__lista {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-  }
-
-  .materia {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    height: 100%;
-    padding: 0.8rem 0.9rem;
-    border: 1px solid var(--color-line);
-    border-radius: 0.7rem;
-    background: color-mix(in srgb, var(--cor) 5%, transparent);
-    text-decoration: none;
-    color: var(--color-ink);
-  }
-  a.materia:hover {
-    border-color: var(--cor);
-    background: color-mix(in srgb, var(--cor) 11%, transparent);
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-soft);
-  }
-  /* Sem opacity (derrubaria o contraste do texto): borda tracejada + cor suave. */
-  .materia--vazia {
-    border-style: dashed;
-    background: transparent;
-  }
-  .materia--vazia .materia__nome {
-    color: var(--color-ink-soft);
-  }
-  .materia__icone {
-    font-size: calc(0.9rem * var(--escala-texto, 1));
-    flex-shrink: 0;
-    color: var(--color-ink-soft);
-  }
-  .materia__corpo {
-    display: flex;
-    flex-direction: column;
-    gap: 0.22rem;
-    min-width: 0;
-    flex: 1;
-  }
-  .materia__nome {
-    font-family: var(--font-display);
-    font-size: calc(0.9rem * var(--escala-texto, 1));
-    font-weight: 650;
-    line-height: 1.25;
-  }
-  .materia__meta {
-    font-family: var(--font-display);
-    font-size: calc(0.68rem * var(--escala-texto, 1));
-    color: var(--color-ink-soft);
-    display: flex;
-    gap: 0.28rem;
-  }
-  .materia__trilho {
-    display: block;
-    height: 4px;
-    margin-top: 0.15rem;
-    border-radius: 999px;
-    background: color-mix(in srgb, var(--color-ink) 10%, transparent);
-    overflow: hidden;
-  }
-  .materia__trilho span {
-    display: block;
-    height: 100%;
-    width: 100%;
-    border-radius: 999px;
-    background: var(--cor);
-    transform: scaleX(0);
-    transform-origin: 0 50%;
-    transition: transform 0.75s var(--ease);
-  }
-  .materia[data-completo='true'] .materia__trilho span {
-    background: var(--color-ok);
-  }
-  .materia__seta {
-    flex-shrink: 0;
-    font-size: calc(0.72rem * var(--escala-texto, 1));
-    color: var(--cor);
-    opacity: 0;
-    transform: translateX(-5px);
-    transition: opacity 0.22s var(--ease), transform 0.22s var(--ease);
-  }
-  a.materia:hover .materia__seta {
-    opacity: 1;
-    transform: none;
   }
 </style>

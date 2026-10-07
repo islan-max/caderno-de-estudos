@@ -19,11 +19,11 @@
   --color-ink: #1f2a44;
   --color-ink-soft: #565f72;
 
-  --color-enem: #ae3c26;
+  --color-enem: #b22d14;
   --color-enem-soft: #f1dbd2;
-  --color-escolar: #2e5c8a;
+  --color-escolar: #1c62a9;
   --color-escolar-soft: #dbe5f0;
-  --color-ds: #386f4e;
+  --color-ds: #1a6e3b;
   --color-ds-soft: #dbebe0;
 
   --color-line: #c9c2a8;
@@ -36,8 +36,8 @@
      então usam o mesmo tom; no escuro a pauta guarda o tom antigo, discreto,
      enquanto --color-line fica mais forte para bordas e divisórias. */
   --color-pauta: var(--color-line);
-  --color-ok: #386f4e;
-  --color-aviso: #8a5a00;
+  --color-ok: #1a6e3b;
+  --color-aviso: #865700;
 
   /* Altura da pauta do caderno. Toda a métrica vertical é múltipla disso. */
   --rule: 35px;
@@ -67,24 +67,24 @@
  * O nome da variável é o slug da pasta: Tema.astro usa var(--color-<slug>).
  * ------------------------------------------------------------------------- */
 :root {
-  --color-matematica-basica: #1f5c9e;
-  --color-matematica-financeira: #1f5c9e;
-  --color-geometria: #1f5c9e;
-  --color-estatistica-e-probabilidade: #1f5c9e;
-  --color-funcoes: #1f5c9e;
-  --color-fisica: #3949a3;
-  --color-quimica: #6440ad;
-  --color-biologia: #246a30;
-  --color-lingua-portuguesa: #b3261e;
-  --color-redacao: #b0245f;
-  --color-lingua-estrangeira: #0b6169;
-  --color-artes: #8e2f93;
-  --color-educacao-fisica: #4c5c0c;
-  --color-tic: #475569;
-  --color-historia: #765500;
-  --color-geografia: #9a3f08;
-  --color-filosofia: #7a4a2c;
-  --color-sociologia: #6e4582;
+  --color-matematica-basica: #0f5fb6;
+  --color-matematica-financeira: #0f5fb6;
+  --color-geometria: #0f5fb6;
+  --color-estatistica-e-probabilidade: #0f5fb6;
+  --color-funcoes: #0f5fb6;
+  --color-fisica: #3d53d1;
+  --color-quimica: #7040d2;
+  --color-biologia: #146f23;
+  --color-lingua-portuguesa: #ba1b12;
+  --color-redacao: #b71459;
+  --color-lingua-estrangeira: #096b74;
+  --color-artes: #9f27a5;
+  --color-educacao-fisica: #556808;
+  --color-tic: #416292;
+  --color-historia: #7e5b00;
+  --color-geografia: #a24209;
+  --color-filosofia: #8c532f;
+  --color-sociologia: #8741aa;
 }
 html[data-tema="escuro"] {
   --color-matematica-basica: #7fb0e6;
@@ -253,8 +253,10 @@ html[data-tema="escuro"] .text-black {
     letter-spacing: 0.06em;
   }
 
+  /* O texto selecionado leva a cor da página (--acento, definida no <body> por Base.astro): a da
+     aba no ENEM, a da matéria dentro de uma matéria e a da área numa página de área. */
   ::selection {
-    background-color: var(--color-enem-soft);
+    background-color: color-mix(in srgb, var(--acento, var(--color-enem)) 32%, transparent);
     color: var(--color-ink);
   }
 
@@ -375,9 +377,14 @@ html[data-links="sim"] main a:not([class]) {
   text-underline-offset: 3px;
 }
 
-/* Troca de tema: o tema novo se revela em círculo a partir do botão (app.ts define
-   --tema-x/y/raio). Só vale durante a troca; as navegações do Astro seguem as regras
-   delas. Elementos com nome de transição saem do caminho para a revelação cobrir tudo. */
+/* Troca de tema (app.ts define --tema-x/y/raio no ponto do botão e grava em
+   data-trocando-tema o tema de destino). Só vale durante a troca; as navegações do Astro
+   seguem as regras delas. Elementos com nome de transição saem do caminho para o efeito
+   cobrir a página toda.
+   - Para o claro: o sol nasce. A página clara se espalha em círculo a partir do botão, com
+     um clarão no começo, e cobre tudo.
+   - Para o escuro: o sol se apaga. A página clara se fecha em círculo de volta para o
+     botão, escurecendo, e a noite toma conta de tudo (o efeito ao contrário). */
 html[data-trocando-tema] *,
 html[data-trocando-tema] *::before,
 html[data-trocando-tema] *::after {
@@ -388,15 +395,239 @@ html[data-trocando-tema]::view-transition-new(root) {
   animation: none;
   mix-blend-mode: normal;
 }
-html[data-trocando-tema]::view-transition-new(root) {
-  animation: tema-revela 0.6s var(--ease) both;
+html[data-trocando-tema='claro']::view-transition-old(root) {
+  z-index: 1;
 }
-@keyframes tema-revela {
+html[data-trocando-tema='claro']::view-transition-new(root) {
+  z-index: 2;
+  animation: tema-sol 0.8s cubic-bezier(0.25, 0.6, 0.3, 1) both;
+}
+@keyframes tema-sol {
   from {
     clip-path: circle(0 at var(--tema-x) var(--tema-y));
+    filter: brightness(1.9) saturate(1.2);
+  }
+  55% {
+    filter: brightness(1.25) saturate(1.05);
   }
   to {
     clip-path: circle(var(--tema-raio) at var(--tema-x) var(--tema-y));
+    filter: none;
+  }
+}
+html[data-trocando-tema='escuro']::view-transition-new(root) {
+  z-index: 1;
+}
+html[data-trocando-tema='escuro']::view-transition-old(root) {
+  z-index: 2;
+  animation: tema-lua 0.65s cubic-bezier(0.6, 0.1, 0.75, 0.4) both;
+}
+@keyframes tema-lua {
+  from {
+    clip-path: circle(var(--tema-raio) at var(--tema-x) var(--tema-y));
+    filter: none;
+  }
+  45% {
+    filter: brightness(0.75) saturate(0.9);
+  }
+  to {
+    clip-path: circle(0 at var(--tema-x) var(--tema-y));
+    filter: brightness(0.4) saturate(0.7);
+  }
+}
+
+/* ---------------------------------------------------------------------------
+ * Dica (hover)
+ * No lugar do balão nativo, uma etiqueta no formato dos botões do site (pílula), em tinta
+ * invertida: escura sobre o claro e clara sobre o escuro. Uma setinha aponta para o
+ * elemento e uma bolinha na cor da aba da página abre o texto. Montada por
+ * ligarNotasSoltas (app.ts), que define --seta (posição da setinha) e data-lado.
+ * ------------------------------------------------------------------------- */
+.nota-solta {
+  position: fixed;
+  z-index: 120;
+  max-width: min(18rem, 80vw);
+  padding: 0.5em 1.05em 0.5em 2.1em;
+  border-radius: 1.2em;
+  background:
+    radial-gradient(circle 0.32em at 1.05em 50%, var(--acento, var(--color-enem)) 96%, transparent 100%),
+    var(--color-ink);
+  color: var(--color-paper);
+  font-family: var(--font-display);
+  font-size: calc(0.76rem * var(--escala-texto, 1));
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: 0.005em;
+  box-shadow: 0 10px 22px -10px rgb(0 0 0 / 0.55), 0 2px 4px rgb(0 0 0 / 0.18);
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(5px) scale(0.94);
+  transition: opacity 0.14s var(--ease), transform 0.2s cubic-bezier(0.3, 1.3, 0.5, 1);
+}
+.nota-solta[data-lado='cima'] {
+  transform: translateY(-5px) scale(0.94);
+}
+.nota-solta[data-visivel='true'] {
+  opacity: 1;
+  transform: none;
+}
+/* Setinha apontando para o elemento. */
+.nota-solta::before {
+  content: '';
+  position: absolute;
+  left: var(--seta, 50%);
+  width: 0.6rem;
+  height: 0.6rem;
+  margin-left: -0.3rem;
+  border-radius: 0.12rem;
+  background: var(--color-ink);
+  transform: rotate(45deg);
+}
+.nota-solta[data-lado='baixo']::before {
+  top: -0.2rem;
+}
+.nota-solta[data-lado='cima']::before {
+  bottom: -0.2rem;
+}
+.nota-solta[hidden] {
+  display: none;
+}
+@media (forced-colors: active) {
+  .nota-solta {
+    border: 1px solid CanvasText;
+    forced-color-adjust: none;
+    background: Canvas;
+    color: CanvasText;
+  }
+  .nota-solta::before {
+    display: none;
+  }
+}
+@media print {
+  .nota-solta {
+    display: none;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+ * Avisos dispensáveis
+ * Um cartão com data-dispensavel="chave" e um botão data-dispensar. Ao clicar no X, a
+ * chave fica guardada no navegador (cdt:dispensados) e o cartão não aparece mais. O atributo
+ * data-dispensados do <html> é posto antes da primeira pintura (Base.astro), então o cartão
+ * já nasce escondido, sem piscar. Cada aviso novo precisa de uma linha aqui.
+ * ------------------------------------------------------------------------- */
+html[data-dispensados~='ajuda'] [data-dispensavel='ajuda'],
+html[data-dispensados~='dica-setas'] [data-dispensavel='dica-setas'] {
+  display: none;
+}
+.dispensar {
+  display: inline-grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 1.8rem;
+  height: 1.8rem;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--color-ink-soft);
+  font-size: calc(0.78rem * var(--escala-texto, 1));
+  cursor: pointer;
+}
+.dispensar:hover {
+  color: var(--color-ink);
+  border-color: var(--color-line);
+  background: var(--color-paper-dark);
+}
+
+/* ---------------------------------------------------------------------------
+ * Voltar
+ * Páginas com caminho de migalhas ("Você está aqui"): o link "Voltar para…" de Base.astro
+ * some da tela (continua no HTML só para a seta ← do teclado) e o último nível do caminho
+ * vira o botão de voltar: ganha uma seta, fica em negrito e com área de clique maior.
+ * ------------------------------------------------------------------------- */
+.voltar:has(~ nav[aria-label='Você está aqui']),
+.voltar:has(~ * nav[aria-label='Você está aqui']) {
+  display: none;
+}
+/* Todos os níveis (links, barras e a página atual) no mesmo eixo vertical, mesmo com a pílula
+   do último link sendo mais alta que o texto ao redor. */
+nav[aria-label='Você está aqui'] {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.25rem 0.3rem;
+}
+nav[aria-label='Você está aqui'] > * {
+  line-height: 1.4;
+}
+nav[aria-label='Você está aqui'] a:last-of-type {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  /* Mais folga em cima que embaixo: o texto fica no centro óptico da pílula, não alguns décimos acima. */
+  padding: 0.2rem 0.65rem 0.2rem 0.5rem;
+  border: 1px solid var(--color-line);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--color-paper-dark) 40%, transparent);
+  color: var(--color-ink);
+  font-weight: 700;
+  text-decoration: none;
+}
+/* Seta de "subir um nível" (mesma do demo): desenhada com máscara para herdar a cor do texto. */
+nav[aria-label='Você está aqui'] a:last-of-type::before {
+  content: '';
+  width: 0.95rem;
+  height: 0.95rem;
+  flex: none;
+  background: currentColor;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 14L4 9l5-5'/%3E%3Cpath d='M4 9h10a6 6 0 0 1 6 6v5'/%3E%3C/svg%3E") center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 14L4 9l5-5'/%3E%3Cpath d='M4 9h10a6 6 0 0 1 6 6v5'/%3E%3C/svg%3E") center / contain no-repeat;
+  transition: transform 0.4s var(--ease);
+}
+/* Troca de texto: o nome da página sobe e entra "Voltar" (spans criados em ligarPilulaVoltar). */
+.volta__texto {
+  display: grid;
+  overflow: hidden;
+  line-height: 1.25;
+}
+.volta__texto > i {
+  grid-area: 1 / 1;
+  font-style: normal;
+  transition: transform 0.4s var(--ease), opacity 0.3s;
+}
+.volta__texto > i + i {
+  transform: translateY(120%);
+  opacity: 0;
+  color: var(--acento, var(--color-enem));
+}
+nav[aria-label='Você está aqui'] a:last-of-type {
+  transition: background-color 0.3s, border-color 0.3s, box-shadow 0.3s, transform 0.3s var(--ease);
+}
+nav[aria-label='Você está aqui'] a:last-of-type:hover,
+nav[aria-label='Você está aqui'] a:last-of-type:focus-visible {
+  background: color-mix(in srgb, var(--acento, var(--color-enem)) 14%, var(--color-paper-dark));
+  border-color: var(--acento, var(--color-enem));
+  transform: translateY(-1px);
+  box-shadow: 0 3px 0 -1px color-mix(in srgb, var(--acento, var(--color-enem)) 55%, transparent);
+}
+nav[aria-label='Você está aqui'] a:last-of-type:hover::before,
+nav[aria-label='Você está aqui'] a:last-of-type:focus-visible::before {
+  transform: translate(-2px, -1px) scale(1.1);
+  color: var(--acento, var(--color-enem));
+}
+nav[aria-label='Você está aqui'] a:last-of-type:is(:hover, :focus-visible) .volta__texto > i:first-child {
+  transform: translateY(-120%);
+  opacity: 0;
+}
+nav[aria-label='Você está aqui'] a:last-of-type:is(:hover, :focus-visible) .volta__texto > i + i {
+  transform: none;
+  opacity: 1;
+}
+@media (prefers-reduced-motion: reduce) {
+  nav[aria-label='Você está aqui'] a:last-of-type,
+  nav[aria-label='Você está aqui'] a:last-of-type::before,
+  .volta__texto > i {
+    transition: none;
   }
 }
 
@@ -462,6 +693,17 @@ html[data-trocando-tema]::view-transition-new(root) {
    em cima e embaixo da tabela não dobra. */
 .figura > .tabela-rolavel {
   margin: 0;
+}
+/* Figura que só tem tabela: a tabela já é a caixa, sem cartão em volta (igual às tabelas soltas). */
+.figura:has(> .tabela-rolavel) {
+  padding: 0;
+  border: 0;
+  background: none;
+}
+.figura:has(> .tabela-rolavel) > figcaption {
+  margin-top: 0.5rem;
+  padding-top: 0;
+  border-top: 0;
 }
 
 /* Tabelas das aulas: grade completa, cabeçalho com a cor da matéria e linhas alternadas.
@@ -613,6 +855,15 @@ html[data-contraste="sim"] .prose-tema :is(th, td) {
 }
 .topico-retratil__corpo {
   padding-bottom: 1.4rem;
+}
+/* "Para ir além" é a seção logo depois do artigo e tem margem de cima própria (my-10). Com a
+   última seção da aula recolhida, essa margem deixava um vão que as seções, coladas uma na
+   outra, não têm. Recolhida, a última seção passa a encostar no filete dele. */
+.prose-tema + section {
+  transition: margin-top 0.3s var(--ease);
+}
+.prose-tema:has(> .topico-retratil--secao:last-child:not([open])) + section {
+  margin-top: 0;
 }
 .topico-retratil__corpo > :first-child {
   margin-top: 0;

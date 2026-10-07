@@ -25,6 +25,8 @@ interface Props {
   class?: string;
   /** Limita a altura do corpo e rola por dentro (listas longas, como o glossário). */
   rolagem?: boolean;
+  /** Chave para lembrar, no navegador, se a seção ficou aberta ou fechada (ligarDobras em app.ts). */
+  dobra?: string;
 }
 const {
   titulo,
@@ -33,10 +35,11 @@ const {
   aberto = false,
   class: klass = '',
   rolagem = true,
+  dobra,
 } = Astro.props;
 ---
 
-<details class:list={['acordeao', klass]} open={aberto}>
+<details class:list={['acordeao', klass]} open={aberto} data-dobra={dobra}>
   <summary class="acordeao__cabeca not-prose">
     <span class="acordeao__icone"><Icone nome={icone} duo cor="var(--acordeao-tinta)" /></span>
     <span class="acordeao__textos">
@@ -56,6 +59,12 @@ const {
   ) : (
     <div class="acordeao__corpo">
       <slot />
+    </div>
+  )}
+  {Astro.slots.has('rodape') && (
+    // Fica fora da área que rola: ações do cartão, sempre à vista.
+    <div class="acordeao__rodape">
+      <slot name="rodape" />
     </div>
   )}
 </details>
@@ -186,6 +195,10 @@ const {
     max-height: min(36rem, 70vh);
     overflow-y: auto;
     padding: 0 1.6rem 0 0.15rem;
+  }
+  .acordeao__rodape {
+    margin: 0 1rem;
+    padding: 0.2rem 0.15rem 1rem;
   }
   .acordeao__area:focus-visible {
     outline: 2px solid var(--acordeao-tinta);

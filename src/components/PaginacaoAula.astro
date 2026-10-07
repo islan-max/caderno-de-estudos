@@ -66,9 +66,14 @@ const { anterior, proxima, posicao, total, materiaHref, materiaLabel, accent } =
     )}
   </div>
 
-  <p class="pager__dica">
-    <Icone nome="keyboard" /> Dica: use as setas <kbd>←</kbd> e <kbd>→</kbd> do teclado para trocar de aula.
-  </p>
+  <div class="pager__dica" data-dispensavel="dica-setas">
+    <p class="pager__dica-texto">
+      <Icone nome="keyboard" /> Dica: use as setas <kbd>←</kbd> e <kbd>→</kbd> do teclado para trocar de aula.
+    </p>
+    <button type="button" class="dispensar" data-dispensar aria-label="Dispensar: não mostrar mais esta dica" title="Já sei, não mostrar mais">
+      <Icone nome="xmark" />
+    </button>
+  </div>
 </nav>
 
 <style>
@@ -194,14 +199,26 @@ const { anterior, proxima, posicao, total, materiaHref, materiaLabel, accent } =
     line-height: 1.3;
   }
 
+  /* Cartão da dica das setas; o X guarda no navegador que já foi lida (dispensar). */
   .pager__dica {
     display: none;
     align-items: center;
-    gap: 0.45rem;
+    justify-content: space-between;
+    gap: 0.8rem;
     margin: 1rem 0 0;
+    padding: 0.4rem 0.45rem 0.4rem 0.85rem;
+    border: 1px solid var(--color-line);
+    border-radius: 0.7rem;
+    background: color-mix(in srgb, var(--color-paper-dark) 22%, transparent);
     font-family: var(--font-display);
     font-size: calc(0.7rem * var(--escala-texto, 1));
     color: var(--color-ink-soft);
+  }
+  .pager__dica-texto {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    margin: 0;
   }
   .pager__dica kbd {
     display: inline-block;

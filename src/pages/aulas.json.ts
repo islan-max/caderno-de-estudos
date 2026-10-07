@@ -9,6 +9,7 @@ export const GET: APIRoute = async () => {
     id: a.id,
     t: a.titulo,
     m: a.materiaLabel,
+    s: a.materia,
     a: a.areaCurto,
     h: a.href,
     i: a.icone,

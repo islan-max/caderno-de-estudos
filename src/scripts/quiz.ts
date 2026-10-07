@@ -307,6 +307,10 @@ export function montarQuiz() {
               ? 'media'
               : 'baixa';
     }
+    // Avisa quantas questões já foram respondidas (andamento da aula, ver ligarAulaAtual).
+    document.dispatchEvent(
+      new CustomEvent('cdt:questoes', { detail: { respondidas, total: lista.length } })
+    );
     return { acertos, respondidas, total };
   }
 

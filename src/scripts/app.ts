@@ -16,6 +16,30 @@ const CHAVE_TEMA = 'cdt:tema';
 const CHAVE_PROGRESSO = 'cdt:progresso';
 const CHAVE_ULTIMA = 'cdt:ultima';
 const CHAVE_FONTE_PX = 'cdt:fonte-px';
+const CHAVE_DISPENSADOS = 'cdt:dispensados';
+const CHAVE_ANDAMENTO = 'cdt:andamento';
+
+/** Quanto de cada aula já foi feito: leitura (0 a 100), se as questões foram respondidas e se a
+ *  aula tem questões. A aula só conclui com tudo; sem questões, a leitura vale 100%. */
+interface Andamento {
+  l: number;
+  q: number;
+  z: number;
+  /** Quando foi aberta pela última vez (ms). */
+  t?: number;
+}
+/** Parte do total que as questões respondidas valem (fixa). A leitura vale o resto. */
+const PESO_QUESTOES = 20;
+
+function andamentos(): Record<string, Andamento> {
+  return ler<Record<string, Andamento>>(CHAVE_ANDAMENTO, {});
+}
+
+function percentualDaAula(a?: Andamento): number {
+  if (!a) return 0;
+  const bruto = a.z ? (a.l * (100 - PESO_QUESTOES)) / 100 + (a.q ? PESO_QUESTOES : 0) : a.l;
+  return Math.min(100, Math.round(bruto));
+}
 
 type Progresso = Record<string, number>;
 
@@ -23,6 +47,8 @@ interface AulaBusca {
   id: string;
   t: string;
   m: string;
+  /** slug da matéria */
+  s: string;
   a: string;
   h: string;
   i: string;
@@ -134,7 +160,7 @@ function alternarTema(origem?: HTMLElement | null) {
     raiz.style.setProperty('--tema-x', `${x}px`);
     raiz.style.setProperty('--tema-y', `${y}px`);
     raiz.style.setProperty('--tema-raio', `${raio}px`);
-    raiz.dataset.trocandoTema = '';
+    raiz.dataset.trocandoTema = novo;
     const transicao = document.startViewTransition(() => aplicarTema(novo));
     transicao.finished.finally(() => delete raiz.dataset.trocandoTema);
   }
@@ -203,7 +229,10 @@ function aplicarBrilho(pct: number) {
 
 function atualizarRestaurar() {
   const alterado =
-    lerFontePx() !== FONTE_PADRAO || lerBrilho() !== BRILHO_PADRAO || temPreferenciaA11y();
+    lerFontePx() !== FONTE_PADRAO ||
+    lerBrilho() !== BRILHO_PADRAO ||
+    temPreferenciaA11y() ||
+    dispensados().length > 0;
   document.querySelectorAll<HTMLButtonElement>('[data-acao="restaurar-a11y"]').forEach((btn) => {
     btn.disabled = !alterado;
   });
@@ -214,13 +243,107 @@ function temPreferenciaA11y(): boolean {
   return Object.keys(p).some((k) => (LIGADAS_POR_PADRAO.includes(k) ? p[k] === false : p[k]));
 }
 
-/** Volta fonte e preferências de acessibilidade ao padrão. */
+/* ------------------------------------------------------ confirmação */
+
+interface PedidoConfirmacao {
+  titulo: string;
+  texto: string;
+  confirmar: string;
+  /** Opção extra, com caixa de marcar (desmarcada por padrão). */
+  extra?: string;
+}
+
+/** Janela de confirmação da própria página (o confirm() nativo é bloqueado em alguns
+ *  navegadores e devolve "não" sem mostrar nada). Cancelar, Esc e clique fora devolvem false. */
+function confirmarAcao(p: PedidoConfirmacao): Promise<{ ok: boolean; extra: boolean }> {
+  const dlg = document.getElementById('confirmar');
+  if (!(dlg instanceof HTMLDialogElement)) return Promise.resolve({ ok: false, extra: false });
+
+  dlg.querySelector('[data-confirmar-titulo]')!.textContent = p.titulo;
+  dlg.querySelector('[data-confirmar-texto]')!.textContent = p.texto;
+  dlg.querySelector('[data-confirmar-ok]')!.textContent = p.confirmar;
+  const extra = dlg.querySelector<HTMLElement>('[data-confirmar-extra]')!;
+  const caixa = dlg.querySelector<HTMLInputElement>('[data-confirmar-extra-caixa]')!;
+  extra.hidden = !p.extra;
+  caixa.checked = false;
+  dlg.querySelector('[data-confirmar-extra-texto]')!.textContent = p.extra ?? '';
+
+  return new Promise((resolver) => {
+    let respondido = false;
+    const responder = (ok: boolean) => {
+      if (respondido) return;
+      respondido = true;
+      const marcado = ok && Boolean(p.extra) && caixa.checked;
+      if (dlg.open) dlg.close();
+      resolver({ ok, extra: marcado });
+    };
+    dlg.querySelector('[data-confirmar-ok]')!.addEventListener('click', () => responder(true), { once: true });
+    dlg.addEventListener('close', () => responder(false), { once: true });
+    dlg.showModal();
+  });
+}
+
+// Outros scripts da página (folha de redação) usam a mesma janela.
+(window as unknown as { cdtConfirmar?: typeof confirmarAcao }).cdtConfirmar = confirmarAcao;
+
+async function zerarProgresso() {
+  // Apaga dados do usuário sem volta: pede confirmação (WCAG 3.3.4).
+  const r = await confirmarAcao({
+    titulo: 'Zerar o progresso?',
+    texto:
+      'As aulas que você marcou como vistas e o andamento de cada uma voltam ao zero neste navegador. Isso não pode ser desfeito.',
+    confirmar: 'Zerar progresso',
+    extra: 'Restaurar também os ajustes de acessibilidade (tamanho do texto, contraste etc.) ao padrão',
+  });
+  if (!r.ok) return;
+  if (!gravar(CHAVE_PROGRESSO, {})) {
+    toast('Não foi possível salvar neste navegador', 'triangle-exclamation');
+    return;
+  }
+  if (r.extra) restaurarAcessibilidade();
+  try {
+    localStorage.removeItem(CHAVE_ULTIMA);
+    localStorage.removeItem(CHAVE_ANDAMENTO);
+  } catch {}
+  refletirProgresso();
+  toast('Progresso zerado', 'rotate-left');
+  document.querySelectorAll<HTMLElement>('[data-recarrega-progresso]').forEach((el) => {
+    el.dataset.recarrega = String(Date.now());
+  });
+  window.setTimeout(() => location.reload(), 600);
+}
+
+/* ------------------------------------------------- avisos dispensáveis */
+
+function dispensados(): string[] {
+  return ler<string[]>(CHAVE_DISPENSADOS, []);
+}
+
+/** O CSS esconde o aviso quando a chave dele está em data-dispensados no <html>. */
+function aplicarDispensados() {
+  const lista = dispensados();
+  if (lista.length) document.documentElement.dataset.dispensados = lista.join(' ');
+  else delete document.documentElement.dataset.dispensados;
+}
+
+function dispensar(chave: string) {
+  const lista = dispensados();
+  if (!lista.includes(chave)) lista.push(chave);
+  gravar(CHAVE_DISPENSADOS, lista);
+  aplicarDispensados();
+  atualizarRestaurar();
+  toast('Certo, não mostro mais isso', 'circle-check');
+}
+
+/** Volta fonte, preferências de acessibilidade e avisos dispensados ao padrão. */
 function restaurarAcessibilidade() {
   try {
     localStorage.removeItem(CHAVE_FONTE_PX);
     localStorage.removeItem(CHAVE_BRILHO);
     localStorage.removeItem(CHAVE_A11Y);
+    localStorage.removeItem(CHAVE_DISPENSADOS);
   } catch {}
+  aplicarDispensados();
   aplicarA11y({});
   aplicarFontePx(FONTE_PADRAO);
   aplicarBrilho(BRILHO_PADRAO);
@@ -246,9 +369,12 @@ function marcar(id: string, vista: boolean) {
 /** Pinta as listas: cada item com data-aula-id ganha data-vista. */
 function refletirProgresso() {
   const p = vistas();
+  const and = andamentos();
   document.querySelectorAll<HTMLElement>('[data-aula-id]').forEach((el) => {
     const vista = Boolean(p[el.dataset.aulaId!]);
     el.dataset.vista = String(vista);
+    // O anel em volta do número da aula mostra o andamento só com cor; cheio só quando concluída.
+    el.style.setProperty('--anel', String(vista ? 100 : Math.min(99, percentualDaAula(and[el.dataset.aulaId!]))));
     // O check verde é só visual: o leitor de tela recebe a mesma informação em texto.
     const sr = el.querySelector('[data-vista-texto]');
     if (sr) sr.textContent = vista ? 'Aula já vista.' : '';
@@ -425,47 +551,103 @@ function montarHub() {
   const hub = document.querySelector('[data-hub]');
   if (!hub) return;
 
-  // "Continuar de onde parou": última aula aberta que ainda não foi concluída.
+  // "Continuar de onde parou": o título é a aula em que a pessoa parou; a linha de baixo, menor,
+  // diz qual aula vem a seguir (a próxima ainda não vista da matéria). A seta leva para onde
+  // continuar: a própria aula, se ainda não foi concluída, ou a recomendada.
   const ultima = ler<Ultima>(CHAVE_ULTIMA, {});
   const bloco = hub.querySelector<HTMLElement>('[data-continuar]');
   if (bloco && ultima.href && ultima.titulo) {
-    const concluida = Boolean(ultima.id && vistas()[ultima.id]);
-    bloco.querySelector<HTMLAnchorElement>('[data-continuar-link]')!.href = ultima.href;
-    bloco.querySelector('[data-continuar-titulo]')!.textContent = ultima.titulo;
-    bloco.querySelector('[data-continuar-meta]')!.textContent =
-      `${ultima.materia ?? 'ENEM'} · ${concluida ? 'você já concluiu — vale reler' : 'retomar a leitura'}`;
-    bloco.hidden = false;
+    const materia = ultima.materia ?? 'ENEM';
+    const parou = bloco.querySelector<HTMLAnchorElement>('[data-continuar-parou]')!;
+    const rotulo = bloco.querySelector<HTMLElement>('[data-continuar-rotulo]')!;
+    const proxima = bloco.querySelector<HTMLAnchorElement>('[data-continuar-proxima]')!;
+    const seta = bloco.querySelector<HTMLAnchorElement>('[data-continuar-seta]')!;
+
+    parou.href = ultima.href;
+    parou.textContent = ultima.titulo;
+    // O cartão leva a cor da matéria em que a pessoa parou (id: "enem/<matéria>/<tema>").
+    const slugMateria = ultima.id?.split('/')[1];
+    if (slugMateria) bloco.style.setProperty('--cor-continuar', `var(--color-${slugMateria})`);
+
+    /** Define a linha de baixo: texto simples ou texto + link da aula recomendada. */
+    const sugerir = (texto: string, destino?: { href: string; titulo: string }) => {
+      rotulo.textContent = texto;
+      proxima.hidden = !destino;
+      if (destino) {
+        proxima.href = destino.href;
+        proxima.textContent = destino.titulo;
+      }
+      seta.href = destino?.href ?? ultima.href;
+      seta.setAttribute('aria-label', `Continuar: ${destino?.titulo ?? ultima.titulo}`);
+      bloco.hidden = false;
+    };
+
+    if (!ultima.id || !vistas()[ultima.id]) {
+      sugerir(`Você parou aqui, em ${materia}. Continue de onde parou.`);
+    } else {
+      // Já concluída: enquanto o índice carrega, vale reler; depois aparece a aula recomendada.
+      sugerir(`Você terminou esta aula, de ${materia}.`);
+      carregarIndice().then((dados) => {
+        const p = vistas();
+        const i = dados.findIndex((a) => a.id === ultima.id);
+        if (i < 0) return;
+        const slug = dados[i].s;
+        const naMateria = (a: AulaBusca) => a.s === slug && !p[a.id];
+        const seguinte = dados.slice(i + 1).find(naMateria) ?? dados.find(naMateria);
+        if (seguinte) {
+          sugerir('Próxima aula:', { href: seguinte.h, titulo: `${seguinte.t} (${seguinte.m})` });
+          return;
+        }
+        const outra = dados.find((a) => !p[a.id]);
+        if (outra) {
+          sugerir(`Você concluiu ${dados[i].m}. Sugestão:`, { href: outra.h, titulo: `${outra.t} (${outra.m})` });
+        } else {
+          sugerir('Você já viu todas as aulas do caderno.');
+        }
+      });
+    }
   }
 
-  // Vistas recentemente: as 5 últimas marcações, da mais nova para a mais velha.
+
+  // Vistas recentemente: todas as aulas já vistas, da mais nova para a mais velha. A lista
+  // rola dentro da caixa e a seção pode ser recolhida (details, guardado em ligarDobras).
   const secao = hub.querySelector<HTMLElement>('[data-recentes]');
   const lista = hub.querySelector<HTMLElement>('[data-recentes-lista]');
   if (!secao || !lista) return;
 
   const p = vistas();
-  const ids = Object.keys(p);
+  const and = andamentos();
+  // Entram as aulas concluídas e as que já foram abertas e lidas em parte.
+  const ids = [...new Set([...Object.keys(p), ...Object.keys(and).filter((id) => and[id].l > 0 || and[id].q)])];
   if (!ids.length) return;
 
   carregarIndice().then((dados) => {
     const porId = new Map(dados.map((a) => [a.id, a]));
+    const quando = (id: string) => Math.max(p[id] ?? 0, and[id]?.t ?? 0);
     const recentes = ids
       .filter((id) => porId.has(id))
-      .sort((a, b) => p[b] - p[a])
-      .slice(0, 5)
+      .sort((a, b) => quando(b) - quando(a))
       .map((id) => porId.get(id)!);
     if (!recentes.length) return;
+
+    const dica = secao.querySelector('.acordeao__dica');
+    if (dica) {
+      dica.textContent =
+        `${recentes.length} ${recentes.length === 1 ? 'aula' : 'aulas'}, ` +
+        'da mais recente para a mais antiga';
+    }
 
     lista.innerHTML = recentes
       .map(
         (a) => `
       <li>
-        <a class="busca-item" href="${a.h}" data-vista="true">
+        <a class="busca-item" href="${a.h}" ${p[a.id] ? 'data-vista="true"' : ''}>
           <i class="fa-solid fa-${a.i} fa-duo busca-item__icone" aria-hidden="true"></i>
           <span class="busca-item__texto">
             <span class="busca-item__titulo">${escapar(a.t)}</span>
-            <span class="busca-item__meta">${escapar(a.m)} · ${escapar(a.a)}</span>
+            <span class="busca-item__meta">${escapar(a.m)} · ${escapar(a.a)}${p[a.id] ? '' : ` · ${percentualDaAula(and[a.id])}% feito`}</span>
           </span>
-          <i class="fa-solid fa-circle-check busca-item__marca" aria-hidden="true"></i>
+          ${p[a.id] ? '<i class="fa-solid fa-circle-check busca-item__marca" aria-hidden="true"></i>' : ''}
         </a>
       </li>`
       )
@@ -640,6 +822,13 @@ function ligarAtalhos() {
         case 'marcar-aula': {
           const id = acao.dataset.aula!;
           const virou = !vistas()[id];
+          if (!virou) {
+            // Desmarcou na mão: o andamento zera e a aula não se conclui sozinha de novo nesta visita.
+            semConclusaoAutomatica.add(id);
+            const t = andamentos();
+            delete t[id];
+            gravar(CHAVE_ANDAMENTO, t);
+          }
           if (marcar(id, virou)) {
             refletirProgresso();
             toast(virou ? 'Aula marcada como vista' : 'Marcação removida', virou ? 'circle-check' : 'rotate-left');
@@ -648,26 +837,9 @@ function ligarAtalhos() {
           }
           return;
         }
-        case 'zerar-progresso': {
-          // Apaga dados do usuário sem volta: pede confirmação (WCAG 3.3.4).
-          if (!confirm('Zerar todo o progresso deste navegador? Isso não pode ser desfeito.')) return;
-          const tambemA11y = confirm(
-            'Restaurar também os ajustes de acessibilidade (tamanho do texto, contraste, espaçamento etc.) ao padrão?'
-          );
-          if (gravar(CHAVE_PROGRESSO, {})) {
-            if (tambemA11y) restaurarAcessibilidade();
-            try {
-              localStorage.removeItem(CHAVE_ULTIMA);
-            } catch {}
-            refletirProgresso();
-            toast('Progresso zerado', 'rotate-left');
-            document.querySelectorAll<HTMLElement>('[data-recarrega-progresso]').forEach((el) => {
-              el.dataset.recarrega = String(Date.now());
-            });
-            window.setTimeout(() => location.reload(), 600);
-          }
+        case 'zerar-progresso':
+          zerarProgresso();
           return;
-        }
         case 'sortear': {
           carregarIndice().then((dados) => {
             if (!dados.length) return;
@@ -694,6 +866,13 @@ function ligarAtalhos() {
           return;
         }
       }
+    }
+
+    const x = alvo.closest<HTMLElement>('[data-dispensar]');
+    const aviso = x?.closest<HTMLElement>('[data-dispensavel]');
+    if (aviso) {
+      dispensar(aviso.dataset.dispensavel!);
+      return;
     }
 
     const chave = alvo.closest<HTMLElement>('[data-a11y]');
@@ -738,6 +917,118 @@ function ligarAtalhos() {
       aplicarBrilho(pct);
     }
   });
+}
+
+/* ------------------------------------------------------ notinha solta (hover) */
+
+/** Troca o balão nativo (atributo title) por uma etiqueta no estilo do caderno.
+ *  O texto vai para data-nota; o title sai para o navegador não mostrar o balão dele, e o
+ *  nome acessível é preservado (aria-label em botão só de ícone, aria-description no resto). */
+function ligarNotasSoltas() {
+  if ((window as any).__cdtNotas) return;
+  (window as any).__cdtNotas = true;
+
+  let alvo: HTMLElement | null = null;
+  let espera = 0;
+
+  const migrar = (el: HTMLElement): string => {
+    const t = el.getAttribute('title');
+    if (t) {
+      el.dataset.nota = t;
+      el.removeAttribute('title');
+      const rotulo = el.getAttribute('aria-label');
+      const visivel = el.textContent?.trim();
+      if (!rotulo && !visivel) el.setAttribute('aria-label', t);
+      else if (rotulo !== t && visivel !== t && !rotulo?.includes(t)) el.setAttribute('aria-description', t);
+    }
+    return el.dataset.nota ?? '';
+  };
+
+  const folha = (): HTMLElement => {
+    let n = document.getElementById('nota-solta');
+    if (!n) {
+      n = document.createElement('div');
+      n.id = 'nota-solta';
+      n.className = 'nota-solta';
+      n.setAttribute('role', 'tooltip');
+      n.hidden = true;
+      document.body.appendChild(n);
+    }
+    return n;
+  };
+
+  const esconder = () => {
+    window.clearTimeout(espera);
+    alvo = null;
+    const n = document.getElementById('nota-solta');
+    if (n) {
+      n.dataset.visivel = 'false';
+      n.hidden = true;
+    }
+  };
+
+  const mostrar = (el: HTMLElement) => {
+    const texto = migrar(el);
+    if (!texto) return;
+    alvo = el;
+    const n = folha();
+    n.textContent = texto;
+    n.hidden = false;
+    n.dataset.visivel = 'false';
+
+    const r = el.getBoundingClientRect();
+    const w = n.offsetWidth;
+    const h = n.offsetHeight;
+    const margem = 8;
+    let x = r.left + r.width / 2 - w / 2;
+    x = Math.max(margem, Math.min(x, window.innerWidth - w - margem));
+    let y = r.bottom + 12;
+    let lado = 'baixo';
+    if (y + h > window.innerHeight - margem) {
+      y = Math.max(margem, r.top - h - 12);
+      lado = 'cima';
+    }
+    n.dataset.lado = lado;
+    // A setinha aponta para o centro do elemento, mesmo quando a dica foi empurrada para dentro da tela.
+    const seta = Math.max(16, Math.min(w - 16, r.left + r.width / 2 - x));
+    n.style.setProperty('--seta', `${Math.round(seta)}px`);
+    n.style.left = `${Math.round(x)}px`;
+    n.style.top = `${Math.round(y)}px`;
+    requestAnimationFrame(() => {
+      if (alvo === el) n.dataset.visivel = 'true';
+    });
+  };
+
+  const dono = (e: Event): HTMLElement | null =>
+    e.target instanceof Element ? e.target.closest<HTMLElement>('[title], [data-nota]') : null;
+
+  document.addEventListener('pointerover', (e) => {
+    if (e.pointerType !== 'mouse') return;
+    const el = dono(e);
+    if (!el) return;
+    migrar(el); // tira o title já, antes de o navegador mostrar o balão dele
+    if (el === alvo) return;
+    window.clearTimeout(espera);
+    espera = window.setTimeout(() => mostrar(el), 280);
+  });
+  document.addEventListener('pointerout', (e) => {
+    if (!alvo && !espera) return;
+    const para = e.relatedTarget instanceof Node ? e.relatedTarget : null;
+    const el = dono(e);
+    if (el && para && el.contains(para)) return;
+    esconder();
+  });
+  document.addEventListener('focusin', (e) => {
+    const el = dono(e);
+    if (el && el.matches(':focus-visible')) mostrar(el);
+  });
+  document.addEventListener('focusout', esconder);
+  document.addEventListener('pointerdown', esconder);
+  document.addEventListener('scroll', esconder, { capture: true, passive: true });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') esconder();
+  });
+  document.addEventListener('astro:before-swap', esconder);
 }
 
 /* ------------------------------------------------------ miniatura da marca */
@@ -850,50 +1141,126 @@ function ligarDobras() {
 
 /* ------------------------------------------- marcação automática da aula */
 
+/** Aulas que a pessoa desmarcou na mão: não se concluem sozinhas de novo nesta visita. */
+const semConclusaoAutomatica = new Set<string>();
+let limpezaAulaAtual: AbortController | null = null;
+
+/** Mede o andamento da aula aberta: quanto da leitura já foi vista (até o começo das questões,
+ *  ou o fim do texto se não houver questões) e se as questões foram respondidas. Com isso a
+ *  aula conclui sozinha; só ler não basta quando há questões. O que fica salvo alimenta o anel
+ *  em volta do número da aula nas listas. */
 function ligarAulaAtual() {
+  limpezaAulaAtual?.abort();
+  limpezaAulaAtual = new AbortController();
+  const { signal } = limpezaAulaAtual;
+
   const marcador = document.querySelector<HTMLElement>('[data-acao="marcar-aula"]');
   if (!marcador) return;
   const id = marcador.dataset.aula!;
   registrarUltima(marcador);
 
-  // Depois de 25s na página (ou ao chegar no fim) a aula conta como vista.
-  const concluir = () => {
-    if (vistas()[id]) return;
-    marcar(id, true);
+  const artigo = document.querySelector<HTMLElement>('[data-conteudo-aula]');
+  if (!artigo) return;
+
+  const atual: Andamento = andamentos()[id] ?? { l: 0, q: 0, z: 0 };
+  let mudou = false;
+
+  const salvar = () => {
+    if (!mudou) return;
+    mudou = false;
+    atual.t = Date.now();
+    const todos = andamentos();
+    todos[id] = atual;
+    gravar(CHAVE_ANDAMENTO, todos);
+    if (!vistas()[id] && !semConclusaoAutomatica.has(id) && percentualDaAula(atual) >= 100) {
+      marcar(id, true);
+      toast('Aula concluída', 'circle-check');
+    }
     refletirProgresso();
-    toast('Aula marcada como vista', 'circle-check');
   };
 
-  const timer = window.setTimeout(concluir, 25000);
-  const fim = document.querySelector('[data-fim-da-aula]');
-  if (fim && 'IntersectionObserver' in window) {
-    const obs = new IntersectionObserver(
-      (entradas) => {
-        if (entradas.some((x) => x.isIntersecting)) {
-          obs.disconnect();
-          concluir();
-        }
-      },
-      { rootMargin: '0px 0px -20% 0px' }
-    );
-    obs.observe(fim);
-  }
-  window.addEventListener('beforeunload', () => window.clearTimeout(timer), { once: true });
+  const medirLeitura = () => {
+    const quiz = artigo.querySelector('.quiz');
+    if (quiz && !atual.z) {
+      atual.z = 1;
+      mudou = true;
+    }
+    // O quiz mora dentro de um <details> que pode estar recolhido (sem caixa): o ponto de medida
+    // é o cabeçalho dele, que sempre tem posição.
+    const ancora = quiz ? (quiz.closest('details') ?? quiz) : null;
+    const topo = artigo.getBoundingClientRect().top + window.scrollY;
+    const fim = (ancora ?? artigo).getBoundingClientRect()[ancora ? 'top' : 'bottom'] + window.scrollY;
+    const alcance = window.scrollY + window.innerHeight;
+    const fracao = Math.min(1, Math.max(0, (alcance - topo) / Math.max(1, fim - topo)));
+    const l = Math.round(fracao * 100);
+    if (l > atual.l) {
+      atual.l = l;
+      mudou = true;
+    }
+  };
+
+  let agendado = false;
+  const aoMudar = () => {
+    if (agendado) return;
+    agendado = true;
+    requestAnimationFrame(() => {
+      agendado = false;
+      medirLeitura();
+      salvar();
+    });
+  };
+
+  window.addEventListener('scroll', aoMudar, { passive: true, signal });
+  window.addEventListener('resize', aoMudar, { signal });
+  document.addEventListener(
+    'cdt:questoes',
+    (e) => {
+      const { respondidas, total } = (e as CustomEvent<{ respondidas: number; total: number }>).detail;
+      if (total > 0 && !atual.z) {
+        atual.z = 1;
+        mudou = true;
+      }
+      // Só sobe: refazer as questões não tira o que já foi conquistado.
+      if (total > 0 && respondidas >= total && !atual.q) {
+        atual.q = 1;
+        mudou = true;
+      }
+      salvar();
+    },
+    { signal }
+  );
+
+  // Primeira medida depois que o quiz e os tópicos foram montados.
+  requestAnimationFrame(() => requestAnimationFrame(aoMudar));
+}
+
+/** A pílula de voltar (último link do caminho) guarda o nome da página e, escondido, "Voltar":
+ *  no hover um sobe e o outro entra. O segundo fica fora do leitor de tela. */
+function ligarPilulaVoltar() {
+  document.querySelectorAll<HTMLAnchorElement>("nav[aria-label='Você está aqui'] a:last-of-type").forEach((a) => {
+    if (a.querySelector('.volta__texto')) return;
+    const nome = a.textContent?.trim() ?? '';
+    if (!nome) return;
+    a.innerHTML = `<span class="volta__texto"><i>${escapar(nome)}</i><i aria-hidden="true">Voltar</i></span>`;
+  });
 }
 
 /* ---------------------------------------------------------------- arranque */
 
 function iniciar() {
   aplicarTema(temaSalvo());
+  aplicarDispensados();
   aplicarFontePx(lerFontePx());
   aplicarBrilho(lerBrilho());
   aplicarA11y(preferencias());
   refletirProgresso();
   montarHub();
   ligarAtalhos();
+  ligarNotasSoltas();
   ligarDobras();
   ligarMarcaMini();
   ligarAulaAtual();
+  ligarPilulaVoltar();
   // Ordem importa: o quiz lê os filhos do artigo, os tópicos os embrulham em seguida e
   // as barras de rolagem medem a página já com os tópicos no lugar.
   montarQuiz();
@@ -906,6 +1273,7 @@ document.addEventListener('astro:page-load', iniciar);
 // Roda no documento novo, antes de pintar: evita perder tema e fonte (e o flash).
 document.addEventListener('astro:after-swap', () => {
   aplicarTema(temaSalvo());
+  aplicarDispensados();
   aplicarFontePx(lerFontePx());
   aplicarBrilho(lerBrilho());
   aplicarA11y(preferencias());

@@ -21,7 +21,7 @@ export const ENEM_AREAS: AreaEnem[] = [
     slug: 'natureza',
     label: 'Ciências da Natureza e suas Tecnologias',
     labelCurto: 'Natureza',
-    cor: '#3f7d58',
+    cor: '#218c4c',
     icone: 'flask',
     subjects: [
       { slug: 'biologia', label: 'Biologia', icone: 'dna' },
@@ -33,7 +33,7 @@ export const ENEM_AREAS: AreaEnem[] = [
     slug: 'humanas',
     label: 'Ciências Humanas e suas Tecnologias',
     labelCurto: 'Humanas',
-    cor: '#8a5a2b',
+    cor: '#b8661e',
     icone: 'landmark',
     subjects: [
       { slug: 'historia', label: 'História', icone: 'scroll' },
@@ -46,7 +46,7 @@ export const ENEM_AREAS: AreaEnem[] = [
     slug: 'linguagens',
     label: 'Linguagens, Códigos e suas Tecnologias',
     labelCurto: 'Linguagens',
-    cor: '#c4432b',
+    cor: '#e33e20',
     icone: 'pen-nib',
     subjects: [
       { slug: 'lingua-portuguesa', label: 'Língua Portuguesa e Literatura', icone: 'book' },
@@ -61,7 +61,7 @@ export const ENEM_AREAS: AreaEnem[] = [
     slug: 'matematica',
     label: 'Matemática e suas Tecnologias',
     labelCurto: 'Matemática',
-    cor: '#2e5c8a',
+    cor: '#237cd6',
     icone: 'square-root-variable',
     subjects: [
       { slug: 'matematica-basica', label: 'Matemática Básica', icone: 'calculator' },
