@@ -491,6 +491,12 @@ html[data-links="sim"] main a:not([class]) {
 .figura .traco-fino { stroke: var(--color-ink-soft); stroke-width: 1; fill: none; }
 .figura .tracejado { stroke: var(--color-ink-soft); stroke-width: 1.1; fill: none; stroke-dasharray: 5 4; }
 .figura .preenche { fill: color-mix(in srgb, var(--materia, var(--color-escolar)) 16%, transparent); }
+/* `no`: bolinha ou círculo por onde passa uma reta (linha do tempo, corrente,
+   rede). O preenchimento é opaco, na cor do fundo da figura, para a reta não
+   aparecer por dentro. O elemento vem DEPOIS da reta no SVG. */
+.figura { --figura-fundo: color-mix(in srgb, var(--color-paper-dark) 18%, var(--color-surface)); }
+.figura .no { fill: var(--figura-fundo); }
+.figura .preenche.no { fill: color-mix(in srgb, var(--materia, var(--color-escolar)) 16%, var(--figura-fundo)); }
 .figura .rotulo {
   fill: var(--color-ink);
   font-family: var(--font-display);
