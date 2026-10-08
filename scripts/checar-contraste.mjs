@@ -174,6 +174,12 @@ function pares(modo) {
     t(`aba ${n} ativa`, `color-mix(in srgb, ${c} 70%, var(--color-ink))`, 'var(--color-surface)');
   }
 
+  // Marcadores da direita (CabecalhoFixo.astro): ícone = 70% da cor da folha + 30% de ink,
+  // sobre 12% da cor + folha. A cor é a da borda da folha: tinta (início), seção ou matéria.
+  for (const c of ['ink', 'enem', 'escolar', 'ds', ...MATERIAS]) {
+    u(`marcador fixo (${c}): ícone sobre o fundo`, `color-mix(in srgb, var(--color-${c}) 70%, var(--color-ink))`, `color-mix(in srgb, var(--color-${c}) 12%, var(--color-surface))`);
+  }
+
   // Elementos de interface (3:1)
   u('foco (escolar) sobre a folha', 'var(--color-escolar)', 'var(--color-surface)');
   u('foco (escolar) sobre o papel', 'var(--color-escolar)', 'var(--color-paper)');

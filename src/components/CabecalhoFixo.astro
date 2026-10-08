@@ -372,14 +372,20 @@ const abas = [
     background: var(--color-surface);
   }
 
-  /* Rolando: todos os marcadores somem atrás da folha e voltam quando a rolagem para.
-     Sem animação (preferência do sistema ou "animações reduzidas"), nada some nem desliza:
+  /* O recorte da coluna cortaria o anel de foco do lado da folha: o anel fica por dentro. */
+  .pn-aba:focus-visible,
+  .pn-seta:focus-visible {
+    outline-offset: -4px;
+  }
+
+  /* Rolando: todos os marcadores somem atrás da folha e voltam quando a rolagem para. Só o
+     que tem o foco do teclado fica (esconder o foco quebraria o 2.4.7). Sem animação (preferência do sistema ou "animações reduzidas"), nada some nem desliza:
      ficam no repouso, e só o hover os salta. */
   @media (prefers-reduced-motion: no-preference) {
-    :global(html[data-rolando]:not([data-movimento='sim'])) .cab-postit[data-visivel='true'] .pn-aba {
+    :global(html[data-rolando]:not([data-movimento='sim'])) .cab-postit[data-visivel='true'] .pn-aba:not(:focus-visible) {
       transform: translateX(calc(100% + 2px));
     }
-    :global(html[data-rolando]:not([data-movimento='sim'])) .cab-postit[data-visivel='true'] .pn-seta {
+    :global(html[data-rolando]:not([data-movimento='sim'])) .cab-postit[data-visivel='true'] .pn-seta:not(:focus-visible) {
       transform: translateX(-100%);
     }
   }

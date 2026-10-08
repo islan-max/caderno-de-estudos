@@ -1031,11 +1031,10 @@ function ligarNotasSoltas() {
   document.addEventListener('astro:before-swap', esconder);
 }
 
-/* ------------------------------------------------------ miniatura da marca */
+/* ---------------------------------------------- cabeçalho fixo (marcadores) */
 
 let observadorMarca: IntersectionObserver | null = null;
 let observadorAbas: IntersectionObserver | null = null;
-
 
 function movimentoReduzido(): boolean {
   return (
@@ -1095,7 +1094,7 @@ function ligarRolandoMarcadores() {
   window.addEventListener(
     'scroll',
     () => {
-      document.documentElement.dataset.rolando = 'sim';
+      if (!document.documentElement.dataset.rolando) document.documentElement.dataset.rolando = 'sim';
       window.clearTimeout(timer);
       timer = window.setTimeout(() => delete document.documentElement.dataset.rolando, 617);
     },
