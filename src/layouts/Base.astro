@@ -3,6 +3,7 @@ import '../styles/global.css';
 import { ClientRouter, fade } from 'astro:transitions';
 import TabNav from '../components/TabNav.astro';
 import Ferramentas from '../components/Ferramentas.astro';
+import CabecalhoFixo from '../components/CabecalhoFixo.astro';
 import Paineis from '../components/Paineis.astro';
 import Rodape from '../components/Rodape.astro';
 import Icone from '../components/Icone.astro';
@@ -109,15 +110,7 @@ const borderColor = cor ?? (active ? accentByTab[active] : 'var(--color-line)');
   <body class="min-h-screen flex flex-col" style={`--acento: ${borderColor};`}>
     <a href="#conteudo" class="pular">Pular para o conteúdo</a>
 
-    <!-- Miniatura da marca: entra quando a marca grande sai da tela e sai
-         quando ela volta. Quem controla é um IntersectionObserver, não a
-         posição de rolagem — assim não há cálculo por quadro. -->
-    <a href={u('/')} class="marca-mini" data-marca-mini aria-hidden="true" tabindex="-1" aria-label="Caderno de Estudos, ir para o início">
-      <span class="marca-mini__texto">CE</span>
-      <span class="marca-mini__ponto">.</span>
-    </a>
-
-    <!-- Voltar ao topo: entra junto com a miniatura da marca (quando a marca grande sai
+    <!-- Voltar ao topo: entra junto com os marcadores fixos (quando a marca grande sai
          da tela) e sai quando ela volta. Fora de vista não recebe foco nem leitor de tela. -->
     <button
       type="button"
@@ -142,7 +135,7 @@ const borderColor = cor ?? (active ? accentByTab[active] : 'var(--color-line)');
         <Ferramentas />
       </div>
 
-      <div class="max-w-5xl mx-auto w-full mt-5 sm:mt-6">
+      <div class="max-w-5xl mx-auto w-full mt-5 sm:mt-6" data-abas>
         <TabNav active={active} corAtiva={cor} />
       </div>
     </header>
@@ -157,6 +150,7 @@ const borderColor = cor ?? (active ? accentByTab[active] : 'var(--color-line)');
         class="paper-sheet min-h-[60vh] p-4 pl-10 sm:p-6 sm:pl-12 md:p-10 md:pl-16 -mt-[2px]"
         style={`border-color: ${borderColor};`}
       >
+        <CabecalhoFixo active={active} corAtiva={cor} />
         {voltar && (
           <a href={voltar.href} class="voltar" data-pager="anterior">
             <span class="voltar__seta"><Icone nome="arrow-left" /></span>
@@ -181,46 +175,6 @@ const borderColor = cor ?? (active ? accentByTab[active] : 'var(--color-line)');
     </script>
 
     <style>
-      /* ------------------------------------------------ miniatura da marca */
-      .marca-mini {
-        position: fixed;
-        top: 0.85rem;
-        left: 0.85rem;
-        z-index: 70;
-        display: inline-flex;
-        align-items: baseline;
-        gap: 1px;
-        padding: 0.4rem 0.7rem;
-        border: 1px solid var(--color-line);
-        border-radius: 999px;
-        background: var(--color-surface);
-        box-shadow: var(--shadow-soft);
-        color: var(--color-ink);
-        font-family: var(--font-display);
-        font-size: calc(0.85rem * var(--escala-texto, 1));
-        font-weight: 800;
-        letter-spacing: -0.02em;
-        line-height: 1;
-        text-decoration: none;
-        /* Estado de repouso: escondida. Só opacity e transform mudam, então a
-           entrada e a saída são feitas pelo compositor. */
-        opacity: 0;
-        transform: translateY(-8px) scale(0.94);
-        pointer-events: none;
-        transition: opacity 0.22s var(--ease), transform 0.22s var(--ease);
-      }
-      .marca-mini[data-visivel='true'] {
-        opacity: 1;
-        transform: none;
-        pointer-events: auto;
-      }
-      .marca-mini:hover {
-        border-color: color-mix(in srgb, var(--color-ink) 35%, var(--color-line));
-      }
-      .marca-mini__ponto {
-        color: var(--color-enem);
-      }
-
       /* --------------------------------------------------- voltar ao topo */
       .topo {
         position: fixed;

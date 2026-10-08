@@ -1,0 +1,416 @@
+---
+// Cabeçalho fixo em forma de post-its: entra quando as abas reais do cabeçalho saem da tela
+// (ligarCabecalhoFixo, em app.ts). Este componente vai DENTRO da folha (.paper-sheet).
+//
+// Com margem ao lado da folha (≥ 1280px), as abas viram marcadores na borda esquerda e as
+// ferramentas viram marcadores em seta na borda direita, só com ícone. Cada pilha é
+// `position: sticky` numa coluna colada na borda da folha: acompanha a folha até chegar ao
+// topo da janela e só então fica parada. Por isso "esconder atrás da folha" é sempre
+// verdade (um fixo na janela escorregaria no vazio acima da folha). A coluna recorta, na
+// borda, o que passa dela.
+//
+// Estados de cada marcador (todos deslizam na horizontal):
+//   fechado    abas reais ainda à vista: escondido atrás da folha
+//   repouso    só uma tira de cor na borda, sem ícone; a aba da página atual fica saltada
+//   hover      salta para fora e mostra o ícone (também com o foco do teclado)
+//   rolando    a página está rolando (<html data-rolando): todos somem atrás da folha e
+//              voltam ao repouso quando a rolagem para
+// Sem a margem lateral, a fileira compacta de círculos no topo faz o mesmo trabalho.
+import { u } from '../lib/url';
+import { SECOES_VISIVEIS } from '../lib/secoes';
+import Icone from './Icone.astro';
+
+interface Props {
+  active?: 'hub' | 'enem' | 'escolar' | 'ds' | null;
+  /** Cor da aba ativa quando a página é de uma matéria (a mesma da borda da folha). */
+  corAtiva?: string;
+}
+const { active = null, corAtiva } = Astro.props;
+
+const abas = [
+  { key: 'hub', label: 'Início', href: '/', color: 'var(--color-ink)', soft: 'var(--color-paper-dark)', icone: 'house' },
+  ...SECOES_VISIVEIS.map((s) => ({
+    key: s.chave,
+    label: s.label,
+    href: s.href,
+    color: s.cor,
+    soft: s.corSuave,
+    icone: s.icone,
+  })),
+];
+---
+
+<!-- Marcadores nas bordas da folha: a coluna é absoluta e tem a altura da folha; a pilha
+     dentro dela é sticky. -->
+<nav class="cab-postit cab-postit--esq" data-fixo inert aria-label="Seções do caderno, marcadores fixos">
+  <div class="cab-postit__pilha">
+    {abas.map((aba) => {
+      const ativa = active === aba.key;
+      return (
+        <a
+          href={u(aba.href)}
+          class="pn-aba"
+          style={`--tab-color: ${ativa && corAtiva ? corAtiva : aba.color}; --tab-soft: ${aba.soft};`}
+          data-ativa={ativa}
+          aria-current={ativa ? 'page' : undefined}
+          aria-label={aba.label}
+          title={aba.label}
+        >
+          <Icone nome={aba.icone} />
+        </a>
+      );
+    })}
+  </div>
+</nav>
+<div class="cab-postit cab-postit--dir" data-fixo inert role="group" aria-label="Ferramentas do caderno, marcadores fixos">
+  <div class="cab-postit__pilha">
+    <button type="button" class="pn-seta" data-acao="busca" title="Buscar aula" aria-label="Buscar aula" aria-haspopup="dialog">
+      <Icone nome="magnifying-glass" />
+    </button>
+    <button type="button" class="pn-seta" data-abre="progresso" title="Meu progresso" aria-label="Meu progresso" aria-haspopup="dialog">
+      <Icone nome="chart-simple" />
+    </button>
+    <button type="button" class="pn-seta" data-acao="acessibilidade" title="Acessibilidade" aria-label="Opções de acessibilidade" aria-haspopup="dialog">
+      <Icone nome="universal-access" />
+    </button>
+    <button type="button" class="pn-seta cab-tema" data-acao="tema" aria-pressed="false" title="Usar o tema escuro" aria-label="Tema escuro">
+      <Icone nome="sun" class="cab-tema__sol" />
+      <Icone nome="moon" class="cab-tema__lua" />
+    </button>
+    <button type="button" class="pn-seta" data-so-aula data-abre="sumario" title="Sumário da aula" aria-label="Sumário da aula" aria-haspopup="dialog">
+      <Icone nome="list-ol" />
+    </button>
+  </div>
+</div>
+
+<!-- Reserva para telas sem margem ao lado da folha: círculos fixos no topo. -->
+<div class="cab-flut" data-fixo inert>
+  <div class="cab-flut__grupo cab-flut__grupo--esq">
+    <a href={u('/')} class="cab-marca" aria-label="Caderno de Estudos, ir para o início" title="Início">
+      <span>CE</span><span class="cab-marca__ponto">.</span>
+    </a>
+    <button type="button" class="cab-circ cab-tema" data-acao="tema" aria-pressed="false" title="Usar o tema escuro" aria-label="Tema escuro">
+      <Icone nome="sun" class="cab-tema__sol" />
+      <Icone nome="moon" class="cab-tema__lua" />
+    </button>
+  </div>
+  <div class="cab-flut__grupo cab-flut__grupo--dir">
+    <button type="button" class="cab-circ" data-acao="busca" title="Buscar aula" aria-label="Buscar aula" aria-haspopup="dialog">
+      <Icone nome="magnifying-glass" />
+    </button>
+    <button type="button" class="cab-circ" data-abre="progresso" title="Meu progresso" aria-label="Meu progresso" aria-haspopup="dialog">
+      <Icone nome="chart-simple" />
+    </button>
+    <button type="button" class="cab-circ" data-acao="acessibilidade" title="Acessibilidade" aria-label="Opções de acessibilidade" aria-haspopup="dialog">
+      <Icone nome="universal-access" />
+    </button>
+    <button type="button" class="cab-circ" data-so-aula data-abre="sumario" title="Sumário da aula" aria-label="Sumário da aula" aria-haspopup="dialog">
+      <Icone nome="list-ol" />
+    </button>
+  </div>
+</div>
+
+<style>
+  /* O sumário só existe em página de aula. */
+  :global(html:not(:has([data-conteudo-aula]))) [data-so-aula] {
+    display: none !important;
+  }
+  @media print {
+    .cab-flut,
+    .cab-postit {
+      display: none !important;
+    }
+  }
+
+  /* ------------------------------------------------- reserva: círculos no topo */
+  .cab-flut {
+    position: fixed;
+    inset: 0.85rem 0 auto 0;
+    z-index: 70;
+    height: 0;
+    pointer-events: none;
+    opacity: 0;
+    transform: translateY(-8px);
+    transition: opacity 0.22s var(--ease), transform 0.22s var(--ease);
+  }
+  .cab-flut[data-visivel='true'] {
+    opacity: 1;
+    transform: none;
+  }
+  .cab-flut__grupo {
+    position: absolute;
+    top: 0;
+    display: flex;
+    gap: 0.4rem;
+    pointer-events: auto;
+  }
+  .cab-flut__grupo--esq {
+    left: 0.85rem;
+  }
+  .cab-flut__grupo--dir {
+    right: 0.85rem;
+  }
+  .cab-circ,
+  .cab-marca {
+    display: inline-grid;
+    place-items: center;
+    height: 2.5em;
+    border: 1px solid var(--color-line);
+    border-radius: 999px;
+    background: var(--color-surface);
+    box-shadow: var(--shadow-soft);
+    color: var(--color-ink-soft);
+    font-family: var(--font-display);
+    font-size: calc(0.95rem * var(--escala-texto, 1));
+    line-height: 1;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .cab-circ {
+    width: 2.5em;
+  }
+  .cab-marca {
+    display: inline-flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 1px;
+    padding: 0 0.85em;
+    padding-top: 0.8em;
+    color: var(--color-ink);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+  }
+  .cab-marca__ponto {
+    color: var(--color-enem);
+  }
+  .cab-circ:hover,
+  .cab-marca:hover {
+    color: var(--color-ink);
+    border-color: color-mix(in srgb, var(--color-ink) 35%, var(--color-line));
+  }
+
+  /* Interruptor de tema dos dois layouts: mostra o ícone do tema atual. */
+  .cab-tema :global(.cab-tema__lua),
+  .cab-tema[aria-pressed='true'] :global(.cab-tema__sol) {
+    display: none;
+  }
+  .cab-tema[aria-pressed='true'] :global(.cab-tema__lua) {
+    display: inline-block;
+  }
+  .cab-tema :global(.cab-tema__sol) {
+    color: #8a6200;
+  }
+  .cab-tema :global(.cab-tema__lua) {
+    color: var(--color-escolar);
+  }
+
+  /* -------------------------------------------------------------- post-its */
+  .cab-postit {
+    display: none;
+  }
+  @media (min-width: 1280px) {
+    .cab-flut {
+      display: none;
+    }
+    .cab-postit {
+      display: block;
+    }
+  }
+
+  .cab-postit {
+    --tira: 11px; /* o que sobra à vista de cada aba em repouso */
+    --tira-seta: 21px; /* e de cada seta: a ponta (~11px) mais um pedaço do quadrado */
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    padding-top: 1rem;
+    font-size: calc(1rem * var(--escala-texto, 1));
+    /* A coluna só recorta; quem recebe o clique são os marcadores. */
+    pointer-events: none;
+  }
+  /* A coluna fica fora da folha, encostada na borda (os 2px da borda ficam de fora da
+     caixa de preenchimento, daí o +2px). O recorte corta, na borda, o que "entra" na folha;
+     as folgas negativas deixam passar sombras e anéis de foco. Na esquerda o recorte vai 2px
+     além da borda, só para a aba da página atual cobri-la (os outros nunca passam dela). */
+  .cab-postit--esq {
+    right: calc(100% + 2px);
+    width: 2.1em;
+    clip-path: inset(-16px -2px -16px -16px);
+  }
+  .cab-postit--dir {
+    left: calc(100% + 2px);
+    width: 2.4em;
+    clip-path: inset(-16px -16px -16px 0);
+  }
+  .cab-postit__pilha {
+    position: sticky;
+    top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+  }
+  .cab-postit--esq .cab-postit__pilha {
+    align-items: flex-end;
+  }
+
+  .pn-aba,
+  .pn-seta {
+    pointer-events: auto;
+  }
+  /* Todos juntos, sem escalonar: entram e saem como uma peça só com a folha. */
+  .pn-seta {
+    transition: transform 0.34s var(--ease);
+  }
+  /* O ícone só aparece quando o marcador está saltado para fora. */
+  .pn-aba :global(i),
+  .pn-seta :global(i) {
+    opacity: 0;
+    transition: opacity 0.2s var(--ease);
+  }
+
+  .pn-aba {
+    display: grid;
+    place-items: center;
+    /* Repouso: só a tira. Abrir é crescer a largura para a esquerda, com a borda direita
+       parada na borda da folha: o marcador nunca se descola dela. */
+    width: var(--tira);
+    height: 2.7em;
+    overflow: hidden;
+    border: 2px solid var(--tab-color);
+    border-right: none;
+    /* A borda esquerda de 2px empurraria o ícone 1px para a direita: o padding oposto o
+       devolve ao centro da aba. */
+    padding-right: 2px;
+    border-radius: 0.55em 0 0 0.55em;
+    background: var(--tab-soft);
+    /* Mesma fórmula das abas do cabeçalho: contraste do ícone ≥ 4,5:1 nos dois temas. */
+    color: color-mix(in srgb, var(--tab-color) 70%, var(--color-ink));
+    box-shadow: -3px 2px 8px -4px color-mix(in srgb, var(--color-ink) 35%, transparent);
+    text-decoration: none;
+    /* Fechado: todo para dentro da folha, fora do recorte. */
+    transform: translateX(calc(100% + 2px));
+    transition: transform 0.34s var(--ease), width 0.34s var(--ease);
+  }
+  .cab-postit[data-visivel='true'] .pn-aba {
+    transform: none;
+  }
+  .cab-postit[data-visivel='true'] .pn-aba:hover,
+  .cab-postit[data-visivel='true'] .pn-aba:focus-visible {
+    width: 100%;
+  }
+  /* A aba da página atual fica aberta, com o fundo da folha, e avança 2px sobre a borda
+     dela: a linha se abre na altura da aba, como na aba ativa do cabeçalho. */
+  .cab-postit[data-visivel='true'] .pn-aba[data-ativa='true'] {
+    width: 100%;
+    transform: translateX(2px);
+    background: var(--color-surface);
+  }
+  .cab-postit[data-visivel='true'] .pn-aba[data-ativa='true'] :global(i),
+  .cab-postit[data-visivel='true'] .pn-aba:hover :global(i),
+  .cab-postit[data-visivel='true'] .pn-aba:focus-visible :global(i) {
+    opacity: 1;
+  }
+
+  /* Marcador em seta: o quadrado mais a ponta triangular, desenhados em duas camadas
+     (a de trás é a borda). Os recortes ficam nos pseudo-elementos, e não no botão, para
+     o anel de foco não ser cortado. A cor é a da folha aberta (--acento, definido no
+     <body>): da matéria na aula, da seção no resto, e a tinta no início. */
+  .pn-seta {
+    --seta: polygon(0 0, 72% 0, 100% 50%, 72% 100%, 0 100%);
+    --cor: var(--acento, var(--color-ink));
+    position: relative;
+    isolation: isolate;
+    display: grid;
+    place-items: center;
+    width: 100%;
+    height: 2.5em;
+    /* O ícone fica no centro de massa da seta (~43% da largura): centrado só no quadrado,
+       ele parecia colado à borda, porque a ponta triangular também pesa. */
+    padding: 0 0.32em 0 0;
+    border: none;
+    background: none;
+    color: color-mix(in srgb, var(--cor) 70%, var(--color-ink));
+    font-size: inherit;
+    cursor: pointer;
+    transform: translateX(-100%);
+  }
+  .pn-seta::before,
+  .pn-seta::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    clip-path: var(--seta);
+    z-index: -1;
+  }
+  .pn-seta::before {
+    background: var(--cor);
+  }
+  .pn-seta::after {
+    inset: 2px 2px 2px 0;
+    background: color-mix(in srgb, var(--cor) 12%, var(--color-surface));
+    transition: background-color 0.2s var(--ease);
+  }
+  /* O interruptor de tema segue a cor do marcador, e não as cores de sol e lua do círculo. */
+  .pn-seta :global(.cab-tema__sol),
+  .pn-seta :global(.cab-tema__lua) {
+    color: inherit;
+  }
+  /* Em repouso, a seta mostra a ponta e um pedaço do quadrado (a tira de 11px só mostraria
+     a ponta, e ficava parecendo enterrada). */
+  .cab-postit[data-visivel='true'] .pn-seta {
+    transform: translateX(calc(-100% + var(--tira-seta)));
+  }
+  .cab-postit[data-visivel='true'] .pn-seta:hover,
+  .cab-postit[data-visivel='true'] .pn-seta:focus-visible {
+    transform: none;
+  }
+  .cab-postit[data-visivel='true'] .pn-seta:hover :global(i),
+  .cab-postit[data-visivel='true'] .pn-seta:focus-visible :global(i) {
+    opacity: 1;
+  }
+  .pn-seta:hover::after {
+    background: var(--color-surface);
+  }
+
+  /* O recorte da coluna cortaria o anel de foco do lado da folha: o anel fica por dentro. */
+  .pn-aba:focus-visible,
+  .pn-seta:focus-visible {
+    outline-offset: -4px;
+  }
+
+  /* Rolando: todos os marcadores somem atrás da folha e voltam quando a rolagem para. Só o
+     que tem o foco do teclado fica (esconder o foco quebraria o 2.4.7). Sem animação (preferência do sistema ou "animações reduzidas"), nada some nem desliza:
+     ficam no repouso, e só o hover os salta. */
+  @media (prefers-reduced-motion: no-preference) {
+    :global(html[data-rolando]:not([data-movimento='sim'])) .cab-postit[data-visivel='true'] .pn-aba:not(:focus-visible) {
+      transform: translateX(calc(100% + 2px));
+    }
+    :global(html[data-rolando]:not([data-movimento='sim'])) .cab-postit[data-visivel='true'] .pn-seta:not(:focus-visible) {
+      transform: translateX(-100%);
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .pn-aba,
+    .pn-seta,
+    .pn-aba :global(i),
+    .pn-seta :global(i) {
+      transition: none;
+    }
+  }
+
+  /* Cores forçadas descartam fundos: a borda do próprio botão assume o desenho. */
+  @media (forced-colors: active) {
+    .pn-seta::before,
+    .pn-seta::after {
+      display: none;
+    }
+    .pn-seta,
+    .pn-aba {
+      border: 2px solid ButtonText;
+      color: ButtonText;
+    }
+    .pn-aba[data-ativa='true'] {
+      text-decoration: underline;
+    }
+  }
+</style>
