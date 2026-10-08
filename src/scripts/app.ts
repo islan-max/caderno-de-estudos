@@ -1034,6 +1034,8 @@ function ligarNotasSoltas() {
 /* ------------------------------------------------------ miniatura da marca */
 
 let observadorMarca: IntersectionObserver | null = null;
+let observadorAbas: IntersectionObserver | null = null;
+
 
 function movimentoReduzido(): boolean {
   return (
@@ -1042,30 +1044,63 @@ function movimentoReduzido(): boolean {
   );
 }
 
-function ligarMarcaMini() {
+function ligarCabecalhoFixo() {
   const marca = document.querySelector('[data-marca]');
-  const mini = document.querySelector<HTMLElement>('[data-marca-mini]');
-  if (!marca || !mini) return;
+  const abas = document.querySelector('[data-abas]');
 
+  // A marca grande fora de vista quer dizer que a página já rolou: entra o botão
+  // "voltar ao topo".
   observadorMarca?.disconnect();
-  observadorMarca = new IntersectionObserver(
-    ([entrada]) => {
-      const escondida = !entrada.isIntersecting;
-      mini.dataset.visivel = String(escondida);
-      // Fora de vista, a miniatura também sai da ordem de leitura e de foco.
-      mini.setAttribute('aria-hidden', String(!escondida));
-      mini.tabIndex = escondida ? 0 : -1;
-      // O botão "voltar ao topo" aparece junto: a marca grande fora de vista quer dizer
-      // que a página já rolou.
-      document.querySelectorAll<HTMLElement>('[data-topo], [data-flutuante]').forEach((el) => {
-        el.dataset.visivel = String(escondida);
-        el.tabIndex = escondida ? 0 : -1;
-        el.setAttribute('aria-hidden', String(!escondida));
-      });
+  if (marca) {
+    observadorMarca = new IntersectionObserver(
+      ([entrada]) => {
+        const escondida = !entrada.isIntersecting;
+        document.querySelectorAll<HTMLElement>('[data-topo]').forEach((el) => {
+          el.dataset.visivel = String(escondida);
+          el.tabIndex = escondida ? 0 : -1;
+          el.setAttribute('aria-hidden', String(!escondida));
+        });
+      },
+      { threshold: 0 }
+    );
+    observadorMarca.observe(marca);
+  }
+
+  // Os marcadores fixos só entram quando as abas reais já saíram da tela, para as duas
+  // versões nunca aparecerem juntas. Fora de vista, eles também saem do foco e da leitura.
+  observadorAbas?.disconnect();
+  if (abas) {
+    observadorAbas = new IntersectionObserver(
+      ([entrada]) => {
+        const escondidas = !entrada.isIntersecting;
+        document.querySelectorAll<HTMLElement>('[data-fixo]').forEach((el) => {
+          el.dataset.visivel = String(escondidas);
+          el.inert = !escondidas;
+        });
+      },
+      { threshold: 0 }
+    );
+    observadorAbas.observe(abas);
+  }
+  ligarRolandoMarcadores();
+}
+
+/** Marca o <html> enquanto a página rola: os marcadores fixos somem atrás da folha e só
+ *  voltam quando a rolagem para por um instante. */
+let rolandoLigado = false;
+function ligarRolandoMarcadores() {
+  if (rolandoLigado) return;
+  rolandoLigado = true;
+  let timer = 0;
+  window.addEventListener(
+    'scroll',
+    () => {
+      document.documentElement.dataset.rolando = 'sim';
+      window.clearTimeout(timer);
+      timer = window.setTimeout(() => delete document.documentElement.dataset.rolando, 617);
     },
-    { threshold: 0 }
+    { passive: true }
   );
-  observadorMarca.observe(marca);
 }
 
 /* ------------------------------------------------------- acessibilidade */
@@ -1258,7 +1293,7 @@ function iniciar() {
   ligarAtalhos();
   ligarNotasSoltas();
   ligarDobras();
-  ligarMarcaMini();
+  ligarCabecalhoFixo();
   ligarAulaAtual();
   ligarPilulaVoltar();
   // Ordem importa: o quiz lê os filhos do artigo, os tópicos os embrulham em seguida e
