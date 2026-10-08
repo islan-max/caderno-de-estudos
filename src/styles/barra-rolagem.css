@@ -308,16 +308,38 @@ html[data-tema='escuro'] .barra {
   display: none;
 }
 
-/* Giz de cera (fora das aulas): desliza pela pauta tracejada e não deixa rastro, então a fita
-   some. Desenhado de cima para baixo: corpo na cor da aba, o papel que envolve o giz (uma faixa
-   mais clara com bordas escuras e três risquinhos de "texto") e, no ::after, a ponta arredondada,
-   que usa os 8px de "nariz" que o script já reserva. */
+/* Giz de cera (fora das aulas): pinta o trilho, na cor da aba, por onde a página já passou. Ao
+   voltar, vira borracha (data-modo='apagando') e apaga o traço; ao descer de novo, volta ao giz
+   e pinta. Diferente do corretivo das aulas, o traço não guarda o ponto mais longe: vai só até
+   onde a peça está. Desenhado de cima para baixo: corpo na cor da aba, o papel que envolve o giz
+   (uma faixa mais clara com bordas escuras e três risquinhos de "texto") e, no ::after, a ponta
+   arredondada, que usa os 8px de "nariz" que o script já reserva. */
 .barra[data-modelo='giz'] {
+  --borracha: #f3cbc5;
   --giz-escuro: color-mix(in srgb, var(--acento, var(--color-ink)) 68%, #000);
   --giz-papel: color-mix(in srgb, var(--acento, var(--color-ink)) 26%, #fff);
 }
+html[data-tema='escuro'] .barra[data-modelo='giz'] {
+  --borracha: #e4b4ad;
+}
+/* Traço de giz: mesma mecânica da fita (só transform muda por quadro), com um brilho de cera
+   no meio e a cor da aba. Fica por baixo da peça; na barra horizontal não há traço. */
 .barra[data-modelo='giz'] .barra__fita {
+  right: -1px;
+  width: 4px;
+  border: 0;
+  background:
+    linear-gradient(90deg, rgb(0 0 0 / 0.14), transparent 28%, rgb(255 255 255 / 0.24) 55%, transparent 78%, rgb(0 0 0 / 0.12)),
+    var(--acento, var(--color-ink));
+}
+.barra[data-modelo='giz'][data-eixo='x'] .barra__fita {
   display: none;
+}
+.barra[data-modelo='giz']:hover .barra__fita,
+.barra[data-modelo='giz'][data-ativa] .barra__fita,
+.barra[data-modelo='giz'][data-arrastando] .barra__fita {
+  right: -2px;
+  width: 6px;
 }
 .barra[data-modelo='giz'][data-eixo='y'] .barra__polegar {
   right: -7px;
@@ -359,6 +381,59 @@ html[data-tema='escuro'] .barra {
   width: 18px;
 }
 
+/* Troca de giz para borracha (e de volta): a ferramenta nova aparece descendo de leve até o
+   lugar. As duas animações têm o mesmo desenho e nomes diferentes só para o navegador tocar
+   de novo a cada troca; `translate` soma ao transform de posição sem apagá-lo. */
+.barra[data-modelo='giz'][data-modo='pintando'] .barra__polegar {
+  animation: giz-pinta 0.2s var(--ease);
+}
+.barra[data-modelo='giz'][data-modo='apagando'] .barra__polegar {
+  animation: giz-apaga 0.2s var(--ease);
+}
+@keyframes giz-pinta {
+  from {
+    opacity: 0;
+    translate: 0 -5px;
+  }
+}
+@keyframes giz-apaga {
+  from {
+    opacity: 0;
+    translate: 0 -5px;
+  }
+}
+
+/* Borracha: um bloco rosado de 22x32px com a cinta de papel na cor da aba no meio (linhas
+   brancas de "texto" e frisos nas bordas) e, embaixo, a ponta de trabalho, mais clara onde
+   está gasta. Desenhada toda no ::before; o corpo do giz some. A base fica no fim da peça,
+   onde o traço termina. */
+.barra[data-modelo='giz'][data-modo='apagando'][data-eixo='y'] .barra__polegar {
+  background: none;
+}
+.barra[data-modelo='giz'][data-modo='apagando'][data-eixo='y'] .barra__polegar::after {
+  display: none;
+}
+.barra[data-modelo='giz'][data-modo='apagando'][data-eixo='y'] .barra__polegar::before {
+  display: block;
+  top: auto;
+  bottom: -9px;
+  left: 50%;
+  width: 22px;
+  height: 32px;
+  margin: 0 0 0 -11px;
+  border: 0;
+  border-radius: 6px 6px 5px 5px;
+  box-shadow: none;
+  background:
+    linear-gradient(90deg, rgb(255 255 255 / 0.5) 0 14%, transparent 14% 68%, rgb(0 0 0 / 0.14) 100%),
+    linear-gradient(rgb(255 255 255 / 0.9), rgb(255 255 255 / 0.9)) 5px 17px / 9px 2px no-repeat,
+    linear-gradient(rgb(255 255 255 / 0.9), rgb(255 255 255 / 0.9)) 5px 12px / 13px 2px no-repeat,
+    linear-gradient(rgb(0 0 0 / 0.22), rgb(0 0 0 / 0.22)) 0 22px / 100% 1px no-repeat,
+    linear-gradient(rgb(0 0 0 / 0.22), rgb(0 0 0 / 0.22)) 0 7px / 100% 1px no-repeat,
+    linear-gradient(var(--acento, var(--color-ink)), var(--acento, var(--color-ink))) 0 7px / 100% 16px no-repeat,
+    linear-gradient(to bottom, transparent 0 27px, rgb(255 255 255 / 0.35) 27px),
+    var(--borracha);
+}
 
 /* Diálogos e listas: a barra mora dentro do contêiner e respeita seus cantos. */
 /* O topo real vem do script (logo abaixo do cabeçalho do painel); 3.4rem é só o

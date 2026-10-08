@@ -20,6 +20,8 @@ type Eixo = 'y' | 'x';
 const POLEGAR = 44;
 /** Parte do comprimento que é o nariz do corretivo, na ponta (pseudo-elemento ::after no CSS). */
 const NARIZ = 8;
+/** O traço do giz acaba um pouco antes da ponta, escondido sob ela (a ponta é mais estreita embaixo). */
+const GIZ_PONTA = 5;
 const OCIOSO_MS = 1100;
 const MAX_DIVISORIAS = 40;
 
@@ -51,6 +53,7 @@ class Barra {
   private readonly fita = criar('div', 'barra__fita');
   private readonly polegar = criar('div', 'barra__polegar');
   private readonly rotulo = criar('div', 'barra__rotulo');
+  private readonly modelo: 'corretivo' | 'giz';
   private readonly marcas: HTMLElement[] = [];
   private titulos: { el: HTMLElement; texto: string; frac: number; secao: boolean }[] = [];
 
@@ -61,8 +64,10 @@ class Barra {
   private agendado = false;
   private ocioso = 0;
   private arrastando = false;
-  /** Posição de rolagem mais distante já alcançada: até onde a fita está colada. */
+  /** Corretivo (aulas): posição de rolagem mais distante já alcançada, até onde a fita está colada. */
   private alcance = 0;
+  /** Giz (fora das aulas): posição do quadro anterior, para saber se está descendo ou voltando. */
+  private ultima = 0;
 
   // Medidas em cache (refeitas só quando o conteúdo ou a janela mudam).
   private total = 0;
@@ -80,8 +85,9 @@ class Barra {
     this.barra.dataset.alvo = documento ? 'pagina' : 'contenedor';
     // Nas aulas o corretivo deixa a fita por onde a leitura já passou, o que ajuda a retomar
     // um texto longo. No resto do site (listas, painéis, navegação) essa memória não significa
-    // nada: lá a peça é um giz de cera, que só desliza pela linha e não deixa rastro.
-    this.barra.dataset.modelo = document.querySelector('[data-conteudo-aula]') ? 'corretivo' : 'giz';
+    // nada: lá a peça é um giz de cera que pinta por onde passa e, ao voltar, vira borracha e apaga.
+    this.modelo = document.querySelector('[data-conteudo-aula]') ? 'corretivo' : 'giz';
+    this.barra.dataset.modelo = this.modelo;
     this.barra.setAttribute('aria-hidden', 'true');
     this.barra.hidden = true;
     this.trilho.append(this.fita, this.polegar);
@@ -205,9 +211,19 @@ class Barra {
       ? `translate3d(0, ${deslocamento}px, 0)`
       : `translate3d(${deslocamento}px, 0, 0)`;
 
-    // A fita sai pelo rolete (a ponta do corretivo) e só cresce: voltar não a descola.
-    this.alcance = Math.min(this.maximo, Math.max(this.alcance, this.pos()));
-    const fim = (this.alcance / this.maximo) * livre + this.polegarLen;
+    let fim: number;
+    if (this.modelo === 'giz') {
+      // O giz pinta ao descer; ao voltar vira borracha e apaga. O traço vai só até a peça.
+      const p = this.pos();
+      const modo = p > this.ultima + 0.5 ? 'pintando' : p < this.ultima - 0.5 ? 'apagando' : null;
+      if (modo && this.barra.dataset.modo !== modo) this.barra.dataset.modo = modo;
+      this.ultima = p;
+      fim = deslocamento + this.polegarLen - GIZ_PONTA;
+    } else {
+      // A fita sai pelo rolete (a ponta do corretivo) e só cresce: voltar não a descola.
+      this.alcance = Math.min(this.maximo, Math.max(this.alcance, this.pos()));
+      fim = (this.alcance / this.maximo) * livre + this.polegarLen;
+    }
     const escala = Math.min(1, fim / this.trilhoLen);
     this.fita.style.transform = y ? `scaleY(${escala})` : `scaleX(${escala})`;
 
