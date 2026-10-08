@@ -34,6 +34,8 @@ O material é ponto de partida, não verdade: erros, premissas fracas e itens de
 | Projeto Multidisciplinar | 4º | 1 · Avaliação Final do Público-Alvo | Semana 22 |
 | Programação Mobile | 4º | 1 · Configurações Iniciais para Publicação nas Stores | Semana 22 |
 | Banco de Dados | 4º | 1 · Introdução aos Bancos de Dados NoSQL | Semana 22 |
+| Front-End | 4º | 1 · Avançando na Integração com Serviços Externos | Semana 22 |
+| Versionamento de Código | 4º | 1 · Git Workflows Avançados | Semana 21 |
 
 ## Correções e complementos feitos no material
 
@@ -51,7 +53,7 @@ O material é ponto de partida, não verdade: erros, premissas fracas e itens de
 
 ## Pendências
 
-- 186 aulas ainda "em breve".
+- 184 aulas ainda "em breve".
 - `scripts/checar-quiz.mjs` e `scripts/validar-aula.mjs` são só do ENEM; nas aulas de DS o quiz foi conferido no navegador (3 questões × 5 alternativas, gabarito 3 de 3).
 - Aba "Escolar" continua oculta (não foi mexida).
 
@@ -78,5 +80,23 @@ O material é ponto de partida, não verdade: erros, premissas fracas e itens de
 
 - Mesma estrutura de DS, mas sem seção de questões ("aula pura"; as questões ficam na apostila).
 - Aulas de revisão dadas pelo professor antes do material do bimestre: arquivo `revisao-<n>-<tema>.mdx`, `order` negativo (-100 + n) e rótulo R<n> na trilha.
-- Prontas: Matemática 4º bim (R1 Conjuntos e Venn; Aula 1 sem material; Aula 2 Grandezas, parte 1) e Língua Portuguesa 4º bim (Aula 1, Moçambique, parte 1).
+- Prontas: Matemática 4º bim (R1 Conjuntos e Venn; Aula 1 sem material; Aula 2 Grandezas, parte 1) e Língua Portuguesa 4º bim (Aulas 1 e 2, Moçambique, partes 1 e 2).
 - Textos protegidos (poema, conto, letra de música) não são reproduzidos: ficam resumo, análise e link da fonte.
+
+## Aulas de 08/10/2026
+
+**Front-End (semana 22)**
+- O `fetch` só rejeita por erro de rede (404 e 500 não viram erro): a aula ensina a conferir `resposta.ok`. Exemplos REST (ViaCEP) e GraphQL (Rick and Morty) foram executados de verdade.
+- O exemplo do "envio de SMS" só é seguro se a chave ficar no servidor; chave de API no navegador é pública.
+- Guardar tokens: evitar `localStorage`; BFF com cookie HttpOnly; código com PKCE (o fluxo implícito está desaprovado). Login com Google conferido na documentação do Google Identity (ID de cliente, origens JavaScript, verificação de `aud`, `iss`, `exp` e uso do `sub`).
+- No GraphQL, erros vêm em `errors`, e o status pode ser 200 ou 400.
+
+**Versionamento de Código (semana 21)**
+- O ciclo do GitFlow foi executado numa pasta de teste (feature, release, hotfix, tags). Nota do autor (2020): para aplicações web com entrega contínua, um fluxo mais simples é preferível.
+- Feature flags: dívida de flags e teste dos dois estados (trunkbaseddevelopment.com).
+
+**Língua Portuguesa, Aula 2 (Escolar)**
+- Sem as atividades do livro. O conto "Mutola" não é reproduzido (resumo e análise). A parte de concordância usa exemplos próprios.
+- Chiziane: primeira mulher moçambicana a publicar um romance (1990) e primeira mulher africana a ganhar o Prêmio Camões (2021).
+
+**Figuras:** todas passaram no verificador `scripts/checar-figuras-no-navegador.js` (nós opacos com a classe `no`, retas terminando na borda do nó).

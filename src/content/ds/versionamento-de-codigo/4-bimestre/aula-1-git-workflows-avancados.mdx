@@ -1,0 +1,593 @@
+---
+title: "Git Workflows Avançados"
+subject: "Versionamento de Código"
+order: 1
+relevance: >
+  Usar o Git é fácil; usar o Git bem em equipe, não. Quando várias pessoas mexem no mesmo projeto, é preciso combinar
+  como criar branches, quando juntar o trabalho e como preparar uma versão para o público. Esse combinado se chama
+  workflow (fluxo de trabalho). A escolha entre GitFlow e Trunk-Based Development muda o número de conflitos, a
+  velocidade das entregas e até o risco de uma versão quebrada chegar aos usuários.
+quickSummary: >
+  Main + feature branches funciona no começo, mas branches que ficam isoladas por muito tempo geram conflitos
+  maiores e feedback lento. O GitFlow organiza o trabalho com branches fixas (main, develop, feature, release,
+  hotfix) e dá controle de versões, ao custo de mais etapas. O Trunk-Based Development integra mudanças pequenas e
+  frequentes no tronco, e usa feature flags para subir código sem expor a funcionalidade. A escolha depende do
+  tamanho do time, do controle necessário e da frequência de entrega.
+gabarito:
+  - correta: 2
+    porque: >
+      Quanto mais tempo uma branch fica separada, mais o código diverge. O resultado são conflitos maiores no merge e
+      erros descobertos tarde, com feedback lento. Não diminui testes, não elimina merges e não reduz erros
+      sozinha.
+      Revisar: A Aula › 1.4 O problema da integração tardia
+  - correta: 3
+    porque: >
+      No GitFlow, as funcionalidades prontas voltam para a develop, o ramo de integração. A main guarda só o que
+      já foi lançado, as feature branches são o trabalho em andamento e a hotfix serve para corrigir produção.
+      Revisar: A Aula › 2.1 As branches do GitFlow
+  - correta: 1
+    porque: >
+      A feature flag é um interruptor: o código entra na branch principal desligado e só é ativado quando o time
+      quiser. Assim, evita-se manter uma branch longa isolada. Release tardia, hotfix direto na main e branch
+      permanente de teste não resolvem o problema.
+      Revisar: A Aula › 3.3 Feature flags
+ferramentas:
+  - nome: "Git"
+    uso: "Para rodar todos os comandos da aula (branch, merge, tag). No Windows, o instalador também traz o Git Bash."
+    custo: "Gratuito"
+    link: "https://git-scm.com"
+  - nome: "Terminal (Git Bash, PowerShell ou Terminal)"
+    uso: "Onde os comandos são digitados. Já vem no sistema ou com o Git."
+  - nome: "Editor de código (Visual Studio Code)"
+    uso: "Para editar arquivos e resolver conflitos de merge com ajuda visual."
+    custo: "Gratuito"
+    link: "https://code.visualstudio.com"
+    opcional: true
+  - nome: "Conta no GitHub"
+    uso: "Para praticar Pull Requests e proteger a branch principal num repositório remoto."
+    custo: "Gratuito"
+    link: "https://github.com"
+    opcional: true
+---
+
+<Accordion titulo="Palavras e siglas desta aula" dica="Consulte quando encontrar um termo novo" icone="spell-check">
+
+- **Git**: sistema que guarda o histórico do código e permite que várias pessoas trabalhem no mesmo projeto.
+- **Repositório**: a pasta do projeto com todo o histórico do Git.
+- **Commit**: um "ponto de salvamento" no histórico, com uma descrição da mudança.
+- **Branch** (ramo): uma linha separada de trabalho, que sai do projeto principal.
+- **Merge** (mesclagem): juntar as mudanças de uma branch em outra.
+- **Conflito de merge**: acontece quando duas branches mudaram o mesmo trecho e o Git não sabe qual versão manter.
+- **Main** (ou trunk, tronco): a branch principal, que representa a versão "oficial" do projeto.
+- **Workflow** (fluxo de trabalho): o combinado da equipe sobre como usar branches e merges.
+- **GitFlow**: workflow com branches fixas: main, develop, feature, release e hotfix.
+- **Trunk-Based Development** (desenvolvimento baseado em tronco): workflow em que todos integram mudanças pequenas e frequentes na branch principal.
+- **Hotfix**: correção urgente de um erro que já está em produção.
+- **Release** (versão): o pacote que será entregue aos usuários.
+- **Tag**: um rótulo, como "v1.0.0", colado a um commit para marcar uma versão.
+- **Feature flag** (sinalizador de recurso): um interruptor no código que liga ou desliga uma funcionalidade sem novo deploy.
+- **CI** (Continuous Integration, integração contínua): rotina automática que junta, constrói e testa o código a cada mudança.
+- **CD** (Continuous Delivery, entrega contínua): manter o projeto sempre pronto para ser publicado.
+- **Lead time**: o tempo entre começar uma mudança e ela chegar aos usuários.
+- **Pull Request (PR)**: pedido para juntar uma branch na principal, com revisão do time.
+- **SemVer** (Semantic Versioning, versionamento semântico): numeração MAJOR.MINOR.PATCH, como 2.4.1.
+
+</Accordion>
+
+## Antes de Começar
+
+**O que esta aula cobre.** Três blocos: revisar o Git e entender **por que** workflows existem; ver o **GitFlow** na prática; e conhecer o **Trunk-Based Development** com as **feature flags**. No fim, o objetivo é **escolher e justificar** um workflow para uma equipe.
+
+**O que você precisa saber antes.**
+
+- **Os comandos básicos**: `git add`, `git commit`, `git branch`, `git merge`, `git push`.
+- **A ideia de branch**: uma cópia "virtual" do projeto para trabalhar sem mexer na versão principal.
+- **Testes automatizados e CI**: rotinas que verificam o código sozinhas (vistas nas semanas de integração contínua).
+
+## A Aula
+
+### 1. Revisão de Git e motivação para workflows
+
+#### 1.1 O problema de juntar o trabalho no fim
+
+Uma equipe desenvolve um site, e cada pessoa cuida de uma parte: **home, formulário, galeria e avisos**. Cada uma trabalha **sozinha**, e tudo funciona. Na hora de juntar, vêm os **erros, os conflitos** e as partes que não funcionam juntas.
+
+O que a equipe poderia ter feito **desde o início**:
+
+1. **Combinar um workflow** (como criar branches, quando juntar, quem revisa).
+2. **Integrar cedo e com frequência**: juntar o trabalho todo dia (ou várias vezes ao dia), e não só no fim.
+3. **Dividir em tarefas pequenas**, que podem ser entregues em pouco tempo.
+4. **Revisar em Pull Requests** e **rodar testes automáticos** a cada junção.
+5. **Combinar quem mexe em quê**, para evitar duas pessoas no mesmo arquivo ao mesmo tempo.
+
+#### 1.2 Revisando o básico do Git
+
+| Conceito | O que é |
+|---|---|
+| **Commit** | Registra uma mudança no histórico |
+| **Branch** | Cria uma linha separada de trabalho |
+| **Merge** | Junta as alterações de branches diferentes |
+| **Repositório** | Armazena o histórico do projeto |
+
+Esses elementos permitem que **várias pessoas trabalhem no mesmo projeto sem mexer em tudo ao mesmo tempo**. O ciclo básico, no dia a dia:
+
+```bash
+git switch -c feature/galeria      # cria e entra numa branch nova
+git add .                          # separa as mudanças para o commit
+git commit -m "Adiciona a galeria" # registra
+git push -u origin feature/galeria # envia para o repositório remoto
+git switch main                    # volta para a principal
+git pull                           # traz as novidades dos colegas
+git merge feature/galeria          # junta a feature na main
+```
+
+(O `git switch` é a forma moderna do antigo `git checkout` para trocar de branch.)
+
+#### 1.3 Feature Branch Workflow (main + feature branches)
+
+O jeito mais comum de começar: existe uma branch principal, a **main**, onde fica a versão "oficial". **Cada nova tarefa** é feita numa **branch separada** (`feature-login`, `feature-galeria`). Você desenvolve e testa a sua parte nela, **sem mexer direto** na main. Quando termina, a branch é **juntada (merge)** na main.
+
+<figure class="figura">
+  <svg viewBox="0 0 560 160" role="img" aria-labelledby="fig-vc-feature-t fig-vc-feature-d">
+    <title id="fig-vc-feature-t">Feature Branch Workflow</title>
+    <desc id="fig-vc-feature-d">A branch main segue em linha reta. Duas branches de funcionalidade, login e galeria, saem da main, recebem commits e voltam para ela por merge.</desc>
+    <defs>
+      <marker id="seta-vc-feature" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+        <path d="M1,1 L9,5 L1,9" class="traco" />
+      </marker>
+    </defs>
+    <text x="8" y="44" class="rotulo">main</text>
+    <line x1="60" y1="40" x2="545" y2="40" class="traco" marker-end="url(#seta-vc-feature)" />
+    <line x1="123.4" y1="46.1" x2="150" y2="95" class="traco-fino" />
+    <line x1="150" y1="95" x2="270" y2="95" class="traco-fino" />
+    <line x1="270" y1="95" x2="296.6" y2="46.1" class="traco-fino" />
+    <line x1="332.2" y1="46.6" x2="360" y2="130" class="traco-fino" />
+    <line x1="360" y1="130" x2="460" y2="130" class="traco-fino" />
+    <line x1="460" y1="130" x2="487.8" y2="46.6" class="traco-fino" />
+    <circle cx="90" cy="40" r="7" class="traco no" />
+    <circle cx="120" cy="40" r="7" class="traco no" />
+    <circle cx="300" cy="40" r="7" class="traco no preenche" />
+    <circle cx="330" cy="40" r="7" class="traco no" />
+    <circle cx="490" cy="40" r="7" class="traco no preenche" />
+    <circle cx="190" cy="95" r="7" class="traco no" />
+    <circle cx="240" cy="95" r="7" class="traco no" />
+    <circle cx="390" cy="130" r="7" class="traco no" />
+    <circle cx="430" cy="130" r="7" class="traco no" />
+    <text x="210" y="82" class="rotulo-fraco" text-anchor="middle">feature-login</text>
+    <text x="410" y="118" class="rotulo-fraco" text-anchor="middle">feature-galeria</text>
+    <text x="300" y="20" class="rotulo-fraco" text-anchor="middle">merge</text>
+    <text x="490" y="20" class="rotulo-fraco" text-anchor="middle">merge</text>
+  </svg>
+</figure>
+
+Funciona bem **no começo** e com equipes pequenas. O problema aparece quando as branches **demoram** a voltar para a main.
+
+#### 1.4 O problema da integração tardia
+
+A **integração tardia** acontece quando uma branch fica **muito tempo separada** da principal. Consequências:
+
+- **Diferenças grandes** entre as branches.
+- **Conflitos de merge mais difíceis**: duas pessoas mudaram os mesmos arquivos de formas diferentes.
+- **Erros descobertos tarde**: só aparecem na hora de juntar.
+- **Atraso** para colocar mudanças em produção.
+
+Quanto **mais tempo** a branch fica isolada, **maior** tende a ser o risco de conflito e de retrabalho.
+
+**Um exemplo de conflito.** Duas pessoas editaram a mesma linha. O Git marca o arquivo para você decidir:
+
+```text
+<<<<<<< HEAD
+<h1>Bem-vindo à loja</h1>
+=======
+<h1>Olá! Conheça a loja</h1>
+>>>>>>> feature/home
+```
+
+Você escolhe (ou combina) a versão certa, apaga as marcas e faz um novo commit. Um conflito pequeno se resolve em minutos. Um conflito entre duas branches que ficaram semanas isoladas pode tomar **um dia inteiro**.
+
+**Como isso afeta a entrega contínua.** A entrega contínua depende de mudanças **pequenas, frequentes e fáceis de validar**. Com integração tardia:
+
+- O **build** quebra com mais facilidade.
+- Os **testes** acumulam problemas.
+- O **feedback** demora.
+- A entrega **perde ritmo**.
+
+Por isso, workflows não servem apenas para organizar branches: eles determinam **a velocidade com que o time recebe feedback**.
+
+#### 1.5 Os dois caminhos
+
+Para reduzir esses problemas, equipes adotam um de dois grandes modelos:
+
+- **GitFlow**: mais estrutura, com branches fixas e controle de versões.
+- **Trunk-Based Development**: integração muito frequente numa branch só.
+
+Os dois são válidos. A escolha depende do **tamanho da equipe**, do **nível de controle** necessário sobre as versões e da **frequência de entrega** desejada.
+
+#### 1.6 Qual workflow escolher? Dois cenários
+
+| | Cenário A | Cenário B |
+|---|---|---|
+| **Equipe** | Pequena, integra com frequência | Releases mais formais |
+| **Testes** | Automatizados | Preparação de versão separada |
+| **Entrega** | Várias versões por semana | Fluxo mais controlado, correções urgentes à parte |
+
+1. **Qual combina com Trunk-Based Development?** O **A**: equipe pequena, integração frequente, testes automáticos e publicação várias vezes por semana.
+2. **Qual combina com GitFlow?** O **B**: precisa separar a preparação de versão das correções urgentes, com fluxo controlado.
+3. **Qual favorece mais a integração frequente?** O **A** (Trunk-Based).
+4. **Em uma frase:** o Trunk-Based mantém tudo integrado o tempo todo, e o GitFlow troca velocidade por controle de versões.
+
+### 2. Implementando GitFlow na prática
+
+#### 2.1 As branches do GitFlow
+
+O **GitFlow** foi descrito por Vincent Driessen em 2010. Ele usa **duas branches permanentes** e **três tipos de branches de apoio**:
+
+| Branch | Para que serve | Nasce de | Volta para |
+|---|---|---|---|
+| **main** | Só o que foi **lançado**. Cada commit nela é uma versão, marcada com **tag** | (permanente) | (permanente) |
+| **develop** | **Integração**: onde as funcionalidades prontas se juntam antes da release | (permanente) | (permanente) |
+| **feature/…** | Uma funcionalidade nova | **develop** | **develop** |
+| **release/…** | Prepara uma versão: só **correções finais** e número da versão, sem funcionalidade nova | **develop** | **main** e **develop** |
+| **hotfix/…** | **Correção urgente** de um erro que está em produção | **main** | **main** e **develop** |
+
+<figure class="figura">
+  <svg viewBox="0 0 560 260" role="img" aria-labelledby="fig-vc-gitflow-t fig-vc-gitflow-d">
+    <title id="fig-vc-gitflow-t">Como as branches do GitFlow se conectam</title>
+    <desc id="fig-vc-gitflow-d">A branch develop gera as features e as releases. As features voltam para a develop. A release volta para a main, com uma tag, e também para a develop. A hotfix nasce da main e volta para a main e para a develop.</desc>
+    <defs>
+      <marker id="seta-vc-gitflow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+        <path d="M1,1 L9,5 L1,9" class="traco" />
+      </marker>
+    </defs>
+    <rect x="220" y="20" width="120" height="40" rx="8" class="traco" />
+    <text x="280" y="45" class="rotulo" text-anchor="middle">release</text>
+    <rect x="430" y="20" width="120" height="40" rx="8" class="traco preenche" />
+    <text x="490" y="45" class="rotulo" text-anchor="middle">main</text>
+    <rect x="10" y="190" width="120" height="40" rx="8" class="traco" />
+    <text x="70" y="215" class="rotulo" text-anchor="middle">feature</text>
+    <rect x="220" y="190" width="120" height="40" rx="8" class="traco preenche" />
+    <text x="280" y="215" class="rotulo" text-anchor="middle">develop</text>
+    <rect x="430" y="190" width="120" height="40" rx="8" class="traco" />
+    <text x="490" y="215" class="rotulo" text-anchor="middle">hotfix</text>
+    <line x1="250" y1="190" x2="250" y2="62" class="traco" marker-end="url(#seta-vc-gitflow)" />
+    <text x="244" y="130" class="rotulo-fraco" text-anchor="end">nasce da develop</text>
+    <line x1="310" y1="62" x2="310" y2="188" class="traco" marker-end="url(#seta-vc-gitflow)" />
+    <text x="316" y="130" class="rotulo-fraco">volta</text>
+    <line x1="340" y1="40" x2="428" y2="40" class="traco" marker-end="url(#seta-vc-gitflow)" />
+    <text x="384" y="32" class="rotulo-fraco" text-anchor="middle">merge + tag</text>
+    <line x1="130" y1="210" x2="218" y2="210" class="traco" marker-end="url(#seta-vc-gitflow)" />
+    <text x="174" y="202" class="rotulo-fraco" text-anchor="middle">merge</text>
+    <line x1="445" y1="62" x2="445" y2="188" class="traco" marker-end="url(#seta-vc-gitflow)" />
+    <text x="439" y="130" class="rotulo-fraco" text-anchor="end">nasce da main</text>
+    <line x1="525" y1="188" x2="525" y2="62" class="traco" marker-end="url(#seta-vc-gitflow)" />
+    <text x="519" y="130" class="rotulo-fraco" text-anchor="end">merge + tag</text>
+    <line x1="428" y1="210" x2="342" y2="210" class="traco" marker-end="url(#seta-vc-gitflow)" />
+    <text x="385" y="202" class="rotulo-fraco" text-anchor="middle">merge</text>
+  </svg>
+</figure>
+
+Resposta direta: **as funcionalidades prontas são integradas na `develop`**, antes de a release ser preparada. A `main` guarda só o que já foi lançado.
+
+#### 2.2 O ciclo completo, passo a passo
+
+Esta é a simulação do roteiro da aula, feita com comandos do próprio Git (o resultado foi testado numa pasta nova). Não precisa de nenhuma ferramenta extra.
+
+**Passo 1: criar a base do projeto.**
+
+```bash
+git init -b main loja-gitflow
+cd loja-gitflow
+echo "# Loja" > README.md
+git add .
+git commit -m "Base do projeto"
+git switch -c develop
+```
+
+**Passo 2: criar uma funcionalidade (feature) e integrá-la.**
+
+```bash
+git switch -c feature/carrinho develop
+echo "carrinho" > carrinho.txt
+git add .
+git commit -m "Adiciona o carrinho"
+
+git switch develop
+git merge --no-ff feature/carrinho -m "Integra o carrinho"
+git branch -d feature/carrinho
+```
+
+O `--no-ff` (sem *fast-forward*) **sempre cria um commit de merge**. Assim, o histórico mostra **quais commits formaram a feature**, e desfazer a funcionalidade inteira fica mais fácil.
+
+**Passo 3: preparar a entrega (release).**
+
+```bash
+git switch -c release/1.0.0 develop
+echo "1.0.0" > VERSAO
+git add .
+git commit -m "Prepara a versão 1.0.0"
+
+git switch main
+git merge --no-ff release/1.0.0 -m "Release 1.0.0"
+git tag -a v1.0.0 -m "Versão 1.0.0"
+
+git switch develop
+git merge --no-ff release/1.0.0 -m "Volta da release 1.0.0 para a develop"
+git branch -d release/1.0.0
+```
+
+Na release, **só entram correções finais**: nenhuma funcionalidade nova. Quando fica pronta, ela é juntada na **main** (com a **tag** da versão) **e** na **develop**, para que as correções finais não se percam.
+
+**Passo 4: corrigir um erro em produção (hotfix).**
+
+```bash
+git switch -c hotfix/1.0.1 main
+echo "1.0.1" > VERSAO
+git add .
+git commit -m "Corrige o erro de pagamento"
+
+git switch main
+git merge --no-ff hotfix/1.0.1 -m "Hotfix 1.0.1"
+git tag -a v1.0.1 -m "Versão 1.0.1"
+
+git switch develop
+git merge --no-ff hotfix/1.0.1 -m "Hotfix 1.0.1 na develop"
+git branch -d hotfix/1.0.1
+```
+
+O hotfix **nasce da main** (porque o erro está em produção, e não na develop) e **volta para os dois**. Se houver conflito no último merge, resolva como vimos na seção 1.4.
+
+Para ver o resultado: `git log --oneline --graph --all --decorate`.
+
+**Existe uma extensão `git flow`** que automatiza esses passos, mas ela não é necessária: os comandos acima fazem o mesmo, e entender cada um é melhor para aprender.
+
+#### 2.3 Versões e tags
+
+Cada release ganha um número. O padrão mais usado é o **SemVer**, com três números: **MAJOR.MINOR.PATCH** (por exemplo, 2.4.1).
+
+- **PATCH** sobe quando você **corrige** um erro sem mudar o funcionamento (1.0.0 para 1.0.1, como no hotfix).
+- **MINOR** sobe quando acrescenta uma funcionalidade **compatível** (1.0.1 para 1.1.0).
+- **MAJOR** sobe quando muda algo que **quebra a compatibilidade** (1.1.0 para 2.0.0).
+
+A **tag** (`v1.0.0`) marca exatamente o commit daquela versão, para você poder voltar a ele quando quiser.
+
+#### 2.4 Quando usar o GitFlow, e quando não
+
+**Vantagens:**
+
+- **Controle de versões**: fica claro o que está em produção, o que está em preparação e o que está em desenvolvimento.
+- Separa **desenvolvimento, correções e preparação** de entrega.
+- Combina com **releases mais formais** e com manutenção **previsível**.
+
+**Custos:**
+
+- **Mais etapas e mais complexidade.**
+- **Branches que vivem mais tempo**, o que leva de volta ao problema da integração tardia.
+- **Merges extras** (a release e o hotfix voltam para dois lugares).
+
+**Uma observação importante.** O próprio autor do GitFlow escreveu, em 2020, uma nota no artigo original: o modelo virou "padrão" e, às vezes, **dogma**, mas **aplicações web costumam ser entregues continuamente**, e para isso ele recomenda um fluxo **mais simples**, como o GitHub Flow. O GitFlow continua indicado para software **com versões explícitas** ou que precise **manter várias versões** ao mesmo tempo (um aplicativo instalado, uma biblioteca).
+
+Em resumo: **o GitFlow não é "o certo"; é uma ferramenta para um tipo de projeto.**
+
+#### 2.5 Nomes e hábitos que ajudam
+
+- **Nomes claros**: `feature/carrinho`, `release/1.0.0`, `hotfix/1.0.1`.
+- **Proteger** a `main` e a `develop` (ninguém commita direto: só por Pull Request, com revisão e testes).
+- **Apagar** as branches de apoio depois do merge.
+- **Registrar** as mudanças de cada release (um arquivo de changelog).
+
+### 3. Trunk-Based Development e feature flags
+
+#### 3.1 O que é o Trunk-Based Development
+
+No **Trunk-Based Development** (desenvolvimento baseado em tronco), o time **integra mudanças pequenas e frequentes na branch principal**, o **tronco** (*trunk*). Em vez de manter branches separadas por muito tempo, o foco é **reduzir o tempo entre desenvolver e integrar**.
+
+Como funciona na prática:
+
+- Todos trabalham a partir do tronco.
+- Se usar branches, elas são **curtas**: duram **horas**, no máximo alguns dias, e voltam para o tronco por Pull Request rápido.
+- O tronco **precisa estar sempre funcionando**: por isso há **testes automáticos** e **CI** a cada mudança.
+- As mudanças são **pequenas**, fáceis de revisar.
+
+**O que esse modelo favorece:** **feedback rápido**, **menos conflito acumulado**, **entregas frequentes** e uma **integração contínua mais natural**.
+
+**O que ele exige:** testes automatizados confiáveis, revisão de código rápida, hábito de dividir o trabalho em passos pequenos e uma maneira de **esconder o que ainda não está pronto**. É aí que entram as feature flags.
+
+<figure class="figura">
+  <svg viewBox="0 0 560 190" role="img" aria-labelledby="fig-vc-tbd-t fig-vc-tbd-d">
+    <title id="fig-vc-tbd-t">Branch longa isolada e integração frequente no tronco</title>
+    <desc id="fig-vc-tbd-d">No alto, uma branch longa sai da main, acumula vários commits sem integrar e volta no fim de uma vez, com muitos conflitos de uma só vez. Embaixo, no Trunk-Based Development, os commits pequenos entram no tronco o tempo todo, e cada integração é pequena.</desc>
+    <text x="8" y="18" class="rotulo">Branch longa: integra só no fim</text>
+    <line x1="30" y1="45" x2="530" y2="45" class="traco" />
+    <line x1="103.6" y1="51" x2="130" y2="95" class="traco-fino" />
+    <line x1="130" y1="95" x2="400" y2="95" class="traco-fino" />
+    <line x1="400" y1="95" x2="426.4" y2="51" class="traco-fino" />
+    <circle cx="60" cy="45" r="7" class="traco no" />
+    <circle cx="100" cy="45" r="7" class="traco no" />
+    <circle cx="430" cy="45" r="7" class="traco no preenche" />
+    <circle cx="500" cy="45" r="7" class="traco no" />
+    <circle cx="180" cy="95" r="7" class="traco no" />
+    <circle cx="240" cy="95" r="7" class="traco no" />
+    <circle cx="300" cy="95" r="7" class="traco no" />
+    <circle cx="360" cy="95" r="7" class="traco no" />
+    <text x="270" y="116" class="rotulo-fraco" text-anchor="middle">semanas isoladas: o código diverge</text>
+    <text x="430" y="28" class="rotulo-fraco" text-anchor="middle">merge enorme, conflitos</text>
+    <text x="8" y="148" class="rotulo">Trunk-Based: integra o tempo todo</text>
+    <line x1="30" y1="170" x2="530" y2="170" class="traco" />
+    <circle cx="60" cy="170" r="7" class="traco no" />
+    <circle cx="110" cy="170" r="7" class="traco no" />
+    <circle cx="160" cy="170" r="7" class="traco no" />
+    <circle cx="210" cy="170" r="7" class="traco no" />
+    <circle cx="260" cy="170" r="7" class="traco no" />
+    <circle cx="310" cy="170" r="7" class="traco no" />
+    <circle cx="360" cy="170" r="7" class="traco no" />
+    <circle cx="410" cy="170" r="7" class="traco no" />
+    <circle cx="460" cy="170" r="7" class="traco no" />
+    <circle cx="510" cy="170" r="7" class="traco no" />
+  </svg>
+</figure>
+
+#### 3.2 Branches longas e o lead time
+
+Uma **branch longa** é uma branch que passa **dias ou semanas** sem voltar ao tronco. Os riscos:
+
+- **Mais conflito**: quanto mais tempo passa, mais coisas mudam no tronco.
+- **Integração atrasada**: erros só aparecem no fim.
+- **Revisão difícil**: um Pull Request gigante é cansativo, e as pessoas revisam por cima.
+- **Lead time maior.** O **lead time** é o tempo entre começar uma mudança e ela chegar aos usuários. Branches longas **aumentam** esse tempo, porque a mudança fica "parada" esperando para ser integrada. Equipes que medem a velocidade de entrega costumam acompanhar o lead time.
+
+#### 3.3 Feature flags
+
+Se o trabalho é integrado todo dia, como lidar com uma funcionalidade que leva **três semanas** para ficar pronta? Sem solução, o time criaria uma branch longa. A solução é a **feature flag** (sinalizador de recurso), um **interruptor** no código:
+
+- O código novo **entra no tronco** (integrado e testado com todo o resto), mas **desligado**.
+- Quando a funcionalidade fica pronta, **liga-se a flag** e ela aparece para os usuários, **sem um novo deploy**.
+
+```js
+// Configuração das flags (pode vir de um arquivo, variável de ambiente ou serviço)
+const flags = { novoCheckout: false };
+
+function telaDeCheckout() {
+  return flags.novoCheckout ? checkoutNovo() : checkoutAtual();
+}
+```
+
+A prática recomendada por quem defende o Trunk-Based Development é concentrar a escolha em **um único ponto** (por exemplo, no início do programa), em vez de espalhar `if` por todo o código.
+
+**O que a flag permite:**
+
+- **Subir código sem expor** a funcionalidade, e **evitar branches longas** (o problema do quiz).
+- **Lançamento gradual**: ligar para 5% dos usuários, depois 25%, depois todos.
+- **Teste A/B**: mostrar versões diferentes para grupos diferentes e comparar.
+- **Botão de emergência** (*kill switch*): desligar uma funcionalidade que deu problema, sem refazer o deploy.
+- **Liberar para um grupo** (a equipe, usuários beta) antes dos demais.
+
+**Cuidados:**
+
+- **Dívida de flags.** Depois que a funcionalidade está liberada para todos, **remova a flag e o código antigo**. Flags esquecidas viram lixo e complicam a leitura. Combine uma data de revisão.
+- **Teste os dois estados**: o código com a flag ligada **e** desligada. O código "desligado" também precisa estar testado.
+- **Não é segurança.** Em aplicações de navegador, o usuário pode ver as flags no código. Nunca use flag para esconder dado sigiloso.
+- **Não exagere**: muitas flags ao mesmo tempo geram combinações demais.
+
+Existem serviços e bibliotecas prontos para gerenciar flags (como o Unleash, o LaunchDarkly e o padrão aberto OpenFeature), mas o princípio é simples e pode começar com uma variável de configuração.
+
+#### 3.4 GitFlow ou Trunk-Based: comparação
+
+| Critério | GitFlow | Trunk-Based Development |
+|---|---|---|
+| **Branches** | Várias, de vida longa (main, develop) e de apoio | Uma principal; as outras duram horas |
+| **Integração** | Em etapas (feature, develop, release, main) | Contínua, no tronco |
+| **Conflitos** | Tendem a ser maiores | Pequenos e frequentes |
+| **Versões** | Muito controle, com release formal | A versão sai do tronco a qualquer hora |
+| **Código incompleto** | Fica em branch de feature | Entra no tronco, atrás de **feature flag** |
+| **Exige** | Disciplina com as branches | **Testes automáticos e CI** confiáveis |
+| **Combina com** | Releases formais, várias versões, equipes grandes e processos de aprovação | Entrega contínua, produto web, times com bons testes |
+
+**Como decidir.** Faça três perguntas:
+
+1. **Com que frequência entregamos?** Várias vezes por semana pede Trunk-Based. Em versões fechadas e espaçadas, o GitFlow pesa menos.
+2. **Temos testes automáticos confiáveis?** Sem eles, o tronco fica arriscado.
+3. **Precisamos manter várias versões ao mesmo tempo?** Se sim, o GitFlow ajuda.
+
+#### 3.5 Atividade resolvida: comparando os dois modelos
+
+Situação: uma equipe de 5 pessoas faz uma loja virtual e publica toda semana. Uma funcionalidade de **cupom de desconto** levará 3 semanas. Eles usam GitFlow e as branches de feature estão demorando para ser integradas e causam muitos conflitos.
+
+1. **Identifique o problema.** A **branch de feature longa**: ela fica semanas isolada e a integração atrasa. Com isso, os conflitos crescem e o feedback demora.
+2. **Compare os modelos.** No GitFlow, a feature só entra na `develop` quando termina (semanas depois). No Trunk-Based, o código entraria no tronco aos poucos, desde o primeiro dia. Para uma equipe pequena que publica toda semana, o Trunk-Based encaixa melhor.
+3. **Pense numa solução com feature flags.** Dividir o cupom em partes pequenas (cadastro do cupom, cálculo do desconto, tela de aplicação), integrar cada parte no tronco **atrás da flag `cupomDeDesconto` desligada** e ligar só quando tudo estiver pronto.
+4. **Tome a decisão.** Adotar o Trunk-Based com feature flags e, como base, **testes automáticos e CI**. Registrar o motivo: "equipe pequena, publica toda semana, queremos menos conflitos".
+5. **Cuidados.** Combinar a data para remover a flag e testar o fluxo com ela ligada e desligada.
+
+## Tópicos-Chave para Revisão
+
+<div className="topico">
+
+#### 1. Por que existem workflows
+
+Sem um combinado, as partes feitas **em separado** dão **conflito** e **erros** na hora de juntar. Um **workflow** define como usar **branches** e **merges** e favorece integrar **cedo e com frequência**.
+
+#### 2. Básico do Git
+
+**Commit** registra uma mudança, **branch** cria uma linha separada, **merge** junta e **repositório** guarda o histórico. O **git switch** troca de branch.
+
+#### 3. Feature Branch Workflow
+
+**main** é a versão oficial. Cada tarefa vai numa **feature branch** e volta para a main por **merge**. Funciona no começo, mas sofre com a **integração tardia**.
+
+#### 4. Integração tardia
+
+Branch **muito tempo isolada** gera **conflitos maiores**, **erros descobertos tarde** e **feedback lento**. Atrapalha a **entrega contínua**: o **build** quebra, os **testes** acumulam problemas.
+
+#### 5. Branches do GitFlow
+
+**main** (só o lançado, com **tag**), **develop** (**integração** das funcionalidades), **feature** (sai da develop), **release** (sai da develop, só correções) e **hotfix** (sai da main).
+
+#### 6. Para onde cada uma volta
+
+**feature** volta para a **develop**. **release** volta para a **main** e para a **develop**. **hotfix** volta para a **main** e para a **develop**. Use **merge --no-ff**.
+
+#### 7. Versões
+
+**SemVer**: **MAJOR.MINOR.PATCH**. Hotfix sobe o **PATCH**, funcionalidade compatível sobe o **MINOR**, mudança que quebra sobe o **MAJOR**. A **tag** marca o commit da versão.
+
+#### 8. Quando usar o GitFlow
+
+Bom para **releases formais**, **várias versões** e **manutenção previsível**. Custa **mais etapas e complexidade**. Para aplicações web com **entrega contínua**, o próprio autor recomenda algo **mais simples**.
+
+#### 9. Trunk-Based Development
+
+Mudanças **pequenas e frequentes** no **tronco**, com branches de **horas**. Dá **feedback rápido** e **menos conflito**, mas exige **testes automáticos** e **CI**.
+
+#### 10. Lead time
+
+Tempo entre **começar** uma mudança e ela **chegar ao usuário**. **Branches longas aumentam** o lead time e o risco de **conflito**.
+
+#### 11. Feature flags
+
+**Interruptor** que deixa o código entrar **desligado** no tronco e ser **ligado depois**, **sem novo deploy**. Evita **branches longas**. Cuidado com a **dívida de flags** e **teste os dois estados**.
+
+#### 12. Escolher o workflow
+
+Depende do **tamanho da equipe**, do **controle necessário** e da **frequência de entrega**. Equipe pequena que publica várias vezes por semana combina com **Trunk-Based**; releases formais combinam com **GitFlow**.
+
+</div>
+
+## Pause e Responda
+
+*Marque uma alternativa em cada questão e confira tudo de uma vez no botão do fim.*
+
+**Questão 1**
+
+*Pause e Responda S21A1a · Revisão Git e motivação para workflows*
+
+Qual problema costuma aparecer quando a integração entre branches demora?
+
+A) Menos necessidade de testes\
+B) Eliminação de merges\
+C) Conflitos maiores e feedback mais lento\
+D) Redução automática de erros\
+E) Histórico do Git mais curto e mais fácil de ler
+
+**Questão 2**
+
+*Pause e Responda S21A2a · Implementando GitFlow na prática*
+
+No GitFlow, em qual branch normalmente ficam integradas as funcionalidades antes da preparação da release?
+
+A) Main\
+B) Hotfix\
+C) Feature\
+D) Develop\
+E) Uma tag de versão
+
+**Questão 3**
+
+*Pause e Responda S21A3a · Trunk-Based Development e Feature Flags*
+
+Qual prática ajuda a evitar branches longas sem expor imediatamente a funcionalidade ao usuário?
+
+A) Release manual tardia\
+B) Feature flag\
+C) Hotfix direto na main\
+D) Branch permanente de teste\
+E) Desativar os testes automatizados

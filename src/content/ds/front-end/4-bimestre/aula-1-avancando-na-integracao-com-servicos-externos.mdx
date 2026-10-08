@@ -1,0 +1,649 @@
+---
+title: "Avançando na Integração com Serviços Externos"
+subject: "Front-End"
+order: 1
+relevance: >
+  Quase toda tela de um site ou app moderno mostra dados que vêm de outro lugar: CEP, mapa, pagamento, login com o
+  Google. O front-end (a parte que roda no navegador) conversa com esses serviços por APIs (Application Programming
+  Interface, interface de programação de aplicações). Saber consumir uma API REST ou GraphQL, ler documentação,
+  autenticar com segurança (OAuth e JWT) e avisar o usuário do que está acontecendo é o que faz uma interface
+  parecer profissional e não quebrar quando o serviço de fora falha.
+quickSummary: >
+  REST usa várias URLs e verbos HTTP (GET, POST, PUT, DELETE) e devolve JSON. GraphQL usa um só endereço e o cliente
+  pede exatamente os campos que quer. Para autenticar, a chave de API é simples, mas fica exposta no navegador;
+  OAuth 2.0 e JWT são mais robustos. O front-end nunca deve guardar segredos, precisa tratar erros e mostrar
+  carregamento, sucesso e falha ao usuário.
+gabarito:
+  - correta: 0
+    porque: >
+      A grande vantagem das APIs é o reaproveitamento: você usa uma funcionalidade pronta (pagamento, mapa, CEP) em
+      vez de programá-la do zero. A API não substitui o código do sistema, não é ferramenta de design e não garante
+      atualização automática de tudo.
+      Revisar: A Aula › 1.5 Por que usar APIs de terceiros
+  - correta: 2
+    porque: >
+      A documentação diz como a API funciona: endereços, parâmetros, autenticação, limites e erros. Isso facilita a
+      integração. Ela não limita usuários, não mexe na expiração dos tokens e não resolve os problemas sozinha.
+      Revisar: A Aula › 1.3 Documentação da API
+  - correta: 1
+    porque: >
+      A chave de API é simples e prática para integrações de menor complexidade e risco. Ela não dá segurança máxima
+      (quem tem a chave usa a API), e no front-end ela fica visível para qualquer pessoa. Por isso, chave secreta
+      fica só no servidor.
+      Revisar: A Aula › 1.4 Autenticação com chave de API
+ferramentas:
+  - nome: "Navegador com ferramentas do desenvolvedor (Chrome, Edge ou Firefox)"
+    uso: "Para testar os códigos fetch no console e ver cada requisição, status e resposta na aba Rede."
+    custo: "Gratuito"
+    link: "https://developer.chrome.com/docs/devtools"
+  - nome: "Editor de código (Visual Studio Code)"
+    uso: "Para escrever as páginas de teste que consomem as APIs."
+    custo: "Gratuito"
+    link: "https://code.visualstudio.com"
+  - nome: "ViaCEP"
+    uso: "API REST pública, sem cadastro, usada como exemplo de consulta de CEP."
+    custo: "Gratuito"
+    link: "https://viacep.com.br"
+  - nome: "Rick and Morty API (GraphQL)"
+    uso: "API GraphQL pública, sem cadastro, usada para treinar consultas, variáveis e erros."
+    custo: "Gratuito"
+    link: "https://rickandmortyapi.com"
+  - nome: "Postman"
+    uso: "Para chamar uma API à mão antes de escrever o código e conferir status, cabeçalhos e JSON."
+    custo: "Plano gratuito"
+    link: "https://www.postman.com"
+    opcional: true
+  - nome: "Conta Google e Google Cloud Console"
+    uso: "Para criar o ID de cliente do login com Google. Criar o ID de cliente e a tela de consentimento não tem custo."
+    custo: "Gratuito"
+    link: "https://console.cloud.google.com"
+    opcional: true
+  - nome: "jwt.io"
+    uso: "Para ver as três partes de um token de teste. Nunca cole nele um token de verdade."
+    custo: "Gratuito"
+    link: "https://jwt.io"
+    opcional: true
+---
+
+<Accordion titulo="Palavras e siglas desta aula" dica="Consulte quando encontrar um termo novo" icone="spell-check">
+
+- **API** (Application Programming Interface, interface de programação de aplicações): o "cardápio" de um serviço. Mostra o que dá para pedir e como pedir.
+- **REST** (Representational State Transfer): estilo de criar APIs com URLs para os recursos e verbos HTTP para as ações.
+- **GraphQL**: linguagem de consulta para APIs em que o cliente escolhe os campos que quer receber.
+- **HTTP** (HyperText Transfer Protocol): o protocolo da web. **HTTPS** é a versão segura.
+- **JSON** (JavaScript Object Notation): formato de texto para trocar dados, como `{"nome": "Ana"}`.
+- **CORS** (Cross-Origin Resource Sharing): regra do navegador que só deixa uma página chamar outro site se esse site permitir.
+- **OAuth 2.0**: protocolo de autorização. Deixa um app acessar dados seus em outro serviço sem saber a sua senha.
+- **OpenID Connect**: camada sobre o OAuth 2.0 que também diz **quem** é o usuário.
+- **JWT** (JSON Web Token): "crachá" digital assinado, com três partes separadas por ponto.
+- **PKCE** (Proof Key for Code Exchange): proteção do fluxo de OAuth para apps que não conseguem guardar segredo, como os de navegador.
+- **XSS** (Cross-Site Scripting): ataque em que alguém consegue rodar código seu na página de outra pessoa.
+- **Token**: texto que prova uma permissão ou identidade, com prazo de validade.
+- **Endpoint**: o endereço de uma API que atende um tipo de pedido.
+- **Mutation** (mutação): no GraphQL, a operação que **altera** dados.
+- **Over-fetching e under-fetching**: receber dados demais ou de menos numa chamada.
+
+</Accordion>
+
+## Antes de Começar
+
+**O que esta aula cobre.** Três blocos: integrar com **APIs REST**, consultar com **GraphQL** e **autenticar** com OAuth e JWT (com o exemplo do login com o Google). No fim de cada bloco, o foco é o front-end: o que o navegador pode e não pode fazer com segurança.
+
+**O que você precisa saber antes.**
+
+- **JavaScript básico**: funções, objetos, `async` e `await`.
+- **HTTP**: pedido (requisição) e resposta, com um **código de status**: 200 é "deu certo", 404 é "não achei", 500 é "o servidor errou".
+- **JSON**: pares nome e valor entre chaves.
+
+## A Aula
+
+### 1. Integração com APIs RESTful
+
+#### 1.1 Relembrando o REST
+
+Uma API **RESTful** segue algumas regras:
+
+- **Sem estado** (*stateless*): cada requisição é independente, o servidor não guarda o que você pediu antes. Tudo de que ele precisa vem **em cada pedido** (inclusive a identificação).
+- **Verbos HTTP para as ações**: o verbo diz o que fazer.
+- **Recursos identificados por URLs**: `/users/1` é o usuário de número 1.
+- **Dados geralmente em JSON**, por ser leve e simples de usar em qualquer linguagem.
+
+| Verbo | Ação | Exemplo | Altera dados? |
+|---|---|---|---|
+| **GET** | Ler | `GET /users/1` | Não |
+| **POST** | Criar | `POST /users` | Sim |
+| **PUT** | Substituir tudo | `PUT /users/1` | Sim |
+| **PATCH** | Alterar uma parte | `PATCH /users/1` | Sim |
+| **DELETE** | Remover | `DELETE /users/1` | Sim |
+
+**Famílias de status:** **2xx** deu certo; **4xx** erro do **pedido** (400, 401, 403, 404); **5xx** erro do **servidor** (500, 503).
+
+#### 1.2 Consumindo uma API no front-end
+
+O jeito moderno de fazer o pedido no navegador é a função `fetch`. Exemplo real com a **ViaCEP**, uma API pública que devolve o endereço de um CEP (testada para esta aula):
+
+```js
+async function buscarCep(cep) {
+  const limpo = cep.replace(/\D/g, ''); // deixa só os números
+  if (limpo.length !== 8) throw new Error('O CEP precisa ter 8 números.');
+
+  const resposta = await fetch(`https://viacep.com.br/ws/${limpo}/json/`);
+  if (!resposta.ok) throw new Error(`Erro ${resposta.status} ao consultar o CEP.`);
+
+  const dados = await resposta.json();
+  if (dados.erro) throw new Error('CEP não encontrado.'); // a ViaCEP responde 200 com "erro"
+  return dados;
+}
+
+buscarCep('01001-000')
+  .then((d) => console.log(d.logradouro, d.localidade, d.uf)) // Praça da Sé São Paulo SP
+  .catch((e) => console.error(e.message));
+```
+
+Cinco pontos que esse código ensina:
+
+1. **O `fetch` só dá erro se a rede falhar.** Um 404 ou um 500 **não** viram erro sozinhos: por isso se confere `resposta.ok`.
+2. **Valide a entrada antes de chamar.** Economiza pedido e evita erro bobo.
+3. **Cada serviço tem seu jeito de avisar problema.** A ViaCEP devolve **400** para CEP em formato inválido, mas **200** com um campo de erro para um CEP que não existe. Só a **documentação** conta isso.
+4. **Converta o JSON** (`resposta.json()`) e confira se os campos que você usa existem.
+5. **Trate o erro e mostre algo ao usuário**, não deixe a tela travada.
+
+**Dois cuidados exclusivos do navegador:**
+
+- **CORS.** O navegador só deixa a sua página ler a resposta de outro site se esse site **permitir**. Se aparecer um erro de CORS no console, a correção é **no servidor da API** (ou usar um servidor seu como intermediário), e não no seu `fetch`.
+- **Prazo e cancelamento.** Para não esperar para sempre, use `AbortSignal.timeout(5000)` (desiste em 5 segundos):
+
+```js
+const resposta = await fetch(url, { signal: AbortSignal.timeout(5000) });
+```
+
+#### 1.3 Documentação da API
+
+A **documentação** é o manual de uso da API. O papel dela é **facilitar a integração**: mostrar o que existe e como usar, sem você adivinhar. Procure nela, nesta ordem:
+
+1. **Endereço base** (*base URL*) e **versão** (`/v1`).
+2. **Autenticação**: como se identificar (chave, token).
+3. **Endpoints**: quais caminhos e verbos existem.
+4. **Parâmetros**: o que enviar, o que é obrigatório.
+5. **Exemplos de resposta** e **códigos de erro**.
+6. **Limites de uso** (quantos pedidos por minuto).
+
+Uma documentação extensa e complexa não precisa ser lida inteira: **comece pelo que o seu caso precisa** (a lista de endpoints que você vai usar), teste cada um num programa como o **Postman** e só depois escreva o código. Ela **não** limita o acesso de usuários, **não** mexe na validade dos tokens e **não** resolve problemas sozinha: ela só orienta.
+
+#### 1.4 Autenticação com chave de API
+
+A **chave de API** é um código que **identifica o seu aplicativo** para o serviço. Vai num cabeçalho ou na URL do pedido:
+
+```js
+fetch('https://api.exemplo.com/v1/transito', {
+  headers: { 'x-api-key': MINHA_CHAVE },
+});
+```
+
+- **Vantagem:** é **simples e prática**, ideal para integrações de **menor complexidade e risco**.
+- **Limites:** **não** dá segurança máxima. Quem descobrir a chave usa a API como se fosse você.
+
+**O ponto crítico no front-end.** Tudo que está no código do navegador pode ser lido por qualquer pessoa (aba Rede, "Exibir código-fonte"). Portanto:
+
+- **Chave secreta nunca vai no front-end.** Ela fica no **servidor**, e o front-end chama o **seu** servidor, que chama o serviço.
+- Quando o serviço oferece uma **chave pública para navegador** (como a de mapas), **restrinja** o uso: por domínio, por API e por cota.
+- O exemplo do "envio de SMS" do vídeo da aula só é seguro se quem envia for o **servidor**. Se a chave do SMS estivesse na página, qualquer visitante poderia usá-la e gerar gastos.
+
+Quando a API permite, prefira **tokens** de curta duração (OAuth e JWT, seção 3).
+
+#### 1.5 Por que usar APIs de terceiros
+
+APIs permitem **adicionar funcionalidades ao sistema sem programar do zero**: pagamento, mapas, CEP, envio de SMS, login. Você economiza tempo e usa algo já testado por muita gente.
+
+O que elas **não** fazem: não substituem o código do seu sistema, não são ferramentas de design de interface e não garantem que tudo se atualiza sozinho (se a API mudar de versão, o seu código pode precisar mudar).
+
+O preço é a **dependência**: se o serviço cair, mudar ou ficar caro, o seu sistema sente. Por isso, centralize as chamadas num arquivo só (uma "camada de serviço") e trate sempre os erros.
+
+#### 1.6 Caso: o app de trânsito com prazo apertado
+
+Situação do material: você integra um app de navegação a uma API de trânsito (congestionamentos, acidentes, obras). O prazo é curto, o cliente muda os pedidos, a documentação é grande e o colega está sobrecarregado. Propostas:
+
+**Na parte técnica:**
+
+1. **Ler só o necessário**: liste os endpoints de que o app precisa (por exemplo, ocorrências por região).
+2. **Testar no Postman** antes de programar.
+3. **Camada de serviço** (`transito.js`) com as chamadas, para trocar a API depois sem reescrever as telas.
+4. **Dados falsos** (*mock*) para o time continuar enquanto a API real não está liberada.
+5. **Tratar erro e carregamento** desde o começo, e **guardar em cache** por alguns segundos para não passar do limite de pedidos.
+
+**Na parte da equipe:**
+
+1. **Dividir em tarefas pequenas** e quadro visível (a fazer, fazendo, feito).
+2. **Combinar o que é essencial** com o cliente, deixando o resto para depois.
+3. **Pedir e oferecer ajuda** com clareza, sem culpar: "Estou travado na parte X, alguém pode revisar comigo por 15 minutos?"
+4. **Reunião curta e objetiva**: cada pessoa diz o que fez, o que vai fazer e o que a impede.
+
+### 2. Integração com GraphQL
+
+#### 2.1 O que é e que problema resolve
+
+No REST, cada recurso tem a sua URL. Para mostrar uma tela com um evento, o palestrante e o local, você pode precisar de **várias chamadas**. E cada resposta vem **completa**, mesmo que você só use um campo. São dois problemas:
+
+- **Under-fetching**: uma chamada traz **de menos** e você precisa fazer outras.
+- **Over-fetching**: a chamada traz **de mais**, e você desperdiça dados e tempo.
+
+O **GraphQL** resolve isso de outro jeito: há **um só endereço** (por exemplo, `/graphql`) e o **cliente descreve exatamente** o que quer receber. A resposta vem no formato do pedido.
+
+<figure class="figura">
+  <svg viewBox="0 0 560 220" role="img" aria-labelledby="fig-fe-gql-t fig-fe-gql-d">
+    <title id="fig-fe-gql-t">REST com várias chamadas e GraphQL com uma só</title>
+    <desc id="fig-fe-gql-d">À esquerda, no REST, o app faz três chamadas a três endereços, evento, palestrante e local, e recebe todos os campos de cada um. À direita, no GraphQL, o app faz uma única chamada a um endereço e recebe só os campos pedidos.</desc>
+    <defs>
+      <marker id="seta-fe-gql" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+        <path d="M1,1 L9,5 L1,9" class="traco" />
+      </marker>
+    </defs>
+    <text x="130" y="20" class="rotulo" text-anchor="middle">REST: várias chamadas</text>
+    <rect x="5" y="85" width="60" height="50" rx="8" class="traco" />
+    <text x="35" y="115" class="rotulo" text-anchor="middle">App</text>
+    <rect x="165" y="35" width="110" height="36" rx="6" class="traco" />
+    <text x="220" y="58" class="rotulo-fraco" text-anchor="middle">/eventos/1</text>
+    <rect x="165" y="92" width="110" height="36" rx="6" class="traco" />
+    <text x="220" y="115" class="rotulo-fraco" text-anchor="middle">/palestrantes/7</text>
+    <rect x="165" y="149" width="110" height="36" rx="6" class="traco" />
+    <text x="220" y="172" class="rotulo-fraco" text-anchor="middle">/locais/3</text>
+    <line x1="65" y1="100" x2="163" y2="53" class="traco" marker-end="url(#seta-fe-gql)" />
+    <line x1="65" y1="110" x2="163" y2="110" class="traco" marker-end="url(#seta-fe-gql)" />
+    <line x1="65" y1="120" x2="163" y2="167" class="traco" marker-end="url(#seta-fe-gql)" />
+    <text x="130" y="206" class="rotulo-fraco" text-anchor="middle">3 chamadas, campos demais</text>
+    <text x="430" y="20" class="rotulo" text-anchor="middle">GraphQL: uma chamada</text>
+    <rect x="305" y="85" width="60" height="50" rx="8" class="traco" />
+    <text x="335" y="115" class="rotulo" text-anchor="middle">App</text>
+    <rect x="470" y="85" width="85" height="50" rx="8" class="traco preenche" />
+    <text x="512" y="107" class="rotulo-fraco" text-anchor="middle">/graphql</text>
+    <text x="512" y="122" class="rotulo-fraco" text-anchor="middle">um endereço</text>
+    <line x1="365" y1="110" x2="468" y2="110" class="traco" marker-end="url(#seta-fe-gql)" />
+    <text x="416" y="102" class="rotulo-fraco" text-anchor="middle">pede só o</text>
+    <text x="416" y="130" class="rotulo-fraco" text-anchor="middle">necessário</text>
+    <text x="430" y="206" class="rotulo-fraco" text-anchor="middle">1 chamada, só os campos pedidos</text>
+  </svg>
+</figure>
+
+#### 2.2 O esquema: tipos, consultas e relacionamentos
+
+Toda API GraphQL tem um **esquema** (*schema*), que descreve os **tipos** de dados e as **operações** possíveis. O esquema é **fortemente tipado**: cada campo tem um tipo, e o `!` significa "obrigatório" (não pode ser nulo). Exemplo para eventos, palestrantes e locais:
+
+```graphql
+type Evento {
+  id: ID!
+  titulo: String!
+  data: String!
+  palestrante: Palestrante!
+  local: Local!
+}
+
+type Palestrante {
+  id: ID!
+  nome: String!
+  eventos: [Evento!]!
+}
+
+type Local {
+  id: ID!
+  nome: String!
+  cidade: String!
+}
+
+type Query {
+  evento(id: ID!): Evento
+  eventos: [Evento!]!
+}
+
+type Mutation {
+  criarEvento(titulo: String!, data: String!, palestranteId: ID!, localId: ID!): Evento!
+}
+```
+
+- **Tipos** (`Evento`, `Palestrante`, `Local`): os objetos do sistema.
+- **Relacionamentos**: um `Evento` **tem** um `Palestrante` e um `Local`. Um `Palestrante` tem uma **lista** `[Evento!]!` de eventos.
+- **`Query`**: as operações de **leitura**.
+- **`Mutation`**: as operações que **alteram** dados.
+- Existe ainda a **`Subscription`**, para receber atualizações em tempo real.
+
+#### 2.3 Consultando
+
+O pedido descreve **o formato** da resposta. Para o evento 1, só o título, o nome do palestrante e a cidade:
+
+```graphql
+query {
+  evento(id: "1") {
+    titulo
+    palestrante { nome }
+    local { cidade }
+  }
+}
+```
+
+A resposta tem o mesmo desenho, e **só** esses campos:
+
+```json
+{
+  "data": {
+    "evento": {
+      "titulo": "Semana de Tecnologia",
+      "palestrante": { "nome": "Ana Souza" },
+      "local": { "cidade": "São Paulo" }
+    }
+  }
+}
+```
+
+(Os dados são ilustrativos.) Para alterar algo, usa-se uma **mutation**:
+
+```graphql
+mutation {
+  criarEvento(titulo: "Oficina de CSS", data: "2026-11-10", palestranteId: "7", localId: "3") {
+    id
+    titulo
+  }
+}
+```
+
+**Como chamar do front-end.** Todo pedido é um `POST` ao mesmo endereço, com um JSON que leva a `query` (e, se houver, as `variables`). Exemplo **real e testado**, na API pública de Rick and Morty, usando **variáveis**, que evitam montar o texto da consulta juntando strings:
+
+```js
+const consulta = `
+  query Personagem($id: ID!) {
+    character(id: $id) {
+      name
+      status
+    }
+  }
+`;
+
+const resposta = await fetch('https://rickandmortyapi.com/graphql', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({ query: consulta, variables: { id: 1 } }),
+});
+
+const { data, errors } = await resposta.json();
+if (errors) throw new Error(errors[0].message);
+console.log(data.character.name); // Rick Sanchez
+```
+
+**Cuidados com erros.** No GraphQL, os erros vêm num campo `errors` na resposta. Dependendo do servidor, o status pode ser **200** mesmo com erro, ou **400** para uma consulta inválida (na API de Rick and Morty, pedir um campo que não existe devolve 400 com uma mensagem como "Cannot query field…"). Por isso confira **os dois**: `resposta.ok` e `errors`.
+
+**Para testar sem escrever código**, os servidores costumam oferecer uma interface no navegador (GraphiQL ou semelhantes). Ela usa a **introspecção**, recurso do GraphQL que deixa perguntar à própria API quais tipos e campos existem, e oferece **autocompletar** e documentação ao lado.
+
+#### 2.4 REST ou GraphQL
+
+| Critério | REST | GraphQL |
+|---|---|---|
+| **Endereços** | Vários (um por recurso) | **Um só** |
+| **Formato da resposta** | Definido pelo servidor | **Definido pelo cliente** |
+| **Dados a mais ou a menos** | Comum (over e under-fetching) | Evitado |
+| **Cache do navegador** | Simples (GET e URLs) | Mais trabalhoso |
+| **Curva de aprendizado** | Menor | Maior (esquema, tipos) |
+| **Bom para** | APIs simples, públicas, cache | Telas complexas, apps móveis, muitos relacionamentos |
+
+**Não é "um melhor".** GraphQL compensa quando as telas misturam muitos dados ou quando a rede é limitada. O REST continua ótimo para APIs simples. Um servidor GraphQL também precisa de cuidados próprios, como limitar consultas muito profundas.
+
+### 3. Autenticação com OAuth e JWT
+
+#### 3.1 Autenticação, autorização e os papéis do OAuth
+
+- **Autenticação**: provar **quem você é**.
+- **Autorização**: dizer **o que você pode fazer**.
+
+O **OAuth 2.0** é um protocolo de **autorização**: permite que um app acesse dados seus em outro serviço **sem saber a sua senha**. A sua senha fica só com o serviço (o Google, por exemplo). O app recebe um **token** limitado. Quem prova a **identidade** é uma camada em cima do OAuth, o **OpenID Connect**, e é ele que entrega o "login com o Google".
+
+Quatro papéis:
+
+1. **Usuário**: dono dos dados.
+2. **Cliente**: o seu app.
+3. **Servidor de autorização**: o Google, que pergunta ao usuário se ele permite.
+4. **Servidor de recursos**: a API que guarda os dados.
+
+**Tipos de token:**
+
+- **Access token** (token de acesso): usado para chamar a API, de **curta duração**.
+- **Refresh token**: serve para pedir outro access token sem fazer login de novo. É mais sensível.
+- **ID token**: prova **quem** é o usuário (vem do OpenID Connect) e é um **JWT**.
+
+**Escopos** (*scopes*) são as permissões pedidas, como `email` e `profile`. Peça **só o necessário**.
+
+<figure class="figura">
+  <svg viewBox="0 0 560 250" role="img" aria-labelledby="fig-fe-oauth-t fig-fe-oauth-d">
+    <title id="fig-fe-oauth-t">Fluxo simplificado de login com o Google</title>
+    <desc id="fig-fe-oauth-d">Seis passos. O usuário clica em entrar com o Google no app. O Google mostra a tela de consentimento. O usuário aceita. O Google devolve um token ao app. O app envia o token ao seu servidor. O servidor verifica o token e cria a sessão.</desc>
+    <defs>
+      <marker id="seta-fe-oauth" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+        <path d="M1,1 L9,5 L1,9" class="traco" />
+      </marker>
+    </defs>
+    <rect x="5" y="10" width="120" height="40" rx="8" class="traco" />
+    <text x="65" y="35" class="rotulo" text-anchor="middle">Usuário</text>
+    <rect x="165" y="10" width="120" height="40" rx="8" class="traco preenche" />
+    <text x="225" y="35" class="rotulo" text-anchor="middle">Seu app (front)</text>
+    <rect x="325" y="10" width="110" height="40" rx="8" class="traco" />
+    <text x="380" y="35" class="rotulo" text-anchor="middle">Google</text>
+    <rect x="455" y="10" width="100" height="40" rx="8" class="traco" />
+    <text x="505" y="35" class="rotulo" text-anchor="middle">Seu servidor</text>
+    <line x1="65" y1="50" x2="65" y2="230" class="tracejado" />
+    <line x1="225" y1="50" x2="225" y2="230" class="tracejado" />
+    <line x1="380" y1="50" x2="380" y2="230" class="tracejado" />
+    <line x1="505" y1="50" x2="505" y2="230" class="tracejado" />
+    <line x1="65" y1="75" x2="225" y2="75" class="traco" marker-end="url(#seta-fe-oauth)" />
+    <text x="145" y="68" class="rotulo-fraco" text-anchor="middle">1. clica em entrar</text>
+    <line x1="225" y1="105" x2="380" y2="105" class="traco" marker-end="url(#seta-fe-oauth)" />
+    <text x="302" y="98" class="rotulo-fraco" text-anchor="middle">2. abre a tela do Google</text>
+    <line x1="65" y1="135" x2="380" y2="135" class="traco" marker-end="url(#seta-fe-oauth)" />
+    <text x="222" y="128" class="rotulo-fraco" text-anchor="middle">3. aceita as permissões</text>
+    <line x1="380" y1="165" x2="225" y2="165" class="traco" marker-end="url(#seta-fe-oauth)" />
+    <text x="302" y="158" class="rotulo-fraco" text-anchor="middle">4. devolve o token (JWT)</text>
+    <line x1="225" y1="195" x2="505" y2="195" class="traco" marker-end="url(#seta-fe-oauth)" />
+    <text x="365" y="188" class="rotulo-fraco" text-anchor="middle">5. envia o token</text>
+    <text x="552" y="220" class="rotulo-fraco" text-anchor="end">6. verifica e cria sessão</text>
+  </svg>
+</figure>
+
+#### 3.2 O que é um JWT
+
+**JWT** (JSON Web Token) é um token com **três partes separadas por ponto**:
+
+<figure class="figura">
+  <svg viewBox="0 0 560 130" role="img" aria-labelledby="fig-fe-jwt-t fig-fe-jwt-d">
+    <title id="fig-fe-jwt-t">As três partes de um JWT</title>
+    <desc id="fig-fe-jwt-d">Cabeçalho, com o algoritmo de assinatura; carga, com as informações do usuário e o prazo; e assinatura, que prova que o token não foi alterado. As três são separadas por pontos.</desc>
+    <rect x="5" y="30" width="165" height="70" rx="8" class="traco" />
+    <text x="87" y="55" class="rotulo" text-anchor="middle">Cabeçalho</text>
+    <text x="87" y="75" class="rotulo-fraco" text-anchor="middle">tipo e algoritmo</text>
+    <text x="87" y="90" class="rotulo-fraco" text-anchor="middle">de assinatura</text>
+    <text x="187" y="72" class="rotulo" text-anchor="middle">.</text>
+    <rect x="205" y="30" width="165" height="70" rx="8" class="traco preenche" />
+    <text x="287" y="55" class="rotulo" text-anchor="middle">Carga (payload)</text>
+    <text x="287" y="75" class="rotulo-fraco" text-anchor="middle">quem é o usuário,</text>
+    <text x="287" y="90" class="rotulo-fraco" text-anchor="middle">quem emitiu, validade</text>
+    <text x="387" y="72" class="rotulo" text-anchor="middle">.</text>
+    <rect x="405" y="30" width="150" height="70" rx="8" class="traco" />
+    <text x="480" y="55" class="rotulo" text-anchor="middle">Assinatura</text>
+    <text x="480" y="75" class="rotulo-fraco" text-anchor="middle">prova que ninguém</text>
+    <text x="480" y="90" class="rotulo-fraco" text-anchor="middle">mexeu no token</text>
+  </svg>
+</figure>
+
+- Cabeçalho e carga são só **texto codificado** (em Base64URL). **Qualquer pessoa consegue ler.** A assinatura impede que sejam **alterados**, mas **não escondem** o conteúdo. Nunca coloque senha ou dado secreto dentro de um JWT.
+- **Campos comuns da carga** (*claims*): `sub` (quem é o usuário), `iss` (quem emitiu), `aud` (para qual app o token foi emitido) e `exp` (quando vence).
+- **O front-end pode ler** o JWT para mostrar o nome do usuário, mas **não pode confiar** nele para decidir o que o usuário pode fazer. **Quem valida a assinatura e o prazo é o servidor.**
+
+**Por que usar JWT?** O servidor valida o token **sem guardar sessão** (autenticação *stateless*), o que ajuda a escalar. O custo: um JWT é difícil de **cancelar** antes de vencer, por isso os tempos de validade devem ser **curtos**.
+
+#### 3.3 Login com o Google no front-end
+
+O material pede uma configuração no **Google Cloud Console**. Os passos, conforme a documentação do Google Identity:
+
+1. **Crie ou escolha um projeto** no Google Cloud Console.
+2. **Configure a tela de consentimento** (a tela que o usuário vê): nome do app, e-mail de suporte, logo e links de política de privacidade, no domínio autorizado.
+3. **Defina os escopos.** Para só fazer login, os padrões `openid`, `email` e `profile` bastam. Evite escopos sensíveis.
+4. **Crie o ID de cliente** do tipo **Aplicativo da Web** (*Web application*).
+5. **Cadastre as origens JavaScript autorizadas**: o endereço do seu site, só com protocolo e domínio (por exemplo, `https://meusite.com`). Para testar no seu computador, inclua `http://localhost` e `http://localhost:porta`.
+6. **Coloque o botão "Entrar com o Google"** na página usando a biblioteca oficial do Google Identity Services. Quando o usuário entra, a biblioteca chama a **sua função** passando um **ID token** (um JWT).
+7. **Envie o ID token ao seu servidor**, que precisa **verificar** antes de confiar.
+
+**O que o servidor confere** no ID token (segundo a documentação do Google):
+
+- **Assinatura**, com as chaves públicas do Google.
+- **`aud`**: precisa ser o **ID de cliente do seu app**.
+- **`iss`**: precisa ser `accounts.google.com` ou `https://accounts.google.com`.
+- **`exp`**: o token **não pode estar vencido**.
+- Use o campo **`sub`** como identificador do usuário. **Não** use o e-mail, que pode mudar.
+
+Nunca confie só no que o navegador diz: alguém pode **fabricar** um pedido dizendo "sou a Ana". A verificação no servidor é o que torna o login seguro.
+
+#### 3.4 Onde guardar os tokens no navegador
+
+Esta é uma decisão de segurança importante, e o material não a detalha.
+
+- **Evite `localStorage` e `sessionStorage` para tokens.** Qualquer código que rode na sua página, incluindo um ataque **XSS**, consegue ler.
+- **O desenho mais seguro** (recomendado pelo rascunho de boas práticas do IETF para apps de navegador) é o padrão **BFF** (*Backend For Frontend*): um servidor seu faz o OAuth e guarda os tokens. O navegador só recebe um **cookie de sessão** com as marcas `HttpOnly` (o JavaScript não lê), `Secure` (só por HTTPS) e `SameSite`.
+- Se o app **precisa** falar OAuth direto no navegador, use o fluxo **código de autorização com PKCE**. O antigo fluxo **implícito**, que devolvia o token na URL, está **desaprovado**.
+- **Prefira tokens de curta duração** e peça só os escopos de que precisa.
+
+#### 3.5 Feedback visual: avisar o usuário
+
+Uma integração que funciona mas não **mostra** o que acontece parece quebrada. Todo pedido a uma API passa por **quatro estados**, e a interface deve mostrar cada um:
+
+| Estado | O que mostrar |
+|---|---|
+| **Ocioso** | O formulário ou botão normal |
+| **Carregando** | Indicador de progresso e botão desabilitado (evita duplo clique) |
+| **Sucesso** | Os dados, ou uma confirmação clara |
+| **Erro** | Mensagem **compreensível** e uma ação ("Tentar de novo") |
+
+Boas práticas:
+
+- **Mensagens úteis.** "Não conseguimos entrar com o Google. Tente de novo." é melhor que "Error 401".
+- **Trate os casos de login:** o usuário **fechou** a janela do Google (não é erro grave), o token **venceu** (401: peça novo login) ou **não tem permissão** (403).
+- **Acessibilidade.** Anuncie o resultado para leitor de tela: `role="alert"` para erros e `aria-live="polite"` para o status de carregamento.
+- **Nunca mostre** detalhes técnicos internos (tokens, rotas do servidor) ao usuário.
+
+```js
+async function entrar(credencial) {
+  estado('carregando');                      // mostra o indicador
+  try {
+    const r = await fetch('/api/login/google', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ credential: credencial }), // seu servidor verifica
+    });
+    if (r.status === 401) throw new Error('Não foi possível confirmar sua identidade.');
+    if (!r.ok) throw new Error('Algo deu errado. Tente de novo em instantes.');
+    estado('sucesso');
+  } catch (e) {
+    estado('erro', e.message);               // mostra a mensagem e o botão de tentar de novo
+  }
+}
+```
+
+#### 3.6 Checklist de segurança
+
+1. **Nenhum segredo** no código do navegador.
+2. **HTTPS** sempre.
+3. **Valide** os tokens **no servidor** (assinatura, `aud`, `iss`, `exp`).
+4. **Tokens de curta duração**, escopos mínimos.
+5. **Guarde com cuidado** (BFF e cookies `HttpOnly`, em vez de `localStorage`).
+6. **Trate os erros** e informe o usuário.
+
+## Tópicos-Chave para Revisão
+
+<div className="topico">
+
+#### 1. REST
+
+Estilo **sem estado**, com **verbos HTTP** (GET, POST, PUT, PATCH, DELETE), **recursos em URLs** e dados em **JSON**. Status **2xx** deu certo, **4xx** erro do pedido, **5xx** erro do servidor.
+
+#### 2. Consumir uma API
+
+O **fetch** só falha por erro de rede: confira **resposta.ok**, converta o **JSON**, valide os campos e **trate o erro**. O navegador aplica o **CORS**, e o ajuste é no **servidor** da API.
+
+#### 3. Documentação
+
+Serve para **facilitar a integração**: **endereço base**, **autenticação**, **endpoints**, **parâmetros**, **erros** e **limites**. Comece só pelo que o seu caso precisa e teste no **Postman**.
+
+#### 4. Chave de API
+
+**Simples e prática** para integrações de **menor complexidade**, mas **não** dá segurança máxima. No **front-end** ela fica **visível**: **chave secreta só no servidor**.
+
+#### 5. Por que usar APIs
+
+Permitem **adicionar funcionalidades sem programar do zero**. Não substituem o código do sistema. O risco é a **dependência** do serviço.
+
+#### 6. GraphQL
+
+**Um só endereço**, o **cliente escolhe os campos**, o que evita **over-fetching** e **under-fetching**. **Esquema tipado**, **query** (ler), **mutation** (alterar) e **subscription** (tempo real).
+
+#### 7. Erros no GraphQL
+
+Vêm no campo **errors**. O status pode ser **200** ou **400**: confira **resposta.ok** e **errors**. Use **variáveis**, não texto montado.
+
+#### 8. REST ou GraphQL
+
+REST: **vários endereços**, **cache simples**. GraphQL: **uma chamada**, **resposta sob medida**, mais complexo. Escolha pelo **tipo de tela e de dados**.
+
+#### 9. OAuth 2.0 e OpenID Connect
+
+OAuth 2.0 é **autorização** (acessar dados sem a senha). O **OpenID Connect** traz a **identidade**. **Access token** chama a API, **refresh token** renova, **ID token** diz quem é. **Escopos** mínimos.
+
+#### 10. JWT
+
+Três partes: **cabeçalho**, **carga** e **assinatura**. Os dados são **legíveis**, a assinatura só impede **alteração**. Campos **sub**, **iss**, **aud** e **exp**. **Quem valida é o servidor**.
+
+#### 11. Login com o Google
+
+**Projeto** no Google Cloud Console, **tela de consentimento**, **ID de cliente (Web)** e **origens JavaScript autorizadas**. O servidor verifica **assinatura**, **aud**, **iss** e **exp**, e usa **sub** como identificador.
+
+#### 12. Guardar tokens
+
+Evite **localStorage**. Prefira **BFF** com **cookie HttpOnly**. No navegador, use **código com PKCE**. O fluxo **implícito** está **desaprovado**.
+
+#### 13. Feedback visual
+
+Mostre os estados **carregando**, **sucesso** e **erro**, com **mensagens claras**, botão **desabilitado** durante o pedido e anúncio para **leitor de tela**.
+
+</div>
+
+## Pause e Responda
+
+*Marque uma alternativa em cada questão e confira tudo de uma vez no botão do fim.*
+
+**Questão 1**
+
+*Pause e Responda S22A3a · Autenticação com OAuth e JWT*
+
+Por que as APIs são importantes no desenvolvimento de software?
+
+A) Porque permitem adicionar funcionalidades ao sistema sem precisar programar do zero.\
+B) Porque elas substituem totalmente o código de um sistema.\
+C) Porque as APIs são ferramentas de design de interface.\
+D) Porque garantem que todo o sistema seja sempre atualizado automaticamente.\
+E) Porque tornam desnecessário testar o sistema.
+
+**Questão 2**
+
+*Pause e Responda S22A3b · Autenticação com OAuth e JWT*
+
+Qual é o papel da documentação ao integrar uma API?
+
+A) Limitar o uso da API para certos usuários.\
+B) Reduzir o tempo de expiração dos tokens de autenticação.\
+C) Facilitar o processo de integração.\
+D) Oferecer suporte para resolver todos os problemas de integração automaticamente.\
+E) Substituir a necessidade de autenticar as requisições.
+
+**Questão 3**
+
+*Pause e Responda S22A3c · Autenticação com OAuth e JWT*
+
+Qual é a principal vantagem de utilizar a autenticação via chave de API em uma integração?
+
+A) Não exige a criação de tokens.\
+B) É mais simples e prática para aplicações de menor complexidade.\
+C) Proporciona segurança máxima para o sistema.\
+D) Permite acesso sem qualquer tipo de autenticação.\
+E) Dispensa o uso de HTTPS.
