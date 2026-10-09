@@ -16,9 +16,16 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
+      - run: npm ci --prefix scripts
+      # Confere estrutura e marcação das aulas. O banco local do INEP não vai para
+      # a CI, então a comparação com prova e gabarito continua sendo feita na máquina
+      # que mantém o acervo.
+      - run: node scripts/validar-aula.mjs src/content/enem
       - run: npm run build
+        env:
+          BASE_PATH: /caderno-de-estudos
+      - run: node scripts/checar-quiz.mjs $(find src/content/enem -name '*.mdx')
       # Acessibilidade: o contraste lê os tokens de src/styles/global.css; o verificador
       # do HTML usa o jsdom da pasta scripts/. Ver docs/acessibilidade.md.
       - run: node scripts/checar-contraste.mjs
-      - run: npm ci --prefix scripts
-      - run: node scripts/checar-acessibilidade.mjs
+      - run: node scripts/checar-acessibilidade.mjs --base /caderno-de-estudos

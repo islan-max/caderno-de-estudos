@@ -11,6 +11,7 @@ import { parse as lerYaml } from 'yaml';
 
 const RAIZ = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const BANCO = join(RAIZ, '.cache', 'inep', 'questoes');
+const CORRECOES_BANCO = join(RAIZ, 'scripts', 'correcoes_banco.json');
 
 // §1: pasta -> subject
 const MATERIAS = {
@@ -28,6 +29,15 @@ const TEMAS_COBRADOS = 'Os temas que costumam aparecer são estes:';
 const INSTRUCAO_TESTE = '*Marque uma alternativa em cada questão e confira tudo de uma vez no botão do fim.*';
 const TAGS_SVG = ['svg', 'g', 'line', 'rect', 'circle', 'ellipse', 'path', 'polyline', 'polygon', 'text', 'tspan', 'title', 'desc', 'defs', 'marker'];
 const TAGS = new Set(['div', 'figure', 'figcaption', 'accordion', 'textarea', ...TAGS_SVG]);
+
+// Siglas e abreviaturas ocupam uma linha no glossário, mas não entram na meta
+// de termos comuns. A grafia pode ter pontos, números ou maiúsculas internas.
+function ehSiglaOuAbreviatura(termo) {
+  return /^[A-ZÁÉÍÓÚÂÊÔÃÕÇ]{2,}[a-z]?$/.test(termo)
+    || /^[A-Z]{2,}\d+$/.test(termo)
+    || /^[A-Z][a-z]+(?:[A-Z][a-z]*)+$/.test(termo)
+    || new Set(['a.C.', 'U.S.', 'i.e.', 'Mass.', 'V. Exª.', 'Mlles.']).has(termo);
+}
 // nome da capa do caderno -> aplicações do banco (o site do INEP chama de "Reaplicação/PPL"
 // o caderno que na capa diz "2ª aplicação"; em 2016 a PPL foi a "3ª aplicação")
 const APLICACOES = {
@@ -66,6 +76,16 @@ function carregarBanco() {
   banco = [];
   if (existsSync(BANCO)) {
     for (const f of readdirSync(BANCO)) if (f.endsWith('.json')) banco.push(...JSON.parse(readFileSync(join(BANCO, f), 'utf8')));
+  }
+  // A extração do PDF pode embaralhar colunas, puxar uma figura da página ao lado ou
+  // cortar uma alternativa. As correções conferidas na página oficial precisam valer
+  // aqui também; sem isso, o validador reprova uma aula que já está fiel à prova.
+  if (banco.length && existsSync(CORRECOES_BANCO)) {
+    const correcoes = JSON.parse(readFileSync(CORRECOES_BANCO, 'utf8'));
+    banco = banco.map((questao) => {
+      const { nota, ...campos } = correcoes[questao.id] ?? {};
+      return Object.keys(campos).length ? { ...questao, ...campos } : questao;
+    });
   }
   return banco;
 }
@@ -226,7 +246,7 @@ function validar(arquivo) {
     if (!m || !/:/.test(l)) erro(L(k), 'item do glossário deve ser "- **Termo**: explicação" ou "- **SIGLA** (por extenso): explicação"');
     else {
       glossario.add(m[1].trim());
-      if (!/^[A-ZÁÉÍÓÚÂÊÔÃÕÇ]{2,}[a-z]?$/.test(m[1].trim())) termosComuns++;
+      if (!ehSiglaOuAbreviatura(m[1].trim())) termosComuns++;
     }
   });
   if (glossario.size < 3) erro(L(0), 'glossário com menos de 3 termos');
