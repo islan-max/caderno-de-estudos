@@ -1,0 +1,54 @@
+---
+// Os bimestres de uma matéria das abas DS e Escolar, um embaixo do outro, cada um com a trilha
+// de aulas (as ainda não disponíveis aparecem sem link). Substitui a página de cada bimestre.
+import TrilhaAulas from './TrilhaAulas.astro';
+import { contarAulas, type MateriaTrilha } from '../lib/materiasSecoes';
+
+interface Props {
+  materia: MateriaTrilha;
+}
+const { materia } = Astro.props;
+---
+
+{materia.bimestres.map((b) => {
+  const { total, prontas } = contarAulas([b]);
+  return (
+    <section class="bimestre" aria-labelledby={`bim-${b.slug}`}>
+      <h2 class="bimestre__titulo" id={b.slug}>
+        <span id={`bim-${b.slug}`}>{b.label}</span>
+        <span class="bimestre__contagem">
+          {prontas} de {total} {total === 1 ? 'aula disponível' : 'aulas disponíveis'}
+        </span>
+      </h2>
+      <TrilhaAulas aulas={b.aulas} accent={materia.slug} />
+    </section>
+  );
+})}
+
+<style>
+  .bimestre + .bimestre {
+    margin-top: 2.25rem;
+  }
+  .bimestre__titulo {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.25rem 1rem;
+    margin: 0 0 0.9rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid color-mix(in srgb, var(--materia, var(--color-ink)) 35%, var(--color-line));
+    font-family: var(--font-display);
+    font-size: calc(1.1rem * var(--escala-texto, 1));
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    scroll-margin-top: 6rem;
+  }
+  .bimestre__contagem {
+    font-size: calc(0.68rem * var(--escala-texto, 1));
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    color: var(--color-ink-soft);
+  }
+</style>

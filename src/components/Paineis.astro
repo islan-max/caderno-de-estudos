@@ -909,24 +909,38 @@ import { u } from '../lib/url';
     background: var(--color-paper-dark);
     margin-bottom: 1.1rem;
   }
+  /* Anel do painel: o arco é o componente js-circle-progress (SVG); o percentual fica por cima. */
   .prog-anel {
     --tamanho: 4.6rem;
     position: relative;
     width: var(--tamanho);
     height: var(--tamanho);
     flex-shrink: 0;
-    border-radius: 50%;
-    background: conic-gradient(var(--color-ok) calc(var(--pct) * 1%), color-mix(in srgb, var(--color-ink) 12%, transparent) 0);
     display: grid;
     place-items: center;
-    transition: background 0.6s var(--ease);
   }
-  .prog-anel::after {
-    content: '';
+  .prog-anel > circle-progress {
     position: absolute;
-    inset: 7px;
-    border-radius: 50%;
-    background: var(--color-paper-dark);
+    inset: 0;
+    display: block;
+  }
+  .prog-anel circle-progress::part(base) {
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+  }
+  .prog-anel circle-progress::part(circle) {
+    stroke: color-mix(in srgb, var(--color-ink) 12%, transparent);
+    stroke-width: 9.5;
+  }
+  .prog-anel circle-progress::part(value) {
+    stroke: var(--color-ok);
+    stroke-width: 9.5;
+    stroke-linecap: round;
+  }
+  .prog-anel circle-progress[value='0']::part(value) {
+    visibility: hidden;
   }
   .prog-anel span {
     position: relative;

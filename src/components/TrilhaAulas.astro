@@ -7,7 +7,8 @@
 // continua legível e clicável, só perde o destaque de "pendente".
 import Icone from './Icone.astro';
 
-// Só o que a trilha usa. `pronta: false` (aba DS) mostra a aula como "Em breve", sem link.
+// Só o que a trilha usa. `pronta: false` mostra a aula como "Em breve" (ou `aviso`), sem link
+// e fora do progresso: o que não está disponível não pode ser clicado.
 interface ItemTrilha {
   id: string;
   titulo: string;
@@ -16,6 +17,8 @@ interface ItemTrilha {
   pronta?: boolean;
   /** Texto no lugar do número da posição (ex.: R1 numa revisão). */
   marca?: string;
+  /** Selo da aula sem link (padrão: "Em breve"), ex.: "Sem material". */
+  aviso?: string;
 }
 
 interface Props {
@@ -27,7 +30,7 @@ const { aulas, accent = 'enem' } = Astro.props;
 
 <ol class="trilha" style={`--accent: var(--color-${accent});`}>
   {aulas.map((aula, i) => (
-    <li class="trilha__item" data-aula-id={aula.id} style={`--i: ${i}`} data-surgir>
+    <li class="trilha__item" data-aula-id={aula.pronta === false ? undefined : aula.id} style={`--i: ${i}`} data-surgir>
       {aula.pronta === false ? (
         <div class="trilha__link trilha__link--breve">
           <span class="trilha__marca" aria-hidden="true">
@@ -37,11 +40,12 @@ const { aulas, accent = 'enem' } = Astro.props;
             <span class="trilha__titulo">{aula.titulo}</span>
             <span class="trilha__resumo">{aula.resumo}</span>
           </span>
-          <span class="trilha__breve">Em breve</span>
+          <span class="trilha__breve">{aula.aviso ?? 'Em breve'}</span>
         </div>
       ) : (
         <a href={aula.href} class="trilha__link">
           <span class="trilha__marca" aria-hidden="true">
+            <circle-progress class="trilha__anel" value="0" max="100" text-format="none"></circle-progress>
             <span class="trilha__numero">{aula.marca ?? String(i + 1).padStart(2, '0')}</span>
             <Icone nome="check" class="trilha__check" />
           </span>
@@ -139,36 +143,33 @@ const { aulas, accent = 'enem' } = Astro.props;
   .trilha__marca > * {
     grid-area: 1 / 1;
   }
-  /* Anel de andamento: a borda do círculo é uma barra de progresso circular. O arco, na cor da
-     matéria, cresce com o quanto da aula já foi feito (leitura e questões, ver --anel em
-     refletirProgresso); o resto do anel fica na cor de trilho. Cheio e verde quando concluída. */
-  .trilha__marca::before {
-    content: '';
+  /* Anel de andamento: a borda do círculo é uma barra de progresso circular (componente
+     js-circle-progress, SVG vetorial). O arco, na cor da matéria, cresce com o quanto da aula já
+     foi feito (leitura e questões, ver refletirProgresso em app.ts); o resto do anel fica na cor
+     de trilho. Cheio e verde quando concluída. */
+  .trilha__anel {
     position: absolute;
     inset: -1px;
-    border-radius: 50%;
-    /* Bordas suavizadas (meio pixel de degradê): paradas duras num conic-gradient e numa máscara
-       saem serrilhadas, sem antialiasing. */
-    background: conic-gradient(
-      var(--anel-cor, var(--accent)) 0,
-      var(--anel-cor, var(--accent)) calc(var(--anel, 0) * 1%),
-      color-mix(in srgb, var(--color-ink) 16%, transparent) calc(var(--anel, 0) * 1% + 0.7%)
-    );
-    -webkit-mask: radial-gradient(
-      farthest-side,
-      transparent calc(100% - 3.6px),
-      #000 calc(100% - 2.6px),
-      #000 calc(100% - 0.8px),
-      transparent 100%
-    );
-    mask: radial-gradient(
-      farthest-side,
-      transparent calc(100% - 3.6px),
-      #000 calc(100% - 2.6px),
-      #000 calc(100% - 0.8px),
-      transparent 100%
-    );
-    transition: background 0.4s var(--ease);
+    display: block;
+  }
+  .trilha__anel::part(base) {
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+  }
+  .trilha__anel::part(circle) {
+    stroke: color-mix(in srgb, var(--color-ink) 16%, transparent);
+    stroke-width: 9;
+  }
+  .trilha__anel::part(value) {
+    stroke: var(--anel-cor, var(--accent));
+    stroke-width: 9;
+    stroke-linecap: round;
+  }
+  /* Sem andamento não há arco: o traço de comprimento zero com ponta redonda viraria um ponto. */
+  .trilha__anel[value='0']::part(value) {
+    visibility: hidden;
   }
   .trilha__check {
     font-size: calc(0.72rem * var(--escala-texto, 1));
@@ -232,7 +233,7 @@ const { aulas, accent = 'enem' } = Astro.props;
     }
   }
 
-  /* Aula ainda não escrita (aba DS): aparece na trilha, sem link e mais apagada. */
+  /* Aula ainda não escrita ou sem material: aparece na trilha, sem link e mais apagada. */
   .trilha__link--breve {
     cursor: default;
     border-style: dashed;

@@ -1,45 +1,31 @@
 ---
+// Os bimestres agora ficam na página da matéria. Esta rota só existe para links antigos: mostra
+// um aviso com o link e leva sozinha até o bimestre certo.
 import { secaoVisivel } from '../../../../lib/secoes';
 import Base from '../../../../layouts/Base.astro';
-import TrilhaAulas from '../../../../components/TrilhaAulas.astro';
 import { u } from '../../../../lib/url';
 import { materiasEscolar } from '../../../../lib/escolar';
 
 export async function getStaticPaths() {
   // Seção oculta (src/lib/secoes.ts): nenhuma rota é gerada.
   if (!secaoVisivel('escolar')) return [];
-  return (await materiasEscolar()).flatMap((m) => m.bimestres.map((b) => ({ params: { materia: m.slug, bimestre: b.slug } })));
+  return (await materiasEscolar()).flatMap((m) =>
+    m.bimestres.map((b) => ({ params: { materia: m.slug, bimestre: b.slug }, props: { nome: m.nome, label: b.label } }))
+  );
 }
 
 const { materia, bimestre } = Astro.params;
-const mat = (await materiasEscolar()).find((m) => m.slug === materia);
-const bim = mat?.bimestres.find((b) => b.slug === bimestre);
-if (!mat || !bim) return Astro.redirect(u('/escolar'));
-
-// Cada aula junta todo o conteúdo da semana: a trilha mostra os tópicos como resumo.
-const itens = bim.aulas.map((a) => ({
-  id: a.id,
-  titulo: a.titulo,
-  resumo: a.resumo,
-  marca: a.marca,
-  href: u(`/escolar/${mat.slug}/${bim.slug}/${a.slug}/`),
-}));
+const { nome, label } = Astro.props;
+const destino = u(`/escolar/${materia}/#${bimestre}`);
 ---
 
-<Base
-  title={`${mat.nome} · ${bim.label}`}
-  active="escolar"
-  description={`Aulas de ${mat.nome}, ${bim.label}`}
-  voltar={{ href: u(`/escolar/${mat.slug}/`), label: mat.nome }}
->
-  <nav class="font-mono text-xs text-ink-soft mb-4 flex flex-wrap gap-1" aria-label="Você está aqui">
-    <a href={u('/escolar')} class="hover:text-ink underline underline-offset-2">Escolar</a>
-    <span>/</span>
-    <a href={u(`/escolar/${mat.slug}/`)} class="hover:text-ink underline underline-offset-2">{mat.nome}</a>
-    <span>/</span>
-    <span class="text-ink">{bim.label}</span>
-  </nav>
-  <h1 class="font-display text-3xl md:text-4xl font-bold text-ink mb-8">{bim.label}</h1>
-
-  <TrilhaAulas aulas={itens} accent="escolar" />
+<Base title={`${nome} · ${label}`} active="escolar" description={`Aulas de ${nome}, ${label}`}>
+  <h1 class="font-display text-3xl font-bold text-ink mb-3">{nome} · {label}</h1>
+  <p class="font-body text-ink-soft">
+    Os bimestres agora ficam na página da matéria.
+    <a href={destino} class="underline underline-offset-2">Abrir {label} de {nome}</a>.
+  </p>
+  <script is:inline define:vars={{ destino }}>
+    location.replace(destino);
+  </script>
 </Base>

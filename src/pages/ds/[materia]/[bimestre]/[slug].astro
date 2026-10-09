@@ -32,12 +32,13 @@ const subjectLabel = entry.data.subject;
   resources={entry.data.resources}
   ferramentas={entry.data.ferramentas}
   active="ds"
+  materia={materia}
   aulaId={`ds/${materia}/${bimestre}/${slug}`}
   gabarito={entry.data.gabarito}
   breadcrumb={[
     { label: 'Desenvolvimento de Sistemas', href: u('/ds') },
     { label: subjectLabel, href: u(`/ds/${materia}/`) },
-    { label: bimLabelFn(bimestre ?? ''), href: u(`/ds/${materia}/${bimestre}/`) },
+    { label: bimLabelFn(bimestre ?? ''), href: u(`/ds/${materia}/#${bimestre}`) },
     { label: entry.data.title },
   ]}
 >

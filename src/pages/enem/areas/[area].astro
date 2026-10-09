@@ -6,6 +6,7 @@ import AreaMaterias from '../../../components/AreaMaterias.astro';
 import { u } from '../../../lib/url';
 import { ENEM_AREAS } from '../../../lib/enemAreas';
 import { indiceEnem } from '../../../lib/aulas';
+import mapa from '../../../data/enem-mapa.json';
 
 export async function getStaticPaths() {
   const aulas = await indiceEnem();
@@ -22,6 +23,11 @@ const aulas = await indiceEnem();
 const porMateria = new Map<string, string[]>();
 for (const a of aulas) {
   porMateria.set(a.materia, [...(porMateria.get(a.materia) ?? []), a.id]);
+}
+const emBreve = new Map<string, number>();
+for (const s of area.subjects) {
+  const itens = (mapa.materias as Record<string, unknown[]>)[s.slug] ?? [];
+  emBreve.set(s.slug, itens.length - (porMateria.get(s.slug)?.length ?? 0));
 }
 const idsDaArea = area.subjects.flatMap((s) => porMateria.get(s.slug) ?? []);
 const comAula = area.subjects.filter((s) => (porMateria.get(s.slug) ?? []).length > 0).length;
@@ -48,7 +54,7 @@ const resumo =
     </p>
   </header>
 
-  <AreaMaterias area={area} porMateria={porMateria} cabeca={false} />
+  <AreaMaterias area={area} porMateria={porMateria} emBreve={emBreve} cabeca={false} />
 
   <p class="outras">
     <a href={u('/enem')}>Ver todas as áreas <Icone nome="arrow-right" /></a>

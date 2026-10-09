@@ -1,0 +1,9 @@
+# Sessão 08/10/2026 · Claude (Claude Code) · transições, tema, mapas, visual DS/Escolar, anel de progresso
+
+Conteúdo copiado do handoff de 08/10 (entrada escrita pela sessão que fez o trabalho). Não foi reverificado nesta cópia.
+
+- **Arquivos tocados:** `src/layouts/Base.astro`, `src/scripts/app.ts`, `src/styles/global.css` (transições entre abas e troca de tema); `src/data/enem-mapa.json`, `src/data/escolar-mapa.json`, `scripts/mapear-escolar.mjs`, `src/lib/{aulas,dsMapa,escolar,indice,materiasSecoes}.ts` (mapas); `src/components/{AreaMaterias,TrilhaAulas,TopoSecao,TopoMateria,BimestresMateria,Paineis}.astro` e as páginas de `src/pages/{index,ds,escolar,enem}` (visual e home); `package.json` (`js-circle-progress`); docs (`README.md`, `PROMPT_AULA_ENEM.mdx`, `docs/ds/estado.md`, `docs/aulas/progresso.md`). Removida a aula `escolar/matematica/4-bimestre/aula-1-material-indisponivel.mdx`.
+- **Estado:** pronto e verificado. `npm run build` (204 páginas), `node scripts/checar-contraste.mjs` e `node scripts/checar-acessibilidade.mjs` passam. Troca de tema medida no Chrome headless (CPU ×4) contra o commit anterior: mais quadros e menos estilo recalculado.
+- **Regra nova para o ENEM:** a ordem das aulas vem de `src/data/enem-mapa.json`, não do `order`. Ao concluir uma aula da Fase 4, troque a entrada do mapa (`slug` + `titulo` + `resumo`) por `{ "slug" }`. O build falha se um `.mdx` do ENEM não estiver no mapa.
+- **Próximo passo:** continuar a Fase 4 em `matematica-basica/divisibilidade-e-fatoracao` (primeira linha pendente de `docs/aulas/progresso.md`).
+- **Pendências:** o servidor `astro dev` da porta 4321 pode estar com cache velho do conteúdo (Front-End e Versionamento de DS aparecem "em breve" nele, mas prontas no build): reiniciar. Commits e PRs só em nome do Max, sem `Co-Authored-By`.
