@@ -18,6 +18,7 @@ Status: `pendente`, `em andamento`, `concluída`, `bloqueada`. Questões: ids do
 - 26/09/2026 · Padrão v2, depois do piloto (pedido do Max): resumo e relevância juntos no "Raio-X do tema" (retrátil); cor fixa por matéria, com o negrito na cor da matéria; temas cobrados em lista; glossário dentro de `<Accordion>`, só siglas e termos não óbvios; sem tabela de símbolos; "Aula Teórica" e "Questões do ENEM"; sem legenda "Figura N"; sem "Como o ENEM cobra isso"; siglas por extenso também na Aula Teórica; recortes aparados e centrados. Os 3 pilotos foram convertidos e revisados de novo.
 - 26/09/2026 · Redação: "## Questões e escrita" com 5 questões autorais sobre a competência da aula + `**Agora escreva.**` + `<Textarea />` (folha pautada; a correção fica para depois, só visual por enquanto).
 - 26/09/2026 · Push só no fim de cada matéria (confirmado pelo Max depois do piloto).
+- 08/10/2026 · A ordem de aprendizado de cada matéria agora vem de `src/data/enem-mapa.json` (aulas prontas e as 53 da Fase 4 já posicionadas; as pendentes aparecem como "Em breve" na trilha). O `order` do frontmatter não manda mais. Ao concluir uma aula da Fase 4, troque a entrada do mapa (`slug` + `titulo` + `resumo`) por `{ "slug" }`; o build falha se um `.mdx` não estiver no mapa.
 
 ## Fase 3: aulas existentes (ordem de trabalho)
 

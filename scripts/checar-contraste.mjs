@@ -115,6 +115,9 @@ function razao(a, b) {
 const MATERIAS = [
   'matematica-basica', 'fisica', 'quimica', 'biologia', 'lingua-portuguesa', 'redacao', 'lingua-estrangeira',
   'artes', 'educacao-fisica', 'tic', 'historia', 'geografia', 'filosofia', 'sociologia',
+  // DS e Escolar
+  'front-end', 'back-end', 'banco-de-dados', 'inteligencia-artificial', 'programacao-mobile',
+  'projeto-multidisciplinar', 'versionamento-de-codigo', 'matematica',
 ];
 const FUNDOS = {
   papel: 'var(--color-paper)',

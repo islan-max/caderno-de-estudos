@@ -21,6 +21,8 @@ Crie um arquivo `.mdx` na categoria adequada dentro de `src/content/`, mantendo 
 
 Cada aula usa o frontmatter com `title`, `subject`, `relevance`, `quickSummary` (opcional), `order`, `gabarito` (opcional) e `resources` (opcional).
 
+A posição de cada aula na trilha vem dos mapas em `src/data/` (`enem-mapa.json`, `ds-mapa.json`, `escolar-mapa.json`): aula do mapa sem `.mdx` aparece como "Em breve", sem link. No ENEM, ao criar o `.mdx` coloque o tema no mapa; o build avisa se faltar.
+
 As aulas do ENEM seguem o padrão descrito em `PROMPT_AULA_ENEM.mdx`: estrutura, imagens, marcação do Teste de Fogo e validação. Para gerar uma aula nova, cole esse arquivo numa conversa com uma IA e informe a matéria e o tema.
 
 ## Acessibilidade

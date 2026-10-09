@@ -3,10 +3,10 @@
 ## Como a aba está organizada
 
 - **Matéria → bimestre → aula.** Não existe seção de semanas: todas as aulas de uma semana do material viram **uma aula só** (uma "mega aula").
-- Rotas: `/ds` → `/ds/<materia>` → `/ds/<materia>/<N>-bimestre` → `/ds/<materia>/<N>-bimestre/aula-<pos>-<titulo>`.
+- Rotas: `/ds` → `/ds/<materia>` (todos os bimestres numa página só, cada um com a sua trilha, âncora `#<N>-bimestre`) → `/ds/<materia>/<N>-bimestre/aula-<pos>-<titulo>`. A rota `/ds/<materia>/<N>-bimestre` ficou só como aviso que redireciona para a âncora (links antigos).
 - Arquivo da aula: `src/content/ds/<materia>/<N>-bimestre/aula-<pos>-<titulo>.mdx`. `<pos>` é a posição da aula **dentro do bimestre** (1 a 7); `order` no frontmatter é o mesmo número.
 - **Mapa:** `src/data/ds-mapa.json` lista todas as aulas do curso (191, 7 matérias), com os tópicos de cada uma. Aula sem arquivo `.mdx` aparece como "Em breve", sem link. Para recriar o mapa: `PDFTOTEXT="<caminho do pdftotext.exe>" node scripts/mapear-ds.mjs` (a pasta do material é `C:\Users\MAX\Desktop\Desenvolvimento de sistemas`; o `pdftotext` só restaura os acentos dos títulos).
-- Código: `src/lib/dsMapa.ts` (junta mapa + aulas prontas), páginas em `src/pages/ds/`, trilha em `src/components/TrilhaAulas.astro` (opção `pronta: false`).
+- Código: `src/lib/dsMapa.ts` (junta mapa + aulas prontas), páginas em `src/pages/ds/`, trilha em `src/components/TrilhaAulas.astro` (`pronta: false`: sem link, selo "Em breve" ou o `aviso` do item). Visual igual ao do ENEM: `TopoSecao`, `AreaMaterias` (um grupo com as matérias), `TopoMateria` e `BimestresMateria`. Cor por matéria: `--color-<slug>` em `global.css`; ícones em `src/lib/materiasSecoes.ts`.
 - Seção ligada em `src/lib/secoes.ts` (`visivel: true`).
 
 ## Formato da mega aula
@@ -77,6 +77,8 @@ O material é ponto de partida, não verdade: erros, premissas fracas e itens de
 **Pause e Responda:** os três materiais tinham 4 alternativas; foi acrescentada a 5ª (E). O gabarito não vinha no material e foi marcado pelo conteúdo.
 
 ## Aba Escolar (desde 05/10/2026)
+
+- **Mapa:** `src/data/escolar-mapa.json`, gerado por `PDFTOTEXT=<caminho do pdftotext> node scripts/mapear-escolar.mjs` a partir de `C:\Users\MAX\Desktop\Escolar\<Matéria>\Aula N.pdf` (título, bimestre e tópicos vêm da capa; o script confere se os slugs das aulas já escritas batem). Os números sem PDF (Matemática 1, 4, 12, 18 e 20) ficam no mapa com `material: false` e aparecem como "Sem material", sem link; a página "material indisponível" deixou de existir. Mesmas rotas e mesmo visual do DS (`src/lib/escolar.ts`).
 
 - Mesma estrutura de DS, mas sem seção de questões ("aula pura"; as questões ficam na apostila).
 - Aulas de revisão dadas pelo professor antes do material do bimestre: arquivo `revisao-<n>-<tema>.mdx`, `order` negativo (-100 + n) e rótulo R<n> na trilha.

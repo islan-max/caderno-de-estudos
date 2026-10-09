@@ -1,20 +1,25 @@
 ---
 // Uma área do ENEM: título com o contador de aulas vistas e as matérias dela em cartões.
-// Usada na página "Matérias por área" (todas as áreas) e na página de uma área só.
+// Usada na página "Matérias por área" (todas as áreas), na página de uma área só e nas
+// páginas das abas DS e Escolar (um grupo com as matérias da aba, `base` = "/ds").
 import Icone from './Icone.astro';
 import { u } from '../lib/url';
 import type { AreaEnem } from '../lib/enemAreas';
 
 interface Props {
   area: AreaEnem;
-  /** matéria (slug) -> ids das aulas dela */
+  /** matéria (slug) -> ids das aulas dela que já existem */
   porMateria: Map<string, string[]>;
+  /** matéria (slug) -> quantas aulas do mapa ainda não foram escritas */
+  emBreve?: Map<string, number>;
+  /** Rota da aba onde as matérias moram: o cartão leva a `${base}/<matéria>/`. */
+  base?: string;
   /** posição, para o escalonamento da entrada */
   indice?: number;
   /** false quando a página já mostra o título da área em outro lugar */
   cabeca?: boolean;
 }
-const { area, porMateria, indice = 0, cabeca = true } = Astro.props;
+const { area, porMateria, emBreve = new Map(), base = '/enem', indice = 0, cabeca = true } = Astro.props;
 const idsDaArea = area.subjects.flatMap((s) => porMateria.get(s.slug) ?? []);
 ---
 
@@ -37,11 +42,12 @@ const idsDaArea = area.subjects.flatMap((s) => porMateria.get(s.slug) ?? []);
     {area.subjects.map((s) => {
       const ids = porMateria.get(s.slug) ?? [];
       const count = ids.length;
+      const breve = emBreve.get(s.slug) ?? 0;
       return (
         <li>
           {count > 0 ? (
             <a
-              href={u(`/enem/${s.slug}/`)}
+              href={u(`${base}/${s.slug}/`)}
               class="materia"
               style={`--m: var(--color-${s.slug}); --m-suave: var(--color-${s.slug}-soft)`}
               data-progresso-de={ids.join(' ')}
@@ -53,6 +59,8 @@ const idsDaArea = area.subjects.flatMap((s) => porMateria.get(s.slug) ?? []);
                   <span>{count} {count === 1 ? 'aula' : 'aulas'}</span>
                   <span aria-hidden="true">·</span>
                   <span><span data-progresso-texto>0 de {count}</span> vistas</span>
+                  {breve > 0 && <span aria-hidden="true">·</span>}
+                  {breve > 0 && <span>{breve} em breve</span>}
                 </span>
                 <span class="materia__trilho" aria-hidden="true">
                   <span data-progresso-barra></span>
@@ -65,7 +73,9 @@ const idsDaArea = area.subjects.flatMap((s) => porMateria.get(s.slug) ?? []);
               <Icone nome="hourglass-half" class="materia__icone" />
               <span class="materia__corpo">
                 <span class="materia__nome">{s.label}</span>
-                <span class="materia__meta">Material ainda não compartilhado</span>
+                <span class="materia__meta">
+                  {breve > 0 ? `Em breve: ${breve} ${breve === 1 ? 'aula' : 'aulas'}` : 'Material ainda não compartilhado'}
+                </span>
               </span>
             </div>
           )}
@@ -180,7 +190,8 @@ const idsDaArea = area.subjects.flatMap((s) => porMateria.get(s.slug) ?? []);
     font-size: calc(0.68rem * var(--escala-texto, 1));
     color: var(--color-ink-soft);
     display: flex;
-    gap: 0.28rem;
+    flex-wrap: wrap;
+    gap: 0 0.28rem;
   }
   .materia__trilho {
     display: block;

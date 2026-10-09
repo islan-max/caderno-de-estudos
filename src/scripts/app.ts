@@ -7,6 +7,8 @@
  * Nada sai do dispositivo — o progresso vive só no localStorage do usuário.
  * ------------------------------------------------------------------------- */
 
+// Registra <circle-progress>, o anel de progresso (SVG) das trilhas e do painel de progresso.
+import 'js-circle-progress';
 import { montarQuiz } from './quiz';
 import { montarTopicos } from './topicos';
 import { montarSumario } from './sumario';
@@ -47,7 +49,7 @@ interface AulaBusca {
   id: string;
   t: string;
   m: string;
-  /** slug da matéria */
+  /** aba e matéria: "enem/fisica" (a mesma matéria pode existir em mais de uma aba) */
   s: string;
   a: string;
   h: string;
@@ -149,20 +151,49 @@ function alternarTema(origem?: HTMLElement | null) {
   const reduzido =
     window.matchMedia('(prefers-reduced-motion: reduce)').matches || raiz.dataset.movimento === 'sim';
 
-  if (reduzido || typeof document.startViewTransition !== 'function') {
+  // As cores mudam de uma vez, sem as transições de cor do site: com elas, cada elemento
+  // recalculava o estilo duas vezes (antes e depois) e repintava a cada quadro, o que
+  // travava a troca em páginas longas. A flag liga junto com o tema novo e sai depois.
+  const aplicarSemTransicoes = () => {
+    raiz.dataset.temaInstantaneo = '';
     aplicarTema(novo);
+  };
+  const liberarTransicoes = () => delete raiz.dataset.temaInstantaneo;
+
+  if (reduzido || typeof document.startViewTransition !== 'function') {
+    aplicarSemTransicoes();
+    requestAnimationFrame(() => requestAnimationFrame(liberarTransicoes));
   } else {
-    // O tema novo se revela em círculo a partir do botão, em vez de piscar a página toda.
+    // O tema novo se revela em círculo a partir do botão, em vez de piscar a página toda. O
+    // círculo é uma animação do navegador (Web Animations) sobre a imagem da página: gravar o
+    // centro e o raio como variáveis CSS no <html> fazia o navegador recalcular o estilo de
+    // todos os elementos só para isso.
     const caixa = origem?.getBoundingClientRect();
     const x = caixa ? caixa.left + caixa.width / 2 : window.innerWidth / 2;
     const y = caixa ? caixa.top + caixa.height / 2 : 0;
     const raio = Math.hypot(Math.max(x, window.innerWidth - x), Math.max(y, window.innerHeight - y));
-    raiz.style.setProperty('--tema-x', `${x}px`);
-    raiz.style.setProperty('--tema-y', `${y}px`);
-    raiz.style.setProperty('--tema-raio', `${raio}px`);
     raiz.dataset.trocandoTema = novo;
-    const transicao = document.startViewTransition(() => aplicarTema(novo));
-    transicao.finished.finally(() => delete raiz.dataset.trocandoTema);
+    const transicao = document.startViewTransition(aplicarSemTransicoes);
+    transicao.ready
+      .then(() => {
+        // Para o claro, o sol nasce (a página nova abre em círculo); para o escuro, a antiga fecha.
+        const abre = novo === 'claro';
+        const circulo = (r: number) => `circle(${r}px at ${x}px ${y}px)`;
+        raiz.animate(
+          { clipPath: abre ? [circulo(0), circulo(raio)] : [circulo(raio), circulo(0)] },
+          {
+            duration: abre ? 500 : 450,
+            easing: abre ? 'cubic-bezier(0.25, 0.6, 0.3, 1)' : 'cubic-bezier(0.6, 0.1, 0.75, 0.4)',
+            fill: 'forwards',
+            pseudoElement: abre ? '::view-transition-new(root)' : '::view-transition-old(root)',
+          }
+        );
+      })
+      .catch(() => {});
+    transicao.finished.finally(() => {
+      delete raiz.dataset.trocandoTema;
+      liberarTransicoes();
+    });
   }
   toast(novo === 'escuro' ? 'Tema escuro ativado' : 'Tema claro ativado', novo === 'escuro' ? 'moon' : 'sun');
 }
@@ -374,7 +405,12 @@ function refletirProgresso() {
     const vista = Boolean(p[el.dataset.aulaId!]);
     el.dataset.vista = String(vista);
     // O anel em volta do número da aula mostra o andamento só com cor; cheio só quando concluída.
-    el.style.setProperty('--anel', String(vista ? 100 : Math.min(99, percentualDaAula(and[el.dataset.aulaId!]))));
+    // O valor vai por atributo: vale antes e depois de o componente <circle-progress> ser registrado.
+    const anel = el.querySelector('circle-progress');
+    if (anel) {
+      anel.setAttribute('animation', movimentoReduzido() ? 'none' : 'easeOutCubic');
+      anel.setAttribute('value', String(vista ? 100 : Math.min(99, percentualDaAula(and[el.dataset.aulaId!]))));
+    }
     // O check verde é só visual: o leitor de tela recebe a mesma informação em texto.
     const sr = el.querySelector('[data-vista-texto]');
     if (sr) sr.textContent = vista ? 'Aula já vista.' : '';
@@ -690,7 +726,10 @@ function montarProgresso() {
 
     alvo.innerHTML = `
       <div class="prog-resumo">
-        <div class="prog-anel" style="--pct: 0"><span>0%</span></div>
+        <div class="prog-anel">
+          <circle-progress class="prog-anel__arco" value="0" max="100" text-format="none" aria-hidden="true"></circle-progress>
+          <span>0%</span>
+        </div>
         <div class="prog-resumo__texto">
           <strong>${feitas} de ${dados.length} aulas vistas</strong>
           <span>${escapar(frase)}</span>
@@ -716,7 +755,10 @@ function montarProgresso() {
     requestAnimationFrame(() => {
       const anel = alvo.querySelector<HTMLElement>('.prog-anel');
       if (anel) {
-        anel.style.setProperty('--pct', String(pct));
+        const arco = anel.querySelector('circle-progress');
+        arco?.setAttribute('animation', movimentoReduzido() ? 'none' : 'easeOutCubic');
+        arco?.setAttribute('animation-duration', '800');
+        arco?.setAttribute('value', String(pct));
         anel.querySelector('span')!.textContent = `${pct}%`;
       }
       alvo.querySelectorAll<HTMLElement>('.prog-barra i').forEach((b) => {
@@ -1282,6 +1324,11 @@ function ligarPilulaVoltar() {
 /* ---------------------------------------------------------------- arranque */
 
 function iniciar() {
+  // O primeiro carregamento dispara `astro:page-load` e também a chamada direta lá embaixo:
+  // sem esta marca, tudo era ligado duas vezes (ex.: os `toggle` das dobras). O <body> é
+  // trocado a cada navegação, então a marca some junto e a página nova inicia normalmente.
+  if (document.body.dataset.cdtIniciado) return;
+  document.body.dataset.cdtIniciado = '1';
   aplicarTema(temaSalvo());
   aplicarDispensados();
   aplicarFontePx(lerFontePx());
@@ -1303,7 +1350,15 @@ function iniciar() {
   montarBarrasDeRolagem();
 }
 
-document.addEventListener('astro:page-load', iniciar);
+document.addEventListener('astro:page-load', () => {
+  delete document.documentElement.dataset.navegando;
+  iniciar();
+});
+// Marca o <html> NOVO enquanto a troca de página acontece: a rolagem suave do CSS faria o
+// "voltar" correr por baixo da página que já entrou (ver html[data-navegando] em global.css).
+document.addEventListener('astro:before-swap', (e) => {
+  (e as Event & { newDocument: Document }).newDocument.documentElement.dataset.navegando = '';
+});
 // Roda no documento novo, antes de pintar: evita perder tema e fonte (e o flash).
 document.addEventListener('astro:after-swap', () => {
   aplicarTema(temaSalvo());

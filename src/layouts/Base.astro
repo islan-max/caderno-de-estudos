@@ -1,6 +1,6 @@
 ---
 import '../styles/global.css';
-import { ClientRouter, fade } from 'astro:transitions';
+import { ClientRouter } from 'astro:transitions';
 import TabNav from '../components/TabNav.astro';
 import Ferramentas from '../components/Ferramentas.astro';
 import CabecalhoFixo from '../components/CabecalhoFixo.astro';
@@ -144,7 +144,7 @@ const borderColor = cor ?? (active ? accentByTab[active] : 'var(--color-line)');
       class="flex-1 max-w-5xl mx-auto w-full px-3 sm:px-4 md:px-10"
       id="conteudo"
       tabindex="-1"
-      transition:animate={fade({ duration: '0.12s' })}
+      transition:animate="none"
     >
       <div
         class="paper-sheet min-h-[60vh] p-4 pl-10 sm:p-6 sm:pl-12 md:p-10 md:pl-16 -mt-[2px]"

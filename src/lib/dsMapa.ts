@@ -4,28 +4,10 @@
 import { getCollection } from 'astro:content';
 import mapa from '../data/ds-mapa.json';
 import { bimestreLabel } from './slug';
+import { u } from './url';
+import type { MateriaTrilha } from './materiasSecoes';
 
-export interface AulaDs {
-  pos: number;
-  slug: string;
-  titulo: string;
-  topicos: string[];
-  pronta: boolean;
-  /** Identificador no progresso local: "ds/back-end/4-bimestre/aula-1-...". */
-  id: string;
-}
-export interface BimestreDs {
-  slug: string;
-  label: string;
-  aulas: AulaDs[];
-}
-export interface MateriaDs {
-  slug: string;
-  nome: string;
-  bimestres: BimestreDs[];
-}
-
-export async function materiasDs(): Promise<MateriaDs[]> {
+export async function materiasDs(): Promise<MateriaTrilha[]> {
   const prontas = new Set((await getCollection('ds')).map((a) => a.id));
   return mapa.materias.map((m) => ({
     slug: m.slug,
@@ -34,18 +16,15 @@ export async function materiasDs(): Promise<MateriaDs[]> {
       slug: b.slug,
       label: bimestreLabel(b.slug),
       aulas: b.aulas.map((a) => ({
-        pos: a.pos,
         slug: a.slug,
         titulo: a.titulo,
-        topicos: a.topicos,
+        // Cada aula junta o conteúdo da semana: os tópicos fazem de resumo.
+        resumo: a.topicos.join(' · '),
+        href: u(`/ds/${m.slug}/${b.slug}/${a.slug}/`),
         pronta: prontas.has(`${m.slug}/${b.slug}/${a.slug}`),
         id: `ds/${m.slug}/${b.slug}/${a.slug}`,
+        marca: String(a.pos).padStart(2, '0'),
       })),
     })),
   }));
 }
-
-export const contarAulas = (bs: BimestreDs[]) => ({
-  total: bs.reduce((n, b) => n + b.aulas.length, 0),
-  prontas: bs.reduce((n, b) => n + b.aulas.filter((a) => a.pronta).length, 0),
-});

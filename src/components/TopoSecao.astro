@@ -1,0 +1,54 @@
+---
+// Topo das páginas iniciais de cada aba (ENEM, Escolar, DS): selo da aba, título e uma frase.
+import Icone from './Icone.astro';
+
+interface Props {
+  icone: string;
+  /** Texto do selo, ao lado do ícone (ex.: "Enem"). */
+  selo: string;
+  titulo: string;
+  /** Cor do selo: a da aba. */
+  cor: string;
+}
+const { icone, selo, titulo, cor } = Astro.props;
+---
+
+<header class="topo" style={`--cor: ${cor}`} data-surgir>
+  <p class="topo__kicker"><Icone nome={icone} /> {selo}</p>
+  <h1 class="topo__h1">{titulo}</h1>
+  <p class="topo__texto"><slot /></p>
+</header>
+
+<style>
+  .topo {
+    margin-bottom: 2.5rem;
+  }
+  .topo__kicker {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-family: var(--font-display);
+    font-size: calc(0.68rem * var(--escala-texto, 1));
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--cor);
+    margin: 0 0 0.6rem;
+  }
+  .topo__h1 {
+    font-family: var(--font-display);
+    font-size: clamp(1.9rem, 1.2rem + 2.6vw, 2.75rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.08;
+    margin: 0 0 0.85rem;
+  }
+  .topo__texto {
+    font-family: var(--font-body);
+    font-size: calc(0.98rem * var(--escala-texto, 1));
+    line-height: 1.7;
+    color: var(--color-ink-soft);
+    max-width: 40rem;
+    margin: 0;
+  }
+</style>

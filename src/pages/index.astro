@@ -4,19 +4,41 @@ import Icone from '../components/Icone.astro';
 import Accordion from '../components/Accordion.astro';
 import { u } from '../lib/url';
 import { ENEM_AREAS } from '../lib/enemAreas';
-import { indiceEnem } from '../lib/aulas';
-import { SECOES_VISIVEIS } from '../lib/secoes';
+import { indiceGeral } from '../lib/indice';
+import { materiasDs } from '../lib/dsMapa';
+import { materiasEscolar } from '../lib/escolar';
+import { contarAulas, iconeDaMateriaSecao, idsProntos } from '../lib/materiasSecoes';
+import { SECOES_VISIVEIS, secao } from '../lib/secoes';
 
-const aulas = await indiceEnem();
+// O topo e o progresso geral somam as aulas que existem nas três abas.
+const aulas = await indiceGeral();
 const total = aulas.length;
 const todosIds = aulas.map((a) => a.id).join(' ');
 
 const porArea = ENEM_AREAS.map((area) => {
-  const ids = aulas.filter((a) => a.areaCurto === area.labelCurto).map((a) => a.id);
+  const ids = aulas.filter((a) => a.secao === 'enem' && a.grupo === area.labelCurto).map((a) => a.id);
   return { ...area, ids, total: ids.length };
 }).filter((a) => a.total > 0);
 
-const materiasComAula = new Set(aulas.map((a) => a.materia)).size;
+const materiasComAula = new Set(aulas.map((a) => `${a.secao}/${a.materia}`)).size;
+
+// Escolar e DS: um bloco por aba, com uma ficha por matéria (como as áreas do ENEM).
+const outrasAbas = (
+  [
+    { chave: 'escolar' as const, titulo: 'Escolar', materias: await materiasEscolar() },
+    { chave: 'ds' as const, titulo: 'Desenvolvimento de Sistemas', materias: await materiasDs() },
+  ]
+)
+  .filter((a) => SECOES_VISIVEIS.some((s) => s.chave === a.chave))
+  .map((a) => ({
+    ...a,
+    cor: secao(a.chave).cor,
+    icone: secao(a.chave).icone,
+    cards: a.materias.map((m) => {
+      const { total, prontas } = contarAulas(m.bimestres);
+      return { slug: m.slug, nome: m.nome, ids: idsProntos(m), total, prontas, emBreve: total - prontas, icone: iconeDaMateriaSecao(m.slug) };
+    }),
+  }));
 ---
 
 <Base title="Início" active="hub" description="Seu painel de estudos: progresso, busca e trilhas por área">
@@ -91,7 +113,7 @@ const materiasComAula = new Set(aulas.map((a) => a.materia)).size;
     <!-- ----------------------------------------------------------- áreas -->
     <section class="secao" data-surgir style="--i: 3">
       <header class="secao__cabeca">
-        <h2 class="secao__titulo"><Icone nome="layer-group" duo cor="var(--color-ink)" /> Trilhas por área</h2>
+        <h2 class="secao__titulo"><Icone nome="graduation-cap" duo cor="var(--color-enem)" /> ENEM: trilhas por área</h2>
         <a href={u('/enem')} class="secao__link">Ver todas as matérias <Icone nome="arrow-right" /></a>
       </header>
 
@@ -112,6 +134,48 @@ const materiasComAula = new Set(aulas.map((a) => a.materia)).size;
         ))}
       </ul>
     </section>
+
+    <!-- ------------------------------------------------ Escolar e DS -->
+    {outrasAbas.map((aba, bi) => (
+      <section class="secao" data-surgir style={`--i: ${4 + bi}`}>
+        <header class="secao__cabeca">
+          <h2 class="secao__titulo"><Icone nome={aba.icone} duo cor={aba.cor} /> {aba.titulo}</h2>
+          <a href={u(`/${aba.chave}`)} class="secao__link">Ver todas as matérias <Icone nome="arrow-right" /></a>
+        </header>
+
+        <ul class="areas">
+          {aba.cards.map((m) => (
+            <li>
+              {m.ids.length > 0 ? (
+                <a
+                  href={u(`/${aba.chave}/${m.slug}/`)}
+                  class="area-card"
+                  style={`--cor: var(--color-${m.slug})`}
+                  data-progresso-de={m.ids.join(' ')}
+                >
+                  <Icone nome={m.icone} duo cor={`var(--color-${m.slug})`} class="area-card__icone" />
+                  <span class="area-card__nome">{m.nome}</span>
+                  <span class="area-card__meta">
+                    <span>{m.ids.length} {m.ids.length === 1 ? 'aula' : 'aulas'}</span>
+                    <span aria-hidden="true">·</span>
+                    <span data-progresso-texto>0 de {m.ids.length}</span>
+                    {m.emBreve > 0 && <span aria-hidden="true">·</span>}
+                    {m.emBreve > 0 && <span>{m.emBreve} em breve</span>}
+                  </span>
+                  <span class="area-card__trilho" aria-hidden="true"><span data-progresso-barra></span></span>
+                </a>
+              ) : (
+                <div class="area-card area-card--vazia">
+                  <Icone nome="hourglass-half" class="area-card__icone" />
+                  <span class="area-card__nome">{m.nome}</span>
+                  <span class="area-card__meta"><span>Em breve: {m.emBreve} {m.emBreve === 1 ? 'aula' : 'aulas'}</span></span>
+                </div>
+              )}
+            </li>
+          ))}
+        </ul>
+      </section>
+    ))}
 
     <!-- --------------------------------------------------------- recentes -->
     <!-- Mesmo cartão do Raio-X das aulas: uma seção à parte, que abre e fecha. A lista é montada
@@ -541,7 +605,15 @@ const materiasComAula = new Set(aulas.map((a) => a.materia)).size;
     text-decoration: none;
     color: var(--color-ink);
   }
-  .area-card:hover {
+  /* Matéria sem aula disponível: sem link, borda tracejada e cor suave (sem opacity). */
+  .area-card--vazia {
+    border-style: dashed;
+    background: transparent;
+  }
+  .area-card--vazia .area-card__nome {
+    color: var(--color-ink-soft);
+  }
+  a.area-card:hover {
     border-color: var(--cor);
     background: color-mix(in srgb, var(--cor) 13%, transparent);
     transform: translateY(-3px);

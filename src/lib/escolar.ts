@@ -1,52 +1,62 @@
-// Aba Escolar: matéria → bimestre → aula, montada a partir dos arquivos em
-// src/content/escolar/<materia>/<N>-bimestre/aula-<N>-<titulo>.mdx (sem mapa fixo).
+// Aba Escolar: matéria → bimestre → aula. O mapa (src/data/escolar-mapa.json, gerado por
+// scripts/mapear-escolar.mjs) lista todas as aulas do material da escola; uma aula só vira
+// link quando o arquivo dela existe em src/content/escolar/<materia>/<N>-bimestre/<aula>.mdx.
+// As aulas de revisão dadas pelo professor (revisao-<n>-<tema>.mdx, com order negativo) não
+// estão no material: entram no topo do bimestre.
 import { getCollection } from 'astro:content';
+import mapa from '../data/escolar-mapa.json';
 import { bimestreLabel } from './slug';
+import { u } from './url';
+import type { AulaTrilha, MateriaTrilha } from './materiasSecoes';
 
-export interface AulaEscolar {
-  id: string;
-  slug: string;
-  titulo: string;
-  resumo: string;
-  ordem: number;
-  /** Rótulo da posição: "R1" nas revisões, o número da aula nas demais. */
-  marca: string;
-}
-export interface BimestreEscolar {
-  slug: string;
-  label: string;
-  aulas: AulaEscolar[];
-}
-export interface MateriaEscolar {
-  slug: string;
-  nome: string;
-  bimestres: BimestreEscolar[];
-}
+export async function materiasEscolar(): Promise<MateriaTrilha[]> {
+  const escritas = new Map((await getCollection('escolar')).map((a) => [a.id, a]));
+  const usadas = new Set<string>();
 
-export async function materiasEscolar(): Promise<MateriaEscolar[]> {
-  const aulas = await getCollection('escolar');
-  const materias = new Map<string, MateriaEscolar>();
-  for (const a of aulas) {
-    const [m, b, slug] = a.id.split('/');
-    // Aulas de revisão dadas antes do material do bimestre: revisao-<n>-<tema>, com order negativo.
-    const revisao = slug.match(/^revisao-(\d+)/);
-    const mat = materias.get(m) ?? { slug: m, nome: a.data.subject, bimestres: [] };
-    let bim = mat.bimestres.find((x) => x.slug === b);
-    if (!bim) mat.bimestres.push((bim = { slug: b, label: bimestreLabel(b), aulas: [] }));
-    bim.aulas.push({
-      id: `escolar/${m}/${b}/${slug}`,
-      slug,
-      titulo: a.data.title,
-      resumo: a.data.quickSummary ?? a.data.relevance,
-      ordem: a.data.order,
-      marca: revisao ? `R${revisao[1]}` : String(a.data.order).padStart(2, '0'),
-    });
-    materias.set(m, mat);
+  const materias: MateriaTrilha[] = mapa.materias.map((m) => ({
+    slug: m.slug,
+    nome: m.nome,
+    bimestres: m.bimestres.map((b) => {
+      const revisoes: AulaTrilha[] = [...escritas.values()]
+        .filter((a) => a.id.startsWith(`${m.slug}/${b.slug}/revisao-`))
+        .sort((x, y) => x.data.order - y.data.order)
+        .map((a) => {
+          usadas.add(a.id);
+          const slug = a.id.split('/')[2];
+          return {
+            id: `escolar/${a.id}`,
+            slug,
+            titulo: a.data.title,
+            resumo: a.data.quickSummary ?? a.data.relevance,
+            href: u(`/escolar/${a.id}/`),
+            pronta: true,
+            marca: `R${slug.match(/^revisao-(\d+)/)?.[1] ?? ''}`,
+          };
+        });
+
+      const aulas: AulaTrilha[] = b.aulas.map((a) => {
+        const chave = `${m.slug}/${b.slug}/${a.slug}`;
+        const escrita = escritas.get(chave);
+        if (escrita) usadas.add(chave);
+        return {
+          id: `escolar/${chave}`,
+          slug: a.slug,
+          titulo: escrita?.data.title ?? a.titulo,
+          resumo: escrita ? (escrita.data.quickSummary ?? escrita.data.relevance) : a.topicos.join(' · '),
+          href: u(`/escolar/${chave}/`),
+          pronta: Boolean(escrita),
+          marca: String(a.pos).padStart(2, '0'),
+          // Número que o material da escola não trouxe: aparece na trilha, sem link.
+          aviso: a.material ? undefined : 'Sem material',
+        };
+      });
+      return { slug: b.slug, label: bimestreLabel(b.slug), aulas: [...revisoes, ...aulas] };
+    }),
+  }));
+
+  // Aula escrita fora do mapa: o mapa está desatualizado (rode scripts/mapear-escolar.mjs).
+  for (const id of escritas.keys()) {
+    if (!usadas.has(id)) throw new Error(`A aula escolar/${id} não está em src/data/escolar-mapa.json.`);
   }
-  const lista = [...materias.values()].sort((x, y) => x.nome.localeCompare(y.nome, 'pt-BR'));
-  for (const m of lista) {
-    m.bimestres.sort((x, y) => x.slug.localeCompare(y.slug));
-    for (const b of m.bimestres) b.aulas.sort((x, y) => x.ordem - y.ordem);
-  }
-  return lista;
+  return materias;
 }

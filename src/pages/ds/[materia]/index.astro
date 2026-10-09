@@ -1,8 +1,11 @@
 ---
 import { secaoVisivel } from '../../../lib/secoes';
 import Base from '../../../layouts/Base.astro';
+import TopoMateria from '../../../components/TopoMateria.astro';
+import BimestresMateria from '../../../components/BimestresMateria.astro';
 import { u } from '../../../lib/url';
-import { materiasDs, contarAulas } from '../../../lib/dsMapa';
+import { materiasDs } from '../../../lib/dsMapa';
+import { contarAulas, iconeDaMateriaSecao, idsProntos } from '../../../lib/materiasSecoes';
 
 export async function getStaticPaths() {
   // Seção oculta (src/lib/secoes.ts): nenhuma rota é gerada.
@@ -13,37 +16,32 @@ export async function getStaticPaths() {
 const { materia: materiaSlug } = Astro.params;
 const materia = (await materiasDs()).find((m) => m.slug === materiaSlug);
 if (!materia) return Astro.redirect(u('/ds'));
+const { total, prontas } = contarAulas(materia.bimestres);
 ---
 
 <Base
   title={materia.nome}
   active="ds"
-  description={`Bimestres de ${materia.nome}`}
-  voltar={{ href: u('/ds'), label: 'Matérias de DS' }}
+  description={`Aulas de ${materia.nome}, por bimestre`}
+  voltar={{ href: u('/ds'), label: 'Matérias' }}
+  cor={`var(--color-${materia.slug})`}
 >
   <nav class="font-mono text-xs text-ink-soft mb-4" aria-label="Você está aqui">
     <a href={u('/ds')} class="hover:text-ink underline underline-offset-2">Desenvolvimento de Sistemas</a>
     <span> / </span>
     <span class="text-ink">{materia.nome}</span>
   </nav>
-  <h1 class="font-display text-3xl md:text-4xl font-bold text-ink mb-8">{materia.nome}</h1>
 
-  <ul class="flex flex-col gap-3 list-none p-0 m-0">
-    {materia.bimestres.map((b) => {
-      const { total, prontas } = contarAulas([b]);
-      return (
-        <li>
-          <a
-            href={u(`/ds/${materia.slug}/${b.slug}/`)}
-            class="flex items-center justify-between gap-4 rounded-md border border-paper-dark px-5 py-4 hover:border-ds transition-colors bg-white/50"
-          >
-            <span class="font-body text-ink font-medium">{b.label}</span>
-            <span class="font-mono text-xs text-ink-soft shrink-0">
-              {prontas} de {total} {total === 1 ? 'aula' : 'aulas'} →
-            </span>
-          </a>
-        </li>
-      );
-    })}
-  </ul>
+  <TopoMateria
+    nome={materia.nome}
+    icone={iconeDaMateriaSecao(materia.slug)}
+    area="Desenvolvimento de Sistemas"
+    cor={`var(--color-${materia.slug})`}
+    ids={idsProntos(materia)}
+    dica={`Cada bimestre traz as aulas na ordem. ${prontas} de ${total} já estão disponíveis; as marcadas como “Em breve” ou “Sem material” não abrem.`}
+  />
+
+  <div style={`--materia: var(--color-${materia.slug});`}>
+    <BimestresMateria materia={materia} />
+  </div>
 </Base>

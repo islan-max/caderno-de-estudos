@@ -2,51 +2,35 @@
 import SecaoOculta from '../../components/SecaoOculta.astro';
 import { secaoVisivel } from '../../lib/secoes';
 import Base from '../../layouts/Base.astro';
-import HelpTip from '../../components/HelpTip.astro';
-import { u } from '../../lib/url';
-import { materiasDs, contarAulas } from '../../lib/dsMapa';
+import TopoSecao from '../../components/TopoSecao.astro';
+import AreaMaterias from '../../components/AreaMaterias.astro';
+import { materiasDs } from '../../lib/dsMapa';
+import { contarAulas, grupoDaSecao, idsProntos } from '../../lib/materiasSecoes';
 
 // Seção oculta (src/lib/secoes.ts): a rota continua existindo (links antigos não
 // quebram), mas some da navegação e não gera nenhuma página interna.
 const oculta = !secaoVisivel('ds');
 
-const materias = (await materiasDs()).map((m) => ({ ...m, ...contarAulas(m.bimestres) }));
+const materias = await materiasDs();
+const grupo = grupoDaSecao('ds', 'Desenvolvimento de Sistemas', 'code', materias);
+const porMateria = new Map(materias.map((m) => [m.slug, idsProntos(m)]));
+const emBreve = new Map(
+  materias.map((m) => {
+    const { total, prontas } = contarAulas(m.bimestres);
+    return [m.slug, total - prontas] as const;
+  })
+);
 ---
 
-<Base title="Desenvolvimento de Sistemas" active="ds" description="Aulas do curso de Desenvolvimento de Sistemas, por matéria e bimestre">
+<Base title="Desenvolvimento de Sistemas" active="ds" description="Aulas de Desenvolvimento de Sistemas, por matéria e bimestre">
   {oculta ? (
     <SecaoOculta nome="Desenvolvimento de Sistemas" />
   ) : (
-  <Fragment>
-  <div class="flex items-center gap-2 mb-2">
-    <p class="font-mono text-xs uppercase tracking-widest" style="color: var(--color-ds)">desenvolvimento de sistemas</p>
-    <HelpTip title="Como funciona a aba de Desenvolvimento de Sistemas">
-      Cada matéria é dividida em bimestres, e cada bimestre em aulas. Cada aula junta tudo o que
-      foi visto na semana e termina com as perguntas do "Pause e Responda".
-    </HelpTip>
-  </div>
-  <h1 class="font-display text-3xl md:text-4xl font-bold text-ink mb-3">Matérias</h1>
-  <p class="font-body text-ink-soft max-w-lg mb-10 leading-relaxed">
-    Escolha uma matéria, depois o bimestre e a aula. As aulas marcadas como "em breve" já estão no
-    mapa e chegam aos poucos.
-  </p>
-
-  <ul class="grid sm:grid-cols-2 gap-4 list-none p-0 m-0">
-    {materias.map((m) => (
-      <li>
-        <a
-          href={u(`/ds/${m.slug}/`)}
-          class="block rounded-lg border-2 p-5 hover:-translate-y-0.5 transition-transform"
-          style="border-color: var(--color-ds); background-color: var(--color-ds-soft);"
-        >
-          <h2 class="font-display text-xl font-bold text-ink mb-1">{m.nome}</h2>
-          <p class="font-mono text-xs text-ink-soft">
-            {m.bimestres.length} {m.bimestres.length === 1 ? 'bimestre' : 'bimestres'} · {m.prontas} de {m.total} {m.total === 1 ? 'aula pronta' : 'aulas prontas'}
-          </p>
-        </a>
-      </li>
-    ))}
-  </ul>
-</Fragment>
+    <Fragment>
+      <TopoSecao icone="code" selo="Desenvolvimento de Sistemas" titulo="Matérias" cor="var(--color-ds)">
+        Escolha uma matéria: cada uma reúne os bimestres e as aulas do curso, na ordem. Cada aula junta tudo o que foi visto na semana e termina com as perguntas do “Pause e Responda”. As aulas ainda não escritas aparecem como “Em breve”.
+      </TopoSecao>
+      <AreaMaterias area={grupo} porMateria={porMateria} emBreve={emBreve} base="/ds" cabeca={false} />
+    </Fragment>
   )}
 </Base>

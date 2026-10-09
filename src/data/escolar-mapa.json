@@ -1,0 +1,476 @@
+{
+  "_aviso": "Gerado por scripts/mapear-escolar.mjs. Aula com material:false não tem PDF no material da escola.",
+  "materias": [
+    {
+      "slug": "lingua-portuguesa",
+      "nome": "Língua Portuguesa",
+      "bimestres": [
+        {
+          "numero": 4,
+          "slug": "4-bimestre",
+          "aulas": [
+            {
+              "pos": 1,
+              "slug": "aula-1-textos-contemporaneos-africanos-mocambique-parte-1",
+              "titulo": "Textos Contemporâneos Africanos: Moçambique – Parte 1",
+              "topicos": [
+                "Literatura africana de Moçambique: Mia Couto e José Craveirinha",
+                "Análise de poema e conto"
+              ],
+              "material": true
+            },
+            {
+              "pos": 2,
+              "slug": "aula-2-textos-contemporaneos-africanos-mocambique-parte-2",
+              "titulo": "Textos Contemporâneos Africanos: Moçambique – Parte 2",
+              "topicos": [
+                "Literatura africana de Moçambique: Paulina Chiziane",
+                "Análise de conto",
+                "Concordância verbal e nominal"
+              ],
+              "material": true
+            },
+            {
+              "pos": 3,
+              "slug": "aula-3-textos-contemporaneos-africanos-angola",
+              "titulo": "Textos Contemporâneos Africanos: Angola",
+              "topicos": [
+                "Literatura africana de Angola: Ana Paula Tavares e Ondjaki",
+                "Análise de textos"
+              ],
+              "material": true
+            },
+            {
+              "pos": 4,
+              "slug": "aula-4-textos-contemporaneos-africanos-cabo-verde",
+              "titulo": "Textos Contemporâneos Africanos: Cabo Verde",
+              "topicos": [
+                "Literatura africana de Cabo Verde: Dina Salústio",
+                "Regência verbal e nominal"
+              ],
+              "material": true
+            },
+            {
+              "pos": 5,
+              "slug": "aula-5-textos-contemporaneos-portugueses-parte-1",
+              "titulo": "Textos Contemporâneos Portugueses – Parte 1",
+              "topicos": [
+                "Literatura portuguesa contemporânea: José Saramago",
+                "Análise de texto"
+              ],
+              "material": true
+            },
+            {
+              "pos": 6,
+              "slug": "aula-6-textos-contemporaneos-portugueses-parte-2",
+              "titulo": "Textos Contemporâneos Portugueses – Parte 2",
+              "topicos": [
+                "Literatura portuguesa contemporânea: José Saramago",
+                "Colocação pronominal"
+              ],
+              "material": true
+            },
+            {
+              "pos": 7,
+              "slug": "aula-7-textos-contemporaneos-indigenas-parte-1",
+              "titulo": "Textos Contemporâneos Indígenas – Parte 1",
+              "topicos": [
+                "Literatura indígena contemporânea: Daniel Munduruku",
+                "Análise de texto"
+              ],
+              "material": true
+            },
+            {
+              "pos": 8,
+              "slug": "aula-8-textos-contemporaneos-indigenas-parte-2",
+              "titulo": "Textos Contemporâneos Indígenas – Parte 2",
+              "topicos": [
+                "Literatura indígena contemporânea: Márcia Kambeba e Eliane Potiguara",
+                "Análise de texto",
+                "Uso de crase"
+              ],
+              "material": true
+            },
+            {
+              "pos": 9,
+              "slug": "aula-9-texto-dissertativo-argumentativo-parte-1",
+              "titulo": "Texto Dissertativo-argumentativo – Parte 1",
+              "topicos": [
+                "Texto dissertativo-argumentativo",
+                "Análise de artigo de opinião"
+              ],
+              "material": true
+            },
+            {
+              "pos": 10,
+              "slug": "aula-10-texto-dissertativo-argumentativo-parte-2",
+              "titulo": "Texto Dissertativo-argumentativo – Parte 2",
+              "topicos": [
+                "Texto dissertativo-argumentativo",
+                "Funções do “se”"
+              ],
+              "material": true
+            },
+            {
+              "pos": 11,
+              "slug": "aula-11-literatura-brasileira-e-a-poesia-de-ferreira-gullar",
+              "titulo": "Literatura Brasileira e a Poesia de Ferreira Gullar",
+              "topicos": [
+                "Poesia de Ferreira Gullar",
+                "Análise de texto"
+              ],
+              "material": true
+            },
+            {
+              "pos": 12,
+              "slug": "aula-12-literatura-brasileira-e-a-poesia-de-paulo-leminski",
+              "titulo": "Literatura Brasileira e a Poesia de Paulo Leminski",
+              "topicos": [
+                "Poesia de Paulo Leminski",
+                "Pontuação"
+              ],
+              "material": true
+            },
+            {
+              "pos": 13,
+              "slug": "aula-13-literatura-brasileira-e-a-prosa-de-rubem-braga",
+              "titulo": "Literatura Brasileira e a Prosa de Rubem Braga",
+              "topicos": [
+                "Análise de crônica"
+              ],
+              "material": true
+            },
+            {
+              "pos": 14,
+              "slug": "aula-14-literatura-brasileira-e-a-prosa-de-fernando-sabino",
+              "titulo": "Literatura Brasileira e a Prosa de Fernando Sabino",
+              "topicos": [
+                "Análise do texto",
+                "Paralelismo sintático"
+              ],
+              "material": true
+            },
+            {
+              "pos": 15,
+              "slug": "aula-15-redacao-de-vestibular-como-genero-parte-1",
+              "titulo": "Redação de Vestibular como Gênero – Parte 1",
+              "topicos": [
+                "Texto dissertativo-argumentativo: a redação de vestibular"
+              ],
+              "material": true
+            },
+            {
+              "pos": 16,
+              "slug": "aula-16-redacao-de-vestibular-como-genero-parte-2",
+              "titulo": "Redação de Vestibular como Gênero – Parte 2",
+              "topicos": [
+                "Texto dissertativo-argumentativo: a redação de vestibular",
+                "Operadores argumentativos"
+              ],
+              "material": true
+            },
+            {
+              "pos": 17,
+              "slug": "aula-17-literatura-brasileira-contemporanea-milton-hatoum-parte-1",
+              "titulo": "Literatura Brasileira Contemporânea: Milton Hatoum – Parte 1",
+              "topicos": [
+                "Análise de trechos de romance"
+              ],
+              "material": true
+            },
+            {
+              "pos": 18,
+              "slug": "aula-18-literatura-brasileira-contemporanea-milton-hatoum-parte-2",
+              "titulo": "Literatura Brasileira Contemporânea: Milton Hatoum – Parte 2",
+              "topicos": [
+                "Coesão textual: anáfora e catáfora"
+              ],
+              "material": true
+            },
+            {
+              "pos": 19,
+              "slug": "aula-19-literatura-brasileira-contemporanea-conceicao-evaristo-parte-1",
+              "titulo": "Literatura Brasileira Contemporânea: Conceição Evaristo – Parte 1",
+              "topicos": [
+                "Análise de conto"
+              ],
+              "material": true
+            },
+            {
+              "pos": 20,
+              "slug": "aula-20-literatura-brasileira-contemporanea-conceicao-evaristo-parte-2",
+              "titulo": "Literatura Brasileira Contemporânea: Conceição Evaristo – Parte 2",
+              "topicos": [
+                "Análise de conto",
+                "Conceição Evaristo e o conceito de escrevivência"
+              ],
+              "material": true
+            },
+            {
+              "pos": 21,
+              "slug": "aula-21-literatura-nas-redes-sociais-parte-1",
+              "titulo": "Literatura nas Redes Sociais – Parte 1",
+              "topicos": [
+                "Literatura em suportes digitais: ciberpoesia"
+              ],
+              "material": true
+            },
+            {
+              "pos": 22,
+              "slug": "aula-22-literatura-nas-redes-sociais-parte-2",
+              "titulo": "Literatura nas Redes Sociais – Parte 2",
+              "topicos": [
+                "Literatura digital, ciberpoesia e hipertextos",
+                "Homonímia e paronímia"
+              ],
+              "material": true
+            },
+            {
+              "pos": 23,
+              "slug": "aula-23-vozes-das-mulheres-na-literatura-contemporanea-brasileira-parte-1",
+              "titulo": "Vozes das Mulheres na Literatura Contemporânea Brasileira – Parte 1",
+              "topicos": [
+                "Literatura contemporânea brasileira produzida por mulheres",
+                "Análise de texto"
+              ],
+              "material": true
+            },
+            {
+              "pos": 24,
+              "slug": "aula-24-vozes-das-mulheres-na-literatura-contemporanea-brasileira-parte-2",
+              "titulo": "Vozes das Mulheres na Literatura Contemporânea Brasileira – Parte 2",
+              "topicos": [
+                "Literatura contemporânea brasileira produzida por mulheres",
+                "Pronomes relativos"
+              ],
+              "material": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "matematica",
+      "nome": "Matemática",
+      "bimestres": [
+        {
+          "numero": 4,
+          "slug": "4-bimestre",
+          "aulas": [
+            {
+              "pos": 1,
+              "slug": "aula-1-material-indisponivel",
+              "titulo": "Aula 1: material indisponível",
+              "topicos": [],
+              "material": false
+            },
+            {
+              "pos": 2,
+              "slug": "aula-2-grandezas-determinadas-pela-razao-ou-pelo-produto-de-outras-parte-1",
+              "titulo": "Grandezas Determinadas pela Razão ou pelo Produto de Outras – Parte 1",
+              "topicos": [
+                "Relação entre grandezas de espécies diferentes"
+              ],
+              "material": true
+            },
+            {
+              "pos": 3,
+              "slug": "aula-3-grandezas-determinadas-pela-razao-ou-pelo-produto-de-outras-parte-2",
+              "titulo": "Grandezas Determinadas pela Razão ou pelo Produto de Outras – Parte 2",
+              "topicos": [
+                "Relação entre grandezas de espécies diferentes"
+              ],
+              "material": true
+            },
+            {
+              "pos": 4,
+              "slug": "aula-4-material-indisponivel",
+              "titulo": "Aula 4: material indisponível",
+              "topicos": [],
+              "material": false
+            },
+            {
+              "pos": 5,
+              "slug": "aula-5-a-regra-de-tres-simples",
+              "titulo": "A Regra de Três Simples",
+              "topicos": [
+                "Grandezas diretamente proporcionais e grandezas inversamente proporcionais"
+              ],
+              "material": true
+            },
+            {
+              "pos": 6,
+              "slug": "aula-6-a-regra-de-tres-composta",
+              "titulo": "A Regra de Três Composta",
+              "topicos": [
+                "Grandezas diretamente proporcionais e grandezas inversamente proporcionais"
+              ],
+              "material": true
+            },
+            {
+              "pos": 7,
+              "slug": "aula-7-resolucao-de-problemas-envolvendo-relacao-entre-grandezas",
+              "titulo": "Resolução de Problemas Envolvendo Relação entre Grandezas",
+              "topicos": [
+                "Relação entre grandezas"
+              ],
+              "material": true
+            },
+            {
+              "pos": 8,
+              "slug": "aula-8-aula-de-verificacao-relacao-entre-grandezas",
+              "titulo": "Aula de Verificação: Relação entre Grandezas",
+              "topicos": [
+                "Relação entre grandezas"
+              ],
+              "material": true
+            },
+            {
+              "pos": 9,
+              "slug": "aula-9-media-aritmetica",
+              "titulo": "Média Aritmética",
+              "topicos": [
+                "Conceito de média aritmética",
+                "Resolução de problemas envolvendo o cálculo de média aritmética"
+              ],
+              "material": true
+            },
+            {
+              "pos": 10,
+              "slug": "aula-10-media-aritmetica-e-media-ponderada",
+              "titulo": "Média Aritmética e Média Ponderada",
+              "topicos": [
+                "Conceito de média ponderada",
+                "Resolução de problemas relacionados ao cálculo de média ponderada"
+              ],
+              "material": true
+            },
+            {
+              "pos": 11,
+              "slug": "aula-11-mediana-e-moda",
+              "titulo": "Mediana e Moda",
+              "topicos": [
+                "Conceito de mediana e de moda",
+                "Resolução de problemas envolvendo média, mediana e moda"
+              ],
+              "material": true
+            },
+            {
+              "pos": 12,
+              "slug": "aula-12-material-indisponivel",
+              "titulo": "Aula 12: material indisponível",
+              "topicos": [],
+              "material": false
+            },
+            {
+              "pos": 13,
+              "slug": "aula-13-amplitude-e-variancia",
+              "titulo": "Amplitude e Variância",
+              "topicos": [
+                "Conceito de amplitude e variância com medidas de dispersão"
+              ],
+              "material": true
+            },
+            {
+              "pos": 14,
+              "slug": "aula-14-desvio-medio-e-desvio-padrao",
+              "titulo": "Desvio Médio e Desvio Padrão",
+              "topicos": [
+                "Conceito de desvio médio como medida de dispersão",
+                "Conceito de desvio padrão como medida de dispersão"
+              ],
+              "material": true
+            },
+            {
+              "pos": 15,
+              "slug": "aula-15-resolucao-de-problemas-desvio-medio-e-desvio-padrao",
+              "titulo": "Resolução de Problemas – Desvio Médio e Desvio Padrão",
+              "topicos": [
+                "Cálculo de desvio médio como medida de dispersão",
+                "Cálculo de desvio padrão como medida de dispersão"
+              ],
+              "material": true
+            },
+            {
+              "pos": 16,
+              "slug": "aula-16-aula-de-verificacao-medidas-de-tendencia-central-e-medidas-de-dispersao",
+              "titulo": "Aula de Verificação: Medidas de Tendência Central e Medidas de Dispersão",
+              "topicos": [
+                "Medidas de tendência central e medidas de dispersão"
+              ],
+              "material": true
+            },
+            {
+              "pos": 17,
+              "slug": "aula-17-proporcionalidade-com-perimetro-e-area-de-poligonos",
+              "titulo": "Proporcionalidade com Perímetro e Área de Polígonos",
+              "topicos": [
+                "Relação de proporcionalidade envolvendo medidas de lado, perímetro e área de um quadrado"
+              ],
+              "material": true
+            },
+            {
+              "pos": 18,
+              "slug": "aula-18-material-indisponivel",
+              "titulo": "Aula 18: material indisponível",
+              "topicos": [],
+              "material": false
+            },
+            {
+              "pos": 19,
+              "slug": "aula-19-areas-de-poligonos-regulares-parte-1",
+              "titulo": "Áreas de Polígonos Regulares – Parte 1",
+              "topicos": [
+                "Áreas de polígonos regulares"
+              ],
+              "material": true
+            },
+            {
+              "pos": 20,
+              "slug": "aula-20-material-indisponivel",
+              "titulo": "Aula 20: material indisponível",
+              "topicos": [],
+              "material": false
+            },
+            {
+              "pos": 21,
+              "slug": "aula-21-areas-de-poligonos-regulares-parte-2",
+              "titulo": "Áreas de Polígonos Regulares – Parte 2",
+              "topicos": [
+                "Áreas de polígonos regulares"
+              ],
+              "material": true
+            },
+            {
+              "pos": 22,
+              "slug": "aula-22-area-do-circulo-e-do-setor-circular",
+              "titulo": "Área do Círculo e do Setor Circular",
+              "topicos": [
+                "Área de círculo e de setor circular"
+              ],
+              "material": true
+            },
+            {
+              "pos": 23,
+              "slug": "aula-23-resolucao-de-problemas-envolvendo-areas-de-figuras-planas",
+              "titulo": "Resolução de Problemas Envolvendo Áreas de Figuras Planas",
+              "topicos": [
+                "Área do triângulo equilátero, quadrado, hexágono regular e círculo"
+              ],
+              "material": true
+            },
+            {
+              "pos": 24,
+              "slug": "aula-24-aula-de-verificacao-areas-de-figuras-planas",
+              "titulo": "Aula de Verificação: Áreas de Figuras Planas",
+              "topicos": [
+                "Áreas de polígonos regulares e áreas de círculo"
+              ],
+              "material": true
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -85,6 +85,16 @@
   --color-geografia: #a24209;
   --color-filosofia: #8c532f;
   --color-sociologia: #8741aa;
+  /* DS e Escolar: o slug da pasta também vira variável (Escolar: Língua Portuguesa reaproveita
+     a do ENEM; a Matemática do Escolar usa o azul da Matemática). */
+  --color-front-end: #a33d08;
+  --color-back-end: #1a6e3b;
+  --color-banco-de-dados: #2a56b8;
+  --color-inteligencia-artificial: #7a3fc4;
+  --color-programacao-mobile: #b0294f;
+  --color-projeto-multidisciplinar: #725800;
+  --color-versionamento-de-codigo: #0b6a8a;
+  --color-matematica: #0f5fb6;
 }
 html[data-tema="escuro"] {
   --color-matematica-basica: #7fb0e6;
@@ -105,6 +115,14 @@ html[data-tema="escuro"] {
   --color-geografia: #f0995c;
   --color-filosofia: #d2a483;
   --color-sociologia: #c9a6d8;
+  --color-front-end: #f2a272;
+  --color-back-end: #7fc79b;
+  --color-banco-de-dados: #8fb0f0;
+  --color-inteligencia-artificial: #bfa0f0;
+  --color-programacao-mobile: #f08aa6;
+  --color-projeto-multidisciplinar: #e0c050;
+  --color-versionamento-de-codigo: #70c8e8;
+  --color-matematica: #7fb0e6;
 }
 
 :root {
@@ -127,6 +145,14 @@ html[data-tema="escuro"] {
   --color-geografia-soft: color-mix(in srgb, var(--color-geografia) 13%, var(--color-surface));
   --color-filosofia-soft: color-mix(in srgb, var(--color-filosofia) 13%, var(--color-surface));
   --color-sociologia-soft: color-mix(in srgb, var(--color-sociologia) 13%, var(--color-surface));
+  --color-front-end-soft: color-mix(in srgb, var(--color-front-end) 13%, var(--color-surface));
+  --color-back-end-soft: color-mix(in srgb, var(--color-back-end) 13%, var(--color-surface));
+  --color-banco-de-dados-soft: color-mix(in srgb, var(--color-banco-de-dados) 13%, var(--color-surface));
+  --color-inteligencia-artificial-soft: color-mix(in srgb, var(--color-inteligencia-artificial) 13%, var(--color-surface));
+  --color-programacao-mobile-soft: color-mix(in srgb, var(--color-programacao-mobile) 13%, var(--color-surface));
+  --color-projeto-multidisciplinar-soft: color-mix(in srgb, var(--color-projeto-multidisciplinar) 13%, var(--color-surface));
+  --color-versionamento-de-codigo-soft: color-mix(in srgb, var(--color-versionamento-de-codigo) 13%, var(--color-surface));
+  --color-matematica-soft: color-mix(in srgb, var(--color-matematica) 13%, var(--color-surface));
 }
 
 @media (min-width: 640px) {
@@ -205,6 +231,10 @@ html[data-tema="escuro"] .text-black {
     scroll-behavior: smooth;
     scroll-padding-top: 6rem;
     transition: background-color 0.35s var(--ease);
+  }
+  /* Durante a troca de página (Base: astro:before-swap) a rolagem é instantânea. */
+  html[data-navegando] {
+    scroll-behavior: auto;
   }
 
   body {
@@ -377,63 +407,55 @@ html[data-links="sim"] main a:not([class]) {
   text-underline-offset: 3px;
 }
 
-/* Troca de tema (app.ts define --tema-x/y/raio no ponto do botão e grava em
-   data-trocando-tema o tema de destino). Só vale durante a troca; as navegações do Astro
-   seguem as regras delas. Elementos com nome de transição saem do caminho para o efeito
-   cobrir a página toda.
-   - Para o claro: o sol nasce. A página clara se espalha em círculo a partir do botão, com
-     um clarão no começo, e cobre tudo.
+/* Troca de página (ClientRouter): corte seco. O navegador cruzava a imagem antiga e a nova
+   do <html> inteiro (fade padrão com mistura plus-lighter): as folhas de duas páginas de
+   alturas diferentes ficavam sobrepostas ("aba sobre aba") e o fundo piscava. Cada parte
+   com nome (cabeçalho, folha, rodapé) já vem sem animação; aqui some a do fundo. A entrada
+   suave fica por conta de [data-surgir], dentro da página nova. A troca de tema abaixo
+   tem as próprias regras. */
+::view-transition-group(root),
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+/* Troca de tema (app.ts, alternarTema, grava em data-trocando-tema o tema de destino). Só
+   vale durante a troca; as navegações do Astro seguem as regras delas. Elementos com nome de
+   transição saem do caminho para o efeito cobrir a página toda.
+   - Para o claro: o sol nasce. A página clara se espalha em círculo a partir do botão e
+     cobre tudo.
    - Para o escuro: o sol se apaga. A página clara se fecha em círculo de volta para o
-     botão, escurecendo, e a noite toma conta de tudo (o efeito ao contrário). */
-html[data-trocando-tema] *,
-html[data-trocando-tema] *::before,
-html[data-trocando-tema] *::after {
+     botão, e a noite toma conta de tudo (o efeito ao contrário). */
+/* Só os elementos que realmente têm nome de transição (Astro marca com este atributo): o
+   seletor universal antigo obrigava o navegador a reavaliar a página inteira, duas vezes. */
+html[data-trocando-tema] [data-astro-transition-scope] {
   view-transition-name: none !important;
 }
+html[data-trocando-tema]::view-transition-group(root),
 html[data-trocando-tema]::view-transition-old(root),
 html[data-trocando-tema]::view-transition-new(root) {
   animation: none;
   mix-blend-mode: normal;
 }
-html[data-trocando-tema='claro']::view-transition-old(root) {
-  z-index: 1;
-}
-html[data-trocando-tema='claro']::view-transition-new(root) {
-  z-index: 2;
-  animation: tema-sol 0.8s cubic-bezier(0.25, 0.6, 0.3, 1) both;
-}
-@keyframes tema-sol {
-  from {
-    clip-path: circle(0 at var(--tema-x) var(--tema-y));
-    filter: brightness(1.9) saturate(1.2);
-  }
-  55% {
-    filter: brightness(1.25) saturate(1.05);
-  }
-  to {
-    clip-path: circle(var(--tema-raio) at var(--tema-x) var(--tema-y));
-    filter: none;
-  }
-}
+/* A troca é só o círculo (clip-path), animado em app.ts (alternarTema) com a Web Animations
+   API; animar também `filter` numa camada do tamanho da tela era a parte mais cara do quadro.
+   Aqui só a ordem das camadas: para o claro a página nova fica por cima e abre; para o escuro
+   a antiga fica por cima e fecha. */
+html[data-trocando-tema='claro']::view-transition-old(root),
 html[data-trocando-tema='escuro']::view-transition-new(root) {
   z-index: 1;
 }
+html[data-trocando-tema='claro']::view-transition-new(root),
 html[data-trocando-tema='escuro']::view-transition-old(root) {
   z-index: 2;
-  animation: tema-lua 0.65s cubic-bezier(0.6, 0.1, 0.75, 0.4) both;
 }
-@keyframes tema-lua {
-  from {
-    clip-path: circle(var(--tema-raio) at var(--tema-x) var(--tema-y));
-    filter: none;
-  }
-  45% {
-    filter: brightness(0.75) saturate(0.9);
-  }
-  to {
-    clip-path: circle(0 at var(--tema-x) var(--tema-y));
-    filter: brightness(0.4) saturate(0.7);
-  }
+/* Durante a troca (app.ts: alternarTema) as cores mudam sem as transições de cor do site. */
+html[data-tema-instantaneo],
+html[data-tema-instantaneo] *:not(.tema-switch, .tema-switch *),
+html[data-tema-instantaneo] *:not(.tema-switch, .tema-switch *)::before,
+html[data-tema-instantaneo] *:not(.tema-switch, .tema-switch *)::after {
+  transition: none !important;
 }
 
 /* ---------------------------------------------------------------------------
@@ -1360,10 +1382,11 @@ html[data-tema="escuro"] .prose-tema pre.astro-code span { color: var(--shiki-da
     forced-color-adjust: none;
     background: Highlight !important;
   }
-  .prog-anel {
-    forced-color-adjust: none;
-    background: conic-gradient(Highlight calc(var(--pct) * 1%), Canvas 0) !important;
-    border: 1px solid CanvasText;
+  circle-progress::part(circle) {
+    stroke: GrayText !important;
+  }
+  circle-progress::part(value) {
+    stroke: Highlight !important;
   }
   .quiz__alternativa:has(input:checked) {
     outline: 3px solid Highlight;

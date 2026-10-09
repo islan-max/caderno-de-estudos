@@ -1,0 +1,678 @@
+{
+ "_aviso": "Ordem de aprendizado das aulas do ENEM, por matéria. Aula com só 'slug' já existe em src/content/enem; com 'titulo' e 'resumo' ainda não foi escrita e aparece como 'em breve' (sem link). A posição daqui manda na trilha; o 'order' do frontmatter não é mais usado.",
+ "materias": {
+  "matematica-basica": [
+   {
+    "slug": "divisibilidade-e-fatoracao",
+    "titulo": "Divisibilidade e fatoração",
+    "resumo": "Critérios de divisibilidade, números primos, MMC e MDC: as ferramentas para simplificar contas e resolver problemas de repetição."
+   },
+   {
+    "slug": "fracoes"
+   },
+   {
+    "slug": "potencias-e-raizes"
+   },
+   {
+    "slug": "razao-e-proporcao"
+   },
+   {
+    "slug": "regra-de-tres"
+   },
+   {
+    "slug": "porcentagem"
+   },
+   {
+    "slug": "equacoes-de-primeiro-e-segundo-grau"
+   },
+   {
+    "slug": "inequacoes",
+    "titulo": "Inequações",
+    "resumo": "Resolver desigualdades do 1º e do 2º grau e mostrar a solução na reta, em problemas de limite de custo, tempo e capacidade."
+   },
+   {
+    "slug": "sistemas-lineares",
+    "titulo": "Sistemas de equações lineares",
+    "resumo": "Sistemas com duas ou três incógnitas, por substituição e por escalonamento, em problemas de compra, mistura e idade."
+   }
+  ],
+  "matematica-financeira": [
+   {
+    "slug": "juros-simples"
+   },
+   {
+    "slug": "juros-compostos"
+   },
+   {
+    "slug": "inflacao"
+   },
+   {
+    "slug": "sistemas-de-amortizacao"
+   }
+  ],
+  "geometria": [
+   {
+    "slug": "geometria-plana"
+   },
+   {
+    "slug": "teorema-de-tales",
+    "titulo": "Teorema de Tales",
+    "resumo": "Retas paralelas cortadas por transversais formam segmentos proporcionais: a base da semelhança e das escalas."
+   },
+   {
+    "slug": "semelhanca-de-triangulos"
+   },
+   {
+    "slug": "teorema-de-pitagoras"
+   },
+   {
+    "slug": "relacoes-metricas-no-triangulo-retangulo",
+    "titulo": "Relações métricas no triângulo retângulo",
+    "resumo": "Altura, projeções e catetos: as relações que completam o Teorema de Pitágoras."
+   },
+   {
+    "slug": "trigonometria-basica"
+   },
+   {
+    "slug": "ciclo-trigonometrico",
+    "titulo": "Ciclo trigonométrico e funções periódicas",
+    "resumo": "Seno, cosseno e tangente no círculo, radianos e gráficos de fenômenos que se repetem, como marés, ondas e estações."
+   },
+   {
+    "slug": "circunferencia-arcos-e-angulos",
+    "titulo": "Circunferência: arcos, ângulos e cordas",
+    "resumo": "Medida de arcos, ângulo central e inscrito, cordas e comprimento da circunferência."
+   },
+   {
+    "slug": "geometria-solida-volume"
+   },
+   {
+    "slug": "plano-cartesiano",
+    "titulo": "Plano cartesiano e pontos",
+    "resumo": "Coordenadas, distância entre pontos, ponto médio e leitura de mapas e gráficos."
+   },
+   {
+    "slug": "equacao-da-reta",
+    "titulo": "Equação da reta e coeficiente angular",
+    "resumo": "Escrever a reta a partir de dois pontos e ler inclinação e interseções."
+   },
+   {
+    "slug": "equacao-da-circunferencia",
+    "titulo": "Equação da circunferência",
+    "resumo": "Centro e raio nas equações reduzida e geral e a leitura de regiões circulares no plano."
+   },
+   {
+    "slug": "posicoes-relativas",
+    "titulo": "Posições relativas entre retas e circunferências",
+    "resumo": "Paralelismo, perpendicularidade, tangência e interseção de retas e circunferências."
+   }
+  ],
+  "funcoes": [
+   {
+    "slug": "funcao-afim"
+   },
+   {
+    "slug": "progressao-aritmetica",
+    "titulo": "Progressão aritmética (PA)",
+    "resumo": "Sequências de razão constante: termo geral, soma dos termos e a ligação com a função afim."
+   },
+   {
+    "slug": "funcoes-quadraticas"
+   },
+   {
+    "slug": "funcoes-polinomiais-e-racionais",
+    "titulo": "Funções polinomiais e racionais",
+    "resumo": "Gráficos, raízes e comportamento de polinômios e de funções com a variável no denominador."
+   },
+   {
+    "slug": "funcoes-exponenciais"
+   },
+   {
+    "slug": "progressao-geometrica",
+    "titulo": "Progressão geométrica (PG)",
+    "resumo": "Sequências de razão multiplicativa: termo geral, soma e a ligação com a função exponencial e os juros compostos."
+   },
+   {
+    "slug": "funcoes-logaritmicas"
+   }
+  ],
+  "estatistica-e-probabilidade": [
+   {
+    "slug": "analise-de-graficos-e-tabelas"
+   },
+   {
+    "slug": "medidas-de-tendencia-central"
+   },
+   {
+    "slug": "desvio-padrao"
+   },
+   {
+    "slug": "analise-combinatoria"
+   },
+   {
+    "slug": "probabilidade-simples"
+   }
+  ],
+  "fisica": [
+   {
+    "slug": "grandezas-e-unidades",
+    "titulo": "Grandezas, unidades e vetores",
+    "resumo": "Sistema Internacional, notação científica, ordem de grandeza e soma de vetores: a base de toda a Física."
+   },
+   {
+    "slug": "cinematica"
+   },
+   {
+    "slug": "leis-de-newton"
+   },
+   {
+    "slug": "estatica-e-torque",
+    "titulo": "Estática e torque",
+    "resumo": "Equilíbrio de corpos rígidos: momento de uma força, alavancas e centro de massa."
+   },
+   {
+    "slug": "trabalho-e-energia"
+   },
+   {
+    "slug": "gravitacao",
+    "titulo": "Gravitação universal",
+    "resumo": "Lei da Gravitação, leis de Kepler, órbitas, satélites e peso em outros astros."
+   },
+   {
+    "slug": "impulso-e-quantidade-de-movimento"
+   },
+   {
+    "slug": "hidrostatica"
+   },
+   {
+    "slug": "termologia"
+   },
+   {
+    "slug": "ondulatoria",
+    "titulo": "Ondulatória e acústica",
+    "resumo": "Ondas mecânicas, frequência, comprimento de onda, som, eco e efeito Doppler."
+   },
+   {
+    "slug": "optica"
+   },
+   {
+    "slug": "eletrostatica"
+   },
+   {
+    "slug": "eletrodinamica"
+   },
+   {
+    "slug": "circuitos-eletricos"
+   },
+   {
+    "slug": "magnetismo-e-eletromagnetismo",
+    "titulo": "Magnetismo e eletromagnetismo",
+    "resumo": "Ímãs, campo magnético, força sobre cargas e correntes, indução e transformadores."
+   }
+  ],
+  "quimica": [
+   {
+    "slug": "estrutura-atomica"
+   },
+   {
+    "slug": "ligacoes-quimicas"
+   },
+   {
+    "slug": "materiais-e-estados-fisicos",
+    "titulo": "Materiais e estados físicos",
+    "resumo": "Propriedades da matéria, mudanças de estado, metais e ligas."
+   },
+   {
+    "slug": "misturas-e-separacao",
+    "titulo": "Misturas e métodos de separação",
+    "resumo": "Substâncias puras e misturas, e como separá-las: filtração, decantação, destilação e cristalização."
+   },
+   {
+    "slug": "gases",
+    "titulo": "Gases",
+    "resumo": "Leis dos gases, equação de estado, teoria cinética e misturas gasosas."
+   },
+   {
+    "slug": "funcoes-inorganicas"
+   },
+   {
+    "slug": "estequiometria"
+   },
+   {
+    "slug": "solucoes"
+   },
+   {
+    "slug": "cinetica-quimica",
+    "titulo": "Cinética química",
+    "resumo": "Velocidade das reações, colisões, catalisadores e os fatores que aceleram ou retardam uma reação."
+   },
+   {
+    "slug": "equilibrio-quimico",
+    "titulo": "Equilíbrio químico",
+    "resumo": "Constante de equilíbrio, deslocamento, pH e pOH, hidrólise de sais e solubilidade."
+   },
+   {
+    "slug": "termoquimica"
+   },
+   {
+    "slug": "eletroquimica",
+    "titulo": "Eletroquímica",
+    "resumo": "Pilhas, eletrólise, potenciais de redução e corrosão."
+   },
+   {
+    "slug": "radioatividade",
+    "titulo": "Radioatividade e reações nucleares",
+    "resumo": "Decaimento, meia-vida, fissão e fusão, e usos e riscos dos radioisótopos."
+   },
+   {
+    "slug": "quimica-organica"
+   },
+   {
+    "slug": "polimeros"
+   },
+   {
+    "slug": "fontes-de-energia",
+    "titulo": "Fontes de energia e combustíveis",
+    "resumo": "Petróleo, gás natural, carvão, biomassa, biocombustíveis e energia nuclear."
+   },
+   {
+    "slug": "industria-quimica-e-tratamento-de-agua",
+    "titulo": "Indústria química, metalurgia e tratamento de água",
+    "resumo": "Processos industriais, obtenção de metais e as etapas do tratamento da água."
+   },
+   {
+    "slug": "quimica-ambiental"
+   }
+  ],
+  "biologia": [
+   {
+    "slug": "biologia-como-ciencia",
+    "titulo": "Biologia como ciência",
+    "resumo": "História da Biologia, método científico e planejamento de experimentos."
+   },
+   {
+    "slug": "origem-da-vida",
+    "titulo": "Origem do universo, da Terra e da vida",
+    "resumo": "Teorias sobre a origem do universo e da vida, e as primeiras células."
+   },
+   {
+    "slug": "bioquimica"
+   },
+   {
+    "slug": "citologia"
+   },
+   {
+    "slug": "histologia",
+    "titulo": "Histologia",
+    "resumo": "Os quatro tecidos animais e o que cada um faz no corpo."
+   },
+   {
+    "slug": "microbiologia-e-virologia",
+    "titulo": "Microbiologia e virologia",
+    "resumo": "Bactérias, fungos, protozoários e vírus: estrutura, reprodução e papel nas doenças e na indústria."
+   },
+   {
+    "slug": "embriologia",
+    "titulo": "Embriologia",
+    "resumo": "Fecundação, desenvolvimento embrionário, folhetos germinativos e anexos."
+   },
+   {
+    "slug": "fisiologia-humana"
+   },
+   {
+    "slug": "imunologia-e-grupos-sanguineos",
+    "titulo": "Imunologia e grupos sanguíneos",
+    "resumo": "Antígenos e anticorpos, transplantes, doenças autoimunes e o sistema ABO e Rh."
+   },
+   {
+    "slug": "genetica"
+   },
+   {
+    "slug": "biotecnologia"
+   },
+   {
+    "slug": "evolucao"
+   },
+   {
+    "slug": "sistematica-e-filogenia",
+    "titulo": "Sistemática, filogenia e ciclos de vida",
+    "resumo": "Classificação dos seres vivos, árvores filogenéticas e ciclos de vida."
+   },
+   {
+    "slug": "botanica"
+   },
+   {
+    "slug": "zoologia"
+   },
+   {
+    "slug": "ecologia"
+   },
+   {
+    "slug": "biomas-brasileiros",
+    "titulo": "Biogeografia e biomas brasileiros",
+    "resumo": "Distribuição dos seres vivos e as características dos biomas do Brasil."
+   },
+   {
+    "slug": "conservacao-e-legislacao-ambiental",
+    "titulo": "Conservação de ecossistemas e legislação ambiental",
+    "resumo": "Unidades de conservação, desmatamento e as leis que protegem o ambiente."
+   },
+   {
+    "slug": "saude-publica"
+   },
+   {
+    "slug": "vacinacao"
+   },
+   {
+    "slug": "indicadores-sociais",
+    "titulo": "Indicadores sociais",
+    "resumo": "IDH, pobreza e desenvolvimento humano: como ler os números."
+   }
+  ],
+  "historia": [
+   {
+    "slug": "antiguidade-e-idade-media",
+    "titulo": "Antiguidade e Idade Média",
+    "resumo": "Escravidão antiga, democracia grega e feudalismo."
+   },
+   {
+    "slug": "povos-indigenas-e-afro-brasileiros",
+    "titulo": "Povos indígenas e história afro-brasileira",
+    "resumo": "Povos originários, resistência africana e a cultura afro-brasileira."
+   },
+   {
+    "slug": "brasil-colonia"
+   },
+   {
+    "slug": "revolucao-industrial"
+   },
+   {
+    "slug": "revolucao-francesa"
+   },
+   {
+    "slug": "independencias-na-america-latina",
+    "titulo": "Independências na América Latina",
+    "resumo": "Os movimentos de independência das colônias espanholas e a formação dos países."
+   },
+   {
+    "slug": "brasil-imperio"
+   },
+   {
+    "slug": "neocolonialismo-e-imperialismo",
+    "titulo": "Neocolonialismo e imperialismo na Ásia e na África",
+    "resumo": "A partilha da África e da Ásia no século XIX e a resistência dos povos."
+   },
+   {
+    "slug": "republica"
+   },
+   {
+    "slug": "guerras-mundiais"
+   },
+   {
+    "slug": "revolucoes-russa-chinesa-e-cubana",
+    "titulo": "Revoluções Russa, Chinesa e Cubana",
+    "resumo": "As três revoluções socialistas do século XX, suas causas e consequências."
+   },
+   {
+    "slug": "era-vargas"
+   },
+   {
+    "slug": "guerra-fria"
+   },
+   {
+    "slug": "ditadura-militar"
+   },
+   {
+    "slug": "movimentos-sociais"
+   },
+   {
+    "slug": "globalizacao"
+   }
+  ],
+  "geografia": [
+   {
+    "slug": "cartografia"
+   },
+   {
+    "slug": "demografia"
+   },
+   {
+    "slug": "migracao"
+   },
+   {
+    "slug": "urbanizacao"
+   },
+   {
+    "slug": "agricultura"
+   },
+   {
+    "slug": "questoes-ambientais"
+   },
+   {
+    "slug": "mudancas-climaticas"
+   },
+   {
+    "slug": "globalizacao"
+   },
+   {
+    "slug": "blocos-economicos"
+   },
+   {
+    "slug": "geopolitica"
+   },
+   {
+    "slug": "conflitos-internacionais"
+   }
+  ],
+  "filosofia": [
+   {
+    "slug": "filosofia-antiga"
+   },
+   {
+    "slug": "filosofia-moderna"
+   },
+   {
+    "slug": "filosofia-contemporanea"
+   },
+   {
+    "slug": "etica"
+   },
+   {
+    "slug": "politica"
+   },
+   {
+    "slug": "liberalismo-e-seus-criticos",
+    "titulo": "Liberalismo e seus críticos",
+    "resumo": "O pensamento liberal dos séculos XIX e XX e as críticas socialista, anarquista e conservadora."
+   },
+   {
+    "slug": "cidadania"
+   }
+  ],
+  "sociologia": [
+   {
+    "slug": "cultura"
+   },
+   {
+    "slug": "industria-cultural"
+   },
+   {
+    "slug": "trabalho"
+   },
+   {
+    "slug": "desigualdade-social"
+   },
+   {
+    "slug": "estado-e-poder"
+   },
+   {
+    "slug": "cidadania"
+   },
+   {
+    "slug": "direitos-humanos"
+   },
+   {
+    "slug": "movimentos-sociais"
+   }
+  ],
+  "lingua-portuguesa": [
+   {
+    "slug": "interpretacao-de-texto"
+   },
+   {
+    "slug": "denotacao-e-conotacao"
+   },
+   {
+    "slug": "figuras-de-linguagem",
+    "titulo": "Figuras de linguagem",
+    "resumo": "Metáfora, metonímia, ironia, hipérbole e outras figuras, e o efeito que cada uma produz no texto."
+   },
+   {
+    "slug": "ambiguidade"
+   },
+   {
+    "slug": "funcoes-da-linguagem"
+   },
+   {
+    "slug": "variacao-linguistica"
+   },
+   {
+    "slug": "generos-textuais"
+   },
+   {
+    "slug": "coesao-e-coerencia"
+   },
+   {
+    "slug": "intertextualidade"
+   },
+   {
+    "slug": "gramatica-norma-padrao"
+   },
+   {
+    "slug": "concordancia-e-regencia"
+   },
+   {
+    "slug": "pontuacao-e-seus-efeitos"
+   },
+   {
+    "slug": "escolas-literarias"
+   },
+   {
+    "slug": "analise-narrativa"
+   },
+   {
+    "slug": "analise-de-poesia"
+   },
+   {
+    "slug": "vanguardas-europeias"
+   },
+   {
+    "slug": "referencias-socioculturais"
+   }
+  ],
+  "redacao": [
+   {
+    "slug": "regras-da-nota-zero"
+   },
+   {
+    "slug": "leitura-da-proposta-e-recorte-do-tema"
+   },
+   {
+    "slug": "redacao-dissertativo-argumentativa"
+   },
+   {
+    "slug": "repertorio-sociocultural"
+   },
+   {
+    "slug": "projeto-de-texto-e-argumentacao"
+   },
+   {
+    "slug": "coesao-conectivos-e-referenciacao"
+   },
+   {
+    "slug": "norma-padrao-na-redacao"
+   },
+   {
+    "slug": "proposta-de-intervencao"
+   }
+  ],
+  "lingua-estrangeira": [
+   {
+    "slug": "vocabulario-em-contexto"
+   },
+   {
+    "slug": "falsos-cognatos"
+   },
+   {
+    "slug": "conectivos"
+   },
+   {
+    "slug": "interpretacao-de-texto-e-compreensao-leitora"
+   },
+   {
+    "slug": "analise-de-generos-textuais"
+   },
+   {
+    "slug": "temas-culturais-e-atualidades"
+   },
+   {
+    "slug": "espanhol-vocabulario-em-contexto",
+    "titulo": "Espanhol: vocabulário em contexto",
+    "resumo": "Descobrir o sentido de palavras e expressões em espanhol a partir do texto."
+   },
+   {
+    "slug": "espanhol-falsos-cognatos",
+    "titulo": "Espanhol: falsos cognatos",
+    "resumo": "Palavras parecidas com o português que mudam de sentido em espanhol."
+   },
+   {
+    "slug": "espanhol-conectivos",
+    "titulo": "Espanhol: conectivos",
+    "resumo": "Conectores que ligam as ideias do texto e indicam causa, oposição e conclusão."
+   },
+   {
+    "slug": "espanhol-interpretacao-de-texto",
+    "titulo": "Espanhol: interpretação de texto",
+    "resumo": "Ideia central, inferência e intenção do autor em textos em espanhol."
+   },
+   {
+    "slug": "espanhol-generos-textuais",
+    "titulo": "Espanhol: gêneros textuais",
+    "resumo": "Reconhecer notícia, anúncio, carta, tirinha e outros gêneros em espanhol."
+   },
+   {
+    "slug": "espanhol-temas-culturais-e-atualidades",
+    "titulo": "Espanhol: temas culturais e atualidades",
+    "resumo": "Cultura e atualidades dos países de língua espanhola nos textos do ENEM."
+   }
+  ],
+  "artes": [
+   {
+    "slug": "movimentos-artisticos"
+   },
+   {
+    "slug": "arte-moderna-e-contemporanea"
+   },
+   {
+    "slug": "arte-como-critica-social"
+   },
+   {
+    "slug": "patrimonio-cultural"
+   }
+  ],
+  "educacao-fisica": [
+   {
+    "slug": "corpo-esporte-e-sociedade",
+    "titulo": "Corpo, esporte e sociedade",
+    "resumo": "Linguagem corporal e a função social do esporte e das práticas corporais."
+   }
+  ],
+  "tic": [
+   {
+    "slug": "tecnologias-e-sociedade",
+    "titulo": "Tecnologias e sociedade",
+    "resumo": "Função e impacto social das tecnologias de informação e comunicação."
+   }
+  ]
+ }
+}
