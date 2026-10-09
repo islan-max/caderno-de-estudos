@@ -143,6 +143,8 @@ function temaSalvo(): 'claro' | 'escuro' {
   return ler<string>(CHAVE_TEMA, 'claro') === 'escuro' ? 'escuro' : 'claro';
 }
 
+let transicaoDoTema: ViewTransition | null = null;
+
 function alternarTema(origem?: HTMLElement | null) {
   const novo = temaAtual() === 'escuro' ? 'claro' : 'escuro';
   gravar(CHAVE_TEMA, novo);
@@ -190,10 +192,16 @@ function alternarTema(origem?: HTMLElement | null) {
         );
       })
       .catch(() => {});
-    transicao.finished.finally(() => {
-      delete raiz.dataset.trocandoTema;
-      liberarTransicoes();
-    });
+    // Num duplo clique a segunda troca aborta a primeira: só a transição mais recente limpa as
+    // flags, senão a segunda perderia a ordem das camadas e as transições desligadas.
+    transicaoDoTema = transicao;
+    transicao.finished
+      .catch(() => {})
+      .finally(() => {
+        if (transicaoDoTema !== transicao) return;
+        delete raiz.dataset.trocandoTema;
+        liberarTransicoes();
+      });
   }
   toast(novo === 'escuro' ? 'Tema escuro ativado' : 'Tema claro ativado', novo === 'escuro' ? 'moon' : 'sun');
 }
