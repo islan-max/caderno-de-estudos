@@ -55,7 +55,7 @@ O material é ponto de partida, não verdade: erros, premissas fracas e itens de
 
 - 184 aulas ainda "em breve".
 - `scripts/checar-quiz.mjs` e `scripts/validar-aula.mjs` são só do ENEM; nas aulas de DS o quiz foi conferido no navegador (3 questões × 5 alternativas, gabarito 3 de 3).
-- Aba "Escolar" continua oculta (não foi mexida).
+- Aba "Escolar" está visível e usa as mesmas rotas e o mesmo visual da aba DS.
 
 ## Correções feitas nas aulas de 06/10/2026
 

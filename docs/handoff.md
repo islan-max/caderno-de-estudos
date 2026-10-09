@@ -25,3 +25,17 @@ Formato de cada entrada, curto:
 - **Estado:** pronto segundo a sessão que fez o trabalho: `npm run build` com 204 páginas, checagens de contraste e acessibilidade passando. Não reverificado nesta passagem.
 - **Próximo passo:** continuar a Fase 4 do ENEM em `matematica-basica/divisibilidade-e-fatoracao` (primeira linha pendente de `docs/aulas/progresso.md`).
 - **Pendências:** reiniciar o `astro dev` da porta 4321, que pode estar com cache velho.
+
+## 09/10/2026 · Codex · validação do acervo ENEM e CI
+
+- **Detalhes:** [docs/sessoes/2026-10-09-validacao-acervo-ci.md](sessoes/2026-10-09-validacao-acervo-ci.md)
+- **Estado:** concluído. `node scripts/validar-aula.mjs src/content/enem` passou nas 124 aulas sem erro. Build, 124 quizzes, contraste e acessibilidade passaram. A CI agora valida as aulas e os quizzes com o `BASE_PATH` correto.
+- **Próximo passo:** criar `matematica-basica/divisibilidade-e-fatoracao`, primeira linha não concluída de `docs/aulas/progresso.md`.
+- **Pendências:** 28 avisos editoriais de termos no glossário exigem revisão manual. A verificação geométrica das figuras SVG no navegador continua manual.
+
+## 09/10/2026 · Codex · revisão dos glossários ENEM
+
+- **Detalhes:** [docs/sessoes/2026-10-09-validacao-acervo-ci.md](sessoes/2026-10-09-validacao-acervo-ci.md#revisão-dos-glossários)
+- **Estado:** concluído. As 28 aulas com aviso foram revisadas. `node scripts/validar-aula.mjs src/content/enem` terminou com 124 aulas, 0 erro e 0 aviso. Build com 204 páginas e os 124 quizzes passaram.
+- **Próximo passo:** criar `matematica-basica/divisibilidade-e-fatoracao`, primeira linha não concluída de `docs/aulas/progresso.md`.
+- **Pendências:** a verificação geométrica das figuras SVG no navegador continua manual.

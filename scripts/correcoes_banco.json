@@ -940,5 +940,27 @@
       "limitação da participação das trabalhadoras em manifestações."
     ],
     "alternativas_em_imagem": false
+  },
+  "2023-ppl-D2-azul-Q159": {
+    "nota": "frações das alternativas saíram embaralhadas na extração; conferidas na imagem da página 25 em 09/10/2026",
+    "alternativas": [
+      "76π/3",
+      "304π/9",
+      "4 336π/9",
+      "4 000π/3",
+      "18 256π/9"
+    ],
+    "alternativas_em_imagem": false
+  },
+  "2009-regular-D2-azul-Q173": {
+    "nota": "as alternativas foram lidas dentro do texto do enunciado; conferidas na imagem da página 29 em 09/10/2026",
+    "alternativas": [
+      "156 cm³.",
+      "189 cm³.",
+      "192 cm³.",
+      "216 cm³.",
+      "540 cm³."
+    ],
+    "alternativas_em_imagem": false
   }
 }
