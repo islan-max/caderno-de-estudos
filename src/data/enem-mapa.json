@@ -5,57 +5,35 @@
    {
     "slug": "divisibilidade-e-fatoracao",
     "titulo": "Divisibilidade e fatoração",
-    "resumo": "Critérios de divisibilidade, números primos, MMC e MDC: as ferramentas para simplificar contas e resolver problemas de repetição.",
-    "unidade": "Números e operações"
+    "resumo": "Critérios de divisibilidade, números primos, MMC e MDC: as ferramentas para simplificar contas e resolver problemas de repetição."
    },
    {
-    "slug": "fracoes",
-    "unidade": "Números e operações"
+    "slug": "fracoes"
    },
    {
-    "slug": "potencias-e-raizes",
-    "unidade": "Números e operações"
+    "slug": "potencias-e-raizes"
    },
    {
-    "slug": "razao-e-proporcao",
-    "unidade": "Proporcionalidade",
-    "preRequisitos": [
-     "fracoes",
-     "potencias-e-raizes"
-    ]
+    "slug": "razao-e-proporcao"
    },
    {
-    "slug": "regra-de-tres",
-    "unidade": "Proporcionalidade",
-    "preRequisitos": [
-     "razao-e-proporcao"
-    ]
+    "slug": "regra-de-tres"
    },
    {
-    "slug": "porcentagem",
-    "unidade": "Proporcionalidade",
-    "preRequisitos": [
-     "fracoes"
-    ]
+    "slug": "porcentagem"
    },
    {
-    "slug": "equacoes-de-primeiro-e-segundo-grau",
-    "unidade": "Álgebra",
-    "preRequisitos": [
-     "potencias-e-raizes"
-    ]
+    "slug": "equacoes-de-primeiro-e-segundo-grau"
    },
    {
     "slug": "inequacoes",
     "titulo": "Inequações",
-    "resumo": "Resolver desigualdades do 1º e do 2º grau e mostrar a solução na reta, em problemas de limite de custo, tempo e capacidade.",
-    "unidade": "Álgebra"
+    "resumo": "Resolver desigualdades do 1º e do 2º grau e mostrar a solução na reta, em problemas de limite de custo, tempo e capacidade."
    },
    {
     "slug": "sistemas-lineares",
     "titulo": "Sistemas de equações lineares",
-    "resumo": "Sistemas com duas ou três incógnitas, por substituição e por escalonamento, em problemas de compra, mistura e idade.",
-    "unidade": "Álgebra"
+    "resumo": "Sistemas com duas ou três incógnitas, por substituição e por escalonamento, em problemas de compra, mistura e idade."
    }
   ],
   "matematica-financeira": [

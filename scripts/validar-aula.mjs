@@ -116,7 +116,7 @@ function validar(arquivo) {
   const corpo = linhas.slice(fimFm + 1);
   const L = (i) => i + deslocamento + 1;
 
-  const campos = new Set(['title', 'subject', 'order', 'relevance', 'quickSummary', 'resources', 'gabarito', 'conceitos', 'cartoes']);
+  const campos = new Set(['title', 'subject', 'order', 'relevance', 'quickSummary', 'resources', 'gabarito']);
   for (const k of Object.keys(fm)) if (!campos.has(k)) erro(0, `campo "${k}" não existe no schema (seria ignorado sem aviso)`);
   for (const k of ['title', 'subject', 'relevance', 'quickSummary']) if (typeof fm[k] !== 'string' || !fm[k].trim()) erro(0, `falta "${k}"`);
   if (!Number.isInteger(fm.order)) erro(0, '"order" deve ser um número inteiro');
@@ -481,13 +481,6 @@ function validar(arquivo) {
       if (/[{}<]/.test(p) || /\*\*/.test(p)) erro(0, `gabarito[${j}].porque aparece como texto puro: sem markdown, { } ou <`);
       // o porque vai para o quiz como textContent: &lt; apareceria literalmente
       if (/&[a-z]+;/.test(p)) erro(0, `gabarito[${j}].porque tem entidade HTML (${p.match(/&[a-z]+;/)[0]}); escreva por extenso ("menor que")`);
-      const alvoRecomendado = g?.recomendar?.aula;
-      if (alvoRecomendado) {
-        const arquivoAlvo = join(RAIZ, 'src', 'content', `${alvoRecomendado}.mdx`);
-        if (!existsSync(arquivoAlvo)) erro(0, `gabarito[${j}].recomendar.aula "${alvoRecomendado}" não é uma aula existente`);
-        else if (lerYaml(readFileSync(arquivoAlvo, 'utf8').split('---')[1]).title !== g.recomendar.titulo)
-          erro(0, `gabarito[${j}].recomendar.titulo deve ser o título de "${alvoRecomendado}"`);
-      }
     });
   }
 

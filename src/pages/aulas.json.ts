@@ -16,8 +16,6 @@ export const GET: APIRoute = async () => {
     h: a.href,
     i: a.icone,
     c: a.grupoCor,
-    // Pré-requisitos (ids): só orientam o bloco Hoje; nada é bloqueado.
-    ...(a.preRequisitos?.length ? { p: a.preRequisitos } : {}),
   }));
 
   return new Response(JSON.stringify(payload), {

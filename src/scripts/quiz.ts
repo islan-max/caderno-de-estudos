@@ -17,8 +17,6 @@
 interface Gabarito {
   correta: number;
   porque?: string;
-  conceitos?: string[];
-  recomendar?: { aula: string; titulo: string; porque: string };
 }
 
 interface Questao {
@@ -27,8 +25,6 @@ interface Questao {
   paragrafoAlternativas: HTMLParagraphElement | null;
   alternativas: string[];
 }
-
-import { recomendacaoDispensada, dispensarRecomendacao } from '../lib/aprendizagem/armazem.ts';
 
 const LETRAS = ['a', 'b', 'c', 'd', 'e'];
 
@@ -174,57 +170,6 @@ function montarQuestao(q: Questao, indice: number): HTMLElement {
   return bloco;
 }
 
-const REVISAR = /\s*Revisar: Aula Teórica › (.+?)\.?$/;
-
-/** A seção da aula teórica cujo título começa com `titulo`, para virar link. */
-function secaoDaAula(titulo: string): HTMLElement | null {
-  const alvo = titulo.replace(/\s+/g, ' ').trim();
-  return (
-    Array.from(document.querySelectorAll<HTMLElement>('[data-conteudo-aula] h3[id]')).find(
-      (h) => (h.textContent || '').replace(/\s+/g, ' ').trim() === alvo
-    ) ?? null
-  );
-}
-
-/** Explicação do gabarito: texto, link para a seção a rever e, se errou, a recomendação com o motivo. */
-function montarResposta(resposta: HTMLElement, veredito: string, chave: Gabarito, errou: boolean) {
-  const porque = (chave.porque ?? '').trim();
-  const revisar = porque.match(REVISAR);
-  resposta.textContent = veredito + (porque ? ' ' + porque.replace(REVISAR, '') : '');
-
-  if (revisar) {
-    const secao = secaoDaAula(revisar[1]);
-    resposta.append(' Revisar: Aula Teórica › ');
-    if (secao) {
-      const link = document.createElement('a');
-      link.href = '#' + secao.id;
-      link.textContent = revisar[1];
-      resposta.append(link);
-    } else {
-      resposta.append(revisar[1]);
-    }
-  }
-
-  const rec = chave.recomendar;
-  if (errou && rec && !recomendacaoDispensada(rec.aula)) {
-    const caixa = document.createElement('span');
-    caixa.className = 'quiz__recomendacao';
-    const link = document.createElement('a');
-    link.href = (document.documentElement.dataset.base || '/') + rec.aula + '/';
-    link.textContent = 'Aula recomendada: ' + rec.titulo;
-    const dispensar = document.createElement('button');
-    dispensar.type = 'button';
-    dispensar.textContent = 'Dispensar';
-    dispensar.addEventListener('click', () => {
-      dispensarRecomendacao(rec.aula);
-      caixa.remove();
-      resposta.focus({ preventScroll: true });
-    });
-    caixa.append(link, ' ' + rec.porque + ' ', dispensar);
-    resposta.append(caixa);
-  }
-}
-
 export function montarQuiz() {
   const artigo = document.querySelector<HTMLElement>('[data-conteudo-aula]');
   if (!artigo || artigo.dataset.quizPronto === 'true') return;
@@ -328,16 +273,8 @@ export function montarQuiz() {
         : acertou
           ? 'Você acertou. Resposta correta: ' + letra + '.'
           : 'Você errou. A resposta correta era a ' + letra + ' (em amarelo).';
-    montarResposta(resposta, veredito, chave, escolha < 0 || !acertou);
+    resposta.textContent = veredito + (chave.porque ? ' ' + chave.porque : '');
     resposta.hidden = false;
-    // A aula (id e conceitos) é de quem ouve; aqui só o que a questão sabe. Em branco não é resposta.
-    if (escolha >= 0) {
-      document.dispatchEvent(
-        new window.CustomEvent('cdt:questao-corrigida', {
-          detail: { numero: i + 1, acertou, conceitoIds: chave.conceitos ?? [] },
-        })
-      );
-    }
     return veredito;
   }
 

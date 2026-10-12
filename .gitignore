@@ -30,9 +30,3 @@ pnpm-debug.log*
 .cache/
 scripts/node_modules/
 scripts/__pycache__/
-# Added by code-review-graph
-.code-review-graph/
-# Ferramentas locais de agentes, fora do repositório
-.claude/skills/
-.mcp.json
-.specify/

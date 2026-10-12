@@ -1,16 +1,5 @@
 import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
-import registroDeConceitos from './data/conceitos.json';
-import { conceitosInvalidos } from './lib/aprendizagem/conceitos';
-
-// Ids de conceito (`<matéria>/<conceito>`) precisam estar em src/data/conceitos.json: id errado quebra o build.
-const conceitosSchema = z
-  .array(z.string())
-  .default([])
-  .superRefine((ids, ctx) => {
-    const ruins = conceitosInvalidos(ids, registroDeConceitos);
-    if (ruins.length) ctx.addIssue({ code: 'custom', message: `conceito não cadastrado em src/data/conceitos.json: ${ruins.join(', ')}` });
-  });
 
 // Bloco opcional de recursos extras de uma aula (vídeo aula, curso gratuito,
 // materiais adicionais, conteúdo complementar). Cada seção é independente —
@@ -52,39 +41,10 @@ const resourcesSchema = z.object({
 // resposta certa de cada uma (índice 0-4 = alternativas a-e) e, quando vale a
 // pena, uma linha explicando o porquê. O quiz é montado no navegador a partir
 // do HTML já renderizado, então adicionar gabarito não exige reescrever aula.
-// Recomendação mostrada quando o estudante erra a questão: aula do próprio site e o motivo, em texto.
-const recomendarSchema = z.object({
-  aula: z.string().regex(/^(enem|escolar|ds)\/[a-z0-9-]+\/[a-z0-9-]+$/), // id da aula; validar-aula confere se existe
-  titulo: z.string(), // nome da aula, para o link; validar-aula confere com o título dela
-  porque: z.string().min(10),
-});
-
 const gabaritoSchema = z.object({
   correta: z.number().min(0).max(4),
   porque: z.string().optional(),
-  conceitos: conceitosSchema, // o que a questão avalia; alimenta o estado do conceito
-  recomendar: recomendarSchema.optional(),
 });
-
-// Cartão de revisão escrito à mão: pergunta curta, resposta sem ambiguidade, ligado a um conceito.
-// O id é único na aula; o id global do cartão é "<id da aula>/<id do cartão>".
-const cartoesSchema = z
-  .array(
-    z.object({
-      id: z.string().regex(/^[a-z0-9-]+$/),
-      tipo: z.enum(['pergunta', 'lacuna', 'verdadeiro-falso']),
-      frente: z.string().min(10),
-      verso: z.string().min(3),
-      conceito: z.string(),
-    })
-  )
-  .default([])
-  .superRefine((cartoes, ctx) => {
-    const ids = cartoes.map((c) => c.id);
-    if (new Set(ids).size !== ids.length) ctx.addIssue({ code: 'custom', message: 'ids de cartão repetidos na mesma aula' });
-    const ruins = conceitosInvalidos(cartoes.map((c) => c.conceito), registroDeConceitos);
-    if (ruins.length) ctx.addIssue({ code: 'custom', message: `conceito não cadastrado em src/data/conceitos.json: ${ruins.join(', ')}` });
-  });
 
 // Ferramentas para acompanhar e praticar a aula (programas, contas, materiais). Cada item vira
 // uma linha no bloco "Ferramentas para esta aula"; sem a lista, o bloco não aparece.
@@ -103,8 +63,6 @@ const lessonSchema = z.object({
   relevance: z.string(),
   quickSummary: z.string().optional(), // resumo rápido de 2-4 linhas, direto ao ponto
   order: z.number().default(1),
-  conceitos: conceitosSchema, // o que a aula ensina
-  cartoes: cartoesSchema,
   gabarito: z.array(gabaritoSchema).optional(),
   resources: resourcesSchema.optional(),
   ferramentas: z.array(ferramentaSchema).optional(),

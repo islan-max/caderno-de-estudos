@@ -6,7 +6,6 @@
 // do armazenamento local). A diferença é discreta de propósito: o item
 // continua legível e clicável, só perde o destaque de "pendente".
 import Icone from './Icone.astro';
-import { METRICAS } from '../lib/aprendizagem/metricas';
 
 // Só o que a trilha usa. `pronta: false` mostra a aula como "Em breve" (ou `aviso`), sem link
 // e fora do progresso: o que não está disponível não pode ser clicado.
@@ -20,44 +19,17 @@ interface ItemTrilha {
   marca?: string;
   /** Selo da aula sem link (padrão: "Em breve"), ex.: "Sem material". */
   aviso?: string;
-  /** Título do grupo em que a aula começa; aparece quando muda de uma aula para a seguinte. */
-  unidade?: string;
-  /** Aulas que esta pressupõe. O aviso só aparece enquanto alguma não foi concluída; nada é bloqueado. */
-  pre?: { id: string; titulo: string }[];
-  /** Conceitos da aula; alimentam o "Ver o que ficou" da unidade. */
-  conceitos?: { id: string; nome: string }[];
 }
 
 interface Props {
   aulas: ItemTrilha[];
   accent?: string;
-  /** ENEM mostra o estado local de cada aula; DS e Escolar preservam a trilha simples. */
-  mostrarEstado?: boolean;
 }
-const { aulas, accent = 'enem', mostrarEstado = false } = Astro.props;
-const diagnostico = METRICAS['diagnostico-do-conceito'];
-const conceitosDaUnidade = (unidade: string) =>
-  aulas
-    .filter((a) => a.unidade === unidade)
-    .flatMap((a) => (a.conceitos ?? []).map((c) => ({ ...c, aula: a.titulo, href: a.href })));
+const { aulas, accent = 'enem' } = Astro.props;
 ---
 
 <ol class="trilha" style={`--accent: var(--color-${accent});`}>
   {aulas.map((aula, i) => (
-    <Fragment>
-    {aula.unidade && aula.unidade !== aulas[i - 1]?.unidade && (
-      <li class="trilha__unidade">
-        <h2 class="trilha__unidade-titulo">{aula.unidade}</h2>
-        {mostrarEstado && conceitosDaUnidade(aula.unidade).length > 0 && (
-          <details class="trilha__ficou" data-ficou data-conceitos={JSON.stringify(conceitosDaUnidade(aula.unidade))}>
-            <summary>Ver o que ficou</summary>
-            <p class="trilha__ficou-resumo" data-ficou-resumo></p>
-            <ul class="trilha__ficou-lista" data-ficou-lista></ul>
-            <p class="trilha__ficou-como"><strong>Como calculamos.</strong> {diagnostico.formula} {diagnostico.naoMede}</p>
-          </details>
-        )}
-      </li>
-    )}
     <li class="trilha__item" data-aula-id={aula.pronta === false ? undefined : aula.id} style={`--i: ${i}`} data-surgir>
       {aula.pronta === false ? (
         <div class="trilha__link trilha__link--breve">
@@ -80,12 +52,6 @@ const conceitosDaUnidade = (unidade: string) =>
           <span class="trilha__corpo">
             <span class="trilha__titulo">{aula.titulo}</span>
             <span class="trilha__resumo">{aula.resumo}</span>
-            {mostrarEstado && <span class="trilha__estado" data-estado-texto></span>}
-            {aula.pre?.length ? (
-              <span class="trilha__pre" data-pre={aula.pre.map((p) => p.id).join(' ')} hidden>
-                Pressupõe {aula.pre.map((p) => p.titulo).join(' e ')}. Se travar, comece por lá.
-              </span>
-            ) : null}
             <!-- A marca de "vista" é só um ícone: o texto abaixo leva a mesma informação
                  ao leitor de tela. Quem o preenche é refletirProgresso() em app.ts. -->
             <span class="apenas-leitor" data-vista-texto></span>
@@ -97,7 +63,6 @@ const conceitosDaUnidade = (unidade: string) =>
         </a>
       )}
     </li>
-    </Fragment>
   ))}
 </ol>
 
@@ -239,62 +204,6 @@ const conceitosDaUnidade = (unidade: string) =>
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
-  }
-  .trilha__estado {
-    align-self: flex-start;
-    margin-top: 0.15rem;
-    padding: 0.18rem 0.42rem;
-    border: 1px solid var(--color-line);
-    border-radius: 999px;
-    font-family: var(--font-display);
-    font-size: calc(0.64rem * var(--escala-texto, 1));
-    font-weight: 700;
-    line-height: 1.2;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    color: var(--color-ink-soft);
-  }
-  .trilha__item[data-estado='em-estudo'] .trilha__estado {
-    border-color: color-mix(in srgb, var(--accent) 45%, var(--color-line));
-    color: var(--accent);
-  }
-  .trilha__item[data-estado='revisar'] .trilha__estado {
-    border-color: color-mix(in srgb, var(--color-aviso) 55%, var(--color-line));
-    color: var(--color-aviso);
-  }
-  .trilha__pre {
-    margin-top: 0.15rem;
-    font-size: calc(0.78rem * var(--escala-texto, 1));
-    line-height: 1.4;
-    color: var(--color-ink-soft);
-  }
-  .trilha__unidade { list-style: none; margin-top: 0.6rem; }
-  /* A lista do "o que ficou" é montada em app.ts (montarFicou), por isso :global. */
-  .trilha__ficou { margin-top: 0.4rem; font-size: calc(0.88rem * var(--escala-texto, 1)); line-height: 1.55; }
-  .trilha__ficou summary { cursor: pointer; padding: 0.4rem 0; font-weight: 700; color: var(--color-ink); }
-  .trilha__ficou-resumo, .trilha__ficou-como { margin: 0.3rem 0; color: var(--color-ink-soft); }
-  .trilha__ficou :global(.trilha__ficou-lista) { list-style: none; margin: 0.4rem 0; padding: 0; display: grid; gap: 0.5rem; }
-  .trilha__ficou :global(.ficou__item) { padding: 0.55rem 0.7rem; border: 1px solid var(--color-line); border-radius: 0.55rem; }
-  .trilha__ficou :global(.ficou__estado) {
-    display: inline-block; margin-left: 0.4rem; padding: 0.1rem 0.45rem; border: 1px solid var(--color-line);
-    border-radius: 999px; font-size: 0.72em; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase;
-  }
-  .trilha__ficou :global(.ficou__estado[data-estado='lacuna']) { border-color: var(--color-aviso); color: var(--color-aviso); }
-  .trilha__ficou :global(.ficou__estado[data-estado='firme']) { border-color: var(--color-ok); color: var(--color-ok); }
-  .trilha__ficou :global(.ficou__item a) { color: inherit; }
-  .trilha__ficou :global(.ficou__evidencias) { margin: 0.3rem 0 0; padding-left: 1.1rem; color: var(--color-ink-soft); font-size: 0.92em; }
-  .trilha__unidade-titulo {
-    margin: 0;
-    font-family: var(--font-display);
-    font-size: calc(0.72rem * var(--escala-texto, 1));
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--color-ink-soft);
-  }
-  .trilha__item[data-estado='concluida'] .trilha__estado {
-    border-color: color-mix(in srgb, var(--color-ok) 45%, var(--color-line));
-    color: var(--color-ok);
   }
 
   .trilha__ir {

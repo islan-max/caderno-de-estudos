@@ -20,7 +20,6 @@ jobs:
       # Confere estrutura e marcação das aulas. O banco local do INEP não vai para
       # a CI, então a comparação com prova e gabarito continua sendo feita na máquina
       # que mantém o acervo.
-      - run: npm test
       - run: node scripts/validar-aula.mjs src/content/enem
       - run: npm run build
         env:
