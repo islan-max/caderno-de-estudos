@@ -9,6 +9,7 @@ import { estadoDoCartao, filaDoDia, somarDias, vencidos } from './revisao.ts';
 import { aulaPrecisaRevisar, preRequisitosPendentes } from './jornada.ts';
 import { planoDeHoje, type AulaDoPlano, type EntradaDoPlano } from './hoje.ts';
 import { normalizarPerfil, tamanhoDaFila } from './perfil.ts';
+import { diagnosticoDaUnidade, diagnosticoDoConceito } from './diagnostico.ts';
 
 /** localStorage de mentira. */
 function falso(inicial: Record<string, string> = {}) {
@@ -291,4 +292,37 @@ test('hoje: aula em andamento que também precisa de revisão vira uma ação s�
   assert.equal(acoes.length, 1);
   assert.equal(acoes[0].tipo, 'aula');
   assert.match(acoes[0].motivo, /errou/);
+});
+
+test('diagnóstico: uma resposta só não conclui nada', () => {
+  const arm = falso();
+  responder(arm, 0, true);
+  const v = vigentes(lerEventos(arm));
+  const r = diagnosticoDoConceito(v, 'mat/mmc');
+  assert.equal(r.estado, 'dados-insuficientes');
+  assert.equal(r.evidencias.length, 1);
+  assert.equal(diagnosticoDaUnidade(v, ['mat/mmc', 'mat/outro']).conclusivo, false);
+});
+
+test('diagnóstico: lacuna, parcial e firme, sempre em estados e nunca em nota', () => {
+  const estado = (arm: ReturnType<typeof falso>) => diagnosticoDoConceito(vigentes(lerEventos(arm)), 'mat/mmc').estado;
+  const arm = falso();
+  responder(arm, 0, false);
+  responder(arm, 1, false);
+  assert.equal(estado(arm), 'lacuna');
+  responder(arm, 2, true); // acertou depois do erro, mas só um dia
+  assert.equal(estado(arm), 'parcial');
+  responder(arm, 3, true); // outro dia
+  assert.equal(estado(arm), 'firme');
+  responder(arm, 4, false); // erro posterior derruba
+  assert.equal(estado(arm), 'lacuna');
+});
+
+test('diagnóstico: cartões também são evidência e a unidade é conclusiva com algum conceito com dados', () => {
+  const arm = falso();
+  rev(arm, 'c1', 0, 'lembrei');
+  rev(arm, 'c1', 1, 'nao_lembrei');
+  const d = diagnosticoDaUnidade(vigentes(lerEventos(arm)), ['mat/mmc', 'mat/outro']);
+  assert.equal(d.conclusivo, true);
+  assert.deepEqual(d.resultados.map((r) => r.estado), ['lacuna', 'dados-insuficientes']);
 });

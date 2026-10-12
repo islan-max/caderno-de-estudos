@@ -28,6 +28,13 @@ export const METRICAS: Record<string, DefinicaoDeMetrica> = {
     naoMede: 'Domínio absoluto. É só o que as suas respostas mostram até agora.',
     comoMelhorar: 'Rever a seção indicada após um erro e responder de novo em outro dia.',
   },
+  'diagnostico-do-conceito': {
+    nome: 'O que ficou (diagnóstico do conceito)',
+    formula:
+      'Conta as suas respostas em questões oficiais e em cartões sobre o conceito. Menos de duas respostas: dados insuficientes. Último resultado foi erro: lacuna. Acertos em pelo menos dois dias diferentes desde o último erro: firme. Os demais casos: parcial.',
+    naoMede: 'Uma nota. Não há porcentagem nem média: só o que as suas respostas mostram até agora.',
+    comoMelhorar: 'Responder as questões da aula e revisar os cartões do conceito, em dias diferentes.',
+  },
   'revisao-vencida': {
     nome: 'Revisão vencida',
     formula: 'cartão já revisado cuja data de revisão é igual ou anterior a hoje. Cartão que nunca foi visto é novo, não vencido.',

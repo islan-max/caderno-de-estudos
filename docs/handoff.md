@@ -102,3 +102,10 @@ Formato de cada entrada, curto:
 - **Estado:** concluído, commitado e mesclado na `main` local (sem push). `Hoje` com até 3 ações e motivo, trilha com unidades, "Precisa revisar" e aviso de pré-requisito, personalização com efeito visível.
 - **Próximo passo:** etapa 5 (diagnóstico).
 - **Pendências:** nenhuma.
+
+## 11/10/2026 · Claude (Claude Code) · etapa 5: diagnóstico
+
+- **Detalhes:** [docs/sessoes/2026-10-11-etapa-5-diagnostico.md](sessoes/2026-10-11-etapa-5-diagnostico.md)
+- **Estado:** concluído, commitado e mesclado na `main` local (sem push). "Ver o que ficou" por unidade, sem nota. Diferença do plano: não há tela de prova separada (explicado na sessão).
+- **Próximo passo:** etapa 6 (acompanhamento).
+- **Pendências:** o Max decide se quer, no futuro, uma tela de checkpoint própria com questões.
