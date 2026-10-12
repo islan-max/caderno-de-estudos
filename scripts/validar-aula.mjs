@@ -481,6 +481,13 @@ function validar(arquivo) {
       if (/[{}<]/.test(p) || /\*\*/.test(p)) erro(0, `gabarito[${j}].porque aparece como texto puro: sem markdown, { } ou <`);
       // o porque vai para o quiz como textContent: &lt; apareceria literalmente
       if (/&[a-z]+;/.test(p)) erro(0, `gabarito[${j}].porque tem entidade HTML (${p.match(/&[a-z]+;/)[0]}); escreva por extenso ("menor que")`);
+      const alvoRecomendado = g?.recomendar?.aula;
+      if (alvoRecomendado) {
+        const arquivoAlvo = join(RAIZ, 'src', 'content', `${alvoRecomendado}.mdx`);
+        if (!existsSync(arquivoAlvo)) erro(0, `gabarito[${j}].recomendar.aula "${alvoRecomendado}" não é uma aula existente`);
+        else if (lerYaml(readFileSync(arquivoAlvo, 'utf8').split('---')[1]).title !== g.recomendar.titulo)
+          erro(0, `gabarito[${j}].recomendar.titulo deve ser o título de "${alvoRecomendado}"`);
+      }
     });
   }
 

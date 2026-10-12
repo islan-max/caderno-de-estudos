@@ -52,10 +52,18 @@ const resourcesSchema = z.object({
 // resposta certa de cada uma (índice 0-4 = alternativas a-e) e, quando vale a
 // pena, uma linha explicando o porquê. O quiz é montado no navegador a partir
 // do HTML já renderizado, então adicionar gabarito não exige reescrever aula.
+// Recomendação mostrada quando o estudante erra a questão: aula do próprio site e o motivo, em texto.
+const recomendarSchema = z.object({
+  aula: z.string().regex(/^(enem|escolar|ds)\/[a-z0-9-]+\/[a-z0-9-]+$/), // id da aula; validar-aula confere se existe
+  titulo: z.string(), // nome da aula, para o link; validar-aula confere com o título dela
+  porque: z.string().min(10),
+});
+
 const gabaritoSchema = z.object({
   correta: z.number().min(0).max(4),
   porque: z.string().optional(),
   conceitos: conceitosSchema, // o que a questão avalia; alimenta o estado do conceito
+  recomendar: recomendarSchema.optional(),
 });
 
 // Ferramentas para acompanhar e praticar a aula (programas, contas, materiais). Cada item vira

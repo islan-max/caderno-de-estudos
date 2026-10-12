@@ -19,8 +19,16 @@ resources:
   conteudoComplementar:
     conteudo: "Funções"
     comoAjuda: "Uma equação do 1º ou do 2º grau é o que sobra quando se iguala uma função afim ou quadrática a um valor fixo; a próxima aula estuda essas funções por inteiro, não só um valor delas."
+conceitos:
+  - "matematica-basica/o-que-e-uma-equacao-e-o-que-e-resolve-la"
+  - "matematica-basica/equacao-do-1-grau-isolar-a-incognita"
+  - "matematica-basica/inequacao-do-1-grau-a-mesma-ideia-com-e"
+  - "matematica-basica/equacao-do-2-grau-forma-geral-e-produto-de-binomios"
+  - "matematica-basica/formula-de-bhaskara-e-as-raizes-de-uma-equacao-do-2-grau"
+  - "matematica-basica/o-vertice-da-parabola-valor-maximo-ou-minimo"
 gabarito:
   - correta: 4
+    conceitos: ["matematica-basica/formula-de-bhaskara-e-as-raizes-de-uma-equacao-do-2-grau"]
     porque: >
       A parábola passa pelas raízes x=0 e x=150, então y = a·x·(x−150). No vértice, x=75 e y=25:
       25 = a × 75 × (75−150) = a × 75 × (−75) = −5625a, então a = 25 ÷ (−5625) = −1/225. Substituindo:
@@ -28,6 +36,11 @@ gabarito:
       Isolando: 225y = −(x² − 150x) = 150x − x².
       Revisar: Aula Teórica › 5. Fórmula de Bhaskara e as raízes de uma equação do 2º grau
   - correta: 3
+    conceitos: ["matematica-basica/equacao-do-2-grau-forma-geral-e-produto-de-binomios"]
+    recomendar:
+      aula: "enem/matematica-basica/potencias-e-raizes"
+      titulo: "Potências e Raízes"
+      porque: "Montar o produto de binômios exige elevar ao quadrado. Se travou nisso, revise a aula de Potências e Raízes."
     porque: >
       Com desconto x (em centavos), o preço por litro vira (150 − x) centavos e a quantidade vendida vira
       (10 000 + 100x) litros. O valor arrecadado, em centavos, é (150 − x)(10 000 + 100x). Expandindo:
@@ -35,12 +48,14 @@ gabarito:
       passar a reais: V = 15 000 + 50x − x².
       Revisar: Aula Teórica › 4. Equação do 2º grau: forma geral e produto de binômios
   - correta: 3
+    conceitos: ["matematica-basica/o-vertice-da-parabola-valor-maximo-ou-minimo"]
     porque: >
       L(x) = −x² + 14x − 45 tem a = −1 e b = 14. O vértice (ponto de máximo, já que a concavidade é para
       baixo) fica em x = −b ÷ (2a) = −14 ÷ (−2) = 7. Entre os preços das barras, o mais próximo de 7 é a
       Barra IV, de R$ 7,00.
       Revisar: Aula Teórica › 6. O vértice da parábola: valor máximo ou mínimo
   - correta: 4
+    conceitos: ["matematica-basica/inequacao-do-1-grau-a-mesma-ideia-com-e"]
     porque: >
       A receita mensal por pacote é R$ 280,00, e o custo por pacote é 400 × 0,42 = R$ 168,00. Sem
       prejuízo significa receita ≥ custo fixo + custo variável: 280x ≥ 12 800 + 168x. Isolando x:
@@ -48,6 +63,7 @@ gabarito:
       inteiro que satisfaça a desigualdade).
       Revisar: Aula Teórica › 3. Inequação do 1º grau: a mesma ideia, com ≤ e ≥
   - correta: 1
+    conceitos: ["matematica-basica/inequacao-do-1-grau-a-mesma-ideia-com-e"]
     porque: >
       Em 2 horas, a empresa X cobra 60 + 18×2 = 96 reais. A empresa Y, cobrando v reais por hora, deve
       ficar com custo menor ou igual: 24 + 2v ≤ 96. Isolando v: 2v ≤ 72, então v ≤ 36. O valor máximo é

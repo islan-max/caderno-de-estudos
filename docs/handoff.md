@@ -81,3 +81,10 @@ Formato de cada entrada, curto:
 - **Estado:** concluído no branch `etapa-1-fundacao`, com commit; sem merge nem push. `npm test` com 11 testes, build com 204 páginas e checagens passando.
 - **Próximo passo:** etapa 2 de `docs/plano-aprendizagem.md` (piloto de Matemática Básica), começando por `src/data/conceitos.json`.
 - **Pendências:** o Max decide o merge na `main` e o push.
+
+## 11/10/2026 · Claude (Claude Code) · etapa 2: piloto de Matemática Básica
+
+- **Detalhes:** [docs/sessoes/2026-10-11-etapa-2-piloto-matematica.md](sessoes/2026-10-11-etapa-2-piloto-matematica.md)
+- **Estado:** concluído, commitado e mesclado na `main` local (sem push). 34 conceitos, questões ligadas a conceito, link para a seção a rever e recomendação com motivo.
+- **Próximo passo:** etapa 3 (flashcards).
+- **Pendências:** avaliar o piloto antes de expandir os conceitos para as outras matérias.

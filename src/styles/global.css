@@ -1179,6 +1179,9 @@ html[data-contraste="sim"] .prose-tema :is(th, td) {
   line-height: 1.6;
   color: var(--color-ink);
 }
+.quiz__resposta a { color: inherit; text-decoration: underline; text-underline-offset: 0.2em; }
+.quiz__recomendacao { display: block; margin-top: 0.6rem; padding-top: 0.6rem; border-top: 1px solid var(--color-line); }
+.quiz__recomendacao button { margin-left: 0.25rem; padding: 0.25rem 0.5rem; min-height: 2.75rem; border: 1px solid var(--color-line); border-radius: 0.4rem; background: transparent; color: inherit; font: inherit; cursor: pointer; }
 /* Verde: acertou. Amarelo: errou. Vermelho: não marcou nada. */
 .quiz__questao[data-estado='errada'] .quiz__resposta {
   --cor-resposta: var(--color-aviso);

@@ -84,3 +84,22 @@ export function importarLegado(armazenamento: Armazenamento = localStorage) {
     if (Number.isFinite(instante)) registrarConclusao(aulaId, new Date(instante), armazenamento);
   }
 }
+
+const CHAVE_DISPENSADAS = 'cdt:v2:dispensadas';
+
+export function recomendacaoDispensada(aulaRecomendada: string, armazenamento: Armazenamento = localStorage): boolean {
+  try {
+    return JSON.parse(armazenamento.getItem(CHAVE_DISPENSADAS) ?? '[]').includes(aulaRecomendada);
+  } catch {
+    return false;
+  }
+}
+
+export function dispensarRecomendacao(aulaRecomendada: string, armazenamento: Armazenamento = localStorage) {
+  try {
+    const lista: string[] = JSON.parse(armazenamento.getItem(CHAVE_DISPENSADAS) ?? '[]');
+    if (!lista.includes(aulaRecomendada)) armazenamento.setItem(CHAVE_DISPENSADAS, JSON.stringify([...lista, aulaRecomendada]));
+  } catch {
+    /* sem armazenamento: a recomendação volta na próxima visita */
+  }
+}

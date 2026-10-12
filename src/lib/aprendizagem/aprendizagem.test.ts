@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { desfazerConclusao, importarLegado, lerEventos, registrarConclusao, registrarQuestao } from './armazem.ts';
+import { desfazerConclusao, dispensarRecomendacao, importarLegado, lerEventos, recomendacaoDispensada, registrarConclusao, registrarQuestao } from './armazem.ts';
 import { conceitosInvalidos } from './conceitos.ts';
 import { vigentes, type Evento } from './eventos.ts';
 import { estadoDoConceito } from './estados.ts';
@@ -111,4 +111,14 @@ test('evento anulado deixa de contar para o estado', () => {
     { id: 'c', tipo: 'correcao', quando: dia(1).toISOString(), conceitoIds: [], corrige: 'a' },
   ];
   assert.equal(estadoDoConceito(vigentes(eventos), 'mat/mmc'), 'nao-iniciado');
+});
+
+test('recomendação dispensada fica dispensada e não duplica', () => {
+  const arm = falso();
+  assert.equal(recomendacaoDispensada('enem/mat/a', arm), false);
+  dispensarRecomendacao('enem/mat/a', arm);
+  dispensarRecomendacao('enem/mat/a', arm);
+  assert.equal(recomendacaoDispensada('enem/mat/a', arm), true);
+  assert.equal(recomendacaoDispensada('enem/mat/b', arm), false);
+  assert.deepEqual(JSON.parse(arm.getItem('cdt:v2:dispensadas')!), ['enem/mat/a']);
 });
