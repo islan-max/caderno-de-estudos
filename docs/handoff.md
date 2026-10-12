@@ -39,3 +39,31 @@ Formato de cada entrada, curto:
 - **Estado:** concluído. As 28 aulas com aviso foram revisadas. `node scripts/validar-aula.mjs src/content/enem` terminou com 124 aulas, 0 erro e 0 aviso. Build com 204 páginas e os 124 quizzes passaram.
 - **Próximo passo:** criar `matematica-basica/divisibilidade-e-fatoracao`, primeira linha não concluída de `docs/aulas/progresso.md`.
 - **Pendências:** a verificação geométrica das figuras SVG no navegador continua manual.
+
+## 09/10/2026 · Codex · fundação da aprendizagem personalizada
+
+- **Detalhes:** [docs/sessoes/2026-10-09-fundacao-aprendizagem.md](sessoes/2026-10-09-fundacao-aprendizagem.md)
+- **Estado:** concluído. Eventos locais no IndexedDB e importação idempotente do progresso legado; abertura, conclusão e correção de questão já são registradas. Build com 204 páginas, quiz e acessibilidade passaram.
+- **Próximo passo:** criar perfil opcional e bloco `Hoje` em `src/pages/index.astro` usando `src/lib/learning.ts`.
+- **Pendências:** conceitos, recomendações, flashcards, sessões, diagnóstico e sincronização ainda não foram implementados.
+
+## 09/10/2026 · Codex · orientação inicial: Hoje e perfil
+
+- **Detalhes:** [docs/sessoes/2026-10-09-hoje-e-perfil.md](sessoes/2026-10-09-hoje-e-perfil.md)
+- **Estado:** concluído. A home sugere uma aula por vez, explica o motivo e aceita perfil opcional salvo localmente. Build com 204 páginas, contraste e acessibilidade passaram; o fluxo foi aberto no navegador local.
+- **Próximo passo:** evoluir `src/components/TrilhaAulas.astro` e o mapa ENEM para mostrar estados textuais de jornada, sem bloquear aulas.
+- **Pendências:** não há grafo de pré-requisitos, conceitos ou revisões ainda; portanto `Hoje` só combina aula em andamento, prioridades e ordem curricular.
+
+## 09/10/2026 · Codex · jornada ENEM com estados explícitos
+
+- **Detalhes:** [docs/sessoes/2026-10-09-jornada-enem.md](sessoes/2026-10-09-jornada-enem.md)
+- **Estado:** concluído. A trilha de cada matéria ENEM mostra `Não iniciada`, `Em estudo` ou `Concluída`, calculado do mesmo progresso local do anel. Build e acessibilidade passaram; fluxo conferido no navegador local.
+- **Próximo passo:** expandir `src/content.config.ts` e os validadores para conceitos e metadados das questões oficiais antes de recomendações ou diagnóstico.
+- **Pendências:** unidades, pré-requisitos e `Precisa revisar` exigem mapeamento editorial e ainda não existem no acervo.
+
+## 09/10/2026 · Codex · correção do onboarding inicial
+
+- **Detalhes:** [docs/sessoes/2026-10-09-onboarding-corrigido.md](sessoes/2026-10-09-onboarding-corrigido.md)
+- **Estado:** concluído. O formulário grande saiu da home. O onboarding tem três etapas, `Pular por enquanto`, foco controlado, diálogo nativo e seletores personalizados mantendo o controle HTML acessível; a home mostra só a sugestão `Hoje`. Build, contraste, acessibilidade e fluxo no navegador passaram.
+- **Próximo passo:** expandir `src/content.config.ts` e os validadores para conceitos e metadados das questões oficiais, antes de recomendações ou diagnóstico.
+- **Pendências:** objetivo e disponibilidade são coletados conforme o contrato, mas ainda não podem alterar a priorização enquanto a rotina ENEM não tiver metas, revisão e planejamento semanal implementados; a única escolha usada hoje é a prioridade de matérias.

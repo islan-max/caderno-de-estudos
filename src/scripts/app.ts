@@ -13,6 +13,7 @@ import { montarQuiz } from './quiz';
 import { montarTopicos } from './topicos';
 import { montarSumario } from './sumario';
 import { montarBarrasDeRolagem } from './barra-rolagem';
+import { appendEvent, getProfile, importLegacyProgress, safeLearning, saveProfile, type LearnerProfile } from '../lib/learning';
 
 const CHAVE_TEMA = 'cdt:tema';
 const CHAVE_PROGRESSO = 'cdt:progresso';
@@ -411,17 +412,25 @@ function refletirProgresso() {
   const and = andamentos();
   document.querySelectorAll<HTMLElement>('[data-aula-id]').forEach((el) => {
     const vista = Boolean(p[el.dataset.aulaId!]);
+    const andamento = and[el.dataset.aulaId!];
+    const percentual = percentualDaAula(andamento);
+    const estado = vista ? 'concluida' : percentual > 0 ? 'em-estudo' : 'nao-iniciada';
     el.dataset.vista = String(vista);
+    el.dataset.estado = estado;
     // O anel em volta do número da aula mostra o andamento só com cor; cheio só quando concluída.
     // O valor vai por atributo: vale antes e depois de o componente <circle-progress> ser registrado.
     const anel = el.querySelector('circle-progress');
     if (anel) {
       anel.setAttribute('animation', movimentoReduzido() ? 'none' : 'easeOutCubic');
-      anel.setAttribute('value', String(vista ? 100 : Math.min(99, percentualDaAula(and[el.dataset.aulaId!]))));
+      anel.setAttribute('value', String(vista ? 100 : Math.min(99, percentual)));
     }
     // O check verde é só visual: o leitor de tela recebe a mesma informação em texto.
     const sr = el.querySelector('[data-vista-texto]');
     if (sr) sr.textContent = vista ? 'Aula já vista.' : '';
+    const estadoTexto = el.querySelector<HTMLElement>('[data-estado-texto]');
+    if (estadoTexto) {
+      estadoTexto.textContent = vista ? 'Concluída' : percentual > 0 ? 'Em estudo' : 'Não iniciada';
+    }
   });
 
   document.querySelectorAll<HTMLElement>('[data-progresso-de]').forEach((el) => {
@@ -591,9 +600,171 @@ interface Ultima {
   ts?: number;
 }
 
+const perfilPadrao = (): LearnerProfile => ({
+  goal: 'enem',
+  prioritySubjects: [],
+  weeklyAvailability: 3,
+  onboardingCompleted: false,
+  onboardingDismissed: false,
+});
+
+/** O primeiro recorte da rotina: uma ação útil, explicada e sem agenda rígida. */
+async function montarHoje() {
+  const bloco = document.querySelector<HTMLElement>('[data-hoje]');
+  if (!bloco) return;
+
+  const titulo = bloco.querySelector<HTMLElement>('[data-hoje-titulo]')!;
+  const motivo = bloco.querySelector<HTMLElement>('[data-hoje-motivo]')!;
+  const link = bloco.querySelector<HTMLAnchorElement>('[data-hoje-link]')!;
+  const acao = bloco.querySelector<HTMLElement>('[data-hoje-acao]')!;
+  const dialogo = document.querySelector<HTMLDialogElement>('[data-onboarding]');
+  const form = dialogo?.querySelector<HTMLFormElement>('[data-onboarding-form]');
+  let perfil = await getProfile().catch(perfilPadrao);
+
+  const preencherPerfil = () => {
+    if (!form) return;
+    const objetivo = form.querySelector<HTMLInputElement>(`input[name="goal"][value="${perfil.goal}"]`);
+    const ritmo = form.elements.namedItem('weeklyAvailability') as HTMLSelectElement | null;
+    if (objetivo) objetivo.checked = true;
+    if (ritmo) ritmo.value = String(perfil.weeklyAvailability);
+    form.querySelectorAll<HTMLSelectElement>('select[name="prioritySubject"]').forEach((select, indice) => {
+      select.value = perfil.prioritySubjects[indice] ?? '';
+    });
+  };
+
+  const mostrarSugestao = async () => {
+    const dados = await carregarIndice();
+    const progresso = vistas();
+    const ultima = ler<Ultima>(CHAVE_ULTIMA, {});
+    const ultimaAula = dados.find((a) => a.id === ultima.id);
+    const pendentesEnem = dados.filter((a) => a.id.startsWith('enem/') && !progresso[a.id]);
+    let alvo: AulaBusca | undefined;
+    let razao = '';
+
+    if (ultimaAula && !progresso[ultimaAula.id]) {
+      alvo = ultimaAula;
+      razao = 'Você já começou esta aula. Retomar costuma exigir menos esforço do que recomeçar em outro assunto.';
+    } else {
+      alvo = pendentesEnem.find((a) => perfil.prioritySubjects.some((materia) => a.s === `enem/${materia}`));
+      if (alvo) {
+        razao = 'Esta é a próxima aula disponível de uma matéria que você marcou como prioridade.';
+      } else {
+        alvo = pendentesEnem[0];
+        razao = perfil.onboardingCompleted
+          ? 'É a próxima aula disponível na ordem de aprendizado do ENEM.'
+          : 'É a próxima aula disponível na ordem de aprendizado. Você pode ajustar as prioridades quando quiser.';
+      }
+    }
+
+    if (alvo) {
+      titulo.textContent = alvo.t;
+      motivo.textContent = razao;
+      link.href = alvo.h;
+      acao.textContent = ultimaAula?.id === alvo.id ? 'Continuar aula' : 'Começar aula';
+    } else {
+      titulo.textContent = 'Você concluiu as aulas disponíveis do ENEM.';
+      motivo.textContent = 'A trilha continua mostrando os conteúdos que ainda estão em preparação.';
+      link.href = `${base()}enem`.replace(/\/{2,}/g, '/');
+      acao.textContent = 'Ver a trilha';
+    }
+    bloco.hidden = false;
+    document.querySelector<HTMLElement>('[data-continuar]')?.setAttribute('hidden', '');
+  };
+
+  preencherPerfil();
+  void mostrarSugestao();
+
+  if (!dialogo || !form) return;
+  const passos = [...form.querySelectorAll<HTMLElement>('[data-onboarding-passo]')];
+  const indicador = form.querySelector<HTMLElement>('[data-onboarding-etapa]')!;
+  const erro = form.querySelector<HTMLElement>('[data-onboarding-erro]')!;
+  const voltar = form.querySelector<HTMLButtonElement>('[data-onboarding-voltar]')!;
+  const avancar = form.querySelector<HTMLButtonElement>('[data-onboarding-avancar]')!;
+  const salvar = form.querySelector<HTMLButtonElement>('[data-onboarding-salvar]')!;
+  let etapa = 1;
+
+  const limparErro = () => {
+    erro.hidden = true;
+    erro.textContent = '';
+  };
+  const mostrarEtapa = () => {
+    passos.forEach((passo) => { passo.hidden = Number(passo.dataset.onboardingPasso) !== etapa; });
+    indicador.textContent = `Etapa ${etapa} de 3`;
+    voltar.hidden = etapa === 1;
+    avancar.hidden = etapa === 3;
+    salvar.hidden = etapa !== 3;
+    limparErro();
+  };
+  const abrirOnboarding = () => {
+    preencherPerfil();
+    etapa = 1;
+    mostrarEtapa();
+    if (!dialogo.open) dialogo.showModal();
+    form.querySelector<HTMLInputElement>('input[name="goal"]:checked')?.focus();
+  };
+  const pularOnboarding = () => {
+    dialogo.close();
+    perfil = { ...perfil, onboardingDismissed: true };
+    safeLearning(() => saveProfile(perfil));
+  };
+  const validarEtapaAtual = () => {
+    if (etapa !== 2) return true;
+    const prioridades = [...form.querySelectorAll<HTMLSelectElement>('select[name="prioritySubject"]')]
+      .map((select) => select.value)
+      .filter(Boolean);
+    if (new Set(prioridades).size === prioridades.length) return true;
+    erro.textContent = 'Escolha uma matéria diferente em cada prioridade.';
+    erro.hidden = false;
+    const repetida = form.querySelectorAll<HTMLSelectElement>('select[name="prioritySubject"]');
+    repetida[1]?.focus();
+    return false;
+  };
+
+  bloco.querySelector<HTMLButtonElement>('[data-perfil-abrir]')?.addEventListener('click', abrirOnboarding);
+  form.querySelector<HTMLButtonElement>('[data-onboarding-pular]')?.addEventListener('click', pularOnboarding);
+  voltar.addEventListener('click', () => { etapa -= 1; mostrarEtapa(); });
+  avancar.addEventListener('click', () => {
+    if (!validarEtapaAtual()) return;
+    etapa += 1;
+    mostrarEtapa();
+    passos[etapa - 1]?.querySelector<HTMLElement>('input, select')?.focus();
+  });
+  dialogo.addEventListener('cancel', (event) => { event.preventDefault(); pularOnboarding(); });
+
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const prioridades = [...form.querySelectorAll<HTMLSelectElement>('select[name="prioritySubject"]')]
+      .map((select) => select.value)
+      .filter(Boolean);
+    if (!validarEtapaAtual()) return;
+    const objetivo = form.querySelector<HTMLInputElement>('input[name="goal"]:checked')?.value ?? 'enem';
+    const goal: LearnerProfile['goal'] = ['enem', 'school', 'technical', 'mixed'].includes(objetivo)
+      ? objetivo as LearnerProfile['goal']
+      : 'enem';
+    const ritmo = Number((form.elements.namedItem('weeklyAvailability') as HTMLSelectElement | null)?.value);
+    perfil = {
+      goal,
+      prioritySubjects: prioridades,
+      weeklyAvailability: [1, 3, 5, 7].includes(ritmo) ? ritmo : 3,
+      onboardingCompleted: true,
+      onboardingDismissed: false,
+    };
+    dialogo.close();
+    safeLearning(async () => {
+      await saveProfile(perfil);
+      await mostrarSugestao();
+      toast('Sugestão inicial ajustada.', 'check');
+    });
+  });
+
+  if (!perfil.onboardingCompleted && !perfil.onboardingDismissed) requestAnimationFrame(abrirOnboarding);
+}
+
 function montarHub() {
   const hub = document.querySelector('[data-hub]');
   if (!hub) return;
+
+  void montarHoje();
 
   // "Continuar de onde parou": o título é a aula em que a pessoa parou; a linha de baixo, menor,
   // diz qual aula vem a seguir (a próxima ainda não vista da matéria). A seta leva para onde
@@ -880,6 +1051,7 @@ function ligarAtalhos() {
             gravar(CHAVE_ANDAMENTO, t);
           }
           if (marcar(id, virou)) {
+            if (virou) safeLearning(() => appendEvent({ type: 'lesson_completed', lessonId: id, conceptIds: [] }));
             refletirProgresso();
             toast(virou ? 'Aula marcada como vista' : 'Marcação removida', virou ? 'circle-check' : 'rotate-left');
           } else {
@@ -1247,6 +1419,7 @@ function ligarAulaAtual() {
   if (!artigo) return;
 
   const atual: Andamento = andamentos()[id] ?? { l: 0, q: 0, z: 0 };
+  safeLearning(() => appendEvent({ type: 'lesson_started', lessonId: id, conceptIds: [] }));
   let mudou = false;
 
   const salvar = () => {
@@ -1258,6 +1431,7 @@ function ligarAulaAtual() {
     gravar(CHAVE_ANDAMENTO, todos);
     if (!vistas()[id] && !semConclusaoAutomatica.has(id) && percentualDaAula(atual) >= 100) {
       marcar(id, true);
+      safeLearning(() => appendEvent({ type: 'lesson_completed', lessonId: id, conceptIds: [] }));
       toast('Aula concluída', 'circle-check');
     }
     refletirProgresso();
@@ -1313,6 +1487,14 @@ function ligarAulaAtual() {
     },
     { signal }
   );
+  document.addEventListener(
+    'cdt:questao-corrigida',
+    (e) => {
+      const { correta } = (e as CustomEvent<{ correta: boolean }>).detail;
+      safeLearning(() => appendEvent({ type: 'question_answered', lessonId: id, conceptIds: [], result: correta ? 'correct' : 'incorrect' }));
+    },
+    { signal }
+  );
 
   // Primeira medida depois que o quiz e os tópicos foram montados.
   requestAnimationFrame(() => requestAnimationFrame(aoMudar));
@@ -1337,6 +1519,7 @@ function iniciar() {
   // trocado a cada navegação, então a marca some junto e a página nova inicia normalmente.
   if (document.body.dataset.cdtIniciado) return;
   document.body.dataset.cdtIniciado = '1';
+  safeLearning(importLegacyProgress);
   aplicarTema(temaSalvo());
   aplicarDispensados();
   aplicarFontePx(lerFontePx());
