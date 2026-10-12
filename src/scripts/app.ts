@@ -13,6 +13,7 @@ import { montarQuiz } from './quiz';
 import { montarTopicos } from './topicos';
 import { montarSumario } from './sumario';
 import { montarBarrasDeRolagem } from './barra-rolagem';
+import { desfazerConclusao, importarLegado, registrarConclusao, registrarQuestao } from '../lib/aprendizagem/armazem';
 
 const CHAVE_TEMA = 'cdt:tema';
 const CHAVE_PROGRESSO = 'cdt:progresso';
@@ -402,7 +403,12 @@ function marcar(id: string, vista: boolean) {
   const p = vistas();
   if (vista) p[id] = Date.now();
   else delete p[id];
-  return gravar(CHAVE_PROGRESSO, p);
+  const gravou = gravar(CHAVE_PROGRESSO, p);
+  if (gravou) {
+    if (vista) registrarConclusao(id, new Date(p[id]));
+    else desfazerConclusao(id);
+  }
+  return gravou;
 }
 
 /** Pinta as listas: cada item com data-aula-id ganha data-vista. */
@@ -1354,6 +1360,15 @@ function ligarAulaAtual() {
     { signal }
   );
 
+  document.addEventListener(
+    'cdt:questao-corrigida',
+    (e) => {
+      const { numero, acertou, conceitoIds } = (e as CustomEvent<{ numero: number; acertou: boolean; conceitoIds: string[] }>).detail;
+      registrarQuestao({ aulaId: id, numero, acertou, conceitoIds });
+    },
+    { signal }
+  );
+
   // Primeira medida depois que o quiz e os tópicos foram montados.
   requestAnimationFrame(() => requestAnimationFrame(aoMudar));
 }
@@ -1377,6 +1392,7 @@ function iniciar() {
   // trocado a cada navegação, então a marca some junto e a página nova inicia normalmente.
   if (document.body.dataset.cdtIniciado) return;
   document.body.dataset.cdtIniciado = '1';
+  importarLegado();
   aplicarTema(temaSalvo());
   aplicarDispensados();
   aplicarFontePx(lerFontePx());

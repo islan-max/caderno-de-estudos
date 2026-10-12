@@ -17,6 +17,7 @@
 interface Gabarito {
   correta: number;
   porque?: string;
+  conceitos?: string[];
 }
 
 interface Questao {
@@ -275,6 +276,14 @@ export function montarQuiz() {
           : 'Você errou. A resposta correta era a ' + letra + ' (em amarelo).';
     resposta.textContent = veredito + (chave.porque ? ' ' + chave.porque : '');
     resposta.hidden = false;
+    // A aula (id e conceitos) é de quem ouve; aqui só o que a questão sabe. Em branco não é resposta.
+    if (escolha >= 0) {
+      document.dispatchEvent(
+        new window.CustomEvent('cdt:questao-corrigida', {
+          detail: { numero: i + 1, acertou, conceitoIds: chave.conceitos ?? [] },
+        })
+      );
+    }
     return veredito;
   }
 

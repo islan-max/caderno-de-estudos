@@ -1,5 +1,16 @@
 import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
+import registroDeConceitos from './data/conceitos.json';
+import { conceitosInvalidos } from './lib/aprendizagem/conceitos';
+
+// Ids de conceito (`<matéria>/<conceito>`) precisam estar em src/data/conceitos.json: id errado quebra o build.
+const conceitosSchema = z
+  .array(z.string())
+  .default([])
+  .superRefine((ids, ctx) => {
+    const ruins = conceitosInvalidos(ids, registroDeConceitos);
+    if (ruins.length) ctx.addIssue({ code: 'custom', message: `conceito não cadastrado em src/data/conceitos.json: ${ruins.join(', ')}` });
+  });
 
 // Bloco opcional de recursos extras de uma aula (vídeo aula, curso gratuito,
 // materiais adicionais, conteúdo complementar). Cada seção é independente —
@@ -44,6 +55,7 @@ const resourcesSchema = z.object({
 const gabaritoSchema = z.object({
   correta: z.number().min(0).max(4),
   porque: z.string().optional(),
+  conceitos: conceitosSchema, // o que a questão avalia; alimenta o estado do conceito
 });
 
 // Ferramentas para acompanhar e praticar a aula (programas, contas, materiais). Cada item vira
@@ -63,6 +75,7 @@ const lessonSchema = z.object({
   relevance: z.string(),
   quickSummary: z.string().optional(), // resumo rápido de 2-4 linhas, direto ao ponto
   order: z.number().default(1),
+  conceitos: conceitosSchema, // o que a aula ensina
   gabarito: z.array(gabaritoSchema).optional(),
   resources: resourcesSchema.optional(),
   ferramentas: z.array(ferramentaSchema).optional(),

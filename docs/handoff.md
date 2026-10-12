@@ -74,3 +74,10 @@ Formato de cada entrada, curto:
 - **Estado:** concluído, **sem commit**, no branch `etapa-0-limpeza`. O estado anterior do Codex está no branch `backup/codex-aprendizagem-2026-10-09`. Removidos IndexedDB, eventos e onboarding; mantidos o estado textual da trilha e o `Hoje` com uma ação. Build com 204 páginas e checagens passaram.
 - **Próximo passo:** etapa 1 de `docs/plano-aprendizagem.md` (fundação sobre `localStorage`). As 4 decisões pendentes do plano foram aceitas pelo Max.
 - **Pendências:** decidir se commita e faz merge do branch; a retomada do ENEM (`matematica-basica/divisibilidade-e-fatoracao`) segue pendente.
+
+## 11/10/2026 · Claude (Claude Code) · etapa 1: fundação da aprendizagem
+
+- **Detalhes:** [docs/sessoes/2026-10-11-etapa-1-fundacao.md](sessoes/2026-10-11-etapa-1-fundacao.md)
+- **Estado:** concluído no branch `etapa-1-fundacao`, com commit; sem merge nem push. `npm test` com 11 testes, build com 204 páginas e checagens passando.
+- **Próximo passo:** etapa 2 de `docs/plano-aprendizagem.md` (piloto de Matemática Básica), começando por `src/data/conceitos.json`.
+- **Pendências:** o Max decide o merge na `main` e o push.

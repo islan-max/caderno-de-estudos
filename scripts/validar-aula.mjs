@@ -116,7 +116,7 @@ function validar(arquivo) {
   const corpo = linhas.slice(fimFm + 1);
   const L = (i) => i + deslocamento + 1;
 
-  const campos = new Set(['title', 'subject', 'order', 'relevance', 'quickSummary', 'resources', 'gabarito']);
+  const campos = new Set(['title', 'subject', 'order', 'relevance', 'quickSummary', 'resources', 'gabarito', 'conceitos']);
   for (const k of Object.keys(fm)) if (!campos.has(k)) erro(0, `campo "${k}" não existe no schema (seria ignorado sem aviso)`);
   for (const k of ['title', 'subject', 'relevance', 'quickSummary']) if (typeof fm[k] !== 'string' || !fm[k].trim()) erro(0, `falta "${k}"`);
   if (!Number.isInteger(fm.order)) erro(0, '"order" deve ser um número inteiro');
