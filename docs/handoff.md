@@ -67,3 +67,10 @@ Formato de cada entrada, curto:
 - **Estado:** concluído. O formulário grande saiu da home. O onboarding tem três etapas, `Pular por enquanto`, foco controlado, diálogo nativo e seletores personalizados mantendo o controle HTML acessível; a home mostra só a sugestão `Hoje`. Build, contraste, acessibilidade e fluxo no navegador passaram.
 - **Próximo passo:** expandir `src/content.config.ts` e os validadores para conceitos e metadados das questões oficiais, antes de recomendações ou diagnóstico.
 - **Pendências:** objetivo e disponibilidade são coletados conforme o contrato, mas ainda não podem alterar a priorização enquanto a rotina ENEM não tiver metas, revisão e planejamento semanal implementados; a única escolha usada hoje é a prioridade de matérias.
+
+## 11/10/2026 · Claude (Claude Code) · limpeza da etapa 0 do novo plano
+
+- **Detalhes:** [docs/sessoes/2026-10-11-limpeza-etapa-0.md](sessoes/2026-10-11-limpeza-etapa-0.md)
+- **Estado:** concluído, **sem commit**, no branch `etapa-0-limpeza`. O estado anterior do Codex está no branch `backup/codex-aprendizagem-2026-10-09`. Removidos IndexedDB, eventos e onboarding; mantidos o estado textual da trilha e o `Hoje` com uma ação. Build com 204 páginas e checagens passaram.
+- **Próximo passo:** etapa 1 de `docs/plano-aprendizagem.md` (fundação sobre `localStorage`). As 4 decisões pendentes do plano foram aceitas pelo Max.
+- **Pendências:** decidir se commita e faz merge do branch; a retomada do ENEM (`matematica-basica/divisibilidade-e-fatoracao`) segue pendente.

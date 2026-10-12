@@ -15,7 +15,7 @@ Site Astro com três abas: ENEM, DS (curso técnico) e Escolar. Este arquivo sub
 ## Preferências do Max
 - Texto curto, português do Brasil, uma ideia por frase. Toda sigla e termo técnico explicado na primeira vez.
 - Cobertura completa. Quando faltar algo, resolver em vez de só registrar.
-- Ritmo: terminou uma aula, começa a próxima sem pedir confirmação. Ao fim de cada matéria, push na `main` (liberado pelo Max).
+- Ritmo: terminou uma aula, começa a próxima sem pedir confirmação. Ao fim de cada matéria do ENEM, push na `main` (liberado pelo Max).
 - Visual: página limpa. Seções parecidas viram uma seção retrátil. Sem legenda "Figura N", sem rótulos genéricos como "Teste de Fogo".
 - Antes de baixar arquivo grande, procurar o conteúdo em texto puro na internet. Só baixar o bruto se não existir.
 
@@ -48,7 +48,8 @@ Site Astro com três abas: ENEM, DS (curso técnico) e Escolar. Este arquivo sub
 - Nunca afirmar que algo funciona sem ter rodado a checagem correspondente. Se não deu para rodar, dizer isso.
 
 ## Git
-- Push na `main` só ao fim de cada matéria. No meio de uma matéria, não publicar.
-- Não commitar fora desse caso sem pedido do Max.
+- Aulas do ENEM: push na `main` só ao fim de cada matéria. No meio de uma matéria, não publicar.
+- Outros trabalhos (funcionalidades, correções, plano de aprendizagem em `docs/plano-aprendizagem.md`): um commit ao fim de cada etapa concluída e verificada, em branch próprio. Merge na `main` e push só quando o Max pedir.
+- Fora desses casos, não commitar sem pedido do Max.
 - Commits e PRs saem só em nome do Max. Não incluir `Co-Authored-By` nem a linha "Generated with Claude Code", mesmo que a ferramenta sugira.
 - Se um commit saiu com essas linhas, reescrever só o que ainda não foi publicado. Nunca reescrever a `main`.

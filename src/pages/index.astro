@@ -21,7 +21,6 @@ const porArea = ENEM_AREAS.map((area) => {
 }).filter((a) => a.total > 0);
 
 const materiasComAula = new Set(aulas.map((a) => `${a.secao}/${a.materia}`)).size;
-const materiasEnem = ENEM_AREAS.flatMap((area) => area.subjects);
 
 // Escolar e DS: um bloco por aba, com uma ficha por matéria (como as áreas do ENEM).
 const outrasAbas = (
@@ -75,7 +74,6 @@ const outrasAbas = (
     <section class="hoje" data-hoje hidden data-surgir style="--i: 1" aria-labelledby="hoje-titulo">
       <div class="hoje__cabeca">
         <span class="hoje__selo"><Icone nome="compass" /> Hoje</span>
-        <button type="button" class="hoje__ajustar" data-perfil-abrir>Personalizar</button>
       </div>
       <h2 class="hoje__titulo" id="hoje-titulo" data-hoje-titulo></h2>
       <p class="hoje__motivo" data-hoje-motivo></p>
@@ -83,69 +81,6 @@ const outrasAbas = (
         <span data-hoje-acao>Começar</span> <Icone nome="arrow-right" />
       </a>
     </section>
-
-    <dialog class="onboarding" data-onboarding aria-labelledby="onboarding-titulo">
-      <form class="onboarding__form" data-onboarding-form novalidate>
-        <header class="onboarding__cabeca">
-          <p class="onboarding__etapa" data-onboarding-etapa>Etapa 1 de 3</p>
-          <h2 id="onboarding-titulo">Vamos ajustar sua sugestão inicial</h2>
-          <p>Leva menos de um minuto. Você pode pular e continuar usando o caderno normalmente.</p>
-        </header>
-
-        <fieldset data-onboarding-passo="1">
-          <legend>Qual é seu objetivo principal agora?</legend>
-          <div class="onboarding__opcoes">
-            <label><input type="radio" name="goal" value="enem" checked /> Preparação para o ENEM</label>
-            <label><input type="radio" name="goal" value="school" /> Estudos escolares</label>
-            <label><input type="radio" name="goal" value="technical" /> Curso técnico</label>
-            <label><input type="radio" name="goal" value="mixed" /> Mais de um objetivo</label>
-          </div>
-        </fieldset>
-
-        <fieldset data-onboarding-passo="2" hidden>
-          <legend>Quais matérias do ENEM você quer priorizar?</legend>
-          <p class="onboarding__ajuda">Opcional. Escolha até três; o caderno mantém a ordem normal nas demais.</p>
-          <div class="onboarding__prioridades">
-            {[1, 2, 3].map((n) => (
-              <label for={`prioridade-${n}`}>
-                {n}ª prioridade
-                <span class="onboarding__seletor">
-                  <select id={`prioridade-${n}`} name="prioritySubject">
-                    <option value="">Sem prioridade</option>
-                    {materiasEnem.map((materia) => <option value={materia.slug}>{materia.label}</option>)}
-                  </select>
-                  <span class="onboarding__seta-select" aria-hidden="true"><Icone nome="chevron-down" /></span>
-                </span>
-              </label>
-            ))}
-          </div>
-        </fieldset>
-
-        <fieldset data-onboarding-passo="3" hidden>
-          <legend>Quantos períodos de estudo cabem, em média, na sua semana?</legend>
-          <label for="perfil-ritmo">Ritmo desejado</label>
-          <span class="onboarding__seletor">
-            <select id="perfil-ritmo" name="weeklyAvailability">
-              <option value="1">1 período</option>
-              <option value="3" selected>3 períodos</option>
-              <option value="5">5 períodos</option>
-              <option value="7">7 ou mais períodos</option>
-            </select>
-            <span class="onboarding__seta-select" aria-hidden="true"><Icone nome="chevron-down" /></span>
-          </span>
-        </fieldset>
-
-        <p class="onboarding__erro" data-onboarding-erro role="alert" hidden></p>
-        <footer class="onboarding__acoes">
-          <button type="button" class="onboarding__pular" data-onboarding-pular>Pular por enquanto</button>
-          <span class="onboarding__navegacao">
-            <button type="button" class="onboarding__voltar" data-onboarding-voltar hidden>Voltar</button>
-            <button type="button" class="onboarding__avancar" data-onboarding-avancar>Continuar</button>
-            <button type="submit" class="onboarding__salvar" data-onboarding-salvar hidden>Usar esta sugestão</button>
-          </span>
-        </footer>
-      </form>
-    </dialog>
 
     <!-- ---------------------------------------------------- continuar -->
     <!-- O título é a aula em que a pessoa parou; a linha de baixo, menor, diz qual aula vem a
@@ -457,18 +392,6 @@ const outrasAbas = (
     letter-spacing: 0.12em;
     color: var(--color-enem);
   }
-  .hoje__ajustar {
-    padding: 0;
-    border: 0;
-    background: transparent;
-    color: var(--color-ink-soft);
-    font: inherit;
-    font-size: calc(0.8rem * var(--escala-texto, 1));
-    text-decoration: underline;
-    text-underline-offset: 0.2em;
-    cursor: pointer;
-  }
-  .hoje__ajustar:hover { color: var(--color-ink); }
   .hoje__titulo {
     margin: 0.55rem 0 0;
     font-family: var(--font-display);
@@ -497,75 +420,6 @@ const outrasAbas = (
     text-decoration: none;
   }
   .hoje__acao:hover { filter: brightness(0.92); }
-
-  /* O onboarding é um diálogo curto: uma pergunta por vez, com saída explícita. */
-  .onboarding {
-    width: min(100% - 2rem, 34rem);
-    max-height: min(44rem, calc(100dvh - 2rem));
-    margin: auto;
-    padding: 0;
-    border: 1px solid var(--color-line);
-    border-radius: 0.9rem;
-    background: var(--color-surface);
-    color: var(--color-ink);
-    box-shadow: var(--shadow-forte);
-  }
-  .onboarding::backdrop { background: color-mix(in srgb, var(--color-ink) 46%, transparent); }
-  .onboarding__form { display: grid; gap: 1.25rem; padding: 1.25rem; }
-  .onboarding__cabeca h2 { margin: 0.25rem 0 0; font-family: var(--font-display); font-size: calc(1.45rem * var(--escala-texto, 1)); line-height: 1.2; }
-  .onboarding__cabeca p:not(.onboarding__etapa), .onboarding__ajuda { margin: 0.45rem 0 0; color: var(--color-ink-soft); font-size: calc(0.88rem * var(--escala-texto, 1)); line-height: 1.5; }
-  .onboarding__etapa { margin: 0; color: var(--color-enem); font-family: var(--font-display); font-size: calc(0.68rem * var(--escala-texto, 1)); font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
-  .onboarding fieldset { display: grid; gap: 0.75rem; margin: 0; padding: 0; border: 0; }
-  .onboarding legend { padding: 0; font-family: var(--font-display); font-size: calc(1.03rem * var(--escala-texto, 1)); font-weight: 700; line-height: 1.35; }
-  .onboarding__opcoes { display: grid; gap: 0.55rem; }
-  .onboarding__opcoes label { display: flex; align-items: center; gap: 0.6rem; padding: 0.68rem 0.75rem; border: 1px solid var(--color-line); border-radius: 0.55rem; cursor: pointer; }
-  .onboarding__opcoes label:has(input:checked) { border-color: var(--color-enem); background: color-mix(in srgb, var(--color-enem) 8%, transparent); }
-  .onboarding__prioridades { display: grid; gap: 0.65rem; }
-  .onboarding__prioridades label { display: grid; gap: 0.3rem; font-size: calc(0.86rem * var(--escala-texto, 1)); font-weight: 700; }
-  .onboarding__seletor { position: relative; display: block; }
-  .onboarding select {
-    width: 100%;
-    min-height: 2.85rem;
-    appearance: none;
-    padding: 0.68rem 3.15rem 0.68rem 0.8rem;
-    border: 1px solid color-mix(in srgb, var(--color-enem) 28%, var(--color-line));
-    border-radius: 0.62rem;
-    background: color-mix(in srgb, var(--color-paper) 88%, var(--color-enem));
-    color: var(--color-ink);
-    box-shadow: inset 0 -2px 0 color-mix(in srgb, var(--color-enem) 12%, transparent);
-    font: inherit;
-    font-weight: 600;
-    cursor: pointer;
-    transition: border-color 0.18s var(--ease), background-color 0.18s var(--ease), box-shadow 0.18s var(--ease);
-  }
-  .onboarding select:hover { border-color: var(--color-enem); background: color-mix(in srgb, var(--color-paper) 78%, var(--color-enem)); }
-  .onboarding select:focus-visible { outline: 2px solid var(--color-escolar); outline-offset: 2px; border-color: var(--color-enem); }
-  .onboarding__seta-select {
-    position: absolute;
-    top: 50%;
-    right: 0.35rem;
-    display: grid;
-    width: 2.15rem;
-    height: 2.15rem;
-    place-items: center;
-    transform: translateY(-50%);
-    border-radius: 0.44rem;
-    background: color-mix(in srgb, var(--color-enem) 16%, transparent);
-    color: var(--color-enem);
-    font-size: calc(0.76rem * var(--escala-texto, 1));
-    pointer-events: none;
-  }
-  .onboarding__seletor:focus-within .onboarding__seta-select { background: var(--color-enem); color: var(--color-paper); }
-  .onboarding__erro { margin: 0; color: var(--color-aviso); font-weight: 700; }
-  .onboarding__acoes { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; }
-  .onboarding__navegacao { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 0.55rem; }
-  .onboarding__acoes button { padding: 0.58rem 0.75rem; border-radius: 0.5rem; font: inherit; font-family: var(--font-display); font-weight: 700; cursor: pointer; }
-  .onboarding__pular, .onboarding__voltar { border: 0; background: transparent; color: var(--color-ink-soft); text-decoration: underline; text-underline-offset: 0.2em; }
-  .onboarding__avancar, .onboarding__salvar { border: 0; background: var(--color-enem); color: var(--color-paper); }
-  @media (max-width: 430px) {
-    .onboarding__acoes { align-items: flex-start; flex-direction: column-reverse; }
-    .onboarding__navegacao { width: 100%; justify-content: space-between; }
-  }
 
   /* ------------------------------------------------------------ continuar */
   .continuar {

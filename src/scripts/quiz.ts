@@ -275,8 +275,6 @@ export function montarQuiz() {
           : 'Você errou. A resposta correta era a ' + letra + ' (em amarelo).';
     resposta.textContent = veredito + (chave.porque ? ' ' + chave.porque : '');
     resposta.hidden = false;
-    // Evento sem detalhes pessoais: a camada de aprendizagem associa a tentativa à aula atual.
-    document.dispatchEvent(new window.CustomEvent('cdt:questao-corrigida', { detail: { correta: acertou } }));
     return veredito;
   }
 
