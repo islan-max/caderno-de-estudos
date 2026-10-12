@@ -1,6 +1,7 @@
-import { lerEventos, registrarRevisao } from '../lib/aprendizagem/armazem.ts';
+import { lerEventos, lerPerfil, registrarRevisao } from '../lib/aprendizagem/armazem.ts';
 import { diaDaData, vigentes } from '../lib/aprendizagem/eventos.ts';
 import { filaDoDia } from '../lib/aprendizagem/revisao.ts';
+import { tamanhoDaFila } from '../lib/aprendizagem/perfil.ts';
 
 interface Cartao {
   id: string;
@@ -40,7 +41,7 @@ export async function montarRevisao() {
   }
 
   const hoje = diaDaData(new Date());
-  const { fila, restantes, vencidos } = filaDoDia(vigentes(lerEventos()), cartoes.map((c) => c.id), hoje);
+  const { fila, restantes, vencidos } = filaDoDia(vigentes(lerEventos()), cartoes.map((c) => c.id), hoje, tamanhoDaFila(lerPerfil()));
   if (fila.length === 0) {
     resumo.textContent = 'Nenhum cartão para revisar hoje.';
     return;

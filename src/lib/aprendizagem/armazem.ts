@@ -1,4 +1,5 @@
 import { anexar, vigentes, type Evento } from './eventos.ts';
+import { normalizarPerfil, PERFIL_PADRAO, type Perfil } from './perfil.ts';
 
 const CHAVE = 'cdt:v2:eventos';
 const VERSAO = 1;
@@ -120,5 +121,24 @@ export function dispensarRecomendacao(aulaRecomendada: string, armazenamento: Ar
     if (!lista.includes(aulaRecomendada)) armazenamento.setItem(CHAVE_DISPENSADAS, JSON.stringify([...lista, aulaRecomendada]));
   } catch {
     /* sem armazenamento: a recomendação volta na próxima visita */
+  }
+}
+
+const CHAVE_PERFIL = 'cdt:v2:perfil';
+
+export function lerPerfil(armazenamento: Armazenamento = localStorage): Perfil {
+  try {
+    return normalizarPerfil(JSON.parse(armazenamento.getItem(CHAVE_PERFIL) ?? 'null'));
+  } catch {
+    return PERFIL_PADRAO;
+  }
+}
+
+export function gravarPerfil(perfil: Perfil, armazenamento: Armazenamento = localStorage): boolean {
+  try {
+    armazenamento.setItem(CHAVE_PERFIL, JSON.stringify(normalizarPerfil(perfil)));
+    return true;
+  } catch {
+    return false;
   }
 }

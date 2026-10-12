@@ -14,7 +14,12 @@ import { montarTopicos } from './topicos';
 import { montarSumario } from './sumario';
 import { montarRevisao } from './revisao';
 import { montarBarrasDeRolagem } from './barra-rolagem';
-import { desfazerConclusao, importarLegado, registrarConclusao, registrarQuestao } from '../lib/aprendizagem/armazem';
+import { desfazerConclusao, gravarPerfil, importarLegado, lerEventos, lerPerfil, registrarConclusao, registrarQuestao } from '../lib/aprendizagem/armazem';
+import { diaDaData, vigentes } from '../lib/aprendizagem/eventos';
+import { aulaPrecisaRevisar } from '../lib/aprendizagem/jornada';
+import { planoDeHoje, type Acao } from '../lib/aprendizagem/hoje';
+import { contarCartoes } from '../lib/aprendizagem/revisao';
+import { normalizarPerfil, tamanhoDaFila } from '../lib/aprendizagem/perfil';
 
 const CHAVE_TEMA = 'cdt:tema';
 const CHAVE_PROGRESSO = 'cdt:progresso';
@@ -57,6 +62,8 @@ interface AulaBusca {
   h: string;
   i: string;
   c: string;
+  /** Ids das aulas que esta pressupõe. */
+  p?: string[];
 }
 
 /* -------------------------------------------------------------- utilidades */
@@ -416,11 +423,15 @@ function marcar(id: string, vista: boolean) {
 function refletirProgresso() {
   const p = vistas();
   const and = andamentos();
+  const eventos = vigentes(lerEventos());
+  const hoje = diaDaData(new Date());
   document.querySelectorAll<HTMLElement>('[data-aula-id]').forEach((el) => {
     const vista = Boolean(p[el.dataset.aulaId!]);
     const andamento = and[el.dataset.aulaId!];
     const percentual = percentualDaAula(andamento);
-    const estado = vista ? 'concluida' : percentual > 0 ? 'em-estudo' : 'nao-iniciada';
+    // "Precisa revisar" prevalece: erro recente ou cartão vencido pesam mais que ter concluído.
+    const revisar = aulaPrecisaRevisar(eventos, el.dataset.aulaId!, hoje);
+    const estado = revisar ? 'revisar' : vista ? 'concluida' : percentual > 0 ? 'em-estudo' : 'nao-iniciada';
     el.dataset.vista = String(vista);
     el.dataset.estado = estado;
     // O anel em volta do número da aula mostra o andamento só com cor; cheio só quando concluída.
@@ -435,8 +446,12 @@ function refletirProgresso() {
     if (sr) sr.textContent = vista ? 'Aula já vista.' : '';
     const estadoTexto = el.querySelector<HTMLElement>('[data-estado-texto]');
     if (estadoTexto) {
-      estadoTexto.textContent = vista ? 'Concluída' : percentual > 0 ? 'Em estudo' : 'Não iniciada';
+      estadoTexto.textContent = revisar ? 'Precisa revisar' : vista ? 'Concluída' : percentual > 0 ? 'Em estudo' : 'Não iniciada';
     }
+  });
+  // Aviso de pré-requisito: some quando todas as aulas anteriores foram concluídas. Não bloqueia nada.
+  document.querySelectorAll<HTMLElement>('[data-pre]').forEach((el) => {
+    el.hidden = (el.dataset.pre || '').split(' ').filter(Boolean).every((id) => p[id]);
   });
 
   document.querySelectorAll<HTMLElement>('[data-progresso-de]').forEach((el) => {
@@ -606,34 +621,121 @@ interface Ultima {
   ts?: number;
 }
 
-/** Uma ação para hoje, com o motivo escrito: retoma a aula começada ou indica a próxima do ENEM. */
+/** Cartões de revisão (só os ids), para contar vencidos e novos no Hoje. Falha de rede = sem cartões. */
+async function carregarIdsDeCartoes(): Promise<string[]> {
+  try {
+    const r = await fetch(`${base()}cartoes.json`.replace(/\/{2,}/g, '/'));
+    return ((await r.json()) as { id: string }[]).map((c) => c.id);
+  } catch {
+    return [];
+  }
+}
+
+/**
+ * Bloco "Hoje": no máximo três ações, cada uma com o motivo escrito (regras em lib/aprendizagem/hoje.ts).
+ * Só a aula tem "Trocar". O que ficou para trás volta sozinho: não há agenda para atrasar.
+ */
 async function montarHoje() {
   const bloco = document.querySelector<HTMLElement>('[data-hoje]');
   if (!bloco) return;
+  const lista = bloco.querySelector<HTMLElement>('[data-hoje-lista]')!;
+  const form = bloco.querySelector<HTMLFormElement>('[data-perfil-form]');
+  const hrefRevisao = `${base()}revisao/`.replace(/\/{2,}/g, '/');
 
   const dados = await carregarIndice();
-  const progresso = vistas();
-  const ultima = ler<Ultima>(CHAVE_ULTIMA, {});
-  const ultimaAula = dados.find((a) => a.id === ultima.id);
-  const alvo = ultimaAula && !progresso[ultimaAula.id]
-    ? ultimaAula
-    : dados.find((a) => a.id.startsWith('enem/') && !progresso[a.id]);
-  const retomar = alvo !== undefined && alvo === ultimaAula;
+  const cartoes = await carregarIdsDeCartoes();
 
-  bloco.querySelector<HTMLElement>('[data-hoje-titulo]')!.textContent = alvo
-    ? alvo.t
-    : 'Você concluiu as aulas disponíveis do ENEM.';
-  bloco.querySelector<HTMLElement>('[data-hoje-motivo]')!.textContent = !alvo
-    ? 'A trilha continua mostrando os conteúdos que ainda estão em preparação.'
-    : retomar
-      ? 'Você já começou esta aula. Retomar costuma exigir menos esforço do que recomeçar em outro assunto.'
-      : 'É a próxima aula disponível na ordem de aprendizado do ENEM.';
-  bloco.querySelector<HTMLAnchorElement>('[data-hoje-link]')!.href = alvo
-    ? alvo.h
-    : `${base()}enem`.replace(/\/{2,}/g, '/');
-  bloco.querySelector<HTMLElement>('[data-hoje-acao]')!.textContent = !alvo ? 'Ver a trilha' : retomar ? 'Continuar aula' : 'Começar aula';
-  bloco.hidden = false;
-  document.querySelector<HTMLElement>('[data-continuar]')?.setAttribute('hidden', '');
+  const desenhar = () => {
+    const perfil = lerPerfil();
+    const eventos = vigentes(lerEventos());
+    const hoje = diaDaData(new Date());
+    const progresso = vistas();
+    const ultima = ler<Ultima>(CHAVE_ULTIMA, {});
+    const { vencidos, novos } = contarCartoes(eventos, cartoes, hoje);
+    const comEvento = new Set(eventos.map((e) => e.aulaId).filter(Boolean));
+    const acoes = planoDeHoje({
+      aulas: dados.map((a) => ({ id: a.id, t: a.t, href: a.h, s: a.s, p: a.p })),
+      concluidas: new Set(Object.keys(progresso)),
+      ultimaId: ultima.id,
+      prioridades: perfil.prioridades,
+      vencidos,
+      novos,
+      hrefRevisao,
+      aulasParaRever: dados.filter((a) => comEvento.has(a.id) && aulaPrecisaRevisar(eventos, a.id, hoje)).map((a) => a.id),
+    });
+
+    lista.replaceChildren();
+    if (acoes.length === 0) {
+      acoes.push({
+        tipo: 'aula',
+        titulo: 'Você concluiu as aulas disponíveis do ENEM.',
+        motivo: 'A trilha continua mostrando os conteúdos que ainda estão em preparação.',
+        rotulo: 'Ver a trilha',
+        href: `${base()}enem`.replace(/\/{2,}/g, '/'),
+        longa: false,
+      });
+    }
+    for (const acao of acoes) lista.append(itemDeAcao(acao));
+    bloco.hidden = false;
+    document.querySelector<HTMLElement>('[data-continuar]')?.setAttribute('hidden', '');
+  };
+
+  const itemDeAcao = (acao: Acao) => {
+    const li = document.createElement('li');
+    li.className = 'hoje__item';
+    const titulo = document.createElement('h3');
+    titulo.className = 'hoje__titulo';
+    const motivo = document.createElement('p');
+    motivo.className = 'hoje__motivo';
+    const link = document.createElement('a');
+    link.className = 'hoje__acao';
+    const mostrar = (a: Acao) => {
+      titulo.textContent = a.titulo;
+      motivo.textContent = a.motivo;
+      link.textContent = a.rotulo;
+      link.href = a.href;
+    };
+    mostrar(acao);
+    const acoes = document.createElement('div');
+    acoes.className = 'hoje__botoes';
+    acoes.append(link);
+    const outras = acao.alternativas ?? [];
+    if (outras.length > 1) {
+      let atual = 0;
+      const trocar = document.createElement('button');
+      trocar.type = 'button';
+      trocar.className = 'hoje__trocar';
+      trocar.textContent = 'Trocar aula';
+      trocar.addEventListener('click', () => {
+        atual = (atual + 1) % outras.length;
+        mostrar(outras[atual]);
+      });
+      acoes.append(trocar);
+    }
+    li.append(titulo, motivo, acoes);
+    return li;
+  };
+
+  desenhar();
+
+  if (!form) return;
+  const perfil = lerPerfil();
+  const selects = [...form.querySelectorAll<HTMLSelectElement>('select[name="prioridade"]')];
+  selects.forEach((s, i) => { s.value = perfil.prioridades[i] ?? ''; });
+  (form.elements.namedItem('ritmo') as HTMLSelectElement).value = String(perfil.ritmo);
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const novo = normalizarPerfil({
+      prioridades: selects.map((s) => s.value).filter(Boolean),
+      ritmo: Number((form.elements.namedItem('ritmo') as HTMLSelectElement).value),
+    });
+    if (gravarPerfil(novo)) {
+      desenhar();
+      toast(`Preferências salvas. Cartões por sessão: ${tamanhoDaFila(novo)}.`, 'check');
+    } else {
+      toast('Não foi possível salvar neste navegador', 'triangle-exclamation');
+    }
+  });
 }
 
 function montarHub() {

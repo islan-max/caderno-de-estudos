@@ -1,11 +1,14 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { desfazerConclusao, dispensarRecomendacao, importarLegado, lerEventos, recomendacaoDispensada, registrarConclusao, registrarQuestao, registrarRevisao } from './armazem.ts';
+import { desfazerConclusao, dispensarRecomendacao, gravarPerfil, importarLegado, lerPerfil, lerEventos, recomendacaoDispensada, registrarConclusao, registrarQuestao, registrarRevisao } from './armazem.ts';
 import { conceitosInvalidos } from './conceitos.ts';
 import { vigentes, type Evento } from './eventos.ts';
 import { estadoDoConceito } from './estados.ts';
 import { diasDeEstudo, progressoDaMateria } from './metricas.ts';
 import { estadoDoCartao, filaDoDia, somarDias, vencidos } from './revisao.ts';
+import { aulaPrecisaRevisar, preRequisitosPendentes } from './jornada.ts';
+import { planoDeHoje, type AulaDoPlano, type EntradaDoPlano } from './hoje.ts';
+import { normalizarPerfil, tamanhoDaFila } from './perfil.ts';
 
 /** localStorage de mentira. */
 function falso(inicial: Record<string, string> = {}) {
@@ -193,4 +196,99 @@ test('revisão conta como dia de estudo e "lembrei" como acerto do conceito', ()
   assert.equal(estadoDoConceito(vigentes(lerEventos(arm)), 'mat/mmc'), 'retido');
   rev(arm, 'c1', 3, 'nao_lembrei');
   assert.equal(estadoDoConceito(vigentes(lerEventos(arm)), 'mat/mmc'), 'precisa-revisar');
+});
+
+test('aula precisa revisar: erro recente num conceito dela ou cartão vencido', () => {
+  const arm = falso();
+  const v = () => vigentes(lerEventos(arm));
+  assert.equal(aulaPrecisaRevisar(v(), 'enem/mat/a', '2026-10-12'), false);
+  responder(arm, 0, false);
+  assert.equal(aulaPrecisaRevisar(v(), 'enem/mat/a', '2026-10-12'), true);
+  assert.equal(aulaPrecisaRevisar(v(), 'enem/mat/b', '2026-10-12'), false);
+  responder(arm, 1, true); // acerto depois do erro limpa
+  assert.equal(aulaPrecisaRevisar(v(), 'enem/mat/a', '2026-10-12'), false);
+  rev(arm, 'enem/mat/a/c1', 2, 'lembrei'); // vence 15/10
+  assert.equal(aulaPrecisaRevisar(v(), 'enem/mat/a', '2026-10-14'), false);
+  assert.equal(aulaPrecisaRevisar(v(), 'enem/mat/a', '2026-10-15'), true);
+});
+
+test('pré-requisito pendente só orienta', () => {
+  assert.deepEqual(preRequisitosPendentes(['a', 'b'], new Set(['a'])), ['b']);
+  assert.deepEqual(preRequisitosPendentes(undefined, new Set()), []);
+});
+
+const aula = (slug: string, materia = 'mat', p?: string[]): AulaDoPlano => ({
+  id: `enem/${materia}/${slug}`, t: slug.toUpperCase(), href: `/enem/${materia}/${slug}/`, s: `enem/${materia}`, p,
+});
+const entrada = (extra: Partial<EntradaDoPlano> = {}): EntradaDoPlano => ({
+  aulas: [aula('a'), aula('b'), aula('c')], concluidas: new Set(), prioridades: [], vencidos: 0, novos: 0,
+  hrefRevisao: '/revisao/', aulasParaRever: [], ...extra,
+});
+
+test('hoje: usuário novo recebe a primeira aula da ordem, com motivo', () => {
+  const acoes = planoDeHoje(entrada());
+  assert.equal(acoes.length, 1);
+  assert.equal(acoes[0].titulo, 'A');
+  assert.match(acoes[0].motivo, /ordem de aprendizado/);
+});
+
+test('hoje: aula começada vem antes de aula nova; revisão vencida vem antes de tudo', () => {
+  const comAula = planoDeHoje(entrada({ ultimaId: 'enem/mat/b' }));
+  assert.equal(comAula[0].titulo, 'B');
+  assert.equal(comAula[0].rotulo, 'Continuar aula');
+  const comRevisao = planoDeHoje(entrada({ ultimaId: 'enem/mat/b', vencidos: 3, aulasParaRever: ['enem/mat/a'] }));
+  assert.deepEqual(comRevisao.map((a) => a.tipo), ['revisao', 'rever-aula', 'aula']);
+  assert.equal(comRevisao[0].titulo, 'Revisar 3 cartões');
+});
+
+test('hoje: no máximo três ações e uma só aula', () => {
+  const acoes = planoDeHoje(entrada({ vencidos: 2, novos: 4, aulasParaRever: ['enem/mat/a'] }));
+  assert.ok(acoes.length <= 3);
+  assert.equal(acoes.filter((a) => a.longa).length, 1);
+});
+
+test('hoje: cartões novos só entram quando há espaço e nada vencido', () => {
+  assert.deepEqual(planoDeHoje(entrada({ novos: 5 })).map((a) => a.tipo), ['aula', 'cartoes-novos']);
+  assert.equal(planoDeHoje(entrada({ novos: 5, vencidos: 1 })).some((a) => a.tipo === 'cartoes-novos'), false);
+});
+
+test('hoje: prioridade declarada vence a ordem, e pré-requisito pendente não é sugerido primeiro', () => {
+  const aulas = [aula('a', 'mat'), aula('x', 'fis', ['enem/fis/y']), aula('y', 'fis')];
+  const acoes = planoDeHoje(entrada({ aulas, prioridades: ['fis'] }));
+  assert.equal(acoes[0].titulo, 'Y'); // X pressupõe Y, que ainda não foi feita
+  assert.match(acoes[0].motivo, /prioridade/);
+  assert.deepEqual(acoes[0].alternativas?.map((a) => a.titulo), ['Y', 'X', 'A']);
+});
+
+test('hoje: aviso de pré-requisito aparece no motivo; aula indisponível nunca entra', () => {
+  const aulas = [aula('x', 'mat', ['enem/mat/y']), aula('y', 'mat')];
+  const so = planoDeHoje(entrada({ aulas: [aulas[0]] }));
+  assert.equal(so.length, 1);
+  const todas = planoDeHoje(entrada({ aulas }));
+  assert.equal(todas[0].titulo, 'Y');
+  const bloqueada = planoDeHoje(entrada({ aulas: [aula('x', 'mat', ['enem/mat/y']), aula('y', 'mat')], concluidas: new Set(['enem/mat/y']) }));
+  assert.equal(bloqueada[0].titulo, 'X');
+  assert.doesNotMatch(bloqueada[0].motivo, /pressupõe/);
+});
+
+test('hoje: tudo concluído não gera aula', () => {
+  const acoes = planoDeHoje(entrada({ concluidas: new Set(['enem/mat/a', 'enem/mat/b', 'enem/mat/c']) }));
+  assert.deepEqual(acoes, []);
+});
+
+test('perfil: valida o que vem do armazenamento e define o tamanho da fila', () => {
+  assert.deepEqual(normalizarPerfil({ prioridades: ['a', 'a', 'B!', 'b', 'c', 'd'], ritmo: 99 }), { prioridades: ['a', 'b', 'c'], ritmo: 4 });
+  assert.deepEqual(normalizarPerfil('lixo'), { prioridades: [], ritmo: 4 });
+  assert.deepEqual([2, 4, 6].map((ritmo) => tamanhoDaFila({ prioridades: [], ritmo: ritmo as 2 | 4 | 6 })), [5, 10, 15]);
+  const arm = falso();
+  assert.equal(gravarPerfil({ prioridades: ['fisica'], ritmo: 6 }, arm), true);
+  assert.deepEqual(lerPerfil(arm), { prioridades: ['fisica'], ritmo: 6 });
+  assert.deepEqual(lerPerfil(falso()), { prioridades: [], ritmo: 4 });
+});
+
+test('hoje: aula em andamento que também precisa de revisão vira uma ação só', () => {
+  const acoes = planoDeHoje(entrada({ ultimaId: 'enem/mat/b', aulasParaRever: ['enem/mat/b'] }));
+  assert.equal(acoes.length, 1);
+  assert.equal(acoes[0].tipo, 'aula');
+  assert.match(acoes[0].motivo, /errou/);
 });

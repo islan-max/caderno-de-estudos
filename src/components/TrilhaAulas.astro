@@ -19,6 +19,10 @@ interface ItemTrilha {
   marca?: string;
   /** Selo da aula sem link (padrão: "Em breve"), ex.: "Sem material". */
   aviso?: string;
+  /** Título do grupo em que a aula começa; aparece quando muda de uma aula para a seguinte. */
+  unidade?: string;
+  /** Aulas que esta pressupõe. O aviso só aparece enquanto alguma não foi concluída; nada é bloqueado. */
+  pre?: { id: string; titulo: string }[];
 }
 
 interface Props {
@@ -32,6 +36,10 @@ const { aulas, accent = 'enem', mostrarEstado = false } = Astro.props;
 
 <ol class="trilha" style={`--accent: var(--color-${accent});`}>
   {aulas.map((aula, i) => (
+    <Fragment>
+    {aula.unidade && aula.unidade !== aulas[i - 1]?.unidade && (
+      <li class="trilha__unidade"><h2 class="trilha__unidade-titulo">{aula.unidade}</h2></li>
+    )}
     <li class="trilha__item" data-aula-id={aula.pronta === false ? undefined : aula.id} style={`--i: ${i}`} data-surgir>
       {aula.pronta === false ? (
         <div class="trilha__link trilha__link--breve">
@@ -55,6 +63,11 @@ const { aulas, accent = 'enem', mostrarEstado = false } = Astro.props;
             <span class="trilha__titulo">{aula.titulo}</span>
             <span class="trilha__resumo">{aula.resumo}</span>
             {mostrarEstado && <span class="trilha__estado" data-estado-texto></span>}
+            {aula.pre?.length ? (
+              <span class="trilha__pre" data-pre={aula.pre.map((p) => p.id).join(' ')} hidden>
+                Pressupõe {aula.pre.map((p) => p.titulo).join(' e ')}. Se travar, comece por lá.
+              </span>
+            ) : null}
             <!-- A marca de "vista" é só um ícone: o texto abaixo leva a mesma informação
                  ao leitor de tela. Quem o preenche é refletirProgresso() em app.ts. -->
             <span class="apenas-leitor" data-vista-texto></span>
@@ -66,6 +79,7 @@ const { aulas, accent = 'enem', mostrarEstado = false } = Astro.props;
         </a>
       )}
     </li>
+    </Fragment>
   ))}
 </ol>
 
@@ -225,6 +239,26 @@ const { aulas, accent = 'enem', mostrarEstado = false } = Astro.props;
   .trilha__item[data-estado='em-estudo'] .trilha__estado {
     border-color: color-mix(in srgb, var(--accent) 45%, var(--color-line));
     color: var(--accent);
+  }
+  .trilha__item[data-estado='revisar'] .trilha__estado {
+    border-color: color-mix(in srgb, var(--color-aviso) 55%, var(--color-line));
+    color: var(--color-aviso);
+  }
+  .trilha__pre {
+    margin-top: 0.15rem;
+    font-size: calc(0.78rem * var(--escala-texto, 1));
+    line-height: 1.4;
+    color: var(--color-ink-soft);
+  }
+  .trilha__unidade { list-style: none; margin-top: 0.6rem; }
+  .trilha__unidade-titulo {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: calc(0.72rem * var(--escala-texto, 1));
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-ink-soft);
   }
   .trilha__item[data-estado='concluida'] .trilha__estado {
     border-color: color-mix(in srgb, var(--color-ok) 45%, var(--color-line));

@@ -19,6 +19,8 @@ export interface AulaGeral {
   grupo: string;
   grupoCor: string;
   icone: string;
+  /** Ids das aulas que ela pressupõe (só ENEM, por ora). */
+  preRequisitos?: string[];
 }
 
 function dasTrilhas(chave: 'ds' | 'escolar', materias: MateriaTrilha[]): AulaGeral[] {
@@ -60,6 +62,7 @@ export async function indiceGeral(): Promise<AulaGeral[]> {
         grupo: a.areaCurto,
         grupoCor: a.areaCor,
         icone: a.icone,
+        preRequisitos: a.preRequisitos,
       });
     }
   }

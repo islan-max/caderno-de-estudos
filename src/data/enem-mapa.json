@@ -5,35 +5,57 @@
    {
     "slug": "divisibilidade-e-fatoracao",
     "titulo": "Divisibilidade e fatoração",
-    "resumo": "Critérios de divisibilidade, números primos, MMC e MDC: as ferramentas para simplificar contas e resolver problemas de repetição."
+    "resumo": "Critérios de divisibilidade, números primos, MMC e MDC: as ferramentas para simplificar contas e resolver problemas de repetição.",
+    "unidade": "Números e operações"
    },
    {
-    "slug": "fracoes"
+    "slug": "fracoes",
+    "unidade": "Números e operações"
    },
    {
-    "slug": "potencias-e-raizes"
+    "slug": "potencias-e-raizes",
+    "unidade": "Números e operações"
    },
    {
-    "slug": "razao-e-proporcao"
+    "slug": "razao-e-proporcao",
+    "unidade": "Proporcionalidade",
+    "preRequisitos": [
+     "fracoes",
+     "potencias-e-raizes"
+    ]
    },
    {
-    "slug": "regra-de-tres"
+    "slug": "regra-de-tres",
+    "unidade": "Proporcionalidade",
+    "preRequisitos": [
+     "razao-e-proporcao"
+    ]
    },
    {
-    "slug": "porcentagem"
+    "slug": "porcentagem",
+    "unidade": "Proporcionalidade",
+    "preRequisitos": [
+     "fracoes"
+    ]
    },
    {
-    "slug": "equacoes-de-primeiro-e-segundo-grau"
+    "slug": "equacoes-de-primeiro-e-segundo-grau",
+    "unidade": "Álgebra",
+    "preRequisitos": [
+     "potencias-e-raizes"
+    ]
    },
    {
     "slug": "inequacoes",
     "titulo": "Inequações",
-    "resumo": "Resolver desigualdades do 1º e do 2º grau e mostrar a solução na reta, em problemas de limite de custo, tempo e capacidade."
+    "resumo": "Resolver desigualdades do 1º e do 2º grau e mostrar a solução na reta, em problemas de limite de custo, tempo e capacidade.",
+    "unidade": "Álgebra"
    },
    {
     "slug": "sistemas-lineares",
     "titulo": "Sistemas de equações lineares",
-    "resumo": "Sistemas com duas ou três incógnitas, por substituição e por escalonamento, em problemas de compra, mistura e idade."
+    "resumo": "Sistemas com duas ou três incógnitas, por substituição e por escalonamento, em problemas de compra, mistura e idade.",
+    "unidade": "Álgebra"
    }
   ],
   "matematica-financeira": [

@@ -95,3 +95,10 @@ Formato de cada entrada, curto:
 - **Estado:** concluído, commitado e mesclado na `main` local (sem push). 26 cartões, página `/revisao/`, fila diária e caixas testadas.
 - **Próximo passo:** etapa 4 do plano.
 - **Pendências:** nenhum link para `/revisao/` ainda; vem com o `Hoje`.
+
+## 11/10/2026 · Claude (Claude Code) · etapa 4: jornada, Hoje e personalização
+
+- **Detalhes:** [docs/sessoes/2026-10-11-etapa-4-hoje-e-jornada.md](sessoes/2026-10-11-etapa-4-hoje-e-jornada.md)
+- **Estado:** concluído, commitado e mesclado na `main` local (sem push). `Hoje` com até 3 ações e motivo, trilha com unidades, "Precisa revisar" e aviso de pré-requisito, personalização com efeito visível.
+- **Próximo passo:** etapa 5 (diagnóstico).
+- **Pendências:** nenhuma.

@@ -48,6 +48,15 @@ export function vencidos(vigentesDoEstudante: Evento[], cartaoIds: string[], hoj
   });
 }
 
+/** Quantos cartões estão vencidos (já revisados e na data) e quantos são novos (nunca vistos). */
+export function contarCartoes(vigentesDoEstudante: Evento[], cartaoIds: string[], hoje: string) {
+  const estados = cartaoIds.map((id) => estadoDoCartao(vigentesDoEstudante, id));
+  return {
+    vencidos: estados.filter((e) => e.venceEm !== null && e.venceEm <= hoje).length,
+    novos: estados.filter((e) => e.venceEm === null).length,
+  };
+}
+
 /** Fila do dia: primeiro os vencidos (os mais atrasados antes), depois os novos, até o limite. */
 export function filaDoDia(vigentesDoEstudante: Evento[], cartaoIds: string[], hoje: string, limite = FILA_MAXIMA) {
   const estados = new Map(cartaoIds.map((id) => [id, estadoDoCartao(vigentesDoEstudante, id)]));
