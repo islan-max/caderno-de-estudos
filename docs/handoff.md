@@ -109,3 +109,10 @@ Formato de cada entrada, curto:
 - **Estado:** concluído, commitado e mesclado na `main` local (sem push). "Ver o que ficou" por unidade, sem nota. Diferença do plano: não há tela de prova separada (explicado na sessão).
 - **Próximo passo:** etapa 6 (acompanhamento).
 - **Pendências:** o Max decide se quer, no futuro, uma tela de checkpoint própria com questões.
+
+## 11/10/2026 · Claude (Claude Code) · etapa 6: acompanhamento (fim do plano)
+
+- **Detalhes:** [docs/sessoes/2026-10-11-etapa-6-acompanhamento.md](sessoes/2026-10-11-etapa-6-acompanhamento.md)
+- **Estado:** etapas 0 a 6 de `docs/plano-aprendizagem.md` concluídas, commitadas e mescladas na `main` local. **Sem push.** Páginas novas: `/revisao/` e `/meu-aprendizado/`. 41 testes (`npm test`), build com 206 páginas.
+- **Próximo passo:** o Max usa por uma ou duas semanas (parada obrigatória do plano) e decide se expande conceitos e cartões para outras matérias. Depois, voltar às aulas do ENEM: `matematica-basica/divisibilidade-e-fatoracao`.
+- **Pendências:** push na `main` quando o Max pedir; avaliar leitor de tela e 320 px, que não foram testados.

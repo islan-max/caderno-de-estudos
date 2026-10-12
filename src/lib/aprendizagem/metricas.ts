@@ -17,7 +17,8 @@ export const METRICAS: Record<string, DefinicaoDeMetrica> = {
   },
   'dia-de-estudo': {
     nome: 'Dia de estudo',
-    formula: 'dia local com pelo menos uma aula concluída, questão respondida ou cartão revisado. Abrir uma página não conta.',
+    formula:
+      'dia local com pelo menos uma aula concluída, questão respondida, cartão revisado ou estudo fora do site registrado. Abrir uma página não conta.',
     naoMede: 'Quanto tempo você estudou. Dia sem registro é ausência de dado, não zero estudo.',
     comoMelhorar: 'Responder uma questão ou concluir uma aula.',
   },
@@ -35,6 +36,13 @@ export const METRICAS: Record<string, DefinicaoDeMetrica> = {
     naoMede: 'Uma nota. Não há porcentagem nem média: só o que as suas respostas mostram até agora.',
     comoMelhorar: 'Responder as questões da aula e revisar os cartões do conceito, em dias diferentes.',
   },
+  'tempo-estimado': {
+    nome: 'Tempo ativo estimado',
+    formula:
+      'Atividades com menos de 30 minutos entre elas formam uma sessão. Cada atividade conta até 5 minutos até a seguinte, e a última conta 1 minuto. Estudo fora do site conta os minutos que você informou.',
+    naoMede: 'Aprendizado: tempo não significa compreensão. Também não mede a leitura entre uma atividade e outra.',
+    comoMelhorar: 'Não é para melhorar: serve só como contexto. Se estiver errado, edite a duração da sessão.',
+  },
   'revisao-vencida': {
     nome: 'Revisão vencida',
     formula: 'cartão já revisado cuja data de revisão é igual ou anterior a hoje. Cartão que nunca foi visto é novo, não vencido.',
@@ -50,7 +58,7 @@ export function progressoDaMateria(concluidas: number, publicadas: number): numb
 /** Dias locais (ordenados) com conclusão, resposta ou revisão. */
 export function diasDeEstudo(vigentesDoEstudante: Evento[]): string[] {
   const dias = vigentesDoEstudante
-    .filter((e) => e.tipo === 'aula_concluida' || e.tipo === 'questao_respondida' || e.tipo === 'cartao_revisado')
+    .filter((e) => ['aula_concluida', 'questao_respondida', 'cartao_revisado', 'estudo_externo'].includes(e.tipo))
     .map(diaLocal);
   return [...new Set(dias)].sort();
 }

@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { desfazerConclusao, dispensarRecomendacao, gravarPerfil, importarLegado, lerPerfil, lerEventos, recomendacaoDispensada, registrarConclusao, registrarQuestao, registrarRevisao } from './armazem.ts';
+import { desfazerConclusao, dispensarRecomendacao, gravarPerfil, editarSessao, excluirSessao, importarLegado, registrarEstudoExterno, lerPerfil, lerEventos, recomendacaoDispensada, registrarConclusao, registrarQuestao, registrarRevisao } from './armazem.ts';
 import { conceitosInvalidos } from './conceitos.ts';
 import { vigentes, type Evento } from './eventos.ts';
 import { estadoDoConceito } from './estados.ts';
@@ -10,6 +10,7 @@ import { aulaPrecisaRevisar, preRequisitosPendentes } from './jornada.ts';
 import { planoDeHoje, type AulaDoPlano, type EntradaDoPlano } from './hoje.ts';
 import { normalizarPerfil, tamanhoDaFila } from './perfil.ts';
 import { diagnosticoDaUnidade, diagnosticoDoConceito } from './diagnostico.ts';
+import { montarSessoes, minutosNosDias } from './sessoes.ts';
 
 /** localStorage de mentira. */
 function falso(inicial: Record<string, string> = {}) {
@@ -325,4 +326,84 @@ test('diagnóstico: cartões também são evidência e a unidade é conclusiva c
   const d = diagnosticoDaUnidade(vigentes(lerEventos(arm)), ['mat/mmc', 'mat/outro']);
   assert.equal(d.conclusivo, true);
   assert.deepEqual(d.resultados.map((r) => r.estado), ['lacuna', 'dados-insuficientes']);
+});
+
+/** Responde às 12h do dia 10 + n, `min` minutos depois. */
+const respostaEm = (arm: ReturnType<typeof falso>, n: number, min: number, acertou = true) =>
+  registrarQuestao({ aulaId: 'enem/mat/a', numero: 1, acertou, conceitoIds: ['mat/mmc'] }, new Date(2026, 9, 10 + n, 12, min), arm);
+const sessoesDe = (arm: ReturnType<typeof falso>) => montarSessoes(vigentes(lerEventos(arm)));
+
+test('sessões: até 30 minutos entre atividades é a mesma sessão', () => {
+  const arm = falso();
+  respostaEm(arm, 0, 0);
+  respostaEm(arm, 0, 25);
+  respostaEm(arm, 0, 56); // 31 min depois da anterior: nova sessão
+  const s = sessoesDe(arm);
+  assert.equal(s.length, 2);
+  assert.deepEqual(s.map((x) => x.eventos.length), [1, 2]); // mais recente primeiro
+});
+
+test('sessões: tempo ativo estimado limita cada intervalo a 5 minutos e conta 1 na última', () => {
+  const arm = falso();
+  respostaEm(arm, 0, 0);
+  respostaEm(arm, 0, 3); // 3
+  respostaEm(arm, 0, 20); // min(5, 17) = 5, e a última vale 1
+  assert.equal(sessoesDe(arm)[0].minutos, 3 + 5 + 1);
+});
+
+test('estudo fora do site: sessão manual, valida minutos e conta como dia de estudo', () => {
+  const arm = falso();
+  assert.equal(registrarEstudoExterno({ minutos: 0 }, dia(0), arm), false);
+  assert.equal(registrarEstudoExterno({ minutos: 601 }, dia(0), arm), false);
+  assert.equal(registrarEstudoExterno({ minutos: 45, assunto: ' Matemática ', objetivo: 'Lista de exercícios' }, dia(0), arm), true);
+  const s = sessoesDe(arm);
+  assert.equal(s.length, 1);
+  assert.deepEqual([s[0].origem, s[0].minutos, s[0].assunto], ['manual', 45, 'Matemática']);
+  assert.deepEqual(diasDeEstudo(vigentes(lerEventos(arm))), ['2026-10-10']);
+});
+
+test('editar a duração muda só o tempo, não os dias nem os estados', () => {
+  const arm = falso();
+  respostaEm(arm, 0, 0, false);
+  const antes = { dias: diasDeEstudo(vigentes(lerEventos(arm))), estado: estadoDoConceito(vigentes(lerEventos(arm)), 'mat/mmc') };
+  editarSessao(sessoesDe(arm)[0].id, { minutos: 30, objetivo: 'Revisar porcentagem' }, dia(1), arm);
+  const s = sessoesDe(arm)[0];
+  assert.deepEqual([s.minutos, s.editada, s.objetivo], [30, true, 'Revisar porcentagem']);
+  assert.deepEqual({ dias: diasDeEstudo(vigentes(lerEventos(arm))), estado: estadoDoConceito(vigentes(lerEventos(arm)), 'mat/mmc') }, antes);
+  assert.equal(editarSessao(s.id, { minutos: -1 }, dia(1), arm), false);
+});
+
+test('excluir uma sessão tira o tempo e o histórico, mas preserva respostas e conclusões', () => {
+  const arm = falso();
+  respostaEm(arm, 0, 0, false);
+  registrarConclusao('enem/mat/a', new Date(2026, 9, 10, 12, 5), arm);
+  excluirSessao(sessoesDe(arm)[0], {}, dia(2), arm);
+  assert.equal(sessoesDe(arm).length, 0);
+  assert.equal(minutosNosDias(sessoesDe(arm), new Set(['2026-10-10'])), 0);
+  const v = vigentes(lerEventos(arm));
+  assert.deepEqual(diasDeEstudo(v), ['2026-10-10']);
+  assert.equal(estadoDoConceito(v, 'mat/mmc'), 'precisa-revisar');
+});
+
+test('excluir com confirmação extra também anula as evidências da sessão', () => {
+  const arm = falso();
+  respostaEm(arm, 0, 0, false);
+  excluirSessao(sessoesDe(arm)[0], { ignorarEvidencias: true }, dia(2), arm);
+  const v = vigentes(lerEventos(arm));
+  assert.equal(sessoesDe(arm).length, 0);
+  assert.deepEqual(diasDeEstudo(v), []);
+  assert.equal(estadoDoConceito(v, 'mat/mmc'), 'nao-iniciado');
+});
+
+test('excluir estudo fora do site remove o registro e o dia', () => {
+  const arm = falso();
+  registrarEstudoExterno({ minutos: 30 }, dia(0), arm);
+  excluirSessao(sessoesDe(arm)[0], {}, dia(1), arm);
+  assert.equal(sessoesDe(arm).length, 0);
+  assert.deepEqual(diasDeEstudo(vigentes(lerEventos(arm))), []);
+});
+
+test('dia sem registro não vira zero: não há sessão nem evento', () => {
+  assert.deepEqual(sessoesDe(falso()), []);
+  assert.deepEqual(diasDeEstudo([]), []);
 });

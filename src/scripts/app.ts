@@ -13,6 +13,7 @@ import { montarQuiz } from './quiz';
 import { montarTopicos } from './topicos';
 import { montarSumario } from './sumario';
 import { montarRevisao } from './revisao';
+import { montarAprendizado } from './aprendizado';
 import { montarBarrasDeRolagem } from './barra-rolagem';
 import { desfazerConclusao, gravarPerfil, importarLegado, lerEventos, lerPerfil, registrarConclusao, registrarQuestao } from '../lib/aprendizagem/armazem';
 import { diaDaData, vigentes } from '../lib/aprendizagem/eventos';
@@ -1566,6 +1567,7 @@ function iniciar() {
   montarHub();
   montarFicou();
   void montarRevisao();
+  void montarAprendizado();
   ligarAtalhos();
   ligarNotasSoltas();
   ligarDobras();

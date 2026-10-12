@@ -1,7 +1,14 @@
 /** Registro imutável do que o estudante fez. Totais e estados são sempre recalculados daqui. */
 export interface Evento {
   id: string;
-  tipo: 'questao_respondida' | 'aula_concluida' | 'cartao_revisado' | 'correcao';
+  tipo:
+    | 'questao_respondida'
+    | 'aula_concluida'
+    | 'cartao_revisado'
+    | 'estudo_externo'
+    | 'sessao_excluida'
+    | 'sessao_editada'
+    | 'correcao';
   /** ISO em UTC. */
   quando: string;
   aulaId?: string;
@@ -13,6 +20,13 @@ export interface Evento {
   resultado?: 'acertou' | 'errou' | 'lembrei' | 'dificil' | 'nao_lembrei';
   /** Só em `correcao`: id do evento que ela anula. */
   corrige?: string;
+  /** estudo_externo e sessao_editada: duração em minutos. */
+  minutos?: number;
+  /** estudo_externo: assunto livre (ex.: "Matemática"). estudo_externo e sessao_editada: objetivo da sessão. */
+  assunto?: string;
+  objetivo?: string;
+  /** sessao_excluida e sessao_editada: a sessão (id do primeiro evento dela) a que se referem. */
+  sessaoId?: string;
 }
 
 /** Acrescenta o evento; um id já existente é ignorado, então repetir uma importação não duplica. */

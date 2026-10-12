@@ -1,0 +1,109 @@
+---
+import Base from '../layouts/Base.astro';
+import ComoCalculamos from '../components/ComoCalculamos.astro';
+import registroDeConceitos from '../data/conceitos.json';
+import { indiceEnem } from '../lib/aulas';
+import { u } from '../lib/url';
+
+// Conceitos que existem, com a aula onde são ensinados: o script marca os que precisam de revisão.
+const registro = registroDeConceitos as Record<string, { nome: string }>;
+const conceitos = (await indiceEnem()).flatMap((a) =>
+  a.conceitos.map((id) => ({ id, nome: registro[id].nome, aula: a.titulo, href: a.href }))
+);
+---
+
+<Base
+  title="Meu aprendizado"
+  description="O que você já fez, o que precisa de atenção e como estão suas revisões."
+  voltar={{ href: u('/'), label: 'Início' }}
+>
+  <section class="aprend" data-aprendizado data-conceitos={JSON.stringify(conceitos)} data-surgir>
+    <h1 class="aprend__titulo">Meu aprendizado</h1>
+    <p class="aprend__intro">
+      Estes números vêm só das suas respostas, aulas concluídas, cartões e sessões neste navegador.
+      Um dia sem registro significa que não há dado, não que você não estudou.
+    </p>
+    <noscript><p class="aprend__intro">Esta página precisa de JavaScript para mostrar os seus dados.</p></noscript>
+
+    <section class="aprend__bloco" aria-labelledby="ap-dias">
+      <h2 id="ap-dias">Dias de estudo</h2>
+      <p data-dias-resumo role="status"></p>
+      <div class="cal" data-calendario aria-hidden="true"></div>
+      <p class="aprend__nota">O quadro acima é só visual. A lista abaixo traz os mesmos dias, em texto.</p>
+      <ol class="aprend__lista" data-dias-lista aria-label="Dias com atividade nas últimas 12 semanas"></ol>
+      <ComoCalculamos chave="dia-de-estudo" />
+    </section>
+
+    <section class="aprend__bloco" aria-labelledby="ap-materias">
+      <h2 id="ap-materias">Progresso por matéria</h2>
+      <ul class="aprend__lista" data-materias></ul>
+      <ComoCalculamos chave="progresso-da-materia" />
+    </section>
+
+    <section class="aprend__bloco" aria-labelledby="ap-atencao">
+      <h2 id="ap-atencao">Conceitos que precisam de atenção</h2>
+      <ul class="aprend__lista" data-atencao></ul>
+      <ComoCalculamos chave="estado-do-conceito" />
+    </section>
+
+    <section class="aprend__bloco" aria-labelledby="ap-revisoes">
+      <h2 id="ap-revisoes">Revisões</h2>
+      <p data-revisoes></p>
+      <p><a href={u('/revisao')}>Ir para a revisão de cartões</a></p>
+      <ComoCalculamos chave="revisao-vencida" />
+    </section>
+
+    <section class="aprend__bloco" aria-labelledby="ap-sessoes">
+      <h2 id="ap-sessoes" tabindex="-1" data-sessoes-titulo>Histórico de sessões</h2>
+      <p class="aprend__nota">O tempo mostrado é uma estimativa e não indica quanto você aprendeu.</p>
+      <ul class="aprend__lista" data-sessoes></ul>
+      <details class="aprend__externo">
+        <summary>Registrar estudo fora do site</summary>
+        <form data-externo-form novalidate>
+          <label for="ext-minutos">Minutos estudados</label>
+          <input id="ext-minutos" name="minutos" type="number" min="1" max="600" inputmode="numeric" required />
+          <label for="ext-assunto">Assunto (opcional)</label>
+          <input id="ext-assunto" name="assunto" type="text" maxlength="80" />
+          <label for="ext-objetivo">Objetivo (opcional)</label>
+          <input id="ext-objetivo" name="objetivo" type="text" maxlength="160" />
+          <p class="aprend__erro" data-externo-erro role="alert" hidden></p>
+          <button type="submit" class="aprend__botao aprend__botao--principal">Registrar</button>
+        </form>
+      </details>
+      <p data-sessoes-status role="status" class="aprend__nota"></p>
+      <ComoCalculamos chave="tempo-estimado" />
+    </section>
+  </section>
+</Base>
+
+<style>
+  .aprend { display: grid; gap: 1.6rem; max-width: 44rem; }
+  .aprend__titulo { margin: 0; font-family: var(--font-display); font-size: calc(1.9rem * var(--escala-texto, 1)); line-height: 1.15; letter-spacing: -0.02em; }
+  .aprend__intro, .aprend__nota { margin: 0; color: var(--color-ink-soft); font-size: calc(0.92rem * var(--escala-texto, 1)); line-height: 1.55; }
+  .aprend__bloco { display: grid; gap: 0.7rem; padding-top: 1rem; border-top: 1px solid var(--color-line); }
+  .aprend__bloco h2 { margin: 0; font-family: var(--font-display); font-size: calc(1.2rem * var(--escala-texto, 1)); outline: none; }
+  .aprend__bloco p { margin: 0; line-height: 1.55; }
+  .aprend__lista { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.5rem; }
+  .aprend :global(.aprend__item) { padding: 0.6rem 0.75rem; border: 1px solid var(--color-line); border-radius: 0.55rem; line-height: 1.5; }
+  .aprend :global(.aprend__item progress) { display: block; width: 100%; margin-top: 0.35rem; }
+  .aprend :global(.aprend__acoes) { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.5rem; }
+  .aprend :global(.aprend__botao), .aprend__botao {
+    min-height: 2.75rem; padding: 0.45rem 0.85rem; border: 1px solid var(--color-line); border-radius: 0.55rem;
+    background: transparent; color: var(--color-ink); font: inherit; font-weight: 700; cursor: pointer;
+  }
+  .aprend :global(.aprend__botao--principal), .aprend__botao--principal { background: var(--color-ink); border-color: var(--color-ink); color: var(--color-paper); }
+  .aprend :global(.aprend__form), .aprend__externo form { display: grid; gap: 0.5rem; margin-top: 0.6rem; }
+  .aprend :global(.aprend__form label), .aprend__externo label { font-weight: 700; font-size: calc(0.88rem * var(--escala-texto, 1)); }
+  .aprend :global(.aprend__form input[type='number']), .aprend :global(.aprend__form input[type='text']), .aprend__externo input {
+    min-height: 2.75rem; padding: 0.45rem 0.7rem; border: 1px solid var(--color-line); border-radius: 0.55rem;
+    background: var(--color-paper); color: var(--color-ink); font: inherit;
+  }
+  .aprend :global(.aprend__erro), .aprend__erro { color: var(--color-aviso); font-weight: 700; }
+  .aprend__externo summary { cursor: pointer; font-weight: 700; padding: 0.4rem 0; }
+  .aprend :global(.aprend__confirma) { display: flex; align-items: flex-start; gap: 0.5rem; margin-top: 0.4rem; font-weight: 400; }
+  /* Calendário: uma coluna por semana, uma célula por dia; só dia com atividade fica cheio. */
+  .cal { display: grid; grid-auto-flow: column; grid-template-rows: repeat(7, 0.9rem); grid-auto-columns: 0.9rem; gap: 0.2rem; overflow-x: auto; padding-bottom: 0.2rem; }
+  .cal :global(.cal__dia) { border: 1px solid var(--color-line); border-radius: 0.2rem; }
+  .cal :global(.cal__dia[data-ativo]) { background: var(--color-ink); border-color: var(--color-ink); }
+  .cal :global(.cal__dia[data-hoje]) { outline: 2px solid var(--color-enem); outline-offset: 1px; }
+</style>

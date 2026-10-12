@@ -1,5 +1,6 @@
 import { anexar, vigentes, type Evento } from './eventos.ts';
 import { normalizarPerfil, PERFIL_PADRAO, type Perfil } from './perfil.ts';
+import type { Sessao } from './sessoes.ts';
 
 const CHAVE = 'cdt:v2:eventos';
 const VERSAO = 1;
@@ -141,4 +142,72 @@ export function gravarPerfil(perfil: Perfil, armazenamento: Armazenamento = loca
   } catch {
     return false;
   }
+}
+
+/** Estudo fora do site: vira uma sessão manual. Minutos entre 1 e 600. */
+export function registrarEstudoExterno(
+  dados: { minutos: number; assunto?: string; objetivo?: string },
+  quando = new Date(),
+  armazenamento?: Armazenamento
+) {
+  const minutos = Math.round(dados.minutos);
+  if (!Number.isFinite(minutos) || minutos < 1 || minutos > 600) return false;
+  return registrarEvento(
+    {
+      id: `estudo_externo:${quando.getTime()}`,
+      tipo: 'estudo_externo',
+      quando: quando.toISOString(),
+      conceitoIds: [],
+      minutos,
+      assunto: dados.assunto?.trim().slice(0, 80) || undefined,
+      objetivo: dados.objetivo?.trim().slice(0, 160) || undefined,
+    },
+    armazenamento
+  );
+}
+
+/** Corrige a duração e/ou o objetivo de uma sessão. Só mexe nas métricas de tempo. */
+export function editarSessao(
+  sessaoId: string,
+  dados: { minutos?: number; objetivo?: string },
+  quando = new Date(),
+  armazenamento?: Armazenamento
+) {
+  const minutos = dados.minutos === undefined ? undefined : Math.round(dados.minutos);
+  if (minutos !== undefined && (!Number.isFinite(minutos) || minutos < 0 || minutos > 600)) return false;
+  return registrarEvento(
+    {
+      id: `sessao_editada:${sessaoId}:${quando.getTime()}`,
+      tipo: 'sessao_editada',
+      quando: quando.toISOString(),
+      conceitoIds: [],
+      sessaoId,
+      minutos,
+      objetivo: dados.objetivo?.trim().slice(0, 160),
+    },
+    armazenamento
+  );
+}
+
+/**
+ * Exclui a sessão do histórico e do tempo. Respostas e conclusões ficam, salvo se o estudante
+ * pedir (`ignorarEvidencias`): aí cada evento dela é anulado. No estudo fora do site, o registro
+ * é a própria sessão e é anulado.
+ */
+export function excluirSessao(
+  sessao: Sessao,
+  opcoes: { ignorarEvidencias?: boolean } = {},
+  quando = new Date(),
+  armazenamento?: Armazenamento
+) {
+  const registrar = (e: Evento) => registrarEvento(e, armazenamento);
+  const correcao = (alvo: string): Evento => ({
+    id: `correcao:${alvo}`, tipo: 'correcao', quando: quando.toISOString(), conceitoIds: [], corrige: alvo,
+  });
+  if (sessao.origem === 'manual') return registrar(correcao(sessao.id));
+  let ok = registrar({
+    id: `sessao_excluida:${sessao.id}`, tipo: 'sessao_excluida', quando: quando.toISOString(), conceitoIds: [], sessaoId: sessao.id,
+  });
+  if (opcoes.ignorarEvidencias) for (const e of sessao.eventos) ok = registrar(correcao(e.id)) && ok;
+  return ok;
 }

@@ -2,6 +2,8 @@
 
 Substitui o `PLAN.md` do Codex. Mantém a direção dele e corta o que não se paga. Escrito em 11/10/2026.
 
+> **Estado em 11/10/2026:** etapas 0 a 6 executadas (ver `docs/sessoes/2026-10-11-etapa-*.md`). Desvios do plano: o diagnóstico (etapa 5) é calculado das respostas dadas nas questões das aulas, sem tela de prova separada; a personalização do `Hoje` fica num bloco recolhível, sem diálogo na primeira visita; a pergunta de objetivo saiu por não alterar nada. Falta o uso real e a avaliação antes de expandir para outras matérias.
+
 ## 1. Ideia central
 
 O estudante faz este ciclo: **estudar → praticar → errar → revisar → ver a evolução → continuar**.

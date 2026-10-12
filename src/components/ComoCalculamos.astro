@@ -1,0 +1,24 @@
+---
+// "Como calculamos": a definição de uma métrica do registro central (lib/aprendizagem/metricas.ts).
+// Nenhum número aparece no caderno sem uma definição aqui.
+import { METRICAS } from '../lib/aprendizagem/metricas';
+
+interface Props {
+  chave: keyof typeof METRICAS | string;
+}
+const metrica = METRICAS[Astro.props.chave];
+if (!metrica) throw new Error(`Métrica sem definição: ${Astro.props.chave}`);
+---
+
+<details class="como">
+  <summary>Como calculamos: {metrica.nome}</summary>
+  <p>{metrica.formula}</p>
+  <p><strong>O que não mede:</strong> {metrica.naoMede}</p>
+  <p><strong>Como melhorar:</strong> {metrica.comoMelhorar}</p>
+</details>
+
+<style>
+  .como { margin-top: 0.5rem; color: var(--color-ink-soft); font-size: calc(0.88rem * var(--escala-texto, 1)); line-height: 1.6; }
+  .como summary { cursor: pointer; font-weight: 700; color: var(--color-ink); padding: 0.4rem 0; }
+  .como p { margin: 0.3rem 0; }
+</style>

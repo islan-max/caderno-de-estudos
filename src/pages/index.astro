@@ -75,7 +75,10 @@ const outrasAbas = (
     <section class="hoje" data-hoje hidden data-surgir style="--i: 1" aria-labelledby="hoje-titulo">
       <div class="hoje__cabeca">
         <h2 class="hoje__selo" id="hoje-titulo"><Icone nome="compass" /> Hoje</h2>
-        <a class="hoje__revisao" href={u('/revisao')}>Revisão de cartões</a>
+        <span class="hoje__links">
+          <a class="hoje__revisao" href={u('/revisao')}>Revisão de cartões</a>
+          <a class="hoje__revisao" href={u('/meu-aprendizado')}>Meu aprendizado</a>
+        </span>
       </div>
       <ul class="hoje__lista" data-hoje-lista></ul>
       <details class="hoje__personalizar">
@@ -414,6 +417,7 @@ const outrasAbas = (
     letter-spacing: 0.12em;
     color: var(--color-enem);
   }
+  .hoje__links { display: flex; flex-wrap: wrap; gap: 0.2rem 1rem; }
   .hoje__revisao {
     color: var(--color-ink-soft);
     font-size: calc(0.8rem * var(--escala-texto, 1));
