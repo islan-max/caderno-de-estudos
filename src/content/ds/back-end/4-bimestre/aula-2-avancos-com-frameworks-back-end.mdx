@@ -1,0 +1,814 @@
+---
+title: "Avanços com Frameworks Back-End"
+subject: "Back-End"
+order: 2
+relevance: >
+  Quase ninguém escreve um back-end do zero: usa-se um framework que já traz roteamento, segurança e organização.
+  Esta semana mostra três peças de um back-end profissional: o Express.js (rotas, middlewares e tratamento de erros),
+  o Django (modelos, templates e proteções de segurança embutidas) e o Jenkins (automação de testes e de entrega,
+  para publicar com frequência sem quebrar o sistema). Os três são aplicados a um aplicativo de serviços
+  financeiros, em que erro de dado ou de segurança custa caro.
+quickSummary: >
+  No Express, rotas dizem para onde cada pedido vai, middlewares são funções no meio do caminho (login, logs,
+  leitura do corpo) e um tratador de erros com quatro parâmetros devolve respostas padronizadas sem vazar detalhes.
+  No Django, modelos descrevem os dados, templates separam a tela da lógica e o framework protege contra SQL
+  injection, XSS e CSRF. No Jenkins, um Jenkinsfile versionado descreve o pipeline (build, testes, empacotamento,
+  deploy), com testes automáticos em ambiente isolado, monitoramento e rollback.
+gabarito:
+  - correta: 0
+    porque: >
+      O Jenkinsfile é um arquivo de texto guardado junto com o código, então o fluxo de trabalho é versionado,
+      revisado e rastreado com o projeto. Ele não aumenta a complexidade sem ganho, não exige configuração manual a
+      cada build e não exclui a automação dos testes.
+      Revisar: A Aula › 3.2 O Jenkinsfile
+  - correta: 0
+    porque: >
+      Containers isolam o ambiente de testes, de modo que eles rodam iguais em qualquer máquina e sem sobras de
+      execuções anteriores. Testar só em produção, ignorar falhas ou manter testes manuais paralelos à automação
+      enfraquecem o pipeline.
+      Revisar: A Aula › 3.3 Automação de testes
+  - correta: 1
+    porque: >
+      Em serviços financeiros, o deploy contínuo precisa de rollback automático (voltar à versão estável se algo
+      falhar), testes pós-deploy e monitoramento com feedback. Ignorar o monitoramento, desconsiderar alertas ou
+      publicar sem testes pós-deploy aumenta o risco.
+      Revisar: A Aula › 3.4 Deploy contínuo, monitoramento e rollback
+ferramentas:
+  - nome: "Node.js (versão LTS)"
+    uso: "Roda o Express.js. O exemplo da aula foi testado com o Express 5."
+    custo: "Gratuito"
+    link: "https://nodejs.org"
+  - nome: "Express.js"
+    uso: "Framework web do exemplo. Instala-se no projeto com npm install express."
+    custo: "Gratuito"
+    link: "https://expressjs.com"
+  - nome: "Python 3 e Django"
+    uso: "Para os exemplos de modelos, templates e segurança. Instala-se com pip install django."
+    custo: "Gratuito"
+    link: "https://www.djangoproject.com"
+  - nome: "Editor de código (Visual Studio Code)"
+    uso: "Para escrever os exemplos."
+    custo: "Gratuito"
+    link: "https://code.visualstudio.com"
+  - nome: "Postman ou curl"
+    uso: "Para chamar a API do Express e ver status e JSON. O curl já vem no Windows 10 e 11 e no macOS."
+    custo: "Gratuito (plano gratuito do Postman)"
+    link: "https://www.postman.com"
+    opcional: true
+  - nome: "Docker"
+    uso: "Para rodar o Jenkins e os testes em ambiente isolado. Só é preciso se você quiser montar o pipeline de verdade."
+    custo: "Gratuito para uso pessoal e estudo"
+    link: "https://www.docker.com"
+    opcional: true
+  - nome: "Jenkins"
+    uso: "Servidor de automação que executa o pipeline. Exige instalação e um repositório de teste."
+    custo: "Gratuito (código aberto)"
+    link: "https://www.jenkins.io"
+    opcional: true
+---
+
+<Accordion titulo="Palavras e siglas desta aula" dica="Consulte quando encontrar um termo novo" icone="spell-check">
+
+- **Framework**: conjunto de ferramentas e regras que dá a estrutura do projeto. Ele chama o seu código, e não o contrário.
+- **API** (Application Programming Interface, interface de programação de aplicações): o "cardápio" de um serviço.
+- **Rota**: a combinação de um caminho (como `/saldo`) e um verbo HTTP (GET, POST...) que leva a um trecho de código.
+- **Middleware**: função que roda no meio do caminho entre o pedido e a resposta (login, logs, leitura do corpo).
+- **Endpoint**: o endereço de uma API que atende um tipo de pedido.
+- **HTTP**: o protocolo da web. **Status 4xx** = erro do pedido; **5xx** = erro do servidor.
+- **ORM** (Object-Relational Mapping, mapeamento objeto-relacional): camada que deixa usar o banco com objetos da linguagem, sem escrever SQL na mão.
+- **Migração**: arquivo que descreve uma mudança no banco (criar tabela, adicionar coluna).
+- **Template**: modelo de página com espaços que o framework preenche com dados.
+- **SQL injection**: ataque em que o invasor coloca comandos SQL em um campo para mexer no banco.
+- **XSS** (Cross-Site Scripting): ataque em que código malicioso roda na página de outra pessoa.
+- **CSRF** (Cross-Site Request Forgery): ataque em que um site malicioso faz o navegador do usuário mandar um pedido que ele não queria.
+- **CI** (Continuous Integration, integração contínua): juntar e testar o código automaticamente a cada mudança.
+- **CD**: **entrega contínua** (Continuous Delivery) deixa a versão pronta para publicar; **deploy contínuo** (Continuous Deployment) publica sozinho.
+- **Pipeline**: a sequência automática de etapas (build, testes, empacotamento, deploy).
+- **Jenkins**: servidor de automação de código aberto, muito usado para CI/CD. **Jenkinsfile**: o arquivo que descreve o pipeline.
+- **Artefato**: o arquivo gerado pelo build (um pacote, uma imagem).
+- **Staging**: ambiente de teste parecido com o de produção. **Produção**: o ambiente que os usuários usam.
+- **Rollback**: voltar para a versão estável anterior.
+- **Teste flaky** (intermitente): teste que às vezes passa e às vezes falha, sem mudar o código.
+- **Container** (Docker): "caixa" isolada com o programa e tudo de que ele precisa.
+- **Stakeholder**: qualquer pessoa afetada pelo projeto.
+- **DevOps**: cultura que junta desenvolvimento e operação, com automação.
+- **LGPD** (Lei Geral de Proteção de Dados): lei brasileira de proteção de dados pessoais.
+
+</Accordion>
+
+## Antes de Começar
+
+**O que esta aula cobre.** Três blocos, sempre com o **aplicativo de serviços financeiros** como exemplo: (1) **Express.js**: rotas, middlewares e tratamento de erros; (2) **Django**: modelos, templates e segurança; (3) **Jenkins**: integração contínua, automação de testes e deploy contínuo.
+
+**O que você precisa saber antes.**
+
+- **HTTP e APIs REST**: pedido, resposta e códigos de status (visto na Semana 22).
+- **JavaScript básico** (funções, `async`) e **Python básico** (classes).
+- **Git**: o pipeline parte de um repositório.
+- **Testes automatizados**: ideia geral (Semana 13).
+
+## A Aula
+
+### 1. Desenvolvimento com Express.js
+
+#### 1.1 O que é o Express
+
+O **Express.js** é um framework web **mínimo e flexível** para Node.js. Ele não impõe uma estrutura rígida: dá o **essencial** (rotas, middlewares, tratamento de erros) e você monta o resto. Os exemplos desta aula foram executados com o **Express 5**, a versão atual da documentação oficial. No Express 5, funções `async` que dão erro já chegam ao tratador de erros sozinhas; no Express 4, era preciso chamar `next(erro)` ou `.catch(next)` na mão.
+
+Instalação rápida:
+
+```bash
+npm init -y
+npm install express
+```
+
+#### 1.2 Rotas
+
+Uma **rota** liga **um verbo HTTP e um caminho** a uma função. Para um app financeiro: consultar saldo, fazer transferência, ver o histórico.
+
+```js
+const express = require('express');
+const app = express();
+app.use(express.json());                 // lê o corpo JSON (veja a seção 1.3)
+
+app.get('/contas/:id/saldo', (req, res) => {
+  res.json({ conta: req.params.id, saldo: 100 });
+});
+
+app.post('/transferencias', (req, res) => {
+  res.status(201).json({ id: 1, valor: req.body.valor });
+});
+
+app.listen(3000);
+```
+
+- **`req.params.id`**: parte variável do caminho (`/contas/123/saldo` dá id `123`).
+- **`req.body`**: o corpo do pedido (só existe depois do `express.json()`).
+- **`res.status(201).json(...)`**: define o código de status e envia JSON.
+
+**Organizando os endpoints (resposta à dúvida do colega):**
+
+1. **Substantivos no plural** para recursos, e o **verbo HTTP** para a ação: `GET /transacoes`, `POST /transacoes`, `GET /transacoes/42`. Evite `/buscarTransacao`.
+2. **Agrupe** por assunto com `express.Router`, um arquivo por recurso.
+3. **Versione** a API (`/v1/...`), para poder mudar sem quebrar quem já usa.
+4. Devolva **códigos de status certos**: 200 (ok), 201 (criado), 400 (pedido inválido), 401 (não autenticado), 403 (sem permissão), 404 (não encontrado), 500 (erro do servidor).
+5. **Valide** o que chega (tipo e faixa dos campos) antes de usar.
+6. Mantenha **formatos de resposta e de erro padronizados**.
+
+```js
+// transacoes.js
+const express = require('express');
+const router = express.Router();
+
+router.get('/', (req, res) => res.json([]));
+router.post('/', (req, res) => { /* cria */ });
+
+module.exports = router;
+
+// app.js
+app.use('/v1/transacoes', require('./transacoes'));
+```
+
+**Atenção à ordem.** As rotas rodam **na ordem em que foram escritas**. Uma rota genérica escrita antes de uma específica a "engole".
+
+#### 1.3 Middlewares
+
+**Middleware** é uma função com três parâmetros (`req`, `res`, `next`) que roda **no meio do caminho** entre o pedido e a resposta. Ela pode: executar qualquer código, **alterar** `req` e `res`, **encerrar** o pedido, ou chamar **`next()`** para passar a vez ao próximo. Se não encerra a resposta nem chama `next()`, o pedido **fica pendurado**.
+
+<figure class="figura">
+  <svg viewBox="0 0 560 190" role="img" aria-labelledby="fig-be23-mw-t fig-be23-mw-d">
+    <title id="fig-be23-mw-t">O caminho de um pedido pelos middlewares do Express</title>
+    <desc id="fig-be23-mw-d">O pedido passa em ordem por um middleware de log, um de autenticação e a rota, e vira a resposta. Se a autenticação falhar ou a rota der erro, o pedido vai para o tratador de erros, que é o último da fila e devolve uma resposta padronizada.</desc>
+    <defs>
+      <marker id="seta-be23-mw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+        <path d="M1,1 L9,5 L1,9" class="traco" />
+      </marker>
+    </defs>
+    <rect x="5" y="30" width="75" height="50" rx="8" class="traco" />
+    <text x="42" y="60" class="rotulo" text-anchor="middle">Pedido</text>
+    <rect x="105" y="30" width="75" height="50" rx="8" class="traco preenche" />
+    <text x="142" y="60" class="rotulo" text-anchor="middle">Log</text>
+    <rect x="205" y="30" width="95" height="50" rx="8" class="traco preenche" />
+    <text x="252" y="60" class="rotulo" text-anchor="middle">Autenticação</text>
+    <rect x="325" y="30" width="75" height="50" rx="8" class="traco" />
+    <text x="362" y="60" class="rotulo" text-anchor="middle">Rota</text>
+    <rect x="425" y="30" width="90" height="50" rx="8" class="traco" />
+    <text x="470" y="60" class="rotulo" text-anchor="middle">Resposta</text>
+    <line x1="80" y1="55" x2="103" y2="55" class="traco" marker-end="url(#seta-be23-mw)" />
+    <line x1="180" y1="55" x2="203" y2="55" class="traco" marker-end="url(#seta-be23-mw)" />
+    <line x1="300" y1="55" x2="323" y2="55" class="traco" marker-end="url(#seta-be23-mw)" />
+    <line x1="400" y1="55" x2="423" y2="55" class="traco" marker-end="url(#seta-be23-mw)" />
+    <rect x="205" y="130" width="195" height="50" rx="8" class="traco" />
+    <text x="302" y="152" class="rotulo" text-anchor="middle">Tratador de erros</text>
+    <text x="302" y="168" class="rotulo-fraco" text-anchor="middle">(err, req, res, next): o último</text>
+    <line x1="252" y1="80" x2="252" y2="128" class="tracejado" marker-end="url(#seta-be23-mw)" />
+    <line x1="362" y1="80" x2="362" y2="128" class="tracejado" marker-end="url(#seta-be23-mw)" />
+    <line x1="400" y1="155" x2="470" y2="82" class="tracejado" marker-end="url(#seta-be23-mw)" />
+    <text x="246" y="108" class="rotulo-fraco" text-anchor="end">falhou</text>
+    <text x="368" y="108" class="rotulo-fraco">erro</text>
+  </svg>
+</figure>
+
+**Tipos de middleware:**
+
+| Tipo | O que é | Exemplo |
+|---|---|---|
+| **Da aplicação** | Vale para todo o app | `app.use(logPedidos)` |
+| **De roteador** | Vale para um grupo de rotas | `router.use(exigirLogin)` |
+| **Embutido** | Já vem no Express | `express.json()` (lê JSON), `express.static()` (arquivos) |
+| **De terceiros** | Pacotes do npm | `helmet`, `cors`, `cookie-parser` |
+| **De erro** | Quatro parâmetros: `(err, req, res, next)` | O tratador da seção 1.4 |
+
+**Exemplo completo (testado):**
+
+```js
+// log de cada pedido
+app.use((req, res, next) => {
+  console.log(`${req.method} ${req.url}`);
+  next();
+});
+
+// autenticação (versão simplificada, só para ensinar o mecanismo)
+function exigirLogin(req, res, next) {
+  if (req.get('Authorization') !== 'Bearer token-de-teste') {
+    return res.status(401).json({ erro: 'Não autenticado.' });
+  }
+  next();
+}
+
+const transacoes = express.Router();
+transacoes.use(exigirLogin);                  // vale para todas as rotas deste grupo
+transacoes.get('/', (req, res) => res.json([{ id: 1, valor: 50 }]));
+app.use('/transacoes', transacoes);
+```
+
+Quando rodei este código com o Express 5.3.0, o pedido sem o cabeçalho voltou **401**, e o pedido com ele, **200**.
+
+**Importante sobre autenticação real.** O `'Bearer token-de-teste'` acima é só para mostrar o mecanismo. Num sistema de verdade, o middleware **valida um token assinado** (como um JWT) ou uma **sessão**, com uma biblioteca madura, e nunca compara com um texto fixo.
+
+**Por que middleware é bom** (o que o material destaca): **modulariza** o código (o login fica em um lugar só), **melhora a segurança** (nenhuma rota esquece de checar) e **centraliza** o que é transversal: autenticação, **registro de atividades (logs)**, limite de pedidos, leitura do corpo.
+
+**Cuidados:**
+
+- **A ordem importa.** `express.json()` precisa vir **antes** das rotas que leem `req.body`. O middleware de login precisa vir **antes** das rotas que ele protege.
+- **Sempre `next()` ou responda.** Senão o pedido trava.
+- **Nunca registre dados sensíveis** nos logs (senhas, números de cartão, tokens).
+
+#### 1.4 Gestão de erros
+
+**Gestão de erros** é capturar, tratar e responder às falhas de forma **consistente**. Para o usuário da API, melhora a experiência: ele recebe **mensagem clara e padronizada** em vez de um erro técnico ou de uma resposta que não chega. Para a equipe, facilita achar o problema.
+
+**O tratador de erros** é um middleware de **quatro parâmetros**, registrado **por último**:
+
+```js
+app.use((req, res) => res.status(404).json({ erro: 'Rota não encontrada.' })); // nada casou
+
+app.use((err, req, res, next) => {
+  if (res.headersSent) return next(err);          // resposta já começou: deixa o Express fechar
+  const status = err.status || 500;
+  console.error(err);                              // detalhes só no log do servidor
+  res.status(status).json({
+    erro: status === 500 ? 'Erro interno.' : err.message,   // nunca vaza detalhes do 500
+  });
+});
+```
+
+Como o Express 5 captura erros de funções `async` sozinho, basta **lançar** o erro na rota:
+
+```js
+router.get('/:id', async (req, res) => {
+  const id = Number(req.params.id);
+  if (!Number.isInteger(id)) {
+    const e = new Error('id inválido'); e.status = 400; throw e;
+  }
+  // ... busca no banco; se não achar:
+  const e = new Error('Transação não encontrada'); e.status = 404; throw e;
+});
+```
+
+Resultado dos testes: `/transacoes/abc` deu **400**, `/transacoes/9` deu **404** e uma rota inexistente também deu **404**, todos com JSON padronizado.
+
+**Regras de ouro:**
+
+1. **Tratador de erros por último**, com **exatamente quatro parâmetros** (o Express reconhece pela quantidade).
+2. **Nunca envie `err.stack` nem detalhes internos ao cliente**, pois isso ajuda quem ataca. Registre no **log** e devolva uma mensagem genérica no erro 500. (O Express só omite o stack no padrão quando `NODE_ENV=production`; no seu tratador, você decide.)
+3. **Status certo**: erro do pedido é 4xx; erro seu é 5xx.
+4. **Formato único** de erro em toda a API.
+5. **Funções com callback** (como as antigas do `fs`) não lançam erro: chame `next(err)` você mesmo.
+
+**Testar tudo isso.** O Node já traz um executor de testes (`node --test`), sem instalar nada. Exemplo, testado:
+
+```js
+// app.js termina com: module.exports = app;   (sem o app.listen)
+const test = require('node:test');
+const assert = require('node:assert');
+const app = require('./app');
+
+let servidor, base;
+test.before(() => new Promise((ok) => {
+  servidor = app.listen(0, () => { base = `http://localhost:${servidor.address().port}`; ok(); });
+}));
+test.after(() => servidor.close());
+
+test('conta inexistente devolve 404 padronizado', async () => {
+  const r = await fetch(`${base}/saldo/999`);
+  assert.strictEqual(r.status, 404);
+  assert.deepStrictEqual(await r.json(), { erro: 'Conta não encontrada' });
+});
+```
+
+Truque: `app.listen(0)` pede ao sistema uma **porta livre**, evitando conflito entre testes.
+
+#### 1.5 Respostas às situações do roteiro
+
+**Colega pergunta sobre organizar endpoints** → veja as seis dicas da seção 1.2 (recursos no plural, Router por assunto, versão, status certos, validação, formato único).
+
+**E-mail ao gestor sobre middlewares e segurança.** Pontos: (1) a **autenticação fica num lugar só**, então nenhuma rota esquece de proteger; (2) o **log** registra quem fez o quê, permitindo auditar e investigar fraudes; (3) middlewares de segurança de terceiros (como o `helmet`, que ajusta cabeçalhos HTTP de proteção, e limite de pedidos) **adicionam camadas** com pouco código; (4) cuidado de **não registrar dados sensíveis** nos logs.
+
+**Pergunta sobre gestão de erros e experiência do usuário.** Resposta objetiva: erros **padronizados** com mensagem clara e status correto ajudam quem usa a API a **entender o que fazer** (corrigir o pedido, tentar de novo, pedir ajuda); o servidor **não vaza detalhes**, e os **logs** guardam o necessário para a equipe corrigir rápido.
+
+### 2. Utilização de Django
+
+#### 2.1 O que é o Django
+
+O **Django** é um framework web em **Python** de "baterias incluídas": traz **ORM** (banco de dados), **migrações**, **sistema de templates**, **autenticação**, **painel de administração** e **proteções de segurança** no pacote. Versão atual na época desta aula: **6.1** (a versão de suporte de longo prazo é a **5.2 LTS**), segundo o site oficial. É ótimo para **desenvolvimento rápido**.
+
+O Django segue o padrão **MTV** (Model, Template, View):
+
+<figure class="figura">
+  <svg viewBox="0 0 560 190" role="img" aria-labelledby="fig-be23-dj-t fig-be23-dj-d">
+    <title id="fig-be23-dj-t">Como o Django atende um pedido</title>
+    <desc id="fig-be23-dj-d">O navegador envia o pedido às URLs, que o encaminham a uma view. A view consulta o modelo, que lê o banco de dados, e entrega os dados ao template, que gera o HTML da resposta.</desc>
+    <defs>
+      <marker id="seta-be23-dj" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+        <path d="M1,1 L9,5 L1,9" class="traco" />
+      </marker>
+    </defs>
+    <rect x="5" y="70" width="85" height="50" rx="8" class="traco" />
+    <text x="47" y="100" class="rotulo" text-anchor="middle">Navegador</text>
+    <rect x="115" y="70" width="70" height="50" rx="8" class="traco" />
+    <text x="150" y="100" class="rotulo" text-anchor="middle">URLs</text>
+    <rect x="210" y="70" width="70" height="50" rx="8" class="traco preenche" />
+    <text x="245" y="100" class="rotulo" text-anchor="middle">View</text>
+    <rect x="335" y="10" width="95" height="50" rx="8" class="traco" />
+    <text x="382" y="40" class="rotulo" text-anchor="middle">Modelo</text>
+    <rect x="460" y="10" width="95" height="50" rx="8" class="traco" />
+    <text x="507" y="40" class="rotulo" text-anchor="middle">Banco</text>
+    <rect x="335" y="130" width="95" height="50" rx="8" class="traco" />
+    <text x="382" y="160" class="rotulo" text-anchor="middle">Template</text>
+    <line x1="90" y1="95" x2="113" y2="95" class="traco" marker-end="url(#seta-be23-dj)" />
+    <line x1="185" y1="95" x2="208" y2="95" class="traco" marker-end="url(#seta-be23-dj)" />
+    <line x1="280" y1="85" x2="333" y2="38" class="traco" marker-end="url(#seta-be23-dj)" />
+    <line x1="280" y1="105" x2="333" y2="152" class="traco" marker-end="url(#seta-be23-dj)" />
+    <line x1="430" y1="35" x2="458" y2="35" class="traco" marker-end="url(#seta-be23-dj)" />
+    <text x="552" y="159" class="rotulo-fraco" text-anchor="end">gera o HTML da resposta</text>
+  </svg>
+</figure>
+
+- **Modelo (Model):** a estrutura dos dados e o acesso ao banco.
+- **Template:** a **apresentação** (o HTML).
+- **View:** a **lógica** que recebe o pedido, usa o modelo e escolhe o template.
+- **URLs:** o mapa de **qual endereço vai para qual view**.
+
+#### 2.2 Modelos: a estrutura e a integridade dos dados
+
+O **modelo** é uma classe Python que representa **uma tabela**. Cada atributo é uma **coluna**. Para o app financeiro, clientes e contas. Este exemplo foi **executado** (Django 6.1.2) e a regra de saldo foi comprovada:
+
+```python
+# contas/models.py
+from decimal import Decimal
+from django.db import models
+from django.db.models import Q
+
+
+class Cliente(models.Model):
+    nome = models.CharField(max_length=80)
+    email = models.EmailField(unique=True)          # não deixa repetir
+
+    def __str__(self):
+        return self.nome
+
+
+class Conta(models.Model):
+    titular = models.ForeignKey(Cliente, on_delete=models.PROTECT, related_name="contas")
+    saldo = models.DecimalField(max_digits=12, decimal_places=2, default=Decimal("0.00"))
+
+    class Meta:
+        constraints = [
+            models.CheckConstraint(condition=Q(saldo__gte=0), name="saldo_nao_negativo"),
+        ]
+```
+
+**Como isso protege a integridade** (a resposta à dúvida do colega):
+
+- **Tipos** (`CharField`, `EmailField`, `DecimalField`): o dado tem de ser do tipo certo.
+- **`DecimalField` para dinheiro.** Nunca `FloatField`: números decimais binários **arredondam errado** (0,1 + 0,2 não dá exatamente 0,3). Use `Decimal`, com valores como texto ou `Decimal("19.99")`.
+- **`unique=True`**: impede e-mails repetidos, no **banco**.
+- **`ForeignKey`** com **`on_delete`**: liga a conta ao cliente. `PROTECT` **impede apagar** um cliente que tem contas (no teste, o Django levantou `ProtectedError`). `CASCADE` apagaria as contas junto, perigoso em dados financeiros.
+- **`CheckConstraint`**: uma **regra no banco**. No teste, tentar criar uma conta com saldo **−1** deu `IntegrityError`.
+- **Validators** (`validators=[...]`) rodam em **formulários** e em `full_clean()`, mas **não** no `save()` puro. Para regras que **nunca** podem ser violadas, use **constraints**, que o banco garante.
+
+**Migrações.** Quando você muda um modelo, o Django gera e aplica a mudança no banco:
+
+```bash
+python manage.py makemigrations     # cria o arquivo de migração a partir dos modelos
+python manage.py migrate            # aplica ao banco
+```
+
+Os arquivos de migração **vão para o Git**: eles são o histórico do banco.
+
+**Consultas com o ORM** (sem escrever SQL):
+
+```python
+Conta.objects.filter(titular__nome="Ana", saldo__gt=0)
+cliente.contas.all()
+```
+
+**Transações.** Para operações como transferir dinheiro, use `transaction.atomic()`, que garante que **ou tudo acontece, ou nada**:
+
+```python
+from django.db import transaction
+
+with transaction.atomic():
+    origem.saldo -= valor
+    destino.saldo += valor
+    origem.save()
+    destino.save()          # se algo falhar, nada é gravado
+```
+
+(Em sistemas reais, ainda se usa bloqueio de linhas, como `select_for_update()`, para evitar duas transferências ao mesmo tempo na mesma conta.)
+
+#### 2.3 Templates: separar a tela da lógica
+
+O **template** é um HTML com **espaços** preenchidos pelo Django. Ele **separa lógica e apresentação**: quem desenha a tela mexe no template; quem cuida da regra mexe na view. Isso facilita **manter** e **mudar** a interface.
+
+A **linguagem de template do Django (DTL)** tem:
+
+- **Variáveis**: `{{ nome }}` mostra um valor.
+- **Tags**: `{% for ... %}`, `{% if ... %}` fazem a lógica.
+- **Filtros**: `{{ valor|floatformat:2 }}` transformam o valor.
+- **Herança**: um `base.html` com o layout e `{% block %}` que cada página preenche.
+
+```django
+{# base.html #}
+<title>{% block titulo %}Meu banco{% endblock %}</title>
+<main>{% block conteudo %}{% endblock %}</main>
+
+{# extrato.html #}
+{% extends "base.html" %}
+{% block titulo %}Extrato{% endblock %}
+{% block conteudo %}
+  <h1>Olá, {{ cliente.nome }}</h1>
+  <ul>
+  {% for conta in contas %}
+    <li>Conta {{ conta.id }}: R$ {{ conta.saldo }}</li>
+  {% empty %}
+    <li>Nenhuma conta ainda.</li>
+  {% endfor %}
+  </ul>
+{% endblock %}
+```
+
+E a **view** que usa o modelo e o template:
+
+```python
+# contas/views.py
+from django.shortcuts import render
+from .models import Cliente
+
+def extrato(request, cliente_id):
+    cliente = Cliente.objects.get(pk=cliente_id)
+    return render(request, "extrato.html", {"cliente": cliente, "contas": cliente.contas.all()})
+```
+
+Para um **dashboard** de transações, o template recebe a lista e mostra tabelas e gráficos de forma **reutilizável**, e o mesmo layout (`base.html`) vale para todas as páginas.
+
+**Um cuidado grande: a proteção contra XSS vem ligada.** O Django **escapa automaticamente** o que vai no template. Testei com um nome malicioso, e a tela recebeu o texto inofensivo:
+
+```text
+nome = <script>alert(1)</script>   →   <p>&lt;script&gt;alert(1)&lt;/script&gt;</p>
+```
+
+#### 2.4 Segurança no Django
+
+Segundo a documentação oficial, o Django já traz proteções para os ataques mais comuns:
+
+| Ataque | Proteção embutida | O que você deve fazer |
+|---|---|---|
+| **SQL injection** | O **ORM** envia os valores como **parâmetros**, nunca colados no texto do SQL | Não monte SQL com concatenação ou `f"..."`. Em SQL puro, use `%s` com a lista de parâmetros |
+| **XSS** | **Autoescape** nos templates | Evite `mark_safe` e o filtro `safe` com dados de usuários |
+| **CSRF** | **`CsrfViewMiddleware`** confere um segredo em cada POST | Ponha **`{% csrf_token %}`** em todo formulário POST; evite `@csrf_exempt` |
+| **Clickjacking** (página dentro de moldura de outro site) | **`XFrameOptionsMiddleware`** | Não desligue sem necessidade |
+| **Senhas** | Guardadas com **hash** (nunca em texto puro) | Use o sistema de autenticação do Django |
+
+```python
+# SQL puro seguro: os valores vão como parâmetros
+Cliente.objects.raw("SELECT * FROM contas_cliente WHERE nome = %s", [nome_digitado])
+```
+
+```django
+<form method="post">
+  {% csrf_token %}
+  ...
+</form>
+```
+
+**Configurações para produção** (também da documentação):
+
+```python
+DEBUG = False                       # nunca True em produção: vaza código e configuração
+ALLOWED_HOSTS = ["meuapp.com.br"]   # só aceita esses domínios
+SECURE_SSL_REDIRECT = True          # redireciona HTTP para HTTPS
+SESSION_COOKIE_SECURE = True        # cookie de sessão só por HTTPS
+CSRF_COOKIE_SECURE = True
+SECURE_HSTS_SECONDS = 31536000      # o navegador só usa HTTPS por 1 ano
+```
+
+A **`SECRET_KEY`** do projeto vai em **variável de ambiente**, nunca no Git.
+
+**Segurança também é o que o framework não faz por você:** controle de **quem pode ver o quê** (permissões), **limitar tentativas** de login, validar **entradas** (formulários do Django validam tipos e tamanhos), **registrar** ações importantes e manter o Django **atualizado** (patches de segurança saem por versão).
+
+**Medidas para proteger o aplicativo financeiro (resumo):** autenticação robusta; `{% csrf_token %}` em todo POST; ORM em vez de SQL concatenado; autoescape ligado; `DEBUG=False`; HTTPS e cookies seguros; `SECRET_KEY` fora do código; permissões por usuário; atualizações em dia.
+
+### 3. Integração contínua com Jenkins
+
+#### 3.1 O que é e por que automatizar
+
+A **integração contínua (CI)** junta o código de todos **várias vezes ao dia** e roda **build e testes** automaticamente, para achar problemas **cedo**. O **Jenkins** é um servidor de automação de código aberto muito usado para isso.
+
+No cenário do material, um app financeiro precisa ser **atualizado com frequência e com segurança**. A equipe automatizou o pipeline com Jenkins, mas surgiram **falhas intermitentes nos testes** (*testes flaky*) e **problemas de sincronização entre staging e produção**.
+
+**Duas perguntas do material, respondidas:**
+
+1. *Como a configuração adequada do pipeline ajuda a achar e corrigir problemas de integração?* Cada etapa roda **sempre igual** e **em ordem**, então quando algo falha, fica claro **em qual etapa** (build, teste ou deploy). Os **logs** e os **relatórios** guardam o histórico. Isso encurta o caminho até a causa.
+2. *Que benefícios a automação de testes traz ao deploy contínuo?* **Feedback rápido**, **menos erros** chegando à produção, **repetibilidade** (o mesmo teste, sempre) e **segurança para publicar com frequência**. Sem testes automáticos, o deploy contínuo é uma aposta.
+
+**Entrega contínua ou deploy contínuo?** São parentes, mas diferentes. Na **entrega contínua** (*continuous delivery*), toda mudança aprovada nos testes fica **pronta para publicar**, e uma **pessoa aprova** o envio à produção. No **deploy contínuo** (*continuous deployment*), a publicação em produção é **automática**, sem aprovação manual. O material usa "deployment contínuo" para o fluxo completo; em sistemas financeiros é comum **manter uma aprovação humana** antes da produção.
+
+<figure class="figura">
+  <svg viewBox="0 0 560 190" role="img" aria-labelledby="fig-be23-pipe-t fig-be23-pipe-d">
+    <title id="fig-be23-pipe-t">Pipeline de integração e deploy contínuo</title>
+    <desc id="fig-be23-pipe-d">Sete etapas em sequência: commit, build, testes, pacote, staging, produção e monitoramento. Se os testes falham, o pipeline para e avisa a equipe. Se a produção apresenta falha, um rollback volta à versão estável anterior.</desc>
+    <defs>
+      <marker id="seta-be23-pipe" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+        <path d="M1,1 L9,5 L1,9" class="traco" />
+      </marker>
+    </defs>
+    <rect x="5" y="30" width="66" height="50" rx="8" class="traco" />
+    <text x="38" y="60" class="rotulo" text-anchor="middle">Commit</text>
+    <rect x="81" y="30" width="66" height="50" rx="8" class="traco" />
+    <text x="114" y="60" class="rotulo" text-anchor="middle">Build</text>
+    <rect x="157" y="30" width="66" height="50" rx="8" class="traco preenche" />
+    <text x="190" y="60" class="rotulo" text-anchor="middle">Testes</text>
+    <rect x="233" y="30" width="66" height="50" rx="8" class="traco" />
+    <text x="266" y="60" class="rotulo" text-anchor="middle">Pacote</text>
+    <rect x="309" y="30" width="66" height="50" rx="8" class="traco" />
+    <text x="342" y="60" class="rotulo" text-anchor="middle">Staging</text>
+    <rect x="385" y="30" width="66" height="50" rx="8" class="traco" />
+    <text x="418" y="60" class="rotulo" text-anchor="middle">Produção</text>
+    <rect x="461" y="30" width="94" height="50" rx="8" class="traco" />
+    <text x="508" y="60" class="rotulo" text-anchor="middle">Monitoramento</text>
+    <line x1="71" y1="55" x2="79" y2="55" class="traco" marker-end="url(#seta-be23-pipe)" />
+    <line x1="147" y1="55" x2="155" y2="55" class="traco" marker-end="url(#seta-be23-pipe)" />
+    <line x1="223" y1="55" x2="231" y2="55" class="traco" marker-end="url(#seta-be23-pipe)" />
+    <line x1="299" y1="55" x2="307" y2="55" class="traco" marker-end="url(#seta-be23-pipe)" />
+    <line x1="375" y1="55" x2="383" y2="55" class="traco" marker-end="url(#seta-be23-pipe)" />
+    <line x1="451" y1="55" x2="459" y2="55" class="traco" marker-end="url(#seta-be23-pipe)" />
+    <text x="190" y="108" class="rotulo-fraco" text-anchor="middle">falhou: o pipeline</text>
+    <text x="190" y="122" class="rotulo-fraco" text-anchor="middle">para e avisa a equipe</text>
+    <path d="M508,82 L508,150 L418,150 L418,82" class="tracejado" marker-end="url(#seta-be23-pipe)" />
+    <text x="463" y="170" class="rotulo-fraco" text-anchor="middle">falha em produção: rollback</text>
+  </svg>
+</figure>
+
+#### 3.2 O Jenkinsfile
+
+Um **Jenkinsfile** é um arquivo de texto que **descreve o pipeline como código** e fica **no repositório, junto com o projeto**. Isso é o que a documentação do Jenkins chama de **Pipeline as Code**. A **principal vantagem** é o **versionamento do fluxo de trabalho junto com o código**: a mudança no pipeline passa por **revisão**, deixa **histórico**, e todos usam a **mesma definição**.
+
+**Uma correção de termo.** O material diz que o Jenkinsfile promove "Infrastructure as Code (IaC)". Mais exato é **Pipeline as Code**: IaC descreve a **infraestrutura** (servidores, redes), e o Jenkinsfile descreve a **automação do pipeline**. As duas ideias são irmãs e valem para o DevOps, mas não são a mesma coisa.
+
+O formato mais usado é o **declarativo**, com uma estrutura fixa: `pipeline`, `agent` (onde roda), `stages` (etapas) e `steps` (comandos). O exemplo mínimo da documentação oficial é:
+
+```groovy
+pipeline {
+    agent any
+    stages {
+        stage('Build') {
+            steps {
+                sh 'make'
+            }
+        }
+    }
+}
+```
+
+**Um Jenkinsfile para uma API Node.js** (mesmo desenho do material, adaptado ao Express). Atenção: este exemplo **não foi executado aqui**, pois exige um servidor Jenkins; ele segue a sintaxe da documentação oficial. Os scripts de deploy são **fictícios**:
+
+```groovy
+pipeline {
+    agent { docker { image 'node:22' } }          // roda tudo num container: ambiente isolado
+    options { timeout(time: 20, unit: 'MINUTES') }
+    stages {
+        stage('Build') {
+            steps { sh 'npm ci' }                 // instala dependências do jeito do lockfile
+        }
+        stage('Testes') {
+            steps { sh 'npm test' }               // para o pipeline se falhar
+        }
+        stage('Deploy em staging') {
+            steps { sh './scripts/deploy.sh staging' }
+        }
+        stage('Deploy em produção') {
+            when {
+                beforeInput true
+                branch 'main'
+            }
+            input {
+                message 'Publicar em produção?'
+                ok 'Publicar'
+            }
+            steps { sh './scripts/deploy.sh producao' }
+        }
+    }
+    post {
+        failure { echo 'O pipeline falhou: avisar a equipe.' }
+        always  { echo 'Pipeline finalizado.' }
+    }
+}
+```
+
+O agente Docker exige o **plugin "Docker Pipeline"** no Jenkins, e a condição `branch` só funciona em pipelines **multibranch** (um por branch do repositório). O `beforeInput true` faz a condição ser checada **antes** de o Jenkins pedir a aprovação.
+
+**Para um app Java**, como no material, o `Build` chamaria o Maven ou o Gradle (`sh 'mvn -B clean verify'`) e o `Package` geraria arquivos JAR ou WAR.
+
+**As etapas do material:**
+
+| Etapa | O que faz |
+|---|---|
+| **Build** | Compila o código ou instala as dependências |
+| **Test** | Roda testes unitários e de integração |
+| **Package** | Gera os artefatos (JAR, WAR, imagem Docker) |
+| **Deploy** | Envia para **staging**, valida, e, se aprovado, para **produção** |
+
+**Benefícios de um pipeline bem definido:**
+
+- **Padronização**: todo commit passa pelos mesmos passos, do mesmo jeito.
+- **Detecção rápida de erros**: o problema aparece no começo do ciclo.
+- **Integração com monitoramento**: envia alertas e relatórios.
+- **Segredos protegidos**: o Jenkins guarda credenciais à parte e **mascara** os valores nos logs. Nunca ponha senha escrita no Jenkinsfile.
+
+#### 3.3 Automação de testes
+
+**Automação de testes** é usar **scripts e ferramentas** que executam os testes **sozinhos** durante o desenvolvimento, garantindo que o código se comporta como o esperado. Em CI, é o que **valida rápido** cada mudança e mantém **a integridade** do aplicativo, principalmente em sistemas críticos como os financeiros.
+
+**Tipos de teste na pipeline:**
+
+| Tipo | O que testa | Ferramentas citadas / exemplos |
+|---|---|---|
+| **Unitário** | Uma função isolada | **JUnit** (Java), `node:test` ou Jest (Node), `unittest` ou pytest (Python) |
+| **De integração** | Peças trabalhando juntas (API e banco) | Testes que sobem a API e a chamam, como o exemplo da seção 1.4 |
+| **De ponta a ponta (E2E)** | O fluxo completo, pela tela | **Selenium**, que automatiza o navegador (por exemplo, fazer uma transferência) |
+
+**Uma correção de termo.** O material chama o uso do Selenium de "testes de integração". O Selenium dirige o **navegador**, e por isso os testes que ele faz costumam ser chamados de **de ponta a ponta** (ou de interface); os de integração, em sentido estrito, ligam componentes entre si.
+
+**Boas práticas para a automação ser eficaz:**
+
+1. **Ambiente isolado com containers (Docker).** Os testes rodam **idênticos em qualquer máquina**, sem sobras de execuções anteriores. É a prática essencial para confiabilidade.
+2. **Cobertura de testes**: garantir que uma **porcentagem significativa** do código seja testada. Atenção: **cobertura alta não significa teste bom**. Cobertura mede quais linhas rodaram, não se os testes verificam o resultado certo.
+3. **Feedback imediato**: notificações que avisam a equipe de falhas rapidamente.
+4. **Testes rápidos e em camadas**: muitos unitários (rápidos), menos de integração, poucos de ponta a ponta (lentos).
+5. **Nunca ignore falhas** de testes unitários, nem rode testes só em produção.
+6. **Teste manual não substitui** a automação: ele complementa (para explorar o que o roteiro não previu).
+
+**Testes flaky (intermitentes).** O cenário do material cita falhas que aparecem e somem. Causas comuns: **dependência de ordem** entre testes, **dados compartilhados**, **horário**, **rede** e **tempo de espera fixo**. Ações: isolar o ambiente (containers), **dados novos** por teste, esperas por **condição** em vez de tempo fixo, e **reexecutar e investigar** (e não apenas apertar "rodar de novo" até passar).
+
+#### 3.4 Deploy contínuo, monitoramento e rollback
+
+O **deploy contínuo** é **automatizar a publicação** de novas versões em produção, para atualizações **frequentes e seguras**. Em serviços financeiros, em que **segurança e disponibilidade** são essenciais, ele permite lançar funcionalidades e correções **rápido e sem interromper** o serviço.
+
+**Práticas do material:**
+
+- **Staging primeiro, depois produção.** O pipeline publica em staging; só com testes aprovados (e, se for o caso, com uma aprovação humana) vai à produção. Pode incluir **scripts de migração do banco de dados**.
+- **Ferramentas de implantação**, como **Ansible** (automatiza configuração de servidores) ou **Docker** (empacota a aplicação), para a infraestrutura ser atualizada de forma **consistente**.
+- **Rollback automático.** Se a nova versão falhar, o pipeline **volta para a versão estável**.
+- **Monitoramento contínuo**: integrar o deploy com ferramentas que **detectam problemas rápido**.
+- **Automação completa**: menos intervenção humana, menos erro.
+- **Testes pós-deploy** (*smoke tests*): conferir **em produção** se a nova versão está funcionando.
+
+**Rollback e banco de dados: um cuidado.** Voltar o código é fácil; voltar uma **migração de banco** pode **não ser**, se ela apagou ou transformou dados. Por isso, mudanças de banco devem ser **compatíveis com a versão anterior** do código (por exemplo, primeiro **adicionar** uma coluna, depois usar, e só muito depois remover a antiga).
+
+**Estratégias para reduzir risco** (além do que o material cita): **implantação gradual** (*canary*: liberar para uma pequena parte dos usuários e só depois para todos) e **azul e verde** (dois ambientes idênticos; troca-se o tráfego de um para o outro, e voltar é trocar de novo). Ambas combinam bem com feature flags.
+
+Por isso, a boa prática para a integridade do deploy contínuo em serviços financeiros é **implementar rollbacks automáticos em caso de falhas**, com testes pós-deploy e monitoramento. Já **desconsiderar o feedback do monitoramento, ignorar a integração com monitoramento** e **publicar sem testes pós-deploy** são riscos.
+
+#### 3.5 Atividade resolvida: o pipeline que falhou
+
+Situação: durante o deploy contínuo, o pipeline **falha nos testes de integração**, de uma funcionalidade vital para as transações. A equipe espera uma solução, e você tem **10 minutos** para enviar um **comunicado oficial** aos stakeholders. Um modelo:
+
+> **Assunto: Falha no pipeline de testes de integração: situação e plano**
+>
+> **O que aconteceu.** Os testes de integração falharam na etapa de testes. **Nada foi para produção**: o pipeline para quando um teste falha, então os clientes **não foram afetados**.
+>
+> **Como vamos isolar e corrigir.** Estamos lendo o log da etapa que falhou e reexecutando o teste em ambiente isolado (container), para saber se o erro é de código ou de ambiente. Também vamos conferir os dados de teste e a sincronização entre staging e produção. Previsão de diagnóstico: [horário].
+>
+> **Como vamos tornar os testes mais robustos.** Isolar o ambiente em containers, usar dados novos por teste, eliminar esperas fixas, e tratar testes intermitentes como defeito a corrigir, não a repetir.
+>
+> **Como vamos monitorar para evitar recorrência.** Alertas imediatos de falha para o canal da equipe, painel com o histórico de falhas por etapa, testes pós-deploy e rollback automático ativos em produção.
+>
+> **Próxima atualização:** [horário].
+
+Princípios do comunicado: **fatos primeiro** (o que aconteceu, o impacto), **o que está sendo feito**, **quando haverá novidade** e **sem culpar** ninguém. **Não prometa** o que não depende de você.
+
+## Tópicos-Chave para Revisão
+
+<div className="topico">
+
+#### 1. Express.js
+
+Framework web **mínimo e flexível** para Node.js. Traz **rotas**, **middlewares** e **tratamento de erros**. No **Express 5**, funções **async** que falham chegam sozinhas ao tratador de erros.
+
+#### 2. Rotas
+
+Ligam **verbo HTTP e caminho** a uma função. Use **recursos no plural**, **Router** por assunto, **versão** (/v1), **status corretos** e **validação**. As rotas rodam **na ordem escrita**.
+
+#### 3. Middleware
+
+Função **(req, res, next)** que roda **no meio do caminho**: **autenticação**, **logs**, **leitura do corpo**. **Modulariza** e **melhora a segurança**. Chame **next()** ou responda. **A ordem importa**.
+
+#### 4. Tratador de erros
+
+Middleware com **quatro parâmetros (err, req, res, next)**, registrado **por último**. Devolve **resposta padronizada**, registra detalhes no **log** e **não vaza** o stack. Melhora a **experiência** do usuário e a **manutenção**.
+
+#### 5. Django
+
+Framework Python de **baterias incluídas**: **ORM**, **migrações**, **templates**, **autenticação** e **segurança**. Padrão **MTV**: **modelo**, **template** e **view**.
+
+#### 6. Modelos do Django
+
+Representam **tabelas**. Garantem **integridade** com **tipos**, **unique**, **ForeignKey (on_delete)** e **CheckConstraint**. **DecimalField** para dinheiro. **Migrações** com **makemigrations** e **migrate**. **transaction.atomic** para operações em bloco.
+
+#### 7. Templates
+
+Separam **lógica e apresentação**: **variáveis**, **tags**, **filtros** e **herança** (extends e block). Facilitam **manutenção** e **evolução da interface**. O **autoescape** protege contra **XSS**.
+
+#### 8. Segurança no Django
+
+**ORM** contra **SQL injection**, **autoescape** contra **XSS**, **csrf_token** contra **CSRF**, **X-Frame-Options** contra **clickjacking**. Em produção: **DEBUG=False**, **ALLOWED_HOSTS**, **HTTPS** e **SECRET_KEY** fora do código.
+
+#### 9. CI e pipeline
+
+**CI** junta e testa o código **a cada mudança**. O **pipeline** tem **build**, **testes**, **empacotamento** e **deploy**. Padroniza e detecta erros cedo. **Entrega contínua** (com aprovação) difere de **deploy contínuo** (automático).
+
+#### 10. Jenkinsfile
+
+Arquivo que descreve o pipeline **como código**, **versionado com o projeto** (**Pipeline as Code**). Estrutura declarativa: **pipeline**, **agent**, **stages**, **steps**, **post**. Segredos ficam nas **credenciais** do Jenkins.
+
+#### 11. Automação de testes
+
+Scripts que rodam os testes **sozinhos**. **Unitários** (JUnit), de **integração** e **de ponta a ponta** (Selenium). Prática essencial: **containers** para **isolar o ambiente**. **Cobertura** não garante qualidade. Cuidado com testes **flaky**.
+
+#### 12. Deploy contínuo seguro
+
+**Staging** antes de **produção**, **rollback automático**, **monitoramento** e **testes pós-deploy**. Cuidado com **migrações de banco** que não voltam. **Canary** e **azul e verde** reduzem o risco.
+
+</div>
+
+## Pause e Responda
+
+*Marque uma alternativa em cada questão e confira tudo de uma vez no botão do fim.*
+
+**Questão 1**
+
+*Pause e Responda S23A3a · Integração contínua com Jenkins*
+
+Qual a principal vantagem de utilizar um Jenkinsfile para configurar pipelines?
+
+A) Versionamento do fluxo de trabalho juntamente com o código.\
+B) Aumento da complexidade sem ganho real.\
+C) Necessidade de configuração manual para cada build.\
+D) Exclusão da automação dos testes.\
+E) Impossibilidade de revisar as mudanças do pipeline.
+
+**Questão 2**
+
+*Pause e Responda S23A3b · Integração contínua com Jenkins*
+
+Qual prática é essencial para garantir que a automação de testes em uma pipeline seja eficaz?
+
+A) Utilizar containers para isolar o ambiente de testes.\
+B) Executar testes apenas em produção.\
+C) Ignorar falhas nos testes unitários.\
+D) Executar testes manuais em paralelo à automação.\
+E) Desativar os testes que falham de vez em quando.
+
+**Questão 3**
+
+*Pause e Responda S23A3c · Integração contínua com Jenkins*
+
+Qual é uma boa prática para assegurar a integridade do deployment contínuo em um ambiente de serviços financeiros?
+
+A) Desconsiderar feedbacks de monitoramento.\
+B) Implementar rollbacks automáticos em caso de falhas.\
+C) Realizar deploys sem testes pós-deployment.\
+D) Ignorar a integração com ferramentas de monitoramento.\
+E) Publicar direto em produção, sem passar por staging.

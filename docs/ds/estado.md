@@ -102,3 +102,15 @@ O material é ponto de partida, não verdade: erros, premissas fracas e itens de
 - Chiziane: primeira mulher moçambicana a publicar um romance (1990) e primeira mulher africana a ganhar o Prêmio Camões (2021).
 
 **Figuras:** todas passaram no verificador `scripts/checar-figuras-no-navegador.js` (nós opacos com a classe `no`, retas terminando na borda do nó).
+
+## Aulas de 13/10/2026
+
+**IA, semana 22 (Projeto Prático: Concepção e Planejamento)**
+- Resolve o projeto da EstudaMais: problema, requisitos funcionais e não funcionais, critérios mensuráveis, papéis dos agentes, arquitetura e fluxo de dados. O material só trazia os roteiros; as respostas modelo foram escritas para a aula.
+- Complemento: IA generativa pode ser combinada com função comum (o LLM interpreta, o código calcula); RAG para texto e ferramenta para dado exato; LGPD na memória de longo prazo.
+
+**Back-End, semana 23 (Avanços com Frameworks Back-End)**
+- Express 5.3.0 testado de verdade (rotas, middlewares, tratador de erros, `node --test`); Django 6.1.2 testado (CheckConstraint, PROTECT, autoescape). O Jenkinsfile Node não foi executado (exige Jenkins) e está marcado como tal.
+- Correções ao material: Jenkinsfile é Pipeline as Code (não IaC); Selenium faz teste de ponta a ponta (não de integração); entrega contínua x deploy contínuo; rollback de banco de dados não é automático; cobertura de testes não prova qualidade.
+
+**Escolar, Matemática 4º bim:** Aulas 6 (regra de três composta) e 7 (resolução de problemas). A Aula 7 do livro só traz questões de vestibular (ficam na apostila): a aula ensina o método com exemplos próprios, incluindo divisão proporcional.

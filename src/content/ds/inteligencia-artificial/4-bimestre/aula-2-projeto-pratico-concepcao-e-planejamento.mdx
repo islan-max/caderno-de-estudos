@@ -1,0 +1,508 @@
+---
+title: "Projeto Prático: Concepção e Planejamento"
+subject: "Inteligência Artificial"
+order: 2
+relevance: >
+  Muitos projetos de IA fracassam antes de a primeira linha de código ser escrita: a empresa quer "usar IA" sem saber
+  que problema resolver, ou constrói tudo de uma vez e ninguém usa. A concepção e o planejamento evitam isso. Eles
+  respondem quatro perguntas, nesta ordem: que problema existe e a IA generativa é a ferramenta certa? Que agentes
+  vão resolver o problema? Como eles se organizam por dentro? E como saber se deu certo? Esta semana monta o projeto
+  do assistente da EstudaMais, uma plataforma de cursos on-line, do problema ao desenho da arquitetura.
+quickSummary: >
+  Comece pelo problema, não pela tecnologia: IA generativa serve para linguagem natural e respostas variadas, não
+  para regras fixas e exatas. Descreva requisitos funcionais (o que o sistema faz) e não funcionais (como ele
+  funciona), defina critérios de sucesso mensuráveis e comece pequeno (MVP). Divida o trabalho entre agentes
+  especialistas coordenados por um orquestrador, e desenhe a arquitetura: interface, orquestrador, agentes, RAG
+  (recuperação de conhecimento), memória e ferramentas.
+gabarito:
+  - correta: 2
+    porque: >
+      "Responder em até 3 segundos" diz COMO o sistema deve funcionar (desempenho), e não o que ele faz. É um
+      requisito não funcional, ligado à qualidade. Não é critério de negócio nem restrição de escopo.
+      Revisar: A Aula › 1.5 Requisitos funcionais e não funcionais
+  - correta: 3
+    porque: >
+      Quem recebe a tarefa, divide em subtarefas e distribui aos outros agentes é o agente orquestrador, que
+      coordena os demais. O especialista faz uma tarefa, o de memória guarda histórico e o de borda processa dados
+      locais.
+      Revisar: A Aula › 2.2 O agente orquestrador
+  - correta: 0
+    porque: >
+      O componente de recuperação do RAG busca, numa base de conhecimento, os trechos relevantes e os entrega ao
+      modelo para fundamentar a resposta. A chamada de função usa ferramentas, a memória guarda a conversa e o
+      orquestrador coordena os agentes.
+      Revisar: A Aula › 3.3 Recuperação de conhecimento (RAG)
+ferramentas:
+  - nome: "Papel, caneta ou um quadro digital (Excalidraw, draw.io, Miro)"
+    uso: "Para desenhar o fluxo e a arquitetura do assistente com blocos e setas."
+    custo: "Gratuito (as três ferramentas digitais têm plano gratuito)"
+    link: "https://excalidraw.com"
+  - nome: "Editor de texto ou planilha"
+    uso: "Para escrever o problema, os requisitos e a tabela de critérios de sucesso."
+    custo: "Gratuito"
+  - nome: "Um assistente de IA (ChatGPT, Claude, Gemini)"
+    uso: "Opcional, para testar com exemplos reais se a IA generativa consegue responder às dúvidas do tipo que o assistente vai receber."
+    custo: "Plano gratuito"
+    opcional: true
+---
+
+<Accordion titulo="Palavras e siglas desta aula" dica="Consulte quando encontrar um termo novo" icone="spell-check">
+
+- **IA generativa** (inteligência artificial generativa): IA que cria conteúdo novo, como texto e imagens, a partir de um pedido em linguagem natural.
+- **LLM** (Large Language Model, modelo de linguagem grande): o modelo por trás de assistentes como o ChatGPT e o Claude.
+- **Agente de IA**: programa que usa um LLM para decidir o que fazer e usa ferramentas para fazer.
+- **Orquestrador**: o agente que coordena os outros.
+- **Multiagente**: sistema com vários agentes, cada um com um papel.
+- **Requisito**: algo que o sistema precisa ter ou cumprir.
+- **Requisito funcional**: o que o sistema deve fazer. **Requisito não funcional**: como ele deve funcionar (velocidade, segurança, disponibilidade).
+- **Critério de sucesso**: o resultado, medido com números, que mostra se o projeto deu certo.
+- **MVP** (Minimum Viable Product, Produto Mínimo Viável): a versão mais simples que já entrega valor e permite aprender.
+- **Escopo**: o que está dentro do projeto e o que está fora.
+- **Stakeholder**: qualquer pessoa ou grupo afetado pelo projeto (clientes, diretoria, equipe).
+- **RAG** (Retrieval-Augmented Generation, geração aumentada por recuperação): o sistema busca trechos numa base de documentos e os entrega ao modelo antes de ele responder.
+- **Base vetorial** e **embedding**: banco que guarda o significado dos textos como listas de números (embeddings), para achar trechos parecidos em sentido.
+- **Chunk** (trecho): pedaço de documento guardado e buscado no RAG.
+- **Memória de curto e de longo prazo**: o histórico da conversa atual, e os dados que persistem entre conversas.
+- **Alucinação**: quando o modelo inventa algo que parece correto, mas é falso.
+- **ICMS** (Imposto sobre Circulação de Mercadorias e Serviços) e **NF-e** (Nota Fiscal Eletrônica): imposto estadual e documento fiscal citados como exemplo de cálculo exato.
+- **CPF** (Cadastro de Pessoas Físicas): documento brasileiro cujo dígito verificador segue uma regra matemática fixa.
+- **LGPD** (Lei Geral de Proteção de Dados): lei brasileira que protege dados pessoais.
+- **AVA** (Ambiente Virtual de Aprendizagem): a plataforma onde a escola recebe as atividades.
+
+</Accordion>
+
+## Antes de Começar
+
+**O que esta aula cobre.** O planejamento de um projeto de agentes de IA, em três passos, todos com o mesmo exemplo, a **EstudaMais**: (1) identificar o problema e levantar requisitos; (2) definir os papéis dos agentes; (3) desenhar a arquitetura.
+
+**O que você precisa saber antes.**
+
+- **A Semana 21**: function calling, frameworks de orquestração e colaboração multiagente.
+- **A Semana 20**: o que é RAG e memória em agentes.
+- **O que é um LLM** e por que ele pode errar (alucinação).
+
+## A Aula
+
+### 1. Identificação do problema e requisitos
+
+#### 1.1 O erro de começar pela tecnologia
+
+Uma empresa decidiu "usar inteligência artificial" porque **todos os concorrentes** estavam usando. Contratou uma equipe, investiu seis meses e lançou um **chatbot no site**. Três meses depois, **quase ninguém usava**. O chatbot respondia perguntas que os clientes não faziam e **não resolvia a queixa real**: a demora no **rastreamento de pedidos**.
+
+O que faltou **antes** de construir:
+
+1. **Definir o problema real**, com dados: quem sofre, com o quê, quanto.
+2. **Ouvir os usuários** (clientes e atendentes) em vez de supor.
+3. **Checar se a IA era a ferramenta certa.** Um simples link de rastreamento, ou uma consulta ao sistema de pedidos, talvez resolvesse.
+4. **Definir como medir o sucesso** antes de começar.
+5. **Começar pequeno**, para aprender cedo.
+
+A regra é: **o problema manda, a tecnologia serve**.
+
+#### 1.2 Quando a IA generativa é adequada
+
+A IA generativa funciona melhor com **interpretação**, com **linguagem natural** e com problemas de **várias respostas possíveis**.
+
+| Adequada para | Inadequada (usar código comum) |
+|---|---|
+| Responder **dúvidas variadas** de clientes em linguagem natural | **Calcular o ICMS** de uma NF-e |
+| **Criar resumos** de textos | **Verificar se um CPF é válido** |
+| **Gerar ideias** para campanhas ou conteúdos | **Somar os valores** de uma planilha |
+| Produzir **respostas flexíveis** para contextos diferentes | Aplicar **regras fixas e determinísticas** |
+
+**Por que essa divisão?** Um LLM trabalha com **probabilidade**: ele gera o texto mais provável. Isso é ótimo para conversar e resumir, mas **ruim para contas e regras exatas**, em que a resposta tem de ser **sempre a mesma e correta**. Para essas, escreva código (uma função que valida o CPF nunca erra o cálculo).
+
+**Uma observação importante.** "Inadequada" não quer dizer "proibida de participar". Um bom sistema **combina os dois**: o LLM entende o pedido ("quanto devo de imposto neste pedido?") e **chama uma função comum** (por function calling) que faz a conta exata. O LLM interpreta, o código calcula.
+
+**Teste rápido de adequação** (três perguntas):
+
+1. A entrada vem em **linguagem natural e varia muito**?
+2. Existe **mais de uma resposta aceitável**?
+3. Um **erro ocasional** é tolerável, ou pode ser **verificado** por pessoa ou por regra?
+
+Se a resposta for "não" às duas primeiras ou "não" à terceira (erro intolerável e sem verificação), repense a solução.
+
+#### 1.3 Definir o problema
+
+**Só um problema claro permite planejar, medir e decidir se a IA faz sentido.** Compare:
+
+- **Não é problema:** "a empresa quer usar IA".
+- **É problema:** "os clientes esperam **40 minutos** para rastrear um pedido no atendimento".
+
+Um problema bem definido diz **quem** é o usuário, **qual dificuldade** ele enfrenta e **qual resultado** se espera. Um modelo de frase:
+
+> **[Usuário]** tem dificuldade de **[tarefa]** porque **[causa]**, o que gera **[impacto medido]**. Queremos **[resultado esperado]**.
+
+Exemplo: "Os clientes têm dificuldade de saber onde está o pedido, porque dependem do atendimento humano, o que gera espera de 40 minutos. Queremos que a resposta chegue em menos de 1 minuto."
+
+#### 1.4 O projeto da EstudaMais
+
+A **EstudaMais** é uma plataforma de cursos on-line com **50 000 estudantes ativos**. A equipe interna identificou **quatro queixas recorrentes**:
+
+1. **Demora** para receber respostas às dúvidas (o suporte está sobrecarregado).
+2. **Dificuldade de encontrar** o material certo entre milhares de conteúdos.
+3. **Falta de clareza** sobre o que estudar a seguir.
+4. **Vontade de praticar** com exercícios antes das provas.
+
+A empresa decidiu conceber um **assistente de IA generativa** e quer começar pela concepção.
+
+**Resolução do roteiro, passo a passo:**
+
+**Passo 1: o problema central em uma frase.** "Os estudantes da EstudaMais demoram para ter dúvidas respondidas e para saber o que estudar e praticar, porque o suporte humano está sobrecarregado e o catálogo é enorme, o que atrasa o aprendizado e aumenta o abandono dos cursos."
+
+**Passo 2: a IA generativa é adequada?** Sim, para o **núcleo** do problema:
+
+- As dúvidas vêm em **linguagem natural** e **variam muito**.
+- Existe **mais de uma resposta aceitável** (várias explicações servem).
+- **Recomendar** e **gerar exercícios** são tarefas **flexíveis**.
+- O risco de erro é **controlável**: a resposta pode ser **baseada em material real** (RAG) e o aluno pode **avisar** quando a resposta estiver errada.
+- Mas **não** use IA generativa para o que é **exato**: consultar o progresso do aluno é uma **consulta ao banco de dados**, feita por uma ferramenta.
+
+#### 1.5 Requisitos funcionais e não funcionais
+
+<figure class="figura">
+  <svg viewBox="0 0 560 190" role="img" aria-labelledby="fig-ia22-req-t fig-ia22-req-d">
+    <title id="fig-ia22-req-t">Requisitos funcionais e não funcionais</title>
+    <desc id="fig-ia22-req-d">Dois quadros lado a lado. Requisitos funcionais descrevem o que o sistema deve fazer: recomendar produtos, consultar pedidos, realizar login, emitir relatório. Requisitos não funcionais descrevem como ele deve funcionar: responder em até 2 segundos, proteger dados do usuário, funcionar 24 horas por dia, ser fácil de manter.</desc>
+    <rect x="5" y="10" width="270" height="170" rx="8" class="traco preenche" />
+    <text x="140" y="34" class="rotulo" text-anchor="middle">Funcionais: O QUE faz</text>
+    <text x="140" y="62" class="rotulo-fraco" text-anchor="middle">Recomendar produtos</text>
+    <text x="140" y="86" class="rotulo-fraco" text-anchor="middle">Consultar pedidos</text>
+    <text x="140" y="110" class="rotulo-fraco" text-anchor="middle">Realizar login</text>
+    <text x="140" y="134" class="rotulo-fraco" text-anchor="middle">Emitir relatório</text>
+    <text x="140" y="162" class="rotulo-fraco" text-anchor="middle">funções e serviços esperados</text>
+    <rect x="285" y="10" width="270" height="170" rx="8" class="traco" />
+    <text x="420" y="34" class="rotulo" text-anchor="middle">Não funcionais: COMO funciona</text>
+    <text x="420" y="62" class="rotulo-fraco" text-anchor="middle">Responder em até 2 segundos</text>
+    <text x="420" y="86" class="rotulo-fraco" text-anchor="middle">Proteger dados do usuário</text>
+    <text x="420" y="110" class="rotulo-fraco" text-anchor="middle">Funcionar 24 horas por dia</text>
+    <text x="420" y="134" class="rotulo-fraco" text-anchor="middle">Ser fácil de manter</text>
+    <text x="420" y="162" class="rotulo-fraco" text-anchor="middle">qualidade e restrições</text>
+  </svg>
+</figure>
+
+Os dois tipos **trabalham juntos**. Um sistema que faz tudo certo, mas leva 30 segundos para responder, **não serve**.
+
+**Como diferenciar:** se a frase descreve **uma ação ou serviço** ("consultar pedidos"), é **funcional**. Se descreve **uma qualidade ou limite** (tempo, segurança, disponibilidade, facilidade), é **não funcional**. "O sistema deve responder em até 3 segundos" é **não funcional**, porque diz **como** ele responde (desempenho).
+
+**Resolução do roteiro (EstudaMais):**
+
+*Requisitos funcionais:*
+
+1. Responder às **dúvidas** dos alunos sobre o conteúdo dos cursos.
+2. **Recomendar o próximo material** de estudo de acordo com o progresso.
+3. **Gerar exercícios** de prática para revisão.
+4. **Informar ao aluno o seu progresso** atual.
+
+*Requisitos não funcionais:*
+
+1. **Tempo de resposta** de até 5 segundos na maioria das perguntas.
+2. **Proteção dos dados** dos alunos (conforme a LGPD).
+3. **Disponibilidade** 24 horas por dia, sem queda em época de provas.
+4. **Fundamentação**: respostas baseadas no material dos cursos, com indicação da fonte.
+
+#### 1.6 Critérios de sucesso mensuráveis
+
+Para aumentar as chances de sucesso, projetos de IA devem:
+
+1. **Começar pequeno.** O **MVP** entrega só o **essencial** para validar a solução. Por exemplo, começar só pelas **dúvidas** de **dois cursos**, antes de recomendar e gerar exercícios.
+2. **Definir métricas de sucesso** **antes** de construir.
+
+Um bom critério é **mensurável**: tem **número**, **prazo** e uma **linha de base** (como está hoje). Exemplos do material:
+
+- Reduzir o tempo de rastreamento de pedidos de **40 minutos** para **menos de 1 minuto**.
+- Diminuir em **70%** as perguntas encaminhadas ao atendimento humano.
+
+**Resolução do roteiro (um critério para cada requisito não funcional):**
+
+| Requisito não funcional | Critério mensurável |
+|---|---|
+| Tempo de resposta | **95%** das respostas em até **5 segundos**, medido em testes e em produção |
+| Proteção de dados | **Zero** acessos sem autenticação e **100%** dos dados pessoais criptografados, verificado em auditoria trimestral |
+| Disponibilidade | **99,5%** de disponibilidade mensal, com monitoramento |
+| Fundamentação | **90%** das respostas com fonte do material, em amostra revisada por professores |
+
+E um critério de **negócio**: reduzir de **24 horas** para **menos de 1 minuto** o tempo médio de resposta a dúvidas e **diminuir em 50%** o volume enviado ao suporte humano em três meses.
+
+**Escopo.** Escreva também o que **não** está dentro: por exemplo, "o assistente não corrige redações nem altera notas". Limites claros evitam que o projeto cresça sem fim.
+
+### 2. Definição de papéis dos agentes
+
+#### 2.1 Um agente que faz tudo, ou vários especialistas?
+
+Em vez de um único agente que faça tudo, adota-se uma **arquitetura multiagente**, com **agentes especialistas** coordenados por um **agente orquestrador**. Cada agente tem **papel, ferramentas e contexto delimitados**, o que torna a solução **mais clara e consistente**.
+
+**Passo 1: decomponha o problema em subtarefas.** Para a EstudaMais:
+
+- Entender o que o aluno pergunta (dúvida, pedido de material, de exercícios, de progresso).
+- **Buscar** no material do curso o trecho que responde.
+- **Explicar** o conteúdo em linguagem adequada ao aluno.
+- **Consultar** o progresso do aluno e o catálogo.
+- **Escolher** o próximo material.
+- **Criar** exercícios no nível do aluno e conferir as respostas.
+- **Montar** a resposta final.
+
+#### 2.2 O agente orquestrador
+
+<figure class="figura">
+  <svg viewBox="0 0 560 230" role="img" aria-labelledby="fig-ia22-ag-t fig-ia22-ag-d">
+    <title id="fig-ia22-ag-t">O orquestrador e os agentes especialistas da EstudaMais</title>
+    <desc id="fig-ia22-ag-d">O aluno envia uma solicitação ao agente orquestrador. O orquestrador a encaminha a quatro agentes especialistas: dúvidas, recomendação, exercícios e progresso.</desc>
+    <defs>
+      <marker id="seta-ia22-ag" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+        <path d="M1,1 L9,5 L1,9" class="traco" />
+      </marker>
+    </defs>
+    <rect x="5" y="95" width="80" height="40" rx="8" class="traco" />
+    <text x="45" y="120" class="rotulo" text-anchor="middle">Aluno</text>
+    <line x1="85" y1="115" x2="127" y2="115" class="traco" marker-end="url(#seta-ia22-ag)" />
+    <rect x="129" y="80" width="120" height="70" rx="8" class="traco preenche" />
+    <text x="189" y="108" class="rotulo" text-anchor="middle">Orquestrador</text>
+    <text x="189" y="126" class="rotulo-fraco" text-anchor="middle">entende, decide,</text>
+    <text x="189" y="140" class="rotulo-fraco" text-anchor="middle">delega, consolida</text>
+    <rect x="340" y="8" width="215" height="40" rx="8" class="traco" />
+    <text x="447" y="33" class="rotulo" text-anchor="middle">Agente de dúvidas</text>
+    <rect x="340" y="66" width="215" height="40" rx="8" class="traco" />
+    <text x="447" y="91" class="rotulo" text-anchor="middle">Agente de recomendação</text>
+    <rect x="340" y="124" width="215" height="40" rx="8" class="traco" />
+    <text x="447" y="149" class="rotulo" text-anchor="middle">Agente de exercícios</text>
+    <rect x="340" y="182" width="215" height="40" rx="8" class="traco" />
+    <text x="447" y="207" class="rotulo" text-anchor="middle">Agente de progresso</text>
+    <line x1="249" y1="100" x2="338" y2="30" class="traco" marker-end="url(#seta-ia22-ag)" />
+    <line x1="249" y1="112" x2="338" y2="86" class="traco" marker-end="url(#seta-ia22-ag)" />
+    <line x1="249" y1="124" x2="338" y2="142" class="traco" marker-end="url(#seta-ia22-ag)" />
+    <line x1="249" y1="136" x2="338" y2="200" class="traco" marker-end="url(#seta-ia22-ag)" />
+  </svg>
+</figure>
+
+Quando um agente **recebe a tarefa, divide em subtarefas e as distribui** aos demais, o papel dele é o de **orquestrador**: ele **coordena os outros**. Outros papéis possíveis, que **não** são esse:
+
+- **Agente especialista**: faz **uma tarefa só**.
+- **Agente de memória**: **guarda o histórico**.
+- **Agente de borda**: **processa dados locais**, perto da origem (num dispositivo, por exemplo).
+
+O orquestrador:
+
+1. **Entende** a solicitação do aluno (a intenção).
+2. **Decide** quais agentes chamar e em que **ordem**.
+3. **Passa** a cada um só o **contexto necessário**.
+4. **Consolida** os resultados numa **resposta final coerente**.
+
+**Como ele decide para quem encaminhar.** Ele lê a mensagem **e a memória** da conversa e classifica a **intenção**: dúvida de conteúdo, pedido de material, pedido de exercício, consulta de progresso. Se a mensagem mistura dois pedidos ("não entendi frações e quero treinar"), chama o agente de dúvidas e **depois** o de exercícios. Se não tem certeza, **pergunta ao aluno** ou **passa para um humano**.
+
+#### 2.3 Os agentes da EstudaMais
+
+| Agente | Responsabilidade principal | Ferramentas | O que entrega |
+|---|---|---|---|
+| **Dúvidas** | Responder perguntas sobre o conteúdo dos cursos | Busca no material (RAG) | Explicação em linguagem do aluno, com a fonte |
+| **Recomendação** | Sugerir o próximo material | Banco de progresso e catálogo de cursos | Lista curta de materiais, com o motivo |
+| **Exercícios** | Gerar e corrigir exercícios de revisão | Busca no material e banco de questões | Lista de exercícios no nível do aluno, com gabarito |
+| **Progresso** | Informar o avanço atual do aluno | Banco de progresso (consulta exata) | Resumo do que foi feito e do que falta |
+
+**Orquestrador.** Classifica a intenção, escolhe o agente, repassa o contexto, junta as respostas, aplica as **regras de segurança** (por exemplo, nunca mostrar dados de outro aluno) e devolve a resposta.
+
+#### 2.4 Especializar ou juntar? A reflexão do roteiro
+
+Dois colegas sugerem **juntar o agente de dúvidas e o de exercícios** num só, para simplificar. Vale a pena?
+
+**Vantagens de especializar:**
+
+- **Instruções curtas e focadas**: cada agente faz melhor uma tarefa só.
+- **Contexto menor** por agente: menos informação para se perder.
+- **Manutenção mais fácil**: dá para melhorar um agente sem mexer nos outros.
+- **Testes mais fáceis**: cada agente tem um resultado esperado claro.
+- **Permissões separadas**: só quem precisa tem acesso a cada ferramenta.
+
+**Desvantagens de especializar:**
+
+- **Mais chamadas ao modelo**: mais custo e mais tempo de resposta.
+- **Mais peças** que podem falhar e mais difícil de depurar.
+- **Mais coordenação**: as entregas entre agentes precisam ser bem definidas.
+
+**Uma resposta equilibrada.** Dúvidas e exercícios usam **as mesmas fontes** (o material do curso) e **são parecidos** (explicar e propor prática), então juntá-los **pode funcionar** no MVP, com um agente só de "ensino". A **regra de bom senso** é **começar com poucos agentes** e **dividir quando uma tarefa realmente exigir** (instruções que se atrapalham, ferramentas diferentes, riscos diferentes). Dividir cedo demais complica sem ganhar.
+
+### 3. Design da arquitetura do sistema
+
+#### 3.1 Os componentes
+
+<figure class="figura">
+  <svg viewBox="0 0 560 300" role="img" aria-labelledby="fig-ia22-arq-t fig-ia22-arq-d">
+    <title id="fig-ia22-arq-t">Arquitetura do assistente da EstudaMais</title>
+    <desc id="fig-ia22-arq-d">A interface do aluno envia a solicitação ao orquestrador, que aciona os agentes especialistas. Os agentes consultam a recuperação de conhecimento (RAG), a memória e as ferramentas externas. A resposta final volta dos agentes ao orquestrador e à interface.</desc>
+    <defs>
+      <marker id="seta-ia22-arq" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+        <path d="M1,1 L9,5 L1,9" class="traco" />
+      </marker>
+    </defs>
+    <rect x="5" y="120" width="90" height="50" rx="8" class="traco" />
+    <text x="50" y="142" class="rotulo" text-anchor="middle">Interface</text>
+    <text x="50" y="158" class="rotulo-fraco" text-anchor="middle">chat do aluno</text>
+    <rect x="125" y="110" width="110" height="70" rx="8" class="traco preenche" />
+    <text x="180" y="140" class="rotulo" text-anchor="middle">Orquestrador</text>
+    <text x="180" y="156" class="rotulo-fraco" text-anchor="middle">decide e junta</text>
+    <rect x="275" y="105" width="120" height="80" rx="8" class="traco" />
+    <text x="335" y="136" class="rotulo" text-anchor="middle">Agentes</text>
+    <text x="335" y="152" class="rotulo-fraco" text-anchor="middle">dúvidas, recomen-</text>
+    <text x="335" y="166" class="rotulo-fraco" text-anchor="middle">dação, exercícios</text>
+    <rect x="445" y="10" width="110" height="64" rx="8" class="traco" />
+    <text x="500" y="36" class="rotulo" text-anchor="middle">RAG</text>
+    <text x="500" y="52" class="rotulo-fraco" text-anchor="middle">busca no material</text>
+    <text x="500" y="64" class="rotulo-fraco" text-anchor="middle">(base vetorial)</text>
+    <rect x="445" y="104" width="110" height="64" rx="8" class="traco" />
+    <text x="500" y="130" class="rotulo" text-anchor="middle">Memória</text>
+    <text x="500" y="146" class="rotulo-fraco" text-anchor="middle">curto e longo</text>
+    <text x="500" y="158" class="rotulo-fraco" text-anchor="middle">prazo</text>
+    <rect x="445" y="198" width="110" height="64" rx="8" class="traco" />
+    <text x="500" y="224" class="rotulo" text-anchor="middle">Ferramentas</text>
+    <text x="500" y="240" class="rotulo-fraco" text-anchor="middle">progresso e</text>
+    <text x="500" y="252" class="rotulo-fraco" text-anchor="middle">catálogo</text>
+    <line x1="95" y1="145" x2="123" y2="145" class="traco" marker-end="url(#seta-ia22-arq)" />
+    <line x1="235" y1="145" x2="273" y2="145" class="traco" marker-end="url(#seta-ia22-arq)" />
+    <line x1="395" y1="120" x2="443" y2="50" class="traco" marker-end="url(#seta-ia22-arq)" />
+    <line x1="395" y1="145" x2="443" y2="136" class="traco" marker-end="url(#seta-ia22-arq)" />
+    <line x1="395" y1="170" x2="443" y2="226" class="traco" marker-end="url(#seta-ia22-arq)" />
+    <path d="M180,108 L180,80 L50,80 L50,118" class="tracejado" marker-end="url(#seta-ia22-arq)" />
+    <text x="115" y="72" class="rotulo-fraco" text-anchor="middle">resposta final</text>
+    <text x="300" y="292" class="rotulo-fraco" text-anchor="middle">a resposta volta: agentes, orquestrador e interface</text>
+  </svg>
+</figure>
+
+| Componente | Função |
+|---|---|
+| **Interface** | O **ponto de contato** com o aluno, geralmente um **chat** |
+| **Orquestrador** | Entende o pedido, **escolhe os agentes**, junta a resposta |
+| **Agentes especialistas** | Cada um resolve um tipo de tarefa |
+| **Recuperação de conhecimento (RAG)** | **Busca trechos relevantes** do material dos cursos numa **base vetorial** |
+| **Memória** | **Curto prazo**: o histórico da conversa atual. **Longo prazo**: dados do aluno **entre sessões** |
+| **Ferramentas** | Permitem **consultar dados externos**: banco de progresso, catálogo de cursos |
+| **Modelo de linguagem (LLM)** | O "cérebro" que interpreta e escreve; os agentes o usam |
+
+**Componentes que um projeto real também precisa** (o roteiro não os lista, mas são parte do planejamento): **segurança e autenticação** (saber quem é o aluno e só mostrar os dados dele), **registros (logs) e monitoramento** (ver o que acontece e achar falhas), **avaliação** (testes com perguntas reais) e **limites** (de uso e de custo).
+
+#### 3.2 O fluxo de dados: uma dúvida conceitual
+
+Caso: o aluno pergunta, por exemplo, "o que é uma função de segundo grau?". O caminho, passo a passo:
+
+1. **Interface:** recebe a pergunta e a envia ao orquestrador, junto com a identificação do aluno (já autenticado).
+2. **Orquestrador:** lê a pergunta e a **memória de curto prazo** (do que se falava antes) e classifica: é uma **dúvida de conteúdo**.
+3. **Orquestrador:** encaminha ao **agente de dúvidas**, com só o contexto necessário (a pergunta e o curso em que o aluno está).
+4. **Agente de dúvidas:** aciona a **recuperação de conhecimento (RAG)** para buscar os trechos do material que tratam do tema.
+5. **RAG:** transforma a pergunta em embedding, procura na **base vetorial** os trechos mais parecidos e devolve os melhores (com a fonte).
+6. **Agente de dúvidas:** envia ao LLM a pergunta **mais os trechos** e pede uma explicação **baseada neles**, no nível do aluno.
+7. **Memória:** a conversa é registrada (curto prazo) e, se o aluno demonstrou dificuldade, isso pode ser guardado (longo prazo).
+8. **Orquestrador:** recebe a explicação, confere as regras (sem dados de outro aluno, com a fonte) e monta a **resposta final**.
+9. **Interface:** mostra a resposta ao aluno, com um botão de "isto ajudou?" para coletar feedback.
+
+#### 3.3 Recuperação de conhecimento (RAG)
+
+O **RAG** resolve um problema do LLM: ele **não conhece o seu material** e pode **inventar** (alucinar). A solução é **buscar antes de responder**:
+
+1. **Preparação** (feita antes): o material dos cursos é dividido em **trechos (chunks)**, e cada trecho vira um **embedding** guardado numa **base vetorial**.
+2. **Na pergunta:** a pergunta também vira embedding; o sistema acha os **trechos mais próximos em significado**.
+3. **Geração:** os trechos entram no pedido ao LLM, que responde **com base neles**, e pode **citar a fonte**.
+
+Resposta direta: o componente que **recupera os documentos relevantes** de uma base de conhecimento para **fundamentar** as respostas do modelo é o **componente de recuperação do RAG**. Ele **não** é a ferramenta de chamada de função (que executa ações e consultas exatas), nem a memória de curto prazo (o histórico da conversa), nem o orquestrador (que coordena).
+
+**RAG ou ferramenta?** Use **RAG** para **conhecimento em texto** (material, regras, políticas). Use **ferramenta** para **dado exato e atual** (o progresso do aluno, o saldo, o status do pedido).
+
+#### 3.4 Memória
+
+| Tipo | O que guarda | Exemplo na EstudaMais |
+|---|---|---|
+| **Curto prazo** | A conversa **atual** | O aluno disse que está estudando frações; a pergunta seguinte já considera isso |
+| **Longo prazo** | Dados **persistentes entre sessões** | O aluno tem dificuldade com porcentagem; semana que vem o assistente lembra |
+
+A pergunta do roteiro: a EstudaMais quer que o assistente **lembre, em conversas futuras, das dificuldades** do aluno. Quem faz isso é a **memória de longo prazo**. Ela é necessária **além do RAG**, porque o RAG busca **conhecimento sobre os cursos** (igual para todos), e não **informação sobre o aluno** (diferente para cada um). Também precisa de **cuidados**: guardar só o necessário, avisar o aluno, permitir apagar e proteger os dados (**LGPD**).
+
+#### 3.5 Quatro cuidados de arquitetura
+
+1. **Dados de alunos são pessoais.** Autentique, separe o acesso por aluno e guarde o mínimo.
+2. **Trate o conteúdo recuperado como dado, não como ordem.** Um texto malicioso no material não deve poder "mandar" no agente (*prompt injection*).
+3. **Tenha um plano para o erro.** O que o assistente faz se o RAG não achar nada? Resposta honesta ("não encontrei isso no material") e opção de falar com uma pessoa.
+4. **Meça.** Registre perguntas, respostas e feedback, para comprovar os critérios de sucesso definidos na seção 1.6.
+
+## Tópicos-Chave para Revisão
+
+<div className="topico">
+
+#### 1. O erro de começar pela tecnologia
+
+"Usar IA porque os concorrentes usam" leva a soluções que ninguém usa. Comece pelo **problema real**, com dados, e confira se a IA é a ferramenta certa.
+
+#### 2. Quando a IA generativa serve
+
+Boa para **linguagem natural**, **resumos**, **ideias** e **respostas flexíveis**. Ruim para **regras fixas e exatas**: **calcular ICMS**, **validar CPF**, **somar planilha**. O ideal é **combinar**: o LLM interpreta e uma **função comum** calcula.
+
+#### 3. Problema bem definido
+
+Diz **quem** sofre, **qual** dificuldade e **qual resultado** se espera. "Querer usar IA" não é problema; "clientes esperam **40 minutos**" é.
+
+#### 4. Requisitos funcionais e não funcionais
+
+**Funcionais**: **o que** o sistema faz (consultar pedidos, fazer login). **Não funcionais**: **como** funciona (responder em até 3 segundos, proteger dados, 24 horas). "Responder em até 3 segundos" é **não funcional**.
+
+#### 5. Critérios de sucesso e MVP
+
+Critérios **mensuráveis**, com **número**, **prazo** e **linha de base**. Comece **pequeno** com um **MVP** e deixe claro o **escopo**.
+
+#### 6. Multiagente
+
+Divide o problema entre **agentes especialistas**, cada um com **papel**, **ferramentas** e **contexto** próprios. Ganha clareza e manutenção; custa mais chamadas e coordenação. **Comece com poucos** agentes.
+
+#### 7. O orquestrador
+
+Recebe a tarefa, a **divide em subtarefas**, **delega** a agentes especializados, passa o **contexto certo** e **consolida** a entrega. É o **orquestrador** que **coordena os demais**.
+
+#### 8. Componentes da arquitetura
+
+**Interface**, **orquestrador**, **agentes**, **RAG**, **memória** e **ferramentas**, mais **segurança**, **logs** e **avaliação**. A resposta volta pelo mesmo caminho: agentes, orquestrador, interface.
+
+#### 9. RAG
+
+**Busca trechos relevantes** numa **base vetorial** para **fundamentar** a resposta e reduzir **alucinações**. É o componente de **recuperação do RAG** que faz isso. Use RAG para **texto** e **ferramenta** para **dado exato**.
+
+#### 10. Memória
+
+**Curto prazo**: a conversa atual. **Longo prazo**: dados do aluno **entre sessões**, como as dificuldades que ele demonstrou. Cuide da **LGPD**.
+
+</div>
+
+## Pause e Responda
+
+*Marque uma alternativa em cada questão e confira tudo de uma vez no botão do fim.*
+
+**Questão 1**
+
+*Pause e Responda S22A1a · Identificação do problema e requisitos*
+
+Em um projeto de IA, a afirmação "O sistema deve responder em até 3 segundos" é exemplo de qual tipo de requisito?
+
+A) Requisito funcional, pois descreve uma função.\
+B) Critério de sucesso de negócio do projeto.\
+C) Requisito não funcional ligado à qualidade.\
+D) Restrição de escopo da primeira entrega.\
+E) Requisito de interface com o usuário apenas.
+
+**Questão 2**
+
+*Pause e Responda S22A2a · Definição de papéis dos agentes*
+
+Em um sistema multiagente, um agente recebe a tarefa, divide-a em subtarefas e as distribui aos demais agentes. Qual é o papel desse agente?
+
+A) Agente especialista em uma tarefa única.\
+B) Agente de borda, que processa dados locais.\
+C) Agente de memória, que guarda o histórico.\
+D) Agente orquestrador, que coordena os demais.\
+E) Agente de segurança, que apenas bloqueia acessos.
+
+**Questão 3**
+
+*Pause e Responda S22A3a · Design da arquitetura do sistema*
+
+No design de uma arquitetura agêntica, qual componente recupera os documentos relevantes de uma base de conhecimento para fundamentar as respostas do modelo?
+
+A) O componente de recuperação do RAG.\
+B) A ferramenta de chamada de função.\
+C) A memória de curto prazo da conversa.\
+D) O orquestrador de fluxo entre os agentes.\
+E) A interface de chat do aluno.
