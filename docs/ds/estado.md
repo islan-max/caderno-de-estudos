@@ -82,7 +82,7 @@ O material é ponto de partida, não verdade: erros, premissas fracas e itens de
 
 - Mesma estrutura de DS, mas sem seção de questões ("aula pura"; as questões ficam na apostila).
 - Aulas de revisão dadas pelo professor antes do material do bimestre: arquivo `revisao-<n>-<tema>.mdx`, `order` negativo (-100 + n) e rótulo R<n> na trilha.
-- Prontas: Matemática 4º bim (R1 Conjuntos e Venn; Aula 1 sem material; Aula 2 Grandezas, parte 1) e Língua Portuguesa 4º bim (Aulas 1 e 2, Moçambique, partes 1 e 2).
+- Prontas: Matemática 4º bim (R1 Conjuntos e Venn; Aula 1 sem material; Aula 2 Grandezas, parte 1) e Língua Portuguesa 4º bim (Aulas 1 a 4: Moçambique partes 1 e 2, Angola e Cabo Verde); Matemática também tem as Aulas 3 (Grandezas, parte 2) e 5 (Regra de três simples).
 - Textos protegidos (poema, conto, letra de música) não são reproduzidos: ficam resumo, análise e link da fonte.
 
 ## Aulas de 08/10/2026
