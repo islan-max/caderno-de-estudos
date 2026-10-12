@@ -1,14 +1,16 @@
 /** Registro imutável do que o estudante fez. Totais e estados são sempre recalculados daqui. */
 export interface Evento {
   id: string;
-  tipo: 'questao_respondida' | 'aula_concluida' | 'correcao';
+  tipo: 'questao_respondida' | 'aula_concluida' | 'cartao_revisado' | 'correcao';
   /** ISO em UTC. */
   quando: string;
   aulaId?: string;
   /** `<aulaId>#q<n>`; obrigatório em questao_respondida. */
   questaoId?: string;
+  /** Só em cartao_revisado: `<aulaId>/<id do cartão>`. */
+  cartaoId?: string;
   conceitoIds: string[];
-  resultado?: 'acertou' | 'errou';
+  resultado?: 'acertou' | 'errou' | 'lembrei' | 'dificil' | 'nao_lembrei';
   /** Só em `correcao`: id do evento que ela anula. */
   corrige?: string;
 }
@@ -25,8 +27,11 @@ export function vigentes(lista: Evento[]): Evento[] {
 }
 
 /** Dia local (AAAA-MM-DD) de um evento. */
-export function diaLocal(evento: Evento): string {
-  const d = new Date(evento.quando);
+export function diaDaData(d: Date): string {
   const dois = (n: number) => String(n).padStart(2, '0');
   return `${d.getFullYear()}-${dois(d.getMonth() + 1)}-${dois(d.getDate())}`;
+}
+
+export function diaLocal(evento: Evento): string {
+  return diaDaData(new Date(evento.quando));
 }

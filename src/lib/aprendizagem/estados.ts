@@ -8,15 +8,18 @@ export type EstadoConceito = 'nao-iniciado' | 'praticado' | 'precisa-revisar' | 
  * - retido: desde o último erro, acertos em pelo menos dois dias diferentes;
  * - praticado: algum acerto;
  * - nao-iniciado: nenhuma evidência.
- * shortcut: "revisão em dia" ainda não conta (não há cartões); entra na etapa 3.
+ * shortcut: "revisão em dia" não entra na conta; um cartão vencido não rebaixa o estado.
  */
 export function estadoDoConceito(vigentesDoEstudante: Evento[], conceitoId: string): EstadoConceito {
+  // "Com dificuldade" não é acerto nem erro: não muda o estado.
+  const ACERTOS = ['acertou', 'lembrei'];
+  const ERROS = ['errou', 'nao_lembrei'];
   const resultados = vigentesDoEstudante
-    .filter((e) => e.resultado && e.conceitoIds.includes(conceitoId))
+    .filter((e) => e.resultado && e.conceitoIds.includes(conceitoId) && [...ACERTOS, ...ERROS].includes(e.resultado))
     .sort((a, b) => a.quando.localeCompare(b.quando));
   if (resultados.length === 0) return 'nao-iniciado';
 
-  const ultimoErro = resultados.map((e) => e.resultado).lastIndexOf('errou');
+  const ultimoErro = resultados.map((e) => ERROS.includes(e.resultado!)).lastIndexOf(true);
   if (ultimoErro === resultados.length - 1) return 'precisa-revisar';
 
   const acertosDesdeOErro = resultados.slice(ultimoErro + 1);

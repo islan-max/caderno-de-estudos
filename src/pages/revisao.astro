@@ -1,0 +1,128 @@
+---
+import Base from '../layouts/Base.astro';
+import { u } from '../lib/url';
+import { METRICAS } from '../lib/aprendizagem/metricas';
+import { FILA_MAXIMA, INTERVALOS } from '../lib/aprendizagem/revisao';
+
+const metrica = METRICAS['revisao-vencida'];
+---
+
+<Base
+  title="Revisão"
+  description="Cartões curtos para lembrar o que você já estudou."
+  voltar={{ href: u('/'), label: 'Início' }}
+>
+  <section class="revisao" data-revisao aria-labelledby="revisao-titulo" data-surgir>
+    <h1 class="revisao__titulo" id="revisao-titulo">Revisão</h1>
+    <p class="revisao__resumo" data-revisao-resumo role="status">Carregando os cartões…</p>
+    <noscript>
+      <p class="revisao__resumo">A revisão por cartões precisa de JavaScript. As aulas continuam legíveis sem ele.</p>
+    </noscript>
+
+    <article class="cartao" data-cartao hidden>
+      <p class="cartao__origem"><span data-cartao-tipo></span> · <a data-cartao-aula href={u('/enem')}>Aula</a></p>
+      <p class="cartao__frente" data-cartao-frente></p>
+      <button type="button" class="cartao__botao cartao__botao--principal" data-cartao-revelar aria-expanded="false">
+        Mostrar resposta
+      </button>
+      <div class="cartao__verso" data-cartao-verso tabindex="-1" hidden>
+        <p class="cartao__resposta" data-cartao-resposta></p>
+        <div class="cartao__notas" role="group" aria-label="Como foi lembrar?">
+          <button type="button" class="cartao__botao" data-resultado="nao_lembrei">Não lembrei</button>
+          <button type="button" class="cartao__botao" data-resultado="dificil">Com dificuldade</button>
+          <button type="button" class="cartao__botao cartao__botao--principal" data-resultado="lembrei">Lembrei</button>
+        </div>
+      </div>
+    </article>
+
+    <p class="revisao__fim" data-revisao-fim tabindex="-1" hidden></p>
+
+    <details class="revisao__como">
+      <summary>Como calculamos</summary>
+      <p><strong>{metrica.nome}.</strong> {metrica.formula}</p>
+      <p>
+        Cada cartão tem uma caixa de 1 a 6. Depois de cada resposta, a próxima revisão chega em
+        dias, conforme a caixa: {INTERVALOS.join(', ')}.
+      </p>
+      <ul>
+        <li><strong>Não lembrei:</strong> o cartão volta à caixa 1 e reaparece em {INTERVALOS[0]} dia.</li>
+        <li><strong>Com dificuldade:</strong> fica na mesma caixa, com o mesmo intervalo.</li>
+        <li><strong>Lembrei:</strong> sobe uma caixa, e o intervalo aumenta.</li>
+      </ul>
+      <p>
+        Cada sessão mostra no máximo {FILA_MAXIMA} cartões. O que passar disso fica guardado, sem
+        pressa. {metrica.naoMede}
+      </p>
+    </details>
+  </section>
+</Base>
+
+<style>
+  .revisao { display: grid; gap: 1.1rem; max-width: 40rem; }
+  .revisao__titulo {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: calc(1.9rem * var(--escala-texto, 1));
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+  }
+  .revisao__resumo { margin: 0; color: var(--color-ink-soft); font-size: calc(0.95rem * var(--escala-texto, 1)); line-height: 1.55; }
+  .revisao__fim {
+    margin: 0;
+    padding: 1rem;
+    border: 1px solid var(--color-line);
+    border-radius: 0.8rem;
+    font-size: calc(1rem * var(--escala-texto, 1));
+    line-height: 1.55;
+  }
+  .cartao {
+    display: grid;
+    gap: 0.9rem;
+    padding: 1.1rem;
+    border: 1px solid var(--color-line);
+    border-radius: 0.9rem;
+    background: color-mix(in srgb, var(--color-paper) 94%, var(--color-ink));
+  }
+  .cartao__origem {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: calc(0.72rem * var(--escala-texto, 1));
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-ink-soft);
+  }
+  .cartao__origem a { color: inherit; }
+  .cartao__frente {
+    margin: 0;
+    font-size: calc(1.2rem * var(--escala-texto, 1));
+    line-height: 1.45;
+    font-weight: 600;
+  }
+  .cartao__verso { display: grid; gap: 0.9rem; }
+  .cartao__verso:focus-visible { outline: 2px solid var(--color-ink); outline-offset: 4px; }
+  .cartao__resposta {
+    margin: 0;
+    padding: 0.7rem 0.9rem;
+    border-left: 3px solid var(--color-ok);
+    border-radius: 0 0.4rem 0.4rem 0;
+    background: color-mix(in srgb, var(--color-ok) 9%, transparent);
+    font-size: calc(1rem * var(--escala-texto, 1));
+    line-height: 1.6;
+  }
+  .cartao__notas { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+  .cartao__botao {
+    min-height: 2.75rem;
+    padding: 0.5rem 0.9rem;
+    border: 1px solid var(--color-line);
+    border-radius: 0.55rem;
+    background: transparent;
+    color: var(--color-ink);
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+  }
+  .cartao__botao--principal { background: var(--color-ink); border-color: var(--color-ink); color: var(--color-paper); }
+  .revisao__como { padding: 0.2rem 0; color: var(--color-ink-soft); font-size: calc(0.9rem * var(--escala-texto, 1)); line-height: 1.6; }
+  .revisao__como summary { cursor: pointer; font-weight: 700; color: var(--color-ink); }
+</style>

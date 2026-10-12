@@ -66,6 +66,26 @@ const gabaritoSchema = z.object({
   recomendar: recomendarSchema.optional(),
 });
 
+// Cartão de revisão escrito à mão: pergunta curta, resposta sem ambiguidade, ligado a um conceito.
+// O id é único na aula; o id global do cartão é "<id da aula>/<id do cartão>".
+const cartoesSchema = z
+  .array(
+    z.object({
+      id: z.string().regex(/^[a-z0-9-]+$/),
+      tipo: z.enum(['pergunta', 'lacuna', 'verdadeiro-falso']),
+      frente: z.string().min(10),
+      verso: z.string().min(3),
+      conceito: z.string(),
+    })
+  )
+  .default([])
+  .superRefine((cartoes, ctx) => {
+    const ids = cartoes.map((c) => c.id);
+    if (new Set(ids).size !== ids.length) ctx.addIssue({ code: 'custom', message: 'ids de cartão repetidos na mesma aula' });
+    const ruins = conceitosInvalidos(cartoes.map((c) => c.conceito), registroDeConceitos);
+    if (ruins.length) ctx.addIssue({ code: 'custom', message: `conceito não cadastrado em src/data/conceitos.json: ${ruins.join(', ')}` });
+  });
+
 // Ferramentas para acompanhar e praticar a aula (programas, contas, materiais). Cada item vira
 // uma linha no bloco "Ferramentas para esta aula"; sem a lista, o bloco não aparece.
 const ferramentaSchema = z.object({
@@ -84,6 +104,7 @@ const lessonSchema = z.object({
   quickSummary: z.string().optional(), // resumo rápido de 2-4 linhas, direto ao ponto
   order: z.number().default(1),
   conceitos: conceitosSchema, // o que a aula ensina
+  cartoes: cartoesSchema,
   gabarito: z.array(gabaritoSchema).optional(),
   resources: resourcesSchema.optional(),
   ferramentas: z.array(ferramentaSchema).optional(),

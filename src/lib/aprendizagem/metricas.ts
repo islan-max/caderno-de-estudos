@@ -17,7 +17,7 @@ export const METRICAS: Record<string, DefinicaoDeMetrica> = {
   },
   'dia-de-estudo': {
     nome: 'Dia de estudo',
-    formula: 'dia local com pelo menos uma aula concluída ou questão respondida. Abrir uma página não conta.',
+    formula: 'dia local com pelo menos uma aula concluída, questão respondida ou cartão revisado. Abrir uma página não conta.',
     naoMede: 'Quanto tempo você estudou. Dia sem registro é ausência de dado, não zero estudo.',
     comoMelhorar: 'Responder uma questão ou concluir uma aula.',
   },
@@ -30,7 +30,7 @@ export const METRICAS: Record<string, DefinicaoDeMetrica> = {
   },
   'revisao-vencida': {
     nome: 'Revisão vencida',
-    formula: 'cartão com data de revisão igual ou anterior a hoje (disponível quando os flashcards existirem).',
+    formula: 'cartão já revisado cuja data de revisão é igual ou anterior a hoje. Cartão que nunca foi visto é novo, não vencido.',
     naoMede: 'Quanto você esqueceu.',
     comoMelhorar: 'Fazer a fila de revisão do dia.',
   },
@@ -40,10 +40,10 @@ export function progressoDaMateria(concluidas: number, publicadas: number): numb
   return publicadas === 0 ? 0 : Math.min(1, concluidas / publicadas);
 }
 
-/** Dias locais (ordenados) com conclusão ou resposta. */
+/** Dias locais (ordenados) com conclusão, resposta ou revisão. */
 export function diasDeEstudo(vigentesDoEstudante: Evento[]): string[] {
   const dias = vigentesDoEstudante
-    .filter((e) => e.tipo === 'aula_concluida' || e.tipo === 'questao_respondida')
+    .filter((e) => e.tipo === 'aula_concluida' || e.tipo === 'questao_respondida' || e.tipo === 'cartao_revisado')
     .map(diaLocal);
   return [...new Set(dias)].sort();
 }

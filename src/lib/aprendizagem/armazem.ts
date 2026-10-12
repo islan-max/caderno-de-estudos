@@ -72,6 +72,25 @@ export function registrarQuestao(
   );
 }
 
+export function registrarRevisao(
+  dados: { cartaoId: string; aulaId: string; conceito: string; resultado: 'lembrei' | 'dificil' | 'nao_lembrei' },
+  quando = new Date(),
+  armazenamento?: Armazenamento
+) {
+  return registrarEvento(
+    {
+      id: `cartao_revisado:${dados.cartaoId}:${quando.getTime()}`,
+      tipo: 'cartao_revisado',
+      quando: quando.toISOString(),
+      aulaId: dados.aulaId,
+      cartaoId: dados.cartaoId,
+      conceitoIds: [dados.conceito],
+      resultado: dados.resultado,
+    },
+    armazenamento
+  );
+}
+
 /** Converte o progresso antigo (`cdt:progresso`: id → instante) em eventos. Os ids são fixos, então repetir não duplica. */
 export function importarLegado(armazenamento: Armazenamento = localStorage) {
   let antigo: Record<string, number>;

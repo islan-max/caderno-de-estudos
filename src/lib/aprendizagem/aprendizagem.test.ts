@@ -1,10 +1,11 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { desfazerConclusao, dispensarRecomendacao, importarLegado, lerEventos, recomendacaoDispensada, registrarConclusao, registrarQuestao } from './armazem.ts';
+import { desfazerConclusao, dispensarRecomendacao, importarLegado, lerEventos, recomendacaoDispensada, registrarConclusao, registrarQuestao, registrarRevisao } from './armazem.ts';
 import { conceitosInvalidos } from './conceitos.ts';
 import { vigentes, type Evento } from './eventos.ts';
 import { estadoDoConceito } from './estados.ts';
 import { diasDeEstudo, progressoDaMateria } from './metricas.ts';
+import { estadoDoCartao, filaDoDia, somarDias, vencidos } from './revisao.ts';
 
 /** localStorage de mentira. */
 function falso(inicial: Record<string, string> = {}) {
@@ -121,4 +122,75 @@ test('recomendação dispensada fica dispensada e não duplica', () => {
   assert.equal(recomendacaoDispensada('enem/mat/a', arm), true);
   assert.equal(recomendacaoDispensada('enem/mat/b', arm), false);
   assert.deepEqual(JSON.parse(arm.getItem('cdt:v2:dispensadas')!), ['enem/mat/a']);
+});
+
+const rev = (arm: ReturnType<typeof falso>, cartaoId: string, n: number, resultado: 'lembrei' | 'dificil' | 'nao_lembrei') =>
+  registrarRevisao({ cartaoId, aulaId: 'enem/mat/a', conceito: 'mat/mmc', resultado }, dia(n), arm);
+const estadoCartao = (arm: ReturnType<typeof falso>, id: string) => estadoDoCartao(vigentes(lerEventos(arm)), id);
+
+test('cartão novo: sem caixa e sem vencimento', () => {
+  assert.deepEqual(estadoCartao(falso(), 'c1'), { caixa: 0, venceEm: null });
+});
+
+test('tabela das caixas: lembrei sobe e usa 3, 7, 14, 30 e 60 dias', () => {
+  const arm = falso();
+  const esperado = [[2, 3], [3, 7], [4, 14], [5, 30], [6, 60], [6, 60]];
+  esperado.forEach(([caixa, dias], i) => {
+    rev(arm, 'c1', i, 'lembrei');
+    assert.deepEqual(estadoCartao(arm, 'c1'), { caixa, venceEm: somarDias(`2026-10-${10 + i}`, dias) });
+  });
+});
+
+test('não lembrei volta à caixa 1 e vence em 1 dia', () => {
+  const arm = falso();
+  rev(arm, 'c1', 0, 'lembrei');
+  rev(arm, 'c1', 3, 'lembrei');
+  rev(arm, 'c1', 10, 'nao_lembrei');
+  assert.deepEqual(estadoCartao(arm, 'c1'), { caixa: 1, venceEm: '2026-10-21' });
+});
+
+test('com dificuldade fica na caixa e repete o intervalo atual', () => {
+  const arm = falso();
+  rev(arm, 'c1', 0, 'lembrei'); // caixa 2
+  rev(arm, 'c1', 3, 'lembrei'); // caixa 3, 7 dias
+  rev(arm, 'c1', 10, 'dificil');
+  assert.deepEqual(estadoCartao(arm, 'c1'), { caixa: 3, venceEm: '2026-10-27' });
+  const novo = falso();
+  rev(novo, 'c2', 0, 'dificil'); // novo + dificuldade: caixa 1
+  assert.deepEqual(estadoCartao(novo, 'c2'), { caixa: 1, venceEm: '2026-10-11' });
+});
+
+test('fila do dia: vencidos antes dos novos, mais atrasado primeiro, com limite', () => {
+  const arm = falso();
+  rev(arm, 'a', 0, 'nao_lembrei'); // vence 11/10
+  rev(arm, 'b', -5, 'nao_lembrei'); // vence 06/10
+  rev(arm, 'c', 0, 'lembrei'); // vence 13/10 (ainda não)
+  const ids = ['n1', 'a', 'b', 'c', 'n2'];
+  const hoje = '2026-10-12';
+  const v = vigentes(lerEventos(arm));
+  assert.deepEqual(vencidos(v, ids, hoje), ['a', 'b']);
+  const dia1 = filaDoDia(v, ids, hoje, 3);
+  assert.deepEqual(dia1.fila, ['b', 'a', 'n1']);
+  assert.equal(dia1.restantes, 1);
+  assert.equal(dia1.vencidos, 2);
+});
+
+test('revisar duas vezes o mesmo cartão gera dois eventos; recarregar não cria mais', () => {
+  const arm = falso();
+  rev(arm, 'c1', 0, 'lembrei');
+  rev(arm, 'c1', 0, 'lembrei'); // mesmo instante e mesmo cartão: mesmo id, ignorado
+  assert.equal(lerEventos(arm).length, 1);
+});
+
+test('revisão conta como dia de estudo e "lembrei" como acerto do conceito', () => {
+  const arm = falso();
+  rev(arm, 'c1', 0, 'lembrei');
+  rev(arm, 'c1', 1, 'dificil'); // não muda o estado
+  const v = vigentes(lerEventos(arm));
+  assert.deepEqual(diasDeEstudo(v), ['2026-10-10', '2026-10-11']);
+  assert.equal(estadoDoConceito(v, 'mat/mmc'), 'praticado');
+  rev(arm, 'c1', 2, 'lembrei');
+  assert.equal(estadoDoConceito(vigentes(lerEventos(arm)), 'mat/mmc'), 'retido');
+  rev(arm, 'c1', 3, 'nao_lembrei');
+  assert.equal(estadoDoConceito(vigentes(lerEventos(arm)), 'mat/mmc'), 'precisa-revisar');
 });

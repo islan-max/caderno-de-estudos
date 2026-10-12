@@ -12,6 +12,7 @@ import 'js-circle-progress';
 import { montarQuiz } from './quiz';
 import { montarTopicos } from './topicos';
 import { montarSumario } from './sumario';
+import { montarRevisao } from './revisao';
 import { montarBarrasDeRolagem } from './barra-rolagem';
 import { desfazerConclusao, importarLegado, registrarConclusao, registrarQuestao } from '../lib/aprendizagem/armazem';
 
@@ -1400,6 +1401,7 @@ function iniciar() {
   aplicarA11y(preferencias());
   refletirProgresso();
   montarHub();
+  void montarRevisao();
   ligarAtalhos();
   ligarNotasSoltas();
   ligarDobras();
