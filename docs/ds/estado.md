@@ -36,6 +36,9 @@ O material é ponto de partida, não verdade: erros, premissas fracas e itens de
 | Banco de Dados | 4º | 1 · Introdução aos Bancos de Dados NoSQL | Semana 22 |
 | Front-End | 4º | 1 · Avançando na Integração com Serviços Externos | Semana 22 |
 | Versionamento de Código | 4º | 1 · Git Workflows Avançados | Semana 21 |
+| Programação Mobile | 4º | 2 · Preparativos Finais para Publicação | Semana 23 |
+| Projeto Multidisciplinar | 4º | 2 · Ajustes Finais do Projeto | Semana 23 |
+| Banco de Dados | 4º | 2 · Ferramentas e Tecnologias NoSQL | Semana 23 |
 
 ## Correções e complementos feitos no material
 
@@ -114,3 +117,20 @@ O material é ponto de partida, não verdade: erros, premissas fracas e itens de
 - Correções ao material: Jenkinsfile é Pipeline as Code (não IaC); Selenium faz teste de ponta a ponta (não de integração); entrega contínua x deploy contínuo; rollback de banco de dados não é automático; cobertura de testes não prova qualidade.
 
 **Escolar, Matemática 4º bim:** Aulas 6 (regra de três composta) e 7 (resolução de problemas). A Aula 7 do livro só traz questões de vestibular (ficam na apostila): a aula ensina o método com exemplos próprios, incluindo divisão proporcional.
+
+**Programação Mobile, semana 23 (Preparativos Finais para Publicação)**
+- Quatro aulas em uma: performance, segurança, usabilidade e build/release. O Pause e Responda original misturava os temas (todas rotuladas "Aula 3"); foi mantido, com o rótulo do material.
+- Correções ao material: ProGuard virou R8 (lê as mesmas regras; configuração conferida na documentação do Android); bcrypt é hash para senhas (não criptografia) e leva sal; MFA por SMS é o método mais fraco; rate limiting também ajuda contra força bruta, e não só contra DoS; ZAP e Burp são proxies web (para mobile é preciso configurar o proxy no aparelho). Fastlane e OWASP MASVS conferidos na documentação oficial. O Fastfile e o Gradle são ilustrativos e não foram executados.
+
+**Projeto Multidisciplinar, semana 23 (Ajustes Finais do Projeto)**
+- Monitoramento de indicadores (KPI, metas SMART), relatório com mapa mental e retrospectiva. As respostas das questões do material (indicador bem definido, análise contínua, conversão abaixo da meta) foram mantidas; as alternativas erradas foram escritas para a aula.
+
+**Banco de Dados, semana 23 (Ferramentas e Tecnologias NoSQL)**
+- MongoDB, Cassandra, Redis e Neo4j em uma aula. **Nenhum comando foi executado** (nenhum desses bancos está instalado nesta máquina); tudo foi conferido na documentação oficial.
+- Correções ao material: `mongo` é o shell antigo (hoje `mongosh`); Cassandra no Windows nativo não é o caminho oficial (WSL ou Docker) e `SimpleStrategy` só serve para teste (produção usa `NetworkTopologyStrategy`); o port do Redis para Windows citado é antigo (usar Docker/WSL). Porta 7474 e credenciais do Neo4j estão marcadas como conhecimento geral, a confirmar.
+
+**Língua Portuguesa, Aula 5 (Escolar): Saramago**
+- Sem as atividades do livro e sem reproduzir trechos de "Ensaio sobre a cegueira" (obra protegida): resumo e análise, com exemplos inventados. Só a epígrafe curta é citada.
+- Correção ao material: as falas sem travessão de Saramago são discurso direto integrado ao parágrafo, e não discurso indireto livre; a aula ensina a diferença.
+
+**Figuras:** passaram no verificador `scripts/checar-figuras-no-navegador.js`.

@@ -1,0 +1,416 @@
+---
+title: "Ferramentas e Tecnologias NoSQL"
+subject: "Banco de Dados"
+order: 2
+relevance: >
+  Nem todo dado cabe bem em tabelas. Catálogos de produtos com campos diferentes, mensagens que chegam aos milhões,
+  sessões de login que precisam de resposta em milissegundos e redes de amigos pedem outro tipo de banco. Conhecer os
+  quatro grandes tipos de NoSQL (documentos, colunas, chave-valor e grafos) e saber qual escolher é o que evita usar
+  a ferramenta errada para o problema.
+quickSummary: >
+  NoSQL é o nome de bancos que não usam só tabelas. MongoDB guarda documentos flexíveis (JSON). Cassandra guarda
+  grandes volumes distribuídos em vários servidores, com consistência ajustável. Redis guarda pares chave-valor na
+  memória, ideal para cache e dados temporários (com expiração). Neo4j guarda grafos: nós e relações, ideal para
+  conexões. Cada um resolve um problema; nenhum substitui o SQL em tudo.
+gabarito:
+  - correta: 2
+    porque: >
+      O Redis mantém os dados na memória (RAM), muito mais rápida que o disco. É essa a vantagem principal frente a
+      bancos tradicionais que gravam primeiro em disco. Ele pode, sim, gravar em disco para persistência, mas o
+      trabalho do dia a dia acontece na memória.
+      Revisar: A Aula › 3.1 O que é o Redis
+  - correta: 3
+    porque: >
+      O comando EXISTS verifica se uma chave existe (retorna 1 se existe e 0 se não). GET lê o valor, SET grava e DEL
+      apaga a chave.
+      Revisar: A Aula › 3.3 Comandos básicos
+  - correta: 2
+    porque: >
+      Com a expiração (EXPIRE), dados temporários (sessões, códigos de verificação, cache) somem sozinhos depois do
+      tempo definido, sem precisar de rotina de limpeza e sem ocupar memória à toa.
+      Revisar: A Aula › 3.4 Expiração de chaves
+ferramentas:
+  - nome: "Docker Desktop (recomendado) ou WSL"
+    uso: "Para rodar MongoDB, Redis, Cassandra e Neo4j sem instalar cada um no Windows. A documentação de várias dessas ferramentas indica Docker ou WSL como caminho para Windows."
+    custo: "Gratuito para estudo"
+    link: "https://www.docker.com/products/docker-desktop/"
+    opcional: true
+  - nome: "MongoDB Community Server e mongosh"
+    uso: "O servidor e o terminal moderno (mongosh) para os exercícios de documentos."
+    custo: "Gratuito"
+    link: "https://www.mongodb.com/try/download/community"
+    opcional: true
+  - nome: "Redis"
+    uso: "O servidor e o redis-cli para chave-valor. Alternativa sem instalar: um terminal online que emule o Redis."
+    custo: "Gratuito"
+    link: "https://redis.io/docs/latest/get-started/"
+    opcional: true
+  - nome: "Cassandra (com Java instalado)"
+    uso: "O servidor e o cqlsh para as tabelas de colunas largas."
+    custo: "Gratuito"
+    link: "https://cassandra.apache.org/_/download.html"
+    opcional: true
+  - nome: "Neo4j (Community ou Desktop)"
+    uso: "O banco de grafos e o Neo4j Browser para escrever consultas Cypher."
+    custo: "Gratuito (edição Community)"
+    link: "https://neo4j.com/deployment-center/"
+    opcional: true
+---
+
+<Accordion titulo="Palavras e siglas desta aula" dica="Consulte quando encontrar um termo novo" icone="spell-check">
+
+- **NoSQL** ("Not only SQL", não apenas SQL): bancos que não se baseiam só em tabelas e junções.
+- **Documento**: um registro em formato parecido com JSON, com campos que podem variar de um registro para outro.
+- **Coleção** (collection): conjunto de documentos, como uma "tabela" do MongoDB.
+- **Chave-valor**: dado guardado por um nome único (a chave) que leva ao conteúdo (o valor).
+- **Coluna larga** (wide-column): tabelas onde cada linha pode ter conjuntos diferentes de colunas, organizadas por partição.
+- **Grafo**: dados como **nós** (coisas) ligados por **relações** (conexões).
+- **Nó** (node) e **relação** (relationship): os dois elementos do grafo.
+- **Cypher**: a linguagem de consulta do Neo4j.
+- **CQL** (Cassandra Query Language): a linguagem do Cassandra, parecida com SQL.
+- **Replicação**: guardar cópias dos mesmos dados em vários servidores.
+- **Partição / shard**: dividir os dados entre vários servidores.
+- **Consistência**: se todos veem o mesmo dado atualizado ao mesmo tempo.
+- **Cache**: cópia rápida de dados para não buscar de novo na fonte lenta.
+- **TTL** (Time To Live, tempo de vida): quanto tempo falta para uma chave expirar.
+- **Persistência**: gravar em disco para o dado sobreviver a um desligamento.
+- **Docker** e **WSL**: formas de rodar programas isolados (Docker) ou um Linux dentro do Windows (WSL).
+
+</Accordion>
+
+## Antes de Começar
+
+**O que esta aula cobre.** Quatro bancos NoSQL, um por tipo: **MongoDB** (documentos), **Cassandra** (colunas), **Redis** (chave-valor) e **Neo4j** (grafos). Para cada um: quando usar, como instalar, os primeiros comandos e as armadilhas.
+
+**Aviso sobre os comandos.** Nenhum desses bancos estava instalado na máquina onde esta aula foi escrita. Por isso, **os comandos abaixo foram conferidos na documentação oficial, mas não foram executados aqui**. Rode-os no seu ambiente e confira a saída.
+
+**O que você precisa saber antes.** SQL básico, tabelas e chaves (das aulas anteriores) e o uso do terminal.
+
+## A Aula
+
+### 1. MongoDB: banco de documentos
+
+#### 1.1 Quando usar
+
+O MongoDB guarda **documentos** em formato parecido com JSON, dentro de **coleções**. Cada documento pode ter campos diferentes, o que ajuda em **catálogos** (um livro tem autor, um notebook tem processador), **perfis de usuário**, **conteúdo** e dados que mudam de formato com frequência. A regra de ouro da modelagem: **dados acessados juntos são guardados juntos**.
+
+#### 1.2 Instalação e conexão
+
+1. Instale o **MongoDB Community Server** pelo instalador do site oficial.
+2. Confira a versão: `mongod --version`.
+3. Inicie o servidor (`mongod`, ou o serviço instalado pelo instalador).
+4. Conecte-se com o shell **`mongosh`**.
+
+**Correção do material.** O roteiro manda conectar com o comando `mongo`. Esse era o shell **antigo**, que o MongoDB descontinuou: hoje o shell oficial é o **`mongosh`**. Use `mongosh`.
+
+#### 1.3 Primeiro roteiro: um banco de estoque
+
+```javascript
+use estoque                      // cria/seleciona o banco (só aparece ao gravar algo)
+db.createCollection("produtos")
+
+db.categorias.insertMany([
+  { _id: 1, nome: "Eletrônicos" },
+  { _id: 2, nome: "Livros" }
+])
+
+db.produtos.insertMany([
+  { nome: "Fone de ouvido", preco: 120, estoque: 30, categoria_id: 1 },
+  { nome: "Teclado",        preco: 200, estoque: 10, categoria_id: 1 },
+  { nome: "Livro de SQL",   preco: 80,  estoque: 25, categoria_id: 2 }
+])
+
+db.produtos.find()                              // todos
+db.produtos.find({ estoque: { $gt: 15 } })      // estoque maior que 15
+```
+
+O operador `$gt` significa "maior que" (*greater than*). Outros: `$lt` (menor), `$gte`, `$lte`, `$eq`, `$in`.
+
+#### 1.4 Referenciar ou embutir?
+
+Pergunta do roteiro: qual a vantagem de usar **referências** (guardar `categoria_id`) em vez de duplicar a categoria dentro de cada produto?
+
+- **Referência:** a informação está num **único lugar**. Se o nome da categoria mudar, você muda uma vez. Boa para dados **compartilhados** por muitos documentos ou que crescem sem limite.
+- **Embutir (duplicar dentro do documento):** a leitura é mais rápida, pois o dado vem junto, sem segunda consulta. Boa para dados **lidos sempre juntos** e de tamanho limitado.
+
+Para juntar documentos de coleções diferentes, usa-se a etapa **`$lookup`** (equivalente a um *left join*). Um documento tem **limite de 16 MB**.
+
+<figure class="figura">
+  <svg viewBox="0 0 560 190" role="img" aria-labelledby="fig-nosql-ref-t fig-nosql-ref-d">
+    <title id="fig-nosql-ref-t">Referenciar contra embutir no MongoDB</title>
+    <desc id="fig-nosql-ref-d">À esquerda, produtos apontam por categoria_id para um único documento de categoria. À direita, cada produto carrega uma cópia da categoria dentro de si.</desc>
+    <defs>
+      <marker id="seta-nosql-ref" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+        <path d="M1,1 L9,5 L1,9" class="traco" />
+      </marker>
+    </defs>
+    <text x="130" y="20" class="rotulo" text-anchor="middle">Referência</text>
+    <line x1="85" y1="50" x2="170" y2="95" class="traco" marker-end="url(#seta-nosql-ref)" />
+    <line x1="85" y1="140" x2="170" y2="105" class="traco" marker-end="url(#seta-nosql-ref)" />
+    <rect x="10" y="30" width="75" height="40" rx="8" class="traco no" />
+    <text x="47" y="55" class="rotulo" text-anchor="middle">Produto A</text>
+    <rect x="10" y="120" width="75" height="40" rx="8" class="traco no" />
+    <text x="47" y="145" class="rotulo" text-anchor="middle">Produto B</text>
+    <rect x="170" y="80" width="105" height="40" rx="8" class="traco preenche no" />
+    <text x="222" y="105" class="rotulo" text-anchor="middle">Categoria 1</text>
+    <text x="400" y="20" class="rotulo" text-anchor="middle">Embutido</text>
+    <rect x="320" y="30" width="230" height="55" rx="8" class="traco no" />
+    <text x="435" y="52" class="rotulo" text-anchor="middle">Produto A</text>
+    <text x="435" y="72" class="rotulo-fraco" text-anchor="middle">categoria: Eletrônicos (cópia)</text>
+    <rect x="320" y="105" width="230" height="55" rx="8" class="traco no" />
+    <text x="435" y="127" class="rotulo" text-anchor="middle">Produto B</text>
+    <text x="435" y="147" class="rotulo-fraco" text-anchor="middle">categoria: Eletrônicos (cópia)</text>
+  </svg>
+</figure>
+
+### 2. Cassandra: colunas largas, em escala
+
+#### 2.1 Quando usar
+
+O Cassandra foi feito para **volumes enormes de escrita**, distribuídos em **vários servidores** (e até vários data centers), sem ponto único de falha. Exemplos: histórico de pedidos, mensagens, leituras de sensores, registros de eventos. Em troca, **você modela a tabela a partir das consultas** que vai fazer; não há junções livres como no SQL.
+
+#### 2.2 Instalação
+
+Precisa do **Java** (JDK) instalado e da variável `JAVA_HOME` configurada. O Cassandra roda em Linux e macOS; no **Windows**, o caminho recomendado é o **WSL** ou o **Docker**, e não a instalação nativa.
+
+```bash
+cassandra -f                 # inicia em primeiro plano
+nodetool status              # mostra o estado dos nós (UN = Up/Normal)
+cqlsh                        # terminal CQL (exige Python)
+```
+
+```sql
+SELECT release_version FROM system.local;
+```
+
+#### 2.3 Keyspace e replicação
+
+```sql
+CREATE KEYSPACE exemplo
+  WITH replication = {'class': 'SimpleStrategy', 'replication_factor': 1};
+USE exemplo;
+```
+
+- **Keyspace** é o "banco" do Cassandra.
+- **`replication_factor`** é quantas cópias de cada dado existem.
+- **Correção do material.** A `SimpleStrategy` só serve para **estudo**, num servidor ou data center único. Em produção, e sempre que houver mais de um data center, usa-se a **`NetworkTopologyStrategy`**, que define o fator de replicação **por data center**: `{'class': 'NetworkTopologyStrategy', 'DC1': 3}`.
+
+#### 2.4 Modelando por consulta
+
+```sql
+CREATE TABLE pedidos_por_cliente (
+  cliente_id uuid,
+  data timestamp,
+  pedido_id uuid,
+  total decimal,
+  PRIMARY KEY ((cliente_id), data)
+) WITH CLUSTERING ORDER BY (data DESC);
+```
+
+- `cliente_id` é a **chave de partição**: decide em qual servidor o dado fica.
+- `data` é a **coluna de agrupamento** (*clustering*): ordena as linhas dentro da partição.
+- Consulta ideal: "os pedidos mais recentes do cliente X", que lê **uma partição**.
+
+#### 2.5 Replicação e consistência
+
+O Cassandra grava **em todas as réplicas**; o **nível de consistência** (`ONE`, `QUORUM`, `ALL`, `LOCAL_QUORUM`) define quantas precisam **confirmar** a operação. Com fator de replicação **RF**, vale a regra: se `R + W > RF` (leituras mais escritas confirmadas), a leitura enxerga a escrita mais recente. `QUORUM` é a maioria (`RF/2 + 1`).
+
+**Cenário do roteiro: erro de replicação em vários data centers.** O que fazer:
+
+1. **Confirmar o estado** (`nodetool status`) e achar nós fora do ar.
+2. **Conferir a estratégia** do keyspace (se for `SimpleStrategy` num cenário multi-DC, é o erro de configuração).
+3. **Corrigir** para `NetworkTopologyStrategy` e rodar o reparo (`nodetool repair`) para alinhar as cópias.
+4. **Testar a replicação** gravando num data center e lendo no outro.
+5. Manter a **calma** e dividir o problema: com pressão do prazo, a equipe que **documenta** o que testou e **divide tarefas** acerta mais.
+
+### 3. Redis: chave-valor em memória
+
+#### 3.1 O que é o Redis
+
+O Redis guarda os dados **na memória (RAM)**, e por isso responde em frações de milissegundo. É o banco mais usado para **cache**, **sessões de login**, **contadores**, **filas** e **rankings**. A **vantagem principal sobre os bancos tradicionais é armazenar os dados na memória**, e não primeiro em disco.
+
+#### 3.2 Instalação
+
+O site oficial recomenda **Docker** (ou WSL) no Windows. O roteiro cita um *port* antigo para Windows, sem manutenção; evite-o. Para treinar sem instalar nada, use um emulador online.
+
+```bash
+docker run --name meu-redis -p 6379:6379 -d redis
+docker exec -it meu-redis redis-cli
+```
+
+#### 3.3 Comandos básicos
+
+```text
+SET usuario:1:nome "Ana"     -> OK
+GET usuario:1:nome           -> "Ana"
+EXISTS usuario:1:nome        -> 1    (existe; 0 = não existe)
+DEL usuario:1:nome           -> 1    (quantas chaves apagou)
+
+SET visitas 0
+INCR visitas                 -> 1    (soma 1)
+INCRBY visitas 10            -> 11   (soma 10)
+```
+
+- A pergunta sobre **verificar se uma chave existe** tem como resposta **`EXISTS`**.
+- Nomes como `usuario:1:nome` são só convenção: os dois-pontos organizam as chaves.
+- `INCR` é **atômico**: dois acessos ao mesmo tempo nunca se perdem (ótimo para contadores).
+
+#### 3.4 Expiração de chaves
+
+```text
+SET codigo:123 "847291"
+EXPIRE codigo:123 60        -> 1    (some em 60 segundos)
+TTL codigo:123              -> 58   (segundos restantes)
+```
+
+- `TTL` retorna **-1** se a chave não expira e **-2** se ela não existe.
+- `SET` sobre uma chave **apaga a expiração**; `INCR` a **mantém**. `PERSIST` remove a expiração.
+- **Vantagem:** dados **temporários** (códigos de verificação, sessões, cache) **expiram sozinhos**, sem rotina de limpeza e sem ocupar memória à toa.
+
+#### 3.5 Persistência
+
+Memória some quando o servidor desliga. O Redis oferece dois modos de gravar em disco:
+
+| Modo | Como funciona | Característica |
+|---|---|---|
+| **RDB** | Tira "fotos" (snapshots) de tempos em tempos (`dump.rdb`) | Compacto e rápido para restaurar; pode perder o que veio depois da última foto |
+| **AOF** | Registra cada escrita (`appendonly yes`) | Perde muito menos dado; arquivo maior |
+
+Para segurança mais forte, a documentação recomenda **usar os dois juntos**. No relatório do roteiro (TechStream), registre qual modo foi usado e por quê.
+
+### 4. Neo4j: banco de grafos
+
+#### 4.1 Quando usar
+
+Em um grafo, os dados são **nós** (usuários, posts) ligados por **relações** (curtiu, comentou, segue). É a melhor escolha quando **as conexões são o assunto**: redes sociais, recomendações, rotas, detecção de fraude. No SQL, "amigos dos amigos" exige várias junções; no grafo, é percorrer relações.
+
+#### 4.2 Instalação e acesso
+
+Instale o **Neo4j** (Desktop, pacote ou **Docker**) e acesse o **Neo4j Browser**, geralmente em `http://localhost:7474`. As instalações tradicionais pedem **trocar a senha inicial** no primeiro acesso; no Docker, defina-a pela variável `NEO4J_AUTH`. *(Portas e credenciais padrão vêm de conhecimento geral; confirme na documentação da versão que instalar.)*
+
+#### 4.3 Cypher: criar e consultar
+
+```cypher
+CREATE (u1:User {nome: "Ana"}), (u2:User {nome: "Bruno"})
+CREATE (p:Post {titulo: "Meu primeiro post"})
+
+MATCH (u:User {nome: "Ana"}), (p:Post {titulo: "Meu primeiro post"})
+CREATE (u)-[:LIKES]->(p)
+
+MATCH (u:User)-[r:LIKES]->(p:Post)
+RETURN p.titulo, count(r) AS curtidas
+ORDER BY curtidas DESC
+LIMIT 5
+```
+
+- `(u:User {nome: "Ana"})` é um **nó** com rótulo `User` e propriedade `nome`.
+- `-[:LIKES]->` é uma **relação com direção**.
+- A última consulta traz os **5 posts mais curtidos**.
+- Outra relação do roteiro, `COMMENTS_ON`, funciona do mesmo jeito.
+
+<figure class="figura">
+  <svg viewBox="0 0 560 150" role="img" aria-labelledby="fig-nosql-grafo-t fig-nosql-grafo-d">
+    <title id="fig-nosql-grafo-t">Um pequeno grafo de rede social</title>
+    <desc id="fig-nosql-grafo-d">Os usuários Ana e Bruno são nós. Ana curte um post e Bruno comenta no mesmo post. As relações têm direção e nome.</desc>
+    <defs>
+      <marker id="seta-nosql-grafo" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+        <path d="M1,1 L9,5 L1,9" class="traco" />
+      </marker>
+    </defs>
+    <line x1="120" y1="45" x2="390" y2="65" class="traco" marker-end="url(#seta-nosql-grafo)" />
+    <line x1="120" y1="115" x2="390" y2="95" class="traco" marker-end="url(#seta-nosql-grafo)" />
+    <text x="255" y="45" class="rotulo-fraco" text-anchor="middle">LIKES</text>
+    <text x="255" y="125" class="rotulo-fraco" text-anchor="middle">COMMENTS_ON</text>
+    <rect x="20" y="25" width="100" height="40" rx="20" class="traco no" />
+    <text x="70" y="50" class="rotulo" text-anchor="middle">User: Ana</text>
+    <rect x="20" y="95" width="100" height="40" rx="20" class="traco no" />
+    <text x="70" y="120" class="rotulo" text-anchor="middle">User: Bruno</text>
+    <rect x="390" y="55" width="150" height="50" rx="25" class="traco preenche no" />
+    <text x="465" y="85" class="rotulo" text-anchor="middle">Post: primeiro post</text>
+  </svg>
+</figure>
+
+### 5. Qual escolher?
+
+| Tipo | Exemplo | Melhor para | Cuidado |
+|---|---|---|---|
+| **Documentos** | MongoDB | Dados com formatos variados, catálogos, perfis | Relações complexas ficam mais difíceis |
+| **Colunas largas** | Cassandra | Volume enorme de escrita, vários data centers | Modelar por consulta; sem junções livres |
+| **Chave-valor** | Redis | Cache, sessões, contadores, rankings | Memória é cara e limitada |
+| **Grafos** | Neo4j | Conexões, recomendações, fraude | Menos indicado para grandes agregações simples |
+
+**Regra prática:** comece pelo **tipo de pergunta** que o sistema responde. Se for "dado por identificador, bem rápido", Redis. Se for "documentos com formatos variados", MongoDB. Se for "milhões de escritas e disponibilidade", Cassandra. Se for "quem se liga a quem", Neo4j. E se forem **tabelas relacionadas e transações**, o SQL continua sendo o caminho. Muitos sistemas **combinam** os bancos (SQL para pedidos e Redis para cache, por exemplo).
+
+## Tópicos-Chave para Revisão
+
+<div className="topico">
+
+#### 1. NoSQL
+
+Bancos que não usam só tabelas. Quatro tipos: **documentos**, **colunas largas**, **chave-valor** e **grafos**.
+
+#### 2. MongoDB
+
+Documentos tipo JSON em **coleções**. Shell atual: **`mongosh`** (o `mongo` é antigo). `insertMany`, `find`, `$gt`. **Referência** (um lugar só) contra **embutir** (leitura mais rápida).
+
+#### 3. Cassandra
+
+Escala em vários servidores. **Modele pela consulta** (chave de partição + agrupamento). **`SimpleStrategy`** só para teste; produção usa **`NetworkTopologyStrategy`**. Consistência ajustável (`ONE`, `QUORUM`, `ALL`).
+
+#### 4. Redis
+
+Chave-valor **na memória**. `SET`, `GET`, `DEL`, **`EXISTS`**, `INCR`, `INCRBY`. **`EXPIRE`** e `TTL` apagam dados temporários sozinhos.
+
+#### 5. Persistência no Redis
+
+**RDB** (fotos) e **AOF** (registro de escritas). Os dois juntos dão mais segurança.
+
+#### 6. Neo4j
+
+Grafo de **nós** e **relações**, consultado com **Cypher** (`CREATE`, `MATCH`, `RETURN`). Ideal quando as conexões são o assunto.
+
+#### 7. Como escolher
+
+Pelo **tipo de pergunta**, não pela moda. Muitos sistemas combinam SQL e NoSQL.
+
+</div>
+
+## Pause e Responda
+
+*Marque uma alternativa em cada questão e confira tudo de uma vez no botão do fim.*
+
+**Questão 1**
+
+*Pause e Responda S23A3a · Redis (Aula 3)*
+
+Qual é a principal vantagem do Redis em comparação com bancos de dados tradicionais que armazenam dados em disco? Indique a alternativa correta.
+
+A) Garante que os dados nunca sejam perdidos, mesmo sem persistência.\
+B) Organiza os dados em tabelas relacionais com junções complexas.\
+C) Armazena dados em memória, o que o torna muito rápido.\
+D) Dispensa qualquer configuração de segurança.\
+E) Só funciona com dados em formato de grafo.
+
+**Questão 2**
+
+*Pause e Responda S23A3b · Redis (Aula 3)*
+
+Qual comando do Redis é usado para verificar se uma chave existe? Indique a alternativa correta.
+
+A) GET\
+B) SET\
+C) DEL\
+D) EXISTS\
+E) INCR
+
+**Questão 3**
+
+*Pause e Responda S23A3c · Redis (Aula 3)*
+
+Qual é a vantagem de usar a expiração de chaves (EXPIRE) no Redis? Indique a alternativa correta.
+
+A) Impede que qualquer dado seja apagado do banco.\
+B) Aumenta o tamanho máximo de cada valor.\
+C) Permite que dados temporários expirem com o tempo, sem limpeza manual.\
+D) Transforma o Redis em um banco de grafos.\
+E) Grava automaticamente todos os dados em disco.

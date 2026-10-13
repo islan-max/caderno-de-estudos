@@ -1,0 +1,633 @@
+---
+title: "Preparativos Finais para Publicação"
+subject: "Programação Mobile"
+order: 2
+relevance: >
+  Um app que compila e roda no seu celular ainda não está pronto para as lojas. Antes de publicar, quatro verificações
+  separam um lançamento tranquilo de uma semana de avaliações ruins: o app é rápido o bastante (performance)? É
+  seguro para os dados de quem o usa (segurança)? As pessoas conseguem usá-lo sem se perder (usabilidade)? E o
+  processo de gerar e enviar a versão é confiável e repetível (build e release)? Esta semana reúne as quatro.
+quickSummary: >
+  Performance: meça com profilers, ache o gargalo e otimize (imagens comprimidas, lazy loading, cache), de forma
+  contínua. Segurança: use análise estática, testes de invasão, ofuscação e assinatura; proteja dados em trânsito
+  (TLS) e em repouso, com autenticação forte e monitoramento. Usabilidade: observe pessoas reais, use métodos
+  qualitativos e quantitativos (heatmaps, testes A/B) e priorize o feedback. Release: automatize build e envio com
+  Gradle, Xcode e Fastlane num pipeline de CI/CD, com testes e verificação antes da loja.
+gabarito:
+  - correta: 2
+    porque: >
+      Comprimir as imagens e carregá-las sob demanda (lazy loading) reduz o que é baixado e desenhado de início, então
+      o app responde mais rápido. Aumentar a resolução, carregar tudo de uma vez e desligar o cache pioram o
+      problema.
+      Revisar: A Aula › 1.5 Estratégias de otimização
+  - correta: 1
+    porque: >
+      Heatmaps mostram onde as pessoas tocam e onde se perdem, então apontam pontos de dificuldade na navegação.
+      Testes de performance medem tempo, testes unitários validam funções e revisão de código procura falhas de
+      lógica: nenhum deles mostra o que o usuário sente ao navegar.
+      Revisar: A Aula › 3.2 Ferramentas qualitativas e quantitativas
+  - correta: 3
+    porque: >
+      O Fastlane automatiza as etapas de build e release de apps Android e iOS, deixando o processo repetível e menos
+      sujeito a erro manual. Gerar o build à mão a cada versão, mexer no código para cada versão ou olhar só a
+      usabilidade não automatiza nada.
+      Revisar: A Aula › 4.2 Automação de release com Fastlane
+ferramentas:
+  - nome: "Android Studio"
+    uso: "Traz o Profiler (CPU, memória, rede e energia), o Logcat e a geração do app bundle. É a ferramenta central desta semana para Android."
+    custo: "Gratuito"
+    link: "https://developer.android.com/studio"
+  - nome: "Xcode (somente em Mac)"
+    uso: "Para iOS: Instruments (profiling) e o sistema de build. Exige um computador Apple."
+    custo: "Gratuito (publicar na App Store exige a conta paga da Apple)"
+    link: "https://developer.apple.com/xcode/"
+    opcional: true
+  - nome: "OWASP ZAP"
+    uso: "Intercepta e testa o tráfego HTTP(S) do app para achar falhas na comunicação com a API."
+    custo: "Gratuito (código aberto)"
+    link: "https://www.zaproxy.org"
+    opcional: true
+  - nome: "Fastlane"
+    uso: "Automatiza build, assinatura e envio às lojas. Instala-se com Bundler ou Homebrew."
+    custo: "Gratuito (código aberto)"
+    link: "https://fastlane.tools"
+    opcional: true
+  - nome: "Papel, caneta e 3 a 5 pessoas dispostas a testar o app"
+    uso: "Para o teste de usabilidade: roteiro de tarefas e anotações."
+---
+
+<Accordion titulo="Palavras e siglas desta aula" dica="Consulte quando encontrar um termo novo" icone="spell-check">
+
+- **Performance** (desempenho): o quanto o app é rápido, fluido e econômico em memória e bateria.
+- **Profiling** (perfilamento) e **profiler**: medir o que o app faz em tempo real (uso de CPU, memória, rede). O profiler é a ferramenta que mede.
+- **Gargalo** (bottleneck): o ponto que mais atrasa o conjunto, como uma chamada de rede lenta.
+- **CPU** (Central Processing Unit): o processador do aparelho.
+- **Lazy loading** (carregamento preguiçoso): carregar algo só quando é preciso, em vez de tudo no início.
+- **Caching** (cache): guardar uma cópia para não buscar de novo.
+- **Thread principal** (UI thread): a linha de execução que desenha a tela. Se ela trava, o app "congela".
+- **Jank** (travadinhas): quadros da animação que atrasam e a tela falha.
+- **SAST** (Static Application Security Testing): análise do código sem executá-lo, em busca de falhas.
+- **Teste de penetração** (pentest, teste de invasão): simular ataques reais para achar pontos fracos.
+- **Engenharia reversa**: desmontar um app para entender (ou copiar, ou alterar) como ele funciona.
+- **Ofuscação**: trocar nomes do código por nomes sem sentido, para dificultar a engenharia reversa.
+- **Criptografia**, **TLS** (Transport Layer Security) e **AES** (Advanced Encryption Standard): embaralhar dados; TLS protege dados em trânsito, AES protege dados guardados.
+- **Hash**: resumo de tamanho fixo de um dado, que não dá para desfazer. **Salt** (sal): valor aleatório misturado antes do hash.
+- **MFA** (Multi-Factor Authentication, autenticação multifator): login com dois ou mais fatores (algo que você sabe, tem ou é).
+- **JWT** (JSON Web Token): token assinado que prova quem é o usuário.
+- **Rate limiting** (limite de taxa): limitar quantos pedidos alguém pode fazer por período.
+- **DoS** (Denial of Service, negação de serviço): ataque que sobrecarrega o sistema para derrubá-lo.
+- **Heatmap** (mapa de calor): imagem que mostra onde as pessoas mais tocam ou olham na tela.
+- **Teste A/B**: mostrar duas versões a grupos diferentes e comparar qual funciona melhor.
+- **Usabilidade**: facilidade de uso. **UX** (User Experience): experiência de quem usa.
+- **Build**: gerar o arquivo instalável do app a partir do código. **Release**: a versão pronta para publicar.
+- **Gradle** e **Xcode Build System**: as ferramentas de build do Android e do iOS.
+- **Fastlane**: ferramenta que automatiza build e envio de apps.
+- **CI/CD**: integração e entrega contínuas (pipeline automático de testes e publicação).
+- **Staged rollout** (liberação em etapas): liberar a versão para uma porcentagem crescente de usuários.
+- **AVA** (Ambiente Virtual de Aprendizagem): a plataforma onde a escola recebe as atividades.
+
+</Accordion>
+
+## Antes de Começar
+
+**O que esta aula cobre.** Os quatro últimos testes antes de publicar: **performance** (o app é rápido?), **segurança** (os dados estão protegidos?), **usabilidade** (as pessoas conseguem usar?) e **build e release** (o processo de publicar é confiável?). Os casos do material são o **TurboPerformance Mobile** (app de e-commerce lento) e a startup de pagamentos **ZyntraPay**. O roteiro menciona o app como "SafePay" num ponto: é o mesmo caso.
+
+**O que você precisa saber antes.**
+
+- **A Semana 22**: contas de desenvolvedor, requisitos das lojas, AAB, assinatura e recursos visuais.
+- **Noções de HTTP e API.**
+- **Git e testes automáticos** (visto nas outras matérias).
+
+## A Aula
+
+### 1. Otimização de performance
+
+#### 1.1 Por que a performance importa
+
+Um app lento **perde usuários**: quem espera demais fecha e desinstala. A performance também **aparece nas avaliações das lojas** e influencia a nota. Para o usuário, "rápido" é sentir que o app **responde ao toque** e **não trava**.
+
+**Indicadores principais:**
+
+| Indicador | O que mede | Sinal de problema |
+|---|---|---|
+| **Tempo de carregamento** (inclusive o de abertura do app) | Quanto leva até a tela útil aparecer | Tela em branco ou girando por muito tempo |
+| **Fluidez** (quadros por segundo) | Se rolagens e animações ficam lisas | "Travadinhas" (jank) |
+| **Memória** | Quanto o app ocupa na memória | App fechado pelo sistema, travamentos |
+| **CPU** | Quanto processamento o app usa | Aparelho esquenta, app lento |
+| **Bateria e energia** | Gasto de energia (tela, rede, GPS, tarefas em segundo plano) | Reclamações de bateria acabando |
+| **Rede** | Quantidade e tamanho das chamadas | Telas esperando dados |
+
+#### 1.2 Medir antes de otimizar: profiling
+
+**Regra de ouro: não otimize no palpite.** Meça, ache o **gargalo** e só então mexa. Os **profilers** mostram o que o app faz **em tempo real**:
+
+- **Android Studio Profiler:** CPU, memória, rede e energia, ligados ao app rodando no aparelho.
+- **Xcode Instruments (iOS):** o equivalente da Apple.
+- **Macrobenchmark e JankStats (Android):** medem o tempo de abertura e a fluidez de forma repetível.
+- **System tracing:** registro detalhado do sistema, para achar o que bloqueia a tela.
+- **Monitoramento em produção:** ferramentas como o Firebase Performance Monitoring ou o **Android vitals** (no Play Console) mostram como o app se comporta **nos aparelhos reais dos usuários**.
+
+<figure class="figura">
+  <svg viewBox="0 0 560 180" role="img" aria-labelledby="fig-mob23-ciclo-t fig-mob23-ciclo-d">
+    <title id="fig-mob23-ciclo-t">O ciclo de otimização de performance</title>
+    <desc id="fig-mob23-ciclo-d">Quatro etapas em sequência: medir com profilers, achar o gargalo, otimizar o ponto principal e medir de novo para confirmar. Depois da última, o ciclo volta ao começo, porque a análise é contínua.</desc>
+    <defs>
+      <marker id="seta-mob23-ciclo" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+        <path d="M1,1 L9,5 L1,9" class="traco" />
+      </marker>
+    </defs>
+    <rect x="5" y="40" width="120" height="50" rx="8" class="traco preenche" />
+    <text x="65" y="62" class="rotulo" text-anchor="middle">1. Medir</text>
+    <text x="65" y="78" class="rotulo-fraco" text-anchor="middle">com profilers</text>
+    <rect x="150" y="40" width="120" height="50" rx="8" class="traco" />
+    <text x="210" y="62" class="rotulo" text-anchor="middle">2. Achar o</text>
+    <text x="210" y="78" class="rotulo-fraco" text-anchor="middle">gargalo</text>
+    <rect x="295" y="40" width="120" height="50" rx="8" class="traco" />
+    <text x="355" y="62" class="rotulo" text-anchor="middle">3. Otimizar</text>
+    <text x="355" y="78" class="rotulo-fraco" text-anchor="middle">o principal</text>
+    <rect x="440" y="40" width="115" height="50" rx="8" class="traco" />
+    <text x="497" y="62" class="rotulo" text-anchor="middle">4. Medir de</text>
+    <text x="497" y="78" class="rotulo-fraco" text-anchor="middle">novo</text>
+    <line x1="125" y1="65" x2="148" y2="65" class="traco" marker-end="url(#seta-mob23-ciclo)" />
+    <line x1="270" y1="65" x2="293" y2="65" class="traco" marker-end="url(#seta-mob23-ciclo)" />
+    <line x1="415" y1="65" x2="438" y2="65" class="traco" marker-end="url(#seta-mob23-ciclo)" />
+    <path d="M497,92 L497,140 L65,140 L65,92" class="tracejado" marker-end="url(#seta-mob23-ciclo)" />
+    <text x="281" y="160" class="rotulo-fraco" text-anchor="middle">análise contínua: repetir a cada versão e para vários aparelhos</text>
+  </svg>
+</figure>
+
+#### 1.3 Diagnóstico: de onde vem a lentidão?
+
+Imagine um app que **demora a responder aos toques**. O problema pode estar em **três lugares**:
+
+1. **Processamento pesado** (uma conta ou conversão grande rodando na thread principal).
+2. **Renderização da interface** (tela complexa demais, imagens enormes, listas sem reaproveitamento).
+3. **Operações de rede** (chamadas lentas, pesadas ou repetidas).
+
+**Estudo de caso do material: o e-commerce lento.** A tela de produtos demora a aparecer. Ao simular a análise de logs e relatórios do profiler, descobre-se que **uma chamada de API não otimizada** sobrecarrega o sistema. Sinais típicos no **profiler de rede**:
+
+- A chamada **devolve megabytes** de dados que a tela nem usa (por exemplo, a lista completa de 5 000 produtos).
+- É feita **toda vez que a tela abre**, sem cache.
+- É feita **antes de mostrar qualquer coisa**, e bloqueia a tela.
+- As **imagens** vêm em tamanho original, muito maiores que o espaço da tela.
+
+**Correções proporcionais ao diagnóstico:** paginação (20 produtos por vez), pedir só os campos necessários, cache da resposta, miniaturas das imagens e carregar em segundo plano, mostrando um **esqueleto** da tela enquanto isso.
+
+#### 1.4 Logs e métricas
+
+Registrar o **tempo** de operações importantes ajuda a achar gargalos. Em Android, por exemplo:
+
+```kotlin
+val inicio = System.nanoTime()
+val produtos = repositorio.carregarProdutos()
+val ms = (System.nanoTime() - inicio) / 1_000_000
+Log.d("Performance", "carregarProdutos levou $ms ms")
+```
+
+Depois, o **Logcat** (janela de registros do Android Studio) mostra os números. Em produção, o ideal é **enviar essas métricas** a um serviço de monitoramento, e não só olhar no seu aparelho.
+
+#### 1.5 Estratégias de otimização
+
+| Estratégia | Como ajuda | Exemplo |
+|---|---|---|
+| **Compressão e dimensionamento de imagens** | Menos dados baixados e menos memória | Servir a miniatura de 200 px, não a foto de 4 000 px. Usar formatos modernos como WebP |
+| **Lazy loading** | Só carrega o que está à vista | Lista que carrega mais itens ao rolar; imagens só quando entram na tela |
+| **Cache** | Evita buscar de novo | Guardar a resposta da API por alguns minutos e as imagens em disco |
+| **Paginação** | Pede poucos dados por vez | `?pagina=1&tamanho=20` |
+| **Thread principal livre** | A tela não congela | Rede e banco em segundo plano (corrotinas, async) |
+| **Listas eficientes** | Reaproveita as linhas da tela | RecyclerView ou LazyColumn (Android); List ou UICollectionView (iOS) |
+| **Menos trabalho em segundo plano** | Economiza bateria | Agrupar tarefas, evitar atualizações constantes |
+| **Código enxuto** | App menor e mais rápido | R8 (veja a Aula 4) remove código não usado |
+
+**Qual é a melhor estratégia para imagens lentas?** **Comprimir as imagens e usar lazy loading.** As opções erradas pioram o problema: **aumentar a resolução** deixa os arquivos maiores; **carregar tudo ao mesmo tempo na abertura** sobrecarrega rede e memória; **desabilitar o cache** obriga a baixar tudo de novo (o certo é cache **com** regra de renovação, para não mostrar imagem velha demais).
+
+Bibliotecas de imagem (como **Coil** e **Glide** no Android, **SDWebImage** e **Kingfisher** no iOS) já fazem cache, redimensionamento e carregamento sob demanda. Prefira-as a escrever isso à mão.
+
+#### 1.6 Análise contínua e segmentada
+
+"Ficou rápido no meu celular" não basta. A performance varia com:
+
+- **Aparelho**: modelos antigos, com pouca memória, sofrem mais.
+- **Rede**: 5G, Wi-Fi ou 3G instável.
+- **Versão do sistema** e **região**.
+
+Por isso a análise é **contínua** (a cada versão) e **segmentada** (por aparelho, rede e versão). Se, **mesmo depois das otimizações, alguns usuários ainda relatam lentidão**, a abordagem na reunião é: **segmentar** os dados (quem são esses usuários? que aparelho? que rede? que versão?), reproduzir num aparelho parecido, medir de novo e priorizar por **quantas pessoas** o problema afeta.
+
+#### 1.7 Respostas às situações do roteiro
+
+- **Mensagem do colega (imagens lentas):** sugerir **medir primeiro** no profiler de rede, depois **comprimir e redimensionar** as imagens, usar **lazy loading** e **cache**, servir **miniaturas** e conferir os resultados.
+- **E-mail ao gestor (chamada de API pesada):** resumir o **diagnóstico** (qual chamada, quanto demora, quanto dado trafega), o **impacto** (abandono da tela, avaliações) e as **soluções** (paginação, campos mínimos, cache, carregamento em segundo plano), com **prazo** e **como será medido**.
+- **Relatório interno:** o problema, como foi **medido** (ferramentas e números **antes**), o **gargalo** achado, as **mudanças** feitas, os números **depois** e o plano de **monitoramento contínuo**.
+
+### 2. Verificação de segurança
+
+#### 2.1 O que está em jogo
+
+A startup **ZyntraPay** vai lançar seu app de pagamentos, mas a equipe de segurança achou **autenticação fraca**, **credenciais guardadas de forma inadequada** e **nenhuma proteção contra engenharia reversa**. Sem verificação de segurança, o app pode:
+
+- Ser **rejeitado pelas lojas**.
+- **Expor dados e dinheiro** dos usuários (fraude, roubo de conta).
+- Ser **copiado ou alterado** por golpistas (app falso com a mesma cara).
+- Gerar **problemas legais** e perda de confiança (a **LGPD** prevê sanções para vazamento de dados).
+
+#### 2.2 Ferramentas de segurança
+
+| Tipo | Ferramentas citadas | Para que servem |
+|---|---|---|
+| **Análise estática de código (SAST)** | **SonarQube**, **Checkmarx** | Procuram falhas no código-fonte sem executá-lo |
+| **Teste de penetração** | **OWASP ZAP**, **Burp Suite** | Interceptam e testam o tráfego HTTP(S) entre o app e a API |
+| **Ofuscação e proteção** | **ProGuard**, **AppSealing** | Dificultam a engenharia reversa e protegem o app em execução |
+
+**Complementos importantes:**
+
+- **R8 no lugar do ProGuard.** No Android atual, quem faz **encolher, otimizar e ofuscar** o código é o **R8**, que lê as **mesmas regras de ProGuard** (arquivo `proguard-rules.pro`). O ProGuard em si ficou como o nome histórico.
+- **OWASP MASVS e MASTG.** A **OWASP** mantém o **MASVS** (padrão com requisitos de segurança para apps móveis, em grupos: armazenamento, criptografia, autenticação, rede, plataforma, código, resiliência e privacidade) e o **MASTG** (guia de testes). São o **checklist** profissional para esta etapa.
+- **Ferramentas de análise de apps móveis** (como o MobSF) analisam o próprio arquivo do app.
+- **ZAP e Burp** são feitos para tráfego web: para usá-los num app, configure o celular para passar pelo proxy da ferramenta.
+
+#### 2.3 Técnicas de verificação
+
+**1. Revisão e análise do código-fonte** (manual e automática). Procure:
+
+- **Injeção** (SQL injection): entradas maliciosas interpretadas como comandos de banco de dados. Evita-se com **consultas parametrizadas**. Num app, vale para o banco local (SQLite) e para os servidores.
+- **XSS** (Cross-Site Scripting): scripts maliciosos em páginas (em apps, aparece em **WebViews** que mostram conteúdo não confiável).
+- **Segredos no código**: chave de API, senha ou token escritos no app. Quem desmonta o app **encontra**. Chaves secretas ficam **no servidor**.
+
+**Exemplo:** num campo de login, confira se **toda entrada do usuário é validada e tratada** antes de ir ao banco.
+
+**2. Teste de invasão** (pentest). Simula ataques reais:
+
+- **Força bruta:** tentar muitas senhas para achar as fracas.
+- **Análise das comunicações de rede:** conferir se os dados viajam **criptografados** (HTTPS/TLS) e se o app **valida o certificado** do servidor.
+
+**3. Proteção dos dados em trânsito e em repouso.**
+
+| Situação | Proteção |
+|---|---|
+| **Em trânsito** (viajando pela rede) | **TLS** (HTTPS). Nunca usar HTTP simples |
+| **Em repouso** (guardados no aparelho) | Criptografia (como **AES**), com chaves guardadas no **Android Keystore** ou no **Keychain** do iOS, que são cofres do sistema |
+| **Senhas** | **Nunca** guardadas em texto puro: só o **hash** com **salt**, calculado no **servidor** |
+
+**Correção de termo.** O material cita o **bcrypt** como "hash seguro": ele é, de fato, um algoritmo de hash **para senhas** (lento de propósito). Hoje também se recomendam o **Argon2** e o **scrypt**. Hash **não é criptografia**: não tem volta, e por isso serve para senhas. O **app móvel não deve guardar a senha**: guarda só um **token** de acesso.
+
+**4. Ofuscação e assinatura digital.**
+
+- **Ofuscação** (R8): troca nomes de classes e métodos por nomes sem sentido e remove código não usado. Ela **dificulta**, **não impede** a engenharia reversa. Quem precisa de mais proteção (apps de pagamento) usa **proteção em tempo de execução** (como o AppSealing), que detecta aparelho com root, depurador e app adulterado.
+- **Assinatura digital:** o app é assinado com uma chave, e a loja e o sistema **conferem** que ele veio de você e **não foi alterado** depois de compilado.
+
+#### 2.4 Correção de vulnerabilidades
+
+<figure class="figura">
+  <svg viewBox="0 0 560 240" role="img" aria-labelledby="fig-mob23-seg-t fig-mob23-seg-d">
+    <title id="fig-mob23-seg-t">Camadas de segurança de um app móvel</title>
+    <desc id="fig-mob23-seg-d">Seis quadros: código, com ofuscação e assinatura; dados em repouso, com criptografia e cofre do sistema; dados em trânsito, com TLS; autenticação, com MFA e tokens de curta duração; servidor e API, com limite de taxa e validação; e monitoramento, com logs e alertas.</desc>
+    <rect x="5" y="10" width="175" height="105" rx="8" class="traco preenche" />
+    <text x="92" y="36" class="rotulo" text-anchor="middle">Código</text>
+    <text x="92" y="62" class="rotulo-fraco" text-anchor="middle">sem segredos escritos</text>
+    <text x="92" y="78" class="rotulo-fraco" text-anchor="middle">ofuscação (R8)</text>
+    <text x="92" y="94" class="rotulo-fraco" text-anchor="middle">assinatura digital</text>
+    <rect x="192" y="10" width="175" height="105" rx="8" class="traco" />
+    <text x="280" y="36" class="rotulo" text-anchor="middle">Dados em repouso</text>
+    <text x="280" y="62" class="rotulo-fraco" text-anchor="middle">criptografia (AES)</text>
+    <text x="280" y="78" class="rotulo-fraco" text-anchor="middle">Keystore e Keychain</text>
+    <text x="280" y="94" class="rotulo-fraco" text-anchor="middle">guardar o mínimo</text>
+    <rect x="379" y="10" width="176" height="105" rx="8" class="traco" />
+    <text x="467" y="36" class="rotulo" text-anchor="middle">Dados em trânsito</text>
+    <text x="467" y="62" class="rotulo-fraco" text-anchor="middle">TLS (HTTPS)</text>
+    <text x="467" y="78" class="rotulo-fraco" text-anchor="middle">validar certificado</text>
+    <text x="467" y="94" class="rotulo-fraco" text-anchor="middle">nunca HTTP simples</text>
+    <rect x="5" y="125" width="175" height="105" rx="8" class="traco" />
+    <text x="92" y="151" class="rotulo" text-anchor="middle">Autenticação</text>
+    <text x="92" y="177" class="rotulo-fraco" text-anchor="middle">MFA</text>
+    <text x="92" y="193" class="rotulo-fraco" text-anchor="middle">tokens de curta duração</text>
+    <text x="92" y="209" class="rotulo-fraco" text-anchor="middle">senha só em hash (servidor)</text>
+    <rect x="192" y="125" width="175" height="105" rx="8" class="traco" />
+    <text x="280" y="151" class="rotulo" text-anchor="middle">Servidor e API</text>
+    <text x="280" y="177" class="rotulo-fraco" text-anchor="middle">limite de taxa</text>
+    <text x="280" y="193" class="rotulo-fraco" text-anchor="middle">validação de entrada</text>
+    <text x="280" y="209" class="rotulo-fraco" text-anchor="middle">controle de acesso</text>
+    <rect x="379" y="125" width="176" height="105" rx="8" class="traco preenche" />
+    <text x="467" y="151" class="rotulo" text-anchor="middle">Monitoramento</text>
+    <text x="467" y="177" class="rotulo-fraco" text-anchor="middle">logs de eventos</text>
+    <text x="467" y="193" class="rotulo-fraco" text-anchor="middle">alertas em tempo real</text>
+    <text x="467" y="209" class="rotulo-fraco" text-anchor="middle">resposta a incidentes</text>
+  </svg>
+</figure>
+
+Depois de achar as falhas, é preciso **corrigi-las com soluções eficazes**:
+
+**Autenticação segura.**
+
+- **MFA** (autenticação multifator): exige **dois ou mais fatores** (algo que você sabe, tem ou é). **Cuidado:** o MFA por **SMS** é o mais fraco dos métodos (existe o golpe do chip clonado); prefira **aplicativo autenticador**, chave de segurança ou **passkeys**.
+- **Tokens temporários** (como os do **OAuth**): acesso com **prazo curto** e permissões mínimas, para que um token roubado dure pouco.
+
+**Armazenamento seguro.**
+
+- **Criptografia dos dados sensíveis** (senhas, dados financeiros).
+- **Controle de acesso:** só quem está autorizado vê cada dado.
+- **Senhas com hash e salt.** O **salt** (valor aleatório por senha) faz cada hash ser diferente, o que neutraliza as **rainbow tables** (tabelas prontas de hashes de senhas comuns).
+
+**Reforço da API.**
+
+- **JWT:** tokens assinados para controle de acesso. Lembrete: o conteúdo é **legível** (só a assinatura impede a alteração).
+- **Limite de requisições** (*rate limiting*): rejeitar pedidos depois de um número de tentativas num período. Ajuda contra **força bruta** e contra **negação de serviço (DoS)**, ao reduzir o abuso (um DoS grande, distribuído, exige proteções de infraestrutura além disso).
+
+**Monitoramento contínuo.**
+
+- **Logs** de eventos e erros, para **auditoria**.
+- **Análise dos logs** para achar **padrões de ataque** e responder rápido.
+- Soluções como a **ELK Stack** (Elasticsearch, Logstash e Kibana) permitem **monitorar em tempo real** atividades suspeitas.
+
+#### 2.5 O dilema: lançar em 48 horas ou adiar
+
+Cenário do material: faltam **48 horas** para o lançamento; a equipe técnica achou **falhas graves**; o CEO quer manter a data, por reputação, mercado e investidores. Cada grupo representa um setor (técnico, diretoria, marketing, jurídico, atendimento, investidores).
+
+**Como equilibrar urgência e responsabilidade.**
+
+1. **Classifique as falhas por gravidade** (as que expõem dinheiro e dados são **bloqueantes**; as menores podem esperar uma atualização).
+2. **Apresente os riscos em termos de negócio**, e não só técnicos: um vazamento de dados de pagamento custa **mais** (multas pela LGPD, indenizações, perda de confiança, remoção das lojas) do que **alguns dias de atraso**.
+3. **Proponha alternativas intermediárias:** corrigir só as falhas graves em 48 horas e lançar para um **grupo pequeno** (liberação em etapas); ou adiar poucos dias, com **data nova e comunicação clara**.
+4. **Faça o jurídico e o atendimento entrarem na decisão**: obrigações legais e preparo para incidentes.
+
+**Como argumentar com o CEO (líder técnico).** Fatos primeiro ("o app guarda credenciais de forma insegura; qualquer pessoa com o app consegue extrair"), **impacto** ("fraude em escala, multa, risco de remoção da loja"), **opções com prazos** e **uma recomendação**. Tom: **colaborativo**, sem alarmismo e sem ceder em falhas que colocam usuários em risco.
+
+**Sob pressão emocional:** respirar, **dividir o problema em partes**, registrar decisões, pedir ajuda, tratar o erro como problema a resolver e **não** como culpa de alguém. Para manter o grupo motivado: **papéis claros**, comunicação curta e frequente, reconhecer o progresso e **pausas curtas**.
+
+### 3. Testes de usabilidade
+
+#### 3.1 O que é e por que fazer
+
+**Usabilidade** é a **facilidade de uso**. O teste de usabilidade avalia se a pessoa consegue **cumprir o que quer** (fazer um pedido, marcar um horário) de forma **rápida, sem erro e satisfeita**. Ele **identifica pontos de atrito**, reduz o **abandono** e aumenta a **eficiência** do app. A ideia central: **quem desenvolveu o app o conhece bem demais** e não vê as dificuldades de quem chega pela primeira vez.
+
+#### 3.2 Ferramentas qualitativas e quantitativas
+
+| Tipo | O que responde | Métodos | Exemplo |
+|---|---|---|---|
+| **Qualitativo** | **Por que** a pessoa agiu assim, o que sentiu | Entrevistas, grupos focais, **observação** (inclusive "pensar em voz alta") | Ver alguém procurando o botão de pagar e dizer "cadê?" |
+| **Quantitativo** | **Quanto** e **quantas vezes** | **Testes A/B**, **heatmaps**, métricas de engajamento (taxa de conclusão, tempo, erros, abandono) | 70% desistem na tela de endereço |
+
+**Heatmaps** mostram **onde as pessoas tocam** e onde se perdem. Por isso são a ferramenta indicada para **identificar pontos de dificuldade na navegação**: botões que ninguém toca, toques repetidos num lugar que não responde, áreas ignoradas.
+
+**Teste A/B:** duas versões (por exemplo, o botão "Comprar" verde contra azul) para grupos diferentes; vence a que tiver a **melhor métrica**.
+
+**Métricas úteis:** **taxa de conclusão de tarefa** (quantos conseguiram), **tempo na tarefa**, **número de erros**, **satisfação** (por exemplo, uma nota de 1 a 5, ou o questionário padronizado **SUS**).
+
+**O que os outros métodos fazem (e por que não respondem a esta pergunta):** testes de **performance** medem tempo de resposta; testes **unitários** validam funções; revisão de **código** acha falhas de lógica. Nenhum deles mostra **como a pessoa navega**.
+
+#### 3.3 Como planejar e executar um teste
+
+1. **Defina o objetivo** ("o usuário consegue marcar um horário em menos de 1 minuto?").
+2. **Defina o cenário e as tarefas**: escreva-as como situação, não como instrução ("Você quer cortar o cabelo sábado de manhã"; e não "clique em Agendar").
+3. **Recrute pessoas parecidas com o público real.** Poucas pessoas (em torno de **cinco**) já revelam a maior parte dos problemas de um teste qualitativo; mais gente ajuda nos testes quantitativos.
+4. **Observe sem ajudar.** Anote onde hesita, onde erra, o que diz.
+5. **Colete dados** (tempo, erros, conclusão) e **depoimentos**.
+6. **Analise e priorize** (seção 3.4).
+7. **Corrija e teste de novo.**
+
+**Cuidado com o viés:** não conduza a pessoa ("não é fácil?"), e lembre que **amigos** tendem a ser gentis demais.
+
+#### 3.4 Do feedback à melhoria
+
+**Resposta à pergunta "como usar o feedback para priorizar melhorias?":** liste os problemas e dê a cada um três notas:
+
+- **Frequência**: quantas pessoas tiveram o problema?
+- **Gravidade**: a pessoa **desistiu** ou só **hesitou**?
+- **Esforço**: quanto custa corrigir?
+
+**Priorize o que é grave, frequente e barato de consertar**; planeje o que é grave e caro; deixe para depois o que é leve e raro.
+
+**Problema do roteiro: "os usuários estão se confundindo com a navegação".** Ações: (1) achar **onde** (heatmap e observação); (2) **simplificar o caminho** (menos toques para as tarefas principais, menus claros, nomes que a pessoa entende); (3) seguir **padrões da plataforma** (os usuários já conhecem os de Android e iOS); (4) dar **retorno visual** a cada toque; (5) **testar de novo** com pessoas novas.
+
+**E-mail ao gerente de produto (proposta de melhoria):** resumir os **achados** com números e falas dos usuários, a **lista priorizada** de mudanças, o **impacto esperado** (por exemplo, "reduzir de 5 para 3 toques o caminho do agendamento") e **como será medido** depois.
+
+**Relatório dos testes:** objetivo, **participantes**, método, **resultados** (métricas e depoimentos), **problemas priorizados**, **recomendações** e **próximos passos** (reteste).
+
+### 4. Configuração de build e release
+
+#### 4.1 Ferramentas de build
+
+**Build** é transformar o **código** num **arquivo instalável e otimizado**. Cada plataforma tem a sua ferramenta:
+
+| Plataforma | Ferramenta | O que faz |
+|---|---|---|
+| **Android** | **Gradle** | Compila, junta recursos, gera o **AAB** (ou APK) e aplica o R8 |
+| **iOS** | **Xcode Build System** | Compila, assina e gera o arquivo do app |
+| **As duas** | **Fastlane** | Automatiza build, assinatura, testes e envio às lojas |
+
+**Variantes de build.** Um app tem pelo menos duas: **debug** (para desenvolver, sem otimização, com ferramentas de depuração) e **release** (otimizada, ofuscada e assinada, a que vai para a loja). **Nunca publique uma build de debug.**
+
+**Trecho de configuração Android** (Gradle com Kotlin), com a otimização do R8 ligada na versão de lançamento, conforme a documentação do Android:
+
+```kotlin
+android {
+    defaultConfig {
+        versionCode = 12          // número inteiro que sobe a cada envio à loja
+        versionName = "1.4.0"     // número que o usuário vê
+    }
+    buildTypes {
+        release {
+            isMinifyEnabled = true      // R8: encolhe e ofusca o código
+            isShrinkResources = true    // remove recursos não usados
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
+        }
+    }
+}
+```
+
+(Versões mais novas do plugin do Android têm uma sintaxe nova para ligar a otimização. Confira a documentação da sua versão.)
+
+**Cada envio à loja precisa de uma versão maior que a anterior** (`versionCode` no Android; número de build no iOS), e as lojas **recusam** repetições.
+
+**Guarde o arquivo de mapeamento** que o R8 gera: sem ele, os relatórios de falha mostram nomes ofuscados ilegíveis.
+
+#### 4.2 Automação de release com Fastlane
+
+**Automatizar o release** reduz **erros manuais**, **acelera** a publicação e mantém um **ciclo de atualizações consistente**. O **Fastlane** é uma ferramenta de código aberto que **automatiza o build e o envio** de apps **iOS e Android**: cuida de tarefas como gerar capturas de tela, gerenciar a assinatura e publicar. Ele roda na sua máquina ou num servidor de CI, e organiza o trabalho em **lanes** (trilhas), cada uma com uma sequência de passos.
+
+Resposta direta: a prática que automatiza o build e o release, tornando a publicação **mais segura e eficiente**, é **usar o Fastlane**. Gerar o build à mão na IDE a cada versão, ajustar o código para cada versão ou concentrar tudo em testes de usabilidade **não automatizam** nada.
+
+**Exemplo de Fastfile** (ilustrativo, **não executado aqui**: depende das suas credenciais e de uma configuração do Play Console):
+
+```ruby
+default_platform(:android)
+
+platform :android do
+  desc "Gera o AAB de release e envia para o teste interno"
+  lane :beta do
+    gradle(task: "clean bundleRelease")
+    upload_to_play_store(track: "internal")
+  end
+end
+```
+
+Roda-se com `bundle exec fastlane android beta`. O equivalente no iOS usa passos como `build_app` e `upload_to_testflight`, e a instalação do Fastlane é por **Bundler** (recomendado) ou **Homebrew**, conforme a documentação oficial.
+
+#### 4.3 Pipeline de CI/CD para apps
+
+<figure class="figura">
+  <svg viewBox="0 0 560 170" role="img" aria-labelledby="fig-mob23-pipe-t fig-mob23-pipe-d">
+    <title id="fig-mob23-pipe-t">Pipeline de build e release de um app móvel</title>
+    <desc id="fig-mob23-pipe-d">Sete etapas: commit, build, testes, assinatura, teste interno, publicação em etapas e monitoramento. Se os testes falham, o pipeline para. Se a versão publicada tem problemas, pausa-se a liberação e volta-se à versão estável.</desc>
+    <defs>
+      <marker id="seta-mob23-pipe" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+        <path d="M1,1 L9,5 L1,9" class="traco" />
+      </marker>
+    </defs>
+    <rect x="5" y="30" width="66" height="50" rx="8" class="traco" />
+    <text x="38" y="60" class="rotulo" text-anchor="middle">Commit</text>
+    <rect x="81" y="30" width="66" height="50" rx="8" class="traco" />
+    <text x="114" y="60" class="rotulo" text-anchor="middle">Build</text>
+    <rect x="157" y="30" width="66" height="50" rx="8" class="traco preenche" />
+    <text x="190" y="60" class="rotulo" text-anchor="middle">Testes</text>
+    <rect x="233" y="30" width="66" height="50" rx="8" class="traco" />
+    <text x="266" y="60" class="rotulo" text-anchor="middle">Assina</text>
+    <rect x="309" y="30" width="66" height="50" rx="8" class="traco" />
+    <text x="342" y="52" class="rotulo" text-anchor="middle">Teste</text>
+    <text x="342" y="68" class="rotulo" text-anchor="middle">interno</text>
+    <rect x="385" y="30" width="66" height="50" rx="8" class="traco" />
+    <text x="418" y="52" class="rotulo" text-anchor="middle">Loja em</text>
+    <text x="418" y="68" class="rotulo" text-anchor="middle">etapas</text>
+    <rect x="461" y="30" width="94" height="50" rx="8" class="traco" />
+    <text x="508" y="60" class="rotulo" text-anchor="middle">Monitorar</text>
+    <line x1="71" y1="55" x2="79" y2="55" class="traco" marker-end="url(#seta-mob23-pipe)" />
+    <line x1="147" y1="55" x2="155" y2="55" class="traco" marker-end="url(#seta-mob23-pipe)" />
+    <line x1="223" y1="55" x2="231" y2="55" class="traco" marker-end="url(#seta-mob23-pipe)" />
+    <line x1="299" y1="55" x2="307" y2="55" class="traco" marker-end="url(#seta-mob23-pipe)" />
+    <line x1="375" y1="55" x2="383" y2="55" class="traco" marker-end="url(#seta-mob23-pipe)" />
+    <line x1="451" y1="55" x2="459" y2="55" class="traco" marker-end="url(#seta-mob23-pipe)" />
+    <text x="190" y="108" class="rotulo-fraco" text-anchor="middle">falhou: para e avisa a equipe</text>
+    <path d="M508,82 L508,135 L418,135 L418,82" class="tracejado" marker-end="url(#seta-mob23-pipe)" />
+    <text x="463" y="155" class="rotulo-fraco" text-anchor="middle">problema: pausar e voltar</text>
+  </svg>
+</figure>
+
+Um pipeline de CI/CD típico para apps (como o da Semana 23 de Back-End, mas para mobile):
+
+1. **Commit** dispara o pipeline.
+2. **Build** do app (Gradle ou Xcode, via Fastlane).
+3. **Testes** automáticos (unitários e de interface). **Se falharem, o pipeline para.**
+4. **Assinatura** com as chaves guardadas com segurança.
+5. **Distribuição interna** (teste interno do Google Play, TestFlight na Apple) para validar com poucas pessoas.
+6. **Publicação em etapas** (*staged rollout*): liberar para uma porcentagem crescente de usuários. Na Apple, o recurso de **liberação em fases** libera as atualizações aos poucos, ao longo de 7 dias; no Google Play, você define a porcentagem.
+7. **Monitoramento** de falhas e métricas, com possibilidade de pausar.
+
+**Pontos de verificação para a qualidade do release:** testes passando, **versão maior** que a anterior, assinatura correta, política de privacidade e **declarações das lojas** em dia, **testes em aparelhos reais**, revisão das permissões e **aprovação humana** antes de publicar.
+
+#### 4.4 Segurança do release automatizado
+
+Resposta à pergunta da reunião ("como garantir a segurança e a integridade do app durante o release automático?"):
+
+- **Segredos no cofre do CI** (senhas de keystore, chaves de API de upload), e **nunca no repositório**.
+- **Keystore e chaves de assinatura** com acesso restrito e **cópia de segurança**.
+- **Branch protegida** e **revisão de código** antes de integrar ao que vai para a loja.
+- **Dependências** verificadas e fixadas por versão.
+- **Registros do pipeline** guardados (quem publicou o quê e quando).
+- **Aprovação humana** antes da produção.
+- **Conferência da assinatura** e da **versão** do arquivo gerado.
+
+**Se os testes não passam no pipeline** (mensagem do colega): **não force a publicação nem desligue os testes**. Leia o log para ver **qual teste** falhou e **por quê**; reproduza **localmente** com o mesmo comando do pipeline; descubra se é **erro de código** (corrige-se), de **ambiente** (versão de ferramenta diferente, falta de variável) ou **teste intermitente** (corrige-se a causa); só depois reexecute.
+
+**E-mail ao gerente de TI sobre benefícios da automação:** **reduz o tempo** de publicação (de horas para minutos), **elimina passos manuais** que causam erro, torna o processo **repetível e auditável**, dá **feedback rápido** (falhas aparecem no commit) e libera a equipe para trabalhar no que importa.
+
+**Desafios e como mitigá-los (reflexão do roteiro):** assinatura em ambiente automatizado (cofre de segredos), builds lentos (cache de dependências), testes instáveis (isolamento e correção), aprovações das lojas que **não** dá para automatizar (planejar prazos), **pontos críticos a monitorar**: tempo do pipeline, taxa de falha por etapa, taxa de falhas do app depois do release.
+
+## Tópicos-Chave para Revisão
+
+<div className="topico">
+
+#### 1. Por que otimizar
+
+Um app **lento** perde usuários e **piora a avaliação** nas lojas. Indicadores: **tempo de carregamento**, **fluidez**, **memória**, **CPU**, **bateria** e **rede**.
+
+#### 2. Profiling e gargalo
+
+Meça com **profilers** (**Android Studio Profiler**, **Xcode Instruments**), ache o **gargalo** e só então otimize. A lentidão vem de **processamento**, **renderização** ou **rede**.
+
+#### 3. Estratégias de otimização
+
+**Compressão e redimensionamento de imagens**, **lazy loading**, **cache**, **paginação**, **thread principal livre** e **listas eficientes**. Nunca aumentar resolução, carregar tudo junto ou desligar o cache.
+
+#### 4. Análise contínua e segmentada
+
+Meça a cada **versão** e por **aparelho**, **rede** e **sistema**. Lentidão que resta depois das otimizações pede **segmentar** os dados e reproduzir.
+
+#### 5. Ferramentas de segurança
+
+**SonarQube** e **Checkmarx** (análise estática), **OWASP ZAP** e **Burp Suite** (invasão), **R8 (ProGuard)** e **AppSealing** (ofuscação e proteção). O **OWASP MASVS** é o padrão de requisitos.
+
+#### 6. Dados protegidos
+
+**Em trânsito**: **TLS**. **Em repouso**: **AES** com chaves no **Keystore** ou **Keychain**. **Senhas**: só **hash com salt** (bcrypt, Argon2), no **servidor**. Sem segredos no código.
+
+#### 7. Autenticação e API
+
+**MFA** (melhor com autenticador do que por **SMS**), **tokens de curta duração**, **JWT** e **limite de requisições**. **Logs** e alertas (**ELK**) para **monitorar**.
+
+#### 8. Ofuscação e assinatura
+
+A **ofuscação** dificulta a engenharia reversa, mas não impede. A **assinatura digital** prova a origem e que o app **não foi alterado**.
+
+#### 9. Segurança contra prazo
+
+Classifique as falhas por **gravidade**, traduza o risco em **impacto de negócio** e proponha **alternativas** (corrigir o grave e liberar em etapas). Falhas graves **não** se lançam.
+
+#### 10. Usabilidade
+
+Avalia se a pessoa cumpre a tarefa com **facilidade**. **Qualitativo**: entrevistas, observação (**por quê**). **Quantitativo**: **heatmaps**, **testes A/B**, métricas (**quanto**). **Heatmap** mostra os pontos de dificuldade na navegação.
+
+#### 11. Do feedback à ação
+
+**Priorize** por **frequência**, **gravidade** e **esforço**. Corrija, **teste de novo** e meça. Observe sem conduzir.
+
+#### 12. Build e release
+
+**Gradle** (Android) e **Xcode** (iOS) geram o app. **Debug** para desenvolver, **release** (otimizada e assinada) para a loja. Cada envio precisa de **versão maior** que a anterior.
+
+#### 13. Fastlane e CI/CD
+
+O **Fastlane** automatiza **build e release** de **Android e iOS**. O **pipeline**: **build**, **testes**, **assinatura**, **teste interno**, **publicação em etapas** e **monitoramento**. Segredos no **cofre do CI**.
+
+</div>
+
+## Pause e Responda
+
+*Marque uma alternativa em cada questão e confira tudo de uma vez no botão do fim.*
+
+**Questão 1**
+
+*Pause e Responda S23A3a · Testes de usabilidade (Aula 3)*
+
+Qual estratégia é mais eficaz para melhorar o tempo de resposta de um aplicativo que apresenta lentidão no carregamento de imagens? Indique a alternativa correta.
+
+A) Aumentar a resolução das imagens para melhorar a qualidade.\
+B) Carregar todas as imagens simultaneamente na inicialização do app.\
+C) Implementar compressão de imagens e lazy loading.\
+D) Desabilitar o caching para garantir que sempre sejam carregadas imagens atualizadas.\
+E) Esperar os usuários reclamarem para só então investigar a lentidão.
+
+**Questão 2**
+
+*Pause e Responda S23A3b · Testes de usabilidade (Aula 3)*
+
+Qual ferramenta ou método é mais indicado para identificar pontos de dificuldade na navegação de um aplicativo durante testes de usabilidade? Indique a alternativa correta.
+
+A) Testes unitários para validar o funcionamento das funções.\
+B) Heatmaps para identificar áreas de maior interação.\
+C) Testes de performance para medir tempo de resposta.\
+D) Revisão de código para detectar falhas na lógica.\
+E) Olhar apenas a nota média do app na loja.
+
+**Questão 3**
+
+*Pause e Responda S23A3c · Testes de usabilidade (Aula 3)*
+
+Qual ferramenta ou prática auxilia na automação do build e release de aplicativos mobile, garantindo um processo de publicação mais seguro e eficiente? Indique a alternativa correta.
+
+A) Realizar o build manualmente na IDE a cada atualização.\
+B) Ajustar manualmente o código-fonte para cada nova versão.\
+C) Concentrar os esforços apenas em testes de usabilidade.\
+D) Utilizar o Fastlane para automatizar as etapas de build e release.\
+E) Enviar o arquivo de cada versão por e-mail ao revisor da loja.
