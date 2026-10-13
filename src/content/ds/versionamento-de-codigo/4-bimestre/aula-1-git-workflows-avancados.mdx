@@ -498,6 +498,114 @@ Situação: uma equipe de 5 pessoas faz uma loja virtual e publica toda semana. 
 4. **Tome a decisão.** Adotar o Trunk-Based com feature flags e, como base, **testes automáticos e CI**. Registrar o motivo: "equipe pequena, publica toda semana, queremos menos conflitos".
 5. **Cuidados.** Combinar a data para remover a flag e testar o fluxo com ela ligada e desligada.
 
+## Situações e Roteiros Práticos
+
+As atividades abaixo vêm do material da escola. A primeira é uma prática guiada no terminal; a segunda, uma análise em dupla e uma decisão individual.
+
+<Accordion titulo="Atividade 1 · Simulando o GitFlow na prática" dica="main, develop, feature e release no terminal" icone="list-check" rolagem={false}>
+
+**Ideia.** No GitFlow, a branch de produção (`main`) guarda a **versão estável**; a `develop` concentra o **desenvolvimento contínuo**; as branches `feature/...` nascem da `develop` para implementar funcionalidades; e as `release/...` preparam uma versão antes da entrega.
+
+- `main`: versão estável.
+- `develop`: integração do que está sendo construído.
+- `feature/nome`: desenvolvimento de uma funcionalidade.
+- `release/versao`: preparação de uma entrega.
+
+**Testado.** Os passos abaixo foram executados numa pasta de teste, com Git, e terminam com `main` e `develop` iguais, com os dois arquivos.
+
+**Correções ao roteiro.**
+
+- O roteiro cria `main` e `develop` **sem nenhum commit**. Uma branch só passa a existir depois do primeiro commit, e o `git checkout develop` do passo 3 falha com "pathspec 'develop' did not match". A solução é um **commit inicial** na `main` (`git commit --allow-empty`) antes de criar a `develop`.
+- O `echo` do material usa aspas tipográficas (“ ”), que o terminal não entende. Use aspas retas (`"`).
+- Em Windows, o Git avisa sobre a troca de fim de linha (LF/CRLF); é só um aviso.
+
+**Etapa 1 · Criando a base do projeto.**
+
+```bash
+git init
+git checkout -b main
+git commit --allow-empty -m "chore: commit inicial"   # correção: cria a main de verdade
+git checkout -b develop
+```
+
+**Etapa 2 · Criando uma funcionalidade (feature).**
+
+```bash
+git checkout develop
+git checkout -b feature/login
+
+echo "Tela de login criada" > login.txt
+git add .
+git commit -m "feat: cria estrutura inicial da tela de login"
+
+git checkout develop
+git merge feature/login
+```
+
+Cada funcionalidade é criada à parte e depois integrada, como no mercado.
+
+**Etapa 3 · Preparando uma entrega (release).**
+
+```bash
+git checkout develop
+git checkout -b release/1.0.0
+
+echo "Versão 1.0.0 preparada" > versao.txt
+git add .
+git commit -m "chore: prepara release 1.0.0"
+
+git checkout main
+git merge release/1.0.0      # envia para produção
+
+git checkout develop
+git merge release/1.0.0      # a develop recebe o ajuste da release
+```
+
+Boa prática (seção 2.3): marcar a versão com uma **tag** (`git tag -a v1.0.0 -m "Versão 1.0.0"`) na `main` depois do merge.
+
+**Etapa 4 · Reflexão final.**
+
+1. **Onde acontece o desenvolvimento no GitFlow?** Nas branches `feature/...`, criadas a partir da `develop` e integradas de volta nela.
+2. **Em que momento o time prepara a entrega?** Quando a `develop` tem o que vai sair: cria-se uma `release/...`, que recebe só os ajustes finais (versão, correções pequenas) antes de ir à `main`.
+3. **O que ajuda a evitar bagunça no código?** Cada tipo de trabalho tem a sua branch e o seu destino: a `main` só recebe o que está pronto para produção, e a `develop` não recebe trabalho pela metade, só funcionalidades concluídas.
+
+</Accordion>
+
+<Accordion titulo="Atividade 2 · Comparando GitFlow e Trunk-Based Development" dica="Uma equipe de oito pessoas com branches longas" icone="list-check" rolagem={false}>
+
+**Contexto do material.** Quando uma equipe demora muitos dias para juntar o código ao projeto principal, surgem **branches longas**, **conflitos de merge**, **atraso na entrega** e dificuldade de saber o que já pode ir para produção. O **Trunk-Based Development** propõe integração **pequena e frequente** no tronco principal, com branches curtas quando necessário. O **GitFlow** usa um fluxo mais estruturado (feature, develop, release) e, segundo a Atlassian, é mais rígido e hoje menos indicado a cenários de CI/CD. As **feature flags** permitem colocar código em produção **sem liberar** o recurso a todos (descrição da Microsoft).
+
+**Situação.** Uma equipe de **oito desenvolvedores** trabalha no mesmo produto com branches de feature abertas por **vários dias**: há conflitos de merge, atrasos e dificuldade de saber o que pode ir para produção. A equipe quer **integrar com mais frequência** e **reduzir o lead time**, mas **sem exibir funcionalidades incompletas** aos usuários.
+
+**Etapa 1 · Identificando o problema (em dupla).**
+
+1. **Qual o principal problema do fluxo atual?** A **integração tardia**: o trabalho fica isolado em branches longas e só encontra o resto do código muito depois. → seção 1.4.
+2. **Por que branches abertas por muitos dias aumentam os conflitos?** Porque enquanto uma branch fica parada, o tronco continua mudando; quanto mais tempo, mais linhas mudam dos dois lados, e o merge junta tudo de uma vez.
+3. **Como isso afeta o tempo de entrega?** O código só pode sair depois do merge, então o *lead time* (da ideia à produção) aumenta, e cada conflito ainda gera retrabalho. → seção 3.2.
+
+**Etapa 2 · Comparando os modelos.** Organizem as ideias:
+
+| Pergunta | GitFlow | Trunk-Based Development |
+|---|---|---|
+| Como integra? | Features vão à `develop` e depois a releases, até a `main` | Todos integram no tronco, em mudanças pequenas e frequentes |
+| Quantas branches? | Várias, de vida longa (`develop`, `release`, `feature`) | Poucas e curtas (horas a poucos dias) |
+| Com que frequência entrega? | Em ciclos de release | Várias vezes por dia ou semana |
+| Risco de conflitos | Maior (branches longas) | Menor (mudanças pequenas) |
+
+- **Qual modelo integra mais rápido?** O Trunk-Based Development.
+- **Qual oferece mais controle sobre as entregas?** O GitFlow, com as releases e sua preparação.
+
+**Etapa 3 · Solução com feature flags.**
+
+- **Como ajudam?** O código incompleto entra no tronco **desligado** (a funcionalidade fica escondida atrás de uma "chave"), e só é ligado quando está pronto. Assim a equipe integra sempre e não mostra nada pela metade.
+- **Por que isso é melhor do que branches longas?** A integração acontece **todo dia**, sem conflitos acumulados, e ligar ou desligar a funcionalidade não exige novo deploy. Cuidado: flags esquecidas viram dívida técnica; remova as antigas e teste os dois estados (ligado e desligado). → seção 3.3.
+
+**Etapa 4 · Tomada de decisão (individual, 4 a 5 linhas).** Respondam: a equipe deve continuar com **GitFlow** ou adotar **Trunk-Based Development**? Justifiquem pelo problema e expliquem como as feature flags contribuem. A resolução está na seção 3.5.
+
+**Entrega.** Enviem um arquivo **.docx** com as respostas pelo **AVA**.
+
+</Accordion>
+
 ## Tópicos-Chave para Revisão
 
 <div className="topico">

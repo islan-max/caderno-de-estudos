@@ -341,6 +341,179 @@ LIMIT 5
 
 **Regra prática:** comece pelo **tipo de pergunta** que o sistema responde. Se for "dado por identificador, bem rápido", Redis. Se for "documentos com formatos variados", MongoDB. Se for "milhões de escritas e disponibilidade", Cassandra. Se for "quem se liga a quem", Neo4j. E se forem **tabelas relacionadas e transações**, o SQL continua sendo o caminho. Muitos sistemas **combinam** os bancos (SQL para pedidos e Redis para cache, por exemplo).
 
+## Situações e Roteiros Práticos
+
+As situações abaixo vêm do material da escola (situações fictícias da SEDUC-SP). O relatório ou a resposta é entregue pelo **AVA**. Antes de começar, façam **esboços no papel** da intenção e do resultado.
+
+*Materiais: computador com internet, caderno e caneta.*
+
+**Aviso.** Os comandos foram conferidos na documentação oficial, mas **não foram executados** na máquina em que esta aula foi escrita. Onde o roteiro original está desatualizado, a correção está indicada.
+
+<Accordion titulo="Atividade 1 · MongoDB: instalação, operações e modelagem" dica="Loja on-line com produtos, categorias e fornecedores" icone="list-check" rolagem={false}>
+
+**Situação.** Vocês foram contratados para implementar o banco de dados de uma **loja on-line**, que precisa gerenciar **produtos**, **categorias** e **fornecedores**, usando o MongoDB.
+
+**1. Instalação.**
+
+1. Baixem e instalem o **MongoDB Community Server** (site oficial, versão do seu sistema).
+2. Verifiquem: `mongod --version`.
+3. Iniciem o serviço: `mongod`.
+4. Em **outro terminal**, conectem-se ao shell. O roteiro usa `mongo`; **hoje o shell é o `mongosh`**.
+
+**2. CRUD.**
+
+Criem o banco **estoque** e três coleções:
+
+```javascript
+use estoque
+db.createCollection("produtos")
+db.createCollection("categorias")
+db.createCollection("fornecedores")
+```
+
+Insiram os documentos:
+
+```javascript
+db.produtos.insertMany([
+  { nome: "Notebook",   preco: 3500, categoria_id: 1, fornecedor_id: 101, estoque: 10 },
+  { nome: "Smartphone", preco: 2000, categoria_id: 1, fornecedor_id: 102, estoque: 25 }
+])
+
+db.categorias.insertMany([
+  { _id: 1, nome: "Eletrônicos" },
+  { _id: 2, nome: "Acessórios" }
+])
+
+db.fornecedores.insertMany([
+  { _id: 101, nome: "Tech Distribuidora", contato: "123456789" },
+  { _id: 102, nome: "Smart Imports",      contato: "987654321" }
+])
+```
+
+Leiam os dados:
+
+```javascript
+db.produtos.find()                          // todos os produtos
+db.produtos.find({ estoque: { $gt: 15 } })  // estoque maior que 15
+```
+
+Com esses dados, a segunda consulta devolve só o **Smartphone** (estoque 25).
+
+**3. Perguntem-se.** Qual a vantagem de usar **referências** (`categoria_id` e `fornecedor_id`) em vez de **duplicar** a categoria e o fornecedor dentro de cada produto?
+
+**Resposta.** O dado fica em **um lugar só**: se o nome do fornecedor mudar, atualiza-se **um** documento, e não todos os produtos. Evita inconsistência e economiza espaço. A leitura fica um pouco mais lenta, pois exige juntar coleções (`$lookup`). Veja a seção 1.4.
+
+</Accordion>
+
+<Accordion titulo="Atividade 2 · Redis: banco de dados em memória (TechStream)" dica="Monitoramento em tempo real com dados na memória" icone="list-check" rolagem={false}>
+
+**Situação.** A empresa **TechStream** desenvolve uma aplicação de **monitoramento em tempo real** e precisa guardar e consultar rápido estatísticas de uso e métricas de desempenho. A equipe escolheu o **Redis**, um banco em memória. A tarefa: **instalar** o Redis localmente, fazer **operações básicas** (inserir, ler, excluir) e **usar dados em memória** para melhorar o desempenho.
+
+**1. Instalação.**
+
+- O roteiro indica instaladores para Windows (repositório `microsoftarchive/redis`) e para Linux/macOS, e sugere um **emulador online** (onecompiler.com, escolhendo Redis).
+- **Correção.** O repositório para Windows é antigo e sem manutenção. Prefira **Docker** ou **WSL**, como na seção 3.2, ou o emulador online.
+- Depois de instalar, iniciem o servidor e confirmem que responde.
+
+**2. Operações básicas no `redis-cli`.**
+
+```text
+SET user_count 100
+GET user_count
+INCR user_count
+GET user_count
+DEL user_count
+EXISTS user_count
+```
+
+Saídas esperadas: `OK`, `"100"`, `101`, `"101"`, `1` (apagou uma chave) e `0` (a chave não existe mais). Vejam também `INCRBY`.
+
+**3. Dados temporários na memória.** Criem uma chave para um dado temporário, como um **contador de visitas** de uma página, com **tempo de expiração**:
+
+```text
+SET visitas_pagina 0
+INCR visitas_pagina
+EXPIRE visitas_pagina 60
+TTL visitas_pagina
+```
+
+**Resultados esperados.** Redis instalado e funcionando; operações básicas feitas; dados temporários com expiração; compreensão de por que a memória dá leitura e escrita muito rápidas.
+
+**Relatório (entrega no AVA).** Escrevam um relatório curto com:
+
+1. como o Redis foi **instalado e configurado**;
+2. os **resultados** das operações;
+3. como usar dados **em memória** impactou a performance;
+4. se a **persistência** foi configurada e **quais métodos** (RDB, AOF ou os dois) foram escolhidos. Veja a seção 3.5.
+
+</Accordion>
+
+<Accordion titulo="Atividade 3 · Neo4j: banco de grafos (GraphNet)" dica="Rede social com usuários, postagens e comentários" icone="list-check" rolagem={false}>
+
+**Situação.** A empresa **GraphNet** analisa **redes sociais** e precisa guardar e consultar relações complexas entre usuários e suas interações. A equipe usará o **Neo4j**. A tarefa: **instalar** o Neo4j localmente, fazer operações básicas, **modelar** um grafo de **usuários, postagens e comentários** e consultar **padrões** (usuários mais ativos, conexões).
+
+**1. Instalação.**
+
+1. Instalem o Neo4j por **Docker** ou pelo pacote oficial do seu sistema.
+2. Iniciem o serviço e abram o **Neo4j Browser**, geralmente em `http://localhost:7474`. O roteiro manda entrar com `neo4j/neo4j`; na prática, as instalações pedem **trocar a senha** no primeiro acesso (no Docker, defina-a pela variável `NEO4J_AUTH`). Confirmem na documentação da sua versão.
+
+**2. Operações básicas (Cypher).**
+
+```cypher
+CREATE (u:User {name: 'John Doe', age: 28})
+CREATE (p:Post {title: 'Post sobre Grafos'})
+```
+
+```cypher
+MATCH (u:User {name: 'John Doe'}), (p:Post {title: 'Post sobre Grafos'})
+CREATE (u)-[:LIKES]->(p)
+```
+
+```cypher
+MATCH (u:User)-[:LIKES]->(p:Post)
+RETURN u.name, p.title
+```
+
+**3. Modelagem de uma rede social simples.** Usuários **curtem** postagens (`LIKES`), **comentam** (`COMMENTS`) e cada comentário é **sobre** uma postagem (`COMMENTS_ON`). Uma postagem pode ter vários comentários.
+
+```cypher
+CREATE (u1:User {name: 'Alice', age: 30})
+CREATE (u2:User {name: 'Bob', age: 25})
+CREATE (p1:Post {title: 'Neo4j é incrível!'})
+CREATE (c1:Comment {text: 'Concordo, muito útil!'})
+CREATE (u1)-[:LIKES]->(p1)
+CREATE (u2)-[:COMMENTS]->(c1)
+CREATE (c1)-[:COMMENTS_ON]->(p1)
+```
+
+**4. Consultas avançadas.**
+
+Usuários que mais interagem com postagens (os 5 primeiros):
+
+```cypher
+MATCH (u:User)-[r:LIKES]->(p:Post)
+RETURN u.name, count(r) AS interactions
+ORDER BY interactions DESC
+LIMIT 5
+```
+
+Todos os comentários sobre uma postagem:
+
+```cypher
+MATCH (p:Post {title: 'Neo4j é incrível!'})<-[:COMMENTS_ON]-(c:Comment)
+RETURN c.text
+```
+
+Com os dados acima, a primeira consulta devolve **Alice com 1 interação** (e também John Doe com 1, se os dois exercícios forem feitos no mesmo banco) e a segunda devolve **"Concordo, muito útil!"**. Veja a seção 4.
+
+</Accordion>
+
+<Accordion titulo="Cassandra: a situação da aula" dica="E-commerce com erro de replicação em vários data centers" icone="list-check" rolagem={false}>
+
+Na aula de Cassandra, o cenário é o de um **e-commerce** cuja replicação falha em **vários data centers**, com pressão de prazo e de colegas. As perguntas da reunião são sobre **fator de replicação e estratégia**, **como testar a replicação**, **como lidar com a pressão emocional** e **como colaborar**. A resolução está na seção 2.5. O roteiro de instalação (Java, `JAVA_HOME`, `cassandra -f`, `nodetool status`, `cqlsh`) está na seção 2.2.
+
+</Accordion>
+
 ## Tópicos-Chave para Revisão
 
 <div className="topico">

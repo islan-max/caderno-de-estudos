@@ -719,6 +719,70 @@ Situação: durante o deploy contínuo, o pipeline **falha nos testes de integra
 
 Princípios do comunicado: **fatos primeiro** (o que aconteceu, o impacto), **o que está sendo feito**, **quando haverá novidade** e **sem culpar** ninguém. **Não prometa** o que não depende de você.
 
+## Situações e Roteiros Práticos
+
+As situações vêm do material da escola (fictícias, da SEDUC-SP) e usam como cenário um **aplicativo de serviços financeiros**. As respostas são entregues pelo **AVA**. Antes de começar, façam **esboços no papel** da intenção e do resultado esperado e usem as ferramentas de desenvolvimento disponíveis.
+
+*Materiais: computador com internet, caderno e caneta. O roteiro da Aula 1 deve ser baixado.*
+
+<Accordion titulo="Atividade 1 · Construindo e gerenciando APIs com eficiência (Express.js)" dica="Rotas, middlewares e gestão de erros" icone="list-check" rolagem={false}>
+
+**Objetivo.** Explorar o Express.js: configuração de rotas, uso de middlewares e gestão de erros, para estruturar uma API robusta e escalável.
+
+**Exemplos do material, no app financeiro.**
+
+- **Rotas:** consulta de saldo, transferências e histórico de transações (seção 1.2).
+- **Middleware:** um middleware de **autenticação** que confere se o usuário está logado antes das operações financeiras (seção 1.3).
+- **Gestão de erros:** um handler que devolve **mensagens padronizadas**, registra os detalhes para análise e **não expõe informação sensível** (seção 1.4).
+
+**Roteiro.**
+
+1. Descrevam como o app se beneficia de uma API com rotas bem definidas, middlewares de segurança e gestão de erros eficiente.
+2. Reflitam sobre a importância de cada componente para a robustez e a escalabilidade e sobre os desafios.
+3. Respondam às situações abaixo, juntando teoria e exemplos.
+
+**Situações.**
+
+1. **Mensagem de um colega:** "Estamos com dúvidas na configuração das rotas da API de transações financeiras. Alguma dica de como organizar melhor os endpoints?" → seção 1.2.
+2. **E-mail ao gestor de desenvolvimento:** como os middlewares aumentam a segurança da API, com destaque para **autenticação** e **logging**. → seção 1.3.
+3. **Reunião:** "Como a gestão de erros pode melhorar a experiência do usuário em nossa API?" Resposta objetiva, com base na teoria. → seção 1.4.
+4. **Relatório:** a implementação dos middlewares e da gestão de erros; pontos a destacar e recomendações de melhoria. → seções 1.3 e 1.4.
+
+As quatro respostas modelo estão na seção 1.5.
+
+</Accordion>
+
+<Accordion titulo="Atividade 2 · Modelos, templates e segurança com Django" dica="Estruturando uma aplicação web robusta" icone="list-check" rolagem={false}>
+
+**Objetivo.** Aprofundar o Django: definição de **modelos**, uso de **templates** e práticas de **segurança**, para uma aplicação com dados bem gerenciados e interface segura e consistente.
+
+**Exemplos do material, no app financeiro.**
+
+- **Modelos:** usuários, transações, contas e investimentos, com gestão centralizada dos dados (seção 2.2).
+- **Templates:** dashboards com informações financeiras, relatórios de transações e perfis de usuário (seção 2.3).
+- **Segurança:** proteção contra **injeção de SQL**, **XSS** e **CSRF**, com autenticação robusta, formulários protegidos contra CSRF e **sanitização** das entradas (seção 2.4).
+
+**Roteiro.**
+
+1. Usem o exemplo para explicar como os modelos definem a estrutura dos dados, como os templates renderizam os dashboards e como a segurança é aplicada.
+2. Reflitam sobre os desafios de modelos complexos e de implementar segurança, propondo soluções.
+3. Respondam às questões abaixo.
+
+**Situações.**
+
+1. **Mensagem de um colega:** "Estamos enfrentando problemas na integridade dos dados da nossa aplicação financeira. Como os modelos do Django podem ajudar a estruturar melhor esses dados?" → seção 2.2.
+2. **E-mail ao gerente de produto:** como os templates melhoram a experiência do usuário e a manutenção da aplicação. → seção 2.3.
+3. **Reunião:** "Quais medidas de segurança podemos implementar no Django para proteger nosso aplicativo financeiro?" Sugestões práticas. → seção 2.4.
+4. **Relatório:** a implementação do Django, com os principais pontos de modelagem, apresentação e segurança, e recomendações de melhoria. → seções 2.2, 2.3 e 2.4.
+
+</Accordion>
+
+<Accordion titulo="Atividade 3 · Integração contínua com Jenkins" dica="Pipeline que falhou" icone="list-check" rolagem={false}>
+
+A terceira aula da semana (Jenkins) tem uma situação resolvida passo a passo na seção 3.5, "Atividade resolvida: o pipeline que falhou". O material da escola não traz roteiro de atividade prática separado para ela; as questões do Pause e Responda estão no fim da aula.
+
+</Accordion>
+
 ## Tópicos-Chave para Revisão
 
 <div className="topico">

@@ -421,6 +421,49 @@ A pergunta do roteiro: a EstudaMais quer que o assistente **lembre, em conversas
 3. **Tenha um plano para o erro.** O que o assistente faz se o RAG não achar nada? Resposta honesta ("não encontrei isso no material") e opção de falar com uma pessoa.
 4. **Meça.** Registre perguntas, respostas e feedback, para comprovar os critérios de sucesso definidos na seção 1.6.
 
+## Situações e Roteiros Práticos
+
+As atividades abaixo vêm do material da escola (situação fictícia da SEDUC-SP) e formam **um só projeto em três partes**: o assistente de IA da **EstudaMais**. O material só traz os roteiros; as respostas modelo desta aula estão nas seções indicadas.
+
+**Retomada do projeto.** A EstudaMais é uma plataforma de cursos on-line com **50 000 estudantes**. O assistente deve: **responder dúvidas** sobre o conteúdo dos cursos, **recomendar o próximo material** conforme o progresso, **gerar exercícios de prática** para revisão e **informar o progresso** do aluno.
+
+<Accordion titulo="Aula 1 · Concepção do assistente" dica="Problema, requisitos e critérios de sucesso" icone="list-check" rolagem={false}>
+
+A primeira aula do projeto define o **problema**, os **requisitos funcionais e não funcionais** e os **critérios de sucesso mensuráveis** do assistente. O material da escola não traz roteiro prático separado para esta etapa; ela é resolvida nas seções 1.3 a 1.6.
+
+</Accordion>
+
+<Accordion titulo="Aula 2 · Montando a equipe de agentes da EstudaMais" dica="Papéis dos agentes e orquestrador" icone="list-check" rolagem={false}>
+
+**Situação.** Em vez de um único agente que faz tudo, a equipe adotou uma **arquitetura multiagente**, com agentes especializados coordenados por um **agente orquestrador**. Vocês atuam como projetistas: decidem quais agentes existem e qual o papel de cada um.
+
+**A atividade.**
+
+1. **Decomponham o problema em subtarefas.** Listem as principais subtarefas necessárias para cumprir os requisitos (responder dúvidas, recomendar material, gerar exercícios, informar progresso).
+2. **Definam os agentes especialistas.** Criem **pelo menos três**. Para cada um, preencham: *Nome*, *Responsabilidade principal*, *Ferramentas que utiliza* e *O que entrega como resultado*. → seção 2.3.
+3. **Definam o agente orquestrador.** Descrevam o papel dele, **como decide** para qual especialista encaminhar o pedido do aluno e **como consolida** a resposta final. → seção 2.2.
+4. **Reflexão.** Dois colegas sugeriram **juntar** o agente que responde dúvidas e o que gera exercícios, para simplificar. Vocês concordam? Justifiquem com as vantagens e desvantagens da especialização. → seção 2.4.
+
+</Accordion>
+
+<Accordion titulo="Aula 3 · Desenhando a arquitetura do assistente" dica="Componentes, fluxo e memória de longo prazo" icone="list-check" rolagem={false}>
+
+**Situação.** Concluindo a fase de concepção e planejamento, vocês atuam como **arquitetos de soluções** e integram tudo num desenho coerente. Os agentes (dúvidas, recomendação, exercícios) são coordenados por um orquestrador e precisam destes componentes de apoio:
+
+- **Interface:** o ponto de contato com o aluno, em geral um chat.
+- **Recuperação de conhecimento (RAG):** busca trechos do material dos cursos numa base de vetores.
+- **Memória:** o histórico da conversa atual (curto prazo) e os dados do aluno entre sessões (longo prazo).
+- **Ferramentas:** consultam dados externos, como o banco de progresso do aluno e o catálogo de cursos.
+
+**A atividade.**
+
+1. **Identifiquem os componentes** da arquitetura e descrevam, em uma linha, a função de cada um. → seção 3.1.
+2. **Desenhem o fluxo da arquitetura**, com setas e blocos simples: interface do aluno, agente orquestrador, agentes especialistas, memória, RAG, ferramentas externas e resposta final. O desenho deve mostrar por onde a solicitação passa, quais componentes trocam informações e como a resposta volta ao usuário. → seção 3.1.
+3. **Descrevam o fluxo de dados** para este caso: um aluno faz uma **dúvida conceitual** sobre um tema de um curso. Passo a passo, por quais componentes a solicitação passa, o que cada um faz e como a resposta é construída. → seções 3.2 e 3.3.
+4. **Reflexão.** A EstudaMais quer que o assistente lembre, em conversas futuras, das **dificuldades** que o aluno demonstrou em sessões anteriores. Qual componente é responsável e por que é necessário, além do RAG? → seção 3.4: a **memória de longo prazo**, porque o RAG busca conhecimento sobre o conteúdo dos cursos, e não sobre o aluno.
+
+</Accordion>
+
 ## Tópicos-Chave para Revisão
 
 <div className="topico">

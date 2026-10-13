@@ -534,6 +534,83 @@ Resposta à pergunta da reunião ("como garantir a segurança e a integridade do
 
 **Desafios e como mitigá-los (reflexão do roteiro):** assinatura em ambiente automatizado (cofre de segredos), builds lentos (cache de dependências), testes instáveis (isolamento e correção), aprovações das lojas que **não** dá para automatizar (planejar prazos), **pontos críticos a monitorar**: tempo do pipeline, taxa de falha por etapa, taxa de falhas do app depois do release.
 
+## Situações e Roteiros Práticos
+
+As atividades práticas desta semana vêm do material da escola e são entregues pelo **AVA**. Cada uma tem um roteiro de passos e quatro situações de trabalho (mensagem de colega, e-mail ao gestor, reunião e relatório). Abaixo estão o roteiro, as situações e **onde achar a resposta** na aula.
+
+**Passo a passo geral da entrega.**
+
+1. Leiam cada atividade com atenção.
+2. Antes de começar, façam **esboços no papel** da intenção e do resultado.
+3. Usem as ferramentas de desenvolvimento disponíveis.
+4. Ao final, enviem a resposta pelo AVA.
+
+*Materiais: computador com internet, caderno e caneta.*
+
+<Accordion titulo="Atividade 1 · TurboPerformance Mobile" dica="Análise e otimização de performance em apps" icone="list-check" rolagem={false}>
+
+**Objetivo.** Identificar gargalos de performance, usar ferramentas para diagnosticar e aplicar estratégias de otimização.
+
+**Roteiro.**
+
+1. **Estudo inicial:** leiam a teoria e anotem os pontos-chave de análise de performance.
+2. **Aplicação prática:** simulem um app com problema de performance e descrevam o diagnóstico com as ferramentas (Android Profiler, Xcode Instruments).
+3. **Reflexão:** escolham as estratégias de otimização mais eficazes para o cenário.
+4. **Resolução:** respondam às quatro situações abaixo.
+
+**Estudo de caso.** Um app de e-commerce está lento ao mostrar produtos. Pelos logs e relatórios do profiler, a causa é uma **chamada de API não otimizada** que sobrecarrega o sistema (resolvido na seção 1.3).
+
+**Situações.**
+
+1. **Mensagem de um colega:** "Notamos que nosso aplicativo está demorando para responder e, após análise rápida, parece que o carregamento de imagens está comprometendo a performance. O que vocês sugerem?" → seções 1.5 e 1.7.
+2. **E-mail do gestor de projeto:** pede uma análise detalhada dos impactos de uma chamada de API que compromete o desempenho. Elaborem um e-mail com o diagnóstico e as soluções. → seções 1.3 e 1.7.
+3. **Reunião virtual:** um colega diz que, mesmo após as otimizações, alguns usuários ainda relatam lentidão. Como abordar? → seção 1.6.
+4. **Relatório interno:** descrevam o processo de diagnóstico e otimização. Quais pontos destacar? → seção 1.7.
+
+</Accordion>
+
+<Accordion titulo="Atividade 2 · Usabilidade em foco" dica="Testes práticos para aplicativos móveis" icone="list-check" rolagem={false}>
+
+**Objetivo.** Planejar, executar e analisar testes de usabilidade e transformar o feedback em melhorias.
+
+**Roteiro.**
+
+1. **Estudo inicial:** leiam sobre métodos e ferramentas de teste de usabilidade.
+2. **Planejamento do teste:** definam um cenário de uso de um app e um plano de testes, dizendo os métodos e ferramentas (seção 3.3).
+3. **Execução e análise:** simulem os testes, descrevam como os dados seriam coletados e analisem o feedback.
+4. **Resolução:** respondam às quatro situações abaixo.
+
+**Situações.**
+
+1. **Mensagem de um colega:** "Após os testes de usabilidade, os usuários estão se confundindo com a navegação. Como podemos resolver isso?" → seção 3.4.
+2. **E-mail do gerente de produto:** pede uma proposta de melhoria baseada no feedback dos testes. Redijam a resposta com as estratégias. → seção 3.4.
+3. **Reunião:** "Como podemos utilizar o feedback dos testes para priorizar melhorias?" → seção 3.4 (frequência, gravidade e esforço).
+4. **Relatório dos testes:** quais pontos destacar e como recomendar o seguimento das melhorias? → seção 3.4.
+
+</Accordion>
+
+<Accordion titulo="Atividade 3 · Garantindo perfeição" dica="Automatizando a publicação nas stores" icone="list-check" rolagem={false}>
+
+**Objetivo.** Entender ferramentas de build e release e automatizar a publicação com segurança e eficiência.
+
+**Roteiro.**
+
+1. **Estudo inicial:** leiam sobre ferramentas de build e automação de release.
+2. **Planejamento do pipeline:** elaborem um fluxo detalhado, com cada etapa e os pontos de verificação (seção 4.3).
+3. **Simulação e análise:** simulem o pipeline num cenário hipotético e descrevam como os artefatos são gerados, validados e preparados para publicação.
+4. **Resolução:** respondam às quatro situações abaixo.
+
+**Estudo de caso.** Um time usa um pipeline de CI/CD para publicar uma nova versão. Descrevam as etapas e os **pontos de verificação** da qualidade do release (seção 4.3), e discutam os desafios da automação e como mitigá-los (seção 4.4).
+
+**Situações.**
+
+1. **Mensagem de um colega:** "Estamos enfrentando problemas com a publicação do build, pois os testes não estão passando no pipeline. Qual seria a sua abordagem?" → seção 4.4.
+2. **E-mail do gerente de TI:** explique como a automação reduz o tempo de publicação e os erros manuais. → seção 4.4.
+3. **Reunião:** "Como garantir a segurança e a integridade do aplicativo durante o release automatizado?" → seção 4.4.
+4. **Relatório do fluxo de automação:** quais pontos críticos destacar e como recomendar o monitoramento contínuo? → seções 4.3 e 4.4.
+
+</Accordion>
+
 ## Tópicos-Chave para Revisão
 
 <div className="topico">

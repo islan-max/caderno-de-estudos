@@ -354,6 +354,97 @@ Publicar sem testar é pedir avaliações ruins. Os testes antes do envio têm d
 5. **Teste em vários tamanhos de tela** e versões do sistema.
 6. **Erros conhecidos** corrigidos ou documentados.
 
+## Situações e Roteiros Práticos
+
+As situações vêm do material da escola (fictícias, da SEDUC-SP). As respostas são enviadas pelo **AVA**. Antes de começar, façam **esboços no papel** da intenção e do resultado e usem as ferramentas de desenvolvimento disponíveis.
+
+*Materiais: computador com internet, caderno e caneta.*
+
+<Accordion titulo="Aula 1 · Lançamento amanhã às 9h (BeautyScheduler)" dica="Duas rejeições e seis horas para resolver" icone="list-check" rolagem={false}>
+
+**Situação.** O app **BeautyScheduler** será lançado nas duas lojas amanhã às 9h, e o cliente já divulgou a data. Chegam dois avisos: o **Google Play rejeitou** o app por termos proibidos na descrição e o **App Store Connect não processa** o app por erro no certificado. Restam 6 horas. Como priorizar, comunicar o cliente e cuidar da equipe? A resolução está na seção 1.6.
+
+</Accordion>
+
+<Accordion titulo="Aula 2 · Decifrando políticas, requisitos e documentação (FitPro)" dica="Permissões e declarações rejeitadas nas duas lojas" icone="list-check" rolagem={false}>
+
+**Resumo do contexto.**
+
+| | Google Play | App Store |
+|---|---|---|
+| **Políticas** | Sem conteúdo de ódio, violência ou pornografia; **política de privacidade** para quem coleta dados; só as **permissões essenciais** | Apps funcionais, precisos e sem bugs; conteúdo duplicado ou de baixa qualidade pode ser rejeitado; **sem APIs privadas** nem comportamento enganoso |
+| **Requisitos técnicos** | Formato **AAB** obrigatório; certificado de assinatura configurado; testes em vários aparelhos | App **assinado** com certificado válido; **Info.plist** com as informações do app; testes no **TestFlight** |
+| **Documentação** | Declaração de privacidade e termos de uso; declaração de permissões no Play Console | Declarações de uso de recursos (câmera, localização) no Info.plist; contratos de distribuição assinados no portal Apple Developer |
+
+**Situação-problema.** Vocês fazem parte da equipe do app fitness **FitPro**, que será publicado nas duas lojas. O Slack avisa que:
+
+- o app foi **rejeitado no Google Play** por uso indevido de **permissões de localização**;
+- a **App Store** pede declarações de uso de **câmera e microfone**, mas o app **não acessa** esses recursos.
+
+**Instruções para solução.**
+
+1. Revisem as permissões no Google Play Console e **removam as que não são essenciais**.
+2. Atualizem o **Info.plist**, tirando as declarações desnecessárias, e ajustem o app como a loja pediu.
+3. Garantam que a **política de privacidade** atende às exigências das duas lojas.
+
+**Perguntas finais.**
+
+1. **Por que a permissão de localização foi rejeitada no Google Play?** Porque só devem ser pedidas permissões **essenciais** ao funcionamento. Se o FitPro não precisa de localização (ou não explica para quê), a permissão é indevida; se precisa (por exemplo, para rastrear corridas), é preciso **justificar** na declaração e mostrar ao usuário o motivo antes de pedir. → seções 2.1 e 2.2.
+2. **Como garantir que o FitPro atenda às políticas da App Store?** Conferir as diretrizes de revisão; testar em aparelho real e no **TestFlight** para evitar bugs; não usar APIs privadas; declarar no **Info.plist** só os recursos realmente usados, com texto claro do motivo; ter a política de privacidade e os contratos em dia. → seção 2.3.
+3. **Por que precisamos de uma política de privacidade?** Porque o app lida com dados dos usuários (e a lei, como a LGPD, exige transparência sobre o que se coleta, para quê e com quem se compartilha). As lojas **exigem** a política para apps que coletam dados, e ela gera confiança. → seção 2.3.
+4. **Qual a diferença entre os certificados do Android e do iOS?** No Android, o desenvolvedor **cria a própria chave** de assinatura (o Play pode guardá-la com a Play App Signing), e ela identifica quem publica. No iOS, os **certificados são emitidos pela Apple** (conta do Apple Developer Program), usados junto de **perfis de provisionamento**, e o app só roda e publica com eles. → seção 1.5.
+
+</Accordion>
+
+<Accordion titulo="Aula 3 · Criando recursos que chamam atenção (FitPro)" dica="Briefing de ícone, screenshots e vídeo" icone="list-check" rolagem={false}>
+
+**Resumo do contexto.**
+
+- **Ícone** (a primeira impressão): Google Play, **512 × 512 px**, PNG, até **1 024 kB**; App Store, **1 024 × 1 024 px**, **sem transparência**.
+- **Screenshots**: mostram o app em funcionamento. Incluam as **principais telas** e usem **simulações de aparelhos reais**.
+- **Vídeo promocional**: **curto**, objetivo e mostrando as principais funções. Google Play: **URL do YouTube**; App Store: **upload direto** no App Store Connect.
+
+**Situação-problema.** Vocês preparam os recursos visuais do **FitPro**, mas a equipe de design ainda não definiu o conceito dos ícones e vídeos. O gerente pede um **briefing preciso**.
+
+**Instruções para solução.**
+
+1. Listem os **requisitos técnicos** de ícones, screenshots e vídeos.
+2. Descrevam o que cada recurso deve **destacar** para atrair usuários.
+
+**Perguntas finais.**
+
+1. **Resolução mínima do ícone no Google Play?** 512 × 512 px (PNG). → seção 3.1.
+2. **Como capturar screenshots que sigam as diretrizes da App Store?** Usar simuladores ou aparelhos nos **tamanhos exigidos** pela loja, mostrar telas reais do app (sem imagens enganosas) e as principais funções. → seção 3.2.
+3. **Recomendações para os vídeos promocionais?** Curtos, mostrar as funções principais nos primeiros segundos, com legendas (muita gente assiste sem som) e dentro das regras de cada loja. → seção 3.3.
+4. **Erros comuns que levam à rejeição de recursos visuais?** Ícone no tamanho errado ou com transparência (iOS), screenshots que não são do app real, textos ou imagens que prometem o que o app não faz, e uso de marcas alheias. → seções 3.1 a 3.4.
+
+</Accordion>
+
+<Accordion titulo="Aula 4 · Testes e depuração antes da publicação (FitPro)" dica="Feedback de testadores e relatório de correções" icone="list-check" rolagem={false}>
+
+**Resumo do contexto.**
+
+- **Ferramentas de teste.** Android: **Firebase Test Lab**; iOS: **TestFlight** para distribuição beta. *Atualização:* a documentação do Firebase informa que o Test Lab está em descontinuação (veja a seção 4.1).
+- **Técnicas de debugging.** Usar **logs** e **depuração remota** em aparelhos reais.
+- **Correção de erros.** **Priorizar os críticos** e fazer **regressão** (testar de novo o que já funcionava).
+
+**Situação-problema.** Testadores do **TestFlight** e do **Firebase Test Lab** relataram erros no **login** e no **carregamento do feed** do FitPro. O gerente pede um relatório com as soluções aplicadas.
+
+**Instruções para solução.**
+
+1. Analisem os **logs** para achar a causa dos erros.
+2. Testem as correções em **aparelhos reais**.
+3. **Documentem** as ações feitas.
+
+**Perguntas finais.**
+
+1. **Ferramentas para testar apps em beta:** TestFlight (iOS), faixas de teste interno, fechado e aberto do Google Play (Android) e o relatório de pré-lançamento. → seção 4.1.
+2. **Importância da regressão:** uma correção pode **quebrar** o que funcionava; a regressão confirma que o resto continua bom. → seção 4.3.
+3. **Resumo das ferramentas de debugging para o gerente:** logs (Logcat no Android, console do Xcode no iOS), depuração remota em aparelho real, relatórios de falha e testes beta. → seção 4.2.
+4. **Erros comuns sem debugging bem feito:** corrigir o sintoma e não a causa, não reproduzir no aparelho real, deixar um erro crítico passar para a loja e criar novos bugs sem regressão. → seção 4.2.
+
+</Accordion>
+
 ## Tópicos-Chave para Revisão
 
 <div className="topico">

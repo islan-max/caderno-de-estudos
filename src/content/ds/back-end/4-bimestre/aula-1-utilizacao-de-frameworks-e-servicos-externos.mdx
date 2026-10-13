@@ -450,6 +450,82 @@ Quando o sistema vira muitos serviços pequenos (microsserviços), cada um num c
 - O que é um SDK (AWS): `aws.amazon.com/pt/what-is/sdk/`
 - Vídeo indicado no material da aula: "Veja como criar uma API Rest no CodeIgniter 4 de forma simples e rápida", de Rafael Pinheiro (YouTube), para praticar a criação de uma API e o teste dela no Postman.
 
+## Situações e Roteiros Práticos
+
+As situações vêm do material da escola (fictícias, da SEDUC-SP) e giram em torno do **Financial Services Application**, um aplicativo de serviços financeiros que faz transações, consulta saldos e permite investir, integrando-se a bancos, serviços de pagamento e provedores de câmbio. As respostas dissertativas são entregues pelo **AVA**. Antes de começar, façam **esboços no papel** da intenção e do resultado.
+
+*Materiais: computador com internet, caderno e caneta.*
+
+<Accordion titulo="Aula 1 · Integração com APIs de terceiros" dica="Ponto de partida e situação 'Ser sempre +'" icone="list-check" rolagem={false}>
+
+**Ponto de partida.** Pensem e discutam:
+
+1. Quais dificuldades podem surgir ao integrar o aplicativo a bancos e serviços de pagamento? → seção 1.2.
+2. Quais ferramentas facilitam a comunicação com os serviços financeiros externos? → seção 1.3.
+3. Vocês já fizeram integrações entre sistemas? O que deu certo e o que não deu?
+
+**Situação "Ser sempre +".** Numa transferência bancária, um serviço externo devolve uma **resposta inesperada**, e há dúvida sobre a integridade dos dados. A equipe pressiona para liberar a operação logo.
+
+**Ação.** Investiguem e enviem uma comunicação oficial à equipe de operações explicando:
+
+- como usarão as **ferramentas de integração** para isolar o problema;
+- quais **métodos de autenticação** serão verificados para garantir que a operação não foi comprometida;
+- como o **tratamento de respostas** será ajustado para casos críticos no futuro.
+
+A resolução completa está na seção 1.7.
+
+</Accordion>
+
+<Accordion titulo="Aula 2 · Explorando kits de desenvolvimento (SDKs)" dica="Integração externa com SDKs no app financeiro" icone="list-check" rolagem={false}>
+
+**Objetivo.** Entender os principais SDKs, configurá-los e analisar exemplos de integração com serviços externos.
+
+**Estudo de caso.** O app precisa de **verificação de identidade** e **pagamentos**. Com SDKs de serviços externos, a equipe configura rapidamente a autenticação, a consulta a serviços de crédito e a execução de transações seguras.
+
+**Roteiro.**
+
+1. **Análise do estudo de caso:** descrevam como os SDKs seriam configurados e integrados ao app financeiro (seções 2.1 e 2.2).
+2. **Reflexão e aplicação:** identifiquem benefícios e desafios na configuração dos SDKs e como aplicá-los em outros cenários (seção 2.3). Pensem em como o SDK reduz o tempo de desenvolvimento, aumenta a confiabilidade e permite atualizações sem grandes reescritas.
+3. **Resolução das questões** abaixo.
+
+**Situações.**
+
+1. **Mensagem de um colega:** "Estamos tendo dificuldade para integrar o SDK do PayPal no nosso app de serviços financeiros. Alguma sugestão de como configurar corretamente a chave de API e os parâmetros de segurança?" → seção 2.4.
+2. **E-mail ao gestor de projetos:** ele pede um relatório sobre como os SDKs têm reduzido o tempo de desenvolvimento. Expliquem os benefícios da configuração correta. → seção 2.3.
+3. **Reunião:** "Como a configuração dos SDKs pode impactar a segurança dos dados em nosso aplicativo?" → seções 2.2 e 2.3.
+4. **Relatório:** os desafios da integração dos SDKs. Quais pontos destacar e quais ações recomendar para futuras integrações? → seção 2.3.
+
+</Accordion>
+
+<Accordion titulo="Aula 3 · Configuração estratégica de serviços em AWS, Azure e Google Cloud" dica="Hospedagem, armazenamento e análise de dados na nuvem" icone="list-check" rolagem={false}>
+
+**Objetivo.** Aprofundar a configuração de serviços em nuvem nas três plataformas e entender como configurá-los para **alta disponibilidade** e **escalabilidade**.
+
+**Resumo do contexto do material.**
+
+| Nuvem | Componentes principais | Exemplo no app financeiro |
+|---|---|---|
+| **AWS** | EC2 (servidores), S3 (armazenamento de objetos), RDS (bancos gerenciados) | EC2 para o back-end, S3 para documentos, RDS para os dados dos clientes |
+| **Azure** | Virtual Machines, Blob Storage, SQL Database | VMs para processar transações, SQL Database para os dados |
+| **Google Cloud** | Compute Engine, Cloud Storage, BigQuery | Compute Engine para um serviço de análise de risco, BigQuery para análises avançadas |
+
+**Roteiro.**
+
+1. **Análise de cenário:** descrevam como cada plataforma poderia atender a hospedagem, o armazenamento e a análise de dados do app (seção 3.4).
+2. **Comparação e reflexão:** comparem vantagens e desafios de cada nuvem e digam qual serve melhor em cada contexto, justificando (seções 3.2 e 3.3).
+3. **Perguntas dissertativas** abaixo.
+
+**Situações.**
+
+1. **Mensagem de um colega:** "Estamos avaliando migrar parte da nossa infraestrutura para a nuvem. Como você sugere que avaliemos as diferenças entre AWS, Azure e Google Cloud para um aplicativo de serviços financeiros?" → seções 3.2 e 3.3.
+2. **E-mail ao gestor de TI:** ele quer um relatório sobre os benefícios da nuvem para o app. Detalhem os pontos positivos de AWS, Azure e Google Cloud. → seções 3.1 e 3.2.
+3. **Conversa:** "Qual seria a principal vantagem de usar o RDS na AWS para o nosso aplicativo?" → seção 3.4 (banco **gerenciado**: o provedor cuida de backup, atualização e réplicas).
+4. **Relatório:** os pontos essenciais da configuração de serviços em nuvem e as recomendações para uma integração segura e eficiente nas três plataformas. → seção 3.3.
+
+**Entrega.** Enviem as respostas dissertativas pelo AVA.
+
+</Accordion>
+
 ## Tópicos-Chave para Revisão
 
 <div className="topico">

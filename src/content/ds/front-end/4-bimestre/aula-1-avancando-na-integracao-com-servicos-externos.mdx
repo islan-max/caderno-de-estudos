@@ -550,6 +550,229 @@ async function entrar(credencial) {
 5. **Guarde com cuidado** (BFF e cookies `HttpOnly`, em vez de `localStorage`).
 6. **Trate os erros** e informe o usuário.
 
+## Situações e Roteiros Práticos
+
+As situações vêm do material da escola (fictícias, da SEDUC-SP). O relatório é registrado no **AVA**. Antes de começar, façam **esboços no papel** da intenção e do resultado.
+
+*Materiais: computador com internet, caderno e caneta.*
+
+<Accordion titulo="Atividade 1 · GraphQL: eventos corporativos" dica="Uma API GraphQL com Node.js e Express" icone="list-check" rolagem={false}>
+
+**Situação.** Uma startup desenvolve um sistema de **eventos corporativos**, com eventos, participantes, palestrantes, locais e horários. Ela quer uma API **eficiente e flexível** para ver detalhes de eventos, buscar palestrantes e explorar os próximos eventos em diferentes locais.
+
+**Testado.** Este roteiro foi executado com Node.js, `express` 5.3.0, `express-graphql` 0.12.0 e `graphql` 15.10.3, e as duas consultas do final devolveram os dados esperados. **Aviso:** o `express-graphql` não recebe mais atualizações. Em projeto novo, o servidor mais usado hoje é o `graphql-http` ou o Apollo Server.
+
+**1. Estrutura do projeto.** Criem um projeto Node.js e instalem as bibliotecas:
+
+```bash
+npm init -y
+npm install express express-graphql graphql
+```
+
+- **express**: o servidor HTTP.
+- **express-graphql**: o *middleware* que liga o GraphQL ao Express.
+- **graphql**: a biblioteca principal para definir o esquema e os tipos.
+
+**2. Dados.** Criem `data.js` com eventos, palestrantes e locais de exemplo, que simulam um banco de dados:
+
+```javascript
+// data.js
+const events = [
+    { id: '1', name: 'Tech Summit 2024', date: '2024-05-20', speakerIds: ['1', '2'], locationId: '1' },
+    { id: '2', name: 'Data Science Conference', date: '2024-06-15', speakerIds: ['3'], locationId: '2' },
+];
+const speakers = [
+    { id: '1', name: 'Alice Santos', expertise: 'AI and Machine Learning' },
+    { id: '2', name: 'Carlos Silva', expertise: 'Blockchain' },
+    { id: '3', name: 'Mariana Costa', expertise: 'Data Science' },
+];
+const locations = [
+    { id: '1', name: 'Auditorio Principal', city: 'São Paulo' },
+    { id: '2', name: 'Centro de Convenções', city: 'Rio de Janeiro' },
+];
+module.exports = { events, speakers, locations };
+```
+
+**3. Esquema.** Criem `schema.js` com os tipos `Event`, `Speaker` e `Location` e a *Root Query*:
+
+```javascript
+// schema.js
+const { GraphQLObjectType, GraphQLString, GraphQLList, GraphQLSchema } = require('graphql');
+const { events, speakers, locations } = require('./data');
+
+const EventType = new GraphQLObjectType({
+    name: 'Event',
+    fields: () => ({
+        id: { type: GraphQLString },
+        name: { type: GraphQLString },
+        date: { type: GraphQLString },
+        speakers: {
+            type: new GraphQLList(SpeakerType),
+            resolve(parent) {
+                return speakers.filter(speaker => parent.speakerIds.includes(speaker.id));
+            }
+        },
+        location: {
+            type: LocationType,
+            resolve(parent) {
+                return locations.find(location => location.id === parent.locationId);
+            }
+        }
+    })
+});
+
+const SpeakerType = new GraphQLObjectType({
+    name: 'Speaker',
+    fields: () => ({
+        id: { type: GraphQLString },
+        name: { type: GraphQLString },
+        expertise: { type: GraphQLString }
+    })
+});
+
+const LocationType = new GraphQLObjectType({
+    name: 'Location',
+    fields: () => ({
+        id: { type: GraphQLString },
+        name: { type: GraphQLString },
+        city: { type: GraphQLString }
+    })
+});
+
+const RootQuery = new GraphQLObjectType({
+    name: 'RootQueryType',
+    fields: {
+        event: {
+            type: EventType,
+            args: { id: { type: GraphQLString } },
+            resolve(parent, args) {
+                return events.find(event => event.id === args.id);
+            }
+        },
+        events: {
+            type: new GraphQLList(EventType),
+            resolve() {
+                return events;
+            }
+        }
+    }
+});
+
+module.exports = new GraphQLSchema({ query: RootQuery });
+```
+
+- `EventType` inclui id, nome, data, palestrantes e local. Os palestrantes e o local são **resolvidos** por funções que buscam pelo ID.
+- Os campos de `EventType` ficam dentro de uma função (`fields: () => ({...})`) porque ele usa `SpeakerType` e `LocationType`, declarados depois.
+- A *Root Query* tem duas consultas: `event` (um evento pelo ID) e `events` (todos).
+
+**4. Servidor.** Criem `server.js`:
+
+```javascript
+// server.js
+const express = require('express');
+const { graphqlHTTP } = require('express-graphql');
+const schema = require('./schema');
+
+const app = express();
+app.use('/graphql', graphqlHTTP({
+    schema,
+    graphiql: true // habilita a interface GraphiQL para testar as consultas
+}));
+
+app.listen(4000, () => {
+    console.log('Servidor GraphQL rodando na porta 4000');
+});
+```
+
+**5. Testem.** Rodem `node server.js`. Deve aparecer "Servidor GraphQL rodando na porta 4000". Abram `http://localhost:4000/graphql` (interface GraphiQL) e executem, com o botão de *play*:
+
+```graphql
+{
+  event(id: "1") {
+    name
+    date
+    speakers { name expertise }
+    location { name city }
+  }
+}
+```
+
+Resultado: o evento "Tech Summit 2024", de 2024-05-20, com Alice Santos (IA e aprendizado de máquina) e Carlos Silva (blockchain), no Auditorio Principal, em São Paulo.
+
+```graphql
+{
+  events {
+    name
+    date
+    speakers { name }
+    location { name city }
+  }
+}
+```
+
+Resultado: os dois eventos, cada um com seus palestrantes e local.
+
+**6. Análise e ajustes.** Se algo falhar, o GraphQL mostra mensagens de erro detalhadas no campo `errors`. Veja a seção 2 da aula para consultas, esquema e erros.
+
+</Accordion>
+
+<Accordion titulo="Atividade 2 · Analisando a integração de login com Google (OAuth e JWT)" dica="Perguntas sobre o código e melhoria do feedback ao usuário" icone="list-check" rolagem={false}>
+
+**Situação.** Vocês foram contratados para analisar uma solução em que o **login com o Google (OAuth)** gera **tokens JWT** para garantir o acesso autenticado. O código vem do roteiro da **semana 21, aula 1** ("Integração de serviços de autenticação em uma aplicação front-end"): um app React (`App.js`) com as funções `handleGoogleLogin` e `handleTokenExchange` e um servidor Express com a rota `/api/auth/google`.
+
+**Perguntas e como responder.**
+
+1. **Qual a finalidade do `client_id` e onde é usado no código?** Ele **identifica o aplicativo** para o Google. Fica no front-end (constante `clientId`, usada na URL de login) e no back-end (`new OAuth2Client(...)` e o parâmetro `audience` da verificação). O `client_secret`, esse sim, fica **só no servidor**. → seção 3.3.
+2. **Como `handleGoogleLogin` redireciona ao login e que URL gera?** Ela troca `window.location.href` por uma URL de `https://accounts.google.com/o/oauth2/v2/auth` com os parâmetros `client_id`, `redirect_uri` (`http://localhost:3000`), `response_type=token` e `scope=profile email`. O navegador vai para a tela do Google. → seção 3.1.
+3. **O que faz `handleTokenExchange`?** Envia o token do Google ao back-end com um `POST` (`axios.post`) para `/api/auth/google`, no corpo `{ token }`. O back-end **verifica o token** com a biblioteca do Google e devolve um **JWT próprio**, que o front-end guarda no `localStorage` e no estado. Se falhar, só registra no console. → seção 3.2.
+4. **Qual o propósito do JWT do back-end e como é usado?** É a **prova de sessão da sua aplicação**: assinado pelo servidor, com `userId` e validade (`expiresIn: '1h'`). O front-end o decodifica (`jwt-decode`) para mostrar o nome e o envia nas próximas requisições. → seção 3.2.
+5. **Melhoria:** mensagens de erro e indicador de carregamento (ver abaixo).
+
+**Problemas do código original que a análise deve apontar.** Estes pontos são correções da aula:
+
+- `response_type=token` devolve um *access token*, mas o servidor chama `verifyIdToken`, que exige um **ID token** (`response_type=id_token` com `nonce`, ou o botão do **Google Identity Services**/`@react-oauth/google`, que devolve o `credential`). O fluxo implícito está **desaprovado** (seção 3.4).
+- O servidor responde `{ jwtToken }`, mas o front-end lê `const { jwt } = response.data`: o nome do campo não bate.
+- O front-end chama a porta **4000** e a explicação do roteiro cita a **5000**; `jwtDecode` é importado, mas o código usa `jwt_decode`.
+- A chave `'secret_key'` está escrita no código: segredo vai em **variável de ambiente**.
+- Guardar o JWT no `localStorage` o expõe a **XSS** (seção 3.4).
+
+**Melhoria pedida.** Hoje, se houver falha de conexão ou de autenticação, o usuário **não recebe nenhuma mensagem**. Adicionem:
+
+1. um **estado `error`** com a mensagem (por exemplo, "Erro na autenticação. Tente novamente.");
+2. um **indicador de carregamento** (spinner) enquanto se espera o Google ou o servidor;
+3. o `catch` de `handleTokenExchange` passando a mensagem ao estado.
+
+```jsx
+const [carregando, setCarregando] = useState(false);
+const [error, setError] = useState('');
+
+const handleTokenExchange = async (googleToken) => {
+  setCarregando(true);
+  setError('');
+  try {
+    const resposta = await axios.post('http://localhost:4000/api/auth/google', { token: googleToken });
+    const { jwtToken } = resposta.data;          // o nome do campo é o mesmo que o servidor envia
+    localStorage.setItem('jwtToken', jwtToken);  // só para o exercício; veja a seção 3.4
+    setJwtToken(jwtToken);
+  } catch (e) {
+    console.error('Erro ao trocar token:', e);
+    setError('Erro na autenticação. Tente novamente.');
+  } finally {
+    setCarregando(false);
+  }
+};
+
+// no JSX:
+{carregando && <p role="status">Entrando...</p>}
+{error && <p role="alert">{error}</p>}
+```
+
+Este trecho **não foi executado** (exige um projeto no Google Cloud e um servidor). O `role="status"` e o `role="alert"` fazem leitores de tela anunciarem o carregamento e o erro (seção 3.5).
+
+**Entrega.** Elaborem um relatório com as respostas e mostrem o **código** e as **telas** com as melhorias, registrando no AVA.
+
+</Accordion>
+
 ## Tópicos-Chave para Revisão
 
 <div className="topico">

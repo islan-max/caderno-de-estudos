@@ -509,6 +509,83 @@ O **DevPipeline** é um sistema multiagente de desenvolvimento de software. A ve
 - LangGraph: `langchain-ai.github.io/langgraph/`
 - CrewAI: `docs.crewai.com`
 
+## Situações e Roteiros Práticos
+
+As atividades abaixo vêm do material da escola (situações fictícias, da SEDUC-SP). Aqui estão os **enunciados originais** e as **respostas**; a resolução com figura e explicação completa está nas seções "Atividade resolvida" da aula.
+
+<Accordion titulo="Aula 1 · As funções do AgendaBot" dica="Descrever funções para o function calling" icone="list-check" rolagem={false}>
+
+**Situação.** O **AgendaBot** é um assistente de produtividade ligado ao calendário corporativo, ao e-mail e à base de conhecimento da empresa. A tarefa é descrever **três funções** que ele precisa, com nome, descrição e parâmetros, para que o modelo saiba quando e como chamá-las. A resolução está na seção 1.7, e o formato de descrição na seção 1.4.
+
+</Accordion>
+
+<Accordion titulo="Aula 2 · Orquestrando o SupportFlow com um framework" dica="De um sistema de palavras-chave a vários agentes" icone="list-check" rolagem={false}>
+
+**Parte 1 · O sistema sem orquestração (o problema).** A **CloudSoft S.A.** criou o **SupportFlow**, atendimento ao cliente da sua plataforma SaaS, **sem framework de orquestração**. Em pseudocódigo:
+
+```text
+função processar_mensagem(mensagem_usuario):
+  se "senha" está em mensagem_usuario:
+      retornar enviar_link_recuperacao()
+  se "nota fiscal" está em mensagem_usuario:
+      retornar buscar_nota_fiscal(extrair_cpf(mensagem_usuario))
+  se "cancelar" está em mensagem_usuario:
+      retornar iniciar_cancelamento()
+  se "plano" está em mensagem_usuario:
+      retornar listar_planos_disponiveis()
+  retornar "Não entendi sua solicitação. Tente reformular."
+```
+
+Os desenvolvedores relatam quatro problemas: o sistema **não lembra** o que o usuário disse antes; **adicionar funções** exige mexer no código central, com risco de erro; **não combina ações** (executa só a primeira condição encontrada); e **não há registro** das ações executadas.
+
+1. **Para cada problema, qual componente de um framework resolveria, e seria preciso separar em vários agentes?**
+
+   | Problema | Componente | Vários agentes? |
+   |---|---|---|
+   | Não lembra o que foi dito | **Memória** (curto prazo, da conversa) | Não |
+   | Nova função mexe no núcleo | **Ferramentas** com nome, descrição e parâmetros; o agente escolhe | Ajuda separar por assunto, mas não é obrigatório |
+   | Não combina ações | **Agente** com ciclo pensa → age → observa, que encadeia passos | Não é obrigatório; vários agentes ajudam quando os assuntos são distintos |
+   | Sem registro | **Executor**, que guarda cada passo (logs e rastros) | Não |
+2. **Que problema a busca por palavras-chave gera com "preciso da minha fatura do mês passado" em vez de "nota fiscal"?** A regra compara **letras**, não **ideias**: "fatura" não contém "nota fiscal", então cai em "Não entendi". Frases diferentes com o mesmo sentido não são reconhecidas.
+
+**Parte 2 · Modelando com framework e vários agentes.** Um framework como o **LangChain** organiza um agente em quatro componentes:
+
+- **Agente:** o centro; recebe a tarefa, analisa o contexto e decide qual ferramenta usar a cada etapa, ou se já pode responder.
+- **Ferramentas:** funções que o agente pode chamar, cada uma com nome, descrição e parâmetros (como no function calling da Aula 1).
+- **Memória:** histórico da conversa (curto prazo) e informações persistentes do usuário entre sessões (longo prazo).
+- **Executor:** gerencia o ciclo **pensa → age → observa → decide o próximo passo**, até concluir.
+
+Um **agente orquestrador** decide qual agente atua em cada situação.
+
+1. **Reestruturem o SupportFlow com vários agentes.** Preencham, para cada agente: *Agente*, *Responsabilidade* e *Ferramentas que utiliza*; e o *Agente orquestrador* com sua *Função*. Resposta modelo: agente de **cobrança** (fatura, estorno), agente **técnico** (estado da conta, chamado), agente de **cancelamento e retenção** (contrato, alternativas) e o orquestrador (seção 2.4).
+2. **Descrevam como o sistema decide qual agente atua em cada mensagem.** O orquestrador lê a mensagem e a memória, classifica a intenção, encaminha ao agente (ou a mais de um) e, se houver dúvida, pergunta ao cliente ou passa a uma pessoa.
+3. **Expliquem como decidir pelo significado resolve o problema da questão 1.2.** O LLM entende que "fatura" e "nota fiscal" apontam para a mesma intenção (segunda via de documento de cobrança), mesmo sem a palavra exata.
+
+</Accordion>
+
+<Accordion titulo="Aula 3 · Projetando o DevPipeline" dica="De um agente monolítico a vários agentes colaborando" icone="list-check" rolagem={false}>
+
+**Parte 1 · O agente monolítico (o problema).** A **StartCode S.A.** criou o **DevAgent**, um único agente que recebe requisitos, escreve código, revisa bugs, cria testes, gera documentação e faz o deploy. Depois de 3 meses, os engenheiros relatam:
+
+- **Qualidade inconsistente:** o mesmo agente que escreveu o código o revisou e não "se distanciou" do próprio trabalho; bugs óbvios passaram.
+- **Contexto excessivo:** cada tarefa acumula todo o histórico, e com requisitos, código e logs longos o agente perde coerência.
+- **Impossível paralelizar:** tudo é feito em sequência; testes e documentação, que poderiam ser simultâneos, esperam.
+- **Rastreabilidade zero:** quando o deploy falha, não se sabe em que etapa o problema surgiu.
+
+1. **Para cada problema, qual a limitação do modelo monolítico e como vários agentes resolveriam?** Quem escreve não revisa com isenção → **revisor separado**; contexto gigante → cada agente recebe só o que precisa; sequência obrigatória → etapas independentes rodam **em paralelo**; sem rastro → cada agente registra a sua entrada e saída.
+2. **Por que a especialização tende a ser melhor que a generalização?** Cada agente recebe instruções, ferramentas e contexto **curtos e focados** na sua tarefa, erra menos, é testado separadamente e pode ser trocado sem afetar os outros.
+
+**Parte 2 · Projetando a colaboração.**
+
+1. **Fluxo do DevPipeline** (ordem de atuação, por exemplo: requisitos → código → testes → deploy). A resolução usa: planejador → desenvolvedor → revisor e testador (em paralelo) → entrega.
+2. **Comunicação entre agentes (handoff).** Para cada etapa, digam o que o agente **recebe**, o que **produz** e o que **entrega** ao próximo.
+3. **Quais etapas podem ocorrer ao mesmo tempo e por quê.** A revisão de código e os testes podem rodar juntos, pois leem o **mesmo código** sem depender um do outro; a documentação também pode andar em paralelo com os testes.
+4. **Como identificar em que etapa houve erro.** Cada agente registra entrada, saída e estado; o orquestrador guarda o histórico de cada etapa, de modo que a falha aponta para a etapa que a produziu.
+
+A resolução completa, com figura, está na seção 3.5.
+
+</Accordion>
+
 ## Tópicos-Chave para Revisão
 
 <div className="topico">

@@ -425,6 +425,144 @@ No Cassandra, a modelagem parte das consultas. Para "ver os últimos eventos de 
 | Volume imenso de escrita, séries de eventos | **Colunas** |
 | Relações complexas entre entidades | **Grafos** |
 
+## Situações e Roteiros Práticos
+
+As situações vêm do material da escola (fictícias, da SEDUC-SP). O relatório do grupo é entregue pelo **AVA**. Antes de começar, façam **esboços no papel** da intenção e do resultado.
+
+*Materiais: computador com internet, caderno e caneta.*
+
+<Accordion titulo="Atividade 1 · TechMarket: SQL ou NoSQL?" dica="Projeto de arquitetura de dados para um e-commerce" icone="list-check" rolagem={false}>
+
+**Situação.** Vocês foram contratados pela **TechMarket**, plataforma de e-commerce com **produtos, clientes e pedidos**, em expansão. Ela quer saber qual banco sustenta melhor o crescimento: **relacional (SQL)** ou **NoSQL**. A tarefa é um **relatório** que compare os dois, **modelando as mesmas informações** nos dois bancos e analisando vantagens e desvantagens.
+
+**Parte 1 · Modelo relacional (SQL).** Objetivo: um esquema com **consistência** e **integridade referencial**, para consultas que juntam várias tabelas.
+
+Tabelas: **Clientes** (`cliente_id`, nome, e-mail, telefone), **Produtos** (`produto_id`, nome, preço, categoria), **Pedidos** (`pedido_id`, data, `cliente_id`, status) e **Itens_Pedido** (`item_id`, `pedido_id`, `produto_id`, quantidade, preço unitário). Relações: `Pedidos.cliente_id` → Clientes; `Itens_Pedido.pedido_id` → Pedidos; `Itens_Pedido.produto_id` → Produtos.
+
+```sql
+CREATE TABLE Clientes (
+    cliente_id INT PRIMARY KEY,
+    nome VARCHAR(50),
+    email VARCHAR(50),
+    telefone VARCHAR(15)
+);
+
+CREATE TABLE Produtos (
+    produto_id INT PRIMARY KEY,
+    nome VARCHAR(50),
+    preco DECIMAL(10, 2),
+    categoria VARCHAR(30)
+);
+
+CREATE TABLE Pedidos (
+    pedido_id INT PRIMARY KEY,
+    data DATE,
+    cliente_id INT,
+    status VARCHAR(20),
+    FOREIGN KEY (cliente_id) REFERENCES Clientes(cliente_id)
+);
+
+CREATE TABLE Itens_Pedido (
+    item_id INT PRIMARY KEY,
+    pedido_id INT,
+    produto_id INT,
+    quantidade INT,
+    preco_unitario DECIMAL(10, 2),
+    FOREIGN KEY (pedido_id) REFERENCES Pedidos(pedido_id),
+    FOREIGN KEY (produto_id) REFERENCES Produtos(produto_id)
+);
+```
+
+Essas tabelas seguem a **normalização**: menos repetição de dados e mais consistência. A tabela `Itens_Pedido` liga produtos a pedidos.
+
+**Parte 2 · Modelo de documentos (MongoDB).** Objetivo: uma estrutura **flexível**, que aceite novos campos e cresça com o número de pedidos e produtos, com **acesso fácil** aos dados do pedido. Coleções: **Clientes** (com a lista de IDs dos pedidos), **Produtos** e **Pedidos** (com os **itens embutidos**).
+
+```javascript
+db.Clientes.insertOne({
+  cliente_id: 1, nome: "Maria Silva", email: "maria@example.com",
+  telefone: "123456789", pedidos: [1, 2]
+})
+
+db.Produtos.insertMany([
+  { produto_id: 101, nome: "Notebook",       preco: 3500.00, categoria: "Eletrônicos" },
+  { produto_id: 102, nome: "Smartphone",     preco: 1500.00, categoria: "Eletrônicos" },
+  { produto_id: 103, nome: "Fone de Ouvido", preco: 300.00,  categoria: "Acessórios" }
+])
+
+db.Pedidos.insertOne({
+  pedido_id: 1, data: new Date("2024-11-15"), cliente_id: 1, status: "Processando",
+  itens: [
+    { produto_id: 101, quantidade: 2, preco_unitario: 3500.00 },
+    { produto_id: 102, quantidade: 1, preco_unitario: 1500.00 }
+  ]
+})
+```
+
+- `insertOne()` insere um documento; `insertMany()` insere vários; `new Date()` guarda a data (útil em consultas por intervalo).
+- Os itens **embutidos** em `Pedidos` eliminam a tabela de junção `Itens_Pedido`: um pedido é lido de uma vez.
+- Não é preciso criar a estrutura antes de inserir, como no SQL.
+- **Correção.** No MongoDB, o shell atual é o `mongosh`. Os comandos acima não foram executados nesta máquina.
+
+**Parte 3 · Análise comparativa.** Escrevam: vantagens e desvantagens do **SQL**, vantagens e desvantagens do **NoSQL** e o **uso ideal de cada um** nos cenários do e-commerce. Os critérios e o caso do e-commerce em crescimento estão nas seções 2.1 a 2.4.
+
+</Accordion>
+
+<Accordion titulo="Atividade 2 · DataConnect: arquitetura básica NoSQL" dica="Rede social com milhões de usuários" icone="list-check" rolagem={false}>
+
+**Situação.** A **DataConnect** expande sua rede social, que tem **milhões de usuários ativos** e muitos dados não estruturados (mensagens, comentários, curtidas, compartilhamentos). O banco relacional atual sofre com **desempenho** e **escalabilidade**. A equipe de TI quer um NoSQL e entender **arquitetura distribuída**, **replicação** e **escalabilidade horizontal**. O desafio: escolher o banco NoSQL e montar um **plano de implementação**.
+
+**Perguntas.**
+
+1. Qual tipo de NoSQL (documento, chave-valor, coluna ou grafo) serve melhor para uma rede social? Justifiquem pela estrutura dos dados, pelas consultas e pela escalabilidade. → seções 1.2 e 4.5.
+2. O que é **arquitetura distribuída** em NoSQL e por que é essencial ao crescimento? → seção 3.1.
+3. Como funciona a **replicação** e por que garante a disponibilidade? → seção 3.1.
+4. O que é **escalar horizontalmente** e como isso beneficia o crescimento? → seção 3.2.
+5. Elaborem um **plano de implementação básico** com:
+   - **Escolha do banco:** o tipo de NoSQL e como atende à rede social.
+   - **Estratégia de replicação:** assíncrona ou síncrona, e por quê (seção 3.3, consistência e disponibilidade).
+   - **Configuração de escalabilidade:** como a escala horizontal será configurada para o crescimento contínuo.
+
+</Accordion>
+
+<Accordion titulo="Atividade 3 · ShopWorld: documentos, chave-valor e grafos" dica="Três modelagens para três tipos de dado" icone="list-check" rolagem={false}>
+
+**Situação.** A **ShopWorld**, plataforma de e-commerce, quer melhorar a pesquisa e a flexibilidade modelando três conjuntos de dados em três estruturas NoSQL:
+
+1. **Produtos** (nome, descrição, preço, categoria e comentários dos usuários);
+2. **Carrinho de compras** (produtos adicionados e quantidade de cada um);
+3. **Rede de fornecedores e parceiros** (interligados entre si e com os produtos).
+
+**1. Documentos.** O produto é guardado com campos que podem crescer no futuro. Expliquem por que um banco de **documentos** (MongoDB) é adequado. → seção 4.1.
+
+```json
+{
+  "produto_id": "12345",
+  "nome": "Camiseta Básica",
+  "descricao": "Camiseta básica de algodão, disponível em várias cores.",
+  "preco": 29.99,
+  "categoria": "Roupas",
+  "comentarios": [
+    { "usuario": "Ana123",    "comentario": "Produto excelente, qualidade muito boa!", "avaliacao": 5 },
+    { "usuario": "Carlos456", "comentario": "Confortável, mas achei o tamanho pequeno.", "avaliacao": 4 }
+  ]
+}
+```
+
+**2. Chave-valor.** O carrinho de cada usuário. Expliquem por que um banco **chave-valor** (Redis) é adequado. → seção 4.2.
+
+```text
+Chave: "carrinho_usuário_1001"
+Valor: { "produto_12345": 2, "produto_67890": 1 }
+```
+
+**3. Grafos.** Cada fornecedor pode ter vários parceiros e fornecer vários produtos. Perguntas típicas: "quem fornece um determinado produto?" e "quais parceiros estão ligados a um fornecedor?". Expliquem por que um banco de **grafos** (Neo4j) é ideal. → seção 4.3.
+
+- Nós: **Fornecedor** (`fornecedor_id`, nome), **Produto** (`produto_id`, nome, categoria), **Parceiro** (`parceiro_id`, nome).
+- Relações: `(Fornecedor)-[FORNECE]->(Produto)` e `(Fornecedor)-[PARCEIRO_COMERCIAL]->(Parceiro)`.
+- Exemplo: "ABC Distribuidora" `FORNECE` "Camiseta Básica" e é `PARCEIRO_COMERCIAL` de "Logística Rápida".
+
+</Accordion>
+
 ## Tópicos-Chave para Revisão
 
 <div className="topico">

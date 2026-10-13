@@ -134,3 +134,13 @@ O material é ponto de partida, não verdade: erros, premissas fracas e itens de
 - Correção ao material: as falas sem travessão de Saramago são discurso direto integrado ao parágrafo, e não discurso indireto livre; a aula ensina a diferença.
 
 **Figuras:** passaram no verificador `scripts/checar-figuras-no-navegador.js`.
+
+## Situações e roteiros práticos (14/10/2026)
+
+Todas as 12 aulas de DS ganharam a seção "Situações e Roteiros Práticos" (antes dos Tópicos-Chave), com os roteiros e as situações das atividades práticas do material da escola e as respostas ligadas às seções da aula.
+
+- Testado de verdade: o servidor GraphQL de eventos (Front-End S22; Express 5.3.0, express-graphql 0.12.0, graphql 15.10.3) e o GitFlow do Versionamento S21.
+- Correções ao roteiro: no GitFlow faltava um commit inicial (a `develop` nunca existia) e o `echo` usa aspas tipográficas; no Front-End S22 o código de login tem vários desencontros (tipo de token, nome do campo, porta, importação, segredo no código); `mongo` virou `mongosh`; Redis no Windows por Docker/WSL.
+- Não executados (sem ambiente): comandos de MongoDB, Redis, Cassandra e Neo4j, Fastlane e o trecho React de feedback de login.
+- As perguntas escritas nas casas do tabuleiro da "Trilha da retrospectiva" estão em imagem no material e não foram extraídas.
+
