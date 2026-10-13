@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import '../styles/estudo.css';
 import { ClientRouter } from 'astro:transitions';
 import TabNav from '../components/TabNav.astro';
 import Ferramentas from '../components/Ferramentas.astro';
@@ -8,16 +9,19 @@ import Paineis from '../components/Paineis.astro';
 import Rodape from '../components/Rodape.astro';
 import Icone from '../components/Icone.astro';
 import { u } from '../lib/url';
+import type { ChaveAba } from '../lib/abas';
 import interLatin from '../assets/fonts/inter-normal-latin.woff2';
 import nunitoLatin from '../assets/fonts/nunito-normal-latin.woff2';
 import faSolid from '../assets/fonts/fa-solid-900.woff2';
 
 interface Props {
   title: string;
-  active?: 'hub' | 'enem' | 'escolar' | 'ds' | null;
+  active?: ChaveAba | null;
   description?: string;
   /** Botão explícito de "voltar" no topo da folha, sempre um nível acima. */
   voltar?: { href: string; label: string };
+  /** A página já desenha o próprio caminho ("Você está aqui"): Base não acrescenta o padrão. */
+  migalhasPropria?: boolean;
   /** Esconde a folha pautada (usado por páginas de texto puro). */
   larga?: boolean;
   /** Cor da borda da folha e da aba ativa quando a página é de uma matéria (ex.: var(--color-historia)). */
@@ -28,6 +32,7 @@ const {
   active = null,
   description = 'Aulas organizadas para estudar no seu ritmo',
   voltar,
+  migalhasPropria = false,
   cor,
 } = Astro.props;
 
@@ -37,6 +42,8 @@ const accentByTab: Record<string, string> = {
   enem: 'var(--color-enem)',
   escolar: 'var(--color-escolar)',
   ds: 'var(--color-ds)',
+  revisao: 'var(--color-revisao)',
+  estudo: 'var(--color-estudo)',
 };
 // Nas páginas de uma matéria, a folha (e a aba) ganham a cor da matéria, como a
 // divisória colorida de um fichário.
@@ -132,7 +139,7 @@ const borderColor = cor ?? (active ? accentByTab[active] : 'var(--color-line)');
         <a href={u('/')} class="marca" data-marca>
           Caderno de Estudos<span class="marca__ponto">.</span>
         </a>
-        <Ferramentas />
+        <Ferramentas active={active} />
       </div>
 
       <div class="max-w-5xl mx-auto w-full mt-5 sm:mt-6" data-abas>
@@ -159,6 +166,14 @@ const borderColor = cor ?? (active ? accentByTab[active] : 'var(--color-line)');
               <span class="voltar__destino">{voltar.label}</span>
             </span>
           </a>
+        )}
+        {/* O mesmo caminho das aulas: o último nível vira a pílula de voltar (global.css). */}
+        {voltar && !migalhasPropria && (
+          <nav class="font-mono text-xs text-ink-soft mb-4 flex flex-wrap gap-x-1 gap-y-1" aria-label="Você está aqui">
+            <a href={voltar.href} class="hover:text-ink underline underline-offset-2">{voltar.label}</a>
+            <span aria-hidden="true">/</span>
+            <span class="text-ink" aria-current="page">{title}</span>
+          </nav>
         )}
         <slot />
       </div>
@@ -277,6 +292,7 @@ const borderColor = cor ?? (active ? accentByTab[active] : 'var(--color-line)');
          quanto quando a barra desce para a linha de baixo. */
       .cabecalho__linha > :global(.ferramentas) {
         align-self: flex-start;
+        margin-left: auto;
         min-height: var(--altura);
         margin-top: calc(
           var(--rule-offset) + 14px - (var(--altura) - (var(--rule) - 1px)) / 2

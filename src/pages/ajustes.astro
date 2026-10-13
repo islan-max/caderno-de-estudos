@@ -1,0 +1,94 @@
+---
+// Ajustar sugestões: quais matérias ficam em foco no Hoje, o tamanho da revisão diária e as
+// sugestões escondidas. Tudo é montado no navegador (src/scripts/ajustes.ts) e salvo na hora.
+import Base from '../layouts/Base.astro';
+import Icone from '../components/Icone.astro';
+import AjudaDaPagina from '../components/AjudaDaPagina.astro';
+import { u } from '../lib/url';
+---
+
+<Base
+  title="Ajustar sugestões"
+  active="hub"
+  description="Escolha as matérias em foco, os cartões por dia e o que o Hoje mostra"
+  voltar={{ href: u('/'), label: 'Início' }}
+>
+  <div class="ajustes" data-ajustes>
+    <header class="aj-hero" data-surgir>
+      <p class="aj-hero__selo"><Icone nome="sliders" /> Ajustes</p>
+      <h1 class="aj-hero__h1">As sugestões, do seu jeito</h1>
+      <p class="aj-hero__intro">
+        O caderno já aprende pelo que você estuda. Aqui você só dá um empurrão: escolhe as matérias para ir
+        à frente, quantos cartões quer revisar por dia e o que o Hoje mostra. Tudo vale na hora e fica
+        salvo só neste navegador.
+      </p>
+    </header>
+
+    <p class="estudo__status" data-ajustes-status role="status">Carregando…</p>
+
+    <div class="ajustes__corpo" data-ajustes-corpo hidden>
+      <section class="aj-bloco" aria-labelledby="aj-foco">
+        <header class="aj-bloco__cabeca">
+          <span class="aj-bloco__icone"><Icone nome="bullseye" /></span>
+          <div>
+            <h2 id="aj-foco" class="aj-bloco__titulo">Matérias em foco</h2>
+            <p class="aj-bloco__sub">Até 3 no ENEM, 1 no Escolar e 2 no DS: cada categoria conta à parte. O Hoje sugere primeiro a próxima aula delas; sem nada marcado, ele decide pelo que você mais tem estudado.</p>
+          </div>
+        </header>
+        <div data-bloco="foco"></div>
+      </section>
+
+      <section class="aj-bloco aj-bloco--fila" aria-labelledby="aj-fila">
+        <header class="aj-bloco__cabeca">
+          <span class="aj-bloco__icone"><Icone nome="repeat" /></span>
+          <div>
+            <h2 id="aj-fila" class="aj-bloco__titulo">Revisão diária</h2>
+            <p class="aj-bloco__sub">Quantos cartões entram na sessão de hoje: escolha um ritmo ou digite o número que quiser. O que passar do limite espera, sem atraso e sem cobrança.</p>
+          </div>
+        </header>
+        <div data-bloco="fila"></div>
+      </section>
+
+      <section class="aj-bloco aj-bloco--previa" aria-labelledby="aj-previa">
+        <header class="aj-bloco__cabeca">
+          <span class="aj-bloco__icone"><Icone nome="route" /></span>
+          <div>
+            <h2 id="aj-previa" class="aj-bloco__titulo">O que o Hoje mostra</h2>
+            <p class="aj-bloco__sub">Ligue ou desligue o Hoje e cada tipo de sugestão. Cada linha mostra o que apareceria agora.</p>
+          </div>
+        </header>
+        <div data-bloco="previa"></div>
+      </section>
+
+      <section class="aj-bloco aj-bloco--escondidas" aria-labelledby="aj-escondidas">
+        <header class="aj-bloco__cabeca">
+          <span class="aj-bloco__icone"><Icone nome="clock" /></span>
+          <div>
+            <h2 id="aj-escondidas" class="aj-bloco__titulo">Sugestões escondidas</h2>
+            <p class="aj-bloco__sub">O “Agora não” esconde uma sugestão por 1 hora. Daqui dá para trazê-las de volta antes.</p>
+          </div>
+        </header>
+        <div data-bloco="escondidas"></div>
+      </section>
+    </div>
+
+    <AjudaDaPagina titulo="Como os ajustes funcionam">
+      <p class="ajuda__texto">
+        <strong>Matérias em foco</strong>: até 3 do ENEM, 1 do Escolar e 2 do DS, sem uma categoria interferir na outra. Mudam só a escolha da aula sugerida no Hoje: a revisão de
+        cartões e as seções a rever continuam aparecendo primeiro, porque são o que está esquecendo.
+      </p>
+      <p class="ajuda__texto">
+        <strong>Revisão diária</strong> limita quantos cartões entram na sessão (de 1 a 200, você escolhe). Os
+        cartões que passam do limite continuam vencidos e entram nos dias seguintes.
+      </p>
+      <p class="ajuda__texto">
+        <strong>O que o Hoje mostra</strong>: dá para esconder o bloco inteiro ou deixar só as sugestões
+        que você quer (revisão de cartões, seção a rever, aula para continuar).
+      </p>
+      <p class="ajuda__texto">
+        Nada aqui sai do seu aparelho: os ajustes ficam em <code>cdt:ajustes</code> e as sugestões
+        escondidas em <code>cdt:hoje-dispensado</code>, no armazenamento do navegador.
+      </p>
+    </AjudaDaPagina>
+  </div>
+</Base>

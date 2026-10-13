@@ -171,6 +171,8 @@ function pares(modo) {
     ['ENEM', 'var(--color-enem)', 'var(--color-enem-soft)'],
     ['Escolar', 'var(--color-escolar)', 'var(--color-escolar-soft)'],
     ['DS', 'var(--color-ds)', 'var(--color-ds-soft)'],
+    ['Revisão', 'var(--color-revisao)', 'var(--color-revisao-soft)'],
+    ['Meu estudo', 'var(--color-estudo)', 'var(--color-estudo-soft)'],
   ];
   for (const [n, c, soft] of abas) {
     t(`aba ${n} inativa`, `color-mix(in srgb, ${c} 70%, var(--color-ink))`, soft);
@@ -179,7 +181,7 @@ function pares(modo) {
 
   // Marcadores da direita (CabecalhoFixo.astro): ícone = 70% da cor da folha + 30% de ink,
   // sobre 12% da cor + folha. A cor é a da borda da folha: tinta (início), seção ou matéria.
-  for (const c of ['ink', 'enem', 'escolar', 'ds', ...MATERIAS]) {
+  for (const c of ['ink', 'enem', 'escolar', 'ds', 'revisao', 'estudo', ...MATERIAS]) {
     u(`marcador fixo (${c}): ícone sobre o fundo`, `color-mix(in srgb, var(--color-${c}) 70%, var(--color-ink))`, `color-mix(in srgb, var(--color-${c}) 12%, var(--color-surface))`);
   }
 

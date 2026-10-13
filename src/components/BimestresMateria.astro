@@ -2,47 +2,101 @@
 // Os bimestres de uma matéria das abas DS e Escolar, um embaixo do outro, cada um com a trilha
 // de aulas (as ainda não disponíveis aparecem sem link). Substitui a página de cada bimestre.
 import TrilhaAulas from './TrilhaAulas.astro';
+import Icone from './Icone.astro';
 import { contarAulas, type MateriaTrilha } from '../lib/materiasSecoes';
 
 interface Props {
   materia: MateriaTrilha;
 }
 const { materia } = Astro.props;
+// Só o 4º bimestre está em andamento: os outros começam recolhidos (o leitor abre e fecha à vontade).
+const ABERTO_POR_PADRAO = '4-bimestre';
 ---
 
-{materia.bimestres.map((b) => {
-  const { total, prontas } = contarAulas([b]);
-  return (
-    <section class="bimestre" aria-labelledby={`bim-${b.slug}`}>
-      <h2 class="bimestre__titulo" id={b.slug}>
-        <span id={`bim-${b.slug}`}>{b.label}</span>
-        <span class="bimestre__contagem">
-          {prontas} de {total} {total === 1 ? 'aula disponível' : 'aulas disponíveis'}
-        </span>
-      </h2>
-      <TrilhaAulas aulas={b.aulas} accent={materia.slug} />
-    </section>
-  );
-})}
+{materia.bimestres.length > 1 && (
+  <p class="bimestres__barra">
+    <button type="button" class="bimestres__todos" data-dobras-todas="grupo-bimestres" aria-controls={materia.bimestres.map((b) => `bim-${materia.slug}-${b.slug}`).join(' ')}>
+      Expandir todos
+    </button>
+  </p>
+)}
+
+<div data-dobras-grupo="grupo-bimestres">
+  {materia.bimestres.map((b) => {
+    const { total, prontas } = contarAulas([b]);
+    return (
+      <details
+        class="bimestre"
+        id={b.slug}
+        data-dobra={`bimestre-${materia.slug}-${b.slug}`}
+        open={b.slug === ABERTO_POR_PADRAO}
+      >
+        <summary class="bimestre__titulo">
+          <span class="bimestre__nome">{b.label}</span>
+          <span class="bimestre__contagem">
+            {prontas} de {total} {total === 1 ? 'aula disponível' : 'aulas disponíveis'}
+          </span>
+          <span class="bimestre__seta" aria-hidden="true"><Icone nome="chevron-down" /></span>
+        </summary>
+        <div id={`bim-${materia.slug}-${b.slug}`}>
+          <TrilhaAulas aulas={b.aulas} accent={materia.slug} />
+        </div>
+      </details>
+    );
+  })}
+</div>
 
 <style>
+  .bimestres__barra {
+    display: flex;
+    justify-content: flex-end;
+    margin: 0 0 0.75rem;
+  }
+  .bimestres__todos {
+    min-height: 2.25rem;
+    padding: 0 0.9rem;
+    border: 1px solid var(--color-line);
+    border-radius: 999px;
+    background: var(--color-surface);
+    color: var(--color-ink);
+    font: inherit;
+    font-size: calc(0.82rem * var(--escala-texto, 1));
+    font-weight: 700;
+    cursor: pointer;
+  }
+  .bimestres__todos:hover {
+    border-color: var(--materia, var(--color-ink));
+  }
+  .bimestre {
+    scroll-margin-top: 6rem;
+  }
   .bimestre + .bimestre {
-    margin-top: 2.25rem;
+    margin-top: 1.25rem;
   }
   .bimestre__titulo {
     display: flex;
     flex-wrap: wrap;
     align-items: baseline;
-    justify-content: space-between;
     gap: 0.25rem 1rem;
     margin: 0 0 0.9rem;
-    padding-bottom: 0.5rem;
+    padding: 0.35rem 0 0.5rem;
     border-bottom: 2px solid color-mix(in srgb, var(--materia, var(--color-ink)) 35%, var(--color-line));
     font-family: var(--font-display);
     font-size: calc(1.1rem * var(--escala-texto, 1));
     font-weight: 700;
     letter-spacing: -0.01em;
-    scroll-margin-top: 6rem;
+    cursor: pointer;
+    list-style: none;
+  }
+  .bimestre__titulo::-webkit-details-marker {
+    display: none;
+  }
+  .bimestre__titulo:focus-visible {
+    outline: 2px solid var(--materia, var(--color-ink));
+    outline-offset: 2px;
+  }
+  .bimestre__nome {
+    margin-right: auto;
   }
   .bimestre__contagem {
     font-size: calc(0.68rem * var(--escala-texto, 1));
@@ -50,5 +104,20 @@ const { materia } = Astro.props;
     text-transform: uppercase;
     letter-spacing: 0.09em;
     color: var(--color-ink-soft);
+  }
+  .bimestre__seta {
+    display: grid;
+    place-items: center;
+    align-self: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    font-size: 0.8rem;
+    transition: transform 0.25s var(--ease);
+  }
+  .bimestre[open] > .bimestre__titulo .bimestre__seta {
+    transform: rotate(180deg);
+  }
+  .bimestre:not([open]) > .bimestre__titulo {
+    margin-bottom: 0;
   }
 </style>

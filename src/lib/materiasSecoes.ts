@@ -61,3 +61,17 @@ export function grupoDaSecao(
   const subjects: MateriaEnem[] = materias.map((m) => ({ slug: m.slug, label: m.nome, icone: iconeDaMateriaSecao(m.slug) }));
   return { slug, label, labelCurto: label, cor: `var(--color-${slug})`, icone, subjects };
 }
+
+/** Aula anterior e próxima de uma aula, entre as que já existem; a posição conta a matéria inteira (todos os bimestres). */
+export function vizinhasNaTrilha(m: MateriaTrilha, id: string) {
+  const todas = m.bimestres.flatMap((b) => b.aulas);
+  const i = todas.findIndex((a) => a.id === id);
+  const prontas = todas.filter((a) => a.pronta);
+  const j = prontas.findIndex((a) => a.id === id);
+  return {
+    anterior: j > 0 ? prontas[j - 1] : null,
+    proxima: j >= 0 && j < prontas.length - 1 ? prontas[j + 1] : null,
+    posicao: i + 1,
+    total: todas.length,
+  };
+}

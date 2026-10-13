@@ -77,6 +77,20 @@ import { u } from '../lib/url';
   </div>
 </dialog>
 
+<!-- ------------------------------------------------------------- ajuda -->
+<!-- Conteúdo vem do <template data-ajuda> da página (AjudaDaPagina.astro), copiado ao abrir. -->
+<dialog id="ajuda" class="painel" aria-labelledby="ajuda-titulo" data-rolagem>
+  <div class="painel__area" data-rolagem-area>
+    <header class="painel__cabeca">
+      <h2 class="painel__titulo" id="ajuda-titulo"><Icone nome="circle-question" duo cor="var(--color-escolar)" /> <span data-ajuda-titulo>Ajuda</span></h2>
+      <form method="dialog" class="painel__fechar-form">
+        <button class="painel__fechar" data-fecha aria-label="Fechar ajuda"><Icone nome="xmark" /></button>
+      </form>
+    </header>
+    <div class="ajuda__corpo" data-ajuda-corpo></div>
+  </div>
+</dialog>
+
 <!-- ------------------------------------------------------------ sumário -->
 <dialog id="sumario" class="painel painel--sumario" aria-labelledby="sumario-titulo" data-rolagem>
   <div class="painel__area" data-rolagem-area>

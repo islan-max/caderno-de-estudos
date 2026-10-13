@@ -1,0 +1,206 @@
+---
+// Revisão: os tópicos-chave das aulas que você concluiu, um por vez. Você escreve o que lembra, o
+// caderno corrige e a revisão volta no momento certo. Tudo é montado no navegador a partir do
+// registro local (src/scripts/revisao.ts).
+import Base from '../layouts/Base.astro';
+import Icone from '../components/Icone.astro';
+import AjudaDaPagina from '../components/AjudaDaPagina.astro';
+import { INTERVALOS } from '../lib/estudo';
+import { u } from '../lib/url';
+---
+
+<Base
+  title="Revisão"
+  active="revisao"
+  description="Revise os tópicos das aulas que você concluiu, no ritmo certo"
+  voltar={{ href: u('/'), label: 'Início' }}
+>
+  <div class="revisao" data-revisao>
+    <header class="rev-hero" data-surgir>
+      <div class="rev-hero__texto">
+        <p class="rev-hero__selo"><Icone nome="repeat" /> Revisão espaçada</p>
+        <h1 class="rev-hero__h1">Lembrar é estudar de novo</h1>
+        <p class="rev-hero__intro">
+          Cada cartão é um tópico-chave de uma aula que você concluiu. Escreva o que lembra, o caderno
+          corrige e traz o cartão de volta no momento certo.
+        </p>
+      </div>
+      <dl class="rev-stats" data-revisao-stats hidden>
+        <div class="rev-stat"><dt>Para hoje</dt><dd data-stat="hoje">0</dd></div>
+        <div class="rev-stat"><dt>Na fila</dt><dd data-stat="fila">0</dd></div>
+        <div class="rev-stat"><dt>Revistos em 7 dias</dt><dd data-stat="semana">0</dd></div>
+      </dl>
+    </header>
+
+    <p class="revisao__status" data-revisao-status role="status">Procurando seus cartões…</p>
+
+    <section class="sessao" data-cartao hidden aria-labelledby="cartao-frente">
+      <div class="sessao__progresso">
+        <p class="sessao__contador" data-cartao-contador></p>
+        <div class="sessao__trilho" aria-hidden="true"><i data-cartao-barra></i></div>
+      </div>
+
+      <article class="ficha" aria-labelledby="cartao-frente">
+        <header class="ficha__topo">
+          <span class="ficha__materia" data-cartao-materia></span>
+          <span class="ficha__aula">Aula <a data-cartao-aula href={u('/')}></a></span>
+        </header>
+
+        <p class="ficha__rotulo">Explique este tópico</p>
+        <h2 class="ficha__pergunta" id="cartao-frente" data-cartao-frente tabindex="-1"></h2>
+
+        <!-- 1) Escrever -->
+        <div class="ficha__escrever" data-cartao-escrever>
+          <label class="ficha__instrucao" for="cartao-resposta" data-cartao-instrucao>
+            Explique com as suas palavras o que é, quando se usa e como se resolve. Escreva as fórmulas
+            que lembrar.
+          </label>
+          <div class="ficha__papel" data-rolagem>
+            <textarea
+              id="cartao-resposta"
+              class="ficha__campo"
+              rows="6"
+              maxlength="800"
+              spellcheck="true"
+              autocomplete="off"
+              placeholder="Comece escrevendo aqui…"
+              aria-describedby="cartao-contagem"
+              data-rolagem-area
+              data-cartao-resposta></textarea>
+          </div>
+          <div class="ficha__linha">
+            <span class="ficha__contagem" id="cartao-contagem" data-cartao-contagem>0 de 800</span>
+            <div class="ficha__acoes">
+              <button type="button" class="rev-botao" data-cartao-pular>
+                <Icone nome="angles-right" /> Pular
+              </button>
+              <button type="button" class="rev-botao rev-botao--principal" data-cartao-corrigir>
+                <Icone nome="wand-magic-sparkles" /> Corrigir
+              </button>
+            </div>
+          </div>
+          <p class="ficha__dica">
+            <span><kbd>Ctrl</kbd> + <kbd>Enter</kbd> corrige. <span data-cartao-pulos>Pular manda o cartão para o fim da fila.</span></span>
+            <span class="ficha__dica-modo"><span data-ia-modo>Correção: você escolhe na primeira vez.</span>
+            <button type="button" class="ficha__nao-lembro" data-ia-trocar>Trocar</button></span>
+          </p>
+
+          <!-- Primeira vez: o modelo tem ~118 MB, então a pessoa decide antes de baixar. -->
+          <div class="ficha__ia" data-cartao-ia hidden>
+            <p class="ficha__ia-titulo"><Icone nome="wand-magic-sparkles" /> Correção inteligente, no seu aparelho</p>
+            <p>
+              Ela entende o <strong>sentido</strong> da sua resposta, não só as palavras. Roda no seu
+              aparelho: o que você escreve <strong>não é enviado a ninguém</strong>. Para isso o navegador
+              baixa, uma vez só, um modelo de linguagem pequeno (cerca de <span data-ia-mb>118</span> MB;
+              depois fica guardado). Em rede móvel, vale esperar o Wi-Fi.
+            </p>
+            <div class="ficha__acoes">
+              <button type="button" class="rev-botao rev-botao--principal" data-ia-sim>Baixar e corrigir</button>
+              <button type="button" class="rev-botao" data-ia-nao>Corrigir só por palavras-chave</button>
+            </div>
+          </div>
+          <div class="ficha__ia-progresso" data-cartao-ia-progresso hidden role="status">
+            <p data-ia-progresso-texto>Corrigindo…</p>
+            <progress max="100" value="0"></progress>
+          </div>
+          <p class="apenas-leitor" role="status" data-cartao-corrigindo></p>
+        </div>
+
+        <!-- 2) Correção -->
+        <div class="ficha__correcao" data-cartao-correcao hidden tabindex="-1">
+          <div class="veredito" data-veredito data-cartao-veredito>
+            <span class="veredito__icone" aria-hidden="true"><i class="fa-solid fa-circle-check"></i></span>
+            <div class="veredito__corpo">
+              <p class="veredito__texto" data-cartao-veredito-texto></p>
+              <p class="veredito__detalhe" data-cartao-texto></p>
+              <p class="veredito__rever" data-cartao-rever hidden>
+                <Icone nome="arrows-rotate" /> Aula marcada para rever: aparece como “Rever” na trilha e no Hoje.
+              </p>
+            </div>
+          </div>
+
+          <details class="ficha__sua-det" data-cartao-sua-det hidden>
+            <summary>O que você escreveu</summary>
+            <blockquote class="ficha__sua" data-cartao-sua></blockquote>
+          </details>
+
+          <div class="ficha__resposta">
+            <div class="ficha__resposta-cabeca">
+              <p class="ficha__rotulo">Resposta do caderno</p>
+              <p class="ficha__legenda" data-cartao-legenda hidden>
+                <span class="ponto ponto--ok">verde</span> você cobriu · <span class="ponto ponto--falta">violeta</span> faltou
+              </p>
+            </div>
+            <div class="prose prose-tema max-w-none" data-cartao-verso-conteudo></div>
+            <p class="ficha__abrir">
+              <a data-cartao-secao href={u('/')}><Icone nome="book-open" /> Abrir a aula neste tópico</a>
+            </p>
+          </div>
+          <p class="ficha__metodo" data-cartao-metodo hidden></p>
+
+          <div class="ficha__avaliar" role="group" aria-labelledby="cartao-avaliar-titulo">
+            <p class="ficha__avaliar-titulo" id="cartao-avaliar-titulo">Como foi lembrar, de verdade?</p>
+            <div class="ficha__botoes">
+              <button type="button" class="rev-resposta" data-r="0">
+                <span>Não lembrei</span><small>volta amanhã · tecla 1</small>
+              </button>
+              <button type="button" class="rev-resposta" data-r="1">
+                <span>Com dificuldade</span><small>mesmo intervalo · tecla 2</small>
+              </button>
+              <button type="button" class="rev-resposta" data-r="2">
+                <span>Lembrei</span><small>intervalo maior · tecla 3</small>
+              </button>
+            </div>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section class="rev-fim" data-revisao-fim hidden aria-labelledby="revisao-fim-titulo" tabindex="-1">
+      <span class="rev-fim__icone" aria-hidden="true"><Icone nome="circle-check" /></span>
+      <h2 id="revisao-fim-titulo" class="rev-fim__titulo" data-revisao-fim-titulo></h2>
+      <p data-revisao-fim-texto></p>
+      <p class="rev-fim__links">
+        <a class="rev-botao rev-botao--principal" href={u('/meu-estudo')}><Icone nome="chart-line" /> Ver meu estudo</a>
+      </p>
+    </section>
+
+    <AjudaDaPagina titulo="Como funciona a revisão" chaves={['revisao']}>
+      <p class="ajuda__texto">
+        Os cartões de uma aula entram na fila no dia seguinte a você concluí-la. Escreva o que lembra
+        e clique em <strong>Corrigir</strong>: o caderno compara a sua resposta com as ideias do
+        tópico e diz se está certa, parcial ou errada. Se estiver parcial, ele mostra o que faltou e
+        você complementa ali mesmo; se estiver errada, o caderno marca a aula para você rever.
+      </p>
+      <p class="ajuda__texto">
+        Depois você escolhe como foi de verdade. A resposta sugerida já vem destacada, mas a decisão
+        é sua, e é ela que muda quando o cartão volta:
+      </p>
+      <table class="ajuda__tabela">
+        <caption class="apenas-leitor">Resposta e próxima revisão</caption>
+        <thead><tr><th scope="col">Resposta</th><th scope="col">O que acontece</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Não lembrei</th><td>Volta para a primeira caixa: aparece de novo em {INTERVALOS[1]} dia.</td></tr>
+          <tr><th scope="row">Com dificuldade</th><td>Fica onde está: repete o mesmo intervalo.</td></tr>
+          <tr><th scope="row">Lembrei</th><td>Sobe uma caixa. Os intervalos são {INTERVALOS.slice(2).join(', ')} dias.</td></tr>
+        </tbody>
+      </table>
+      <p class="ajuda__texto">
+        Errar uma questão de uma aula antecipa os cartões dela para o dia seguinte. Se houver mais
+        cartões vencidos do que o limite do dia, o excesso espera, sem atraso e sem cobrança. O limite
+        fica em “Ajustar sugestões”, na página inicial. <strong>Pular</strong> manda o cartão para o
+        fim da fila de hoje, até 3 vezes seguidas: depois de três pulos, é preciso responder um cartão
+        para poder pular de novo.
+      </p>
+      <p class="ajuda__texto">
+        <strong>Como a correção funciona:</strong> na primeira vez você escolhe. A <em>correção
+        inteligente</em> usa um modelo de linguagem pequeno (cerca de 118 MB, baixado uma vez e
+        guardado no navegador) que roda no seu aparelho e entende o sentido do que você escreveu; a
+        sua resposta não é enviada a ninguém. A <em>correção por palavras-chave</em> só confere se os
+        termos do tópico aparecem. <strong>Limite das duas:</strong> elas veem se você falou das
+        mesmas ideias, não se a sua conclusão está certa. Por isso a palavra final é sua e a resposta
+        do caderno aparece sempre.
+      </p>
+    </AjudaDaPagina>
+  </div>
+</Base>

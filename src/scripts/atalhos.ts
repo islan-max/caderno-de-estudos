@@ -4,6 +4,7 @@
 import { toast } from './avisos';
 import { carregarIndice, abrirBusca, fecharBusca, filtrarBusca, moverBusca } from './busca';
 import { montarProgresso } from './painel-progresso';
+import { montarAjuda } from './ajuda';
 import { aplicarFontePx, CHAVE_BRILHO, aplicarBrilho, CHAVE_FONTE_PX, dispensar, restaurarAcessibilidade, alternarA11y } from './preferencias';
 import { CHAVE_ANDAMENTO, andamentos, vistas, marcar, refletirProgresso, zerarProgresso, semConclusaoAutomatica } from './progresso';
 import { alternarTema } from './tema';
@@ -167,6 +168,7 @@ export function ligarAtalhos() {
     if (gatilho) {
       const dlg = document.getElementById(gatilho.dataset.abre!);
       if (dlg instanceof HTMLDialogElement) {
+        if (dlg.id === 'ajuda') montarAjuda();
         dlg.showModal();
         if (dlg.id === 'progresso') montarProgresso();
       }

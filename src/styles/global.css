@@ -25,6 +25,11 @@
   --color-escolar-soft: #dbe5f0;
   --color-ds: #1a6e3b;
   --color-ds-soft: #dbebe0;
+  /* Abas do estudo: Revisão (violeta) e Meu estudo (verde-azulado). */
+  --color-revisao: #6a3fb0;
+  --color-revisao-soft: #e6dff0;
+  --color-estudo: #0e6a73;
+  --color-estudo-soft: #d6e8ea;
 
   --color-line: #c9c2a8;
   /* Borda de CONTROLE (campo de texto, alternativa do quiz, interruptor): é o
@@ -190,6 +195,10 @@ html[data-tema="escuro"] {
   --color-escolar-soft: #1f2f42;
   --color-ds: #7fc79b;
   --color-ds-soft: #1e3328;
+  --color-revisao: #c3a9f5;
+  --color-revisao-soft: #2c2540;
+  --color-estudo: #6fd0d8;
+  --color-estudo-soft: #1b3335;
   --color-ok: #7fc79b;
   --color-aviso: #e0b84f;
 

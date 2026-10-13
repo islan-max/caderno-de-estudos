@@ -429,7 +429,7 @@ export function montarBarrasDeRolagem() {
 
   document.querySelectorAll<HTMLElement>('[data-rolagem]').forEach((host) => {
     const area = host.querySelector<HTMLElement>(':scope > [data-rolagem-area]') ?? host;
-    registro.add(new Barra(area, host, 'y', false));
+    registro.add(new Barra(area, host, host.dataset.rolagem === 'x' ? 'x' : 'y', false));
   });
 }
 

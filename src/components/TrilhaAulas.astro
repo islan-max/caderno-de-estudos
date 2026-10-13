@@ -52,8 +52,12 @@ const { aulas, accent = 'enem' } = Astro.props;
           <span class="trilha__corpo">
             <span class="trilha__titulo">{aula.titulo}</span>
             <span class="trilha__resumo">{aula.resumo}</span>
-            <!-- A marca de "vista" é só um ícone: o texto abaixo leva a mesma informação
-                 ao leitor de tela. Quem o preenche é refletirProgresso() em app.ts. -->
+            <!-- Estado em palavras (Concluída, Em andamento, Rever: seção, Próxima): nunca só cor
+                 ou ícone. Quem preenche é refletirProgresso() em progresso.ts. -->
+            <span class="trilha__estado" data-estado-texto hidden>
+              <i class="fa-solid" aria-hidden="true"></i>
+              <span data-estado-rotulo></span>
+            </span>
             <span class="apenas-leitor" data-vista-texto></span>
           </span>
           <span class="trilha__ir">
@@ -204,6 +208,36 @@ const { aulas, accent = 'enem' } = Astro.props;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
+  }
+
+  /* Estado escrito da aula. A cor ajuda, mas o texto e o ícone dizem tudo sozinhos. */
+  .trilha__estado {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    align-self: flex-start;
+    margin-top: 0.15rem;
+    padding: 0.1rem 0.55rem;
+    border: 1px solid currentColor;
+    border-radius: 999px;
+    font-family: var(--font-display);
+    font-size: calc(0.72rem * var(--escala-texto, 1));
+    font-weight: 700;
+    line-height: 1.4;
+    color: var(--color-ink-soft);
+  }
+  .trilha__estado[hidden] {
+    display: none;
+  }
+  .trilha__estado[data-estado='concluida'] {
+    color: var(--color-ok);
+  }
+  .trilha__estado[data-estado='rever'] {
+    color: var(--color-revisao);
+  }
+  .trilha__estado[data-estado='proxima'],
+  .trilha__estado[data-estado='andamento'] {
+    color: var(--color-ink);
   }
 
   .trilha__ir {

@@ -18,10 +18,11 @@
 // Sem a margem lateral, a fileira compacta de círculos no topo faz o mesmo trabalho.
 import { u } from '../lib/url';
 import { SECOES_VISIVEIS } from '../lib/secoes';
+import type { ChaveAba } from '../lib/abas';
 import Icone from './Icone.astro';
 
 interface Props {
-  active?: 'hub' | 'enem' | 'escolar' | 'ds' | null;
+  active?: ChaveAba | null;
   /** Cor da aba ativa quando a página é de uma matéria (a mesma da borda da folha). */
   corAtiva?: string;
 }
@@ -70,6 +71,9 @@ const abas = [
     <button type="button" class="pn-seta" data-abre="progresso" title="Meu progresso" aria-label="Meu progresso" aria-haspopup="dialog">
       <Icone nome="chart-simple" />
     </button>
+    <button type="button" class="pn-seta" data-so-ajuda data-abre="ajuda" title="Ajuda desta página" aria-label="Ajuda desta página" aria-haspopup="dialog">
+      <Icone nome="question" />
+    </button>
     <button type="button" class="pn-seta" data-acao="acessibilidade" title="Acessibilidade" aria-label="Opções de acessibilidade" aria-haspopup="dialog">
       <Icone nome="universal-access" />
     </button>
@@ -101,6 +105,9 @@ const abas = [
     <button type="button" class="cab-circ" data-abre="progresso" title="Meu progresso" aria-label="Meu progresso" aria-haspopup="dialog">
       <Icone nome="chart-simple" />
     </button>
+    <button type="button" class="cab-circ" data-so-ajuda data-abre="ajuda" title="Ajuda desta página" aria-label="Ajuda desta página" aria-haspopup="dialog">
+      <Icone nome="question" />
+    </button>
     <button type="button" class="cab-circ" data-acao="acessibilidade" title="Acessibilidade" aria-label="Opções de acessibilidade" aria-haspopup="dialog">
       <Icone nome="universal-access" />
     </button>
@@ -113,6 +120,11 @@ const abas = [
 <style>
   /* O sumário só existe em página de aula. */
   :global(html:not(:has([data-conteudo-aula]))) [data-so-aula] {
+    display: none !important;
+  }
+  /* O "?" só existe em página com ajuda (template[data-ajuda], AjudaDaPagina.astro). */
+  /* Tudo dentro do :global: o botão também existe em Ferramentas.astro, que tem outro escopo. */
+  :global(html:not(:has(template[data-ajuda])) [data-so-ajuda]) {
     display: none !important;
   }
   @media print {

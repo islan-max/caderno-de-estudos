@@ -1,0 +1,36 @@
+---
+// Ajuda da página: o botão "?" fixo no canto superior direito (barra de ferramentas e marcadores
+// fixos) abre um painel com este conteúdo. Só aparece em páginas que usam este componente.
+// O painel (#ajuda) mora em Paineis.astro; src/scripts/ajuda.ts copia o conteúdo para ele ao abrir.
+//
+// `chaves` traz os "Como calculamos" de src/lib/estudo.ts (o que entra, como é calculado, o que
+// não mede, como melhorar); o <slot> é para explicações próprias da página.
+import { COMO_CALCULAMOS } from '../lib/estudo';
+
+interface Props {
+  titulo: string;
+  chaves?: (keyof typeof COMO_CALCULAMOS)[];
+}
+const { titulo, chaves = [] } = Astro.props;
+---
+
+<template data-ajuda data-titulo={titulo}>
+  <slot />
+  {
+    chaves.map((chave) => (
+      <section class="ajuda__bloco">
+        <h3 class="ajuda__titulo">{COMO_CALCULAMOS[chave].titulo}</h3>
+        <dl class="ajuda__dl">
+          <dt>O que entra</dt>
+          <dd>{COMO_CALCULAMOS[chave].entra}</dd>
+          <dt>Como é calculado</dt>
+          <dd>{COMO_CALCULAMOS[chave].calculo}</dd>
+          <dt>O que não mede</dt>
+          <dd>{COMO_CALCULAMOS[chave].naoMede}</dd>
+          <dt>Como melhorar</dt>
+          <dd>{COMO_CALCULAMOS[chave].melhorar}</dd>
+        </dl>
+      </section>
+    ))
+  }
+</template>

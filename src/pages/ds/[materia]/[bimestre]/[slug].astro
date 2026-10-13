@@ -5,6 +5,8 @@ import Accordion from '../../../../components/Accordion.astro';
 import { getCollection, render } from 'astro:content';
 import { bimestreLabel as bimLabelFn } from '../../../../lib/slug';
 import { u } from '../../../../lib/url';
+import { materiasDs } from '../../../../lib/dsMapa';
+import { vizinhasNaTrilha } from '../../../../lib/materiasSecoes';
 
 export async function getStaticPaths() {
   // Seção oculta (src/lib/secoes.ts): nenhuma rota é gerada.
@@ -22,6 +24,9 @@ const entry = entries.find((e) => e.id === `${materia}/${bimestre}/${slug}`);
 if (!entry) return Astro.redirect(u('/ds'));
 const Content = (await render(entry)).Content;
 const subjectLabel = entry.data.subject;
+const trilha = (await materiasDs()).find((m) => m.slug === materia);
+const aulaId = `ds/${materia}/${bimestre}/${slug}`;
+const posicao = trilha ? vizinhasNaTrilha(trilha, aulaId) : undefined;
 ---
 
 <Tema
@@ -33,7 +38,9 @@ const subjectLabel = entry.data.subject;
   ferramentas={entry.data.ferramentas}
   active="ds"
   materia={materia}
-  aulaId={`ds/${materia}/${bimestre}/${slug}`}
+  aulaId={aulaId}
+  vizinhas={posicao}
+  materiaHref={u(`/ds/${materia}/`)}
   gabarito={entry.data.gabarito}
   breadcrumb={[
     { label: 'Desenvolvimento de Sistemas', href: u('/ds') },

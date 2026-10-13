@@ -7,7 +7,7 @@ import { u } from '../lib/url';
   title="Política de Privacidade"
   subtitle="O que este site faz (e não faz) com dados. Resumo honesto: ele não coleta nada sobre você."
   icone="user-shield"
-  atualizado="9 de setembro de 2026"
+  atualizado="12 de outubro de 2026"
   description="Política de Privacidade do Caderno de Estudos: site estático, sem cadastro, sem rastreadores e sem coleta de dados pessoais."
 >
   <div class="destaque">
@@ -42,7 +42,15 @@ import { u } from '../lib/url';
   </p>
   <ul>
     <li><strong>cdt:progresso</strong>: a lista de aulas marcadas como vistas, com a data da marcação.</li>
-    <li><strong>cdt:ultima</strong>: a última aula aberta, usada no card "continuar de onde parou".</li>
+    <li><strong>cdt:andamento</strong>: quanto de cada aula você já leu e se respondeu as questões.</li>
+    <li>
+      <strong>cdt:registro</strong>: o histórico de estudo que alimenta a revisão e a página "Meu
+      estudo": cada questão que você corrigiu (aula, número e se acertou), cada cartão que você
+      revisou e os estudos fora do site que você mesmo registrou. Você pode apagar cada registro em
+      "Meu estudo" e baixar tudo num arquivo.
+    </li>
+    <li><strong>cdt:ia</strong>: se você escolheu a correção inteligente dos cartões de revisão ou só a por palavras-chave.</li>
+    <li><strong>cdt:ajustes</strong>, <strong>cdt:hoje-dispensado</strong> e <strong>cdt:estudo-sem-revisao</strong>: as matérias em foco, o tamanho da revisão diária, as sugestões que você dispensou (por 1 hora) e se você removeu o cartão de revisão de "Meu estudo".</li>
     <li><strong>cdt:tema</strong>: se você prefere o tema claro ou escuro.</li>
     <li><strong>cdt:texto</strong>: o tamanho de texto escolhido.</li>
     <li>
@@ -71,6 +79,15 @@ import { u } from '../lib/url';
     As fontes tipográficas (Inter, Nunito e Font Awesome) são <strong>servidas pelo próprio
     site</strong>, e não por CDNs externas. Isso significa que abrir uma página não dispara nenhuma
     requisição a servidores de terceiros.
+  </p>
+  <p>
+    <strong>Exceção, só se você aceitar:</strong> na revisão por cartões você pode escolher a
+    correção inteligente. Nesse caso o navegador baixa, uma vez, o código da biblioteca
+    transformers.js (pelo CDN jsDelivr) e um modelo de linguagem pequeno, de cerca de 118 MB (pelo
+    Hugging Face). Esses dois serviços recebem o seu endereço IP e o pedido do arquivo, como
+    qualquer download. O modelo roda no seu aparelho: <strong>o texto que você escreve na resposta
+    não é enviado a ninguém</strong>. Quem prefere não baixar usa a correção por palavras-chave,
+    que não acessa nada externo.
   </p>
   <p>
     Algumas aulas indicam materiais complementares hospedados em outros serviços (vídeos, cursos

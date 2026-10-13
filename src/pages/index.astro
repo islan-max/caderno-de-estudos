@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import Icone from '../components/Icone.astro';
 import Accordion from '../components/Accordion.astro';
+import AjudaDaPagina from '../components/AjudaDaPagina.astro';
 import { u } from '../lib/url';
 import { ENEM_AREAS } from '../lib/enemAreas';
 import { indiceGeral } from '../lib/indice';
@@ -25,8 +26,8 @@ const materiasComAula = new Set(aulas.map((a) => `${a.secao}/${a.materia}`)).siz
 // Escolar e DS: um bloco por aba, com uma ficha por matéria (como as áreas do ENEM).
 const outrasAbas = (
   [
-    { chave: 'escolar' as const, titulo: 'Escolar', materias: await materiasEscolar() },
-    { chave: 'ds' as const, titulo: 'Desenvolvimento de Sistemas', materias: await materiasDs() },
+    { chave: 'escolar' as const, titulo: 'Escolar', selo: 'Escolar', subtitulo: 'Matérias da escola', materias: await materiasEscolar() },
+    { chave: 'ds' as const, titulo: 'Desenvolvimento de Sistemas', selo: 'DS', subtitulo: 'Desenvolvimento de Sistemas', materias: await materiasDs() },
   ]
 )
   .filter((a) => SECOES_VISIVEIS.some((s) => s.chave === a.chave))
@@ -70,24 +71,39 @@ const outrasAbas = (
       </button>
     </section>
 
-    <!-- ---------------------------------------------------- continuar -->
-    <!-- O título é a aula em que a pessoa parou; a linha de baixo, menor, diz qual aula vem a
-         seguir (preenchido em montarHub, app.ts). A seta leva para onde continuar. -->
-    <section class="continuar" data-continuar hidden data-surgir style="--i: 1">
-      <span class="continuar__selo"><Icone nome="play" /> Continuar de onde parou</span>
-      <div class="continuar__linha">
-        <div class="continuar__corpo">
-          <a class="continuar__titulo" data-continuar-parou href={u('/enem')}></a>
-          <p class="continuar__proxima">
-            <span class="continuar__rotulo" data-continuar-rotulo></span>
-            <a class="continuar__proxima-link" data-continuar-proxima href={u('/enem')} hidden></a>
-          </p>
-        </div>
-        <a class="continuar__seta" data-continuar-seta href={u('/enem')} aria-label="Continuar de onde parou">
-          <Icone nome="arrow-right" />
-        </a>
+    <!-- ------------------------------------------------------------ hoje -->
+    <!-- Até três ações calculadas do que você já fez, cada uma com o motivo (montarHoje, hoje.ts).
+         Escondido até o script rodar: sem JavaScript não há registro para consultar. -->
+    <details class="hoje" data-hoje data-dobra="hoje" open hidden data-surgir style="--i: 1">
+      <summary class="hoje__cabeca">
+        <h2 class="hoje__titulo"><Icone nome="route" /> Hoje</h2>
+        <span class="hoje__resumo" data-hoje-resumo></span>
+        <span class="hoje__seta" aria-hidden="true"><Icone nome="chevron-down" /></span>
+      </summary>
+      <div class="hoje__conteudo">
+        <div class="hoje__foco" data-hoje-foco hidden></div>
+        <ol class="hoje__lista" data-hoje-lista></ol>
+        <div class="hoje__vazio" data-hoje-vazio hidden></div>
+        <p class="hoje__escondidas" data-hoje-escondidas hidden></p>
+        <p class="apenas-leitor" role="status" data-hoje-status></p>
       </div>
-    </section>
+    </details>
+
+    <AjudaDaPagina titulo="Como o Hoje escolhe">
+      <p class="ajuda__texto">
+        O bloco recalcula tudo a cada visita a partir do que você já fez. Nada fica guardado como
+        “plano”, então não existe plano atrasado: faltar um dia não gera cobrança.
+      </p>
+      <ol class="ajuda__lista">
+        <li><strong>Revisão de cartões</strong>, quando há tópicos de aulas concluídas no dia de voltar.</li>
+        <li><strong>Seção a rever</strong>, quando você errou uma questão e ainda não acertou de novo.</li>
+        <li><strong>Uma aula</strong>: a que você começou e não terminou; senão, a próxima da trilha da matéria que você mais estudou (ou das que pôs em foco).</li>
+      </ol>
+      <p class="ajuda__texto">
+        “Agora não” esconde a sugestão por 1 hora. Em “Ajustar sugestões” você escolhe até 3 matérias
+        em foco e o tamanho da revisão diária, na página <a class="ajuda__link" href={u('/ajustes')}>Ajustar sugestões</a>.
+      </p>
+    </AjudaDaPagina>
 
     <!-- ------------------------------------------------------ progresso -->
     <section class="painel-progresso" data-progresso-de={todosIds} data-surgir style="--i: 2">
@@ -111,10 +127,13 @@ const outrasAbas = (
     </section>
 
     <!-- ----------------------------------------------------------- áreas -->
-    <section class="secao" data-surgir style="--i: 3">
+    <section class="secao secao--aba" data-surgir style="--i: 3; --aba: var(--color-enem);">
       <header class="secao__cabeca">
-        <h2 class="secao__titulo"><Icone nome="graduation-cap" duo cor="var(--color-enem)" /> ENEM: trilhas por área</h2>
-        <a href={u('/enem')} class="secao__link">Ver todas as matérias <Icone nome="arrow-right" /></a>
+        <h2 class="secao__titulo"><span class="aba-selo"><Icone nome="graduation-cap" /> ENEM</span> Trilhas por área</h2>
+        <div class="secao__lado">
+          <span class="secao__meta">{porArea.reduce((t, a) => t + a.total, 0)} aulas</span>
+          <a href={u('/enem')} class="secao__link">Ver todas as matérias <Icone nome="arrow-right" /></a>
+        </div>
       </header>
 
       <ul class="areas">
@@ -137,10 +156,13 @@ const outrasAbas = (
 
     <!-- ------------------------------------------------ Escolar e DS -->
     {outrasAbas.map((aba, bi) => (
-      <section class="secao" data-surgir style={`--i: ${4 + bi}`}>
+      <section class="secao secao--aba" data-surgir style={`--i: ${4 + bi}; --aba: ${aba.cor};`}>
         <header class="secao__cabeca">
-          <h2 class="secao__titulo"><Icone nome={aba.icone} duo cor={aba.cor} /> {aba.titulo}</h2>
-          <a href={u(`/${aba.chave}`)} class="secao__link">Ver todas as matérias <Icone nome="arrow-right" /></a>
+          <h2 class="secao__titulo"><span class="aba-selo"><Icone nome={aba.icone} /> {aba.selo}</span> {aba.subtitulo}</h2>
+          <div class="secao__lado">
+            <span class="secao__meta">{aba.cards.reduce((t, c) => t + c.ids.length, 0)} aulas</span>
+            <a href={u(`/${aba.chave}`)} class="secao__link">Ver todas as matérias <Icone nome="arrow-right" /></a>
+          </div>
         </header>
 
         <ul class="areas">
@@ -355,98 +377,6 @@ const outrasAbas = (
     font-size: calc(0.95rem * var(--escala-texto, 1));
   }
 
-  /* ------------------------------------------------------------ continuar */
-  .continuar {
-    position: relative;
-    margin-bottom: 1.25rem;
-    padding: 1rem 1rem 1.05rem;
-    border: 1px solid color-mix(in srgb, var(--cor-continuar, var(--color-enem)) 35%, var(--color-line));
-    border-radius: 0.85rem;
-    background: color-mix(in srgb, var(--cor-continuar, var(--color-enem)) 7%, transparent);
-  }
-  .continuar__selo {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    font-family: var(--font-display);
-    font-size: calc(0.64rem * var(--escala-texto, 1));
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: var(--cor-continuar, var(--color-enem));
-    margin-bottom: 0.55rem;
-  }
-  .continuar__linha {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-  }
-  .continuar__corpo {
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
-    min-width: 0;
-    flex: 1;
-  }
-  /* O título é a aula em que a pessoa parou. */
-  .continuar__titulo {
-    align-self: flex-start;
-    font-family: var(--font-display);
-    font-size: calc(1.5rem * var(--escala-texto, 1));
-    font-weight: 800;
-    letter-spacing: -0.02em;
-    line-height: 1.2;
-    color: var(--color-ink);
-    text-decoration: none;
-  }
-  .continuar__titulo:hover {
-    text-decoration: underline;
-    text-decoration-thickness: 2px;
-    text-underline-offset: 0.2em;
-  }
-  /* Embaixo, menor: a aula recomendada, sublinhada na cor do cartão. */
-  .continuar__proxima {
-    margin: 0;
-    font-family: var(--font-body);
-    font-size: calc(0.86rem * var(--escala-texto, 1));
-    line-height: 1.5;
-    color: var(--color-ink-soft);
-  }
-  .continuar__rotulo {
-    margin-right: 0.35em;
-  }
-  .continuar__rotulo:empty {
-    display: none;
-  }
-  .continuar__proxima-link {
-    font-family: var(--font-display);
-    font-weight: 700;
-    color: var(--color-ink);
-    text-decoration: underline;
-    text-decoration-color: color-mix(in srgb, var(--cor-continuar, var(--color-enem)) 70%, transparent);
-    text-decoration-thickness: 2px;
-    text-underline-offset: 0.2em;
-  }
-  .continuar__proxima-link:hover {
-    text-decoration-color: var(--cor-continuar, var(--color-enem));
-  }
-  .continuar__seta {
-    display: grid;
-    place-items: center;
-    flex-shrink: 0;
-    width: 2.4rem;
-    height: 2.4rem;
-    border-radius: 999px;
-    background: var(--cor-continuar, var(--color-enem));
-    color: var(--color-paper);
-    font-size: calc(0.8rem * var(--escala-texto, 1));
-    text-decoration: none;
-    transition: transform 0.24s var(--ease);
-  }
-  .continuar__seta:hover {
-    transform: translateX(4px);
-  }
-
   /* ------------------------------------------------------------ progresso */
   .painel-progresso {
     display: flex;
@@ -538,6 +468,55 @@ const outrasAbas = (
   /* --------------------------------------------------------------- seções */
   .secao {
     margin-bottom: 2.5rem;
+  }
+  /* Cada aba (ENEM, Escolar, DS) é uma divisória de fichário: uma orelha sobre a folha, com contorno
+     fino na cor da aba e a mesma tinta suave da folha (sem fundo cheio). */
+  .secao--aba {
+    --papel-aba: color-mix(in srgb, var(--aba) 6%, var(--color-surface));
+    position: relative;
+    margin-top: 2.9rem;
+    padding: 1.1rem 1rem 1.15rem;
+    border: 1px solid color-mix(in srgb, var(--aba) 55%, var(--color-line));
+    border-radius: 0 0.95rem 0.95rem 0.95rem;
+    background: var(--papel-aba);
+  }
+  .aba-selo {
+    position: absolute;
+    top: -2rem;
+    left: -1px;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    height: 2rem;
+    padding: 0 1rem;
+    border: 1px solid color-mix(in srgb, var(--aba) 55%, var(--color-line));
+    border-bottom: 0;
+    border-radius: 0.7rem 0.7rem 0 0;
+    background: var(--papel-aba);
+    color: var(--color-ink);
+    font-size: calc(0.74rem * var(--escala-texto, 1));
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .aba-selo :global(svg),
+  .aba-selo :global(i) {
+    color: var(--aba);
+  }
+  .secao__titulo {
+    flex-wrap: wrap;
+  }
+  .secao__lado {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.3rem 1rem;
+  }
+  .secao__meta {
+    font-family: var(--font-display);
+    font-size: calc(0.75rem * var(--escala-texto, 1));
+    font-weight: 700;
+    color: var(--color-ink-soft);
   }
   .secao__cabeca {
     display: flex;

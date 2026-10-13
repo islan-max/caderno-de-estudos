@@ -14,12 +14,16 @@ import { montarSumario } from './sumario';
 import { montarBarrasDeRolagem } from './barra-rolagem';
 import { ligarAtalhos } from './atalhos';
 import { ligarAulaAtual } from './aula';
+import { montarAjustes } from './ajustes';
+import { montarAvisoRever } from './estudo-aula';
 import { toast } from './avisos';
 import { abrirBusca } from './busca';
 import { ligarCabecalhoFixo, ligarPilulaVoltar } from './cabecalho';
 import { ligarDobras } from './dobras';
 import { montarHub } from './hub';
 import { ligarNotasSoltas } from './notas';
+import { montarEstudo } from './meu-estudo';
+import { montarRevisao } from './revisao';
 import { aplicarFontePx, lerBrilho, aplicarBrilho, aplicarDispensados, lerFontePx, preferencias, aplicarA11y } from './preferencias';
 import { vistas, refletirProgresso } from './progresso';
 import { aplicarTema, temaSalvo } from './tema';
@@ -37,6 +41,9 @@ function iniciar() {
   aplicarA11y(preferencias());
   refletirProgresso();
   montarHub();
+  void montarRevisao();
+  void montarEstudo();
+  void montarAjustes();
   ligarAtalhos();
   ligarNotasSoltas();
   ligarDobras();
@@ -47,6 +54,7 @@ function iniciar() {
   // as barras de rolagem medem a página já com os tópicos no lugar.
   montarQuiz();
   montarTopicos();
+  montarAvisoRever();
   montarSumario();
   montarBarrasDeRolagem();
 }

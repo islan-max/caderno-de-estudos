@@ -37,6 +37,17 @@ export function escapar(s: string): string {
   return d.innerHTML;
 }
 
+/** "2026-10-12" → "segunda-feira, 12 de outubro". */
+export function dataExtensa(dia: string, comAno = false): string {
+  const [a, m, d] = dia.split('-').map(Number);
+  return new Date(a, m - 1, d).toLocaleDateString('pt-BR', {
+    weekday: 'long',
+    day: 'numeric',
+    month: 'long',
+    ...(comAno ? { year: 'numeric' } : {}),
+  });
+}
+
 export function movimentoReduzido(): boolean {
   return (
     window.matchMedia('(prefers-reduced-motion: reduce)').matches ||

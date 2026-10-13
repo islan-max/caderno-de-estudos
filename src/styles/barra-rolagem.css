@@ -501,3 +501,52 @@ html[data-contraste='sim'] .barra__polegar {
     display: none;
   }
 }
+
+/* ---------------------------------------------------------------------------
+ * Rolagem horizontal de um contêiner (data-rolagem="x"): a RÉGUA.
+ * A vertical é o corretivo/giz; para os lados o material é outro: uma régua escolar, com os
+ * tracinhos de centímetro e milímetro, e um marcador de texto deslizando por cima dela.
+ * ------------------------------------------------------------------------- */
+.barra[data-alvo='contenedor'][data-eixo='x'] {
+  top: auto;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: auto;
+  height: 22px;
+  opacity: 0.95;
+}
+.barra[data-alvo='contenedor'][data-eixo='x'] .barra__trilho {
+  top: 2px;
+  bottom: auto;
+  left: 0;
+  right: 0;
+  width: auto;
+  height: 18px;
+  border: 1px solid var(--color-line);
+  border-radius: 3px;
+  background:
+    repeating-linear-gradient(to right, var(--color-ink-soft) 0 1px, transparent 1px 30px) 0 0 / 100% 10px no-repeat,
+    repeating-linear-gradient(to right, var(--color-ink-soft) 0 1px, transparent 1px 6px) 0 0 / 100% 5px no-repeat,
+    color-mix(in srgb, var(--acento, var(--color-ink)) 9%, var(--color-surface));
+}
+.barra[data-alvo='contenedor'][data-eixo='x'] .barra__fita,
+.barra[data-alvo='contenedor'][data-eixo='x'] .barra__polegar::before,
+.barra[data-alvo='contenedor'][data-eixo='x'] .barra__polegar::after {
+  display: none;
+}
+.barra[data-alvo='contenedor'][data-eixo='x'] .barra__polegar,
+.barra[data-alvo='contenedor'][data-eixo='x']:hover .barra__polegar,
+.barra[data-alvo='contenedor'][data-eixo='x'][data-ativa] .barra__polegar,
+.barra[data-alvo='contenedor'][data-eixo='x'][data-arrastando] .barra__polegar {
+  top: -1px;
+  left: 0;
+  right: auto;
+  width: auto;
+  height: 20px;
+  margin: 0;
+  border: 2px solid var(--acento, var(--color-ink));
+  border-radius: 4px;
+  background: color-mix(in srgb, var(--acento, var(--color-ink)) 30%, transparent);
+  box-shadow: none;
+}

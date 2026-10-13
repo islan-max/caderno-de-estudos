@@ -1,14 +1,18 @@
 /* ---------------------------------------------------------------------------
  * Progresso das aulas: vistas, andamento, última aula e o zerar tudo.
  * ------------------------------------------------------------------------- */
+import { estadoDaAula } from '../lib/estudo';
+import type { EstadoAula } from '../lib/estudo';
 import { toast } from './avisos';
 import { confirmarAcao } from './confirmacao';
 import { restaurarAcessibilidade } from './preferencias';
+import { apagarRegistro, lerRegistro } from './registro';
 import { ler, gravar, movimentoReduzido } from './util';
 
-const CHAVE_PROGRESSO = 'cdt:progresso';
+export const CHAVE_PROGRESSO = 'cdt:progresso';
 
-export const CHAVE_ULTIMA = 'cdt:ultima';
+/** Chave antiga (card "continuar de onde parou", substituído pelo Hoje): só é apagada ao zerar. */
+const CHAVE_ULTIMA = 'cdt:ultima';
 
 export const CHAVE_ANDAMENTO = 'cdt:andamento';
 
@@ -42,7 +46,7 @@ export async function zerarProgresso() {
   const r = await confirmarAcao({
     titulo: 'Zerar o progresso?',
     texto:
-      'As aulas que você marcou como vistas e o andamento de cada uma voltam ao zero neste navegador. Isso não pode ser desfeito.',
+      'As aulas que você marcou como vistas, o andamento de cada uma e o histórico de respostas, revisões e estudos fora do site voltam ao zero neste navegador. Isso não pode ser desfeito.',
     confirmar: 'Zerar progresso',
     extra: 'Restaurar também os ajustes de acessibilidade (tamanho do texto, contraste etc.) ao padrão',
   });
@@ -56,6 +60,7 @@ export async function zerarProgresso() {
     localStorage.removeItem(CHAVE_ULTIMA);
     localStorage.removeItem(CHAVE_ANDAMENTO);
   } catch {}
+  apagarRegistro();
   refletirProgresso();
   toast('Progresso zerado', 'rotate-left');
   document.querySelectorAll<HTMLElement>('[data-recarrega-progresso]').forEach((el) => {
@@ -75,6 +80,51 @@ export function marcar(id: string, vista: boolean) {
   return gravar(CHAVE_PROGRESSO, p);
 }
 
+const TEXTO_ESTADO: Record<EstadoAula, { icone: string }> = {
+  'nao-iniciada': { icone: 'arrow-right' },
+  andamento: { icone: 'hourglass-half' },
+  concluida: { icone: 'circle-check' },
+  rever: { icone: 'arrows-rotate' },
+};
+
+/** Estado escrito de cada aula da trilha: Concluída, Em andamento, Rever (com a seção) ou Próxima. */
+function refletirEstados(p: Progresso, and: Record<string, Andamento>) {
+  const eventos = lerRegistro().eventos;
+  document.querySelectorAll<HTMLElement>('ol.trilha').forEach((trilha) => {
+    let atualMarcada = false;
+    trilha.querySelectorAll<HTMLElement>('[data-aula-id]').forEach((el) => {
+      const id = el.dataset.aulaId!;
+      const { estado, rever } = estadoDaAula({ eventos, aula: id, vista: Boolean(p[id]), andamento: and[id] });
+      el.dataset.estado = estado;
+      // A primeira aula ainda por fazer é "a próxima": quem abre a trilha sabe por onde seguir.
+      const ehAtual = !atualMarcada && (estado === 'nao-iniciada' || estado === 'andamento');
+      if (ehAtual) atualMarcada = true;
+      const link = el.querySelector('.trilha__link');
+      if (ehAtual) link?.setAttribute('aria-current', 'step');
+      else link?.removeAttribute('aria-current');
+
+      const caixa = el.querySelector<HTMLElement>('[data-estado-texto]');
+      if (!caixa) return;
+      const texto =
+        estado === 'concluida'
+          ? 'Concluída'
+          : estado === 'andamento'
+            ? 'Em andamento'
+            : estado === 'rever'
+              ? 'Rever: ' + rever[0].rotulo + (rever.length > 1 ? ` (e mais ${rever.length - 1})` : '')
+              : ehAtual
+                ? 'Próxima'
+                : '';
+      caixa.hidden = !texto;
+      caixa.dataset.estado = ehAtual && estado === 'nao-iniciada' ? 'proxima' : estado;
+      const icone = caixa.querySelector('i');
+      if (icone) icone.className = 'fa-solid fa-' + TEXTO_ESTADO[estado].icone;
+      const rotulo = caixa.querySelector('[data-estado-rotulo]');
+      if (rotulo) rotulo.textContent = texto;
+    });
+  });
+}
+
 /** Pinta as listas: cada item com data-aula-id ganha data-vista. */
 export function refletirProgresso() {
   const p = vistas();
@@ -89,10 +139,12 @@ export function refletirProgresso() {
       anel.setAttribute('animation', movimentoReduzido() ? 'none' : 'easeOutCubic');
       anel.setAttribute('value', String(vista ? 100 : Math.min(99, percentualDaAula(and[el.dataset.aulaId!]))));
     }
-    // O check verde é só visual: o leitor de tela recebe a mesma informação em texto.
+    // O check verde é só visual: o leitor de tela recebe a mesma informação em texto, no estado
+    // escrito da aula (refletirEstados), que também é visível.
     const sr = el.querySelector('[data-vista-texto]');
-    if (sr) sr.textContent = vista ? 'Aula já vista.' : '';
+    if (sr) sr.textContent = '';
   });
+  refletirEstados(p, and);
 
   document.querySelectorAll<HTMLElement>('[data-progresso-de]').forEach((el) => {
     const ids = (el.dataset.progressoDe || '').split(' ').filter(Boolean);
@@ -131,25 +183,6 @@ function atualizarBotaoVista() {
   if (icone) icone.className = `fa-solid fa-${vista ? 'circle-check' : 'circle'}`;
   const rotulo = btn.querySelector('[data-rotulo]');
   if (rotulo) rotulo.textContent = vista ? 'Aula concluída' : 'Marcar como vista';
-}
-
-/** Guarda a última aula aberta para o card "continuar de onde parou". */
-export function registrarUltima(el: HTMLElement) {
-  gravar(CHAVE_ULTIMA, {
-    id: el.dataset.aula,
-    titulo: el.dataset.titulo,
-    materia: el.dataset.materia,
-    href: location.pathname,
-    ts: Date.now(),
-  });
-}
-
-export interface Ultima {
-  id?: string;
-  titulo?: string;
-  materia?: string;
-  href?: string;
-  ts?: number;
 }
 
 /** Aulas que a pessoa desmarcou na mão: não se concluem sozinhas de novo nesta visita. */

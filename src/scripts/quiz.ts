@@ -14,6 +14,10 @@
  * Sem JS, ou sem gabarito no frontmatter, a aula continua legível como texto.
  * ------------------------------------------------------------------------- */
 
+import { parseRevisar } from '../lib/estudo.ts';
+import { registrar } from './registro.ts';
+import { acharSecao, linkParaSecao } from './secoes-aula.ts';
+
 interface Gabarito {
   correta: number;
   porque?: string;
@@ -186,6 +190,7 @@ export function montarQuiz() {
   if (!questoes.length) return;
 
   artigo.dataset.quizPronto = 'true';
+  const aulaId = artigo.dataset.aula;
 
   const form = document.createElement('form');
   form.className = 'quiz';
@@ -229,7 +234,12 @@ export function montarQuiz() {
   anuncio.setAttribute('role', 'status');
   anuncio.setAttribute('aria-live', 'polite');
 
-  acoes.append(corrigir, refazer, placar, anuncio);
+  // Depois de corrigir tudo: as seções da aula onde houve erro, com link direto para cada uma.
+  const rever = document.createElement('div');
+  rever.className = 'quiz__rever';
+  rever.hidden = true;
+
+  acoes.append(corrigir, refazer, placar, anuncio, rever);
   form.appendChild(acoes);
 
   const blocos = () => Array.from(form.querySelectorAll<HTMLElement>('.quiz__questao'));
@@ -273,8 +283,17 @@ export function montarQuiz() {
         : acertou
           ? 'Você acertou. Resposta correta: ' + letra + '.'
           : 'Você errou. A resposta correta era a ' + letra + ' (em amarelo).';
-    resposta.textContent = veredito + (chave.porque ? ' ' + chave.porque : '');
+    // O gabarito termina com "Revisar: Aula Teórica › N. Seção": vira um link para a seção.
+    const { texto, secao } = parseRevisar(chave.porque ?? '');
+    const titulo = secao ? acharSecao(artigo!, secao) : null;
+    const partes: (string | Node)[] = [veredito + (texto ? ' ' + texto : '')];
+    if (secao) partes.push(' ', titulo ? linkParaSecao(titulo, 'Rever na aula: ' + secao, 'quiz__link-rever') : 'Revisar: ' + secao + '.');
+    resposta.replaceChildren(...partes);
     resposta.hidden = false;
+    if (secao) bloco.dataset.secao = secao;
+    else delete bloco.dataset.secao;
+    // Uma resposta corrigida = um evento. Questão em branco não é resposta.
+    if (aulaId && escolha >= 0) registrar({ k: 'q', a: aulaId, n: i, ok: acertou, ...(secao ? { s: secao } : {}) });
     return veredito;
   }
 
@@ -307,11 +326,38 @@ export function montarQuiz() {
               ? 'media'
               : 'baixa';
     }
+    atualizarRever(tudo ? feitas.filter((b) => b.dataset.estado === 'errada') : []);
     // Avisa quantas questões já foram respondidas (andamento da aula, ver ligarAulaAtual).
     document.dispatchEvent(
       new window.CustomEvent('cdt:questoes', { detail: { respondidas, total: lista.length } })
     );
     return { acertos, respondidas, total };
+  }
+
+  function atualizarRever(erradas: HTMLElement[]) {
+    rever.replaceChildren();
+    rever.hidden = erradas.length === 0;
+    if (!erradas.length) return;
+    const intro = document.createElement('p');
+    intro.textContent = 'Para rever na aula:';
+    const lista = document.createElement('ul');
+    const vistas = new Set<string>();
+    for (const b of erradas) {
+      const nome = b.dataset.secao;
+      const chave = nome ?? b.querySelector('.quiz__legenda')?.textContent ?? '';
+      if (vistas.has(chave)) continue;
+      vistas.add(chave);
+      const li = document.createElement('li');
+      const titulo = nome ? acharSecao(artigo!, nome) : null;
+      if (nome && titulo) li.append(linkParaSecao(titulo, nome));
+      else li.textContent = nome ?? chave;
+      lista.append(li);
+    }
+    const nota = document.createElement('p');
+    nota.className = 'quiz__rever-nota';
+    nota.textContent =
+      'Essas seções ficam marcadas como “Rever” na trilha até você acertar a questão de novo, pelo menos 30 minutos depois do erro.';
+    rever.append(intro, lista, nota);
   }
 
   function avisarFim(acertos: number, respondidas: number, total: number) {

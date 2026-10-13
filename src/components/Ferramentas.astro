@@ -2,13 +2,38 @@
 // Barra de ferramentas do cabeçalho.
 // Substitui a antiga frase solta por quatro funções de verdade:
 // buscar aula, ver progresso, trocar o tema e ajustar o tamanho do texto.
+import { u } from '../lib/url';
+import { ABAS_ESTUDO } from '../lib/abas';
+import type { ChaveAba } from '../lib/abas';
 import Icone from './Icone.astro';
+
+interface Props {
+  active?: ChaveAba | null;
+}
+const { active = null } = Astro.props;
 ---
 
 <div class="ferramentas" role="group" aria-label="Ferramentas do caderno">
+  {/* Revisão e Meu estudo moraram nas abas do caderno, mas quebravam a fileira de abas; aqui cabem ao lado da busca. */}
+  {ABAS_ESTUDO.map((aba) => (
+    <a
+      href={u(aba.href)}
+      class="ferramenta ferramenta--estudo"
+      style={`--aba: ${aba.color}; --aba-suave: ${aba.soft};`}
+      title={aba.label}
+      aria-label={aba.label}
+      aria-current={active === aba.key ? 'page' : undefined}
+    >
+      <Icone nome={aba.icone} />
+      <span class="ferramenta__texto">{aba.label}</span>
+    </a>
+  ))}
+
+  <span class="ferramentas__div" aria-hidden="true"></span>
+
   <button
     type="button"
-    class="ferramenta ferramenta--busca"
+    class="ferramenta"
     data-acao="busca"
     title="Buscar aula"
     aria-label="Buscar aula"
@@ -16,12 +41,15 @@ import Icone from './Icone.astro';
     aria-keyshortcuts="Control+K"
   >
     <Icone nome="magnifying-glass" />
-    <span class="ferramenta__texto">Buscar aula</span>
   </button>
 
   <button type="button" class="ferramenta" data-abre="progresso" title="Meu progresso" aria-label="Meu progresso" aria-haspopup="dialog">
     <Icone nome="chart-simple" />
-    <span class="ferramenta__texto ferramenta__texto--md">Progresso</span>
+  </button>
+
+  <!-- Só aparece em página com ajuda (AjudaDaPagina.astro); a regra que esconde está em CabecalhoFixo.astro. -->
+  <button type="button" class="ferramenta" data-so-ajuda data-abre="ajuda" title="Ajuda desta página" aria-label="Ajuda desta página" aria-haspopup="dialog">
+    <Icone nome="question" />
   </button>
 
   <button
@@ -94,6 +122,17 @@ import Icone from './Icone.astro';
     transform: translateY(-1px);
     box-shadow: var(--shadow-soft);
   }
+  .ferramenta--estudo {
+    text-decoration: none;
+  }
+  .ferramenta--estudo i {
+    color: var(--aba);
+  }
+  .ferramenta--estudo[aria-current='page'] {
+    color: var(--color-ink);
+    border-color: var(--aba);
+    background: var(--aba-suave);
+  }
   .ferramenta:active {
     transform: translateY(0);
   }
@@ -102,10 +141,13 @@ import Icone from './Icone.astro';
     border-color: color-mix(in srgb, var(--color-ink) 40%, var(--color-line));
   }
 
-  /* A busca é a ação principal: ganha largura e vira um campo falso. */
-  .ferramenta--busca {
-    padding-right: 1rem;
-    padding-left: 0.85rem;
+  /* Dois grupos: os destinos de estudo (com nome) e as ferramentas (só ícone, com dica ao passar o mouse). */
+  .ferramentas__div {
+    align-self: center;
+    width: 1px;
+    height: 1.3rem;
+    margin: 0 0.15rem;
+    background: var(--color-line);
   }
   .ferramenta__texto {
     display: none;
@@ -125,18 +167,7 @@ import Icone from './Icone.astro';
     .ferramentas {
       gap: 0.45rem;
     }
-    .ferramenta--busca {
-      min-width: 8.5rem;
-      justify-content: flex-start;
-    }
-    .ferramenta--busca .ferramenta__texto {
-      display: inline;
-      flex: 1;
-      text-align: left;
-    }
-  }
-  @media (min-width: 1024px) {
-    .ferramenta__texto--md {
+    .ferramenta__texto {
       display: inline;
     }
   }

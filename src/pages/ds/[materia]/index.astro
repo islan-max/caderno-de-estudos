@@ -24,6 +24,7 @@ const { total, prontas } = contarAulas(materia.bimestres);
   active="ds"
   description={`Aulas de ${materia.nome}, por bimestre`}
   voltar={{ href: u('/ds'), label: 'Matérias' }}
+  migalhasPropria
   cor={`var(--color-${materia.slug})`}
 >
   <nav class="font-mono text-xs text-ink-soft mb-4" aria-label="Você está aqui">

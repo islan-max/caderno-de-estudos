@@ -3,12 +3,12 @@
 // Substitui as antigas setas de histórico do cabeçalho: aqui o usuário vê
 // PARA ONDE está indo — nome da aula anterior e da próxima, na ordem de
 // aprendizado da matéria — em vez de um "voltar" cego do navegador.
-import type { AulaIndexada } from '../lib/aulas';
+type Vizinha = { href: string; titulo: string };
 import Icone from './Icone.astro';
 
 interface Props {
-  anterior: AulaIndexada | null;
-  proxima: AulaIndexada | null;
+  anterior: Vizinha | null;
+  proxima: Vizinha | null;
   posicao: number;
   total: number;
   materiaHref: string;
@@ -41,8 +41,8 @@ const { anterior, proxima, posicao, total, materiaHref, materiaLabel, accent } =
       <span class="pager__card pager__card--vazio">
         <span class="pager__seta"><Icone nome="flag-checkered" /></span>
         <span class="pager__texto">
-          <span class="pager__rotulo">Começo da matéria</span>
-          <span class="pager__titulo">Esta é a primeira aula</span>
+          <span class="pager__rotulo">{posicao > 1 ? 'Aula anterior' : 'Começo da matéria'}</span>
+          <span class="pager__titulo">{posicao > 1 ? 'Ainda não há aula anterior disponível' : 'Esta é a primeira aula'}</span>
         </span>
       </span>
     )}
@@ -58,8 +58,8 @@ const { anterior, proxima, posicao, total, materiaHref, materiaLabel, accent } =
     ) : (
       <span class="pager__card pager__card--vazio pager__card--prox">
         <span class="pager__texto">
-          <span class="pager__rotulo">Fim da matéria</span>
-          <span class="pager__titulo">Você chegou na última aula</span>
+          <span class="pager__rotulo">{posicao < total ? 'Próxima aula' : 'Fim da matéria'}</span>
+          <span class="pager__titulo">{posicao < total ? 'Ainda não há próxima aula disponível' : 'Você chegou na última aula'}</span>
         </span>
         <span class="pager__seta"><Icone nome="trophy" /></span>
       </span>

@@ -5,7 +5,8 @@ import PaginacaoAula from '../components/PaginacaoAula.astro';
 import Icone from '../components/Icone.astro';
 import Accordion from '../components/Accordion.astro';
 import FerramentasAula from '../components/FerramentasAula.astro';
-import type { AulaIndexada } from '../lib/aulas';
+import AjudaDaPagina from '../components/AjudaDaPagina.astro';
+type Vizinha = { href: string; titulo: string };
 
 interface Crumb {
   label: string;
@@ -26,8 +27,8 @@ interface Props {
   /** Respostas certas das questões da aula (índice 0-4 = alternativas a-e). */
   gabarito?: { correta: number; porque?: string }[];
   vizinhas?: {
-    anterior: AulaIndexada | null;
-    proxima: AulaIndexada | null;
+    anterior: Vizinha | null;
+    proxima: Vizinha | null;
     posicao: number;
     total: number;
   };
@@ -63,6 +64,7 @@ const corDaMateria = `--materia: var(--color-${destaque}); --materia-soft: var(-
   active={active}
   description={relevance}
   voltar={pai ? { href: pai.href!, label: pai.label } : undefined}
+  migalhasPropria
   cor={materia ? `var(--color-${materia})` : undefined}
 >
   <div class="aula" style={corDaMateria || undefined}>
@@ -140,10 +142,21 @@ const corDaMateria = `--materia: var(--color-${destaque}); --materia-soft: var(-
     </div>
   )}
 
+  {gabarito && gabarito.length > 0 && (
+    <AjudaDaPagina titulo="Como o caderno lê as suas respostas" chaves={['rever', 'firme']}>
+      <p class="ajuda__texto">
+        Cada questão aponta a seção da Aula Teórica que a explica. Ao corrigir, o caderno guarda só
+        isso, neste navegador: qual questão, se você acertou e qual seção rever. Com isso ele marca
+        a aula como “Rever”, sugere no Hoje e antecipa os cartões de revisão dela.
+      </p>
+    </AjudaDaPagina>
+  )}
+
   <article
     class="prose prose-tema max-w-none"
     data-conteudo-aula
     data-secao={active}
+    data-aula={aulaId}
     data-gabarito={gabarito ? JSON.stringify(gabarito) : undefined}
   >
     <slot />

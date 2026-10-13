@@ -1,0 +1,148 @@
+---
+// Meu estudo: a revisão de hoje, os dias de estudo, o progresso por matéria, o registro de estudo
+// fora do site, o histórico e os dados. Tudo é calculado no navegador do registro local
+// (src/scripts/meu-estudo.ts); os títulos e a estrutura moram aqui para a página fazer sentido
+// mesmo antes do script rodar.
+import Base from '../layouts/Base.astro';
+import Icone from '../components/Icone.astro';
+import AjudaDaPagina from '../components/AjudaDaPagina.astro';
+import { u } from '../lib/url';
+---
+
+<Base
+  title="Meu estudo"
+  active="estudo"
+  description="Veja como o seu estudo está indo: dias, matérias, revisão e histórico"
+  voltar={{ href: u('/'), label: 'Início' }}
+>
+  <div class="estudo" data-estudo>
+    <header class="est-hero" data-surgir>
+      <p class="est-hero__selo"><Icone nome="chart-line" /> Meu estudo</p>
+      <h1 class="est-hero__h1">O que o seu estudo mostra</h1>
+      <p class="est-hero__intro">
+        Sem ranking e sem meta de horas: tempo estudado não é o mesmo que aprender. Os dados ficam só
+        neste navegador. Em dúvida sobre um número? O botão <strong>?</strong> no topo explica de onde
+        ele vem.
+      </p>
+      <a class="est-hero__link" href={u('/ajustes')}><Icone nome="sliders" /> Ajustar as sugestões do Hoje</a>
+    </header>
+
+    <p class="estudo__status" data-estudo-status role="status">Calculando…</p>
+
+    <div class="estudo__corpo" data-estudo-corpo hidden>
+      <div data-bloco="revisao"></div>
+
+      <section class="est-bloco est-bloco--dias" aria-labelledby="estudo-dias">
+        <header class="est-bloco__cabeca">
+          <span class="est-bloco__icone"><Icone nome="timeline" /></span>
+          <div>
+            <h2 id="estudo-dias" class="est-bloco__titulo">Dias de estudo</h2>
+            <p class="est-bloco__sub">Seus últimos 6 meses no caderno: um quadrado por dia em que você fez alguma coisa, sem cobrança de tempo.</p>
+          </div>
+        </header>
+        <div data-bloco="dias"></div>
+      </section>
+
+      <section class="est-bloco est-bloco--materias" aria-labelledby="estudo-materias">
+        <header class="est-bloco__cabeca">
+          <span class="est-bloco__icone"><Icone nome="layer-group" /></span>
+          <div>
+            <h2 id="estudo-materias" class="est-bloco__titulo">Por matéria</h2>
+            <p class="est-bloco__sub">Aulas concluídas e o que está firme ou precisa de revisão. Abra uma matéria para ver os detalhes.</p>
+          </div>
+        </header>
+        <div data-bloco="materias"></div>
+      </section>
+
+      <section class="est-bloco est-bloco--fora" aria-labelledby="estudo-fora">
+        <header class="est-bloco__cabeca">
+          <span class="est-bloco__icone"><Icone nome="pen-to-square" /></span>
+          <div>
+            <h2 id="estudo-fora" class="est-bloco__titulo">Registrar estudo fora do site</h2>
+            <p class="est-bloco__sub">Livro, caderno, aula na escola, vídeo: registre para o dia aparecer em “Dias de estudo”.</p>
+          </div>
+        </header>
+        <form class="fora" data-fora novalidate>
+          <div class="fora__campos">
+            <div class="campo">
+              <label for="fora-materia">Matéria ou assunto</label>
+              <input id="fora-materia" name="materia" type="text" maxlength="80" required autocomplete="off" aria-describedby="fora-erro fora-sugestoes" />
+            </div>
+            <div class="campo">
+              <label for="fora-texto">O que você fez <span class="campo__opc">(opcional)</span></label>
+              <input id="fora-texto" name="texto" type="text" maxlength="200" autocomplete="off" />
+            </div>
+            <div class="campo campo--curto">
+              <label for="fora-min">Minutos <span class="campo__opc">(opcional)</span></label>
+              <input id="fora-min" name="min" type="number" min="1" max="1440" inputmode="numeric" />
+            </div>
+          </div>
+          <p class="fora__erro" id="fora-erro" data-fora-erro role="alert" hidden></p>
+          <div class="fora__rodape">
+            <div class="fora__sugestoes" id="fora-sugestoes" data-fora-lista role="group" aria-label="Sugestões de matéria"></div>
+            <button type="submit" class="est-botao est-botao--principal"><Icone nome="plus" /> Registrar estudo</button>
+          </div>
+          <p class="apenas-leitor" role="status" data-fora-ok></p>
+        </form>
+      </section>
+
+      <section class="est-bloco est-bloco--historico" aria-labelledby="estudo-historico">
+        <header class="est-bloco__cabeca">
+          <span class="est-bloco__icone"><Icone nome="clock" /></span>
+          <div>
+            <h2 id="estudo-historico" class="est-bloco__titulo" tabindex="-1">Histórico</h2>
+            <p class="est-bloco__sub">Cada resposta, cartão e estudo registrado, por dia. Apagar um registro recalcula tudo.</p>
+          </div>
+        </header>
+        <div data-bloco="historico"></div>
+      </section>
+
+      <section class="est-bloco est-bloco--dados" aria-labelledby="estudo-dados">
+        <header class="est-bloco__cabeca">
+          <span class="est-bloco__icone"><Icone nome="database" /></span>
+          <div>
+            <h2 id="estudo-dados" class="est-bloco__titulo">Seus dados</h2>
+            <p class="est-bloco__sub">Nada sai do aparelho sozinho. Leve o histórico para outro aparelho ou guarde uma cópia.</p>
+          </div>
+        </header>
+        <div class="dados">
+          <article class="dados__cartao">
+            <span class="dados__icone" aria-hidden="true"><Icone nome="download" /></span>
+            <h3 class="dados__titulo">Baixar uma cópia</h3>
+            <p class="dados__texto">
+              Gera um arquivo .json com as suas respostas, cartões revistos, aulas concluídas,
+              estudos fora do site e ajustes. Guarde antes de limpar os dados do navegador.
+            </p>
+            <p class="dados__resumo" data-dados-resumo></p>
+            <button type="button" class="est-botao est-botao--principal" data-baixar>
+              <Icone nome="download" /> Baixar cópia
+            </button>
+          </article>
+          <article class="dados__cartao" data-solta>
+            <span class="dados__icone" aria-hidden="true"><Icone nome="folder-open" /></span>
+            <h3 class="dados__titulo">Carregar um arquivo</h3>
+            <p class="dados__texto">
+              Junta o arquivo aos dados deste navegador, sem apagar nada do que já existe. Serve para
+              trazer o histórico de outro aparelho.
+            </p>
+            <p class="dados__resumo">Escolha um arquivo .json do caderno ou arraste-o para este quadro.</p>
+            <button type="button" class="est-botao" data-carregar-botao>
+              <Icone nome="folder-open" /> Carregar arquivo
+            </button>
+            <input class="apenas-leitor" id="dados-arquivo" type="file" accept="application/json,.json" tabindex="-1" aria-label="Arquivo de dados do caderno" data-carregar />
+          </article>
+        </div>
+        <p class="dados__status" role="status" data-dados-status></p>
+      </section>
+    </div>
+
+    <AjudaDaPagina titulo="Como ler esta página" chaves={['dias', 'materia', 'revisao']}>
+      <p class="ajuda__texto">
+        Esta página é calculada, na hora, do histórico guardado neste navegador. Apagar um registro ou
+        desmarcar uma aula muda tudo o que depende dele. Dia sem quadrado colorido é “sem registro”,
+        não é falha. Os minutos que você informa em “estudo fora do site” aparecem só como informados
+        por você e nunca entram como sinal de aprendizagem.
+      </p>
+    </AjudaDaPagina>
+  </div>
+</Base>

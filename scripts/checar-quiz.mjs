@@ -66,8 +66,11 @@ function checar(alvo) {
     const placar = document.querySelector('.quiz__placar')?.textContent || '';
     if (!/Você acertou 5 de 5/.test(placar)) erros.push(`marcando o gabarito, o placar foi "${placar}"`);
     blocos.forEach((b, i) => {
-      const r = b.querySelector('.quiz__resposta')?.textContent || '';
-      if (!/Revisar: Aula Teórica › /.test(r)) erros.push(`questão ${i + 1}: explicação da resposta sem "Revisar: Aula Teórica ›"`);
+      // O "Revisar: Aula Teórica › N. Seção" do gabarito vira o link "Rever na aula" para a seção
+      // (quiz.ts). Sem o link, a seção citada não existe na aula ou o texto saiu do padrão.
+      const link = b.querySelector('.quiz__resposta .quiz__link-rever');
+      if (!link) erros.push(`questão ${i + 1}: a explicação da resposta não ganhou o link "Rever na aula" (falta "Revisar: Aula Teórica › N. Seção" ou a seção não existe)`);
+      else if (!/^#.+/.test(link.getAttribute('href') || '')) erros.push(`questão ${i + 1}: o link de revisão não aponta para um título da aula`);
     });
   }
 

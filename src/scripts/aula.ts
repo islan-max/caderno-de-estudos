@@ -2,7 +2,7 @@
  * Marcação automática da aula aberta: andamento de leitura e questões.
  * ------------------------------------------------------------------------- */
 import { toast } from './avisos';
-import { CHAVE_ANDAMENTO, andamentos, percentualDaAula, vistas, marcar, refletirProgresso, registrarUltima, semConclusaoAutomatica } from './progresso';
+import { CHAVE_ANDAMENTO, andamentos, percentualDaAula, vistas, marcar, refletirProgresso, semConclusaoAutomatica } from './progresso';
 import type { Andamento } from './progresso';
 import { gravar } from './util';
 
@@ -20,7 +20,6 @@ export function ligarAulaAtual() {
   const marcador = document.querySelector<HTMLElement>('[data-acao="marcar-aula"]');
   if (!marcador) return;
   const id = marcador.dataset.aula!;
-  registrarUltima(marcador);
 
   const artigo = document.querySelector<HTMLElement>('[data-conteudo-aula]');
   if (!artigo) return;

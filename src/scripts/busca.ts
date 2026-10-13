@@ -14,6 +14,8 @@ export interface AulaBusca {
   h: string;
   i: string;
   c: string;
+  /** Quantos cartões de revisão a aula tem (ausente = nenhum). */
+  k?: number;
 }
 
 let indice: AulaBusca[] | null = null;
