@@ -36,6 +36,8 @@ O material é ponto de partida, não verdade: erros, premissas fracas e itens de
 | Banco de Dados | 4º | 1 · Introdução aos Bancos de Dados NoSQL | Semana 22 |
 | Front-End | 4º | 1 · Avançando na Integração com Serviços Externos | Semana 22 |
 | Versionamento de Código | 4º | 1 · Git Workflows Avançados | Semana 21 |
+| Front-End | 4º | 2 · Técnicas de Esteiras de Entrega Contínua | Semana 23 |
+| Versionamento de Código | 4º | 2 · Pull Request e Code Review Eficaz | Semana 22 |
 | Programação Mobile | 4º | 2 · Preparativos Finais para Publicação | Semana 23 |
 | Projeto Multidisciplinar | 4º | 2 · Ajustes Finais do Projeto | Semana 23 |
 | Banco de Dados | 4º | 2 · Ferramentas e Tecnologias NoSQL | Semana 23 |
@@ -143,4 +145,16 @@ Todas as 12 aulas de DS ganharam a seção "Situações e Roteiros Práticos" (a
 - Correções ao roteiro: no GitFlow faltava um commit inicial (a `develop` nunca existia) e o `echo` usa aspas tipográficas; no Front-End S22 o código de login tem vários desencontros (tipo de token, nome do campo, porta, importação, segredo no código); `mongo` virou `mongosh`; Redis no Windows por Docker/WSL.
 - Não executados (sem ambiente): comandos de MongoDB, Redis, Cassandra e Neo4j, Fastlane e o trecho React de feedback de login.
 - As perguntas escritas nas casas do tabuleiro da "Trilha da retrospectiva" estão em imagem no material e não foram extraídas.
+
+## Aulas de 14/10/2026
+
+**Front-End, semana 23 (Técnicas de Esteiras de Entrega Contínua)**
+- Executado: Jest 30.5.2 (testes do `sum.js` e cobertura). YAML do GitHub Actions e do Kubernetes conferido só quanto à sintaxe. Cypress, Docker e Kubernetes não foram executados (não estão instalados aqui).
+- Correções ao roteiro: `actions/checkout` e `setup-node` na v7 (o material usa v3), Node `lts/*` (o material usa 16), `npm ci`, `ssh-keyscan` trocado por `known_hosts` em segredo, chave ed25519, `if` de push e `environment` no deploy, `npm ci --omit=dev` e `pm2 restart <app>` no script; `jest --coverage` não se instala (já vem no Jest). Os Pause e Responda do material ficam rotulados "Aula 3" mas tratam de Jest e Cypress.
+
+**Versionamento de Código, semana 22 (Pull Request e Code Review Eficaz)**
+- Executado: limiar de cobertura do Jest (`coverageThreshold` 80%): com os testes passando e 66,66% de cobertura, o comando sai com código 1 (é isso que bloqueia o merge). Modelo de PR e regras de proteção de branch conferidos na documentação, sem repositório real.
+- O material não traz respostas modelo; elas foram escritas para a aula. Seção "Situações e Roteiros Práticos" já incluída.
+
+**Língua Portuguesa:** Revisão R1 (Inferência Textual), mini aula pedida pelo Max, feita pelo tema, sem material do professor (exemplos inventados). Aula 6 (Saramago, parte 2 e colocação pronominal): sem as atividades do livro e sem reproduzir os trechos; os exemplos de colocação são frases inventadas.
 

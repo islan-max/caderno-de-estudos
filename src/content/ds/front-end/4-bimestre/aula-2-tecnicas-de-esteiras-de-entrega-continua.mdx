@@ -1,0 +1,739 @@
+---
+title: "Técnicas de Esteiras de Entrega Contínua"
+subject: "Front-End"
+order: 2
+relevance: >
+  Escrever o código é só uma parte do trabalho: ele precisa chegar ao usuário sem quebrar nada. Uma esteira de entrega
+  contínua (pipeline de CI/CD) faz isso de forma automática: a cada alteração, instala, testa e publica. Com testes
+  automáticos que pegam erros cedo (Jest e Cypress) e com containers (Docker) e orquestração (Kubernetes) para
+  publicar e escalar, a equipe entrega com mais frequência, mais segurança e menos trabalho manual.
+quickSummary: >
+  CI/CD automatiza build, teste e deploy a cada commit, num arquivo de pipeline (YAML) do GitHub Actions, com segredos
+  guardados fora do código. Jest testa a lógica (testes unitários) e mede cobertura; Cypress simula o usuário na
+  interface (testes de ponta a ponta). O Docker empacota a aplicação num container que roda igual em qualquer lugar, e
+  o Kubernetes cria réplicas, atualiza sem parar o serviço e reinicia o que falha.
+gabarito:
+  - correta: 1
+    porque: >
+      O Jest é uma ferramenta de testes de JavaScript usada, principalmente, para testes unitários: verificar se
+      funções e módulos retornam o esperado. Validar a interface e simular o usuário é papel do Cypress.
+      Revisar: A Aula › 2.2 Jest: testes unitários
+  - correta: 0
+    porque: >
+      O comando npm test -- --coverage roda os testes e gera um relatório de cobertura (quanto do código foi
+      executado pelos testes). Não cria arquivo de configuração, não limita os testes a arquivos alterados e não
+      inicia um servidor em tempo real (isso seria o modo --watch).
+      Revisar: A Aula › 2.4 Cobertura de testes
+  - correta: 2
+    porque: >
+      O Cypress abre a aplicação num navegador e simula o que o usuário faz (digitar, clicar, navegar), conferindo o
+      que aparece na tela. Testar a lógica do servidor ou o banco de dados não é o seu papel, e os testes unitários são
+      do Jest.
+      Revisar: A Aula › 2.3 Cypress: testes de interface
+ferramentas:
+  - nome: "Conta no GitHub e um repositório"
+    uso: "Para criar o pipeline com o GitHub Actions. O plano gratuito já inclui minutos de execução."
+    custo: "Gratuito"
+    link: "https://github.com"
+  - nome: "Node.js (versão LTS) e npm"
+    uso: "Para rodar o projeto, o Jest e o Cypress."
+    custo: "Gratuito"
+    link: "https://nodejs.org"
+  - nome: "Jest"
+    uso: "Testes unitários em JavaScript."
+    custo: "Gratuito (código aberto)"
+    link: "https://jestjs.io"
+  - nome: "Cypress"
+    uso: "Testes de interface (ponta a ponta) que simulam o usuário no navegador. Baixa um programa grande na primeira instalação."
+    custo: "Gratuito (código aberto)"
+    link: "https://www.cypress.io"
+    opcional: true
+  - nome: "Docker Desktop (ou WSL)"
+    uso: "Para criar e rodar containers localmente."
+    custo: "Gratuito para estudo"
+    link: "https://www.docker.com/products/docker-desktop/"
+    opcional: true
+  - nome: "Um cluster Kubernetes de estudo (kind ou minikube)"
+    uso: "Para experimentar o deploy sem precisar de um servidor na nuvem."
+    custo: "Gratuito"
+    link: "https://kubernetes.io/pt-br/docs/tasks/tools/"
+    opcional: true
+---
+
+<Accordion titulo="Palavras e siglas desta aula" dica="Consulte quando encontrar um termo novo" icone="spell-check">
+
+- **CI** (Continuous Integration, integração contínua): juntar o código de todos com frequência e testá-lo automaticamente.
+- **CD** (Continuous Delivery ou Deployment, entrega ou implantação contínua): deixar o código pronto para publicar (entrega) ou publicá-lo sozinho (implantação).
+- **Pipeline** (esteira): a sequência automática de etapas (build, testes, deploy).
+- **Build**: gerar a versão pronta da aplicação a partir do código.
+- **Deploy**: publicar a aplicação num ambiente.
+- **Ambiente**: onde a aplicação roda: desenvolvimento (dev), homologação (testes finais) e produção (usuários reais).
+- **GitHub Actions**: o serviço de automação do GitHub. Um **workflow** é um arquivo YAML com o pipeline; um **job** é um grupo de passos; um **runner** é a máquina que executa.
+- **YAML**: formato de arquivo de configuração baseado em indentação.
+- **Secret** (segredo): valor sensível (senha, chave) guardado fora do código e entregue só ao pipeline.
+- **SSH**: conexão segura de linha de comando com um servidor, que usa um par de chaves (pública e privada).
+- **Teste unitário**: testa uma peça pequena do código (uma função).
+- **Teste de ponta a ponta** (E2E, end-to-end): testa o sistema pelo ponto de vista do usuário.
+- **Cobertura de testes**: a porcentagem do código que os testes executam.
+- **Container**: pacote isolado com a aplicação e tudo de que ela precisa, que roda igual em qualquer máquina.
+- **Imagem**: o "molde" a partir do qual o container é criado. **Dockerfile**: a receita da imagem.
+- **Orquestração**: gerenciar muitos containers (criar, atualizar, reiniciar, escalar).
+- **Cluster**: conjunto de servidores gerenciados juntos. **Pod**: a menor unidade do Kubernetes, com um ou mais containers.
+- **Réplica**: cópia de uma instância da aplicação, para dar conta de mais acessos e sobreviver a falhas.
+- **Rollback**: voltar para a versão anterior.
+- **PV / PVC** (PersistentVolume e PersistentVolumeClaim): o armazenamento persistente do Kubernetes e o pedido de uso dele por uma aplicação.
+- **DevOps**: cultura e práticas que aproximam desenvolvimento e operação.
+
+</Accordion>
+
+## Antes de Começar
+
+**O que esta aula cobre.** Três aulas em uma, o caminho completo de uma entrega automática: **configurar o pipeline** (CI/CD com GitHub Actions), **testar de forma automática** (Jest e Cypress) e **publicar com containers** (Docker e Kubernetes).
+
+**Avisos sobre os exemplos.**
+
+- **Executado de verdade:** os testes do Jest (inclusive a cobertura), com Jest 30.
+- **Conferido, mas não executado:** o pipeline do GitHub Actions (depende de um repositório e de um servidor), o Cypress (instala um programa grande), o Docker e o Kubernetes (não estão instalados na máquina em que esta aula foi escrita). Os arquivos foram conferidos quanto à sintaxe e às versões atuais das ferramentas.
+- **O roteiro da escola tem partes desatualizadas.** Elas estão indicadas como "Correção" ao longo da aula.
+
+**O que você precisa saber antes.** Git e GitHub básicos, o terminal e JavaScript.
+
+## A Aula
+
+### 1. Configuração de pipelines CI/CD
+
+#### 1.1 O problema que o pipeline resolve
+
+Imagine uma equipe de e-commerce que publica a loja **na mão**: alguém baixa o código, roda os testes (se lembrar), copia arquivos para o servidor e reza. É lento, e cada passo manual é uma chance de erro: um arquivo esquecido, um teste pulado, uma versão errada em produção.
+
+Um **pipeline de CI/CD** automatiza isso. A cada alteração no repositório:
+
+1. **CI (integração contínua):** o código é baixado, as dependências são instaladas e os **testes rodam**. Se algo falha, a equipe é avisada logo.
+2. **CD (entrega/implantação contínua):** se tudo passou, a aplicação é **publicada** automaticamente (ou fica pronta para um clique de aprovação).
+
+**Benefícios:** entregas **rápidas, confiáveis e sem interrupções**; erros achados cedo; **processo igual para todos**; menos trabalho repetitivo; e histórico do que foi publicado, por quem e quando.
+
+<figure class="figura">
+  <svg viewBox="0 0 560 170" role="img" aria-labelledby="fig-fe23-pipe-t fig-fe23-pipe-d">
+    <title id="fig-fe23-pipe-t">Pipeline de CI/CD em três ambientes</title>
+    <desc id="fig-fe23-pipe-d">Um commit dispara o pipeline. As etapas são build, testes e deploy. O deploy vai primeiro para desenvolvimento, depois para homologação e por fim para produção. Se os testes falharem, o pipeline para.</desc>
+    <defs>
+      <marker id="seta-fe23-pipe" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+        <path d="M1,1 L9,5 L1,9" class="traco" />
+      </marker>
+    </defs>
+    <rect x="5" y="30" width="80" height="50" rx="8" class="traco" />
+    <text x="45" y="60" class="rotulo" text-anchor="middle">Commit</text>
+    <rect x="105" y="30" width="80" height="50" rx="8" class="traco" />
+    <text x="145" y="60" class="rotulo" text-anchor="middle">Build</text>
+    <rect x="205" y="30" width="80" height="50" rx="8" class="traco preenche" />
+    <text x="245" y="60" class="rotulo" text-anchor="middle">Testes</text>
+    <rect x="305" y="30" width="80" height="50" rx="8" class="traco" />
+    <text x="345" y="60" class="rotulo" text-anchor="middle">Dev</text>
+    <rect x="405" y="30" width="70" height="50" rx="8" class="traco" />
+    <text x="440" y="52" class="rotulo" text-anchor="middle">Homolo-</text>
+    <text x="440" y="68" class="rotulo" text-anchor="middle">gação</text>
+    <rect x="495" y="30" width="60" height="50" rx="8" class="traco" />
+    <text x="525" y="60" class="rotulo" text-anchor="middle">Prod</text>
+    <line x1="85" y1="55" x2="103" y2="55" class="traco" marker-end="url(#seta-fe23-pipe)" />
+    <line x1="185" y1="55" x2="203" y2="55" class="traco" marker-end="url(#seta-fe23-pipe)" />
+    <line x1="285" y1="55" x2="303" y2="55" class="traco" marker-end="url(#seta-fe23-pipe)" />
+    <line x1="385" y1="55" x2="403" y2="55" class="traco" marker-end="url(#seta-fe23-pipe)" />
+    <line x1="475" y1="55" x2="493" y2="55" class="traco" marker-end="url(#seta-fe23-pipe)" />
+    <text x="245" y="108" class="rotulo-fraco" text-anchor="middle">falhou: o pipeline para e avisa</text>
+    <text x="440" y="108" class="rotulo-fraco" text-anchor="middle">aprovação humana antes de produção</text>
+  </svg>
+</figure>
+
+#### 1.2 O pipeline no GitHub Actions
+
+O **GitHub Actions** lê arquivos YAML na pasta `.github/workflows/` do repositório. Cada arquivo é um **workflow**, com:
+
+- **`on`:** o que dispara (um `push` na `main`, um `pull_request`).
+- **`jobs`:** blocos de trabalho, cada um numa máquina (`runs-on`).
+- **`steps`:** os passos do job (`uses` para usar uma ação pronta, `run` para um comando).
+- **`needs`:** faz um job **esperar** outro e só rodar se ele passar.
+
+**Exemplo atualizado** (Node.js, com os testes e o deploy por SSH do roteiro). Ele corrige as versões antigas do material (`checkout@v3`, `setup-node@v3`, Node 16, `npm install`):
+
+```yaml
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [main]      # publica só o que entrou na main
+  pull_request:           # nos pull requests, só testa
+
+permissions:
+  contents: read          # o pipeline recebe o mínimo de permissão
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Baixar o código
+        uses: actions/checkout@v7
+
+      - name: Configurar o Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: lts/*
+          cache: npm
+
+      - name: Instalar dependências
+        run: npm ci          # instala exatamente o que está no package-lock.json
+
+      - name: Rodar os testes
+        run: npm test
+
+  deploy:
+    needs: build-and-test                         # só roda se o job anterior passou
+    if: github.event_name == 'push'               # nunca publica a partir de pull request
+    runs-on: ubuntu-latest
+    environment: production                       # permite exigir aprovação e segredos próprios
+    steps:
+      - name: Configurar o SSH
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          SSH_KNOWN_HOSTS: ${{ secrets.SSH_KNOWN_HOSTS }}
+        run: |
+          mkdir -p ~/.ssh
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          echo "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
+
+      - name: Publicar no servidor
+        env:
+          SERVER: ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}
+        run: ssh "$SERVER" "bash deploy_script.sh"
+```
+
+**Por que as mudanças:**
+
+| Original | Atualizado | Motivo |
+|---|---|---|
+| `actions/checkout@v3`, `setup-node@v3` | `@v7` | Versões atuais (as antigas rodam em runtimes que o GitHub vai desligando) |
+| Node `'16'` | `lts/*` | Node 16 não tem mais suporte |
+| `npm install` | `npm ci` | Instala exatamente o do `package-lock.json`, mais rápido e repetível |
+| Sem `mkdir -p ~/.ssh` | com `mkdir -p` | A pasta pode não existir no runner |
+| `ssh-keyscan` no pipeline | `known_hosts` guardado como secret | O `ssh-keyscan` aceita **qualquer** chave do servidor na primeira conexão; guardar a impressão digital conhecida evita "homem no meio" |
+| Chave RSA | `ed25519` | Chave menor e mais moderna (veja 1.3) |
+| Segredo dentro do `run` | segredo em `env` | Evita que o valor seja colado direto no script do shell |
+| Deploy após qualquer evento | `if: ... == 'push'` e `environment` | Pull requests de fora não publicam, e produção pode pedir aprovação |
+
+O workflow acima foi conferido quanto à sintaxe YAML, mas **não foi executado** (precisa de um repositório e de um servidor reais).
+
+**Os três ambientes (dev, homologação, produção).** O roteiro diz que o código deve ser "implantado em diferentes ambientes". No GitHub Actions, isso é feito com **Environments** (Settings › Environments), cada um com **segredos próprios** e, para produção, **aprovadores obrigatórios**. O mesmo artefato testado avança de ambiente em ambiente, sem ser refeito.
+
+**Alternativa sem SSH para front-end estático.** Este próprio caderno é publicado assim: o pipeline faz o build do site e usa as ações oficiais do **GitHub Pages**, sem servidor próprio nem chave SSH.
+
+#### 1.3 Chaves SSH e segredos
+
+O roteiro pede para integrar o repositório e o servidor com **segurança**:
+
+1. **Gerar um par de chaves** (no seu computador): `ssh-keygen -t ed25519 -C "seu-email@exemplo.com"`. O roteiro usa `-t rsa -b 4096`, que ainda funciona, mas o ed25519 é o padrão atual.
+2. **Chave pública** (`.pub`): vai para o servidor, no arquivo `~/.ssh/authorized_keys` do usuário que faz o deploy.
+3. **Chave privada**: vai **só** para o GitHub, em *Settings › Secrets and variables › Actions › New repository secret*, com o nome `SSH_PRIVATE_KEY`.
+
+**Regras de ouro:**
+
+- **Nunca** commite a chave privada, senhas ou tokens no repositório.
+- Use uma **chave exclusiva para o deploy**, com **permissão mínima** (um usuário que só consegue publicar).
+- Se uma chave vazar, **troque-a** (a antiga ainda aparece no histórico).
+- Os segredos do GitHub ficam **mascarados** nos logs, mas não devem ser impressos de propósito.
+
+#### 1.4 O script de deploy no servidor
+
+O roteiro coloca um script no servidor, que atualiza o código e reinicia a aplicação:
+
+```bash
+#!/bin/bash
+set -euo pipefail                   # para no primeiro erro
+
+echo "Iniciando o deploy..."
+cd /var/www/my-app
+git pull --ff-only origin main      # só avança, sem criar merge inesperado
+npm ci --omit=dev                   # só as dependências de produção
+pm2 restart my-app                  # reinicia o app (PM2 é um gerenciador de processos Node)
+echo "Deploy finalizado!"
+```
+
+**Correções:** `set -euo pipefail` evita seguir adiante com erro; `npm ci --omit=dev` substitui o `npm install --production` (a flag antiga foi trocada); e `pm2 restart my-app` reinicia **só** a sua aplicação (o `restart all` reinicia tudo o que o PM2 gerencia). Dê permissão de execução com `chmod +x deploy_script.sh`.
+
+**Limite deste método.** Fazer `git pull` no servidor mistura build e deploy e deixa o servidor sem rollback fácil. Para projetos maiores, o pipeline gera um **artefato** (ou uma imagem de container, como na seção 3) e só **entrega** esse pacote.
+
+#### 1.5 Validar e depurar o pipeline
+
+1. Faça um commit e envie para a `main`:
+
+```bash
+git add .
+git commit -m "Configuração inicial do pipeline CI/CD"
+git push origin main
+```
+
+2. Abra a aba **Actions** do repositório e acompanhe os jobs. Verde passou, vermelho falhou.
+3. Se falhar, **leia o log** do passo que quebrou, corrija (dependência, variável, caminho, segredo faltando) e envie de novo.
+
+**Perguntas de reflexão do roteiro.**
+
+- **Qual foi o maior desafio técnico?** Em geral: os **segredos e as chaves** (formato da chave, permissão do arquivo, `known_hosts`), as diferenças entre o **seu computador e o runner** e erros de **indentação do YAML**.
+- **Como a automação melhora o fluxo?** Menos erro manual, feedback rápido, entregas frequentes e pequenas (mais fáceis de desfazer) e a equipe livre para o que importa.
+- **Quais práticas de CI/CD usar em produção?** Testes obrigatórios antes do deploy; **aprovação** para produção; **segredos** em cofre; **ambientes separados**; **versões fixas** das ações; **rollback** rápido; **monitoramento** depois do deploy; e **branch protegida** com revisão de código.
+
+### 2. Testes automatizados com Jest e Cypress
+
+#### 2.1 Dois tipos de teste, dois papéis
+
+| | **Jest** | **Cypress** |
+|---|---|---|
+| **Tipo** | Teste **unitário** | Teste de **interface** (ponta a ponta) |
+| **Testa** | A lógica: funções, módulos | O que o usuário vê e faz: digitar, clicar, navegar |
+| **Roda** | No Node, sem navegador | Num navegador real |
+| **Velocidade** | Muito rápido | Mais lento |
+| **Exemplo** | "`sum(1, 2)` devolve 3" | "Digitar uma tarefa e clicar em Adicionar faz ela aparecer na lista" |
+
+Os dois **se completam**: o Jest pega erros de lógica logo e barato; o Cypress confirma que as peças funcionam **juntas**, do ponto de vista de quem usa. No pipeline, ambos rodam antes do deploy.
+
+#### 2.2 Jest: testes unitários
+
+**Configuração** (num projeto Node):
+
+```bash
+npm init -y
+npm install --save-dev jest
+```
+
+No `package.json`:
+
+```json
+"scripts": {
+  "test": "jest"
+}
+```
+
+**A função a testar** (`src/sum.js`):
+
+```javascript
+function sum(a, b) {
+  if (typeof a !== 'number' || typeof b !== 'number') {
+    throw new Error('Os parâmetros devem ser números');
+  }
+  return a + b;
+}
+module.exports = sum;
+```
+
+**O teste** (`tests/sum.test.js`):
+
+```javascript
+const sum = require('../src/sum');
+
+test('Soma dois números corretamente', () => {
+  expect(sum(1, 2)).toBe(3);
+});
+
+test('Lança erro ao passar parâmetros não numéricos', () => {
+  expect(() => sum(1, 'a')).toThrow('Os parâmetros devem ser números');
+});
+```
+
+**Executado.** Com Jest 30.5.2, `npm test` roda os dois testes: **2 passaram**.
+
+**Anatomia de um teste:** `test('descrição', () => { ... })` define o caso; `expect(valor)` pega o resultado; o **matcher** (`.toBe(3)`, `.toThrow(...)`) compara com o esperado. Testar o **erro** também (o segundo teste) mostra que a função se protege de entradas erradas.
+
+**Dica.** Um bom teste unitário é **pequeno, rápido, independente** e tem **um motivo** para falhar. Use o padrão **organizar, agir, verificar**.
+
+#### 2.3 Cypress: testes de interface
+
+**Configuração:**
+
+```bash
+npm install --save-dev cypress
+```
+
+No `package.json`, adicione `"cypress:open": "cypress open"` aos scripts e rode `npm run cypress:open`. Na primeira vez, o Cypress cria a pasta `cypress/` com a estrutura de testes. (O Cypress baixa um programa grande na primeira instalação.)
+
+**O teste** (`cypress/e2e/taskManager.cy.js`), para um gerenciador de tarefas servido em `http://localhost:3000`:
+
+```javascript
+describe('Gerenciador de Tarefas', () => {
+  it('Adiciona uma nova tarefa', () => {
+    cy.visit('http://localhost:3000'); // troque pela URL da aplicação
+
+    cy.get('[data-testid="input-tarefa"]').type('Aprender Cypress');
+    cy.get('[data-testid="botao-adicionar"]').click();
+
+    cy.get('[data-testid="lista-tarefas"]')
+      .should('contain', 'Aprender Cypress');
+  });
+});
+```
+
+- `cy.visit` abre a página; `cy.get` acha um elemento; `.type` digita; `.click` clica; `.should` **afirma** o resultado.
+- **`data-testid`:** atributos feitos para os testes, mais estáveis que classes de estilo ou textos, que mudam com o visual.
+- O Cypress **espera** os elementos aparecerem (não precisa de pausas fixas).
+
+**Este teste não foi executado** aqui (depende da instalação do Cypress e de uma aplicação com esses `data-testid`).
+
+**No pipeline.** Em CI se usa `cypress run` (sem janela, "headless") com a aplicação rodando, e não o `cypress open`, que é para desenvolver.
+
+#### 2.4 Cobertura de testes
+
+A **cobertura** diz que porcentagem do código foi **executada** pelos testes.
+
+**Jest.** A cobertura **já vem no Jest**; não precisa instalar nada além dele:
+
+```bash
+npm test -- --coverage
+```
+
+Resultado, **executado**: para o `sum.js` com os dois testes, o relatório mostra **100%** de instruções, ramos, funções e linhas, e cria a pasta `coverage/`.
+
+**Correção ao roteiro.** O roteiro manda rodar `npm install --save-dev jest --coverage` antes. Isso **não é preciso**: `--coverage` é uma opção do comando de teste, e não de instalação.
+
+**Cypress.** Para medir a cobertura de testes de interface, usa-se o pacote `@cypress/code-coverage`, com uma integração no `cypress.config.js`:
+
+```javascript
+const { defineConfig } = require('cypress');
+
+module.exports = defineConfig({
+  e2e: {
+    setupNodeEvents(on, config) {
+      require('@cypress/code-coverage/task')(on, config);
+      return config;
+    },
+  },
+});
+```
+
+Além disso, o pacote exige carregar o suporte no arquivo `cypress/support/e2e.js` e que o código da aplicação seja **instrumentado** (por exemplo, com `babel-plugin-istanbul`). Siga a documentação do pacote para a sua versão.
+
+**Cuidados com a cobertura.**
+
+- **Cobertura alta não é qualidade.** Um teste que executa o código sem verificar nada deixa a porcentagem alta e não protege ninguém.
+- Olhe também os **ramos** (cada `if`) e **os casos de erro**.
+- Use a cobertura para **achar o que nunca foi testado**, e não como meta absoluta (por exemplo, "100% a qualquer custo").
+
+#### 2.5 Os testes dentro do pipeline
+
+No pipeline da seção 1.2, o passo `npm test` roda o Jest antes do deploy. Se **um teste falhar**, o job termina com erro, o `needs` impede o deploy, e a equipe é avisada. Para a cobertura, acrescente `npm test -- --coverage` e, se quiser, **falhe o pipeline abaixo de um mínimo** (no Jest, com `coverageThreshold` na configuração).
+
+### 3. Deploy contínuo com Docker e Kubernetes
+
+#### 3.1 Docker: empacotar para rodar em qualquer lugar
+
+O clássico "na minha máquina funciona" vem de diferenças entre ambientes (versão do Node, bibliotecas, sistema). O **Docker** resolve empacotando a aplicação **e tudo de que ela precisa** numa **imagem**, e rodando essa imagem como **container**: isolado, leve e **igual em qualquer lugar**.
+
+**Exemplo ilustrativo** de um `Dockerfile` para um front-end (React, Vite ou similar) com build em duas etapas e servidor Nginx:
+
+```dockerfile
+# Etapa 1: construir o site
+FROM node:lts AS build
+WORKDIR /app
+COPY package*.json ./
+RUN npm ci
+COPY . .
+RUN npm run build
+
+# Etapa 2: servir só os arquivos prontos
+FROM nginx:stable
+COPY --from=build /app/dist /usr/share/nginx/html
+EXPOSE 80
+```
+
+- A **imagem final** só leva o site pronto e o Nginx; o Node e o código-fonte ficam na etapa 1 e **não vão para produção** (imagem menor e mais segura).
+- A pasta de saída (`dist`) depende da ferramenta: confira a sua (`build` no Create React App).
+- **Comandos básicos:**
+
+```bash
+docker build -t minha-app:1.0 .
+docker run --rm -p 8080:80 minha-app:1.0     # abre em http://localhost:8080
+```
+
+**Este Dockerfile não foi executado** (o Docker não está instalado na máquina em que a aula foi escrita).
+
+#### 3.2 Kubernetes: operar muitos containers
+
+Um container resolve o empacotamento. Em produção, surgem outras perguntas: **quantas cópias** rodar? E se uma **cair**? Como **atualizar sem tirar o site do ar**? Quem **distribui** os acessos? O **Kubernetes** (K8s) é a plataforma de **orquestração** que cuida disso, num **cluster** de servidores. Ele permite:
+
+- **Criar várias instâncias** (réplicas) da aplicação.
+- **Atualizar continuamente**, sem indisponibilidade (*rolling update*).
+- **Monitorar** os containers e **reiniciar** os que falham.
+- **Ajustar** o número de instâncias conforme o uso (escala automática).
+
+**Docker + Kubernetes.** O Docker fornece o **ambiente padronizado** (a imagem); o Kubernetes garante a **operação contínua e escalável** dessa imagem em produção, em nuvens públicas, privadas ou locais.
+
+<figure class="figura">
+  <svg viewBox="0 0 560 210" role="img" aria-labelledby="fig-fe23-k8s-t fig-fe23-k8s-d">
+    <title id="fig-fe23-k8s-t">Do código ao cluster</title>
+    <desc id="fig-fe23-k8s-d">O código gera uma imagem Docker, enviada a um registro. O Kubernetes baixa a imagem e mantém três réplicas da aplicação rodando, com um serviço que distribui os acessos. Em uma atualização, as réplicas novas entram aos poucos e as antigas saem.</desc>
+    <defs>
+      <marker id="seta-fe23-k8s" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+        <path d="M1,1 L9,5 L1,9" class="traco" />
+      </marker>
+    </defs>
+    <rect x="5" y="75" width="90" height="50" rx="8" class="traco" />
+    <text x="50" y="104" class="rotulo" text-anchor="middle">Código</text>
+    <rect x="125" y="75" width="100" height="50" rx="8" class="traco" />
+    <text x="175" y="97" class="rotulo" text-anchor="middle">Imagem</text>
+    <text x="175" y="113" class="rotulo-fraco" text-anchor="middle">Docker</text>
+    <rect x="255" y="75" width="95" height="50" rx="8" class="traco" />
+    <text x="302" y="97" class="rotulo" text-anchor="middle">Registro</text>
+    <text x="302" y="113" class="rotulo-fraco" text-anchor="middle">de imagens</text>
+    <rect x="380" y="15" width="175" height="180" rx="8" class="traco preenche" />
+    <text x="467" y="38" class="rotulo" text-anchor="middle">Cluster Kubernetes</text>
+    <rect x="395" y="55" width="145" height="28" rx="6" class="traco" />
+    <text x="467" y="74" class="rotulo-fraco" text-anchor="middle">Réplica 1</text>
+    <rect x="395" y="92" width="145" height="28" rx="6" class="traco" />
+    <text x="467" y="111" class="rotulo-fraco" text-anchor="middle">Réplica 2</text>
+    <rect x="395" y="129" width="145" height="28" rx="6" class="traco" />
+    <text x="467" y="148" class="rotulo-fraco" text-anchor="middle">Réplica 3</text>
+    <text x="467" y="182" class="rotulo-fraco" text-anchor="middle">Service distribui os acessos</text>
+    <line x1="95" y1="100" x2="123" y2="100" class="traco" marker-end="url(#seta-fe23-k8s)" />
+    <line x1="225" y1="100" x2="253" y2="100" class="traco" marker-end="url(#seta-fe23-k8s)" />
+    <line x1="350" y1="100" x2="378" y2="100" class="traco" marker-end="url(#seta-fe23-k8s)" />
+  </svg>
+</figure>
+
+#### 3.3 Um deploy no Kubernetes (ilustrativo)
+
+No Kubernetes você **descreve o estado desejado** num arquivo YAML, e ele trabalha para chegar a ele. O exemplo abaixo pede **3 réplicas** da imagem e um **Service** para receber os acessos:
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: minha-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: minha-app
+  strategy:
+    type: RollingUpdate          # troca as réplicas aos poucos
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  template:
+    metadata:
+      labels:
+        app: minha-app
+    spec:
+      containers:
+        - name: web
+          image: meu-registro/minha-app:1.0
+          ports:
+            - containerPort: 80
+          readinessProbe:        # só recebe acessos quando responde
+            httpGet:
+              path: /
+              port: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: minha-app
+spec:
+  selector:
+    app: minha-app
+  ports:
+    - port: 80
+      targetPort: 80
+```
+
+**Comandos úteis:**
+
+```bash
+kubectl apply -f k8s.yaml                       # cria ou atualiza o que está no arquivo
+kubectl rollout status deployment/minha-app     # acompanha a atualização
+kubectl get pods                                # lista os pods
+kubectl rollout undo deployment/minha-app       # rollback: volta à versão anterior
+```
+
+O YAML foi conferido quanto à sintaxe, mas **não foi executado** (não há cluster nesta máquina).
+
+**O deploy contínuo completo** junta tudo: o pipeline **testa**, **constrói a imagem**, **envia ao registro** e **atualiza o Deployment** com a nova imagem. O Kubernetes faz a troca sem parar o serviço, e, se o teste de saúde falhar, a atualização não avança, o que permite o **rollback**.
+
+#### 3.4 Situação do roteiro: PVs, PVCs e prioridades da equipe
+
+**Situação.** Você integra uma equipe de **DevOps** que migra um **sistema legado** para containers. O prazo é apertado. Quem vai configurar o **banco de dados no Kubernetes** está inseguro com **PVs** e **PVCs**, pela primeira vez. Há desacordo: um grupo quer começar pelo **pipeline de testes**, outro quer resolver já a **persistência de dados**, para evitar atrasos.
+
+**O que são PV e PVC, de forma simples.** Containers são **efêmeros**: se o pod é recriado, o que estava dentro some. Um banco de dados precisa **guardar os dados fora** do container:
+
+- **PV (PersistentVolume):** o **armazenamento** disponível no cluster (um disco).
+- **PVC (PersistentVolumeClaim):** o **pedido** de uma aplicação por um pedaço desse armazenamento ("preciso de 10 GB").
+- O pod usa o PVC, e os dados **sobrevivem** à recriação do pod. Em nuvem, o armazenamento costuma ser criado **sozinho** a partir do PVC.
+- **Aviso:** um banco no cluster exige cuidados com backup e alta disponibilidade. Muitas equipes preferem um **banco gerenciado** (serviço da nuvem) e deixam no cluster só as aplicações sem estado (o front-end é assim).
+
+**Como lidar com o desentendimento de prioridades.**
+
+1. **Tire o "ou". Mapeie as dependências.** O pipeline de testes e a persistência **não se bloqueiam**: podem andar **em paralelo**, em pessoas diferentes.
+2. **Use critérios, não opinião:** o que, se falhar, causa **perda de dados** ou **bloqueia os outros**? Isso vem primeiro. Sem persistência, a migração do banco não é segura; sem testes, nada é publicado com confiança.
+3. **Divida em entregas pequenas** (primeiro um banco de teste com PVC simples e um pipeline mínimo) e **revise** o plano em poucos dias.
+4. **Registre a decisão** e o motivo, para não reabrir a discussão.
+
+**Como apoiar o colega inseguro.**
+
+- **Normalize:** é a primeira vez de muita gente, e perguntar é parte do trabalho.
+- **Ensine por exemplo curto:** desenhe PV, PVC e pod, e mostre um PVC de teste funcionando num cluster local (kind ou minikube).
+- **Faça em dupla** (*pair*) a primeira configuração, e depois o colega repete sozinho.
+- **Dê um passo pequeno e um prazo realista**, com um ponto de ajuda marcado.
+- **Reconheça o progresso.**
+
+**Impacto na equipe.** Quem é apoiado **aprende mais rápido** e **fala dos problemas cedo**, o que evita atrasos escondidos. A **confiança** cresce, as decisões ficam mais claras e o projeto anda com **menos conflito**.
+
+## Situações e Roteiros Práticos
+
+As atividades abaixo vêm do material da escola (situações fictícias, da SEDUC-SP). Os roteiros passo a passo já estão **dentro da aula**, com as correções; aqui está o resumo de cada situação e onde achar a resposta. A entrega é pelo **AVA**, em duplas.
+
+*Materiais: computador com internet, caderno e caneta. Antes de começar, façam esboços no papel da intenção e do resultado.*
+
+<Accordion titulo="Atividade 1 · Pipelines CI/CD para automação de deploys (DevFlow Solutions)" dica="E-commerce com atualizações frequentes" icone="list-check" rolagem={false}>
+
+**Situação.** A **DevFlow Solutions** tem uma aplicação web de e-commerce com atualizações frequentes. Para entregar de forma **rápida, confiável e sem interrupções**, o time precisa de um pipeline CI/CD que **integre, teste e implante** o código nos ambientes de **desenvolvimento, homologação e produção**.
+
+**Tarefa.** Criar um repositório para uma aplicação simples (Node.js ou Python Flask, com uma rota básica) e configurar **chaves SSH ou tokens** para a integração segura entre o repositório e o servidor. O material oficial indicado é o início rápido do GitHub Actions.
+
+**Roteiro.**
+
+1. **Preparar o ambiente:** repositório no GitHub com o código numa branch (`main`), gerenciador de pacotes (`package.json` ou `requirements.txt`), testes simples, chaves SSH no servidor (chave pública em `~/.ssh/authorized_keys`) e a chave privada como **secret** `SSH_PRIVATE_KEY`. → seções 1.2 e 1.3.
+2. **Criar o workflow** em `.github/workflows/` (por exemplo `ci-cd-pipeline.yml`) com **build** (instalar dependências), **testes** e **deploy**. → seção 1.2, com o exemplo atualizado.
+3. **Implementar o script de deploy** no servidor (`deploy_script.sh`) e dar permissão com `chmod +x`. → seção 1.4.
+4. **Validar:** `git add .`, `git commit`, `git push origin main`, acompanhar a aba Actions e corrigir erros. → seção 1.5.
+
+**Para responder no AVA.**
+
+- **Avaliem:** qual foi o maior desafio técnico ao configurar o pipeline?
+- **Pensem:** como a automação de deploys melhora o fluxo de trabalho da equipe?
+- **Apliquem:** que práticas de CI/CD vocês implementariam para produção?
+
+As respostas-guia estão no final da seção 1.5.
+
+</Accordion>
+
+<Accordion titulo="Atividade 2 · Testes automatizados com Jest e Cypress (QualityCode Solutions)" dica="Lógica e interface de um gerenciador de tarefas" icone="list-check" rolagem={false}>
+
+**Situação.** A **QualityCode Solutions** desenvolve uma aplicação web de **gerenciamento de tarefas** e decidiu cobrir com testes automatizados tanto a **lógica de negócio** quanto as **interações na interface**.
+
+**Roteiro.**
+
+1. **Configurar o ambiente:** Node.js, `npm init -y`, `npm install --save-dev jest` (script `"test": "jest"`), `npm install --save-dev cypress` (script `"cypress:open": "cypress open"`) e rodar `npm run cypress:open` para criar a pasta `cypress/`. → seções 2.2 e 2.3.
+2. **Testes unitários com Jest:** criar `src/sum.js`, escrever `tests/sum.test.js` (dois testes: soma correta e erro com parâmetros não numéricos) e rodar `npm test`. → seção 2.2 (**executado**: 2 testes passaram).
+3. **Testes de interface com Cypress:** subir a aplicação (`npm start`), criar `cypress/e2e/taskManager.cy.js` (digitar a tarefa, clicar em adicionar e conferir a lista) e rodar `npm run cypress:open`. → seção 2.3.
+4. **Medir a cobertura:** no Jest, `npm test -- --coverage` (relatório na pasta `coverage`); no Cypress, o pacote `@cypress/code-coverage`, com a integração no `cypress.config.js`. Rodar de novo e **anotar as conclusões** sobre o resultado. → seção 2.4.
+
+**Correção ao roteiro.** O passo "`npm install --save-dev jest --coverage`" não é necessário: a cobertura já vem no Jest e é pedida no comando de teste.
+
+</Accordion>
+
+<Accordion titulo="Aula 3 · Equipe de DevOps migrando um sistema legado (Ser sempre +)" dica="PVs, PVCs e prioridades em conflito" icone="list-check" rolagem={false}>
+
+**Situação.** Uma equipe de **DevOps** migra um **sistema legado** para containers, com **prazo apertado**. Quem configura o **banco de dados no Kubernetes** está **inseguro** com **PVs** e **PVCs** (primeira vez), e a equipe **discorda** sobre a prioridade: um grupo quer começar pelo **pipeline de testes**, outro quer resolver já a **persistência de dados**.
+
+**Ação.** Como líder da tarefa, vocês precisam **apoiar o colega inseguro** sem perder o ritmo do projeto, e responder:
+
+1. **Como lidariam com o desentendimento sobre as prioridades?**
+2. **Que estratégias usariam para apoiar o colega e como isso impactaria o desempenho e a confiança da equipe?**
+
+A resolução está na seção 3.4.
+
+</Accordion>
+
+## Tópicos-Chave para Revisão
+
+<div className="topico">
+
+#### 1. CI e CD
+
+**CI** junta e **testa** o código com frequência. **CD** **entrega ou publica** automaticamente. Juntos: entregas **rápidas, confiáveis e sem interrupção**.
+
+#### 2. GitHub Actions
+
+Arquivos **YAML** em `.github/workflows/`, com **`on`**, **`jobs`**, **`steps`** e **`needs`**. Use **versões atuais** das ações (`checkout@v7`) e o Node **LTS**.
+
+#### 3. Etapas do pipeline
+
+**Build** (instalar com `npm ci`), **testes** e **deploy**. Se os testes falham, **não há deploy**.
+
+#### 4. Chaves e segredos
+
+Par de chaves **SSH** (prefira **ed25519**): **pública** no servidor, **privada** como **secret**. **Nunca** no repositório. Chave exclusiva e com permissão mínima.
+
+#### 5. Ambientes
+
+**Dev**, **homologação** e **produção**, com **Environments** do GitHub, segredos próprios e **aprovação** para produção.
+
+#### 6. Jest
+
+Testes **unitários** da **lógica** do código: `test`, `expect` e **matchers** (`toBe`, `toThrow`). Roda no Node, muito rápido.
+
+#### 7. Cypress
+
+Testes de **interface** (ponta a ponta): simula o **usuário** (`visit`, `get`, `type`, `click`, `should`). Use **`data-testid`**.
+
+#### 8. Cobertura
+
+`npm test -- --coverage` roda os testes e gera o **relatório de cobertura** (já vem no Jest). Alta cobertura **não é** qualidade.
+
+#### 9. Docker
+
+Empacota a aplicação numa **imagem** e a roda como **container**, **igual em qualquer ambiente**. O **Dockerfile** é a receita. **Build em duas etapas** deixa a imagem enxuta.
+
+#### 10. Kubernetes
+
+**Orquestra** containers num **cluster**: **réplicas**, **atualização sem parar**, **reinício** automático, **escala** e **rollback**. Descreve-se o **estado desejado** em YAML.
+
+#### 11. Docker + Kubernetes
+
+O **Docker** dá o ambiente padronizado; o **Kubernetes** garante a operação **contínua e escalável**.
+
+#### 12. PV e PVC
+
+Containers são **efêmeros**. **PV** é o armazenamento; **PVC** é o pedido de uso. Os dados **sobrevivem** à recriação do pod.
+
+#### 13. Equipe sob prazo
+
+**Mapeie dependências**, divida em entregas pequenas, decida por **critérios**, **apoie quem está inseguro** (par, exemplo curto) e **registre as decisões**.
+
+</div>
+
+## Pause e Responda
+
+*Marque uma alternativa em cada questão e confira tudo de uma vez no botão do fim.*
+
+**Questão 1**
+
+*Pause e Responda S23A3a · Deploy contínuo com Docker e Kubernetes (Aula 3)*
+
+Qual é o propósito principal do Jest em um projeto de desenvolvimento? Indique a alternativa correta.
+
+A) Validar a aparência de elementos da interface.\
+B) Realizar testes unitários para validar a lógica do código.\
+C) Executar testes de integração entre diferentes componentes.\
+D) Testar interações do usuário com a interface gráfica.\
+E) Publicar a aplicação no servidor de produção.
+
+**Questão 2**
+
+*Pause e Responda S23A3b · Deploy contínuo com Docker e Kubernetes (Aula 3)*
+
+O que o comando `npm test -- --coverage` faz ao rodar os testes com Jest? Indique a alternativa correta.
+
+A) Executa os testes e gera um relatório de cobertura de código.\
+B) Gera um novo arquivo de configuração para o Jest.\
+C) Executa os testes apenas em arquivos com alterações.\
+D) Inicia o servidor de testes para rodar os testes em tempo real.\
+E) Instala o Cypress no projeto.
+
+**Questão 3**
+
+*Pause e Responda S23A3c · Deploy contínuo com Docker e Kubernetes (Aula 3)*
+
+Qual é o papel do Cypress em uma aplicação web? Indique a alternativa correta.
+
+A) Testar a lógica de funções e algoritmos do servidor.\
+B) Testar o banco de dados da aplicação.\
+C) Validar o comportamento de elementos da interface ao interagir com o usuário.\
+D) Executar apenas testes unitários em JavaScript.\
+E) Orquestrar containers em um cluster.
