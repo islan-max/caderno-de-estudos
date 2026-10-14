@@ -3,9 +3,7 @@
  "materias": {
   "matematica-basica": [
    {
-    "slug": "divisibilidade-e-fatoracao",
-    "titulo": "Divisibilidade e fatoração",
-    "resumo": "Critérios de divisibilidade, números primos, MMC e MDC: as ferramentas para simplificar contas e resolver problemas de repetição."
+    "slug": "divisibilidade-e-fatoracao"
    },
    {
     "slug": "fracoes"
@@ -26,14 +24,10 @@
     "slug": "equacoes-de-primeiro-e-segundo-grau"
    },
    {
-    "slug": "inequacoes",
-    "titulo": "Inequações",
-    "resumo": "Resolver desigualdades do 1º e do 2º grau e mostrar a solução na reta, em problemas de limite de custo, tempo e capacidade."
+    "slug": "inequacoes"
    },
    {
-    "slug": "sistemas-lineares",
-    "titulo": "Sistemas de equações lineares",
-    "resumo": "Sistemas com duas ou três incógnitas, por substituição e por escalonamento, em problemas de compra, mistura e idade."
+    "slug": "sistemas-lineares"
    }
   ],
   "matematica-financeira": [

@@ -962,5 +962,57 @@
       "540 cm³."
     ],
     "alternativas_em_imagem": false
+  },
+  "2016-segunda-aplicacao-D2-azul-Q180": {
+    "nota": "última questão do dia: a extração pegou a folha de redação da página 32 como região e figura; conferido na imagem da página em 14/10/2026",
+    "regioes": [
+      {
+        "pagina": 31,
+        "bbox": [
+          314.1,
+          471.9,
+          628.1,
+          767.9
+        ]
+      }
+    ],
+    "figuras": []
+  },
+  "2017-ppl-D2-azul-Q139": {
+    "nota": "frações empilhadas nas alternativas; conferido na imagem da página em 14/10/2026",
+    "alternativas": [
+      "x/y = 4/3",
+      "x/y = 3/4",
+      "x/y > 4/3",
+      "x/y > 3/4",
+      "x/y < 4/3"
+    ]
+  },
+  "2014-regular-D2-azul-Q162": {
+    "nota": "a figura é o quadro das faixas, transcrito como tabela na aula; conferido na imagem da página em 14/10/2026",
+    "figuras": []
+  },
+  "2022-ppl-D2-azul-Q173": {
+    "nota": "a figura é o quadro de compras, transcrito como tabela na aula; conferido na imagem da página em 14/10/2026",
+    "figuras": []
+  },
+  "2014-ppl-D2-cinza-Q157": {
+    "nota": "a figura detectada é a tarja cinza da margem do caderno; conferido na imagem da página em 14/10/2026",
+    "figuras": []
+  },
+  "2014-terceira-aplicacao-D2-cinza-Q177": {
+    "nota": "a alternativa E (20) não foi extraída e a questão ficou marcada como alternativas em imagem; as alternativas são texto; conferido na imagem da página em 14/10/2026",
+    "alternativas": [
+      "5",
+      "6",
+      "9",
+      "16",
+      "20"
+    ],
+    "alternativas_em_imagem": false
+  },
+  "2013-regular-D2-azul-Q149": {
+    "nota": "a figura é o quadro da projeção, transcrito como tabela na aula; conferido na imagem da página em 14/10/2026",
+    "figuras": []
   }
 }

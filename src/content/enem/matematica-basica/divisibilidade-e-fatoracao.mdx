@@ -1,0 +1,1113 @@
+---
+title: "Divisibilidade e Fatoração"
+subject: "Matemática Básica"
+order: 7
+relevance: >
+  Divisibilidade é saber quando um número cabe inteiro dentro de outro, sem sobrar nada. O ENEM (Exame
+  Nacional do Ensino Médio) quase nunca pede "calcule o MMC" direto. Ele conta uma história do dia a dia:
+  repartir algo sem sobra, coisas que se repetem em ritmos diferentes, contagens longas demais para fazer
+  uma a uma. Por trás de cada história há uma divisão, um resto, um múltiplo ou um divisor. São questões
+  curtas, mas muitas vezes difíceis, porque a pegadinha está num detalhe do enunciado.
+quickSummary: >
+  Um número é divisível por outro quando a divisão não deixa resto. Todo número maior que 1 se escreve como
+  um produto de primos (a fatoração), e é dela que saem o MDC (Máximo Divisor Comum), o MMC (Mínimo Múltiplo
+  Comum) e a quantidade de divisores. Partes iguais sem sobra pedem o MDC; coisas que se repetem e se
+  encontram pedem o MMC; posição dentro de um ciclo pede o resto da divisão.
+resources:
+  conteudoComplementar:
+    conteudo: "Frações"
+    comoAjuda: "Simplificar frações e achar um denominador comum usam exatamente o MDC e o MMC desta aula."
+gabarito:
+  - correta: 0
+    porque: >
+      O 1º ciclo começa em 1755, então 2101 é o ano número 2101 − 1755 + 1 = 347 da contagem. Como
+      347 = 11 × 31 + 6, há 31 ciclos completos e sobram 6 anos, que já estão no ciclo seguinte: o 32º.
+      Revisar: Aula Teórica › 3. Divisão com resto
+  - correta: 2
+    porque: >
+      Múltiplos de 4 de 1 a 103: 103 = 4 × 25 + 3, então são 25. Terminados em 4: 4, 14, …, 94, que
+      são 10. Cinco deles também são múltiplos de 4 (4, 24, 44, 64 e 84) e não podem ser contados duas
+      vezes: 25 + 10 − 5 = 30.
+      Revisar: Aula Teórica › 4. Contar múltiplos sem repetir
+  - correta: 4
+    porque: >
+      N é múltiplo de 10 = 2 × 5, então x ≥ 1 e y ≥ 1; não é múltiplo de 7, então z = 0. O número de
+      divisores é (x + 1) · (y + 1) · (z + 1); tirando o próprio N, fica (x + 1) · (y + 1) · (z + 1) − 1
+      (com z = 0, o fator (z + 1) vale 1 e não muda nada).
+      Revisar: Aula Teórica › 6. Quantidade de divisores
+  - correta: 4
+    porque: >
+      Sem sobra, o tamanho da peça divide 540, 810 e 1 080; o maior é o MDC = 270 cm, mas ele passa de
+      2 m = 200 cm. O maior divisor de 270 menor que 200 é 135 cm. Peças: 40 × 4 + 30 × 6 + 10 × 8 =
+      160 + 180 + 80 = 420.
+      Revisar: Aula Teórica › 7. MDC: o maior pedaço igual sem sobra
+  - correta: 3
+    porque: >
+      Os três grupos batem palmas juntos a cada MMC(2, 3, 4) = 12 s, a partir de 1 s: em 1, 13, 25, 37 e
+      49 s (o próximo, 61 s, passa de 60). O termo geral é 12 (n − 1) + 1, com n de 1 a 5.
+      Revisar: Aula Teórica › 8. MMC: quando as repetições se encontram
+---
+
+<Accordion titulo="Palavras e siglas desta aula" dica="Consulte quando encontrar um termo novo" icone="spell-check">
+
+- **ENEM** (Exame Nacional do Ensino Médio): a prova nacional que dá acesso a faculdades e bolsas.
+- **INEP** (Instituto Nacional de Estudos e Pesquisas Educacionais Anísio Teixeira): o órgão do governo que faz o ENEM.
+- **MDC** (Máximo Divisor Comum): o maior número que divide dois ou mais números sem deixar resto.
+- **MMC** (Mínimo Múltiplo Comum): o menor número, maior que zero, que é múltiplo de dois ou mais números ao mesmo tempo.
+- **Números naturais**: 0, 1, 2, 3, 4… Os naturais não nulos são os mesmos sem o zero: 1, 2, 3…
+- **Inteiros não negativos**: os inteiros que não são menores que zero: 0, 1, 2, 3… É o mesmo que os números naturais.
+- **Decomposição em fatores primos**: outro nome para a fatoração em primos.
+- **Decifrar**: descobrir o sentido de uma mensagem escrita em código.
+- **Termo geral**: a fórmula que dá qualquer termo de uma sequência a partir da posição n dele.
+- **Simultaneamente**: ao mesmo tempo.
+- **Tal que**: "de modo que"; introduz a condição que o número precisa cumprir.
+- **Estipular**: combinar, definir uma regra.
+- **Sincronia**: fazer coisas no mesmo ritmo, ao mesmo tempo.
+- **Ciclo de atividade magnética do Sol**: o período em que as manchas e explosões na superfície do Sol aumentam e depois diminuem, antes de recomeçar.
+
+</Accordion>
+
+## Antes de Começar
+
+**O que o ENEM cobra aqui.** A prova esconde a divisibilidade dentro de situações do dia a dia. Quase nunca aparecem as palavras "MMC" ou "MDC": é você quem precisa reconhecer qual ferramenta a história pede. Os temas que costumam aparecer são estes:
+
+- **Achar a posição dentro de um ciclo** que se repete, usando o resto da divisão.
+- **Contar múltiplos** até um número, sem contar o mesmo número duas vezes.
+- **Contar os divisores** de um número a partir da fatoração em primos.
+- **Cortar ou repartir em partes iguais** no maior pedaço que der, sem sobra.
+- **Descobrir quando ações repetidas acontecem juntas** e escrever a sequência desses encontros.
+
+**O que você precisa saber antes.**
+
+- **Tabuada e divisão.** Você vai dividir o tempo todo. Saber que 7 × 8 = 56 ajuda a ver na hora que 56 ÷ 8 = 7.
+- **Potências.** 2³ = 2 × 2 × 2 = 8. Todo número diferente de zero elevado a 0 vale 1: 5⁰ = 1. Revise a aula de Potências e Raízes se precisar.
+- **O ponto de multiplicação.** Na prova, "·" também quer dizer vezes: 3 · 4 = 3 × 4 = 12.
+- **Desigualdades.** a ≤ b (lê-se "a menor ou igual a b") quer dizer que a é menor que b ou igual a ele; a ≥ b (lê-se "a maior ou igual a b") é o contrário. "2 ≤ n ≤ 7" quer dizer que n vai de 2 até 7, incluindo os dois.
+
+## Aula Teórica
+
+### 1. Múltiplos e divisores
+
+Imagine 18 balas repartidas entre 3 crianças. Cada uma ganha 6 e não sobra nenhuma. Dizemos que 18 é **divisível** por 3: a divisão 18 ÷ 3 é exata, sem resto.
+
+Essa mesma frase pode ser dita de três jeitos:
+
+- 18 é **divisível** por 3;
+- 3 é **divisor** de 18 (ele divide 18 sem deixar resto);
+- 18 é **múltiplo** de 3 (ele aparece na tabuada do 3: 3 × 6 = 18).
+
+Os múltiplos de um número são os resultados da tabuada dele, e a lista nunca acaba. Os múltiplos de 5 são 5, 10, 15, 20, 25… Já os divisores de um número são poucos e cabem numa lista curta. Os divisores de 18 são 1, 2, 3, 6, 9 e 18.
+
+Para achar os divisores, procure os pares de números que multiplicados dão o número. No desenho abaixo, 18 bolinhas são arrumadas em retângulos sem sobra; cada retângulo mostra um par de divisores.
+
+<figure class="figura">
+  <svg viewBox="0 0 460 160" role="img" aria-labelledby="fig-divisib-1-t fig-divisib-1-d">
+    <title id="fig-divisib-1-t">Os divisores de 18 em pares</title>
+    <desc id="fig-divisib-1-d">Dezoito bolinhas arrumadas de três jeitos sem sobrar nenhuma: uma fila de 18 (1 × 18), duas filas de 9 (2 × 9) e três filas de 6 (3 × 6). Ao lado, a lista dos divisores de 18: 1, 2, 3, 6, 9 e 18; cada retângulo dá um par de divisores.</desc>
+    <text x="20" y="34" class="rotulo">1 × 18</text>
+    <circle cx="90" cy="30" r="4" class="traco-fino preenche" />
+    <circle cx="102" cy="30" r="4" class="traco-fino preenche" />
+    <circle cx="114" cy="30" r="4" class="traco-fino preenche" />
+    <circle cx="126" cy="30" r="4" class="traco-fino preenche" />
+    <circle cx="138" cy="30" r="4" class="traco-fino preenche" />
+    <circle cx="150" cy="30" r="4" class="traco-fino preenche" />
+    <circle cx="162" cy="30" r="4" class="traco-fino preenche" />
+    <circle cx="174" cy="30" r="4" class="traco-fino preenche" />
+    <circle cx="186" cy="30" r="4" class="traco-fino preenche" />
+    <circle cx="198" cy="30" r="4" class="traco-fino preenche" />
+    <circle cx="210" cy="30" r="4" class="traco-fino preenche" />
+    <circle cx="222" cy="30" r="4" class="traco-fino preenche" />
+    <circle cx="234" cy="30" r="4" class="traco-fino preenche" />
+    <circle cx="246" cy="30" r="4" class="traco-fino preenche" />
+    <circle cx="258" cy="30" r="4" class="traco-fino preenche" />
+    <circle cx="270" cy="30" r="4" class="traco-fino preenche" />
+    <circle cx="282" cy="30" r="4" class="traco-fino preenche" />
+    <circle cx="294" cy="30" r="4" class="traco-fino preenche" />
+    <text x="20" y="76" class="rotulo">2 × 9</text>
+    <circle cx="90" cy="66" r="4" class="traco-fino preenche" />
+    <circle cx="102" cy="66" r="4" class="traco-fino preenche" />
+    <circle cx="114" cy="66" r="4" class="traco-fino preenche" />
+    <circle cx="126" cy="66" r="4" class="traco-fino preenche" />
+    <circle cx="138" cy="66" r="4" class="traco-fino preenche" />
+    <circle cx="150" cy="66" r="4" class="traco-fino preenche" />
+    <circle cx="162" cy="66" r="4" class="traco-fino preenche" />
+    <circle cx="174" cy="66" r="4" class="traco-fino preenche" />
+    <circle cx="186" cy="66" r="4" class="traco-fino preenche" />
+    <circle cx="90" cy="78" r="4" class="traco-fino preenche" />
+    <circle cx="102" cy="78" r="4" class="traco-fino preenche" />
+    <circle cx="114" cy="78" r="4" class="traco-fino preenche" />
+    <circle cx="126" cy="78" r="4" class="traco-fino preenche" />
+    <circle cx="138" cy="78" r="4" class="traco-fino preenche" />
+    <circle cx="150" cy="78" r="4" class="traco-fino preenche" />
+    <circle cx="162" cy="78" r="4" class="traco-fino preenche" />
+    <circle cx="174" cy="78" r="4" class="traco-fino preenche" />
+    <circle cx="186" cy="78" r="4" class="traco-fino preenche" />
+    <text x="20" y="130" class="rotulo">3 × 6</text>
+    <circle cx="90" cy="114" r="4" class="traco-fino preenche" />
+    <circle cx="102" cy="114" r="4" class="traco-fino preenche" />
+    <circle cx="114" cy="114" r="4" class="traco-fino preenche" />
+    <circle cx="126" cy="114" r="4" class="traco-fino preenche" />
+    <circle cx="138" cy="114" r="4" class="traco-fino preenche" />
+    <circle cx="150" cy="114" r="4" class="traco-fino preenche" />
+    <circle cx="90" cy="126" r="4" class="traco-fino preenche" />
+    <circle cx="102" cy="126" r="4" class="traco-fino preenche" />
+    <circle cx="114" cy="126" r="4" class="traco-fino preenche" />
+    <circle cx="126" cy="126" r="4" class="traco-fino preenche" />
+    <circle cx="138" cy="126" r="4" class="traco-fino preenche" />
+    <circle cx="150" cy="126" r="4" class="traco-fino preenche" />
+    <circle cx="90" cy="138" r="4" class="traco-fino preenche" />
+    <circle cx="102" cy="138" r="4" class="traco-fino preenche" />
+    <circle cx="114" cy="138" r="4" class="traco-fino preenche" />
+    <circle cx="126" cy="138" r="4" class="traco-fino preenche" />
+    <circle cx="138" cy="138" r="4" class="traco-fino preenche" />
+    <circle cx="150" cy="138" r="4" class="traco-fino preenche" />
+    <text x="250" y="96" class="rotulo">Divisores de 18:</text>
+    <text x="250" y="116" class="rotulo">1, 2, 3, 6, 9 e 18</text>
+    <text x="250" y="136" class="rotulo-fraco">cada retângulo dá um par</text>
+  </svg>
+</figure>
+
+Todo número é divisor de si mesmo, e 1 é divisor de todos os números. Por isso a lista dos divisores de 18 começa em 1 e termina em 18.
+
+**Erro comum.** Trocar as palavras. O múltiplo é igual ou maior que o número (36 é múltiplo de 18); o divisor é igual ou menor (9 é divisor de 18).
+
+Diante de uma situação, pergunte: estou repartindo algo em partes (divisor) ou repetindo algo várias vezes (múltiplo)?
+
+### 2. Critérios de divisibilidade
+
+Às vezes você precisa saber se um número é divisível por outro sem fazer a conta inteira. Os **critérios de divisibilidade** são atalhos que olham só para os algarismos do número.
+
+| Divisível por | Quando | Exemplo |
+|---|---|---|
+| 2 | o último algarismo é par (0, 2, 4, 6 ou 8) | 538 |
+| 3 | a soma dos algarismos é divisível por 3 | 471 (4 + 7 + 1 = 12) |
+| 4 | os dois últimos algarismos formam um número divisível por 4 | 1 316 (16 ÷ 4 = 4) |
+| 5 | termina em 0 ou 5 | 785 |
+| 6 | é divisível por 2 e por 3 ao mesmo tempo | 252 |
+| 9 | a soma dos algarismos é divisível por 9 | 567 (5 + 6 + 7 = 18) |
+| 10 | termina em 0 | 1 230 |
+
+**Exemplo resolvido.** O número 2 316 é divisível por 2, 3, 4, 5, 6 e 9?
+
+1. Por 2: termina em 6, que é par. Sim.
+2. Por 3: 2 + 3 + 1 + 6 = 12, e 12 é divisível por 3. Sim.
+3. Por 4: os dois últimos algarismos formam 16, e 16 ÷ 4 = 4. Sim.
+4. Por 5: não termina em 0 nem em 5. Não.
+5. Por 6: é divisível por 2 e por 3. Sim.
+6. Por 9: a soma 12 não é divisível por 9. Não.
+
+**Erro comum.** Testar o 4 olhando só o último algarismo. Os números 1 116 e 1 126 terminam ambos em 6. Mas 16 ÷ 4 = 4 (exato) e 26 ÷ 4 dá 6 e sobra 2. Então 1 116 é divisível por 4, e 1 126 não é.
+
+### 3. Divisão com resto
+
+Quando a divisão não é exata, sobra um **resto**. Pense em 47 alunos que vão viajar em vans de 9 lugares. Cabem 5 vans cheias (45 alunos) e sobram 2 alunos.
+
+**Fórmula: divisão com resto**
+
+**D = d × q + r**
+
+- **D**: o dividendo, o número que está sendo dividido (47 alunos).
+- **d**: o divisor, o tamanho de cada grupo (9 lugares).
+- **q**: o quociente, quantos grupos completos cabem (5 vans).
+- **r**: o resto, o que sobra (2 alunos). O resto é sempre menor que o divisor; se fosse maior ou igual, caberia mais um grupo.
+- **Em palavras:** o número é igual a grupos completos vezes o tamanho do grupo, mais o que sobrou.
+- **Quando usar:** sempre que algo se repete em blocos do mesmo tamanho e você quer saber em que bloco ou em que posição do bloco um item cai.
+
+**Exemplo resolvido.** Um auditório tem cadeiras numeradas a partir de 1, em fileiras de 8. Em que fileira fica a cadeira 45?
+
+1. Dados: D = 45 (o número da cadeira), d = 8 (cadeiras por fileira).
+2. Dividir: 45 ÷ 8 dá 5 e sobra 5, porque 8 × 5 = 40 e 45 − 40 = 5.
+3. Conferir na fórmula: 45 = 8 × 5 + 5.
+4. Interpretar: 5 fileiras ficam cheias (até a cadeira 40), e a cadeira 45 é a 5ª da fileira seguinte.
+5. Resposta: fileira 6. Veja no desenho abaixo.
+
+<figure class="figura">
+  <svg viewBox="0 0 460 172" role="img" aria-labelledby="fig-divisib-2-t fig-divisib-2-d">
+    <title id="fig-divisib-2-t">A cadeira 45 em fileiras de 8</title>
+    <desc id="fig-divisib-2-d">Quarenta e oito cadeiras numeradas de 1 a 48, em 6 fileiras de 8. A cadeira 45 está destacada: é a 5ª cadeira da fileira 6. Ao lado, a conta 45 = 8 × 5 + 5: 5 fileiras cheias, com 40 cadeiras, e mais 5 cadeiras na fileira seguinte.</desc>
+    <text x="78" y="27" class="rotulo-fraco" text-anchor="end">fileira 1</text>
+    <rect x="88" y="12" width="22" height="22" class="traco-fino" />
+    <text x="99" y="27" class="rotulo-fraco" text-anchor="middle">1</text>
+    <rect x="114" y="12" width="22" height="22" class="traco-fino" />
+    <text x="125" y="27" class="rotulo-fraco" text-anchor="middle">2</text>
+    <rect x="140" y="12" width="22" height="22" class="traco-fino" />
+    <text x="151" y="27" class="rotulo-fraco" text-anchor="middle">3</text>
+    <rect x="166" y="12" width="22" height="22" class="traco-fino" />
+    <text x="177" y="27" class="rotulo-fraco" text-anchor="middle">4</text>
+    <rect x="192" y="12" width="22" height="22" class="traco-fino" />
+    <text x="203" y="27" class="rotulo-fraco" text-anchor="middle">5</text>
+    <rect x="218" y="12" width="22" height="22" class="traco-fino" />
+    <text x="229" y="27" class="rotulo-fraco" text-anchor="middle">6</text>
+    <rect x="244" y="12" width="22" height="22" class="traco-fino" />
+    <text x="255" y="27" class="rotulo-fraco" text-anchor="middle">7</text>
+    <rect x="270" y="12" width="22" height="22" class="traco-fino" />
+    <text x="281" y="27" class="rotulo-fraco" text-anchor="middle">8</text>
+    <text x="78" y="53" class="rotulo-fraco" text-anchor="end">fileira 2</text>
+    <rect x="88" y="38" width="22" height="22" class="traco-fino" />
+    <text x="99" y="53" class="rotulo-fraco" text-anchor="middle">9</text>
+    <rect x="114" y="38" width="22" height="22" class="traco-fino" />
+    <text x="125" y="53" class="rotulo-fraco" text-anchor="middle">10</text>
+    <rect x="140" y="38" width="22" height="22" class="traco-fino" />
+    <text x="151" y="53" class="rotulo-fraco" text-anchor="middle">11</text>
+    <rect x="166" y="38" width="22" height="22" class="traco-fino" />
+    <text x="177" y="53" class="rotulo-fraco" text-anchor="middle">12</text>
+    <rect x="192" y="38" width="22" height="22" class="traco-fino" />
+    <text x="203" y="53" class="rotulo-fraco" text-anchor="middle">13</text>
+    <rect x="218" y="38" width="22" height="22" class="traco-fino" />
+    <text x="229" y="53" class="rotulo-fraco" text-anchor="middle">14</text>
+    <rect x="244" y="38" width="22" height="22" class="traco-fino" />
+    <text x="255" y="53" class="rotulo-fraco" text-anchor="middle">15</text>
+    <rect x="270" y="38" width="22" height="22" class="traco-fino" />
+    <text x="281" y="53" class="rotulo-fraco" text-anchor="middle">16</text>
+    <text x="78" y="79" class="rotulo-fraco" text-anchor="end">fileira 3</text>
+    <rect x="88" y="64" width="22" height="22" class="traco-fino" />
+    <text x="99" y="79" class="rotulo-fraco" text-anchor="middle">17</text>
+    <rect x="114" y="64" width="22" height="22" class="traco-fino" />
+    <text x="125" y="79" class="rotulo-fraco" text-anchor="middle">18</text>
+    <rect x="140" y="64" width="22" height="22" class="traco-fino" />
+    <text x="151" y="79" class="rotulo-fraco" text-anchor="middle">19</text>
+    <rect x="166" y="64" width="22" height="22" class="traco-fino" />
+    <text x="177" y="79" class="rotulo-fraco" text-anchor="middle">20</text>
+    <rect x="192" y="64" width="22" height="22" class="traco-fino" />
+    <text x="203" y="79" class="rotulo-fraco" text-anchor="middle">21</text>
+    <rect x="218" y="64" width="22" height="22" class="traco-fino" />
+    <text x="229" y="79" class="rotulo-fraco" text-anchor="middle">22</text>
+    <rect x="244" y="64" width="22" height="22" class="traco-fino" />
+    <text x="255" y="79" class="rotulo-fraco" text-anchor="middle">23</text>
+    <rect x="270" y="64" width="22" height="22" class="traco-fino" />
+    <text x="281" y="79" class="rotulo-fraco" text-anchor="middle">24</text>
+    <text x="78" y="105" class="rotulo-fraco" text-anchor="end">fileira 4</text>
+    <rect x="88" y="90" width="22" height="22" class="traco-fino" />
+    <text x="99" y="105" class="rotulo-fraco" text-anchor="middle">25</text>
+    <rect x="114" y="90" width="22" height="22" class="traco-fino" />
+    <text x="125" y="105" class="rotulo-fraco" text-anchor="middle">26</text>
+    <rect x="140" y="90" width="22" height="22" class="traco-fino" />
+    <text x="151" y="105" class="rotulo-fraco" text-anchor="middle">27</text>
+    <rect x="166" y="90" width="22" height="22" class="traco-fino" />
+    <text x="177" y="105" class="rotulo-fraco" text-anchor="middle">28</text>
+    <rect x="192" y="90" width="22" height="22" class="traco-fino" />
+    <text x="203" y="105" class="rotulo-fraco" text-anchor="middle">29</text>
+    <rect x="218" y="90" width="22" height="22" class="traco-fino" />
+    <text x="229" y="105" class="rotulo-fraco" text-anchor="middle">30</text>
+    <rect x="244" y="90" width="22" height="22" class="traco-fino" />
+    <text x="255" y="105" class="rotulo-fraco" text-anchor="middle">31</text>
+    <rect x="270" y="90" width="22" height="22" class="traco-fino" />
+    <text x="281" y="105" class="rotulo-fraco" text-anchor="middle">32</text>
+    <text x="78" y="131" class="rotulo-fraco" text-anchor="end">fileira 5</text>
+    <rect x="88" y="116" width="22" height="22" class="traco-fino" />
+    <text x="99" y="131" class="rotulo-fraco" text-anchor="middle">33</text>
+    <rect x="114" y="116" width="22" height="22" class="traco-fino" />
+    <text x="125" y="131" class="rotulo-fraco" text-anchor="middle">34</text>
+    <rect x="140" y="116" width="22" height="22" class="traco-fino" />
+    <text x="151" y="131" class="rotulo-fraco" text-anchor="middle">35</text>
+    <rect x="166" y="116" width="22" height="22" class="traco-fino" />
+    <text x="177" y="131" class="rotulo-fraco" text-anchor="middle">36</text>
+    <rect x="192" y="116" width="22" height="22" class="traco-fino" />
+    <text x="203" y="131" class="rotulo-fraco" text-anchor="middle">37</text>
+    <rect x="218" y="116" width="22" height="22" class="traco-fino" />
+    <text x="229" y="131" class="rotulo-fraco" text-anchor="middle">38</text>
+    <rect x="244" y="116" width="22" height="22" class="traco-fino" />
+    <text x="255" y="131" class="rotulo-fraco" text-anchor="middle">39</text>
+    <rect x="270" y="116" width="22" height="22" class="traco-fino" />
+    <text x="281" y="131" class="rotulo-fraco" text-anchor="middle">40</text>
+    <text x="78" y="157" class="rotulo-fraco" text-anchor="end">fileira 6</text>
+    <rect x="88" y="142" width="22" height="22" class="traco-fino" />
+    <text x="99" y="157" class="rotulo-fraco" text-anchor="middle">41</text>
+    <rect x="114" y="142" width="22" height="22" class="traco-fino" />
+    <text x="125" y="157" class="rotulo-fraco" text-anchor="middle">42</text>
+    <rect x="140" y="142" width="22" height="22" class="traco-fino" />
+    <text x="151" y="157" class="rotulo-fraco" text-anchor="middle">43</text>
+    <rect x="166" y="142" width="22" height="22" class="traco-fino" />
+    <text x="177" y="157" class="rotulo-fraco" text-anchor="middle">44</text>
+    <rect x="192" y="142" width="22" height="22" class="traco preenche" />
+    <text x="203" y="157" class="rotulo" text-anchor="middle">45</text>
+    <rect x="218" y="142" width="22" height="22" class="traco-fino" />
+    <text x="229" y="157" class="rotulo-fraco" text-anchor="middle">46</text>
+    <rect x="244" y="142" width="22" height="22" class="traco-fino" />
+    <text x="255" y="157" class="rotulo-fraco" text-anchor="middle">47</text>
+    <rect x="270" y="142" width="22" height="22" class="traco-fino" />
+    <text x="281" y="157" class="rotulo-fraco" text-anchor="middle">48</text>
+    <text x="314" y="60" class="rotulo">45 = 8 × 5 + 5</text>
+    <text x="314" y="84" class="rotulo-fraco">5 fileiras cheias (40 cadeiras)</text>
+    <text x="314" y="104" class="rotulo-fraco">e mais 5 cadeiras:</text>
+    <text x="314" y="124" class="rotulo-fraco">a 45 é a 5ª da fileira 6</text>
+  </svg>
+</figure>
+
+Repare que a resposta é o quociente **mais 1**. Os blocos completos já passaram; o item está no bloco que começou depois deles. Há uma exceção: quando o resto é **zero**, o item é o último do bloco q. A cadeira 48 dá 48 = 8 × 6 + 0: ela é a última da fileira 6, e não está na fileira 7.
+
+O resto também resolve repetições no tempo. Os dias da semana se repetem de 7 em 7. Se hoje é segunda-feira, que dia será daqui a 100 dias? Como 100 = 7 × 14 + 2, passam 14 semanas inteiras (que voltam à segunda) e mais 2 dias: será quarta-feira.
+
+Quando a contagem começa num ano, num dia ou num número diferente de 1, transforme primeiro em **posição**. Num atendimento, a primeira senha chamada no dia foi a 15. A senha 60 é a de número 60 − 15 + 1 = 46 da fila. O "+ 1" existe porque a própria senha de início já é a primeira. Só depois de achar a posição você divide pelo tamanho do bloco.
+
+**Erro comum.** Responder o quociente como se fosse o bloco onde o item está. Na cadeira 45, o quociente é 5, mas a cadeira está na fileira 6. Outro erro é esquecer o "+ 1" ao contar posições a partir de um início.
+
+### 4. Contar múltiplos sem repetir
+
+Quantos múltiplos de 7 existem de 1 até 100? Eles são 7, 14, 21… Contar um por um é lento. A divisão faz isso de uma vez.
+
+**Fórmula: quantos múltiplos até um número**
+
+**múltiplos de k até N = quociente de N ÷ k**
+
+- **k**: o número cujos múltiplos você conta.
+- **N**: o último número do intervalo, que começa em 1.
+- **Em palavras:** cada grupo completo de k números tem exatamente um múltiplo de k; o resto não chega a formar mais um.
+- **Quando usar:** para contar quantos números de 1 até N são divisíveis por k.
+
+**Exemplo resolvido.** Quantos múltiplos de 7 há de 1 até 100?
+
+1. Dados: k = 7, N = 100.
+2. Dividir: 100 = 7 × 14 + 2.
+3. O quociente é 14; o resto 2 é ignorado.
+4. Conferir: o 14º múltiplo é 7 × 14 = 98, e o próximo, 105, já passa de 100.
+5. Resposta: 14 múltiplos.
+
+**Erro comum.** Somar 1 ao quociente por causa do resto. O resto são números que sobram depois do último múltiplo (99 e 100); nenhum deles é múltiplo de 7.
+
+Para contar números que **terminam** num certo algarismo, olhe as dezenas. De 1 até 75, os que terminam em 8 são 8, 18, 28, …, 68: um por dezena completa. O 78 já passa de 75, então são 7.
+
+Quando a pergunta junta dois grupos ("é múltiplo de um **ou** de outro"), alguns números estão nos dois grupos. Se você somar os dois grupos, esses números entram duas vezes.
+
+**Fórmula: contagem sem repetir**
+
+**total = A + B − ambos**
+
+- **A**: quantos números há no primeiro grupo.
+- **B**: quantos números há no segundo grupo.
+- **ambos**: quantos números estão nos dois grupos ao mesmo tempo.
+- **Em palavras:** some os dois grupos e tire uma vez os que foram contados em dobro.
+- **Quando usar:** quando uma regra vale para quem está num grupo **ou** no outro.
+
+**Exemplo resolvido.** De 1 a 50, quantos números são múltiplos de 3 ou múltiplos de 5?
+
+1. Múltiplos de 3: 50 = 3 × 16 + 2, então A = 16.
+2. Múltiplos de 5: 50 = 5 × 10 + 0, então B = 10.
+3. Nos dois grupos: um número divisível por 3 e por 5 é múltiplo de 15. São 15, 30 e 45, então ambos = 3.
+4. Total: 16 + 10 − 3 = 23. Veja no esquema abaixo.
+
+<figure class="figura">
+  <svg viewBox="0 0 460 210" role="img" aria-labelledby="fig-divisib-3-t fig-divisib-3-d">
+    <title id="fig-divisib-3-t">Múltiplos de 3 ou de 5, de 1 a 50</title>
+    <desc id="fig-divisib-3-d">Dois círculos que se cruzam, dentro de um retângulo com os números de 1 a 50. O círculo da esquerda tem os 16 múltiplos de 3; o da direita, os 10 múltiplos de 5. Na parte comum ficam os 3 números que estão nos dois grupos: 15, 30 e 45. Sobram 13 só de 3 e 7 só de 5. Embaixo: total = 16 + 10 − 3 = 23.</desc>
+    <rect x="10" y="10" width="440" height="190" class="traco-fino" />
+    <text x="20" y="28" class="rotulo-fraco">números de 1 a 50</text>
+    <ellipse cx="170" cy="110" rx="120" ry="56" class="traco preenche" />
+    <ellipse cx="290" cy="110" rx="120" ry="56" class="traco preenche" />
+    <text x="110" y="44" class="rotulo" text-anchor="middle">múltiplos de 3: 16</text>
+    <text x="350" y="44" class="rotulo" text-anchor="middle">múltiplos de 5: 10</text>
+    <text x="110" y="108" class="rotulo-fraco" text-anchor="middle">3, 6, 9, 12…</text>
+    <text x="110" y="124" class="rotulo-fraco" text-anchor="middle">só de 3: 13</text>
+    <text x="350" y="108" class="rotulo-fraco" text-anchor="middle">5, 10, 20…</text>
+    <text x="350" y="124" class="rotulo-fraco" text-anchor="middle">só de 5: 7</text>
+    <text x="230" y="100" class="rotulo" text-anchor="middle">nos dois:</text>
+    <text x="230" y="116" class="rotulo" text-anchor="middle">15, 30, 45</text>
+    <text x="230" y="132" class="rotulo-fraco" text-anchor="middle">(3 números)</text>
+    <text x="230" y="190" class="rotulo" text-anchor="middle">total = 16 + 10 − 3 = 23</text>
+  </svg>
+</figure>
+
+**Erro comum.** Somar os dois grupos sem tirar os repetidos (aqui daria 26, e não 23). Para achar quem está nos dois grupos, use o critério de divisibilidade ou a lista: escreva os números de um grupo e marque quais servem também no outro.
+
+### 5. Números primos e fatoração
+
+Um número **primo** tem exatamente dois divisores: o 1 e ele mesmo. O 7 é primo, porque só 1 e 7 o dividem. O 9 não é primo, porque também é divisível por 3. O 1 não é primo, porque tem um divisor só.
+
+Os primeiros primos são 2, 3, 5, 7, 11, 13, 17, 19, 23 e 29. O 2 é o único primo par.
+
+Todo número maior que 1 pode ser escrito como uma multiplicação de primos, e de um jeito só (a ordem não importa). Escrever o número assim é a **fatoração**, também chamada **decomposição em fatores primos**. Os primos são como as peças de montar de todos os números.
+
+Para fatorar, divida pelo menor primo possível e repita com o resultado, até chegar a 1. Os primos usados, multiplicados, dão o número.
+
+**Exemplo resolvido.** Fatore 360.
+
+1. 360 é par: 360 ÷ 2 = 180.
+2. 180 é par: 180 ÷ 2 = 90.
+3. 90 é par: 90 ÷ 2 = 45.
+4. 45 é ímpar; a soma 4 + 5 = 9 é divisível por 3: 45 ÷ 3 = 15.
+5. 15 ÷ 3 = 5, e 5 ÷ 5 = 1.
+6. Resposta: 360 = 2 × 2 × 2 × 3 × 3 × 5 = 2³ × 3² × 5. Veja no esquema abaixo.
+
+<figure class="figura">
+  <svg viewBox="0 0 460 176" role="img" aria-labelledby="fig-divisib-4-t fig-divisib-4-d">
+    <title id="fig-divisib-4-t">Fatoração de 360 por divisões sucessivas</title>
+    <desc id="fig-divisib-4-d">Uma coluna de números à esquerda de uma linha vertical: 360, 180, 90, 45, 15, 5 e 1. À direita da linha, os primos usados em cada divisão: 2, 2, 2, 3, 3 e 5. Ao lado, o resultado: 360 = 2 × 2 × 2 × 3 × 3 × 5 = 2³ × 3² × 5.</desc>
+    <line x1="200" y1="10" x2="200" y2="166" class="traco" />
+    <text x="188" y="26" class="rotulo" text-anchor="end">360</text>
+    <text x="212" y="26" class="rotulo">2</text>
+    <text x="188" y="48" class="rotulo" text-anchor="end">180</text>
+    <text x="212" y="48" class="rotulo">2</text>
+    <text x="188" y="70" class="rotulo" text-anchor="end">90</text>
+    <text x="212" y="70" class="rotulo">2</text>
+    <text x="188" y="92" class="rotulo" text-anchor="end">45</text>
+    <text x="212" y="92" class="rotulo">3</text>
+    <text x="188" y="114" class="rotulo" text-anchor="end">15</text>
+    <text x="212" y="114" class="rotulo">3</text>
+    <text x="188" y="136" class="rotulo" text-anchor="end">5</text>
+    <text x="212" y="136" class="rotulo">5</text>
+    <text x="188" y="158" class="rotulo" text-anchor="end">1</text>
+    <text x="260" y="70" class="rotulo">360 = 2 × 2 × 2 × 3 × 3 × 5</text>
+    <text x="260" y="94" class="rotulo">360 = 2³ × 3² × 5</text>
+    <text x="260" y="120" class="rotulo-fraco">à direita da linha: os primos</text>
+    <text x="260" y="136" class="rotulo-fraco">pelos quais se dividiu</text>
+  </svg>
+</figure>
+
+A fatoração mostra na hora de quem um número é múltiplo. Um número é múltiplo de outro quando tem todos os primos do outro, com expoentes pelo menos iguais. Como 6 = 2 × 3, um número é múltiplo de 6 quando tem o 2 e o 3 na fatoração. O número 360 = 2³ × 3² × 5 é múltiplo de 6; já 45 = 3² × 5 não é, porque não tem o 2.
+
+Quando um primo **não** aparece, podemos dizer que o expoente dele é **0**. Como 2⁰ = 1, escrever 45 = 2⁰ × 3² × 5 não muda o valor: 1 × 9 × 5 = 45. Isso ajuda nas fórmulas da próxima seção.
+
+O contrário também vale. Se o 5 não aparece na fatoração (expoente 0), o número não é múltiplo de 5. Se aparece com expoente pelo menos 1, o número é múltiplo de 5.
+
+**Erro comum.** Achar que todo número ímpar é primo. O 9, o 15, o 21 e o 45 são ímpares e não são primos.
+
+### 6. Quantidade de divisores
+
+Cada divisor de um número é feito com os mesmos primos dele, com expoentes de 0 até o expoente que o número tem. Veja os divisores de 12 = 2² × 3. O expoente do 2 pode ser 0, 1 ou 2 (3 escolhas). O expoente do 3 pode ser 0 ou 1 (2 escolhas). Cada combinação dá um divisor diferente, como na tabela abaixo.
+
+<figure class="figura">
+  <svg viewBox="0 0 460 160" role="img" aria-labelledby="fig-divisib-5-t fig-divisib-5-d">
+    <title id="fig-divisib-5-t">Os divisores de 12 numa tabela</title>
+    <desc id="fig-divisib-5-d">Tabela com as colunas 2⁰, 2¹ e 2² e as linhas 3⁰ e 3¹. Cada casa é o produto da coluna pela linha: na primeira linha 1, 2 e 4; na segunda 3, 6 e 12. São 3 escolhas para o expoente do 2 e 2 escolhas para o expoente do 3, então 12 = 2² × 3 tem 3 × 2 = 6 divisores.</desc>
+    <text x="280" y="18" class="rotulo-fraco" text-anchor="middle">expoente do 2 (de 0 a 2: 3 escolhas)</text>
+    <text x="200" y="40" class="rotulo" text-anchor="middle">2⁰</text>
+    <text x="280" y="40" class="rotulo" text-anchor="middle">2¹</text>
+    <text x="360" y="40" class="rotulo" text-anchor="middle">2²</text>
+    <text x="150" y="70" class="rotulo" text-anchor="end">3⁰</text>
+    <text x="150" y="106" class="rotulo" text-anchor="end">3¹</text>
+    <rect x="160" y="48" width="80" height="36" class="traco-fino preenche" />
+    <text x="200" y="70" class="rotulo" text-anchor="middle">1</text>
+    <rect x="240" y="48" width="80" height="36" class="traco-fino preenche" />
+    <text x="280" y="70" class="rotulo" text-anchor="middle">2</text>
+    <rect x="320" y="48" width="80" height="36" class="traco-fino preenche" />
+    <text x="360" y="70" class="rotulo" text-anchor="middle">4</text>
+    <rect x="160" y="84" width="80" height="36" class="traco-fino preenche" />
+    <text x="200" y="106" class="rotulo" text-anchor="middle">3</text>
+    <rect x="240" y="84" width="80" height="36" class="traco-fino preenche" />
+    <text x="280" y="106" class="rotulo" text-anchor="middle">6</text>
+    <rect x="320" y="84" width="80" height="36" class="traco-fino preenche" />
+    <text x="360" y="106" class="rotulo" text-anchor="middle">12</text>
+    <text x="20" y="74" class="rotulo-fraco">expoente do 3</text>
+    <text x="20" y="90" class="rotulo-fraco">(0 ou 1: 2 escolhas)</text>
+    <text x="280" y="148" class="rotulo" text-anchor="middle">12 = 2² × 3 tem 3 × 2 = 6 divisores</text>
+  </svg>
+</figure>
+
+**Fórmula: quantidade de divisores**
+
+**nº de divisores = (a + 1) × (b + 1) × (c + 1)**
+
+- **a, b, c**: os expoentes dos primos na fatoração do número, escrito como pᵃ × qᵇ × rᶜ (p, q e r são primos diferentes).
+- **+ 1**: cada expoente pode ir de 0 até o valor dele, e isso dá uma escolha a mais que o próprio expoente (de 0 a 2 são 3 escolhas).
+- **Em palavras:** some 1 a cada expoente e multiplique os resultados.
+- **Quando usar:** quando a questão pergunta quantos divisores um número tem.
+
+**Exemplo resolvido.** Quantos divisores tem 360?
+
+1. Fatoração: 360 = 2³ × 3² × 5¹ (o 5 aparece uma vez, então o expoente dele é 1).
+2. Somar 1 a cada expoente: 3 + 1 = 4; 2 + 1 = 3; 1 + 1 = 2.
+3. Multiplicar: 4 × 3 × 2 = 24.
+4. Resposta: 360 tem 24 divisores.
+
+Leia com atenção **quais** divisores a pergunta quer:
+
+- "divisores **diferentes do próprio número**": tire 1 do total (360 tem 24 − 1 = 23);
+- "divisores diferentes de 1 e do próprio número": tire 2 (24 − 2 = 22).
+
+Um primo com expoente 0 não muda a conta, porque 0 + 1 = 1 e multiplicar por 1 não altera nada. O número 45 = 2⁰ × 3² × 5¹ tem 1 × 3 × 2 = 6 divisores: 1, 3, 5, 9, 15 e 45. Com letras no lugar dos expoentes, a fórmula é a mesma: 3ᵃ × 11ᵇ tem (a + 1) × (b + 1) divisores. Se b = 0, o fator (b + 1) vale 1. Uma conta de divisores nunca dá 0: todo número tem pelo menos o divisor 1.
+
+**Erro comum.** Multiplicar os expoentes sem somar 1. Para 360, isso daria 3 × 2 × 1 = 6, muito menos que os 24 divisores verdadeiros. Outro erro é esquecer de tirar o próprio número quando a pergunta pede os divisores diferentes dele.
+
+### 7. MDC: o maior pedaço igual sem sobra
+
+Você tem duas fitas, uma de 84 cm e outra de 126 cm. Quer cortar as duas em pedaços todos do mesmo tamanho, sem sobrar nada, e com os pedaços mais compridos que der. O tamanho do pedaço precisa dividir 84 e 126 ao mesmo tempo: é um **divisor comum**. O maior deles é o MDC (Máximo Divisor Comum).
+
+Para achar o MDC, fatore os números e multiplique só os primos que aparecem em **todos**, cada um com o **menor** expoente.
+
+**Exemplo resolvido.** Calcule o MDC de 84 e 126 e quantos pedaços saem das duas fitas.
+
+1. Fatorar: 84 = 2² × 3 × 7 e 126 = 2 × 3² × 7.
+2. Primos que aparecem nos dois: 2, 3 e 7.
+3. Menor expoente de cada: 2¹, 3¹ e 7¹.
+4. MDC = 2 × 3 × 7 = 42 cm.
+5. Pedaços: 84 ÷ 42 = 2 e 126 ÷ 42 = 3, ao todo 2 + 3 = 5 pedaços. Veja no desenho abaixo.
+
+<figure class="figura">
+  <svg viewBox="0 0 460 162" role="img" aria-labelledby="fig-divisib-6-t fig-divisib-6-d">
+    <title id="fig-divisib-6-t">Fitas cortadas no maior pedaço comum</title>
+    <desc id="fig-divisib-6-d">Duas fitas desenhadas em escala. A de 84 cm está dividida em 2 pedaços de 42 cm; a de 126 cm, em 3 pedaços de 42 cm. Embaixo: MDC(84, 126) = 42, e as duas fitas dão 2 + 3 = 5 pedaços sem sobra.</desc>
+    <text x="20" y="50" class="rotulo-fraco">fita de 84 cm</text>
+    <rect x="110.0" y="30" width="109.2" height="30" class="traco preenche" />
+    <text x="164.6" y="50" class="rotulo" text-anchor="middle">42 cm</text>
+    <rect x="219.2" y="30" width="109.2" height="30" class="traco preenche" />
+    <text x="273.8" y="50" class="rotulo" text-anchor="middle">42 cm</text>
+    <text x="20" y="110" class="rotulo-fraco">fita de 126 cm</text>
+    <rect x="110.0" y="90" width="109.2" height="30" class="traco preenche" />
+    <text x="164.6" y="110" class="rotulo" text-anchor="middle">42 cm</text>
+    <rect x="219.2" y="90" width="109.2" height="30" class="traco preenche" />
+    <text x="273.8" y="110" class="rotulo" text-anchor="middle">42 cm</text>
+    <rect x="328.4" y="90" width="109.2" height="30" class="traco preenche" />
+    <text x="383.0" y="110" class="rotulo" text-anchor="middle">42 cm</text>
+    <text x="230" y="150" class="rotulo" text-anchor="middle">MDC(84, 126) = 42: 2 + 3 = 5 pedaços sem sobra</text>
+  </svg>
+</figure>
+
+Com três ou mais números, o método é o mesmo. MDC de 12, 18 e 30: 12 = 2² × 3, 18 = 2 × 3² e 30 = 2 × 3 × 5. Os primos que aparecem nos três são 2 e 3, cada um com expoente 1, então MDC = 2 × 3 = 6.
+
+Às vezes o enunciado põe um **limite** no tamanho. Todo divisor comum é divisor do MDC. Então, se o MDC passa do limite, liste os divisores do MDC e pegue o maior que respeita o limite. Antes de comparar, ponha tudo na mesma unidade (1 m = 100 cm).
+
+**Exemplo resolvido.** As mesmas fitas, mas cada pedaço deve ter menos de 20 cm. Qual é o maior pedaço que serve e quantos pedaços saem?
+
+1. O MDC é 42 cm, que passa de 20 cm.
+2. Divisores de 42: 1, 2, 3, 6, 7, 14, 21 e 42.
+3. O maior que fica abaixo de 20 é 14 cm.
+4. Pedaços: 84 ÷ 14 = 6 e 126 ÷ 14 = 9, ao todo 6 + 9 = 15 pedaços.
+
+Se houver várias fitas iguais, multiplique: com 3 fitas de 84 cm, por exemplo, seriam 3 × 6 = 18 pedaços só delas.
+
+**Erro comum.** Parar no MDC e esquecer o limite do enunciado. Outro erro é responder o tamanho do pedaço quando a pergunta pede **quantos** pedaços.
+
+Ao ler "partes iguais", "sem sobra" e "o maior pedaço", pense em MDC.
+
+### 8. MMC: quando as repetições se encontram
+
+Duas luzes começam a piscar juntas no instante 0. A luz A pisca a cada 6 segundos; a luz B, a cada 8 segundos. Quando elas piscam juntas de novo? A luz A pisca nos múltiplos de 6; a luz B, nos múltiplos de 8. Elas se encontram nos **múltiplos comuns**, e o primeiro encontro é o menor deles: o MMC (Mínimo Múltiplo Comum).
+
+<figure class="figura">
+  <svg viewBox="0 0 460 156" role="img" aria-labelledby="fig-divisib-7-t fig-divisib-7-d">
+    <title id="fig-divisib-7-t">Duas luzes piscando juntas a cada 24 segundos</title>
+    <desc id="fig-divisib-7-d">Duas linhas do tempo de 0 a 48 segundos. Na de cima, a luz A pisca em 0, 6, 12, 18, 24, 30, 36, 42 e 48. Na de baixo, a luz B pisca em 0, 8, 16, 24, 32, 40 e 48. Linhas tracejadas ligam os instantes em que as duas piscam juntas: 0, 24 e 48 segundos, de 24 em 24, que é o MMC(6, 8).</desc>
+    <line x1="30" y1="60" x2="423.6" y2="60" class="traco" />
+    <line x1="30" y1="110" x2="423.6" y2="110" class="traco" />
+    <text x="30" y="24" class="rotulo-fraco">luz A: a cada 6 s</text>
+    <text x="30" y="146" class="rotulo-fraco">luz B: a cada 8 s</text>
+    <circle cx="30.0" cy="60" r="7" class="traco preenche no" />
+    <text x="30.0" y="46" class="rotulo-fraco" text-anchor="middle">0</text>
+    <circle cx="79.2" cy="60" r="5" class="traco no" />
+    <text x="79.2" y="46" class="rotulo-fraco" text-anchor="middle">6</text>
+    <circle cx="128.4" cy="60" r="5" class="traco no" />
+    <text x="128.4" y="46" class="rotulo-fraco" text-anchor="middle">12</text>
+    <circle cx="177.6" cy="60" r="5" class="traco no" />
+    <text x="177.6" y="46" class="rotulo-fraco" text-anchor="middle">18</text>
+    <circle cx="226.8" cy="60" r="7" class="traco preenche no" />
+    <text x="226.8" y="46" class="rotulo-fraco" text-anchor="middle">24</text>
+    <circle cx="276.0" cy="60" r="5" class="traco no" />
+    <text x="276.0" y="46" class="rotulo-fraco" text-anchor="middle">30</text>
+    <circle cx="325.2" cy="60" r="5" class="traco no" />
+    <text x="325.2" y="46" class="rotulo-fraco" text-anchor="middle">36</text>
+    <circle cx="374.4" cy="60" r="5" class="traco no" />
+    <text x="374.4" y="46" class="rotulo-fraco" text-anchor="middle">42</text>
+    <circle cx="423.6" cy="60" r="7" class="traco preenche no" />
+    <text x="423.6" y="46" class="rotulo-fraco" text-anchor="middle">48</text>
+    <circle cx="30.0" cy="110" r="7" class="traco preenche no" />
+    <text x="30.0" y="128" class="rotulo-fraco" text-anchor="middle">0</text>
+    <circle cx="95.6" cy="110" r="5" class="traco no" />
+    <text x="95.6" y="128" class="rotulo-fraco" text-anchor="middle">8</text>
+    <circle cx="161.2" cy="110" r="5" class="traco no" />
+    <text x="161.2" y="128" class="rotulo-fraco" text-anchor="middle">16</text>
+    <circle cx="226.8" cy="110" r="7" class="traco preenche no" />
+    <text x="226.8" y="128" class="rotulo-fraco" text-anchor="middle">24</text>
+    <circle cx="292.4" cy="110" r="5" class="traco no" />
+    <text x="292.4" y="128" class="rotulo-fraco" text-anchor="middle">32</text>
+    <circle cx="358.0" cy="110" r="5" class="traco no" />
+    <text x="358.0" y="128" class="rotulo-fraco" text-anchor="middle">40</text>
+    <circle cx="423.6" cy="110" r="7" class="traco preenche no" />
+    <text x="423.6" y="128" class="rotulo-fraco" text-anchor="middle">48</text>
+    <line x1="30.0" y1="67" x2="30.0" y2="103" class="tracejado" />
+    <line x1="226.8" y1="67" x2="226.8" y2="103" class="tracejado" />
+    <line x1="423.6" y1="67" x2="423.6" y2="103" class="tracejado" />
+    <text x="234.8" y="89" class="rotulo">juntas: 0, 24 e 48 s</text>
+  </svg>
+</figure>
+
+Para achar o MMC, fatore os números e multiplique **todos** os primos que aparecem em algum deles, cada um com o **maior** expoente.
+
+**Exemplo resolvido.** Calcule o MMC de 6 e 8.
+
+1. Fatorar: 6 = 2 × 3 e 8 = 2³.
+2. Primos que aparecem: 2 e 3.
+3. Maior expoente de cada: 2³ e 3¹.
+4. MMC = 2³ × 3 = 8 × 3 = 24. As luzes piscam juntas a cada 24 s, como na linha do tempo acima.
+
+Com três números, o método é o mesmo. MMC de 4, 6 e 10: 4 = 2², 6 = 2 × 3 e 10 = 2 × 5, então MMC = 2² × 3 × 5 = 60.
+
+Se os encontros começam num instante que não é zero, eles se repetem de MMC em MMC a partir desse instante. Os encontros formam uma sequência em que cada termo é o anterior mais o MMC.
+
+**Fórmula: termo geral dos encontros**
+
+**tₙ = t₁ + m × (n − 1)**
+
+- **tₙ**: o instante do encontro de número n (lê-se "t índice n").
+- **t₁**: o instante do primeiro encontro.
+- **m**: o intervalo entre encontros (o MMC dos períodos).
+- **n**: a posição do encontro na sequência: 1, 2, 3… (um número natural, a partir de 1).
+- **Em palavras:** para chegar ao encontro n, saia do primeiro e some o intervalo (n − 1) vezes; o primeiro encontro não precisa de nenhum intervalo.
+- **Quando usar:** quando a questão pede o instante de um encontro, quantos encontros cabem até um limite ou a fórmula da sequência.
+
+**Exemplo resolvido.** Um alarme toca a cada 10 minutos e outro a cada 15 minutos. Os dois tocaram juntos pela primeira vez no minuto 5 de uma prova de 100 minutos. Em que minuto acontece o 3º toque junto? Quantos toques juntos há até o minuto 100?
+
+1. MMC(10, 15): 10 = 2 × 5 e 15 = 3 × 5, então m = 2 × 3 × 5 = 30.
+2. Primeiro encontro: t₁ = 5. A fórmula fica tₙ = 5 + 30 × (n − 1).
+3. 3º encontro: t₃ = 5 + 30 × 2 = 65 minutos.
+4. Lista dos encontros: 5, 35, 65, 95. O próximo seria 125, que passa de 100.
+5. Resposta: o 3º toque junto é no minuto 65, e há 4 toques juntos (n vai de 1 a 4).
+
+**Erro comum.** Multiplicar os períodos em vez de calcular o MMC. Para 6 e 8, o produto é 48, mas as luzes já se encontram em 24. Outro erro é esquecer o instante do primeiro encontro e contar como se tudo começasse no zero.
+
+Ao ler "ao mesmo tempo", "juntos de novo" ou "simultaneamente", pense em MMC.
+
+### Armadilhas típicas do INEP
+
+1. **Responder o quociente** quando a pergunta é o número do bloco: com resto diferente de zero, o item está no bloco seguinte (quociente + 1).
+2. **Esquecer o "+ 1"** ao transformar um número de início em posição.
+3. **Contar duas vezes** os números que estão nos dois grupos: use total = A + B − ambos.
+4. **Testar o 4 pelo último algarismo**: o critério olha os dois últimos.
+5. **Multiplicar os expoentes** na quantidade de divisores, em vez de somar 1 a cada um e multiplicar.
+6. **Não tirar o próprio número** quando a pergunta pede os divisores diferentes dele.
+7. **Ignorar o limite de tamanho** no problema de corte: o MDC só serve se respeitar o limite; senão, pegue o maior divisor do MDC que respeita.
+8. **Trocar MDC por MMC**: repartir em partes iguais é MDC; repetições que se encontram é MMC.
+9. **Multiplicar os períodos** em vez de calcular o MMC, quando eles têm fatores em comum.
+10. **Esquecer o instante inicial** na sequência de encontros: quando o primeiro encontro não é em zero, a fórmula é t₁ + m × (n − 1).
+
+## Tópicos-Chave para Revisão
+
+<div className="topico">
+
+#### 1. Múltiplos e divisores
+
+Se a divisão é exata, o número é **divisível**: 3 é **divisor** de 18 e 18 é **múltiplo** de 3. Os múltiplos não acabam; os divisores formam uma lista curta, achada em pares que multiplicados dão o número.
+
+<figure class="figura">
+  <svg viewBox="0 0 460 160" role="img" aria-labelledby="fig-divisib-1-rev-t fig-divisib-1-rev-d">
+    <title id="fig-divisib-1-rev-t">Os divisores de 18 em pares</title>
+    <desc id="fig-divisib-1-rev-d">Dezoito bolinhas arrumadas de três jeitos sem sobrar nenhuma: uma fila de 18 (1 × 18), duas filas de 9 (2 × 9) e três filas de 6 (3 × 6). Ao lado, a lista dos divisores de 18: 1, 2, 3, 6, 9 e 18; cada retângulo dá um par de divisores.</desc>
+    <text x="20" y="34" class="rotulo">1 × 18</text>
+    <circle cx="90" cy="30" r="4" class="traco-fino preenche" />
+    <circle cx="102" cy="30" r="4" class="traco-fino preenche" />
+    <circle cx="114" cy="30" r="4" class="traco-fino preenche" />
+    <circle cx="126" cy="30" r="4" class="traco-fino preenche" />
+    <circle cx="138" cy="30" r="4" class="traco-fino preenche" />
+    <circle cx="150" cy="30" r="4" class="traco-fino preenche" />
+    <circle cx="162" cy="30" r="4" class="traco-fino preenche" />
+    <circle cx="174" cy="30" r="4" class="traco-fino preenche" />
+    <circle cx="186" cy="30" r="4" class="traco-fino preenche" />
+    <circle cx="198" cy="30" r="4" class="traco-fino preenche" />
+    <circle cx="210" cy="30" r="4" class="traco-fino preenche" />
+    <circle cx="222" cy="30" r="4" class="traco-fino preenche" />
+    <circle cx="234" cy="30" r="4" class="traco-fino preenche" />
+    <circle cx="246" cy="30" r="4" class="traco-fino preenche" />
+    <circle cx="258" cy="30" r="4" class="traco-fino preenche" />
+    <circle cx="270" cy="30" r="4" class="traco-fino preenche" />
+    <circle cx="282" cy="30" r="4" class="traco-fino preenche" />
+    <circle cx="294" cy="30" r="4" class="traco-fino preenche" />
+    <text x="20" y="76" class="rotulo">2 × 9</text>
+    <circle cx="90" cy="66" r="4" class="traco-fino preenche" />
+    <circle cx="102" cy="66" r="4" class="traco-fino preenche" />
+    <circle cx="114" cy="66" r="4" class="traco-fino preenche" />
+    <circle cx="126" cy="66" r="4" class="traco-fino preenche" />
+    <circle cx="138" cy="66" r="4" class="traco-fino preenche" />
+    <circle cx="150" cy="66" r="4" class="traco-fino preenche" />
+    <circle cx="162" cy="66" r="4" class="traco-fino preenche" />
+    <circle cx="174" cy="66" r="4" class="traco-fino preenche" />
+    <circle cx="186" cy="66" r="4" class="traco-fino preenche" />
+    <circle cx="90" cy="78" r="4" class="traco-fino preenche" />
+    <circle cx="102" cy="78" r="4" class="traco-fino preenche" />
+    <circle cx="114" cy="78" r="4" class="traco-fino preenche" />
+    <circle cx="126" cy="78" r="4" class="traco-fino preenche" />
+    <circle cx="138" cy="78" r="4" class="traco-fino preenche" />
+    <circle cx="150" cy="78" r="4" class="traco-fino preenche" />
+    <circle cx="162" cy="78" r="4" class="traco-fino preenche" />
+    <circle cx="174" cy="78" r="4" class="traco-fino preenche" />
+    <circle cx="186" cy="78" r="4" class="traco-fino preenche" />
+    <text x="20" y="130" class="rotulo">3 × 6</text>
+    <circle cx="90" cy="114" r="4" class="traco-fino preenche" />
+    <circle cx="102" cy="114" r="4" class="traco-fino preenche" />
+    <circle cx="114" cy="114" r="4" class="traco-fino preenche" />
+    <circle cx="126" cy="114" r="4" class="traco-fino preenche" />
+    <circle cx="138" cy="114" r="4" class="traco-fino preenche" />
+    <circle cx="150" cy="114" r="4" class="traco-fino preenche" />
+    <circle cx="90" cy="126" r="4" class="traco-fino preenche" />
+    <circle cx="102" cy="126" r="4" class="traco-fino preenche" />
+    <circle cx="114" cy="126" r="4" class="traco-fino preenche" />
+    <circle cx="126" cy="126" r="4" class="traco-fino preenche" />
+    <circle cx="138" cy="126" r="4" class="traco-fino preenche" />
+    <circle cx="150" cy="126" r="4" class="traco-fino preenche" />
+    <circle cx="90" cy="138" r="4" class="traco-fino preenche" />
+    <circle cx="102" cy="138" r="4" class="traco-fino preenche" />
+    <circle cx="114" cy="138" r="4" class="traco-fino preenche" />
+    <circle cx="126" cy="138" r="4" class="traco-fino preenche" />
+    <circle cx="138" cy="138" r="4" class="traco-fino preenche" />
+    <circle cx="150" cy="138" r="4" class="traco-fino preenche" />
+    <text x="250" y="96" class="rotulo">Divisores de 18:</text>
+    <text x="250" y="116" class="rotulo">1, 2, 3, 6, 9 e 18</text>
+    <text x="250" y="136" class="rotulo-fraco">cada retângulo dá um par</text>
+  </svg>
+</figure>
+
+#### 2. Critérios de divisibilidade
+
+**Por 2**: termina em par. **Por 3** e **por 9**: soma dos algarismos divisível. **Por 4**: os dois últimos algarismos. **Por 5**: termina em 0 ou 5. **Por 6**: por 2 e por 3. **Por 10**: termina em 0.
+
+#### 3. Divisão com resto
+
+**D = d × q + r**: dividendo = divisor × quociente + **resto**, com o resto menor que o divisor. O item fica no bloco **quociente + 1**, a não ser que o resto seja 0. Posição a partir de um início: final − início **+ 1**.
+
+<figure class="figura">
+  <svg viewBox="0 0 460 172" role="img" aria-labelledby="fig-divisib-2-rev-t fig-divisib-2-rev-d">
+    <title id="fig-divisib-2-rev-t">A cadeira 45 em fileiras de 8</title>
+    <desc id="fig-divisib-2-rev-d">Quarenta e oito cadeiras numeradas de 1 a 48, em 6 fileiras de 8. A cadeira 45 está destacada: é a 5ª cadeira da fileira 6. Ao lado, a conta 45 = 8 × 5 + 5: 5 fileiras cheias, com 40 cadeiras, e mais 5 cadeiras na fileira seguinte.</desc>
+    <text x="78" y="27" class="rotulo-fraco" text-anchor="end">fileira 1</text>
+    <rect x="88" y="12" width="22" height="22" class="traco-fino" />
+    <text x="99" y="27" class="rotulo-fraco" text-anchor="middle">1</text>
+    <rect x="114" y="12" width="22" height="22" class="traco-fino" />
+    <text x="125" y="27" class="rotulo-fraco" text-anchor="middle">2</text>
+    <rect x="140" y="12" width="22" height="22" class="traco-fino" />
+    <text x="151" y="27" class="rotulo-fraco" text-anchor="middle">3</text>
+    <rect x="166" y="12" width="22" height="22" class="traco-fino" />
+    <text x="177" y="27" class="rotulo-fraco" text-anchor="middle">4</text>
+    <rect x="192" y="12" width="22" height="22" class="traco-fino" />
+    <text x="203" y="27" class="rotulo-fraco" text-anchor="middle">5</text>
+    <rect x="218" y="12" width="22" height="22" class="traco-fino" />
+    <text x="229" y="27" class="rotulo-fraco" text-anchor="middle">6</text>
+    <rect x="244" y="12" width="22" height="22" class="traco-fino" />
+    <text x="255" y="27" class="rotulo-fraco" text-anchor="middle">7</text>
+    <rect x="270" y="12" width="22" height="22" class="traco-fino" />
+    <text x="281" y="27" class="rotulo-fraco" text-anchor="middle">8</text>
+    <text x="78" y="53" class="rotulo-fraco" text-anchor="end">fileira 2</text>
+    <rect x="88" y="38" width="22" height="22" class="traco-fino" />
+    <text x="99" y="53" class="rotulo-fraco" text-anchor="middle">9</text>
+    <rect x="114" y="38" width="22" height="22" class="traco-fino" />
+    <text x="125" y="53" class="rotulo-fraco" text-anchor="middle">10</text>
+    <rect x="140" y="38" width="22" height="22" class="traco-fino" />
+    <text x="151" y="53" class="rotulo-fraco" text-anchor="middle">11</text>
+    <rect x="166" y="38" width="22" height="22" class="traco-fino" />
+    <text x="177" y="53" class="rotulo-fraco" text-anchor="middle">12</text>
+    <rect x="192" y="38" width="22" height="22" class="traco-fino" />
+    <text x="203" y="53" class="rotulo-fraco" text-anchor="middle">13</text>
+    <rect x="218" y="38" width="22" height="22" class="traco-fino" />
+    <text x="229" y="53" class="rotulo-fraco" text-anchor="middle">14</text>
+    <rect x="244" y="38" width="22" height="22" class="traco-fino" />
+    <text x="255" y="53" class="rotulo-fraco" text-anchor="middle">15</text>
+    <rect x="270" y="38" width="22" height="22" class="traco-fino" />
+    <text x="281" y="53" class="rotulo-fraco" text-anchor="middle">16</text>
+    <text x="78" y="79" class="rotulo-fraco" text-anchor="end">fileira 3</text>
+    <rect x="88" y="64" width="22" height="22" class="traco-fino" />
+    <text x="99" y="79" class="rotulo-fraco" text-anchor="middle">17</text>
+    <rect x="114" y="64" width="22" height="22" class="traco-fino" />
+    <text x="125" y="79" class="rotulo-fraco" text-anchor="middle">18</text>
+    <rect x="140" y="64" width="22" height="22" class="traco-fino" />
+    <text x="151" y="79" class="rotulo-fraco" text-anchor="middle">19</text>
+    <rect x="166" y="64" width="22" height="22" class="traco-fino" />
+    <text x="177" y="79" class="rotulo-fraco" text-anchor="middle">20</text>
+    <rect x="192" y="64" width="22" height="22" class="traco-fino" />
+    <text x="203" y="79" class="rotulo-fraco" text-anchor="middle">21</text>
+    <rect x="218" y="64" width="22" height="22" class="traco-fino" />
+    <text x="229" y="79" class="rotulo-fraco" text-anchor="middle">22</text>
+    <rect x="244" y="64" width="22" height="22" class="traco-fino" />
+    <text x="255" y="79" class="rotulo-fraco" text-anchor="middle">23</text>
+    <rect x="270" y="64" width="22" height="22" class="traco-fino" />
+    <text x="281" y="79" class="rotulo-fraco" text-anchor="middle">24</text>
+    <text x="78" y="105" class="rotulo-fraco" text-anchor="end">fileira 4</text>
+    <rect x="88" y="90" width="22" height="22" class="traco-fino" />
+    <text x="99" y="105" class="rotulo-fraco" text-anchor="middle">25</text>
+    <rect x="114" y="90" width="22" height="22" class="traco-fino" />
+    <text x="125" y="105" class="rotulo-fraco" text-anchor="middle">26</text>
+    <rect x="140" y="90" width="22" height="22" class="traco-fino" />
+    <text x="151" y="105" class="rotulo-fraco" text-anchor="middle">27</text>
+    <rect x="166" y="90" width="22" height="22" class="traco-fino" />
+    <text x="177" y="105" class="rotulo-fraco" text-anchor="middle">28</text>
+    <rect x="192" y="90" width="22" height="22" class="traco-fino" />
+    <text x="203" y="105" class="rotulo-fraco" text-anchor="middle">29</text>
+    <rect x="218" y="90" width="22" height="22" class="traco-fino" />
+    <text x="229" y="105" class="rotulo-fraco" text-anchor="middle">30</text>
+    <rect x="244" y="90" width="22" height="22" class="traco-fino" />
+    <text x="255" y="105" class="rotulo-fraco" text-anchor="middle">31</text>
+    <rect x="270" y="90" width="22" height="22" class="traco-fino" />
+    <text x="281" y="105" class="rotulo-fraco" text-anchor="middle">32</text>
+    <text x="78" y="131" class="rotulo-fraco" text-anchor="end">fileira 5</text>
+    <rect x="88" y="116" width="22" height="22" class="traco-fino" />
+    <text x="99" y="131" class="rotulo-fraco" text-anchor="middle">33</text>
+    <rect x="114" y="116" width="22" height="22" class="traco-fino" />
+    <text x="125" y="131" class="rotulo-fraco" text-anchor="middle">34</text>
+    <rect x="140" y="116" width="22" height="22" class="traco-fino" />
+    <text x="151" y="131" class="rotulo-fraco" text-anchor="middle">35</text>
+    <rect x="166" y="116" width="22" height="22" class="traco-fino" />
+    <text x="177" y="131" class="rotulo-fraco" text-anchor="middle">36</text>
+    <rect x="192" y="116" width="22" height="22" class="traco-fino" />
+    <text x="203" y="131" class="rotulo-fraco" text-anchor="middle">37</text>
+    <rect x="218" y="116" width="22" height="22" class="traco-fino" />
+    <text x="229" y="131" class="rotulo-fraco" text-anchor="middle">38</text>
+    <rect x="244" y="116" width="22" height="22" class="traco-fino" />
+    <text x="255" y="131" class="rotulo-fraco" text-anchor="middle">39</text>
+    <rect x="270" y="116" width="22" height="22" class="traco-fino" />
+    <text x="281" y="131" class="rotulo-fraco" text-anchor="middle">40</text>
+    <text x="78" y="157" class="rotulo-fraco" text-anchor="end">fileira 6</text>
+    <rect x="88" y="142" width="22" height="22" class="traco-fino" />
+    <text x="99" y="157" class="rotulo-fraco" text-anchor="middle">41</text>
+    <rect x="114" y="142" width="22" height="22" class="traco-fino" />
+    <text x="125" y="157" class="rotulo-fraco" text-anchor="middle">42</text>
+    <rect x="140" y="142" width="22" height="22" class="traco-fino" />
+    <text x="151" y="157" class="rotulo-fraco" text-anchor="middle">43</text>
+    <rect x="166" y="142" width="22" height="22" class="traco-fino" />
+    <text x="177" y="157" class="rotulo-fraco" text-anchor="middle">44</text>
+    <rect x="192" y="142" width="22" height="22" class="traco preenche" />
+    <text x="203" y="157" class="rotulo" text-anchor="middle">45</text>
+    <rect x="218" y="142" width="22" height="22" class="traco-fino" />
+    <text x="229" y="157" class="rotulo-fraco" text-anchor="middle">46</text>
+    <rect x="244" y="142" width="22" height="22" class="traco-fino" />
+    <text x="255" y="157" class="rotulo-fraco" text-anchor="middle">47</text>
+    <rect x="270" y="142" width="22" height="22" class="traco-fino" />
+    <text x="281" y="157" class="rotulo-fraco" text-anchor="middle">48</text>
+    <text x="314" y="60" class="rotulo">45 = 8 × 5 + 5</text>
+    <text x="314" y="84" class="rotulo-fraco">5 fileiras cheias (40 cadeiras)</text>
+    <text x="314" y="104" class="rotulo-fraco">e mais 5 cadeiras:</text>
+    <text x="314" y="124" class="rotulo-fraco">a 45 é a 5ª da fileira 6</text>
+  </svg>
+</figure>
+
+#### 4. Contar múltiplos sem repetir
+
+**múltiplos de k até N = quociente de N ÷ k**. Para dois grupos ligados por "ou", use **total = A + B − ambos**, tirando os números contados em dobro.
+
+<figure class="figura">
+  <svg viewBox="0 0 460 210" role="img" aria-labelledby="fig-divisib-3-rev-t fig-divisib-3-rev-d">
+    <title id="fig-divisib-3-rev-t">Múltiplos de 3 ou de 5, de 1 a 50</title>
+    <desc id="fig-divisib-3-rev-d">Dois círculos que se cruzam, dentro de um retângulo com os números de 1 a 50. O círculo da esquerda tem os 16 múltiplos de 3; o da direita, os 10 múltiplos de 5. Na parte comum ficam os 3 números que estão nos dois grupos: 15, 30 e 45. Sobram 13 só de 3 e 7 só de 5. Embaixo: total = 16 + 10 − 3 = 23.</desc>
+    <rect x="10" y="10" width="440" height="190" class="traco-fino" />
+    <text x="20" y="28" class="rotulo-fraco">números de 1 a 50</text>
+    <ellipse cx="170" cy="110" rx="120" ry="56" class="traco preenche" />
+    <ellipse cx="290" cy="110" rx="120" ry="56" class="traco preenche" />
+    <text x="110" y="44" class="rotulo" text-anchor="middle">múltiplos de 3: 16</text>
+    <text x="350" y="44" class="rotulo" text-anchor="middle">múltiplos de 5: 10</text>
+    <text x="110" y="108" class="rotulo-fraco" text-anchor="middle">3, 6, 9, 12…</text>
+    <text x="110" y="124" class="rotulo-fraco" text-anchor="middle">só de 3: 13</text>
+    <text x="350" y="108" class="rotulo-fraco" text-anchor="middle">5, 10, 20…</text>
+    <text x="350" y="124" class="rotulo-fraco" text-anchor="middle">só de 5: 7</text>
+    <text x="230" y="100" class="rotulo" text-anchor="middle">nos dois:</text>
+    <text x="230" y="116" class="rotulo" text-anchor="middle">15, 30, 45</text>
+    <text x="230" y="132" class="rotulo-fraco" text-anchor="middle">(3 números)</text>
+    <text x="230" y="190" class="rotulo" text-anchor="middle">total = 16 + 10 − 3 = 23</text>
+  </svg>
+</figure>
+
+#### 5. Primos e fatoração
+
+Um **primo** tem só dois divisores (1 não é primo). A **fatoração** divide pelos menores primos até chegar a 1. Um número é **múltiplo** de outro quando tem todos os primos dele; um primo ausente tem **expoente 0**, e o número não é múltiplo dele.
+
+<figure class="figura">
+  <svg viewBox="0 0 460 176" role="img" aria-labelledby="fig-divisib-4-rev-t fig-divisib-4-rev-d">
+    <title id="fig-divisib-4-rev-t">Fatoração de 360 por divisões sucessivas</title>
+    <desc id="fig-divisib-4-rev-d">Uma coluna de números à esquerda de uma linha vertical: 360, 180, 90, 45, 15, 5 e 1. À direita da linha, os primos usados em cada divisão: 2, 2, 2, 3, 3 e 5. Ao lado, o resultado: 360 = 2 × 2 × 2 × 3 × 3 × 5 = 2³ × 3² × 5.</desc>
+    <line x1="200" y1="10" x2="200" y2="166" class="traco" />
+    <text x="188" y="26" class="rotulo" text-anchor="end">360</text>
+    <text x="212" y="26" class="rotulo">2</text>
+    <text x="188" y="48" class="rotulo" text-anchor="end">180</text>
+    <text x="212" y="48" class="rotulo">2</text>
+    <text x="188" y="70" class="rotulo" text-anchor="end">90</text>
+    <text x="212" y="70" class="rotulo">2</text>
+    <text x="188" y="92" class="rotulo" text-anchor="end">45</text>
+    <text x="212" y="92" class="rotulo">3</text>
+    <text x="188" y="114" class="rotulo" text-anchor="end">15</text>
+    <text x="212" y="114" class="rotulo">3</text>
+    <text x="188" y="136" class="rotulo" text-anchor="end">5</text>
+    <text x="212" y="136" class="rotulo">5</text>
+    <text x="188" y="158" class="rotulo" text-anchor="end">1</text>
+    <text x="260" y="70" class="rotulo">360 = 2 × 2 × 2 × 3 × 3 × 5</text>
+    <text x="260" y="94" class="rotulo">360 = 2³ × 3² × 5</text>
+    <text x="260" y="120" class="rotulo-fraco">à direita da linha: os primos</text>
+    <text x="260" y="136" class="rotulo-fraco">pelos quais se dividiu</text>
+  </svg>
+</figure>
+
+#### 6. Quantidade de divisores
+
+Para pᵃ × qᵇ × rᶜ, **nº de divisores = (a + 1) × (b + 1) × (c + 1)**. "Diferentes do próprio número": **tire 1**. Expoente 0 dá fator 1.
+
+<figure class="figura">
+  <svg viewBox="0 0 460 160" role="img" aria-labelledby="fig-divisib-5-rev-t fig-divisib-5-rev-d">
+    <title id="fig-divisib-5-rev-t">Os divisores de 12 numa tabela</title>
+    <desc id="fig-divisib-5-rev-d">Tabela com as colunas 2⁰, 2¹ e 2² e as linhas 3⁰ e 3¹. Cada casa é o produto da coluna pela linha: na primeira linha 1, 2 e 4; na segunda 3, 6 e 12. São 3 escolhas para o expoente do 2 e 2 escolhas para o expoente do 3, então 12 = 2² × 3 tem 3 × 2 = 6 divisores.</desc>
+    <text x="280" y="18" class="rotulo-fraco" text-anchor="middle">expoente do 2 (de 0 a 2: 3 escolhas)</text>
+    <text x="200" y="40" class="rotulo" text-anchor="middle">2⁰</text>
+    <text x="280" y="40" class="rotulo" text-anchor="middle">2¹</text>
+    <text x="360" y="40" class="rotulo" text-anchor="middle">2²</text>
+    <text x="150" y="70" class="rotulo" text-anchor="end">3⁰</text>
+    <text x="150" y="106" class="rotulo" text-anchor="end">3¹</text>
+    <rect x="160" y="48" width="80" height="36" class="traco-fino preenche" />
+    <text x="200" y="70" class="rotulo" text-anchor="middle">1</text>
+    <rect x="240" y="48" width="80" height="36" class="traco-fino preenche" />
+    <text x="280" y="70" class="rotulo" text-anchor="middle">2</text>
+    <rect x="320" y="48" width="80" height="36" class="traco-fino preenche" />
+    <text x="360" y="70" class="rotulo" text-anchor="middle">4</text>
+    <rect x="160" y="84" width="80" height="36" class="traco-fino preenche" />
+    <text x="200" y="106" class="rotulo" text-anchor="middle">3</text>
+    <rect x="240" y="84" width="80" height="36" class="traco-fino preenche" />
+    <text x="280" y="106" class="rotulo" text-anchor="middle">6</text>
+    <rect x="320" y="84" width="80" height="36" class="traco-fino preenche" />
+    <text x="360" y="106" class="rotulo" text-anchor="middle">12</text>
+    <text x="20" y="74" class="rotulo-fraco">expoente do 3</text>
+    <text x="20" y="90" class="rotulo-fraco">(0 ou 1: 2 escolhas)</text>
+    <text x="280" y="148" class="rotulo" text-anchor="middle">12 = 2² × 3 tem 3 × 2 = 6 divisores</text>
+  </svg>
+</figure>
+
+#### 7. MDC
+
+**Partes iguais** sem sobra e no maior pedaço: **MDC**, com os primos comuns e o **menor expoente**. Com limite de tamanho, pegue o maior **divisor do MDC** abaixo do limite e conte os pedaços.
+
+<figure class="figura">
+  <svg viewBox="0 0 460 162" role="img" aria-labelledby="fig-divisib-6-rev-t fig-divisib-6-rev-d">
+    <title id="fig-divisib-6-rev-t">Fitas cortadas no maior pedaço comum</title>
+    <desc id="fig-divisib-6-rev-d">Duas fitas desenhadas em escala. A de 84 cm está dividida em 2 pedaços de 42 cm; a de 126 cm, em 3 pedaços de 42 cm. Embaixo: MDC(84, 126) = 42, e as duas fitas dão 2 + 3 = 5 pedaços sem sobra.</desc>
+    <text x="20" y="50" class="rotulo-fraco">fita de 84 cm</text>
+    <rect x="110.0" y="30" width="109.2" height="30" class="traco preenche" />
+    <text x="164.6" y="50" class="rotulo" text-anchor="middle">42 cm</text>
+    <rect x="219.2" y="30" width="109.2" height="30" class="traco preenche" />
+    <text x="273.8" y="50" class="rotulo" text-anchor="middle">42 cm</text>
+    <text x="20" y="110" class="rotulo-fraco">fita de 126 cm</text>
+    <rect x="110.0" y="90" width="109.2" height="30" class="traco preenche" />
+    <text x="164.6" y="110" class="rotulo" text-anchor="middle">42 cm</text>
+    <rect x="219.2" y="90" width="109.2" height="30" class="traco preenche" />
+    <text x="273.8" y="110" class="rotulo" text-anchor="middle">42 cm</text>
+    <rect x="328.4" y="90" width="109.2" height="30" class="traco preenche" />
+    <text x="383.0" y="110" class="rotulo" text-anchor="middle">42 cm</text>
+    <text x="230" y="150" class="rotulo" text-anchor="middle">MDC(84, 126) = 42: 2 + 3 = 5 pedaços sem sobra</text>
+  </svg>
+</figure>
+
+#### 8. MMC e sequência de encontros
+
+Repetições que se encontram: **MMC**, com todos os primos e o **maior expoente**. Encontros a partir de t₁: **tₙ = t₁ + m × (n − 1)**.
+
+<figure class="figura">
+  <svg viewBox="0 0 460 156" role="img" aria-labelledby="fig-divisib-7-rev-t fig-divisib-7-rev-d">
+    <title id="fig-divisib-7-rev-t">Duas luzes piscando juntas a cada 24 segundos</title>
+    <desc id="fig-divisib-7-rev-d">Duas linhas do tempo de 0 a 48 segundos. Na de cima, a luz A pisca em 0, 6, 12, 18, 24, 30, 36, 42 e 48. Na de baixo, a luz B pisca em 0, 8, 16, 24, 32, 40 e 48. Linhas tracejadas ligam os instantes em que as duas piscam juntas: 0, 24 e 48 segundos, de 24 em 24, que é o MMC(6, 8).</desc>
+    <line x1="30" y1="60" x2="423.6" y2="60" class="traco" />
+    <line x1="30" y1="110" x2="423.6" y2="110" class="traco" />
+    <text x="30" y="24" class="rotulo-fraco">luz A: a cada 6 s</text>
+    <text x="30" y="146" class="rotulo-fraco">luz B: a cada 8 s</text>
+    <circle cx="30.0" cy="60" r="7" class="traco preenche no" />
+    <text x="30.0" y="46" class="rotulo-fraco" text-anchor="middle">0</text>
+    <circle cx="79.2" cy="60" r="5" class="traco no" />
+    <text x="79.2" y="46" class="rotulo-fraco" text-anchor="middle">6</text>
+    <circle cx="128.4" cy="60" r="5" class="traco no" />
+    <text x="128.4" y="46" class="rotulo-fraco" text-anchor="middle">12</text>
+    <circle cx="177.6" cy="60" r="5" class="traco no" />
+    <text x="177.6" y="46" class="rotulo-fraco" text-anchor="middle">18</text>
+    <circle cx="226.8" cy="60" r="7" class="traco preenche no" />
+    <text x="226.8" y="46" class="rotulo-fraco" text-anchor="middle">24</text>
+    <circle cx="276.0" cy="60" r="5" class="traco no" />
+    <text x="276.0" y="46" class="rotulo-fraco" text-anchor="middle">30</text>
+    <circle cx="325.2" cy="60" r="5" class="traco no" />
+    <text x="325.2" y="46" class="rotulo-fraco" text-anchor="middle">36</text>
+    <circle cx="374.4" cy="60" r="5" class="traco no" />
+    <text x="374.4" y="46" class="rotulo-fraco" text-anchor="middle">42</text>
+    <circle cx="423.6" cy="60" r="7" class="traco preenche no" />
+    <text x="423.6" y="46" class="rotulo-fraco" text-anchor="middle">48</text>
+    <circle cx="30.0" cy="110" r="7" class="traco preenche no" />
+    <text x="30.0" y="128" class="rotulo-fraco" text-anchor="middle">0</text>
+    <circle cx="95.6" cy="110" r="5" class="traco no" />
+    <text x="95.6" y="128" class="rotulo-fraco" text-anchor="middle">8</text>
+    <circle cx="161.2" cy="110" r="5" class="traco no" />
+    <text x="161.2" y="128" class="rotulo-fraco" text-anchor="middle">16</text>
+    <circle cx="226.8" cy="110" r="7" class="traco preenche no" />
+    <text x="226.8" y="128" class="rotulo-fraco" text-anchor="middle">24</text>
+    <circle cx="292.4" cy="110" r="5" class="traco no" />
+    <text x="292.4" y="128" class="rotulo-fraco" text-anchor="middle">32</text>
+    <circle cx="358.0" cy="110" r="5" class="traco no" />
+    <text x="358.0" y="128" class="rotulo-fraco" text-anchor="middle">40</text>
+    <circle cx="423.6" cy="110" r="7" class="traco preenche no" />
+    <text x="423.6" y="128" class="rotulo-fraco" text-anchor="middle">48</text>
+    <line x1="30.0" y1="67" x2="30.0" y2="103" class="tracejado" />
+    <line x1="226.8" y1="67" x2="226.8" y2="103" class="tracejado" />
+    <line x1="423.6" y1="67" x2="423.6" y2="103" class="tracejado" />
+    <text x="234.8" y="89" class="rotulo">juntas: 0, 24 e 48 s</text>
+  </svg>
+</figure>
+
+</div>
+
+## Questões do ENEM
+
+*Marque uma alternativa em cada questão e confira tudo de uma vez no botão do fim.*
+
+**Questão 1**
+
+*ENEM 2013 · 2º dia · caderno azul · questão 173*
+
+O ciclo de atividade magnética do Sol tem um período de 11 anos. O início do primeiro ciclo registrado se deu no começo de 1755 e se estendeu até o final de 1765. Desde então, todos os ciclos de atividade magnética do Sol têm sido registrados.
+
+Disponível em: http://g1.globo.com. Acesso em: 27 fev. 2013.
+
+No ano de 2101, o Sol estará no ciclo de atividade magnética de número
+
+A) 32.\
+B) 34.\
+C) 33.\
+D) 35.\
+E) 31.
+
+**Questão 2**
+
+*ENEM 2020 · digital · 2º dia · caderno azul · questão 166*
+
+“1, 2, 3, GOL, 5, 6, 7, GOL, 9, 10, 11, GOL, 13, GOL, 15, GOL, 17, 18, 19, GOL, 21, 22, 23, GOL, 25, ...”
+
+Para a Copa do Mundo de Futebol de 2014, um bar onde se reuniam amigos para assistir aos jogos criou uma brincadeira. Um dos presentes era escolhido e tinha que dizer, numa sequência em ordem crescente, os números naturais não nulos, trocando os múltiplos de 4 e os números terminados em 4 pela palavra GOL. A brincadeira acabava quando o participante errava um termo da sequência.
+
+Um dos participantes conseguiu falar até o número 103, respeitando as regras da brincadeira.
+
+O total de vezes em que esse participante disse a palavra GOL foi
+
+A) 20.\
+B) 28.\
+C) 30.\
+D) 35.\
+E) 40.
+
+**Questão 3**
+
+*ENEM 2014 · 2º dia · caderno azul · questão 146*
+
+Durante a Segunda Guerra Mundial, para decifrarem as mensagens secretas, foi utilizada a técnica de decomposição em fatores primos. Um número N é dado pela expressão 2ˣ · 5ʸ · 7ᶻ, na qual x, y e z são números inteiros não negativos. Sabe-se que N é múltiplo de 10 e não é múltiplo de 7.
+
+O número de divisores de N, diferentes de N, é
+
+A) x · y · z\
+B) (x + 1) · (y + 1)\
+C) x · y · z − 1\
+D) (x + 1) · (y + 1) · z\
+E) (x + 1) · (y + 1) · (z + 1) − 1
+
+**Questão 4**
+
+*ENEM 2015 · 2º dia · caderno azul · questão 162*
+
+Um arquiteto está reformando uma casa. De modo a contribuir com o meio ambiente, decide reaproveitar tábuas de madeira retiradas da casa. Ele dispõe de 40 tábuas de 540 cm, 30 de 810 cm e 10 de 1 080 cm, todas de mesma largura e espessura. Ele pediu a um carpinteiro que cortasse as tábuas em pedaços de mesmo comprimento, sem deixar sobras, e de modo que as novas peças ficassem com o maior tamanho possível, mas de comprimento menor que 2 m.
+
+Atendendo o pedido do arquiteto, o carpinteiro deverá produzir
+
+A) 105 peças.\
+B) 120 peças.\
+C) 210 peças.\
+D) 243 peças.\
+E) 420 peças.
+
+**Questão 5**
+
+*ENEM 2016 · 2ª aplicação · 2º dia · caderno azul · questão 180*
+
+Com o objetivo de trabalhar a concentração e a sincronia de movimentos dos alunos de uma de suas turmas, um professor de educação física dividiu essa turma em três grupos (A, B e C) e estipulou a seguinte atividade: os alunos do grupo A deveriam bater palmas a cada 2 s, os alunos do grupo B deveriam bater palmas a cada 3 s e os alunos do grupo C deveriam bater palmas a cada 4 s.
+
+O professor zerou o cronômetro e os três grupos começaram a bater palmas quando ele registrou 1 s. Os movimentos prosseguiram até o cronômetro registrar 60 s.
+
+Um estagiário anotou no papel a sequência formada pelos instantes em que os três grupos bateram palmas simultaneamente.
+
+Qual é o termo geral da sequência anotada?
+
+A) 12 n, com n um número natural, tal que 1 ≤ n ≤ 5.\
+B) 24 n, com n um número natural, tal que 1 ≤ n ≤ 2.\
+C) 12 (n − 1), com n um número natural, tal que 1 ≤ n ≤ 6.\
+D) 12 (n − 1) + 1, com n um número natural, tal que 1 ≤ n ≤ 5.\
+E) 24 (n − 1) + 1, com n um número natural, tal que 1 ≤ n ≤ 3.
