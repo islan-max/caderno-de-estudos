@@ -158,7 +158,7 @@ Status: `pendente`, `em andamento`, `concluída`, `bloqueada`. Questões: ids do
 
 | aula | order | status | questões | commit | notas |
 |---|---|---|---|---|---|
-| matematica-basica/divisibilidade-e-fatoracao | 7 | pendente |  |  | nova |
+| matematica-basica/divisibilidade-e-fatoracao | 7 | concluída | 2013-regular-D2-azul-Q173, 2020-digital-D2-azul-Q166, 2014-regular-D2-azul-Q146, 2015-regular-D2-azul-Q162, 2016-segunda-aplicacao-D2-azul-Q180 | f86f155 | nova; revisor: PASS na 2ª leitura, com 2 opcionais aplicados (rodada 1: exemplo de MDC com limite dava a metade do MDC e 4 e 6 peças, como a Q4; "1 ≤ n ≤ 5" e "m × n" ecoavam alternativas da Q5; frase sobre alternativas com letras descrevia a Q3; faltavam inverso do expoente 0, MDC de três números, "tal que" e figuras compactas nos tópicos); 3 difíceis pelo b; questões sem figura; 7 figuras SVG + 7 compactas; Q5 corrigida no banco (folha de redação da página 32 entrava como figura); sem divisão |
 | matematica-basica/inequacoes | 8 | pendente |  |  | nova |
 | matematica-basica/sistemas-lineares | 9 | pendente |  |  | nova |
 | funcoes/progressao-aritmetica | 5 | pendente |  |  | nova |
