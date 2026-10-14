@@ -7,8 +7,8 @@ relevance: >
   número. É o modelo de tudo que dobra, triplica ou cai pela metade a cada período, e de valores que crescem
   uma porcentagem fixa. O ENEM (Exame Nacional do Ensino Médio) cobra a sequência dos valores, a soma de
   vários termos e quantos períodos são precisos para chegar a um valor muito grande, às vezes com a ajuda
-  de logaritmos. A pegadinha mais comum é confundir somar sempre o mesmo valor (PA) com multiplicar sempre
-  pelo mesmo número (PG).
+  de logaritmos. A pegadinha mais comum é confundir somar sempre o mesmo valor, como numa progressão
+  aritmética, com multiplicar sempre pelo mesmo número.
 quickSummary: >
   Numa PG (progressão geométrica), cada termo é o anterior vezes a razão q. O termo de posição n é
   aₙ = a₁ × qⁿ⁻¹, e a soma dos n primeiros termos é Sₙ = a₁ × (qⁿ − 1) ÷ (q − 1). Crescer p% por período
@@ -28,12 +28,12 @@ gabarito:
     porque: >
       Sucesso na 4ª tentativa quer dizer 3 erros, então 3 esperas: 60 + 120 + 240 = 420 s. As 4 digitações
       somam 4 × 30 = 120 s. Total: 420 + 120 = 540 s.
-      Revisar: Aula Teórica › 3. Contar termos e intervalos
+      Revisar: Aula Teórica › 3. Contar ações e intervalos
   - correta: 4
     porque: >
-      Cada partida elimina um tenista e põe metade na fase seguinte: 128 tenistas fazem 64 partidas, depois
-      32, 16, 8, 4, 2 e a final, 1. São 64 + 32 + 16 + 8 + 4 + 2 + 1 partidas (127).
-      Revisar: Aula Teórica › 5. PG que diminui: metade a cada etapa
+      Cada partida elimina um tenista; em cada fase, metade passa para a seguinte. 128 tenistas fazem 64
+      partidas, depois 32, 16, 8, 4, 2 e a final, 1: 64 + 32 + 16 + 8 + 4 + 2 + 1 partidas.
+      Revisar: Aula Teórica › 5. PG que diminui: contar disputas
   - correta: 3
     porque: >
       PG com a₁ = 300 e q = 1,2 por 6 meses: S₆ = 300 × (1,2⁶ − 1) ÷ 0,2 = 300 × 1,985984 ÷ 0,2 ≈ 2 978,98.
@@ -58,6 +58,7 @@ gabarito:
 - **Transistor**: pequena peça eletrônica que liga e desliga a corrente; um processador tem bilhões delas.
 - **Densidade de transistores**: número de transistores por centímetro quadrado.
 - **Ordem de grandeza**: a potência de 10 mais próxima de um número.
+- **Semestre**: período de 6 meses. O primeiro semestre vai de janeiro a junho.
 
 </Accordion>
 
@@ -68,15 +69,14 @@ gabarito:
 - **Escrever a sequência** de uma quantidade que se multiplica a cada período.
 - **Contar quantas vezes** algo acontece entre duas posições.
 - **Somar os termos** de uma PG, inclusive com porcentagem.
-- **Somar metades** de uma etapa para a seguinte.
+- **Contar disputas** numa competição em que só uma parte passa de fase.
 - **Descobrir o número de períodos** até um valor muito grande, com logaritmo.
 
 **O que você precisa saber antes.**
 
-- **Potências.** 2⁵ = 2 × 2 × 2 × 2 × 2 = 32; q⁰ = 1. 1 bilhão = 10⁹, então 100 bilhões = 10¹¹. Revise a aula de Potências e Raízes.
+- **Potências.** 2⁵ = 2 × 2 × 2 × 2 × 2 = 32; 5⁰ = 1. 1 bilhão = 10⁹, então 30 bilhões = 3 × 10¹⁰. Revise a aula de Potências e Raízes.
 - **Porcentagem.** Aumentar 30% é multiplicar por 1,3. Revise a aula de Porcentagem.
-- **Logaritmo.** log x é o expoente a que se eleva o 10 para dar x: log 1 000 = 3. Revise a aula de Funções Logarítmicas.
-- **Densidade.** Quantidade por unidade de área: 600 pessoas em 2 km² dão 600 ÷ 2 = 300 pessoas por km².
+- **Densidade.** Quantidade por unidade de área: 600 pessoas em 2 km² dão 600 ÷ 2 = 300 pessoas por km². Dividir por um decimal é o mesmo que multiplicar pelo inverso: dividir por 0,5 é multiplicar por 2.
 - **Progressão aritmética.** A notação aₙ, a razão e a ideia de termo geral estão na aula de Progressão Aritmética.
 
 ## Aula Teórica
@@ -153,16 +153,36 @@ Do 1º termo ao termo de posição n, a razão multiplica (n − 1) vezes.
 
 **Exemplo resolvido.** Uma planta aquática cobre 5 m² de um lago e triplica de área a cada 4 dias. Que área ela cobre depois de 12 dias?
 
-1. Em 12 dias cabem 12 ÷ 4 = 3 períodos. Os valores são os dos dias 0, 4, 8 e 12: o dia 12 é o 4º termo.
+1. Os valores são os dos dias 0, 4, 8 e 12: o dia 12 é o 4º termo.
 2. Fórmula: a₄ = 5 × 3⁴⁻¹ = 5 × 3³.
 3. Calcular: 5 × 27 = 135.
 4. Resposta: 135 m². A sequência é 5, 15, 45, 135.
 
-Quando o tempo anda em períodos de duração T, a quantidade depois de um tempo t é **N(t) = N₀ × q^(t ÷ T)**. Nela, N₀ (lê-se "N zero") é a quantidade no instante 0. O expoente t ÷ T é o número de períodos que passaram, e o sinal ^ quer dizer "elevado a".
-
 **Erro comum.** Somar a razão em vez de multiplicar (5, 8, 11, 14…), o que transforma a PG numa PA.
 
-### 3. Contar termos e intervalos
+Quando o tempo anda em períodos de mesma duração, dá para escrever a quantidade direto em função do tempo.
+
+**Fórmula: quantidade depois de um tempo t**
+
+**N(t) = N₀ × q^(t ÷ T)**
+
+- **N(t)**: a quantidade no instante t.
+- **N₀**: a quantidade no instante 0 (lê-se "N zero").
+- **q**: o fator de cada período (2 se dobra, 3 se triplica).
+- **T**: a duração de um período, na mesma unidade de t.
+- **t ÷ T**: quantos períodos já passaram. O sinal ^ quer dizer "elevado a".
+- **Em palavras:** conte quantos períodos cabem no tempo e multiplique N₀ pelo fator esse número de vezes.
+- **Quando usar:** quando o texto diz "dobra a cada…", "triplica a cada…" e pergunta pela quantidade num instante.
+
+**Exemplo resolvido.** Uma cultura começa com 50 células e dobra a cada 6 horas. Quantas células há depois de 1 dia?
+
+1. 1 dia = 24 horas; períodos: 24 ÷ 6 = 4.
+2. N(24) = 50 × 2⁴ = 50 × 16 = 800.
+3. Resposta: 800 células.
+
+**Erro comum.** Usar o tempo inteiro no expoente (2²⁴) em vez do número de períodos (24 ÷ 6 = 4).
+
+### 3. Contar ações e intervalos
 
 Entre coisas em fila, o número de **intervalos** é um a menos que o número de coisas. Pense em postes numa rua.
 
@@ -194,11 +214,16 @@ Entre coisas em fila, o número de **intervalos** é um a menos que o número de
   </svg>
 </figure>
 
-Do 1º ao 6º toque de um sino há 5 intervalos entre toques. Se uma tarefa só termina na 4ª vez, as três primeiras falharam.
+Do mesmo jeito, se uma tarefa só dá certo na 7ª vez, as seis primeiras falharam.
 
-Antes de somar, conte com cuidado quantos termos entram em cada parte da conta. É comum um problema misturar duas contagens: as **ações** (que acontecem n vezes) e os **intervalos** entre elas (que acontecem n − 1 vezes).
+**Exemplo resolvido.** Um sino toca 6 vezes. Cada toque dura 2 s e, entre um toque e o seguinte, há um silêncio de 3 s. Quanto tempo vai do começo do 1º toque ao fim do último?
 
-**Erro comum.** Contar um intervalo a mais (como se houvesse um depois da última ação) ou esquecer de somar o tempo das próprias ações.
+1. Toques: 6 × 2 = 12 s.
+2. Silêncios: entre 6 toques há 5 intervalos, 5 × 3 = 15 s.
+3. Total: 12 + 15 = 27 s.
+4. Resposta: 27 segundos.
+
+**Erro comum.** Errar a contagem de intervalos. Para conferir, desenhe os primeiros casos: com 2 toques há 1 silêncio; com 3 toques, 2 silêncios.
 
 ### 4. Soma dos termos
 
@@ -223,117 +248,145 @@ Antes de somar, conte com cuidado quantos termos entram em cada parte da conta. 
 
 Quando a quantidade cresce p% a cada período, a razão é **q = 1 + p/100** (crescer 50% é multiplicar por 1,5). Com q decimal, a fórmula funciona igual.
 
-**Exemplo resolvido.** Uma campanha arrecada R$ 400 na 1ª semana e, em cada semana seguinte, 50% a mais que na anterior. Quanto arrecada em 4 semanas?
+**Exemplo resolvido.** Um corredor corre 4 km na 1ª semana de treino e, a cada semana seguinte, 50% a mais que na anterior. Quantos quilômetros corre nas 4 primeiras semanas?
 
-1. Dados: a₁ = 400, q = 1,5, n = 4.
+1. Dados: a₁ = 4, q = 1,5, n = 4.
 2. 1,5⁴ = 1,5 × 1,5 × 1,5 × 1,5 = 5,0625.
-3. S₄ = 400 × (5,0625 − 1) ÷ 0,5 = 400 × 4,0625 ÷ 0,5 = 1 625 ÷ 0,5 = 3 250.
-4. Conferir: 400 + 600 + 900 + 1 350 = 3 250.
-5. Resposta: R$ 3 250.
+3. S₄ = 4 × (5,0625 − 1) ÷ 0,5 = 4 × 4,0625 ÷ 0,5 = 16,25 ÷ 0,5 = 32,5.
+4. Conferir: 4 + 6 + 9 + 13,5 = 32,5.
+5. Resposta: 32,5 km.
 
 Se o resultado tiver casas decimais e o texto mandar **abandonar** as casas decimais, corte o que vem depois da vírgula: 4 512,87 vira 4 512.
 
-**Erro comum.** Somar a porcentagem de cada período ao valor inicial (400 + 200 + 200 + 200), como numa PA. Na PG, cada aumento é calculado sobre o valor do período anterior.
+**Erro comum.** Somar sempre o mesmo aumento, calculado sobre o primeiro valor (4 + 6 + 8 + 10), como numa PA. Na PG, cada aumento é calculado sobre o valor do período anterior.
 
-### 5. PG que diminui: metade a cada etapa
+### 5. PG que diminui: contar disputas
 
-Quando só uma parte passa para a etapa seguinte, a razão fica entre 0 e 1. Se a cada etapa fica a **metade**, q = 1/2: 800, 400, 200, 100, 50…
+Quando só uma parte passa para a etapa seguinte, a razão fica entre 0 e 1. Se a cada etapa fica a **terça parte**, q = 1/3: 81, 27, 9, 3, 1.
 
-Ao dividir uma potência de 2 por 2 até chegar a 1, o expoente diz quantas divisões há. De 256 = 2⁸ até 1 são 8 divisões: 256, 128, 64, 32, 16, 8, 4, 2, 1.
-
-Para somar valores que caem pela metade até 1, leia a soma ao contrário: 1 + 2 + 4 + … é uma PG crescente de razão 2. A soma de potências de 2 tem um atalho, que aparece no desenho abaixo.
+Em competições por grupos, conte as **disputas**, e não os participantes. Se os participantes jogam em grupos de 3 e só o vencedor de cada grupo segue, n participantes formam n ÷ 3 disputas.
 
 <figure class="figura">
-  <svg viewBox="0 0 460 98" role="img" aria-labelledby="fig-pg-2-t fig-pg-2-d">
-    <title id="fig-pg-2-t">Soma de potências de 2</title>
-    <desc id="fig-pg-2-d">Grupos de quadradinhos com 1, 2, 4, 8 e 16 quadradinhos, lado a lado, somando 31. Um quadradinho tracejado no fim mostra que falta 1 para chegar a 32. Embaixo: 1 + 2 + 4 + 8 + 16 = 31 = 2⁵ − 1.</desc>
-    <rect x="20" y="40" width="8" height="8" class="traco-fino preenche" />
-    <rect x="40" y="40" width="8" height="8" class="traco-fino preenche" />
-    <rect x="50" y="40" width="8" height="8" class="traco-fino preenche" />
-    <rect x="70" y="40" width="8" height="8" class="traco-fino preenche" />
-    <rect x="80" y="40" width="8" height="8" class="traco-fino preenche" />
-    <rect x="90" y="40" width="8" height="8" class="traco-fino preenche" />
-    <rect x="100" y="40" width="8" height="8" class="traco-fino preenche" />
-    <rect x="120" y="40" width="8" height="8" class="traco-fino preenche" />
-    <rect x="130" y="40" width="8" height="8" class="traco-fino preenche" />
-    <rect x="140" y="40" width="8" height="8" class="traco-fino preenche" />
-    <rect x="150" y="40" width="8" height="8" class="traco-fino preenche" />
-    <rect x="160" y="40" width="8" height="8" class="traco-fino preenche" />
-    <rect x="170" y="40" width="8" height="8" class="traco-fino preenche" />
-    <rect x="180" y="40" width="8" height="8" class="traco-fino preenche" />
-    <rect x="190" y="40" width="8" height="8" class="traco-fino preenche" />
-    <rect x="210" y="40" width="8" height="8" class="traco-fino preenche" />
-    <rect x="220" y="40" width="8" height="8" class="traco-fino preenche" />
-    <rect x="230" y="40" width="8" height="8" class="traco-fino preenche" />
-    <rect x="240" y="40" width="8" height="8" class="traco-fino preenche" />
-    <rect x="250" y="40" width="8" height="8" class="traco-fino preenche" />
-    <rect x="260" y="40" width="8" height="8" class="traco-fino preenche" />
-    <rect x="270" y="40" width="8" height="8" class="traco-fino preenche" />
-    <rect x="280" y="40" width="8" height="8" class="traco-fino preenche" />
-    <rect x="290" y="40" width="8" height="8" class="traco-fino preenche" />
-    <rect x="300" y="40" width="8" height="8" class="traco-fino preenche" />
-    <rect x="310" y="40" width="8" height="8" class="traco-fino preenche" />
-    <rect x="320" y="40" width="8" height="8" class="traco-fino preenche" />
-    <rect x="330" y="40" width="8" height="8" class="traco-fino preenche" />
-    <rect x="340" y="40" width="8" height="8" class="traco-fino preenche" />
-    <rect x="350" y="40" width="8" height="8" class="traco-fino preenche" />
-    <rect x="360" y="40" width="8" height="8" class="traco-fino preenche" />
-    <rect x="380" y="40" width="8" height="8" class="traco tracejado" />
-    <text x="20" y="28" class="rotulo-fraco">1 + 2 + 4 + 8 + 16</text>
-    <text x="376" y="28" class="rotulo-fraco" text-anchor="end">falta 1 para 32</text>
-    <text x="230" y="84" class="rotulo" text-anchor="middle">1 + 2 + 4 + 8 + 16 = 31 = 2⁵ − 1</text>
+  <svg viewBox="0 0 460 188" role="img" aria-labelledby="fig-pg-4-t fig-pg-4-d">
+    <title id="fig-pg-4-t">Disputas de uma gincana em trios</title>
+    <desc id="fig-pg-4-d">Quatro fileiras de bolinhas, uma por fase, cada bolinha uma disputa. Fase 1: 81 equipes em trios, 27 disputas. Fase 2: 27 equipes, 9 disputas. Fase 3: 9 equipes, 3 disputas. Fase 4: 3 equipes, 1 disputa. Embaixo: 27 + 9 + 3 + 1 = 40 disputas.</desc>
+    <text x="20" y="20" class="rotulo-fraco">fase 1: 81 equipes em trios = 27 disputas</text>
+    <circle cx="26" cy="34" r="5" class="traco preenche" />
+    <circle cx="41" cy="34" r="5" class="traco preenche" />
+    <circle cx="56" cy="34" r="5" class="traco preenche" />
+    <circle cx="71" cy="34" r="5" class="traco preenche" />
+    <circle cx="86" cy="34" r="5" class="traco preenche" />
+    <circle cx="101" cy="34" r="5" class="traco preenche" />
+    <circle cx="116" cy="34" r="5" class="traco preenche" />
+    <circle cx="131" cy="34" r="5" class="traco preenche" />
+    <circle cx="146" cy="34" r="5" class="traco preenche" />
+    <circle cx="161" cy="34" r="5" class="traco preenche" />
+    <circle cx="176" cy="34" r="5" class="traco preenche" />
+    <circle cx="191" cy="34" r="5" class="traco preenche" />
+    <circle cx="206" cy="34" r="5" class="traco preenche" />
+    <circle cx="221" cy="34" r="5" class="traco preenche" />
+    <circle cx="236" cy="34" r="5" class="traco preenche" />
+    <circle cx="251" cy="34" r="5" class="traco preenche" />
+    <circle cx="266" cy="34" r="5" class="traco preenche" />
+    <circle cx="281" cy="34" r="5" class="traco preenche" />
+    <circle cx="296" cy="34" r="5" class="traco preenche" />
+    <circle cx="311" cy="34" r="5" class="traco preenche" />
+    <circle cx="326" cy="34" r="5" class="traco preenche" />
+    <circle cx="341" cy="34" r="5" class="traco preenche" />
+    <circle cx="356" cy="34" r="5" class="traco preenche" />
+    <circle cx="371" cy="34" r="5" class="traco preenche" />
+    <circle cx="386" cy="34" r="5" class="traco preenche" />
+    <circle cx="401" cy="34" r="5" class="traco preenche" />
+    <circle cx="416" cy="34" r="5" class="traco preenche" />
+    <text x="20" y="58" class="rotulo-fraco">fase 2: 27 equipes em trios = 9 disputas</text>
+    <circle cx="26" cy="72" r="5" class="traco preenche" />
+    <circle cx="41" cy="72" r="5" class="traco preenche" />
+    <circle cx="56" cy="72" r="5" class="traco preenche" />
+    <circle cx="71" cy="72" r="5" class="traco preenche" />
+    <circle cx="86" cy="72" r="5" class="traco preenche" />
+    <circle cx="101" cy="72" r="5" class="traco preenche" />
+    <circle cx="116" cy="72" r="5" class="traco preenche" />
+    <circle cx="131" cy="72" r="5" class="traco preenche" />
+    <circle cx="146" cy="72" r="5" class="traco preenche" />
+    <text x="20" y="96" class="rotulo-fraco">fase 3: 9 equipes em trios = 3 disputas</text>
+    <circle cx="26" cy="110" r="5" class="traco preenche" />
+    <circle cx="41" cy="110" r="5" class="traco preenche" />
+    <circle cx="56" cy="110" r="5" class="traco preenche" />
+    <text x="20" y="134" class="rotulo-fraco">fase 4: 3 equipes em trios = 1 disputa</text>
+    <circle cx="26" cy="148" r="5" class="traco preenche" />
+    <text x="230" y="176" class="rotulo" text-anchor="middle">disputas: 27 + 9 + 3 + 1 = 40</text>
   </svg>
 </figure>
 
-**Fórmula: soma das potências de 2**
+**Exemplo resolvido.** Numa gincana, 81 equipes jogam em trios; em cada trio, só a vencedora segue para a fase seguinte, até sobrar uma campeã. Quantas disputas há ao todo?
 
-**1 + 2 + 4 + … + 2ⁿ⁻¹ = 2ⁿ − 1**
+1. Fase 1: 81 equipes formam 81 ÷ 3 = 27 disputas, e 27 equipes seguem.
+2. Fase 2: 27 equipes, 9 disputas. Fase 3: 9 equipes, 3 disputas. Fase 4: 3 equipes, 1 disputa (a final).
+3. Total: 27 + 9 + 3 + 1 = 40 disputas.
+4. Conferir pela fórmula da soma. Lida de trás para a frente, 1, 3, 9, 27 é uma PG de razão 3: S₄ = 1 × (3⁴ − 1) ÷ (3 − 1) = 80 ÷ 2 = 40.
+5. Resposta: 40 disputas.
 
-- **n**: quantas parcelas são somadas, começando no 1.
-- **2ⁿ⁻¹**: a última parcela.
-- **Em palavras:** somar as potências de 2 dá sempre a próxima potência menos 1.
-- **Quando usar:** em somas como 1 + 2 + 4 + 8 + …, ou na ordem contrária, de uma quantidade que vai caindo pela metade até 1.
-
-**Exemplo resolvido.** Quanto vale 32 + 16 + 8 + 4 + 2 + 1?
-
-1. Na ordem contrária: 1 + 2 + 4 + 8 + 16 + 32, seis parcelas.
-2. Atalho: 2⁶ − 1 = 64 − 1 = 63.
-3. Resposta: 63.
-
-**Erro comum.** Incluir no começo da soma um valor que não faz parte da conta pedida, ou parar antes do último termo (o 1). Antes de somar, diga em palavras o que cada parcela conta.
+**Erro comum.** Somar o número de participantes de cada fase (81 + 27 + 9 + 3) no lugar do número de disputas.
 
 ### 6. Quantos períodos: o logaritmo
 
-Para saber quantos períodos uma PG leva para chegar a um valor, escreva a equação **a₁ × qᵏ = valor**, em que k é o número de períodos. Isole qᵏ dividindo, e descubra k.
+Para saber quantos períodos uma PG leva para chegar a um valor, escreva **a₁ × qᵏ = valor**, em que k é o número de períodos, e isole qᵏ dividindo. Quando os números são grandes, o caminho é o **logaritmo**.
 
-Quando os números são grandes, o caminho é o **logaritmo**. Use estas propriedades (base 10):
+O **logaritmo** de um número, escrito log, é o expoente a que se eleva o 10 para chegar a esse número. log 1 000 = 3, porque 10³ = 1 000. Em geral, **log 10ᵏ = k**. A prova às vezes escreve log₁₀ 2 (lê-se "logaritmo de 2 na base 10"): é o mesmo que log 2.
 
-- log (a × b) = log a + log b;
-- log (a ÷ b) = log a − log b;
-- log 10ᵏ = k;
-- log (qᵏ) = k × log q.
+O valor de log 2 vem dado na questão, quase sempre como 0,30. O símbolo ≈ quer dizer "aproximadamente igual a": log 2 ≈ 0,30, porque 10 elevado a 0,30 dá quase 2.
 
-Com log 2 ≈ 0,30, saem outros valores: log 4 = log (2 × 2) = 0,60; log 5 = log (10 ÷ 2) = 1 − 0,30 = 0,70.
+Três propriedades permitem calcular outros logaritmos a partir desse.
 
-**Fórmula: número de períodos**
+**Fórmula: logaritmo de um produto**
 
-**k = log (valor ÷ a₁) ÷ log q**
+**log (a × b) = log a + log b**
 
-- **k**: quantos períodos são precisos.
-- **valor**: a quantidade que se quer atingir.
-- **a₁**: a quantidade inicial.
-- **q**: a razão de cada período.
-- **Em palavras:** quantas vezes é preciso multiplicar por q para ir de a₁ até o valor.
-- **Quando usar:** quando a pergunta é "em quanto tempo" e os números são grandes demais para multiplicar à mão.
+- **a, b**: números positivos.
+- **Em palavras:** o logaritmo de uma multiplicação é a soma dos logaritmos.
+- **Quando usar:** para números como 3 × 10⁵ (log 3 + 5) ou para achar log 4 a partir de log 2.
 
-**Exemplo resolvido.** Uma colônia de fungos tem 2 × 10³ células e dobra a cada 5 horas. Use log 2 = 0,30. Em quantas horas ela chega a 2 × 10⁶ células?
+**Exemplo resolvido.** Com log 2 ≈ 0,30, calcule log 4 e log (4 × 10³).
 
-1. Equação: 2 × 10³ × 2ᵏ = 2 × 10⁶.
-2. Dividir: 2ᵏ = (2 × 10⁶) ÷ (2 × 10³) = 10³.
-3. Logaritmo dos dois lados: k × log 2 = log 10³, ou seja, k × 0,30 = 3.
-4. k = 3 ÷ 0,30 = 10 dobras.
-5. Tempo: 10 × 5 = 50 horas.
-6. Resposta: 50 horas.
+1. log 4 = log (2 × 2) = 0,30 + 0,30 = 0,60.
+2. log (4 × 10³) = log 4 + log 10³ = 0,60 + 3 = 3,60.
+3. Resposta: 0,60 e 3,60.
+
+**Erro comum.** Multiplicar os logaritmos: log (2 × 2) não é 0,30 × 0,30.
+
+**Fórmula: logaritmo de uma divisão**
+
+**log (a ÷ b) = log a − log b**
+
+- **a, b**: números positivos.
+- **Em palavras:** o logaritmo de uma divisão é a diferença dos logaritmos.
+- **Quando usar:** para números como 5 = 10 ÷ 2 ou 2,5 = 10 ÷ 4.
+
+**Exemplo resolvido.** Com log 2 ≈ 0,30, calcule log 5.
+
+1. 5 = 10 ÷ 2.
+2. log 5 = log 10 − log 2 = 1 − 0,30 = 0,70.
+3. Resposta: log 5 ≈ 0,70.
+
+**Erro comum.** Dividir os logaritmos: log (10 ÷ 2) não é 1 ÷ 0,30.
+
+**Fórmula: logaritmo de uma potência**
+
+**log (qᵏ) = k × log q**
+
+- **q**: a base, um número positivo.
+- **k**: o expoente.
+- **Em palavras:** o expoente "desce" e multiplica o logaritmo da base.
+- **Quando usar:** para tirar o k do expoente numa equação como 2ᵏ = valor.
+
+**Exemplo resolvido.** Uma colônia tem 2 × 10³ células e dobra a cada 3 horas. Use log 2 ≈ 0,30. Em quanto tempo ela chega a 10⁸ células?
+
+1. Equação: 2 × 10³ × 2ᵏ = 10⁸.
+2. Dividir: 2ᵏ = 10⁸ ÷ (2 × 10³) = 0,5 × 10⁵ = 5 × 10⁴.
+3. Logaritmo dos dois lados: k × log 2 = log 5 + log 10⁴ = 0,70 + 4 = 4,70.
+4. k = 4,70 ÷ 0,30 ≈ 15,7. A quantidade só passa de 10⁸ depois da 16ª dobra.
+5. Tempo: 16 × 3 = 48 horas.
+6. Resposta: cerca de 48 horas.
 
 Se a pergunta pedir um **ano**, some o tempo ao ano de partida: 10 períodos de 3 anos a partir de 2000 dão 2000 + 30 = 2030.
 
@@ -341,13 +394,13 @@ Se a pergunta pedir um **ano**, some o tempo ao ano de partida: 10 períodos de 
 
 ### Armadilhas típicas do INEP
 
-1. **Trocar PG por PA**: dobrar é multiplicar por 2, e não somar o mesmo valor.
-2. **Elevar em vez de multiplicar**: dobrar N é 2N, e não N².
+1. **Trocar PG por PA**: na PG, multiplica-se sempre pela mesma razão.
+2. **Elevar em vez de multiplicar**: triplicar P é 3P, e não P³.
 3. **Errar o expoente** do termo geral: é n − 1.
-4. **Contar intervalos errado**: entre n ações há n − 1 intervalos.
-5. **Esquecer uma das partes** quando o total junta ações e intervalos.
-6. **Somar como PA** um crescimento percentual.
-7. **Deixar de fora ou incluir a mais** um termo numa soma que cai pela metade.
+4. **Contar intervalos errado**: entre n coisas em fila há n − 1 intervalos.
+5. **Somar como PA** um crescimento percentual.
+6. **Contar participantes** quando a pergunta é sobre disputas.
+7. **Multiplicar ou dividir logaritmos** em vez de somar ou subtrair.
 8. **Confundir o número de períodos com o tempo** ou esquecer de somar ao ano de partida.
 
 ## Tópicos-Chave para Revisão
@@ -390,65 +443,75 @@ Numa **PG**, multiplica-se sempre pela **razão**: **q = termo seguinte ÷ termo
 
 #### 2. Termo geral
 
-**aₙ = a₁ × qⁿ⁻¹**. No tempo, **N(t) = N₀ × q^(t ÷ T)**. Triplicar é **3P**, não P³.
+**aₙ = a₁ × qⁿ⁻¹**. No tempo, **N(t) = N₀ × q^(t ÷ T)**, com **t ÷ T** períodos. Triplicar é **3P**, não P³.
 
-#### 3. Intervalos
+#### 3. Ações e intervalos
 
-Entre n ações em fila há **n − 1 intervalos**. Some as **ações** e os **intervalos** quando o total junta os dois.
+Entre n coisas em fila há **n − 1 intervalos**. Desenhe os **primeiros casos** para conferir a contagem.
 
 #### 4. Soma
 
 **Sₙ = a₁ × (qⁿ − 1) ÷ (q − 1)**. Crescer p% é ter **q = 1 + p/100**. **Abandonar** as casas decimais é cortar.
 
-#### 5. Metade a cada etapa
+#### 5. Disputas
 
-Com **q = 1/2**, a quantidade cai pela metade. **1 + 2 + 4 + … + 2ⁿ⁻¹ = 2ⁿ − 1**.
+Com **q** entre 0 e 1, a quantidade diminui. Em competições, conte as **disputas** (participantes ÷ tamanho do grupo), não os **participantes**.
 
 <figure class="figura">
-  <svg viewBox="0 0 460 98" role="img" aria-labelledby="fig-pg-2-rev-t fig-pg-2-rev-d">
-    <title id="fig-pg-2-rev-t">Soma de potências de 2</title>
-    <desc id="fig-pg-2-rev-d">Grupos de quadradinhos com 1, 2, 4, 8 e 16 quadradinhos, lado a lado, somando 31. Um quadradinho tracejado no fim mostra que falta 1 para chegar a 32. Embaixo: 1 + 2 + 4 + 8 + 16 = 31 = 2⁵ − 1.</desc>
-    <rect x="20" y="40" width="8" height="8" class="traco-fino preenche" />
-    <rect x="40" y="40" width="8" height="8" class="traco-fino preenche" />
-    <rect x="50" y="40" width="8" height="8" class="traco-fino preenche" />
-    <rect x="70" y="40" width="8" height="8" class="traco-fino preenche" />
-    <rect x="80" y="40" width="8" height="8" class="traco-fino preenche" />
-    <rect x="90" y="40" width="8" height="8" class="traco-fino preenche" />
-    <rect x="100" y="40" width="8" height="8" class="traco-fino preenche" />
-    <rect x="120" y="40" width="8" height="8" class="traco-fino preenche" />
-    <rect x="130" y="40" width="8" height="8" class="traco-fino preenche" />
-    <rect x="140" y="40" width="8" height="8" class="traco-fino preenche" />
-    <rect x="150" y="40" width="8" height="8" class="traco-fino preenche" />
-    <rect x="160" y="40" width="8" height="8" class="traco-fino preenche" />
-    <rect x="170" y="40" width="8" height="8" class="traco-fino preenche" />
-    <rect x="180" y="40" width="8" height="8" class="traco-fino preenche" />
-    <rect x="190" y="40" width="8" height="8" class="traco-fino preenche" />
-    <rect x="210" y="40" width="8" height="8" class="traco-fino preenche" />
-    <rect x="220" y="40" width="8" height="8" class="traco-fino preenche" />
-    <rect x="230" y="40" width="8" height="8" class="traco-fino preenche" />
-    <rect x="240" y="40" width="8" height="8" class="traco-fino preenche" />
-    <rect x="250" y="40" width="8" height="8" class="traco-fino preenche" />
-    <rect x="260" y="40" width="8" height="8" class="traco-fino preenche" />
-    <rect x="270" y="40" width="8" height="8" class="traco-fino preenche" />
-    <rect x="280" y="40" width="8" height="8" class="traco-fino preenche" />
-    <rect x="290" y="40" width="8" height="8" class="traco-fino preenche" />
-    <rect x="300" y="40" width="8" height="8" class="traco-fino preenche" />
-    <rect x="310" y="40" width="8" height="8" class="traco-fino preenche" />
-    <rect x="320" y="40" width="8" height="8" class="traco-fino preenche" />
-    <rect x="330" y="40" width="8" height="8" class="traco-fino preenche" />
-    <rect x="340" y="40" width="8" height="8" class="traco-fino preenche" />
-    <rect x="350" y="40" width="8" height="8" class="traco-fino preenche" />
-    <rect x="360" y="40" width="8" height="8" class="traco-fino preenche" />
-    <rect x="380" y="40" width="8" height="8" class="traco tracejado" />
-    <text x="20" y="28" class="rotulo-fraco">1 + 2 + 4 + 8 + 16</text>
-    <text x="376" y="28" class="rotulo-fraco" text-anchor="end">falta 1 para 32</text>
-    <text x="230" y="84" class="rotulo" text-anchor="middle">1 + 2 + 4 + 8 + 16 = 31 = 2⁵ − 1</text>
+  <svg viewBox="0 0 460 188" role="img" aria-labelledby="fig-pg-4-rev-t fig-pg-4-rev-d">
+    <title id="fig-pg-4-rev-t">Disputas de uma gincana em trios</title>
+    <desc id="fig-pg-4-rev-d">Quatro fileiras de bolinhas, uma por fase, cada bolinha uma disputa. Fase 1: 81 equipes em trios, 27 disputas. Fase 2: 27 equipes, 9 disputas. Fase 3: 9 equipes, 3 disputas. Fase 4: 3 equipes, 1 disputa. Embaixo: 27 + 9 + 3 + 1 = 40 disputas.</desc>
+    <text x="20" y="20" class="rotulo-fraco">fase 1: 81 equipes em trios = 27 disputas</text>
+    <circle cx="26" cy="34" r="5" class="traco preenche" />
+    <circle cx="41" cy="34" r="5" class="traco preenche" />
+    <circle cx="56" cy="34" r="5" class="traco preenche" />
+    <circle cx="71" cy="34" r="5" class="traco preenche" />
+    <circle cx="86" cy="34" r="5" class="traco preenche" />
+    <circle cx="101" cy="34" r="5" class="traco preenche" />
+    <circle cx="116" cy="34" r="5" class="traco preenche" />
+    <circle cx="131" cy="34" r="5" class="traco preenche" />
+    <circle cx="146" cy="34" r="5" class="traco preenche" />
+    <circle cx="161" cy="34" r="5" class="traco preenche" />
+    <circle cx="176" cy="34" r="5" class="traco preenche" />
+    <circle cx="191" cy="34" r="5" class="traco preenche" />
+    <circle cx="206" cy="34" r="5" class="traco preenche" />
+    <circle cx="221" cy="34" r="5" class="traco preenche" />
+    <circle cx="236" cy="34" r="5" class="traco preenche" />
+    <circle cx="251" cy="34" r="5" class="traco preenche" />
+    <circle cx="266" cy="34" r="5" class="traco preenche" />
+    <circle cx="281" cy="34" r="5" class="traco preenche" />
+    <circle cx="296" cy="34" r="5" class="traco preenche" />
+    <circle cx="311" cy="34" r="5" class="traco preenche" />
+    <circle cx="326" cy="34" r="5" class="traco preenche" />
+    <circle cx="341" cy="34" r="5" class="traco preenche" />
+    <circle cx="356" cy="34" r="5" class="traco preenche" />
+    <circle cx="371" cy="34" r="5" class="traco preenche" />
+    <circle cx="386" cy="34" r="5" class="traco preenche" />
+    <circle cx="401" cy="34" r="5" class="traco preenche" />
+    <circle cx="416" cy="34" r="5" class="traco preenche" />
+    <text x="20" y="58" class="rotulo-fraco">fase 2: 27 equipes em trios = 9 disputas</text>
+    <circle cx="26" cy="72" r="5" class="traco preenche" />
+    <circle cx="41" cy="72" r="5" class="traco preenche" />
+    <circle cx="56" cy="72" r="5" class="traco preenche" />
+    <circle cx="71" cy="72" r="5" class="traco preenche" />
+    <circle cx="86" cy="72" r="5" class="traco preenche" />
+    <circle cx="101" cy="72" r="5" class="traco preenche" />
+    <circle cx="116" cy="72" r="5" class="traco preenche" />
+    <circle cx="131" cy="72" r="5" class="traco preenche" />
+    <circle cx="146" cy="72" r="5" class="traco preenche" />
+    <text x="20" y="96" class="rotulo-fraco">fase 3: 9 equipes em trios = 3 disputas</text>
+    <circle cx="26" cy="110" r="5" class="traco preenche" />
+    <circle cx="41" cy="110" r="5" class="traco preenche" />
+    <circle cx="56" cy="110" r="5" class="traco preenche" />
+    <text x="20" y="134" class="rotulo-fraco">fase 4: 3 equipes em trios = 1 disputa</text>
+    <circle cx="26" cy="148" r="5" class="traco preenche" />
+    <text x="230" y="176" class="rotulo" text-anchor="middle">disputas: 27 + 9 + 3 + 1 = 40</text>
   </svg>
 </figure>
 
 #### 6. Logaritmo
 
-**k = log (valor ÷ a₁) ÷ log q**, com **log 2 ≈ 0,30**. O tempo é k vezes o **período**.
+**log 10ᵏ = k**; **log (a × b) = log a + log b**; **log (a ÷ b) = log a − log b**; **log (qᵏ) = k × log q**. Com **log 2 ≈ 0,30**, k = log (valor ÷ a₁) ÷ log q, e o tempo é k vezes o **período**.
 
 </div>
 
