@@ -37,7 +37,7 @@ gabarito:
   - correta: 0
     porque: >
       O quadrado n tem lado n, então Aₙ = n² e Aₙ₋₁ = (n − 1)² = n² − 2n + 1. A diferença é
-      n² − (n² − 2n + 1) = 2n − 1. Conferindo com n = 2: 4 − 1 = 3 = 2 × 2 − 1.
+      n² − (n² − 2n + 1) = 2n − 1. Conferindo com n = 3: 9 − 4 = 5 = 2 × 3 − 1 (n² − 1 daria 8).
       Revisar: Aula Teórica › 7. Diferença entre termos com a fórmula
   - correta: 0
     porque: >
@@ -58,7 +58,7 @@ gabarito:
 - **Pitagóricos**: seguidores de Pitágoras, filósofo e matemático grego da Antiguidade.
 - **Excede**: passa de, é maior que.
 - **Meta**: o objetivo que se quer alcançar.
-- **Natural**: número inteiro a partir do zero (0, 1, 2, 3…).
+- **a.C.** (antes de Cristo): forma de contar os anos antes do ano 1 do calendário cristão. O século V a.C. vai do ano 500 ao 401 antes de Cristo.
 
 </Accordion>
 
@@ -74,10 +74,11 @@ gabarito:
 
 **O que você precisa saber antes.**
 
-- **Contar posições.** De 2012 até 2015 são 2015 − 2012 + 1 = 4 anos: os dois extremos entram. Esse "+ 1" está explicado na aula de Divisibilidade e Fatoração.
+- **Contar posições.** De 2003 até 2008 são 2008 − 2003 + 1 = 6 anos: os dois extremos entram. Esse "+ 1" está explicado na aula de Divisibilidade e Fatoração.
 - **Potências.** n² = n × n. Revise a aula de Potências e Raízes.
-- **Distributiva.** 3 × (n − 1) = 3n − 3; −(n − 4) = −n + 4 (o sinal de menos troca o sinal de cada termo de dentro).
-- **Decimais.** 9 × 1,5 = 13,5; somar e multiplicar decimais sem perder a vírgula.
+- **Área do quadrado.** Área = lado × lado = lado². Um quadrado de lado 5 cm tem 5² = 25 cm² de área.
+- **Distributiva.** 3 × (n − 1) = 3n − 3; −(n − 4) = −n + 4 (o sinal de menos troca o sinal de cada parcela de dentro).
+- **Decimais.** 7 × 1,5 = 10,5; somar e multiplicar decimais sem perder a vírgula.
 
 ## Aula Teórica
 
@@ -124,7 +125,23 @@ Pense nas fileiras de um teatro. A 1ª tem 18 cadeiras, e cada fileira seguinte 
   </svg>
 </figure>
 
-Para achar a razão, subtraia um termo do seguinte: r = a₂ − a₁. Para ter certeza de que a sequência é uma PA, confira se essa diferença é igual em todos os pares vizinhos.
+Para ter certeza de que a sequência é uma PA, confira se a diferença entre vizinhos é igual em todos os pares.
+
+**Fórmula: razão da PA**
+
+**r = termo seguinte − termo anterior**
+
+- **r**: a razão, o valor somado a cada passo.
+- **termo seguinte**: qualquer termo a partir do segundo (por exemplo, a₂).
+- **termo anterior**: o termo logo antes dele (por exemplo, a₁). Assim, r = a₂ − a₁.
+- **Em palavras:** quanto a sequência anda de um termo para o próximo.
+- **Quando usar:** para achar a razão a partir de dois termos vizinhos e para conferir se uma sequência é uma PA.
+
+**Exemplo resolvido.** A sequência 7, 11, 15, 19 é uma PA? Qual é a razão?
+
+1. Diferenças: 11 − 7 = 4; 15 − 11 = 4; 19 − 15 = 4.
+2. Todas iguais: é uma PA.
+3. Resposta: r = 4.
 
 - Se r é positivo, a PA **cresce** (18, 20, 22…).
 - Se r é negativo, a PA **diminui** (50, 47, 44…: r = −3).
@@ -238,17 +255,17 @@ Se o último termo não foi dado, ache-o antes com o termo geral. E conte bem qu
 
 Às vezes a pergunta é ao contrário: quantos termos são precisos para a soma chegar a um valor. Escreva Sₙ com n como letra e teste valores de n.
 
-**Exemplo resolvido.** Uma pessoa caminha 2 km no 1º dia e, a cada dia, 1 km a mais que no anterior. Em quantos dias o total caminhado chega a pelo menos 50 km?
+Metas costumam vir com "pelo menos", que se escreve com o símbolo ≥ (lê-se "maior ou igual a"): Sₙ ≥ 100 quer dizer que a soma é 100 ou mais. O símbolo também aparece em condições como n ≥ 2, que quer dizer "n vale 2 ou mais".
 
-1. Dados: a₁ = 2, r = 1. Termo geral: aₙ = 2 + (n − 1) × 1 = n + 1.
-2. Soma: Sₙ = (2 + n + 1) × n ÷ 2 = (n + 3) × n ÷ 2.
-3. Testar n = 8: 11 × 8 ÷ 2 = 44. Ainda não chega.
-4. Testar n = 9: 12 × 9 ÷ 2 = 54. Passa de 50.
-5. Resposta: 9 dias.
+**Exemplo resolvido.** Numa pilha de latas, a camada de cima tem 3 latas, e cada camada de baixo tem 2 latas a mais que a de cima dela. Quantas camadas são precisas para a pilha ter pelo menos 100 latas?
 
-Para escolher o primeiro valor a testar, estime: a soma cresce mais ou menos como n², então comece perto da raiz da meta e ajuste.
+1. Dados: a₁ = 3, r = 2. Termo geral: aₙ = 3 + (n − 1) × 2 = 2n + 1.
+2. Soma: Sₙ = (3 + 2n + 1) × n ÷ 2 = (2n + 4) × n ÷ 2 = (n + 2) × n.
+3. Queremos Sₙ ≥ 100. Testar n = 9: 11 × 9 = 99. Ainda não chega.
+4. Testar n = 10: 12 × 10 = 120. Passa de 100.
+5. Resposta: 10 camadas.
 
-Leia com atenção o que a pergunta quer: o **total** de termos, o **valor** do último termo ou quantos termos **ainda faltam** a partir de um certo ponto. São três respostas diferentes.
+Leia com atenção o que a pergunta quer: o **total** de termos, o **valor** do último termo ou quantos termos **ainda faltam** a partir de um certo ponto. São três respostas diferentes. Se já foram contadas 7 camadas dessa pilha, ainda faltam 10 − 7 = 3; a 10ª camada tem a₁₀ = 2 × 10 + 1 = 21 latas.
 
 **Erro comum.** Parar no primeiro n testado que chega perto da meta, sem conferir se ele já atinge o valor pedido ("pelo menos" inclui o igual).
 
@@ -297,34 +314,46 @@ Na sequência 2, 5, 10, 17, 26, as diferenças são 3, 5, 7, 9. Elas formam uma 
   </svg>
 </figure>
 
-**Exemplo resolvido.** Qual é o 7º termo da sequência 2, 5, 10, 17, 26…?
+**Exemplo resolvido.** Qual é o 8º termo da sequência 2, 5, 10, 17, 26…?
 
 1. Diferenças: 3, 5, 7, 9 (razão 2).
-2. Próximas diferenças: 11 e 13.
-3. 6º termo: 26 + 11 = 37. 7º termo: 37 + 13 = 50.
-4. Resposta: 50.
+2. Próximas diferenças: 11, 13 e 15.
+3. 6º termo: 26 + 11 = 37. 7º termo: 37 + 13 = 50. 8º termo: 50 + 15 = 65.
+4. Resposta: 65.
 
 Isso vale para sequências desenhadas: conte o que cada figura acrescenta em relação à anterior, e veja se esse acréscimo cresce de forma regular.
 
-**Erro comum.** Somar sempre a última diferença conhecida (9), como se a sequência virasse uma PA. Aqui as diferenças também crescem.
+**Erro comum.** Achar que, depois dos termos dados, a sequência passa a crescer sempre o mesmo tanto. No exemplo, somar 9 de novo daria 35, 44 e 53, e não 37, 50 e 65: as diferenças também crescem.
 
 ### 7. Diferença entre termos com a fórmula
 
 Quando o termo é dado por uma expressão com n, dá para calcular a diferença entre vizinhos com letras: escreva aₙ, escreva aₙ₋₁ trocando n por (n − 1), e subtraia.
 
-Para isso, lembre do **quadrado de uma diferença**: (n − 1)² = (n − 1) × (n − 1) = n² − 2n + 1.
+Para isso, lembre do quadrado de uma diferença.
 
-**Exemplo resolvido.** Retângulos de lados n e n + 1 têm área aₙ = n² + n. Quanto vale aₙ − aₙ₋₁?
+**Fórmula: quadrado de (n − 1)**
 
-1. Trocar n por (n − 1): aₙ₋₁ = (n − 1)² + (n − 1) = n² − 2n + 1 + n − 1 = n² − n.
-2. Subtrair: aₙ − aₙ₋₁ = (n² + n) − (n² − n).
-3. Tirar os parênteses (o menos troca os sinais): n² + n − n² + n = 2n.
-4. Conferir com n = 2: a₂ = 4 + 2 = 6 e a₁ = 1 + 1 = 2; 6 − 2 = 4 = 2 × 2.
-5. Resposta: 2n.
+**(n − 1)² = n² − 2n + 1**
 
-Quando as alternativas trazem expressões com n, essa conferência com um valor pequeno de n elimina as erradas rapidamente. Calcule os dois termos com números, faça a diferença e veja qual expressão dá o mesmo.
+- **n**: um número qualquer.
+- **n²**: a primeira parcela, o quadrado de n.
+- **−2n**: a parcela do meio, duas vezes n vezes 1, com o sinal de menos.
+- **+1**: o quadrado de 1.
+- **Em palavras:** (n − 1) × (n − 1) dá n², menos duas vezes n, mais 1.
+- **Quando usar:** sempre que aparecer (n − 1)², como ao escrever aₙ₋₁ de uma fórmula com n².
 
-**Erro comum.** Escrever (n − 1)² = n² − 1, esquecendo o termo do meio (−2n). Outro erro é tirar os parênteses de "− (n² − n)" sem trocar o sinal de cada termo.
+**Exemplo resolvido.** Numa sequência, aₙ = 2n² + 3n. Quanto vale aₙ − aₙ₋₁?
+
+1. Trocar n por (n − 1): aₙ₋₁ = 2 × (n − 1)² + 3 × (n − 1).
+2. Abrir: 2 × (n² − 2n + 1) + 3n − 3 = 2n² − 4n + 2 + 3n − 3 = 2n² − n − 1.
+3. Subtrair: aₙ − aₙ₋₁ = (2n² + 3n) − (2n² − n − 1).
+4. Tirar os parênteses (o menos troca os sinais): 2n² + 3n − 2n² + n + 1 = 4n + 1.
+5. Conferir com n = 3: a₃ = 18 + 9 = 27 e a₂ = 8 + 6 = 14; 27 − 14 = 13 = 4 × 3 + 1.
+6. Resposta: 4n + 1.
+
+Quando as alternativas trazem expressões com n, a conferência com números elimina as erradas. Calcule dois termos vizinhos, faça a diferença e veja qual expressão dá o mesmo. Atenção: duas expressões diferentes podem dar o mesmo valor num n escolhido. Com n = 2, a diferença acima é 14 − 5 = 9, e 4n + 1 dá 9, mas 2n + 5 também dá 9. Se houver empate, teste outro n: com n = 3, 4n + 1 dá 13 (certo) e 2n + 5 dá 11 (errado).
+
+**Erro comum.** Esquecer a parcela do meio (−2n) ao abrir (n − 1)². Outro erro é tirar os parênteses de "− (2n² − n − 1)" sem trocar o sinal de cada parcela.
 
 ### Armadilhas típicas do INEP
 
@@ -333,7 +362,7 @@ Quando as alternativas trazem expressões com n, essa conferência com um valor 
 3. **Esquecer de dividir por 2** na soma, ou usar o termo errado como último.
 4. **Responder o total** quando a pergunta pede quanto ainda falta, ou o contrário.
 5. **Tratar como PA** uma sequência cujas diferenças crescem: monte a tabela de diferenças.
-6. **Errar o quadrado de (n − 1)**: ele é n² − 2n + 1.
+6. **Esquecer a parcela do meio** (−2n) ao abrir (n − 1)².
 7. **Não trocar os sinais** ao tirar um parêntese precedido de menos.
 
 ## Tópicos-Chave para Revisão
@@ -346,7 +375,7 @@ Quando as alternativas trazem expressões com n, essa conferência com um valor 
 
 #### 2. PA e razão
 
-Numa **PA**, soma-se sempre a mesma **razão** r: **r = termo seguinte − termo anterior**, igual em todos os pares.
+Numa **PA**, soma-se sempre a mesma **razão**: **r = termo seguinte − termo anterior**, igual em todos os pares.
 
 <figure class="figura">
   <svg viewBox="0 0 460 196" role="img" aria-labelledby="fig-pa-1-rev-t fig-pa-1-rev-d">
@@ -433,7 +462,7 @@ Numa **PA**, soma-se sempre a mesma **razão** r: **r = termo seguinte − termo
 
 #### 5. Meta
 
-Escreva **Sₙ** com n como letra e **teste valores** de n. Confira se a pergunta quer o **total**, o último **termo** ou quanto **falta**.
+Escreva **Sₙ** com n como letra e **teste valores** de n até **atingir** a meta (**≥**: chegar ao valor igual já serve). Confira se a pergunta quer o **total**, o último **termo** ou quanto **falta**.
 
 #### 6. Tabela de diferenças
 
@@ -480,7 +509,7 @@ Se a sequência não é PA, veja as **diferenças**. Se elas formam uma **PA**, 
 
 #### 7. Diferença com a fórmula
 
-Escreva **aₙ** e **aₙ₋₁**, use **(n − 1)² = n² − 2n + 1** e subtraia trocando os **sinais**. Confira com um **n pequeno**.
+Escreva **aₙ** e **aₙ₋₁**, use **(n − 1)² = n² − 2n + 1** e subtraia trocando os **sinais**. Confira com um **n pequeno**; se duas alternativas empatarem, teste **outro n**.
 
 </div>
 
@@ -531,7 +560,7 @@ Os números figurados pentagonais provavelmente foram introduzidos pelos pitagó
 
 <figure class="figura">
 
-![Seis figuras de pontos em forma de pentágono, cada uma com o número de pontos embaixo: 1 (um ponto só), 5, 12, 22, 35 e 51. Cada figura contém a anterior e acrescenta uma nova camada de pontos em volta, formando um pentágono maior.](./img/progressao-aritmetica/q3.png)
+![Seis figuras de pontos em forma de pentágono, cada uma com o número de pontos embaixo: 1 (um ponto só), 5, 12, 22, 35 e 51. Todas partem do mesmo canto de baixo, à esquerda: cada figura contém a anterior e acrescenta uma faixa de pontos por cima e à direita dela, formando um pentágono maior.](./img/progressao-aritmetica/q3.png)
 
 </figure>
 
@@ -550,18 +579,9 @@ E) 92.
 Em um trabalho escolar, João foi convidado a calcular as áreas de vários quadrados diferentes, dispostos em sequência, da esquerda para a direita, como mostra a figura.
 
 <figure class="figura">
-  <svg viewBox="0 0 460 156" role="img" aria-labelledby="fig-pa-q4-t fig-pa-q4-d">
-    <title id="fig-pa-q4-t">Quatro quadrados crescentes</title>
-    <desc id="fig-pa-q4-d">Quatro quadrados lado a lado, da esquerda para a direita, cada um maior que o anterior, numerados 1, 2, 3 e 4 embaixo. Figura redesenhada a partir da prova oficial, com os mesmos dados.</desc>
-    <rect x="60" y="104" width="26" height="26" class="traco preenche" />
-    <text x="73.0" y="148" class="rotulo" text-anchor="middle">1</text>
-    <rect x="116" y="78" width="52" height="52" class="traco preenche" />
-    <text x="142.0" y="148" class="rotulo" text-anchor="middle">2</text>
-    <rect x="198" y="52" width="78" height="78" class="traco preenche" />
-    <text x="237.0" y="148" class="rotulo" text-anchor="middle">3</text>
-    <rect x="306" y="26" width="104" height="104" class="traco preenche" />
-    <text x="358.0" y="148" class="rotulo" text-anchor="middle">4</text>
-  </svg>
+
+![Seis quadrados lado a lado, da esquerda para a direita, cada um maior que o anterior, numerados de 1 a 6 embaixo.](./img/progressao-aritmetica/q4.png)
+
 </figure>
 
 O primeiro quadrado da sequência tem lado medindo 1 cm, o segundo quadrado tem lado medindo 2 cm, o terceiro quadrado tem lado medindo 3 cm e assim por diante. O objetivo do trabalho é identificar em quanto a área de cada quadrado da sequência excede a área do quadrado anterior. A área do quadrado que ocupa a posição n, na sequência, foi representada por Aₙ.
