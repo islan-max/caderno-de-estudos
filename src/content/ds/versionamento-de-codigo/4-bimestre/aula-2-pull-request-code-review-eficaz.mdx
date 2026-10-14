@@ -1,0 +1,537 @@
+---
+title: "Pull Request e Code Review Eficaz"
+subject: "Versionamento de Código"
+order: 2
+relevance: >
+  Em equipe, ninguém joga código direto na branch principal: o trabalho passa por um Pull Request (PR), em que outras
+  pessoas revisam, e por checagens automáticas que protegem a main. Saber escrever um PR claro, revisar com critério e
+  respeito e configurar as regras que impedem a entrada de código quebrado é o que separa um time que aprende e entrega
+  com segurança de um time que vive apagando incêndio.
+quickSummary: >
+  Um Pull Request é um pedido para juntar mudanças e também uma forma de comunicação: título claro, problema, solução,
+  impacto e como testar. Na revisão, LGTM (aprovado) é para quando está pronto; change-request é para o que precisa
+  ser corrigido, e os comentários explicam o motivo e respeitam a pessoa. Checagens automáticas (testes, lint,
+  cobertura) e branches protegidas bloqueiam o merge quando as condições mínimas não são cumpridas.
+gabarito:
+  - correta: 2
+    porque: >
+      Um bom PR explica de forma clara o problema e a solução (e o impacto), para quem revisa entender o que mudou e por
+      quê. Descrição vazia, pular a revisão e evitar testes automáticos são exatamente o que um bom PR não faz.
+      Revisar: A Aula › 1.2 O que um bom Pull Request precisa ter
+  - correta: 3
+    porque: >
+      Um problema que pode quebrar uma funcionalidade é um bloqueio real, e a decisão adequada é pedir mudanças
+      (change-request). LGTM significa que está pronto para seguir, e ignorar o problema ou só reagir com um emoji deixa
+      o erro passar.
+      Revisar: A Aula › 2.2 LGTM ou change-request
+  - correta: 1
+    porque: >
+      Se os testes falham, o merge deve ser bloqueado: assim a main fica protegida por regra, e não por boa vontade.
+      Mesclar para corrigir depois, ignorar a cobertura ou pedir só mais um comentário deixam o código quebrado entrar.
+      Revisar: A Aula › 3.3 Bloquear o merge
+ferramentas:
+  - nome: "Conta no GitHub e um repositório de teste"
+    uso: "Para abrir Pull Requests, criar o modelo de PR e configurar a proteção da branch. As regras de proteção em repositórios privados dependem do plano."
+    custo: "Gratuito (repositório público)"
+    link: "https://github.com"
+  - nome: "Git instalado"
+    uso: "Para criar branches e enviar as mudanças."
+    custo: "Gratuito"
+    link: "https://git-scm.com"
+  - nome: "Um editor de texto"
+    uso: "Para escrever o modelo de PR, o checklist e as respostas."
+  - nome: "Caderno e caneta"
+    uso: "Para as discussões e os registros das atividades."
+---
+
+<Accordion titulo="Palavras e siglas desta aula" dica="Consulte quando encontrar um termo novo" icone="spell-check">
+
+- **Pull Request (PR)**: pedido para juntar as mudanças de uma branch a outra (geralmente a `main`), com espaço para discussão e revisão. No GitLab chama-se *Merge Request*.
+- **Code Review** (revisão de código): leitura do código de outra pessoa para achar problemas, sugerir melhorias e compartilhar conhecimento.
+- **Revisor** e **autor**: quem lê a mudança e quem a escreveu.
+- **Merge** (mesclar): juntar as mudanças de uma branch em outra.
+- **Branch principal** (`main`): a linha de desenvolvimento estável do projeto.
+- **LGTM** ("Looks Good To Me", "me parece bom"): sinal de que a mudança está pronta para seguir. No GitHub corresponde a **Approve** (aprovar).
+- **Change-request** (pedido de mudanças): decisão de que algo importante precisa ser corrigido antes da aprovação. No GitHub é **Request changes**.
+- **Modelo de PR** (*template*): texto padrão que aparece ao abrir um PR e orienta o que preencher.
+- **Checklist**: lista de itens a conferir.
+- **Check** (checagem) automático: verificação feita por uma ferramenta (testes, lint, build) a cada PR.
+- **CI** (Continuous Integration, integração contínua): rodar essas checagens automaticamente a cada alteração.
+- **Lint**: ferramenta que aponta erros de estilo e padrão no código.
+- **Cobertura de testes**: a porcentagem do código executada pelos testes.
+- **Limiar** (threshold): valor mínimo exigido (por exemplo, 80% de cobertura).
+- **Branch protegida**: branch com regras que impedem merge sem as condições mínimas (aprovação, checks passando).
+- **Status check obrigatório**: check que precisa passar para o merge ser liberado.
+- **Etiqueta** (etiquette): boas maneiras na hora de comentar.
+- **Atrito**: tensão e desgaste entre pessoas.
+
+</Accordion>
+
+## Antes de Começar
+
+**O que esta aula cobre.** Três aulas em uma, o ciclo de vida de uma mudança em equipe: **escrever um bom Pull Request**, **revisá-lo com critério e respeito** e **proteger a main com checagens automáticas**.
+
+**Aviso sobre os exemplos.** Os modelos e as regras de proteção do GitHub foram conferidos na documentação oficial, mas **não foram configurados num repositório real** nesta aula. O teste de cobertura mínima com o Jest, esse sim, foi **executado** (veja a seção 3.4).
+
+**O que você precisa saber antes.** Git básico (branch, commit, push) e o fluxo de colaboração com o GitHub. A Semana 21 (workflows) mostrou **como** as branches se organizam; esta semana mostra **como** as mudanças entram nelas.
+
+## A Aula
+
+### 1. Anatomia de um Pull Request
+
+#### 1.1 O que é e para que serve
+
+Imagine que você fez uma mudança importante num trabalho de grupo e avisa os colegas com: "Pronto, já fiz minha parte." Quem lê fica com dúvidas: o que exatamente foi feito? Por que foi necessário? O que preciso revisar? Agora imagine que você explica **o que mudou**, **por que mudou** e **se isso afeta outras partes**. A segunda mensagem poupa tempo de todos.
+
+Um **Pull Request (PR)** é um **pedido para juntar** mudanças ao código de um projeto. Ele serve para:
+
+1. **Mostrar o que foi alterado** (a comparação entre as branches).
+2. **Explicar por que** a mudança foi feita.
+3. **Permitir que outras pessoas revisem** antes de o código entrar.
+
+Ou seja: o PR **não é só "enviar código"**. É uma forma de **comunicação da equipe**.
+
+**Fluxo básico:**
+
+```bash
+git switch -c fix/login-senha-longa      # cria a branch da mudança
+# ...edita, testa...
+git add .
+git commit -m "fix: aceita senhas com mais de 64 caracteres"
+git push -u origin fix/login-senha-longa  # envia a branch ao GitHub
+# no GitHub: "Compare & pull request" para abrir o PR
+```
+
+**O que pode dar errado quando alguém não explica o que fez** (pergunta de aquecimento): o revisor **não entende** a intenção, **perde tempo** perguntando, **deixa passar** erros por não saber o que olhar, o PR **fica parado**, e a equipe **discute o assunto errado**. **Por que a explicação clara ajuda:** quem revisa sabe **o que** procurar, **mede** se a solução resolve o problema e aprova mais rápido.
+
+#### 1.2 O que um bom Pull Request precisa ter
+
+Um bom PR é **claro** e **fácil de entender**. Ele costuma trazer:
+
+| Elemento | O que escrever | Exemplo |
+|---|---|---|
+| **Título claro** | O que muda, em uma linha | "Corrige falha no login com senha longa" |
+| **Descrição objetiva** | Em poucas linhas, o essencial | — |
+| **Contexto do problema** | O que estava errado | "O login falhava com senhas muito longas" |
+| **Resumo da solução** | O que foi feito | "Ajuste na validação do campo de senha" |
+| **Impacto** | O que muda para o usuário ou para o código | "Melhora o acesso e reduz erros no sistema" |
+| **Como testar** | Passos para conferir | "Entrar com uma senha de 70 caracteres" |
+
+**Estrutura de resposta da atividade:** *Título · Problema · Solução · Impacto*.
+
+**Outras boas práticas:**
+
+- **PR pequeno:** poucas centenas de linhas e **um assunto só**. PRs enormes cansam o revisor e escondem erros.
+- **Revise o seu próprio PR antes** de pedir revisão: muitos erros aparecem na primeira releitura.
+- **Vincule a tarefa** (issue) que ele resolve.
+- **Mostre** o resultado quando for visual (captura de tela).
+- Use **rascunho** (*draft*) quando ainda está em andamento.
+
+**Modelo de PR.** Para que todo mundo escreva do mesmo jeito, o GitHub permite criar um **modelo** que já aparece preenchido ao abrir o PR. O arquivo fica em `.github/pull_request_template.md`:
+
+```markdown
+## O que foi feito
+<!-- Resuma a mudança em poucas linhas -->
+
+## Por que
+<!-- Qual problema isso resolve? Link da tarefa (issue) -->
+
+## Como testar
+<!-- Passos para quem revisa conferir -->
+
+## Checklist
+- [ ] O código funciona e foi testado
+- [ ] Os nomes estão claros
+- [ ] Os testes passam
+- [ ] A descrição está completa
+```
+
+Os campos `<!-- -->` são comentários que o autor substitui. O modelo **orienta o autor antes da revisão** e evita PRs vazios.
+
+#### 1.3 Revisão e qualidade no PR
+
+O PR também é o lugar da **revisão de código**. Quem revisa pode observar:
+
+- se o código está **claro**;
+- se a solução **faz sentido**;
+- se a mudança pode **causar erros**;
+- se faltou **teste** ou **documentação**.
+
+**Checklist do PR** (usado por muitas equipes): o código funciona? Os nomes das variáveis estão claros? Os testes passaram? A descrição está completa?
+
+#### 1.4 Aprovações e checagens automáticas
+
+Antes de entrar na branch principal, o PR pode passar por:
+
+- **aprovação de colegas** (uma regra de mínimo de aprovadores);
+- **checagens automáticas** (testes, build, lint);
+- **testes de qualidade** (análise de código, cobertura).
+
+<figure class="figura">
+  <svg viewBox="0 0 560 170" role="img" aria-labelledby="fig-ver22-fluxo-t fig-ver22-fluxo-d">
+    <title id="fig-ver22-fluxo-t">Fluxo de validação de um Pull Request</title>
+    <desc id="fig-ver22-fluxo-d">O autor abre o Pull Request. Os checks automáticos rodam: testes, build e lint. Em seguida vem a revisão humana. Se estiver tudo certo, o merge é liberado na main. Se algum check falhar ou houver pedido de mudanças, o autor corrige e o fluxo recomeça.</desc>
+    <defs>
+      <marker id="seta-ver22-fluxo" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+        <path d="M1,1 L9,5 L1,9" class="traco" />
+      </marker>
+    </defs>
+    <rect x="5" y="30" width="100" height="50" rx="8" class="traco" />
+    <text x="55" y="52" class="rotulo" text-anchor="middle">PR aberto</text>
+    <text x="55" y="68" class="rotulo-fraco" text-anchor="middle">pelo autor</text>
+    <rect x="135" y="30" width="110" height="50" rx="8" class="traco preenche" />
+    <text x="190" y="52" class="rotulo" text-anchor="middle">Checks</text>
+    <text x="190" y="68" class="rotulo-fraco" text-anchor="middle">testes, build, lint</text>
+    <rect x="275" y="30" width="100" height="50" rx="8" class="traco" />
+    <text x="325" y="52" class="rotulo" text-anchor="middle">Revisão</text>
+    <text x="325" y="68" class="rotulo-fraco" text-anchor="middle">humana</text>
+    <rect x="405" y="30" width="150" height="50" rx="8" class="traco" />
+    <text x="480" y="52" class="rotulo" text-anchor="middle">Merge na main</text>
+    <text x="480" y="68" class="rotulo-fraco" text-anchor="middle">só se tudo passou</text>
+    <line x1="105" y1="55" x2="133" y2="55" class="traco" marker-end="url(#seta-ver22-fluxo)" />
+    <line x1="245" y1="55" x2="273" y2="55" class="traco" marker-end="url(#seta-ver22-fluxo)" />
+    <line x1="375" y1="55" x2="403" y2="55" class="traco" marker-end="url(#seta-ver22-fluxo)" />
+    <path d="M190,82 L190,125 L55,125 L55,82" class="tracejado" marker-end="url(#seta-ver22-fluxo)" />
+    <text x="190" y="148" class="rotulo-fraco" text-anchor="middle">falhou ou pediu mudanças: o autor corrige</text>
+  </svg>
+</figure>
+
+### 2. Boas práticas de Code Review
+
+#### 2.1 Por que a revisão dá errado
+
+Uma equipe que faz Code Review do jeito certo não só procura erros: **aprende junto**, **mantém o código claro** e **evita retrabalho**. Muitas revisões dão errado por dois motivos:
+
+1. **Falta de critérios** para aprovar ou pedir mudanças.
+2. **Comentários escritos de um jeito que gera atrito.**
+
+**Cenário do roteiro.** Uma pessoa abre um PR **sem explicar** o que fez, e o revisor comenta apenas: "Tá ruim. Refaz."
+
+- **O que está faltando nessa revisão?** Dizer **o que** está ruim, **por quê** e **como melhorar**. E, do lado do autor, faltou o contexto.
+- **O problema está só no código?** Não: está também na **comunicação** dos dois lados (PR sem explicação, comentário sem motivo).
+- **Como isso gera conflito?** O autor se sente atacado e não aprende; o revisor se irrita por refazer sem entender; o time perde tempo e confiança.
+
+#### 2.2 LGTM ou change-request
+
+Nem todo comentário tem o mesmo peso. Separe **duas decisões**:
+
+| Decisão | Quando usar | No GitHub |
+|---|---|---|
+| **LGTM** | A mudança está **pronta para seguir**. Pode haver **sugestões** pequenas, que não bloqueiam | **Approve** |
+| **Change-request** | Existe algo **importante** que **precisa** ser corrigido **antes** da aprovação | **Request changes** |
+
+**Exemplos do roteiro, classificados:**
+
+| Comentário | Tipo | Por quê |
+|---|---|---|
+| "Só sugiro trocar o nome dessa variável para ficar mais claro." | **Sugestão** (LGTM) | É um polimento; não quebra nada |
+| "Esse trecho pode quebrar quando o valor vier vazio." | **Problema real** (change-request) | Risco de erro em uso real |
+| "Seria legal reorganizar esse comentário." | **Sugestão** (LGTM) | Estética; não bloqueia |
+| "Falta testar o caso principal da funcionalidade." | **Problema real** (change-request) | Sem teste do essencial, não há segurança |
+
+**O que diferencia uma sugestão de um bloqueio?** O **risco**: se o problema pode **quebrar** uma funcionalidade, causar **erro** para o usuário, abrir uma **falha de segurança** ou deixar o **caso principal sem teste**, é bloqueio. Se é gosto, estilo ou melhoria que pode esperar, é sugestão.
+
+- **Quando usar LGTM:** quando o código está **claro**, **correto**, **testado** e nada **grave** foi encontrado. Pode vir acompanhado de sugestões.
+- **Quando pedir change-request:** quando há **bug provável**, **falta de teste do essencial**, **risco de segurança** ou **quebra do que já funcionava**.
+
+Por isso, quando um revisor encontra um problema que **pode quebrar** uma funcionalidade, a decisão adequada é o **change-request**. Aprovar com LGTM, ignorar e mesclar ou reagir só com emoji deixam o erro passar.
+
+**Dica.** Marque o peso do comentário no próprio texto. Um padrão conhecido é o dos **Conventional Comments**, com rótulos como `nitpick:` (detalhe), `suggestion:` (sugestão), `issue:` (problema), `question:` (dúvida) e `praise:` (elogio). Assim o autor sabe o que bloqueia e o que não.
+
+#### 2.3 Comentários que ajudam
+
+Uma revisão ruim não acontece só quando a decisão está errada: também quando o comentário é mal escrito. Compare:
+
+- **A:** "Isso está confuso."
+- **B:** "Esse nome de função não deixa claro que ela valida o token. Pode renomear para algo mais específico?"
+
+**O B ajuda mais e gera menos atrito**, porque aponta **onde**, explica **por quê**, e **sugere** um caminho, em tom de pergunta. O A é vago e soa como crítica à pessoa.
+
+**Um bom comentário precisa ter:** o **ponto exato**, o **motivo**, uma **sugestão** (quando possível) e **respeito**.
+
+**Três regras de etiqueta** (modelo de resposta):
+
+1. **Explique o motivo** de cada pedido.
+2. **Sugira melhorias**, e não só aponte defeitos.
+3. **Critique o código, não a pessoa** ("esta função..." em vez de "você sempre...").
+
+**Bônus:** elogie o que ficou bom, **pergunte** antes de supor ("isso é intencional?") e **agradeça** quando receber um comentário.
+
+**Para quem recebe:** responda com calma, **não leve para o lado pessoal**, explique suas escolhas quando discordar e marque como resolvido o que foi corrigido.
+
+#### 2.4 Minichecklist do revisor
+
+Um checklist curto deixa a revisão mais **organizada e menos confusa**:
+
+- A mudança está **clara** (título e descrição)?
+- Há **risco de erro** (entradas vazias, casos de borda)?
+- É **possível testar** (há testes ou passos para testar)?
+- O meu **comentário está respeitoso**?
+
+**Como ele ajuda o time:** todo revisor olha **o mesmo mínimo**; as revisões ficam **mais consistentes**; o autor sabe **de antemão** o que será observado. **Como evita discussões desnecessárias:** critérios combinados antes tiram o "acho/não acho" da conversa, e a discussão passa a ser sobre **o item do checklist** que falhou, e não sobre gosto.
+
+### 3. Integração de checks automatizados
+
+#### 3.1 Por que não basta o olho humano
+
+Aprovar um PR **só no olho** gera problemas: mesmo com revisão humana, ainda podem passar **testes quebrados**, **falhas simples** e **queda na cobertura**. Pessoas se cansam, confiam no autor ou revisam com pressa. Por isso as equipes usam **checks automatizados antes do merge**.
+
+**Situação do roteiro.** Numa equipe, qualquer pessoa pode fazer merge de um PR, mesmo quando os **testes estão falhando**, a **cobertura caiu** ou a **revisão não foi cuidadosa**. Isso causa problemas frequentes na `main`.
+
+- **O que acontece se um código com testes falhando entra na main?** A `main` **fica quebrada** para todos: quem baixar o código encontra erros, outros PRs herdam o problema, o **deploy** pode publicar um defeito e a equipe **para** para consertar.
+- **Por que depender só da revisão humana gera erro?** Porque pessoas **esquecem**, **confiam** demais, **não rodam** o código e **têm pressa**. Máquinas conferem **sempre** e **do mesmo jeito**.
+
+#### 3.2 O que os checks fazem
+
+Fluxo: **PR aberto → testes automáticos → validações → revisão → merge.**
+
+**O que os checks verificam antes da revisão:** se o código **compila** (build), se os **testes passam**, se segue o **padrão** de código (lint), se a **cobertura** atende ao mínimo e, em muitos projetos, **vulnerabilidades** conhecidas.
+
+**Dois exemplos de problemas que eles detectam:** **testes quebrados** e **erro de build** (ou de padrão de código/lint).
+
+**Exemplo de workflow que roda os checks em cada PR** (GitHub Actions, no projeto Node.js; ilustrativo, não executado num repositório real):
+
+```yaml
+name: Checks do PR
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: lts/*
+          cache: npm
+      - run: npm ci
+      - run: npm run lint --if-present
+      - run: npm test -- --coverage
+```
+
+O nome do job (`checks`) é o que aparece no PR como "status check" e o que você marca como **obrigatório** na proteção da branch.
+
+#### 3.3 Bloquear o merge
+
+A equipe define uma política:
+
+- **merge bloqueado** se os **testes falharem**;
+- **merge bloqueado** se a **cobertura cair** abaixo do limite;
+- **merge bloqueado** se estiver **sem revisão**.
+
+**Por que bloquear é melhor do que só avisar?** Porque um **aviso depende de boa vontade**: sob pressão, alguém ignora. O **bloqueio é regra**, e vale para todos. **Se alguém ignora um aviso**, o código quebrado entra na `main` e vira problema de todo o time. **Como a regra muda o comportamento do time:** as pessoas passam a **rodar os testes antes** de abrir o PR, a **corrigir logo**, e a qualidade deixa de ser favor para ser **parte do processo**.
+
+Por isso, se os testes falham num PR, a prática que mais protege a `main` é **bloquear o merge**. Mesclar e corrigir depois, ignorar a cobertura ou pedir só mais um comentário **não protegem** a branch.
+
+**Como fazer no GitHub: proteção de branch** (Settings › Branches, ou *Rulesets*, o mecanismo mais novo). As opções mais usadas:
+
+| Regra | O que faz |
+|---|---|
+| **Require a pull request before merging** | Ninguém envia direto para a `main`: tudo passa por PR |
+| **Required approvals** | Exige um número mínimo de aprovações (por exemplo, 1 ou 2) |
+| **Dismiss stale approvals** | Se entrar commit novo, as aprovações antigas perdem o valor |
+| **Require review from Code Owners** | Exige aprovação de quem é dono daquela parte do código (arquivo `CODEOWNERS`) |
+| **Require status checks to pass** | O merge só é liberado quando os checks escolhidos passam |
+| **Require branches to be up to date** | O PR precisa estar atualizado com a `main` antes do merge |
+| **Require conversation resolution** | Todos os comentários precisam ser resolvidos |
+| **Restrict force pushes / deletions** | Impede reescrever ou apagar o histórico da `main` |
+| **Do not allow bypassing** | Vale também para administradores |
+
+**Cuidados:** o check obrigatório tem que **existir e rodar** no PR; se um workflow não for disparado (por filtro de caminho, por exemplo), o PR pode ficar esperando um check que nunca chega. E uma regra que **administradores** podem contornar sem registro deixa de proteger.
+
+#### 3.4 Cobertura de testes como portão
+
+A equipe define uma **cobertura mínima de 80%**. Se um PR faz a cobertura **cair para 74%**, o merge é bloqueado.
+
+- **Por que definir um limite mínimo?** Para a cobertura **não cair aos poucos** a cada PR sem ninguém perceber: o limite transforma um número em **regra**.
+- **Cobertura alta garante qualidade total?** **Não.** Um teste pode **executar** o código e **não verificar nada**; a cobertura também não mostra se os **casos certos** foram testados, nem se o **teste está correto**.
+- **Mesmo assim, por que é útil?** Porque mostra **o que nunca foi testado**, ajuda a achar **buracos** e impede **regressão** (quedas).
+
+**Como o limite é aplicado, na prática.** Com o Jest (projeto JavaScript), o limite é uma configuração no `package.json`:
+
+```json
+"jest": {
+  "coverageThreshold": {
+    "global": { "statements": 80, "branches": 80, "functions": 80, "lines": 80 }
+  }
+}
+```
+
+**Executado.** Em um teste local com duas funções, uma delas sem teste: os testes **passaram**, mas a cobertura ficou em **66,66%** das instruções e **40%** das funções. O Jest imprimiu que a cobertura **não atinge o limite global de 80%** e terminou com **código de saída 1**. É esse código de saída que **faz o check falhar** no GitHub Actions e, com a proteção de branch, **bloqueia o merge**. Em Python, o equivalente é o `pytest-cov` com `--cov-fail-under=80`.
+
+#### 3.5 Aplicação prática e checklist final
+
+**Caso.** Um PR chega com: **testes falhando**, **cobertura abaixo do limite** e **revisão ainda não feita**.
+
+- **Deve ser aprovado?** **Não.** Falha em **três** condições mínimas: testes, cobertura e revisão.
+- **O que corrigir antes do merge?** (1) **Consertar os testes** que falham; (2) **adicionar testes** até a cobertura voltar ao limite; (3) **pedir a revisão** e atender aos change-requests.
+
+**Checklist simples de aprovação** (três itens):
+
+- Os **testes passaram**.
+- A **cobertura** está dentro do limite.
+- A **revisão** foi concluída (sem change-request aberto).
+
+**Como o checklist ajuda a evitar problemas na `main`:** torna o critério **explícito e repetível**, evita aprovar por impulso e vira a **base** da proteção de branch, onde os mesmos itens viram **regras automáticas**.
+
+**A visão de conjunto.** O **modelo de PR** padroniza a entrada, a **revisão humana** avalia clareza, lógica e risco, e a **automação** garante o mínimo sempre. Os três funcionam **melhor juntos**.
+
+## Situações e Roteiros Práticos
+
+As atividades abaixo vêm do material da escola (situações fictícias, da SEDUC-SP). A Atividade 3 pede o **relatório com as respostas finais no AVA**. As respostas modelo estão nas seções indicadas.
+
+<Accordion titulo="Atividade 1 · Melhorando um Pull Request" dica="Reescrever um PR vago, em dupla" icone="list-check" rolagem={false}>
+
+**Ponto de partida (Virem e conversem).** Em grupos: o que pode dar errado quando alguém não explica direito o que fez? Por que uma explicação clara ajuda na revisão? → seção 1.1.
+
+**A atividade (em duplas).** Leiam este PR:
+
+```text
+Título: correção
+Descrição: arrumei o login
+```
+
+Reescrevam-no mais claro, pensando em: **um título melhor**, **um problema identificado**, **uma solução aplicada** e **o impacto da mudança**. Modelo de resposta: *Título · Problema · Solução · Impacto*.
+
+**Resposta modelo.**
+
+```text
+Título: Corrige falha de login com senhas longas
+Problema: o login falhava quando a senha tinha mais de 64 caracteres, porque o campo cortava o valor.
+Solução: ajuste na validação do campo, que passa a aceitar até 128 caracteres.
+Impacto: melhora o acesso de quem usa gerenciador de senhas e reduz chamados de suporte.
+Como testar: entrar com uma senha de 70 caracteres.
+```
+
+</Accordion>
+
+<Accordion titulo="Atividade 2 · Boas práticas de Code Review" dica="Cinco etapas, em duplas ou trios" icone="list-check" rolagem={false}>
+
+**Etapa 1 · O problema da revisão.** Um PR sem explicação e o comentário "Tá ruim. Refaz." Discutam: o que falta nessa revisão? O problema está só no código? Como gera conflito? → seção 2.1.
+
+**Etapa 2 · O mínimo de uma boa PR.** Um modelo de PR com os campos *o que foi feito*, *por que foi necessário* e *como testar*. Discutam: por que isso ajuda quem revisa? O que acontece sem essas informações? → seção 1.2. (Sem as informações, o revisor adivinha, pergunta de novo e revisa o ponto errado.)
+
+**Etapa 3 · LGTM x change-request.** Classifiquem estes comentários e registrem quando usar cada decisão:
+
+1. "Só sugiro trocar o nome dessa variável para ficar mais claro."
+2. "Esse trecho pode quebrar quando o valor vier vazio."
+3. "Seria legal reorganizar esse comentário."
+4. "Falta testar o caso principal da funcionalidade."
+
+Resposta: **1 e 3** são sugestões (LGTM); **2 e 4** são problemas reais (change-request). A diferença é o **risco**. → seção 2.2.
+
+**Etapa 4 · Comentários que ajudam.** Comparem "Isso está confuso." com "Esse nome de função não deixa claro que ela valida o token. Pode renomear para algo mais específico?". O segundo ajuda mais e gera menos atrito. Escrevam **três regras** de bons comentários (explique o motivo, sugira melhorias, evite atacar a pessoa). → seção 2.3.
+
+**Etapa 5 · Síntese.** Montem um minichecklist de três ou quatro itens (a mudança está clara? há risco de erro? é possível testar? o comentário está respeitoso?) e respondam como ele ajuda o time e evita discussões desnecessárias. → seção 2.4.
+
+</Accordion>
+
+<Accordion titulo="Atividade 3 · Integração de checks automatizados" dica="Seis etapas, em duplas, com relatório no AVA" icone="list-check" rolagem={false}>
+
+**Objetivo.** Compreender como os checks automatizados evitam erros e por que o merge deve ser bloqueado quando as condições mínimas não são atendidas.
+
+**Contexto.** Uma equipe trabalha num repositório compartilhado em que qualquer pessoa pode fazer merge, mesmo com **testes falhando**, **cobertura em queda** e **revisão sem cuidado**. A equipe decidiu usar **checks automatizados** e **regras de bloqueio de merge**.
+
+**Etapa 1 · Entendendo o problema.** O que acontece se um código com testes falhando entra na `main`? Por que depender só da revisão humana gera erro? → seção 3.1.
+
+**Etapa 2 · O que os checks fazem.** Fluxo: PR aberta → testes automáticos → validações → revisão → merge. O que os checks verificam antes da revisão? Deem dois exemplos de problemas que detectam (**testes quebrados** e **erro de build ou de padrão de código, o lint**). → seção 3.2.
+
+**Etapa 3 · Bloqueando o merge.** Política: bloquear se os testes falharem, se a cobertura cair e se estiver sem revisão. Por que bloquear é melhor do que apenas avisar? O que pode acontecer se alguém ignorar um aviso? Como a regra muda o comportamento do time? → seção 3.3.
+
+**Etapa 4 · Cobertura de teste.** Com mínimo de **80%**, um PR que derruba a cobertura para **74%** é bloqueado. Por que definir um limite? Cobertura alta garante qualidade total? Por que ainda é útil? → seção 3.4.
+
+**Etapa 5 · Aplicação prática.** Um PR com testes falhando, cobertura abaixo do limite e revisão pendente deve ser aprovado? O que corrigir antes do merge? → seção 3.5 (não; corrigir os três pontos).
+
+**Etapa 6 · Síntese.** Montem um checklist de três itens (testes passaram, cobertura dentro do limite, revisão concluída) e expliquem como ele evita problemas na `main`. → seção 3.5.
+
+**Entrega.** Enviem o **relatório com as respostas finais** pelo AVA.
+
+</Accordion>
+
+## Tópicos-Chave para Revisão
+
+<div className="topico">
+
+#### 1. Pull Request
+
+**Pedido para juntar** mudanças, com **revisão**. Mostra **o que mudou**, **por quê** e permite que outros **revisem**. É uma forma de **comunicação**.
+
+#### 2. Um bom PR
+
+**Título claro**, **problema**, **solução**, **impacto** e **como testar**. **Pequeno**, com **um assunto**. Um **modelo de PR** padroniza.
+
+#### 3. Revisão e checklist
+
+Quem revisa olha **clareza**, **lógica**, **risco de erro** e **testes**. O **checklist** deixa os critérios **explícitos**.
+
+#### 4. LGTM e change-request
+
+**LGTM** (Approve): pronto para seguir, com ou sem **sugestões**. **Change-request** (Request changes): algo **importante** a corrigir antes. A diferença é o **risco**.
+
+#### 5. Comentários que ajudam
+
+Apontam o **ponto exato**, explicam o **motivo**, **sugerem** e **respeitam** a pessoa. Críticas ao **código**, não à **pessoa**.
+
+#### 6. Checks automáticos
+
+**Testes**, **build**, **lint** e **cobertura** a cada PR. Pegam o que o olho humano deixa passar.
+
+#### 7. Bloquear, não só avisar
+
+O **aviso** depende de boa vontade; o **bloqueio** é regra. **Branch protegida** com **checks obrigatórios**, **aprovações** e **sem contornar**.
+
+#### 8. Cobertura mínima
+
+O **limiar** (por exemplo, **80%**) vira regra: abaixo dele, o check **falha** e o merge é **bloqueado**. Cobertura alta **não garante** qualidade, mas aponta o que **nunca foi testado**.
+
+#### 9. A visão de conjunto
+
+**Modelo de PR** + **revisão humana** + **automação** funcionam **melhor juntos** para manter a **qualidade da `main`**.
+
+</div>
+
+## Pause e Responda
+
+*Marque uma alternativa em cada questão e confira tudo de uma vez no botão do fim.*
+
+**Questão 1**
+
+*Pause e Responda S22A1a · Anatomia de um Pull Request (Aula 1)*
+
+Qual é uma característica de um bom Pull Request (PR)? Indique a alternativa correta.
+
+A) Ter descrição vazia.\
+B) Pular a revisão do time.\
+C) Explicar claramente problema e solução.\
+D) Evitar testes automáticos.\
+E) Reunir várias mudanças sem relação entre si.
+
+**Questão 2**
+
+*Pause e Responda S22A2a · Boas práticas de Code Review (Aula 2)*
+
+Quando um revisor encontra um problema que pode quebrar uma funcionalidade, a decisão mais adequada é: Indique a alternativa correta.
+
+A) LGTM.\
+B) Ignorar e mesclar.\
+C) Usar apenas emoji.\
+D) Change-request.\
+E) Esperar para ver se alguém reclama depois do deploy.
+
+**Questão 3**
+
+*Pause e Responda S22A3a · Integração de checks automatizados (Aula 3)*
+
+Se os testes falham em uma PR, qual prática ajuda mais a proteger a `main`? Indique a alternativa correta.
+
+A) Mesclar e corrigir depois.\
+B) Bloquear o merge.\
+C) Ignorar a cobertura.\
+D) Pedir comentário extra.\
+E) Fazer o merge de madrugada, quando há menos gente usando.
