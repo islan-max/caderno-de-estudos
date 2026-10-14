@@ -1050,5 +1050,15 @@
   "2017-regular-D2-azul-Q162": {
     "nota": "a figura é o quadro dos tipos de curva, transcrito como tabela na aula; conferido na imagem da página em 14/10/2026",
     "figuras": []
+  },
+  "2022-ppl-D2-azul-Q155": {
+    "nota": "índice e expoentes de N₀ embaralhados nas alternativas; conferido na imagem da página em 14/10/2026",
+    "alternativas": [
+      "N₀, N₀², N₀³, N₀⁴, N₀⁵, N₀⁶",
+      "N₀, N₀², N₀⁴, N₀⁸, N₀¹⁶, N₀³²",
+      "N₀, 2N₀, 3N₀, 4N₀, 5N₀, 6N₀",
+      "N₀, 2N₀, 4N₀, 8N₀, 16N₀, 32N₀",
+      "N₀, 3N₀, 7N₀, 15N₀, 31N₀, 63N₀"
+    ]
   }
 }
