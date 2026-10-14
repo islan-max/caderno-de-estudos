@@ -106,9 +106,7 @@
     "slug": "funcao-afim"
    },
    {
-    "slug": "progressao-aritmetica",
-    "titulo": "Progressão aritmética (PA)",
-    "resumo": "Sequências de razão constante: termo geral, soma dos termos e a ligação com a função afim."
+    "slug": "progressao-aritmetica"
    },
    {
     "slug": "funcoes-quadraticas"
