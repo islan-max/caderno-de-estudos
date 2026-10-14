@@ -1,0 +1,501 @@
+---
+title: "Sistemas Lineares"
+subject: "Matemática Básica"
+order: 9
+relevance: >
+  Um sistema linear é um conjunto de equações que precisam valer ao mesmo tempo. Ele aparece quando um
+  problema tem duas ou mais coisas desconhecidas e várias informações que as ligam: preços de produtos
+  comprados juntos, quantidades que somam um total, duas grandezas que se igualam. O ENEM (Exame Nacional
+  do Ensino Médio) cobra montar as equações a partir do texto, resolver, reescrever uma relação entre duas
+  letras e entender o que o gráfico das equações diz sobre as soluções. Muitas vezes a pergunta pede uma
+  combinação das incógnitas, e não cada uma delas.
+quickSummary: >
+  Cada informação do problema vira uma equação, e a solução do sistema é o valor das incógnitas que serve
+  em todas ao mesmo tempo. Resolve-se por substituição (isolar uma letra e trocar na outra equação) ou
+  por adição (somar ou subtrair equações para sumir com uma letra). No gráfico, cada equação de duas
+  incógnitas é uma reta, e a solução é o ponto comum a todas elas.
+resources:
+  conteudoComplementar:
+    conteudo: "Função Afim"
+    comoAjuda: "Cada equação de um sistema com duas incógnitas é a reta de uma função afim; a próxima matéria mostra como ler e montar essas retas."
+gabarito:
+  - correta: 1
+    porque: >
+      No equilíbrio, as duas quantidades são iguais: −20 + 4P = 46 − 2P. Somando 2P e 20 dos dois lados,
+      6P = 66, então P = 11. A pergunta pede o preço, e não a quantidade.
+      Revisar: Aula Teórica › 3. Método da substituição
+  - correta: 1
+    porque: >
+      Com q e c os preços sem desconto: 10q + 15c = 680 e 20 × 0,9q + 30 × 0,85c = 18q + 25,5c = 1 182.
+      Multiplicando a 1ª por 1,8 e subtraindo, 1,5c = 42 e c = 28; o cliente pagou 0,85 × 28 = 23,80 reais.
+      Revisar: Aula Teórica › 4. Método da adição
+  - correta: 2
+    porque: >
+      Valor de cada compra = dinheiro entregue − troco: A gastou 36,00 (3a + 2f + 4m), B gastou 32,70 e
+      C gastou 24,60 (2a + 2f + 2m). Subtraindo a compra de C da compra de A, sobra a + 2m = 36,00 − 24,60
+      = 11,40 reais, exatamente o que a vizinha deve.
+      Revisar: Aula Teórica › 5. Quando a pergunta é uma combinação
+  - correta: 1
+    porque: >
+      Chamando de V o tempo do vermelho: X = (2/3)V, então V = 3X/2. O ciclo é Y = X + 5 + 3X/2.
+      Multiplicando tudo por 2: 2Y = 2X + 10 + 3X = 5X + 10. Passando tudo para um lado: 5X − 2Y + 10 = 0.
+      Revisar: Aula Teórica › 6. Eliminar uma letra e reescrever a relação
+  - correta: 3
+    porque: >
+      A solução seria um ponto comum às três retas; P, Q e R estão só em duas cada um, e A, B e C são cortes
+      com o eixo x. Como nenhum ponto está nas três, o sistema não tem solução.
+      Revisar: Aula Teórica › 7. O gráfico de um sistema
+---
+
+<Accordion titulo="Palavras e siglas desta aula" dica="Consulte quando encontrar um termo novo" icone="spell-check">
+
+- **ENEM** (Exame Nacional do Ensino Médio): a prova nacional que dá acesso a faculdades e bolsas.
+- **INEP** (Instituto Nacional de Estudos e Pesquisas Educacionais Anísio Teixeira): o órgão do governo que faz o ENEM.
+- **Oferta**: quantidade de um produto que os vendedores querem vender por certo preço.
+- **Demanda**: quantidade de um produto que os compradores querem comprar por certo preço.
+- **Preço de equilíbrio**: o preço em que a oferta e a demanda ficam iguais.
+- **Cento**: um grupo de cem unidades. "Cento de coxinha" são 100 coxinhas.
+- **Ressarcido**: que recebeu de volta o dinheiro que gastou por outra pessoa.
+- **Comprovante**: papel que mostra o que foi pago, como a nota fiscal.
+- **Aferição**: ajuste ou conferência de um aparelho para ele funcionar certo.
+- **Intersecção**: o ponto onde duas linhas se cruzam.
+- **Eixo das abscissas**: o eixo x, a linha horizontal do plano cartesiano.
+- **Solução real**: solução formada por números reais, os números que aparecem na reta numérica (inteiros, decimais, frações, negativos).
+- **Simultaneamente**: ao mesmo tempo.
+- **Distintas**: diferentes entre si.
+- **Respectivamente**: na mesma ordem em que foram citados.
+
+</Accordion>
+
+## Antes de Começar
+
+**O que o ENEM cobra aqui.** As questões contam uma situação com duas ou três coisas desconhecidas e várias pistas sobre elas. O trabalho é transformar cada pista numa equação e escolher o caminho mais curto até o que a pergunta pede. Os temas que costumam aparecer são estes:
+
+- **Igualar duas expressões** para achar o ponto em que duas grandezas se encontram.
+- **Montar e resolver um sistema** de duas equações a partir de compras, preços ou descontos.
+- **Calcular uma combinação das incógnitas** sem precisar achar cada uma.
+- **Reescrever uma relação** entre duas letras, eliminando uma terceira.
+- **Ler o gráfico** de um sistema e dizer se ele tem uma, nenhuma ou infinitas soluções.
+
+**O que você precisa saber antes.**
+
+- **Equações do 1º grau.** Isolar a incógnita (o número desconhecido): de 4x − 6 = 18 vem 4x = 24, e então x = 6. Revise a aula de Equações de Primeiro e Segundo Grau.
+- **Distributiva.** Um número multiplicando um parêntese multiplica cada termo de dentro: 3 × (x − 2) = 3x − 6.
+- **Porcentagem.** Um desconto de 25% deixa 75% do preço: multiplica-se por 0,75. Revise a aula de Porcentagem.
+- **Frações.** (3/4) de 20 é 3 × 20 ÷ 4 = 15. Para tirar o denominador de uma equação, multiplique todos os termos por ele. Revise a aula de Frações.
+- **Plano cartesiano.** Cada ponto é um par (x, y): x é a posição na horizontal e y, na vertical.
+
+## Aula Teórica
+
+### 1. O que é um sistema linear
+
+Imagine duas pistas sobre dois números. "Somados, dão 10." "A diferença entre eles é 4." Cada pista sozinha tem muitas respostas. As duas juntas têm uma só.
+
+Escrever as pistas como equações dá um **sistema**: x + y = 10 e x − y = 4. Ele se chama **linear** porque as incógnitas aparecem só elevadas a 1 (sem x², sem x vezes y).
+
+A **solução** do sistema é o par de valores que serve em **todas** as equações ao mesmo tempo. Aqui é x = 7 e y = 3: 7 + 3 = 10 e 7 − 3 = 4.
+
+Para conferir uma solução, troque as letras pelos valores em cada equação. Se uma só falhar, não é solução do sistema.
+
+**Erro comum.** Achar um par que serve numa equação e parar. O par x = 8 e y = 2 serve em x + y = 10, mas não em x − y = 4 (8 − 2 = 6).
+
+### 2. Montar o sistema a partir do texto
+
+Siga três passos:
+
+1. Dê uma letra a cada coisa desconhecida e escreva o que ela significa.
+2. Transforme cada informação numérica do texto numa equação.
+3. Confira se o número de equações é igual ao de incógnitas.
+
+**Exemplo resolvido.** Um teatro vendeu 50 ingressos. A inteira custa R$ 30 e a meia-entrada, R$ 15. A bilheteria somou R$ 1 110. Monte o sistema.
+
+1. Incógnitas: x = número de inteiras; y = número de meias.
+2. Total de ingressos: x + y = 50.
+3. Total de dinheiro: 30x + 15y = 1 110.
+4. Duas equações e duas incógnitas: o sistema está pronto. A próxima seção resolve.
+
+Dois tipos de informação aparecem muito nos enunciados e viram contas simples.
+
+**Fórmula: preço com desconto**
+
+**preço com desconto = (1 − d/100) × preço original**
+
+- **d**: o desconto, em porcentagem.
+- **preço original**: o preço antes do desconto.
+- **Em palavras:** quem tem d% de desconto paga (100 − d)% do preço.
+- **Quando usar:** quando o texto dá um desconto em porcentagem sobre um preço que é incógnita.
+
+**Exemplo resolvido.** Um caderno custa p reais. Com 25% de desconto, quanto custam 4 cadernos?
+
+1. Preço com desconto: (1 − 25/100) × p = 0,75p.
+2. Quatro cadernos: 4 × 0,75p = 3p.
+3. Resposta: 3p reais.
+
+**Erro comum.** Achar o preço original e responder com ele quando a pergunta pede o preço **pago**, com o desconto. Depois de resolver, leia a pergunta de novo.
+
+**Fórmula: valor gasto numa compra**
+
+**valor gasto = dinheiro entregue − troco**
+
+- **dinheiro entregue**: a nota ou o valor dado ao caixa.
+- **troco**: o que o caixa devolveu.
+- **Em palavras:** o que voltou não foi gasto.
+- **Quando usar:** quando o texto diz com quanto alguém pagou e quanto recebeu de troco.
+
+**Exemplo resolvido.** Alguém pagou com R$ 50 e recebeu R$ 12,60 de troco. Quanto gastou?
+
+1. Valor gasto = 50 − 12,60.
+2. Resposta: R$ 37,40.
+
+**Erro comum.** Usar o valor da nota como se fosse o valor da compra.
+
+### 3. Método da substituição
+
+Na **substituição**, você isola uma letra numa equação e troca essa letra na outra equação. Sobra uma equação com uma incógnita só.
+
+**Exemplo resolvido.** Resolva o sistema do teatro: x + y = 50 e 30x + 15y = 1 110.
+
+1. Isolar x na primeira: x = 50 − y.
+2. Trocar na segunda: 30 × (50 − y) + 15y = 1 110.
+3. Distribuir: 1 500 − 30y + 15y = 1 110, ou seja, 1 500 − 15y = 1 110.
+4. Isolar y: −15y = −390, então y = 26.
+5. Voltar: x = 50 − 26 = 24.
+6. Conferir: 24 + 26 = 50 e 30 × 24 + 15 × 26 = 720 + 390 = 1 110.
+7. Resposta: 24 inteiras e 26 meias.
+
+Um caso especial é quando as duas equações já dão a **mesma grandeza**. Por exemplo, y = 3x − 2 e y = −x + 10. Se as duas dizem quanto vale y, os dois lados direitos são iguais: 3x − 2 = −x + 10. Agora resolva passo a passo:
+
+1. Somar x aos dois lados: 4x − 2 = 10.
+2. Somar 2 aos dois lados: 4x = 12.
+3. Dividir por 4: x = 3.
+4. Voltar numa das equações: y = 3 × 3 − 2 = 7.
+
+Esse "igualar" resolve problemas de **encontro**: duas grandezas que dependem do mesmo número e ficam iguais num certo ponto.
+
+**Erro comum.** Achar o valor de uma letra e responder com ele quando a pergunta é sobre a outra. No caso acima, x = 3 é o ponto de encontro, mas o valor comum das duas grandezas é y = 7. Leia qual das duas a pergunta quer.
+
+### 4. Método da adição
+
+No método da **adição**, você soma ou subtrai as equações inteiras para uma letra sumir. Muitas vezes é preciso antes multiplicar uma equação para que uma letra fique com o mesmo número nas duas.
+
+**Exemplo resolvido.** Resolva 3x + 2y = 16 e 5x + 4y = 28.
+
+1. O y tem 2 na primeira e 4 na segunda. Multiplicar a primeira por 2: 6x + 4y = 32.
+2. Subtrair a segunda: (6x + 4y) − (5x + 4y) = 32 − 28, ou seja, x = 4.
+3. Voltar na primeira: 3 × 4 + 2y = 16, então 2y = 4 e y = 2.
+4. Conferir na segunda: 5 × 4 + 4 × 2 = 28.
+5. Resposta: x = 4 e y = 2. Veja as contas empilhadas abaixo.
+
+<figure class="figura">
+  <svg viewBox="0 0 460 146" role="img" aria-labelledby="fig-sist-1-t fig-sist-1-d">
+    <title id="fig-sist-1-t">Método da adição em contas empilhadas</title>
+    <desc id="fig-sist-1-d">À esquerda, o sistema 3x + 2y = 16 e 5x + 4y = 28. A primeira equação é multiplicada por 2 e vira 6x + 4y = 32. À direita, as duas equações com 4y ficam uma embaixo da outra e são subtraídas: sobra x + 0y = 4, porque o y sumiu, então x = 4. Voltando numa equação, 3 × 4 + 2y = 16 dá y = 2.</desc>
+    <text x="20" y="24" class="rotulo-fraco">sistema</text>
+    <text x="250" y="24" class="rotulo-fraco">depois de multiplicar a 1ª por 2</text>
+    <text x="20" y="52" class="rotulo">3x + 2y = 16</text>
+    <text x="150" y="52" class="rotulo-fraco">(× 2)</text>
+    <text x="250" y="52" class="rotulo">6x + 4y = 32</text>
+    <text x="20" y="78" class="rotulo">5x + 4y = 28</text>
+    <text x="250" y="78" class="rotulo">5x + 4y = 28</text>
+    <line x1="186" y1="60" x2="232" y2="60" class="traco-fino" />
+    <polygon points="232,56 240,60 232,64" class="traco-fino" />
+    <line x1="244" y1="88" x2="400" y2="88" class="traco" />
+    <text x="236" y="80" class="rotulo" text-anchor="end">−</text>
+    <text x="250" y="108" class="rotulo">x + 0y = 4</text>
+    <text x="250" y="132" class="rotulo-fraco">o y sumiu: x = 4</text>
+    <text x="20" y="132" class="rotulo-fraco">volta numa equação: 3 × 4 + 2y = 16, y = 2</text>
+  </svg>
+</figure>
+
+Quando as equações têm números com vírgula, o método é o mesmo. Para achar o multiplicador, divida o número que você quer pelo número que você tem:
+
+- para transformar 0,8x em 2,4x, o multiplicador é 2,4 ÷ 0,8 = 3;
+- para transformar 4y em 10y, o multiplicador é 10 ÷ 4 = 2,5. Ele pode ser decimal: 2,5 × (4y + 2x) = 10y + 5x.
+
+No fim, uma conta como 0,4y = 6 se resolve dividindo por um decimal. Multiplique os dois números por 10 para tirar a vírgula: y = 6 ÷ 0,4 = 60 ÷ 4 = 15.
+
+**Erro comum.** Multiplicar só um lado da equação, ou só um dos termos. Ao multiplicar uma equação, multiplique **todos** os termos, dos dois lados.
+
+### 5. Quando a pergunta é uma combinação
+
+Às vezes a pergunta não quer cada incógnita, e sim uma combinação delas, como "x + y" ou "x − y". Antes de resolver tudo, olhe se somar ou subtrair as equações inteiras já dá a combinação pedida. Isso economiza muito tempo, e às vezes é o único caminho.
+
+**Exemplo resolvido.** Sabe-se que x + 2y = 11 e 2x + y = 13. Quanto vale x + y?
+
+1. Somar as duas equações: (x + 2y) + (2x + y) = 11 + 13.
+2. Juntar: 3x + 3y = 24.
+3. Dividir tudo por 3: x + y = 8.
+4. Resposta: 8, sem precisar achar x e y.
+
+Com três incógnitas, a ideia é a mesma: compare as equações e veja o que muda entre elas. Veja a + b + c = 15 e a + 2b + c = 19. A segunda tem um b a mais. A diferença entre elas é exatamente esse b: 19 − 15 = 4, então b = 4.
+
+Uma equação também pode ser dividida inteira por um número: 3a + 3b + 3c = 27 vira a + b + c = 9.
+
+**Erro comum.** Achar que é preciso descobrir cada incógnita. Com três incógnitas, isso pode ser longo; procure primeiro a soma ou a diferença que já entrega a resposta.
+
+### 6. Eliminar uma letra e reescrever a relação
+
+Algumas questões dão uma situação com três grandezas e pedem só a relação entre duas delas. A terceira é uma letra **auxiliar**: você a usa para montar as contas e depois a elimina por substituição. Por exemplo, se a = 2b e c = a + b, troque a por 2b na segunda: c = 2b + b = 3b. A letra a sumiu.
+
+Quando a informação é uma fração ("A é 2/5 de B"), escreva A = (2/5)B. Se a letra que vai ficar é A, isole B: multiplique os dois lados por 5/2 e fica B = 5A/2.
+
+Muitas vezes a resposta vem na forma "… = 0": todos os termos de um lado e zero do outro. Para chegar lá, tire as frações e passe cada termo para o mesmo lado, trocando o sinal dele.
+
+**Exemplo resolvido.** Numa sala, se 2 homens saírem, o número de homens fica igual a 3/4 do número de mulheres. Com h homens e m mulheres, escreva a relação entre h e m na forma "… = 0".
+
+1. Montar: h − 2 = (3/4)m.
+2. Multiplicar **todos** os termos por 4, para tirar a fração: 4h − 8 = 3m.
+3. Subtrair 3m dos dois lados: 4h − 8 − 3m = 0.
+4. Reordenar (letras primeiro): 4h − 3m − 8 = 0.
+5. Conferir com números: com m = 8, os homens que ficam são 3/4 de 8 = 6, então h = 8. Na relação: 4 × 8 − 3 × 8 − 8 = 32 − 24 − 8 = 0.
+
+A mesma relação pode aparecer com todos os sinais trocados: multiplicar a equação inteira por −1 dá −4h + 3m + 8 = 0, que diz a mesma coisa. Uma conferência com números, como no passo 5, mostra se uma relação escrita de outro jeito é equivalente.
+
+**Erro comum.** Esquecer de multiplicar **todos** os termos ao tirar a fração, inclusive o número sozinho (no exemplo, o 2 vira 8).
+
+### 7. O gráfico de um sistema
+
+No **plano cartesiano**, cada equação linear com duas incógnitas é uma **reta**: todos os pontos (x, y) que servem na equação ficam alinhados. A solução do sistema é o ponto que está em **todas** as retas ao mesmo tempo.
+
+Com duas equações, há três possibilidades:
+
+- as retas se cruzam num ponto: **uma solução** (o sistema é possível e determinado);
+- as retas são paralelas e nunca se encontram: **nenhuma solução** (o sistema é impossível);
+- as retas ficam uma sobre a outra, as **retas coincidentes**: **infinitas soluções** (o sistema é possível e indeterminado).
+
+<figure class="figura">
+  <svg viewBox="0 0 460 166" role="img" aria-labelledby="fig-sist-2-t fig-sist-2-d">
+    <title id="fig-sist-2-t">Os três tipos de sistema de duas equações</title>
+    <desc id="fig-sist-2-d">Três gráficos pequenos lado a lado. No primeiro, duas retas se cruzam num único ponto, destacado: o sistema tem uma solução. No segundo, duas retas paralelas nunca se encontram: nenhuma solução. No terceiro, as duas retas ficam uma em cima da outra: todos os pontos são comuns, infinitas soluções.</desc>
+    <line x1="15" y1="120" x2="145" y2="120" class="traco-fino" />
+    <line x1="25" y1="20" x2="25" y2="126" class="traco-fino" />
+    <line x1="30" y1="110" x2="140" y2="30" class="traco" />
+    <line x1="30" y1="35" x2="140" y2="105" class="traco" />
+    <text x="80.0" y="142" class="rotulo" text-anchor="middle">retas que se cruzam</text>
+    <text x="80.0" y="158" class="rotulo-fraco" text-anchor="middle">uma solução</text>
+    <circle cx="85" cy="70.5" r="4" class="traco preenche no" />
+    <line x1="165" y1="120" x2="295" y2="120" class="traco-fino" />
+    <line x1="175" y1="20" x2="175" y2="126" class="traco-fino" />
+    <line x1="180" y1="100" x2="290" y2="50" class="traco" />
+    <line x1="180" y1="70" x2="290" y2="20" class="traco" />
+    <text x="230.0" y="142" class="rotulo" text-anchor="middle">retas paralelas</text>
+    <text x="230.0" y="158" class="rotulo-fraco" text-anchor="middle">nenhuma solução</text>
+    <line x1="315" y1="120" x2="445" y2="120" class="traco-fino" />
+    <line x1="325" y1="20" x2="325" y2="126" class="traco-fino" />
+    <line x1="330" y1="105" x2="440" y2="35" class="traco" />
+    <line x1="330" y1="105" x2="440" y2="35" class="tracejado" />
+    <text x="380.0" y="142" class="rotulo" text-anchor="middle">retas coincidentes</text>
+    <text x="380.0" y="158" class="rotulo-fraco" text-anchor="middle">infinitas soluções</text>
+  </svg>
+</figure>
+
+Com **três equações** e duas incógnitas, há três retas. Para o sistema ter solução, as três precisam passar pelo **mesmo ponto**, como no desenho abaixo. Se não existe um ponto comum às três, o sistema não tem solução. Por exemplo, se duas das retas são paralelas, nenhum ponto está nas três, mesmo que a terceira corte as duas.
+
+Um ponto em que uma reta corta o eixo x serve só para a equação daquela reta (com y = 0). Ele não é solução do sistema, a não ser que esteja também nas outras retas.
+
+<figure class="figura">
+  <svg viewBox="0 0 460 200" role="img" aria-labelledby="fig-sist-3-t fig-sist-3-d">
+    <title id="fig-sist-3-t">Três retas que passam pelo mesmo ponto</title>
+    <desc id="fig-sist-3-d">Plano cartesiano com três retas: uma subindo, uma descendo e uma horizontal. As três se cruzam num mesmo ponto, destacado e marcado como ponto comum às três. Embaixo, a regra: com 3 equações e 2 incógnitas, só há solução se as três retas passam pelo mesmo ponto.</desc>
+    <line x1="40" y1="150" x2="420" y2="150" class="traco-fino" />
+    <line x1="150" y1="15" x2="150" y2="160" class="traco-fino" />
+    <text x="420" y="166" class="rotulo-fraco" text-anchor="end">x</text>
+    <text x="142" y="22" class="rotulo-fraco" text-anchor="end">y</text>
+    <line x1="180" y1="136.6" x2="355" y2="7.1" class="traco" />
+    <line x1="190" y1="20" x2="350" y2="120" class="traco" />
+    <line x1="90" y1="70" x2="420" y2="70" class="traco" />
+    <circle cx="270" cy="70" r="5" class="traco preenche no" />
+    <text x="316" y="54" class="rotulo">ponto comum às três</text>
+    <text x="230" y="190" class="rotulo-fraco" text-anchor="middle">3 equações e 2 incógnitas: só há solução se as três retas passam pelo mesmo ponto</text>
+  </svg>
+</figure>
+
+**Erro comum.** Contar como solução um ponto que não está em todas as retas.
+
+Diante de um desenho de retas, pergunte: existe um ponto por onde passam **todas**?
+
+### Armadilhas típicas do INEP
+
+1. **Responder a incógnita errada**: o valor achado pode ser de outra grandeza que não a pedida.
+2. **Responder o preço sem desconto** quando a pergunta pede o valor pago.
+3. **Usar o valor da nota** em vez de dinheiro entregue − troco.
+4. **Multiplicar só parte da equação** ao preparar o método da adição ou ao tirar uma fração.
+5. **Resolver tudo** quando somar ou subtrair as equações já dá a combinação pedida.
+6. **Inverter a fração** ao isolar uma letra ("A é 2/5 de B" dá B = 5A/2, e não B = 2A/5).
+7. **Chamar de solução** um ponto que não está em todas as retas do sistema.
+
+## Tópicos-Chave para Revisão
+
+<div className="topico">
+
+#### 1. Sistema e solução
+
+Um **sistema linear** junta equações que valem ao mesmo tempo. A **solução** é o valor das incógnitas que serve em **todas** elas; confira trocando as letras pelos valores.
+
+#### 2. Montar o sistema
+
+Uma **letra** para cada desconhecido e uma **equação** para cada informação. **preço com desconto = (1 − d/100) × preço original** e **valor gasto = dinheiro entregue − troco**.
+
+#### 3. Substituição
+
+**Isole** uma letra e **troque** na outra equação. Se as duas equações dão a mesma grandeza, **iguale** os outros lados.
+
+#### 4. Adição
+
+**Multiplique** uma equação inteira para igualar os números de uma letra e **some ou subtraia** as equações para ela sumir.
+
+<figure class="figura">
+  <svg viewBox="0 0 460 146" role="img" aria-labelledby="fig-sist-1-rev-t fig-sist-1-rev-d">
+    <title id="fig-sist-1-rev-t">Método da adição em contas empilhadas</title>
+    <desc id="fig-sist-1-rev-d">À esquerda, o sistema 3x + 2y = 16 e 5x + 4y = 28. A primeira equação é multiplicada por 2 e vira 6x + 4y = 32. À direita, as duas equações com 4y ficam uma embaixo da outra e são subtraídas: sobra x + 0y = 4, porque o y sumiu, então x = 4. Voltando numa equação, 3 × 4 + 2y = 16 dá y = 2.</desc>
+    <text x="20" y="24" class="rotulo-fraco">sistema</text>
+    <text x="250" y="24" class="rotulo-fraco">depois de multiplicar a 1ª por 2</text>
+    <text x="20" y="52" class="rotulo">3x + 2y = 16</text>
+    <text x="150" y="52" class="rotulo-fraco">(× 2)</text>
+    <text x="250" y="52" class="rotulo">6x + 4y = 32</text>
+    <text x="20" y="78" class="rotulo">5x + 4y = 28</text>
+    <text x="250" y="78" class="rotulo">5x + 4y = 28</text>
+    <line x1="186" y1="60" x2="232" y2="60" class="traco-fino" />
+    <polygon points="232,56 240,60 232,64" class="traco-fino" />
+    <line x1="244" y1="88" x2="400" y2="88" class="traco" />
+    <text x="236" y="80" class="rotulo" text-anchor="end">−</text>
+    <text x="250" y="108" class="rotulo">x + 0y = 4</text>
+    <text x="250" y="132" class="rotulo-fraco">o y sumiu: x = 4</text>
+    <text x="20" y="132" class="rotulo-fraco">volta numa equação: 3 × 4 + 2y = 16, y = 2</text>
+  </svg>
+</figure>
+
+#### 5. Combinação
+
+Antes de resolver tudo, veja se **somar** ou **subtrair** as equações já dá a **combinação** pedida.
+
+#### 6. Letra auxiliar
+
+Monte as contas com a **letra auxiliar** e elimine-a por **substituição**. Tire frações multiplicando **todos os termos** e teste a relação com **números**.
+
+#### 7. Gráfico
+
+Cada equação é uma **reta**; a solução é o ponto comum a **todas**. Cruzam: uma solução; **paralelas**: nenhuma; **coincidentes**: infinitas.
+
+<figure class="figura">
+  <svg viewBox="0 0 460 166" role="img" aria-labelledby="fig-sist-2-rev-t fig-sist-2-rev-d">
+    <title id="fig-sist-2-rev-t">Os três tipos de sistema de duas equações</title>
+    <desc id="fig-sist-2-rev-d">Três gráficos pequenos lado a lado. No primeiro, duas retas se cruzam num único ponto, destacado: o sistema tem uma solução. No segundo, duas retas paralelas nunca se encontram: nenhuma solução. No terceiro, as duas retas ficam uma em cima da outra: todos os pontos são comuns, infinitas soluções.</desc>
+    <line x1="15" y1="120" x2="145" y2="120" class="traco-fino" />
+    <line x1="25" y1="20" x2="25" y2="126" class="traco-fino" />
+    <line x1="30" y1="110" x2="140" y2="30" class="traco" />
+    <line x1="30" y1="35" x2="140" y2="105" class="traco" />
+    <text x="80.0" y="142" class="rotulo" text-anchor="middle">retas que se cruzam</text>
+    <text x="80.0" y="158" class="rotulo-fraco" text-anchor="middle">uma solução</text>
+    <circle cx="85" cy="70.5" r="4" class="traco preenche no" />
+    <line x1="165" y1="120" x2="295" y2="120" class="traco-fino" />
+    <line x1="175" y1="20" x2="175" y2="126" class="traco-fino" />
+    <line x1="180" y1="100" x2="290" y2="50" class="traco" />
+    <line x1="180" y1="70" x2="290" y2="20" class="traco" />
+    <text x="230.0" y="142" class="rotulo" text-anchor="middle">retas paralelas</text>
+    <text x="230.0" y="158" class="rotulo-fraco" text-anchor="middle">nenhuma solução</text>
+    <line x1="315" y1="120" x2="445" y2="120" class="traco-fino" />
+    <line x1="325" y1="20" x2="325" y2="126" class="traco-fino" />
+    <line x1="330" y1="105" x2="440" y2="35" class="traco" />
+    <line x1="330" y1="105" x2="440" y2="35" class="tracejado" />
+    <text x="380.0" y="142" class="rotulo" text-anchor="middle">retas coincidentes</text>
+    <text x="380.0" y="158" class="rotulo-fraco" text-anchor="middle">infinitas soluções</text>
+  </svg>
+</figure>
+
+</div>
+
+## Questões do ENEM
+
+*Marque uma alternativa em cada questão e confira tudo de uma vez no botão do fim.*
+
+**Questão 1**
+
+*ENEM 2012 · 2º dia · caderno azul · questão 166*
+
+As curvas de oferta e de demanda de um produto representam, respectivamente, as quantidades que vendedores e consumidores estão dispostos a comercializar em função do preço do produto. Em alguns casos, essas curvas podem ser representadas por retas. Suponha que as quantidades de oferta e de demanda de um produto sejam, respectivamente, representadas pelas equações:
+
+QO = −20 + 4P\
+QD = 46 − 2P
+
+em que QO é quantidade de oferta, QD é a quantidade de demanda e P é o preço do produto.
+
+A partir dessas equações, de oferta e de demanda, os economistas encontram o preço de equilíbrio de mercado, ou seja, quando QO e QD se igualam.
+
+Para a situação descrita, qual o valor do preço de equilíbrio?
+
+A) 5\
+B) 11\
+C) 13\
+D) 23\
+E) 33
+
+**Questão 2**
+
+*ENEM 2014 · 2ª aplicação · 2º dia · caderno cinza · questão 157*
+
+Um cliente fez um orçamento com uma cozinheira para comprar 10 centos de quibe e 15 centos de coxinha e o valor total foi de R$ 680,00. Ao finalizar a encomenda, decidiu aumentar as quantidades de salgados e acabou comprando 20 centos de quibe e 30 centos de coxinha. Com isso, ele conseguiu um desconto de 10% no preço do cento do quibe e de 15% no preço do cento de coxinha, e o valor total da compra ficou em R$ 1 182,00.
+
+De acordo com esses dados, qual foi o valor que o cliente pagou pelo cento da coxinha?
+
+A) R$ 23,40\
+B) R$ 23,80\
+C) R$ 24,90\
+D) R$ 25,30\
+E) R$ 37,80
+
+**Questão 3**
+
+*ENEM 2022 · 2ª aplicação · 2º dia · caderno azul · questão 173*
+
+Três amigos, A, B e C, se encontraram em um supermercado. Por coincidência, estavam comprando os mesmos itens, conforme o quadro.
+
+| Amigos | Arroz (kg) | Feijão (kg) | Macarrão (kg) |
+|---|---|---|---|
+| A | 3 | 2 | 4 |
+| B | 2 | 3 | 3 |
+| C | 2 | 2 | 2 |
+
+Os amigos estavam muito entretidos na conversa e nem perceberam que pagaram suas compras, pegaram seus trocos e esqueceram seus comprovantes. Já longe do supermercado, "A" lembrou que precisava saber o quanto pagou por um quilo de arroz e dois quilos de macarrão, pois estava comprando para sua vizinha e esperava ser ressarcido. "B", que adorava desafios matemáticos, disse que pagou suas compras com R$ 40,00 e obteve troco de R$ 7,30, e que conseguiria determinar o custo desses itens se os amigos dissessem como pagaram e quanto foram seus respectivos trocos. "A" disse que pagou com R$ 40,00 e obteve troco de R$ 4,00, e "C" pagou com R$ 30,00 e obteve troco de R$ 5,40.
+
+A vizinha de "A" deve a ele pela compra, em reais, o valor de
+
+A) 8,10.\
+B) 10,00.\
+C) 11,40.\
+D) 12,00.\
+E) 13,20.
+
+**Questão 4**
+
+*ENEM 2013 · 2º dia · caderno azul · questão 171*
+
+Na aferição de um novo semáforo, os tempos são ajustados de modo que, em cada ciclo completo (verde-amarelo-vermelho), a luz amarela permaneça acesa por 5 segundos, e o tempo em que a luz verde permaneça acesa seja igual a 2/3 do tempo em que a luz vermelha fique acesa. A luz verde fica acesa, em cada ciclo, durante X segundos e cada ciclo dura Y segundos.
+
+Qual é a expressão que representa a relação entre X e Y?
+
+A) 5X − 3Y + 15 = 0\
+B) 5X − 2Y + 10 = 0\
+C) 3X − 3Y + 15 = 0\
+D) 3X − 2Y + 15 = 0\
+E) 3X − 2Y + 10 = 0
+
+**Questão 5**
+
+*ENEM 2016 · 2ª aplicação · 2º dia · caderno azul · questão 160*
+
+Na figura estão representadas três retas no plano cartesiano, sendo P, Q e R os pontos de intersecções entre as retas, e A, B e C os pontos de intersecções dessas retas com o eixo x.
+
+<figure class="figura">
+
+![Plano cartesiano com três retas, r, s e t. A reta t sobe da esquerda para a direita e corta o eixo x no ponto A, à esquerda da origem. A reta s desce e corta o eixo x no ponto B. A reta r desce mais devagar e corta o eixo x no ponto C, à direita de B. As retas r e t se cruzam no ponto P, perto do eixo y; s e t se cruzam no ponto Q, acima de P; r e s se cruzam no ponto R, mais abaixo e à direita. Os três pontos P, Q e R são diferentes e formam um triângulo.](./img/sistemas-lineares/q5.png)
+
+</figure>
+
+Essa figura é a representação gráfica de um sistema linear de três equações e duas incógnitas que
+
+A) possui três soluções reais e distintas, representadas pelos pontos P, Q e R, pois eles indicam onde as retas se intersectam.\
+B) possui três soluções reais e distintas, representadas pelos pontos A, B e C, pois eles indicam onde as retas intersectam o eixo das abscissas.\
+C) possui infinitas soluções reais, pois as retas se intersectam em mais de um ponto.\
+D) não possui solução real, pois não há ponto que pertença simultaneamente às três retas.\
+E) possui uma única solução real, pois as retas possuem pontos em que se intersectam.
