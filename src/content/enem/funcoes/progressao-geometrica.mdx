@@ -69,14 +69,14 @@ gabarito:
 - **Escrever a sequência** de uma quantidade que se multiplica a cada período.
 - **Contar quantas vezes** algo acontece entre duas posições.
 - **Somar os termos** de uma PG, inclusive com porcentagem.
-- **Contar disputas** numa competição em que só uma parte passa de fase.
+- **Somar uma PG que diminui**, de etapa em etapa.
 - **Descobrir o número de períodos** até um valor muito grande, com logaritmo.
 
 **O que você precisa saber antes.**
 
 - **Potências.** 2⁵ = 2 × 2 × 2 × 2 × 2 = 32; 5⁰ = 1. 1 bilhão = 10⁹, então 30 bilhões = 3 × 10¹⁰. Revise a aula de Potências e Raízes.
 - **Porcentagem.** Aumentar 30% é multiplicar por 1,3. Revise a aula de Porcentagem.
-- **Densidade.** Quantidade por unidade de área: 600 pessoas em 2 km² dão 600 ÷ 2 = 300 pessoas por km². Dividir por um decimal é o mesmo que multiplicar pelo inverso: dividir por 0,5 é multiplicar por 2.
+- **Densidade.** Quantidade por unidade de área: 600 pessoas em 2 km² dão 600 ÷ 2 = 300 pessoas por km². Dividir por um número é o mesmo que multiplicar pelo inverso dele. O inverso de 0,5 é 1 ÷ 0,5 = 2, então dividir por 0,5 é multiplicar por 2.
 - **Progressão aritmética.** A notação aₙ, a razão e a ideia de termo geral estão na aula de Progressão Aritmética.
 
 ## Aula Teórica
@@ -174,13 +174,13 @@ Quando o tempo anda em períodos de mesma duração, dá para escrever a quantid
 - **Em palavras:** conte quantos períodos cabem no tempo e multiplique N₀ pelo fator esse número de vezes.
 - **Quando usar:** quando o texto diz "dobra a cada…", "triplica a cada…" e pergunta pela quantidade num instante.
 
-**Exemplo resolvido.** Uma cultura começa com 50 células e dobra a cada 6 horas. Quantas células há depois de 1 dia?
+**Exemplo resolvido.** Um vídeo tem 40 visualizações e o número de visualizações triplica a cada 5 dias. Quantas visualizações terá depois de 20 dias?
 
-1. 1 dia = 24 horas; períodos: 24 ÷ 6 = 4.
-2. N(24) = 50 × 2⁴ = 50 × 16 = 800.
-3. Resposta: 800 células.
+1. Períodos: 20 ÷ 5 = 4.
+2. N(20) = 40 × 3⁴ = 40 × 81 = 3 240.
+3. Resposta: 3 240 visualizações.
 
-**Erro comum.** Usar o tempo inteiro no expoente (2²⁴) em vez do número de períodos (24 ÷ 6 = 4).
+**Erro comum.** Usar o tempo inteiro no expoente (3²⁰) em vez do número de períodos (20 ÷ 5 = 4).
 
 ### 3. Contar ações e intervalos
 
@@ -360,7 +360,7 @@ Três propriedades permitem calcular outros logaritmos a partir desse.
 
 - **a, b**: números positivos.
 - **Em palavras:** o logaritmo de uma divisão é a diferença dos logaritmos.
-- **Quando usar:** para números como 5 = 10 ÷ 2 ou 2,5 = 10 ÷ 4.
+- **Quando usar:** para números como 5 = 10 ÷ 2 ou 0,2 = 2 ÷ 10.
 
 **Exemplo resolvido.** Com log 2 ≈ 0,30, calcule log 5.
 
@@ -379,14 +379,16 @@ Três propriedades permitem calcular outros logaritmos a partir desse.
 - **Em palavras:** o expoente "desce" e multiplica o logaritmo da base.
 - **Quando usar:** para tirar o k do expoente numa equação como 2ᵏ = valor.
 
-**Exemplo resolvido.** Uma colônia tem 2 × 10³ células e dobra a cada 3 horas. Use log 2 ≈ 0,30. Em quanto tempo ela chega a 10⁸ células?
+**Exemplo resolvido.** Um perfil tem 2 × 10³ seguidores, e o número de seguidores dobra a cada 3 meses. Use log 2 ≈ 0,30. Depois de quantas dobras completas o perfil passa de 10⁸ seguidores, e em quantos meses?
 
 1. Equação: 2 × 10³ × 2ᵏ = 10⁸.
-2. Dividir: 2ᵏ = 10⁸ ÷ (2 × 10³) = 0,5 × 10⁵ = 5 × 10⁴.
+2. Dividir: 2ᵏ = 10⁸ ÷ (2 × 10³) = 0,5 × 10⁵. Andar a vírgula uma casa para a direita tira 1 do expoente: 0,5 × 10⁵ = 5 × 10⁴.
 3. Logaritmo dos dois lados: k × log 2 = log 5 + log 10⁴ = 0,70 + 4 = 4,70.
-4. k = 4,70 ÷ 0,30 ≈ 15,7. A quantidade só passa de 10⁸ depois da 16ª dobra.
-5. Tempo: 16 × 3 = 48 horas.
-6. Resposta: cerca de 48 horas.
+4. k = 4,70 ÷ 0,30 ≈ 15,7. Com 15 dobras ainda não chega; com 16, passa.
+5. Tempo: 16 × 3 = 48 meses.
+6. Resposta: 16 dobras, em 48 meses.
+
+Resumindo, o número de períodos é **k = log (valor ÷ a₁) ÷ log q**.
 
 Se a pergunta pedir um **ano**, some o tempo ao ano de partida: 10 períodos de 3 anos a partir de 2000 dão 2000 + 30 = 2030.
 
@@ -511,7 +513,7 @@ Com **q** entre 0 e 1, a quantidade diminui. Em competições, conte as **disput
 
 #### 6. Logaritmo
 
-**log 10ᵏ = k**; **log (a × b) = log a + log b**; **log (a ÷ b) = log a − log b**; **log (qᵏ) = k × log q**. Com **log 2 ≈ 0,30**, k = log (valor ÷ a₁) ÷ log q, e o tempo é k vezes o **período**.
+**log 10ᵏ = k**; **log (a × b) = log a + log b**; **log (a ÷ b) = log a − log b**; **log (qᵏ) = k × log q**. Com **log 2 ≈ 0,30**, **k = log (valor ÷ a₁) ÷ log q**, e o tempo é k vezes o **período**.
 
 </div>
 
