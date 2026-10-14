@@ -59,7 +59,9 @@ const SOBRESCRITO = { '⁰': '0', '¹': '1', '²': '2', '³': '3', '⁴': '4', '
 // Uma folga antes do grupo inteiro (não de cada caractere): "10¹²" vira "10 12", um único token "12",
 // igual ao "10^12" do banco depois de perder o "^" na troca de símbolos por espaço, mais abaixo.
 const semSobrescrito = (t) => t.replace(/[⁰¹²³⁴⁵⁶⁷⁸⁹⁻⁺₀₁₂₃₄₅₆₇₈₉ⁿₙˣᵗₛ]+/g, (grupo) => ' ' + [...grupo].map((c) => SOBRESCRITO[c]).join(''));
-const normal = (t) => semAcento(semSobrescrito(t)).toLowerCase().replace(/[^a-z0-9%,.]+/g, ' ').trim();
+// entidades (&#123; para "{", que o MDX não aceita cru; &lt;) contam como o caractere que representam
+const semEntidades = (t) => t.replace(/&#(\d+);/g, (_, n) => String.fromCharCode(Number(n))).replace(/&lt;/g, '<').replace(/&gt;/g, '>');
+const normal = (t) => semAcento(semSobrescrito(semEntidades(t))).toLowerCase().replace(/[^a-z0-9%,.]+/g, ' ').trim();
 
 function semelhanca(a, b) {
   const pa = new Set(normal(a).split(' ').filter(Boolean));

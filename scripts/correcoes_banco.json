@@ -1014,5 +1014,41 @@
   "2013-regular-D2-azul-Q149": {
     "nota": "a figura é o quadro da projeção, transcrito como tabela na aula; conferido na imagem da página em 14/10/2026",
     "figuras": []
+  },
+  "2018-ppl-D2-azul-Q138": {
+    "nota": "alternativas são gráficos (recortados para a aula); o texto extraído era só R e S; conferido na imagem da página em 14/10/2026",
+    "alternativas": [
+      "Gráfico A",
+      "Gráfico B",
+      "Gráfico C",
+      "Gráfico D",
+      "Gráfico E"
+    ],
+    "alternativas_em_imagem": true
+  },
+  "2025-reaplicacao-D2-azul-Q161": {
+    "nota": "índices e frações das alternativas embaralhados; conferido na imagem da página em 14/10/2026",
+    "alternativas": [
+      "I₁ = 4I₂",
+      "I₁ = 2I₂",
+      "I₁ = I₂",
+      "I₁ = (1/2)I₂",
+      "I₁ = (1/4)I₂"
+    ]
+  },
+  "2022-ppl-D2-azul-Q166": {
+    "nota": "notação de conjunto das alternativas embaralhada e marca d'água no texto; conferido na imagem da página em 14/10/2026",
+    "texto": "A trajetória de uma pessoa que pula de um andaime até o chão é descrita por uma função y = f(x), sendo x e y medidos em metro, conforme mostra a figura. Seja D o domínio da função f(x), como definida na figura. Para que a situação representada na figura seja real, o domínio dessa função deve ser igual a",
+    "alternativas": [
+      "{x₂}, sendo x₂ a raiz positiva de f(x).",
+      "{x ∈ ℝ | 0 ≤ x ≤ x₂}, sendo x₂ a raiz positiva de f(x).",
+      "{x ∈ ℝ | x₁ ≤ x ≤ x₂}, sendo x₁ e x₂ raízes de f(x), com x₁ < x₂.",
+      "{x ∈ ℝ | x ≥ 0}.",
+      "x ∈ ℝ."
+    ]
+  },
+  "2017-regular-D2-azul-Q162": {
+    "nota": "a figura é o quadro dos tipos de curva, transcrito como tabela na aula; conferido na imagem da página em 14/10/2026",
+    "figuras": []
   }
 }
