@@ -3,9 +3,7 @@
  "materias": {
   "matematica-basica": [
    {
-    "slug": "divisibilidade-e-fatoracao",
-    "titulo": "Divisibilidade e fatoração",
-    "resumo": "Critérios de divisibilidade, números primos, MMC e MDC: as ferramentas para simplificar contas e resolver problemas de repetição."
+    "slug": "divisibilidade-e-fatoracao"
    },
    {
     "slug": "fracoes"
