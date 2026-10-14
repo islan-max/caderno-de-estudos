@@ -1,0 +1,787 @@
+---
+title: "Inequações"
+subject: "Matemática Básica"
+order: 8
+relevance: >
+  Inequação é uma conta parecida com a equação, mas em vez de "igual" ela usa "maior que" ou "menor que".
+  Ela responde perguntas de limite: qual o valor mínimo, o máximo, a partir de quando uma opção compensa.
+  O ENEM (Exame Nacional do Ensino Médio) quase nunca escreve a inequação pronta. Ele descreve uma situação
+  com expressões como "no mínimo", "pelo menos", "no máximo" ou "mais vantajoso", e você precisa
+  traduzir isso em símbolos, resolver e conferir se a resposta faz sentido na situação. Também aparecem
+  regras com faixas de valores e com módulo (a distância até um número).
+quickSummary: >
+  Resolve-se uma inequação como uma equação, com uma regra a mais: multiplicar ou dividir os dois lados
+  por um número negativo inverte o sinal. "No mínimo" e "pelo menos" viram ≥; "no máximo" e "até" viram
+  ≤. Em cobranças por faixa, resolva em cada faixa e confira se a resposta cai nela. |x − a| ≤ c quer dizer
+  que x fica entre a − c e a + c.
+resources:
+  conteudoComplementar:
+    conteudo: "Sistemas Lineares"
+    comoAjuda: "Comparar duas opções de preço, como nesta aula, leva naturalmente a duas equações com duas incógnitas: o assunto da próxima aula."
+gabarito:
+  - correta: 3
+    porque: >
+      O provedor A receberia 50 + 0,10 × 100 = 60 reais. Com p reais por clique, B recebe 20 + 100p, e
+      "pelo menos o mesmo total" é 20 + 100p ≥ 60. Então 100p ≥ 40 e p ≥ 0,40: o valor mínimo é R$ 0,40.
+      Revisar: Aula Teórica › 3. Montar a inequação a partir do texto
+  - correta: 4
+    porque: >
+      Para a mesma distância, a gasolina custa 45x e o etanol, 60y. A gasolina é mais vantajosa quando
+      custa menos: 45x menor que 60y. Dividindo os dois lados por 45y (positivo), x/y fica menor que 60/45 = 4/3.
+      Revisar: Aula Teórica › 4. Comparar razões
+  - correta: 2
+    porque: >
+      Hoje a conta é 0,50 × 150 + 4,50 = 79,50; com redução de pelo menos 10%, deve ficar em no máximo
+      0,9 × 79,50 = 71,55. Na faixa de 100 a 140, 0,50c + 3 ≤ 71,55 dá c ≤ 137,1, que cai na faixa. (Na faixa
+      acima de 140, daria c ≤ 134,1, fora da faixa.)
+      Revisar: Aula Teórica › 5. Faixas de valores e porcentagens
+  - correta: 2
+    porque: >
+      Entre 100 e 300 minutos, o laranja custa 143 e o azul, 80 + 0,90 × (m − 100). O laranja é mais
+      vantajoso quando 143 é menor que 80 + 0,90 × (m − 100): m − 100 > 70, ou seja, m > 170. O menor número
+      inteiro de minutos é 171.
+      Revisar: Aula Teórica › 6. Cobrança com franquia e soluções inteiras
+  - correta: 2
+    porque: >
+      Com h = 16, a regra fica |32 + b − 63,5| ≤ 1,5, ou seja, |b − 31,5| ≤ 1,5. Isso quer dizer
+      −1,5 ≤ b − 31,5 ≤ 1,5; somando 31,5 nas três partes, 30 ≤ b ≤ 33. O h = 16 também cumpre 16 ≤ h ≤ 19.
+      Revisar: Aula Teórica › 7. Módulo e desigualdade dupla
+---
+
+<Accordion titulo="Palavras e siglas desta aula" dica="Consulte quando encontrar um termo novo" icone="spell-check">
+
+- **ENEM** (Exame Nacional do Ensino Médio): a prova nacional que dá acesso a faculdades e bolsas.
+- **INEP** (Instituto Nacional de Estudos e Pesquisas Educacionais Anísio Teixeira): o órgão do governo que faz o ENEM.
+- **Vantajoso**: que dá mais vantagem. Numa compra, a opção mais vantajosa é a que sai mais barata pelo mesmo resultado.
+- **Provedor**: empresa que oferece um serviço na internet, como hospedar páginas e anúncios.
+- **Website**: palavra inglesa para página ou site da internet.
+- **Taxa de contratação**: valor fixo pago uma vez para contratar o serviço.
+- **Etanol**: álcool usado como combustível de carro.
+- **Bicombustível** (ou flex): carro que funciona com gasolina, com etanol ou com a mistura dos dois.
+- **Tributos**: impostos e taxas cobrados pelo governo.
+- **kWh** (quilowatt-hora): unidade de energia elétrica usada na conta de luz.
+- **Ligação local**: telefonema para um número da mesma cidade ou região.
+- **Incógnita**: o número desconhecido que a conta procura, em geral chamado de x.
+- **Cosip** (Contribuição para Custeio da Iluminação Pública): valor da conta de luz que paga a iluminação das ruas.
+- **Tarifa**: o preço cobrado por unidade de um serviço, como o preço de cada kWh.
+- **Amplo**: largo, que abrange mais. "O mais amplo intervalo" é o maior intervalo possível, com todos os valores que servem.
+
+</Accordion>
+
+## Antes de Começar
+
+**O que o ENEM cobra aqui.** A prova descreve uma situação de limite e deixa você montar a desigualdade. O cuidado está em escolher o sinal certo e em conferir se a resposta respeita todas as condições. Os temas que costumam aparecer são estes:
+
+- **Achar o valor mínimo ou máximo** que atende uma condição de preço, tempo ou quantidade.
+- **Decidir quando uma opção é mais vantajosa** que outra e escrever isso com símbolos.
+- **Usar tabelas por faixas** e metas em porcentagem.
+- **Achar o menor ou o maior número inteiro** que satisfaz a condição.
+- **Ler regras com módulo** e transformá-las num intervalo.
+
+**O que você precisa saber antes.**
+
+- **Equações do 1º grau.** Isolar x passando termos de um lado para o outro: de 2x + 3 = 11 vem 2x = 8, e então x = 4. Revise a aula de Equações de Primeiro e Segundo Grau.
+- **Porcentagem.** 20% de 80 é 0,20 × 80 = 16. Tirar 25% de um valor é multiplicar por 0,75. Revise a aula de Porcentagem.
+- **Frações e razões.** 18/24 simplifica para 3/4 (dividindo por 6). Revise a aula de Frações.
+- **Números negativos.** −4 é menor que −1, porque fica mais à esquerda na reta.
+
+## Aula Teórica
+
+### 1. Desigualdades: os símbolos e a reta
+
+Uma **desigualdade** compara dois valores que podem ser diferentes. Ela usa quatro símbolos:
+
+- **&gt;** (maior que): 7 > 3;
+- **&lt;** (menor que): 3 &lt; 7;
+- **≥** (maior ou igual a): x ≥ 2 aceita o 2 e tudo acima dele;
+- **≤** (menor ou igual a): x ≤ 5 aceita o 5 e tudo abaixo dele.
+
+Uma dica para não confundir: a parte aberta do sinal fica virada para o número maior.
+
+Uma **inequação** é uma desigualdade com uma incógnita, como 2x + 1 > 9. Resolver a inequação é achar todos os valores de x que a tornam verdadeira. Em geral eles não são um número só, e sim um pedaço inteiro da reta numérica.
+
+Na reta, bolinha **cheia** quer dizer que a ponta entra na solução (≤ ou ≥). Bolinha **vazia** quer dizer que a ponta não entra (&lt; ou >).
+
+<figure class="figura">
+  <svg viewBox="0 0 460 162" role="img" aria-labelledby="fig-ineq-1-t fig-ineq-1-d">
+    <title id="fig-ineq-1-t">Duas desigualdades na reta numérica</title>
+    <desc id="fig-ineq-1-d">Duas retas numéricas de −3 a 6. Na de cima, a solução de x ≥ 2: uma bolinha cheia no 2 e um traço grosso para a direita, porque o 2 faz parte da solução. Na de baixo, a solução de x &lt; −1: uma bolinha vazia no −1 e um traço grosso para a esquerda, porque o −1 não faz parte.</desc>
+    <line x1="45" y1="50" x2="435" y2="50" class="traco-fino" />
+    <line x1="60" y1="45" x2="60" y2="55" class="traco-fino" />
+    <text x="60" y="70" class="rotulo-fraco" text-anchor="middle">−3</text>
+    <line x1="100" y1="45" x2="100" y2="55" class="traco-fino" />
+    <text x="100" y="70" class="rotulo-fraco" text-anchor="middle">−2</text>
+    <line x1="140" y1="45" x2="140" y2="55" class="traco-fino" />
+    <text x="140" y="70" class="rotulo-fraco" text-anchor="middle">−1</text>
+    <line x1="180" y1="45" x2="180" y2="55" class="traco-fino" />
+    <text x="180" y="70" class="rotulo-fraco" text-anchor="middle">0</text>
+    <line x1="220" y1="45" x2="220" y2="55" class="traco-fino" />
+    <text x="220" y="70" class="rotulo-fraco" text-anchor="middle">1</text>
+    <line x1="260" y1="45" x2="260" y2="55" class="traco-fino" />
+    <text x="260" y="70" class="rotulo-fraco" text-anchor="middle">2</text>
+    <line x1="300" y1="45" x2="300" y2="55" class="traco-fino" />
+    <text x="300" y="70" class="rotulo-fraco" text-anchor="middle">3</text>
+    <line x1="340" y1="45" x2="340" y2="55" class="traco-fino" />
+    <text x="340" y="70" class="rotulo-fraco" text-anchor="middle">4</text>
+    <line x1="380" y1="45" x2="380" y2="55" class="traco-fino" />
+    <text x="380" y="70" class="rotulo-fraco" text-anchor="middle">5</text>
+    <line x1="420" y1="45" x2="420" y2="55" class="traco-fino" />
+    <text x="420" y="70" class="rotulo-fraco" text-anchor="middle">6</text>
+    <line x1="260" y1="50" x2="435" y2="50" class="traco" />
+    <circle cx="260" cy="50" r="6" class="rotulo" />
+    <text x="260" y="30" class="rotulo" text-anchor="middle">x ≥ 2 (bolinha cheia: o 2 entra)</text>
+    <line x1="45" y1="130" x2="435" y2="130" class="traco-fino" />
+    <line x1="60" y1="125" x2="60" y2="135" class="traco-fino" />
+    <text x="60" y="150" class="rotulo-fraco" text-anchor="middle">−3</text>
+    <line x1="100" y1="125" x2="100" y2="135" class="traco-fino" />
+    <text x="100" y="150" class="rotulo-fraco" text-anchor="middle">−2</text>
+    <line x1="140" y1="125" x2="140" y2="135" class="traco-fino" />
+    <text x="140" y="150" class="rotulo-fraco" text-anchor="middle">−1</text>
+    <line x1="180" y1="125" x2="180" y2="135" class="traco-fino" />
+    <text x="180" y="150" class="rotulo-fraco" text-anchor="middle">0</text>
+    <line x1="220" y1="125" x2="220" y2="135" class="traco-fino" />
+    <text x="220" y="150" class="rotulo-fraco" text-anchor="middle">1</text>
+    <line x1="260" y1="125" x2="260" y2="135" class="traco-fino" />
+    <text x="260" y="150" class="rotulo-fraco" text-anchor="middle">2</text>
+    <line x1="300" y1="125" x2="300" y2="135" class="traco-fino" />
+    <text x="300" y="150" class="rotulo-fraco" text-anchor="middle">3</text>
+    <line x1="340" y1="125" x2="340" y2="135" class="traco-fino" />
+    <text x="340" y="150" class="rotulo-fraco" text-anchor="middle">4</text>
+    <line x1="380" y1="125" x2="380" y2="135" class="traco-fino" />
+    <text x="380" y="150" class="rotulo-fraco" text-anchor="middle">5</text>
+    <line x1="420" y1="125" x2="420" y2="135" class="traco-fino" />
+    <text x="420" y="150" class="rotulo-fraco" text-anchor="middle">6</text>
+    <line x1="45" y1="130" x2="140" y2="130" class="traco" />
+    <circle cx="140" cy="130" r="6" class="traco no" />
+    <text x="150" y="110" class="rotulo">x &lt; −1 (bolinha vazia: o −1 não entra)</text>
+  </svg>
+</figure>
+
+Quando um número fica preso entre dois limites, escrevemos uma **desigualdade dupla**: 2 ≤ x ≤ 5 quer dizer que x é pelo menos 2 e no máximo 5. Esse pedaço da reta se chama **intervalo**.
+
+A desigualdade pode ser lida nos dois sentidos: 7 ≤ x é o mesmo que x ≥ 7. Um intervalo com uma ponta só, como x ≥ 7, não tem fim do outro lado.
+
+A prova escreve as desigualdades com palavras. Traduza assim:
+
+| No enunciado | Em símbolos |
+|---|---|
+| no mínimo, pelo menos, a partir de, não menos que | ≥ |
+| no máximo, até, não ultrapassar, não mais que | ≤ |
+| mais que, superior a, acima de | > |
+| menos que, inferior a, abaixo de | &lt; |
+
+**Erro comum.** Traduzir "pelo menos 3" como x > 3. "Pelo menos 3" aceita o próprio 3, então é x ≥ 3.
+
+### 2. Resolver uma inequação do 1º grau
+
+Resolver uma inequação é quase igual a resolver uma equação. Você pode somar ou subtrair o mesmo número dos dois lados. Pode também multiplicar ou dividir os dois lados pelo mesmo número **positivo**. A desigualdade continua valendo.
+
+A diferença está nos números **negativos**. Pense em 2 &lt; 5. Multiplicando os dois lados por −1, ficam −2 e −5. Mas −2 é **maior** que −5. Por isso, ao multiplicar ou dividir por um número negativo, o sinal **vira**: &lt; vira >, ≤ vira ≥, e vice-versa.
+
+**Fórmula: inequação do 1º grau**
+
+**a × x + b ≤ c → x ≤ (c − b) ÷ a, com a positivo**
+
+- **x**: a incógnita, o valor que queremos descobrir.
+- **a**: o número que multiplica x (o coeficiente).
+- **b**: o número somado a a × x.
+- **c**: o número do outro lado da desigualdade.
+- **→**: lê-se "então"; mostra o resultado de passar de uma forma para a outra.
+- **Em palavras:** passe o b para o outro lado e divida pelo a. Se o a for negativo, divida e vire o sinal.
+- **Quando usar:** sempre que a incógnita aparece multiplicada por um número e somada a outro, com &lt;, >, ≤ ou ≥ no meio.
+
+**Exemplo resolvido.** Resolva 3x − 7 ≤ 11.
+
+1. Somar 7 dos dois lados: 3x ≤ 18.
+2. Dividir por 3 (positivo, o sinal fica): x ≤ 6.
+3. Conferir com x = 6: 3 × 6 − 7 = 11, e 11 ≤ 11 é verdade.
+4. Resposta: x ≤ 6.
+
+**Exemplo resolvido.** Resolva 5 − 2x > 13.
+
+1. Subtrair 5 dos dois lados: −2x > 8.
+2. Dividir por −2 (negativo, o sinal vira): x &lt; −4.
+3. Conferir com x = −5: 5 − 2 × (−5) = 15, e 15 > 13 é verdade.
+4. Resposta: x &lt; −4.
+
+**Erro comum.** Dividir por um número negativo e esquecer de virar o sinal. Teste sempre um valor da sua resposta na inequação original.
+
+### 3. Montar a inequação a partir do texto
+
+Muitos preços têm duas partes: um valor **fixo**, pago de qualquer jeito, e um valor que depende da **quantidade** (horas, quilômetros, unidades).
+
+**Fórmula: custo com parte fixa**
+
+**custo = fixo + preço por unidade × quantidade**
+
+- **fixo**: o valor que se paga mesmo com quantidade zero, como uma taxa de entrada.
+- **preço por unidade**: quanto cada hora, cada quilômetro ou cada unidade acrescenta.
+- **quantidade**: quantas horas, quilômetros ou unidades foram usados.
+- **Em palavras:** comece pelo valor fixo e some o preço de cada unidade usada.
+- **Quando usar:** em comparações entre empresas, planos e serviços que cobram uma taxa mais um valor por uso.
+
+Para comparar duas opções, escreva o custo de cada uma e ligue as duas com o sinal que o texto pede. "Sair mais barato" é &lt;; "não custar menos que" é ≥.
+
+A incógnita pode estar em qualquer parte da fórmula: no valor fixo, no preço por unidade ou na quantidade. Dê uma letra ao que o texto não informa e monte o custo do mesmo jeito.
+
+**Exemplo resolvido.** O estacionamento A cobra R$ 8 de entrada mais R$ 3 por hora. O estacionamento B cobra R$ 20 pelo dia inteiro. Por quantas horas, no máximo, A não sai mais caro que B?
+
+1. Custo de A para t horas: 8 + 3t. Custo de B: 20.
+2. "A não sai mais caro que B": 8 + 3t ≤ 20.
+3. Subtrair 8: 3t ≤ 12.
+4. Dividir por 3: t ≤ 4.
+5. Resposta: até 4 horas. Com mais de 4 horas, B passa a ser mais barato, como mostra o gráfico abaixo.
+
+<figure class="figura">
+  <svg viewBox="0 0 460 206" role="img" aria-labelledby="fig-ineq-2-t fig-ineq-2-d">
+    <title id="fig-ineq-2-t">Custo de dois estacionamentos</title>
+    <desc id="fig-ineq-2-d">Gráfico do custo em reais pelo tempo em horas, de 0 a 7 horas. A reta A, que começa em 8 reais e sobe 3 reais por hora, cruza a reta horizontal B, fixa em 20 reais, no ponto de 4 horas. Até 4 horas a reta A não fica acima da B, e A não sai mais caro; depois de 4 horas, fica acima.</desc>
+    <line x1="60" y1="170" x2="420" y2="170" class="traco" />
+    <line x1="60" y1="170" x2="60" y2="14" class="traco" />
+    <text x="60" y="186" class="rotulo-fraco" text-anchor="middle">0</text>
+    <text x="110" y="186" class="rotulo-fraco" text-anchor="middle">1</text>
+    <text x="160" y="186" class="rotulo-fraco" text-anchor="middle">2</text>
+    <text x="210" y="186" class="rotulo-fraco" text-anchor="middle">3</text>
+    <text x="260" y="186" class="rotulo-fraco" text-anchor="middle">4</text>
+    <text x="310" y="186" class="rotulo-fraco" text-anchor="middle">5</text>
+    <text x="360" y="186" class="rotulo-fraco" text-anchor="middle">6</text>
+    <text x="410" y="186" class="rotulo-fraco" text-anchor="middle">7</text>
+    <text x="52" y="174" class="rotulo-fraco" text-anchor="end">0</text>
+    <text x="52" y="126" class="rotulo-fraco" text-anchor="end">8</text>
+    <text x="52" y="54" class="rotulo-fraco" text-anchor="end">20</text>
+    <text x="420" y="198" class="rotulo-fraco" text-anchor="end">horas</text>
+    <text x="52" y="10" class="rotulo-fraco">reais</text>
+    <line x1="60" y1="122" x2="360" y2="14" class="traco" />
+    <line x1="60" y1="50" x2="410" y2="50" class="traco" />
+    <line x1="260" y1="50" x2="260" y2="170" class="tracejado" />
+    <circle cx="260" cy="50" r="5" class="traco preenche no" />
+    <text x="366" y="24" class="rotulo">A: 8 + 3t</text>
+    <text x="410" y="42" class="rotulo" text-anchor="end">B: 20</text>
+    <text x="268" y="66" class="rotulo-fraco">empate em t = 4</text>
+    <text x="160" y="130" class="rotulo-fraco" text-anchor="middle">A não sai mais caro</text>
+    <text x="160" y="144" class="rotulo-fraco" text-anchor="middle">(t ≤ 4)</text>
+  </svg>
+</figure>
+
+Quando a pergunta pede um **valor mínimo** ou um **valor máximo**, a resposta é a ponta da solução: em t ≤ 4, o máximo é 4. Se o sinal for estrito (&lt; ou >), a ponta não entra; a seção 6 mostra o que fazer quando a resposta precisa ser um número inteiro.
+
+**Erro comum.** Esquecer a parte fixa de uma das opções, ou ligar os dois custos com o sinal ao contrário. Antes de resolver, leia de novo a frase e confira quem precisa ficar maior.
+
+### 4. Comparar razões
+
+Às vezes a pergunta não pede um número, e sim uma relação entre dois preços. Para isso, você precisa mexer na inequação sem descobrir os valores.
+
+Imagine o mesmo café vendido em dois pacotes. O pacote A tem 500 g e custa p reais. O pacote B tem 800 g e custa q reais. O preço por grama é p/500 no A e q/800 no B. O A compensa quando o grama dele é mais barato:
+
+p/500 &lt; q/800
+
+Multiplicando os dois lados por 500 e dividindo por q (os dois positivos, o sinal fica), sobra p/q &lt; 500/800 = 5/8.
+
+**Fórmula: passar para a forma de razão**
+
+**a × x &lt; b × y → x/y &lt; b/a**
+
+- **x, y**: os dois valores desconhecidos que você quer comparar (positivos).
+- **a, b**: os números que multiplicam cada um (positivos).
+- **Em palavras:** divida os dois lados por a e por y; o b e o a vão para a mesma fração, com o a embaixo.
+- **Quando usar:** quando as alternativas comparam x/y com uma fração.
+
+**Exemplo resolvido.** Com os pacotes de café acima, se p = 4 reais e q = 7 reais, qual compensa?
+
+1. Calcular a razão: p/q = 4/7 ≈ 0,57.
+2. Comparar com o limite: 5/8 = 0,625.
+3. Como 0,57 &lt; 0,625, a condição p/q &lt; 5/8 vale.
+4. Resposta: o pacote A compensa. Conferindo: 4 ÷ 500 = 0,008 real por grama; 7 ÷ 800 = 0,00875 real por grama.
+
+**Erro comum.** Inverter a fração no fim (escrever 8/5 em vez de 5/8). Para não errar, teste com números: se os dois pacotes tivessem o mesmo preço por grama, p/q seria exatamente 500/800.
+
+"Mais vantajoso" quer dizer **menor custo** pelo mesmo resultado. Ao ler essa expressão, escreva primeiro o custo de cada opção.
+
+### 5. Faixas de valores e porcentagens
+
+Algumas cobranças mudam conforme a **faixa**: até um certo valor se paga uma taxa; acima dele, outra. As tabelas escrevem as faixas com palavras. "Superior a 50 até 200" quer dizer 50 &lt; n ≤ 200: o 50 não entra, o 200 entra.
+
+Para achar o maior valor que cabe num limite, resolva a inequação **dentro de cada faixa**. Depois **confira** se a resposta cai mesmo naquela faixa:
+
+- se a resposta cai **dentro** da faixa, ela vale;
+- se passa do **fim** da faixa, a faixa inteira serve, e vale tentar a faixa seguinte;
+- se fica **antes do começo** da faixa, nenhum valor dela serve, e a resposta está numa faixa de baixo.
+
+**Exemplo resolvido.** Uma gráfica cobra R$ 0,20 por cópia mais uma taxa que depende do total de cópias. Até 50 cópias, a taxa é R$ 5. Acima de 50 até 200, é R$ 8. Acima de 200 até 400, é R$ 12. Quantas cópias, no máximo, cabem em R$ 40?
+
+1. Faixa até 50: 0,20n + 5 ≤ 40 dá n ≤ 175. Passa do fim da faixa (50): a faixa inteira serve. Tente a seguinte.
+2. Faixa de mais de 50 até 200: 0,20n + 8 ≤ 40 dá 0,20n ≤ 32, ou seja, n ≤ 160. O 160 está dentro da faixa, então vale.
+3. Faixa de mais de 200 até 400: 0,20n + 12 ≤ 40 dá n ≤ 140. Fica antes do começo da faixa (200): nenhum valor dela serve.
+4. Resposta: 160 cópias, como no esquema abaixo.
+
+<figure class="figura">
+  <svg viewBox="0 0 460 140" role="img" aria-labelledby="fig-ineq-3-t fig-ineq-3-d">
+    <title id="fig-ineq-3-t">Taxa da gráfica por faixa de cópias</title>
+    <desc id="fig-ineq-3-d">Uma reta de 0 a 400 cópias, dividida nas faixas até 50 (taxa de 5 reais), de mais de 50 até 200 (taxa de 8 reais) e de mais de 200 até 400 (taxa de 12 reais). Um trecho destacado vai de 0 a 160: todas essas quantidades cabem no orçamento de 40 reais, e 160 é a maior.</desc>
+    <line x1="40.0" y1="70" x2="420.0" y2="70" class="traco" />
+    <line x1="40.0" y1="62" x2="40.0" y2="78" class="traco" />
+    <text x="40.0" y="94" class="rotulo-fraco" text-anchor="middle">0</text>
+    <line x1="87.5" y1="62" x2="87.5" y2="78" class="traco" />
+    <text x="87.5" y="94" class="rotulo-fraco" text-anchor="middle">50</text>
+    <line x1="230.0" y1="62" x2="230.0" y2="78" class="traco" />
+    <text x="230.0" y="94" class="rotulo-fraco" text-anchor="middle">200</text>
+    <line x1="420.0" y1="62" x2="420.0" y2="78" class="traco" />
+    <text x="420.0" y="94" class="rotulo-fraco" text-anchor="middle">400</text>
+    <text x="63.8" y="54" class="rotulo" text-anchor="middle">R$ 5</text>
+    <text x="158.8" y="54" class="rotulo" text-anchor="middle">taxa R$ 8</text>
+    <text x="325.0" y="54" class="rotulo" text-anchor="middle">taxa R$ 12</text>
+    <rect x="40.0" y="65" width="152.0" height="10" class="traco preenche" />
+    <line x1="192.0" y1="78" x2="192.0" y2="110" class="tracejado" />
+    <text x="20" y="124" class="rotulo">160: maior número de cópias que cabe em R$ 40</text>
+    <text x="420.0" y="108" class="rotulo-fraco" text-anchor="middle">cópias</text>
+  </svg>
+</figure>
+
+Metas em porcentagem também viram desigualdades. "Reduzir em **pelo menos** 20%" quer dizer que o novo valor fica **no máximo** em 80% do antigo.
+
+**Fórmula: redução de pelo menos p%**
+
+**novo ≤ (1 − p/100) × antigo**
+
+- **antigo**: o valor de antes da redução.
+- **novo**: o valor depois da redução.
+- **p**: a porcentagem mínima de redução.
+- **Em palavras:** reduzir pelo menos p% é ficar com no máximo (100 − p)% do valor antigo.
+- **Quando usar:** quando a meta é baixar um gasto, um tempo ou uma quantidade em "pelo menos" uma porcentagem.
+
+**Exemplo resolvido.** Uma viagem leva 50 minutos. A meta é reduzir esse tempo em pelo menos 20%. Qual pode ser o tempo novo?
+
+1. p = 20, então 1 − 20/100 = 0,80.
+2. novo ≤ 0,80 × 50 = 40.
+3. Resposta: no máximo 40 minutos.
+
+**Erro comum.** Escrever novo ≥ 0,80 × antigo. Quem reduz "pelo menos" 20% pode reduzir mais, e o valor novo fica ainda **menor**. Outro erro é resolver numa faixa e não conferir se a resposta pertence a ela.
+
+### 6. Cobrança com franquia e soluções inteiras
+
+Muitos planos incluem uma **franquia**: uma quantidade já paga na mensalidade. Só o que passa da franquia, o **excedente**, é cobrado à parte. Até a franquia, o custo é só a mensalidade.
+
+**Fórmula: custo acima da franquia**
+
+**custo = mensalidade + preço do excedente × (quantidade − franquia)**
+
+- **mensalidade**: o valor fixo do plano, em reais.
+- **franquia**: a quantidade incluída na mensalidade (minutos, aulas, gigabytes).
+- **quantidade**: o total usado no mês.
+- **quantidade − franquia**: o excedente, o que passou da franquia.
+- **preço do excedente**: quanto custa cada unidade a mais.
+- **Em palavras:** paga-se a mensalidade e mais cada unidade que passou da franquia.
+- **Quando usar:** só quando a quantidade passa da franquia; abaixo dela, o custo é só a mensalidade.
+
+Para comparar planos assim, separe os trechos em que cada fórmula vale e resolva a inequação em cada trecho.
+
+**Exemplo resolvido.** O plano A de uma academia custa R$ 30 por mês com 5 aulas incluídas, e cada aula a mais custa R$ 8. O plano B cobra R$ 7 por aula, sem mensalidade. Para quantas aulas no mês o plano A sai mais barato?
+
+1. Até 5 aulas (n ≤ 5): A custa 30 e B custa 7n. A é mais barato quando 30 &lt; 7n, ou seja, n > 4,28… Dentro desse trecho, só n = 5 serve.
+2. Acima de 5 aulas (n > 5): A custa 30 + 8 × (n − 5). A é mais barato quando 30 + 8 × (n − 5) &lt; 7n.
+3. Distribuir: 30 + 8n − 40 &lt; 7n, ou seja, 8n − 10 &lt; 7n, e n &lt; 10.
+4. Juntando os trechos: A é mais barato de 5 até 9 aulas.
+5. Conferir com n = 9: A = 30 + 8 × 4 = 62 e B = 63. Com n = 10: A = 70 e B = 70, empate.
+6. Resposta: de 5 a 9 aulas no mês.
+
+Quando a quantidade só pode ser um número **inteiro** (pessoas, minutos inteiros, aulas), pegue o inteiro certo da solução:
+
+- x > 12,5 → o menor inteiro é 13; x ≤ 12,5 → o maior inteiro é 12;
+- x > 12 → o menor inteiro é **13**, porque o próprio 12 não entra; x ≥ 12 → o menor inteiro é 12.
+
+**Erro comum.** Responder o número que aparece na conta intermediária (o excedente) em vez da quantidade total. No exemplo, o excedente máximo é 4 aulas, mas a resposta pede o total de aulas, 9. Outro erro é esquecer que, com > ou &lt;, o próprio limite não entra.
+
+### 7. Módulo e desigualdade dupla
+
+O **módulo** de um número, escrito entre duas barras, é a distância dele até o zero, sem sinal. |5| = 5 e |−5| = 5: os dois estão a 5 passos do zero.
+
+Do mesmo jeito, |x − a| é a **distância** entre x e a. Dizer que |x − 20| ≤ 3 é dizer que x está a no máximo 3 passos do 20, para qualquer lado.
+
+<figure class="figura">
+  <svg viewBox="0 0 460 136" role="img" aria-labelledby="fig-ineq-4-t fig-ineq-4-d">
+    <title id="fig-ineq-4-t">Módulo como distância</title>
+    <desc id="fig-ineq-4-d">Reta numérica de 15 a 27. O trecho de 17 a 23 está destacado, com bolinhas cheias nas pontas e o 20 marcado no meio. Acima, duas medidas de 3: do 17 ao 20 e do 20 ao 23. Embaixo: |x − 20| ≤ 3 equivale a 17 ≤ x ≤ 23, os números que ficam a no máximo 3 de distância do 20.</desc>
+    <line x1="35" y1="70" x2="425" y2="70" class="traco-fino" />
+    <line x1="50" y1="65" x2="50" y2="75" class="traco-fino" />
+    <text x="50" y="90" class="rotulo-fraco" text-anchor="middle">15</text>
+    <line x1="80" y1="65" x2="80" y2="75" class="traco-fino" />
+    <text x="80" y="90" class="rotulo-fraco" text-anchor="middle">16</text>
+    <line x1="110" y1="65" x2="110" y2="75" class="traco-fino" />
+    <text x="110" y="90" class="rotulo-fraco" text-anchor="middle">17</text>
+    <line x1="140" y1="65" x2="140" y2="75" class="traco-fino" />
+    <text x="140" y="90" class="rotulo-fraco" text-anchor="middle">18</text>
+    <line x1="170" y1="65" x2="170" y2="75" class="traco-fino" />
+    <text x="170" y="90" class="rotulo-fraco" text-anchor="middle">19</text>
+    <line x1="200" y1="65" x2="200" y2="75" class="traco-fino" />
+    <text x="200" y="90" class="rotulo-fraco" text-anchor="middle">20</text>
+    <line x1="230" y1="65" x2="230" y2="75" class="traco-fino" />
+    <text x="230" y="90" class="rotulo-fraco" text-anchor="middle">21</text>
+    <line x1="260" y1="65" x2="260" y2="75" class="traco-fino" />
+    <text x="260" y="90" class="rotulo-fraco" text-anchor="middle">22</text>
+    <line x1="290" y1="65" x2="290" y2="75" class="traco-fino" />
+    <text x="290" y="90" class="rotulo-fraco" text-anchor="middle">23</text>
+    <line x1="320" y1="65" x2="320" y2="75" class="traco-fino" />
+    <text x="320" y="90" class="rotulo-fraco" text-anchor="middle">24</text>
+    <line x1="350" y1="65" x2="350" y2="75" class="traco-fino" />
+    <text x="350" y="90" class="rotulo-fraco" text-anchor="middle">25</text>
+    <line x1="380" y1="65" x2="380" y2="75" class="traco-fino" />
+    <text x="380" y="90" class="rotulo-fraco" text-anchor="middle">26</text>
+    <line x1="410" y1="65" x2="410" y2="75" class="traco-fino" />
+    <text x="410" y="90" class="rotulo-fraco" text-anchor="middle">27</text>
+    <line x1="110" y1="70" x2="290" y2="70" class="traco" />
+    <circle cx="110" cy="70" r="6" class="rotulo" />
+    <circle cx="290" cy="70" r="6" class="rotulo" />
+    <circle cx="200" cy="70" r="3" class="traco" />
+    <line x1="110" y1="40" x2="200" y2="40" class="traco-fino" />
+    <line x1="200" y1="40" x2="290" y2="40" class="traco-fino" />
+    <line x1="110" y1="34" x2="110" y2="46" class="traco-fino" />
+    <line x1="200" y1="34" x2="200" y2="46" class="traco-fino" />
+    <line x1="290" y1="34" x2="290" y2="46" class="traco-fino" />
+    <text x="155.0" y="32" class="rotulo" text-anchor="middle">3</text>
+    <text x="245.0" y="32" class="rotulo" text-anchor="middle">3</text>
+    <text x="200" y="122" class="rotulo" text-anchor="middle">|x − 20| ≤ 3 equivale a 17 ≤ x ≤ 23</text>
+    <text x="200" y="14" class="rotulo-fraco" text-anchor="middle">no máximo 3 de distância do 20, para cada lado</text>
+  </svg>
+</figure>
+
+**Fórmula: desigualdade com módulo**
+
+**|x − a| ≤ c ⟺ a − c ≤ x ≤ a + c**
+
+- **x**: o valor procurado.
+- **a**: o centro, o valor de referência.
+- **c**: a distância máxima permitida (a tolerância), um número positivo.
+- **⟺**: lê-se "equivale a"; as duas formas dizem a mesma coisa.
+- **Em palavras:** x pode ficar até c abaixo do centro e até c acima dele.
+- **Quando usar:** em regras de tolerância e de margem, e sempre que aparecer uma expressão entre barras com ≤.
+
+**Exemplo resolvido.** Resolva |2x − 10| ≤ 4.
+
+1. Tirar as barras: −4 ≤ 2x − 10 ≤ 4.
+2. Somar 10 nas **três partes**: 6 ≤ 2x ≤ 14.
+3. Dividir as três partes por 2: 3 ≤ x ≤ 7.
+4. Conferir com as pontas: x = 3 dá |6 − 10| = 4, e x = 7 dá |14 − 10| = 4. Os dois cumprem ≤ 4.
+5. Resposta: 3 ≤ x ≤ 7.
+
+Uma regra pode ter mais de uma letra. Por exemplo, |x + y − 12| ≤ 2 com y = 5 vira |x − 7| ≤ 2, ou seja, 5 ≤ x ≤ 9.
+
+O módulo maior que um número funciona ao contrário: |x| ≥ 3 quer dizer x ≤ −3 ou x ≥ 3 (longe do zero, para um lado ou para o outro).
+
+**Erro comum.** Resolver só um lado. |x − 20| ≤ 3 não é só x ≤ 23; é preciso também x ≥ 17. A resposta é sempre o intervalo inteiro, com as duas pontas.
+
+### Armadilhas típicas do INEP
+
+1. **Errar a tradução das palavras**: "pelo menos" e "no mínimo" são ≥; "no máximo" e "até" são ≤.
+2. **Não virar o sinal** ao multiplicar ou dividir por um número negativo.
+3. **Esquecer a parte fixa** de um preço ao montar o custo.
+4. **Inverter a fração** ao passar a desigualdade para a forma x/y.
+5. **Tratar empate como vantagem**: "mais vantajoso" quer dizer custo estritamente menor.
+6. **Usar a faixa errada** numa tabela e não conferir se a resposta pertence à faixa usada.
+7. **Responder o excedente** em vez da quantidade total num plano com franquia.
+8. **Deixar a ponta entrar** quando o sinal é estrito (> ou &lt;), ou tirar a ponta quando é ≥ ou ≤.
+9. **Resolver só um lado** de uma desigualdade com módulo, em vez do intervalo inteiro.
+
+## Tópicos-Chave para Revisão
+
+<div className="topico">
+
+#### 1. Desigualdades e a reta
+
+Os sinais são **&gt;**, **&lt;**, **≥** e **≤**. Na reta, bolinha **cheia** (≥, ≤) inclui a ponta e bolinha **vazia** (>, &lt;) não inclui. "Pelo menos" e "no mínimo" viram ≥; "no máximo" e "até" viram ≤.
+
+<figure class="figura">
+  <svg viewBox="0 0 460 162" role="img" aria-labelledby="fig-ineq-1-rev-t fig-ineq-1-rev-d">
+    <title id="fig-ineq-1-rev-t">Duas desigualdades na reta numérica</title>
+    <desc id="fig-ineq-1-rev-d">Duas retas numéricas de −3 a 6. Na de cima, a solução de x ≥ 2: uma bolinha cheia no 2 e um traço grosso para a direita, porque o 2 faz parte da solução. Na de baixo, a solução de x &lt; −1: uma bolinha vazia no −1 e um traço grosso para a esquerda, porque o −1 não faz parte.</desc>
+    <line x1="45" y1="50" x2="435" y2="50" class="traco-fino" />
+    <line x1="60" y1="45" x2="60" y2="55" class="traco-fino" />
+    <text x="60" y="70" class="rotulo-fraco" text-anchor="middle">−3</text>
+    <line x1="100" y1="45" x2="100" y2="55" class="traco-fino" />
+    <text x="100" y="70" class="rotulo-fraco" text-anchor="middle">−2</text>
+    <line x1="140" y1="45" x2="140" y2="55" class="traco-fino" />
+    <text x="140" y="70" class="rotulo-fraco" text-anchor="middle">−1</text>
+    <line x1="180" y1="45" x2="180" y2="55" class="traco-fino" />
+    <text x="180" y="70" class="rotulo-fraco" text-anchor="middle">0</text>
+    <line x1="220" y1="45" x2="220" y2="55" class="traco-fino" />
+    <text x="220" y="70" class="rotulo-fraco" text-anchor="middle">1</text>
+    <line x1="260" y1="45" x2="260" y2="55" class="traco-fino" />
+    <text x="260" y="70" class="rotulo-fraco" text-anchor="middle">2</text>
+    <line x1="300" y1="45" x2="300" y2="55" class="traco-fino" />
+    <text x="300" y="70" class="rotulo-fraco" text-anchor="middle">3</text>
+    <line x1="340" y1="45" x2="340" y2="55" class="traco-fino" />
+    <text x="340" y="70" class="rotulo-fraco" text-anchor="middle">4</text>
+    <line x1="380" y1="45" x2="380" y2="55" class="traco-fino" />
+    <text x="380" y="70" class="rotulo-fraco" text-anchor="middle">5</text>
+    <line x1="420" y1="45" x2="420" y2="55" class="traco-fino" />
+    <text x="420" y="70" class="rotulo-fraco" text-anchor="middle">6</text>
+    <line x1="260" y1="50" x2="435" y2="50" class="traco" />
+    <circle cx="260" cy="50" r="6" class="rotulo" />
+    <text x="260" y="30" class="rotulo" text-anchor="middle">x ≥ 2 (bolinha cheia: o 2 entra)</text>
+    <line x1="45" y1="130" x2="435" y2="130" class="traco-fino" />
+    <line x1="60" y1="125" x2="60" y2="135" class="traco-fino" />
+    <text x="60" y="150" class="rotulo-fraco" text-anchor="middle">−3</text>
+    <line x1="100" y1="125" x2="100" y2="135" class="traco-fino" />
+    <text x="100" y="150" class="rotulo-fraco" text-anchor="middle">−2</text>
+    <line x1="140" y1="125" x2="140" y2="135" class="traco-fino" />
+    <text x="140" y="150" class="rotulo-fraco" text-anchor="middle">−1</text>
+    <line x1="180" y1="125" x2="180" y2="135" class="traco-fino" />
+    <text x="180" y="150" class="rotulo-fraco" text-anchor="middle">0</text>
+    <line x1="220" y1="125" x2="220" y2="135" class="traco-fino" />
+    <text x="220" y="150" class="rotulo-fraco" text-anchor="middle">1</text>
+    <line x1="260" y1="125" x2="260" y2="135" class="traco-fino" />
+    <text x="260" y="150" class="rotulo-fraco" text-anchor="middle">2</text>
+    <line x1="300" y1="125" x2="300" y2="135" class="traco-fino" />
+    <text x="300" y="150" class="rotulo-fraco" text-anchor="middle">3</text>
+    <line x1="340" y1="125" x2="340" y2="135" class="traco-fino" />
+    <text x="340" y="150" class="rotulo-fraco" text-anchor="middle">4</text>
+    <line x1="380" y1="125" x2="380" y2="135" class="traco-fino" />
+    <text x="380" y="150" class="rotulo-fraco" text-anchor="middle">5</text>
+    <line x1="420" y1="125" x2="420" y2="135" class="traco-fino" />
+    <text x="420" y="150" class="rotulo-fraco" text-anchor="middle">6</text>
+    <line x1="45" y1="130" x2="140" y2="130" class="traco" />
+    <circle cx="140" cy="130" r="6" class="traco no" />
+    <text x="150" y="110" class="rotulo">x &lt; −1 (bolinha vazia: o −1 não entra)</text>
+  </svg>
+</figure>
+
+#### 2. Resolver a inequação
+
+Resolva como uma equação: **a × x + b ≤ c → x ≤ (c − b) ÷ a, com a positivo**. Multiplicar ou dividir por **negativo** **vira o sinal**.
+
+#### 3. Montar a inequação
+
+Use **custo = fixo + preço por unidade × quantidade** para cada opção e ligue as duas com o **sinal** que o texto pede. O **valor mínimo** ou **máximo** é a ponta da solução.
+
+<figure class="figura">
+  <svg viewBox="0 0 460 206" role="img" aria-labelledby="fig-ineq-2-rev-t fig-ineq-2-rev-d">
+    <title id="fig-ineq-2-rev-t">Custo de dois estacionamentos</title>
+    <desc id="fig-ineq-2-rev-d">Gráfico do custo em reais pelo tempo em horas, de 0 a 7 horas. A reta A, que começa em 8 reais e sobe 3 reais por hora, cruza a reta horizontal B, fixa em 20 reais, no ponto de 4 horas. Até 4 horas a reta A não fica acima da B, e A não sai mais caro; depois de 4 horas, fica acima.</desc>
+    <line x1="60" y1="170" x2="420" y2="170" class="traco" />
+    <line x1="60" y1="170" x2="60" y2="14" class="traco" />
+    <text x="60" y="186" class="rotulo-fraco" text-anchor="middle">0</text>
+    <text x="110" y="186" class="rotulo-fraco" text-anchor="middle">1</text>
+    <text x="160" y="186" class="rotulo-fraco" text-anchor="middle">2</text>
+    <text x="210" y="186" class="rotulo-fraco" text-anchor="middle">3</text>
+    <text x="260" y="186" class="rotulo-fraco" text-anchor="middle">4</text>
+    <text x="310" y="186" class="rotulo-fraco" text-anchor="middle">5</text>
+    <text x="360" y="186" class="rotulo-fraco" text-anchor="middle">6</text>
+    <text x="410" y="186" class="rotulo-fraco" text-anchor="middle">7</text>
+    <text x="52" y="174" class="rotulo-fraco" text-anchor="end">0</text>
+    <text x="52" y="126" class="rotulo-fraco" text-anchor="end">8</text>
+    <text x="52" y="54" class="rotulo-fraco" text-anchor="end">20</text>
+    <text x="420" y="198" class="rotulo-fraco" text-anchor="end">horas</text>
+    <text x="52" y="10" class="rotulo-fraco">reais</text>
+    <line x1="60" y1="122" x2="360" y2="14" class="traco" />
+    <line x1="60" y1="50" x2="410" y2="50" class="traco" />
+    <line x1="260" y1="50" x2="260" y2="170" class="tracejado" />
+    <circle cx="260" cy="50" r="5" class="traco preenche no" />
+    <text x="366" y="24" class="rotulo">A: 8 + 3t</text>
+    <text x="410" y="42" class="rotulo" text-anchor="end">B: 20</text>
+    <text x="268" y="66" class="rotulo-fraco">empate em t = 4</text>
+    <text x="160" y="130" class="rotulo-fraco" text-anchor="middle">A não sai mais caro</text>
+    <text x="160" y="144" class="rotulo-fraco" text-anchor="middle">(t ≤ 4)</text>
+  </svg>
+</figure>
+
+#### 4. Comparar razões
+
+Para comparar dois preços sem saber os valores, passe para a **razão**: **a × x &lt; b × y → x/y &lt; b/a**. **Mais vantajoso** é ter o menor custo.
+
+#### 5. Faixas e porcentagens
+
+Resolva em **cada faixa** e **confira** se a resposta cai nela. Reduzir pelo menos p%: **novo ≤ (1 − p/100) × antigo**.
+
+<figure class="figura">
+  <svg viewBox="0 0 460 140" role="img" aria-labelledby="fig-ineq-3-rev-t fig-ineq-3-rev-d">
+    <title id="fig-ineq-3-rev-t">Taxa da gráfica por faixa de cópias</title>
+    <desc id="fig-ineq-3-rev-d">Uma reta de 0 a 400 cópias, dividida nas faixas até 50 (taxa de 5 reais), de mais de 50 até 200 (taxa de 8 reais) e de mais de 200 até 400 (taxa de 12 reais). Um trecho destacado vai de 0 a 160: todas essas quantidades cabem no orçamento de 40 reais, e 160 é a maior.</desc>
+    <line x1="40.0" y1="70" x2="420.0" y2="70" class="traco" />
+    <line x1="40.0" y1="62" x2="40.0" y2="78" class="traco" />
+    <text x="40.0" y="94" class="rotulo-fraco" text-anchor="middle">0</text>
+    <line x1="87.5" y1="62" x2="87.5" y2="78" class="traco" />
+    <text x="87.5" y="94" class="rotulo-fraco" text-anchor="middle">50</text>
+    <line x1="230.0" y1="62" x2="230.0" y2="78" class="traco" />
+    <text x="230.0" y="94" class="rotulo-fraco" text-anchor="middle">200</text>
+    <line x1="420.0" y1="62" x2="420.0" y2="78" class="traco" />
+    <text x="420.0" y="94" class="rotulo-fraco" text-anchor="middle">400</text>
+    <text x="63.8" y="54" class="rotulo" text-anchor="middle">R$ 5</text>
+    <text x="158.8" y="54" class="rotulo" text-anchor="middle">taxa R$ 8</text>
+    <text x="325.0" y="54" class="rotulo" text-anchor="middle">taxa R$ 12</text>
+    <rect x="40.0" y="65" width="152.0" height="10" class="traco preenche" />
+    <line x1="192.0" y1="78" x2="192.0" y2="110" class="tracejado" />
+    <text x="20" y="124" class="rotulo">160: maior número de cópias que cabe em R$ 40</text>
+    <text x="420.0" y="108" class="rotulo-fraco" text-anchor="middle">cópias</text>
+  </svg>
+</figure>
+
+#### 6. Franquia e inteiros
+
+Acima da **franquia**: **custo = mensalidade + preço do excedente × (quantidade − franquia)**. Resolva cada trecho. Com **sinal estrito**, a ponta não entra: x > 12 começa no **13**.
+
+#### 7. Módulo
+
+O **módulo** é a **distância**: **|x − a| ≤ c ⟺ a − c ≤ x ≤ a + c**. Substitua os valores dados antes e mexa nas **três partes** da desigualdade dupla.
+
+<figure class="figura">
+  <svg viewBox="0 0 460 136" role="img" aria-labelledby="fig-ineq-4-rev-t fig-ineq-4-rev-d">
+    <title id="fig-ineq-4-rev-t">Módulo como distância</title>
+    <desc id="fig-ineq-4-rev-d">Reta numérica de 15 a 27. O trecho de 17 a 23 está destacado, com bolinhas cheias nas pontas e o 20 marcado no meio. Acima, duas medidas de 3: do 17 ao 20 e do 20 ao 23. Embaixo: |x − 20| ≤ 3 equivale a 17 ≤ x ≤ 23, os números que ficam a no máximo 3 de distância do 20.</desc>
+    <line x1="35" y1="70" x2="425" y2="70" class="traco-fino" />
+    <line x1="50" y1="65" x2="50" y2="75" class="traco-fino" />
+    <text x="50" y="90" class="rotulo-fraco" text-anchor="middle">15</text>
+    <line x1="80" y1="65" x2="80" y2="75" class="traco-fino" />
+    <text x="80" y="90" class="rotulo-fraco" text-anchor="middle">16</text>
+    <line x1="110" y1="65" x2="110" y2="75" class="traco-fino" />
+    <text x="110" y="90" class="rotulo-fraco" text-anchor="middle">17</text>
+    <line x1="140" y1="65" x2="140" y2="75" class="traco-fino" />
+    <text x="140" y="90" class="rotulo-fraco" text-anchor="middle">18</text>
+    <line x1="170" y1="65" x2="170" y2="75" class="traco-fino" />
+    <text x="170" y="90" class="rotulo-fraco" text-anchor="middle">19</text>
+    <line x1="200" y1="65" x2="200" y2="75" class="traco-fino" />
+    <text x="200" y="90" class="rotulo-fraco" text-anchor="middle">20</text>
+    <line x1="230" y1="65" x2="230" y2="75" class="traco-fino" />
+    <text x="230" y="90" class="rotulo-fraco" text-anchor="middle">21</text>
+    <line x1="260" y1="65" x2="260" y2="75" class="traco-fino" />
+    <text x="260" y="90" class="rotulo-fraco" text-anchor="middle">22</text>
+    <line x1="290" y1="65" x2="290" y2="75" class="traco-fino" />
+    <text x="290" y="90" class="rotulo-fraco" text-anchor="middle">23</text>
+    <line x1="320" y1="65" x2="320" y2="75" class="traco-fino" />
+    <text x="320" y="90" class="rotulo-fraco" text-anchor="middle">24</text>
+    <line x1="350" y1="65" x2="350" y2="75" class="traco-fino" />
+    <text x="350" y="90" class="rotulo-fraco" text-anchor="middle">25</text>
+    <line x1="380" y1="65" x2="380" y2="75" class="traco-fino" />
+    <text x="380" y="90" class="rotulo-fraco" text-anchor="middle">26</text>
+    <line x1="410" y1="65" x2="410" y2="75" class="traco-fino" />
+    <text x="410" y="90" class="rotulo-fraco" text-anchor="middle">27</text>
+    <line x1="110" y1="70" x2="290" y2="70" class="traco" />
+    <circle cx="110" cy="70" r="6" class="rotulo" />
+    <circle cx="290" cy="70" r="6" class="rotulo" />
+    <circle cx="200" cy="70" r="3" class="traco" />
+    <line x1="110" y1="40" x2="200" y2="40" class="traco-fino" />
+    <line x1="200" y1="40" x2="290" y2="40" class="traco-fino" />
+    <line x1="110" y1="34" x2="110" y2="46" class="traco-fino" />
+    <line x1="200" y1="34" x2="200" y2="46" class="traco-fino" />
+    <line x1="290" y1="34" x2="290" y2="46" class="traco-fino" />
+    <text x="155.0" y="32" class="rotulo" text-anchor="middle">3</text>
+    <text x="245.0" y="32" class="rotulo" text-anchor="middle">3</text>
+    <text x="200" y="122" class="rotulo" text-anchor="middle">|x − 20| ≤ 3 equivale a 17 ≤ x ≤ 23</text>
+    <text x="200" y="14" class="rotulo-fraco" text-anchor="middle">no máximo 3 de distância do 20, para cada lado</text>
+  </svg>
+</figure>
+
+</div>
+
+## Questões do ENEM
+
+*Marque uma alternativa em cada questão e confira tudo de uma vez no botão do fim.*
+
+**Questão 1**
+
+*ENEM 2020 · 2ª aplicação · 2º dia · caderno azul · questão 137*
+
+Provedores de conteúdos postam anúncios de empresas em seus *websites*. O provedor A cobra R$ 0,10 por clique feito no anúncio, além do pagamento de uma taxa de contratação de R$ 50,00. O provedor B cobra uma taxa de contratação por anúncio mais atrativa, no valor de R$ 20,00, mais um valor por clique feito no anúncio. Para um anúncio que receberá 100 cliques, o provedor B fixará uma proposta com um valor a ser cobrado por clique, de modo que venha a receber, pelo menos, o mesmo total que receberia o provedor A.
+
+O gerente do provedor B deve avaliar os valores por clique a serem fixados.
+
+O valor mínimo que o gerente do provedor B deverá escolher é
+
+A) R$ 0,11\
+B) R$ 0,14\
+C) R$ 0,30\
+D) R$ 0,40\
+E) R$ 0,41
+
+**Questão 2**
+
+*ENEM 2017 · 2ª aplicação · 2º dia · caderno azul · questão 139*
+
+Um motorista de um carro *flex* (bicombustível) calcula que, abastecido com 45 litros de gasolina ou com 60 litros de etanol, o carro percorre a mesma distância.
+
+Chamando de x o valor do litro de gasolina e de y o valor do litro de etanol, a situação em que abastecer com gasolina é economicamente mais vantajosa do que abastecer com etanol é expressa por
+
+A) x/y = 4/3\
+B) x/y = 3/4\
+C) x/y > 4/3\
+D) x/y > 3/4\
+E) x/y &lt; 4/3
+
+**Questão 3**
+
+*ENEM 2014 · 2º dia · caderno azul · questão 162*
+
+Em uma cidade, o valor total da conta de energia elétrica é obtido pelo produto entre o consumo (em kWh) e o valor da tarifa do kWh (com tributos), adicionado à Cosip (contribuição para custeio da iluminação pública), conforme a expressão:
+
+*Valor do kWh (com tributos) × consumo (em kWh) + Cosip*
+
+O valor da Cosip é fixo em cada faixa de consumo. O quadro mostra o valor cobrado para algumas faixas.
+
+| Faixa de consumo mensal (kWh) | Valor da Cosip (R$) |
+|---|---|
+| Até 80 | 0,00 |
+| Superior a 80 até 100 | 2,00 |
+| Superior a 100 até 140 | 3,00 |
+| Superior a 140 até 200 | 4,50 |
+
+Suponha que, em uma residência, todo mês o consumo seja de 150 kWh, e o valor do kWh (com tributos) seja de R$ 0,50. O morador dessa residência pretende diminuir seu consumo mensal de energia elétrica com o objetivo de reduzir o custo total da conta em pelo menos 10%.
+
+Qual deve ser o consumo máximo, em kWh, dessa residência para produzir a redução pretendida pelo morador?
+
+A) 134,1\
+B) 135,0\
+C) 137,1\
+D) 138,6\
+E) 143,1
+
+**Questão 4**
+
+*ENEM 2013 · 2ª aplicação · 2º dia · caderno cinza · questão 152*
+
+Certa empresa de telefonia oferece a seus clientes dois pacotes de serviço:
+
+- Pacote laranja: Oferece 300 minutos mensais de ligação local e o usuário deve pagar R$ 143,00 por mês. Será cobrado o valor de R$ 0,40 por minuto que exceder o valor oferecido.
+- Pacote azul: Oferece 100 minutos mensais de ligação local e o usuário deve pagar mensalmente R$ 80,00. Será cobrado o valor de R$ 0,90 por minuto que exceder o valor oferecido.
+
+Para ser mais vantajoso contratar o pacote laranja, comparativamente ao pacote azul, o número mínimo de minutos de ligação que o usuário deverá fazer é
+
+A) 70.\
+B) 126.\
+C) 171.\
+D) 300.\
+E) 400.
+
+**Questão 5**
+
+*ENEM 2020 · 2º dia · caderno azul · questão 146*
+
+Uma casa de dois andares está sendo projetada. É necessário incluir no projeto a construção de uma escada para o acesso ao segundo andar. Para o cálculo das dimensões dos degraus utilizam-se as regras:
+
+|2h + b − 63,5| ≤ 1,5 e 16 ≤ h ≤ 19,
+
+nas quais h é a altura do degrau (denominada espelho) e b é a profundidade da pisada, como mostra a figura. Por conveniência, escolheu-se a altura do degrau como sendo h = 16. As unidades de h e b estão em centímetro.
+
+<figure class="figura">
+  <svg viewBox="0 0 460 170" role="img" aria-labelledby="fig-ineq-q5-t fig-ineq-q5-d">
+    <title id="fig-ineq-q5-t">Escada com a altura e a profundidade do degrau</title>
+    <desc id="fig-ineq-q5-d">Perfil de uma escada com quatro degraus subindo para a direita. No primeiro degrau, a altura vertical está marcada como h; na parte de cima do segundo degrau, a profundidade horizontal está marcada como b. Figura redesenhada a partir da prova oficial, com os mesmos dados.</desc>
+    <polygon points="130,150 130,122 182,122 182,94 234,94 234,66 286,66 286,38 338,38 338,150" class="traco" />
+    <line x1="182" y1="122" x2="182" y2="150" class="tracejado" />
+    <line x1="234" y1="94" x2="234" y2="150" class="tracejado" />
+    <line x1="286" y1="66" x2="286" y2="150" class="tracejado" />
+    <line x1="114" y1="150" x2="114" y2="122" class="traco-fino" />
+    <line x1="108" y1="150" x2="120" y2="150" class="traco-fino" />
+    <line x1="108" y1="122" x2="120" y2="122" class="traco-fino" />
+    <text x="102" y="140.0" class="rotulo" text-anchor="end">h</text>
+    <line x1="182" y1="54" x2="234" y2="54" class="traco-fino" />
+    <line x1="182" y1="48" x2="182" y2="60" class="traco-fino" />
+    <line x1="234" y1="48" x2="234" y2="60" class="traco-fino" />
+    <text x="208.0" y="46" class="rotulo" text-anchor="middle">b</text>
+  </svg>
+</figure>
+
+Nesse caso, o mais amplo intervalo numérico ao qual a profundidade da pisada (b) deve pertencer, para que as regras sejam satisfeitas é
+
+A) 30 ≤ b\
+B) 30 ≤ b ≤ 31,5\
+C) 30 ≤ b ≤ 33\
+D) 31,5 ≤ b ≤ 33\
+E) b ≤ 33

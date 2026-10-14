@@ -977,5 +977,27 @@
       }
     ],
     "figuras": []
+  },
+  "2017-ppl-D2-azul-Q139": {
+    "nota": "frações empilhadas nas alternativas; conferido na imagem da página em 14/10/2026",
+    "alternativas": [
+      "x/y = 4/3",
+      "x/y = 3/4",
+      "x/y > 4/3",
+      "x/y > 3/4",
+      "x/y < 4/3"
+    ]
+  },
+  "2014-regular-D2-azul-Q162": {
+    "nota": "a figura é o quadro das faixas, transcrito como tabela na aula; conferido na imagem da página em 14/10/2026",
+    "figuras": []
+  },
+  "2022-ppl-D2-azul-Q173": {
+    "nota": "a figura é o quadro de compras, transcrito como tabela na aula; conferido na imagem da página em 14/10/2026",
+    "figuras": []
+  },
+  "2014-ppl-D2-cinza-Q157": {
+    "nota": "a figura detectada é a tarja cinza da margem do caderno; conferido na imagem da página em 14/10/2026",
+    "figuras": []
   }
 }
