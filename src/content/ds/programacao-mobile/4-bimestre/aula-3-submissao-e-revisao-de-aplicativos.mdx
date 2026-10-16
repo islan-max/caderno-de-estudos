@@ -1,0 +1,483 @@
+---
+title: "Submissão e Revisão de Aplicativos"
+subject: "Programação Mobile"
+order: 3
+relevance: >
+  Enviar o app para as lojas é o momento em que o seu trabalho passa pela avaliação de outras pessoas, e é raro passar
+  de primeira. Quem conhece o processo de submissão, sabe ler e responder ao feedback dos revisores, corrige problemas
+  com método (e sem criar novos) e já planeja a próxima versão transforma uma rejeição em uma etapa normal do ciclo, e
+  não em uma crise. Esta semana mostra o caminho completo, do envio à versão seguinte.
+quickSummary: >
+  Submeter é preparar recursos e metadados, enviar pelo App Store Connect ou Google Play Console e acompanhar a revisão,
+  com cronograma que preveja ajustes. Ao receber feedback, classifique por criticidade, responda reconhecendo os pontos
+  e propondo um plano, corrija e faça testes de regressão. Para corrigir bugs, monitore (Crashlytics, Sentry),
+  reproduza, isole, revise, teste e documente. Para a próxima versão, colete ideias, priorize por impacto, viabilidade
+  e alinhamento, e planeje em ciclos curtos (Scrum ou Kanban).
+gabarito:
+  - correta: 0
+    porque: >
+      A análise de feedback existe para achar falhas (de usabilidade, segurança, conformidade) e decidir o que corrigir
+      primeiro. Coletar só números sem interpretar, ignorar opiniões divergentes ou responder no automático não
+      produzem melhoria.
+      Revisar: A Aula › 2.1 Coletar e classificar o feedback
+  - correta: 1
+    porque: >
+      Responder reconhecendo os pontos levantados e apresentando um plano de ação (o que, quem e quando) mostra
+      transparência e compromisso, e gera confiança. Ignorar o feedback negativo, adiar respostas ou mudar sem avisar
+      os revisores prejudica a aprovação.
+      Revisar: A Aula › 2.2 Responder aos revisores
+  - correta: 0
+    porque: >
+      Depois de corrigir, é preciso fazer testes de regressão (para garantir que o que já funcionava continua
+      funcionando) e monitorar os resultados. Só atualizar a documentação, enviar sem conferir ou deixar uma equipe só
+      cuidar da melhoria deixam falhas passarem.
+      Revisar: A Aula › 2.4 Implementar, testar e acompanhar
+ferramentas:
+  - nome: "App Store Connect (conta Apple Developer)"
+    uso: "Para enviar o app à App Store, acompanhar a revisão e conversar com a equipe de revisão. Exige a conta paga da Apple."
+    custo: "US$ 99 por ano"
+    link: "https://appstoreconnect.apple.com"
+    opcional: true
+  - nome: "Google Play Console"
+    uso: "Para enviar o app ao Google Play, acompanhar o status, ver rejeições e configurar o lançamento."
+    custo: "Taxa única de registro"
+    link: "https://play.google.com/console"
+    opcional: true
+  - nome: "Firebase Crashlytics ou Sentry"
+    uso: "Para registrar falhas do app em tempo real e achar padrões de erro."
+    custo: "Gratuito no plano básico"
+    link: "https://firebase.google.com/products/crashlytics"
+    opcional: true
+  - nome: "Miro, Trello ou uma planilha"
+    uso: "Para coletar e priorizar as ideias da próxima versão (matriz de impacto e esforço)."
+    custo: "Plano gratuito"
+    link: "https://trello.com"
+  - nome: "Caderno, caneta e um editor de texto"
+    uso: "Para o cronograma, o plano de ação e as respostas das atividades."
+---
+
+<Accordion titulo="Palavras e siglas desta aula" dica="Consulte quando encontrar um termo novo" icone="spell-check">
+
+- **Submissão**: enviar o app (ou uma atualização) para a revisão da loja.
+- **Revisão** (review): a avaliação do app pela equipe da loja, que confere regras, segurança e qualidade.
+- **App Store Connect** e **Google Play Console**: os painéis da Apple e do Google para enviar e acompanhar apps.
+- **Metadados**: as informações sobre o app (nome, versão, descrição, capturas, política de privacidade, notas da versão).
+- **Changelog** (notas da versão): a lista do que mudou nesta versão.
+- **TestFlight**: ferramenta da Apple para distribuir versões de teste.
+- **Rejeição**: quando a loja não aprova o envio e informa o motivo.
+- **Contestação** (appeal): pedido de nova análise de uma decisão da loja.
+- **Revisão cruzada**: outra pessoa ou outra equipe confere o trabalho antes do envio.
+- **Criticidade**: o quanto um problema é grave e urgente.
+- **Stakeholder**: qualquer parte interessada (suporte, QA, marketing, diretoria, clientes).
+- **Crash** (travamento): quando o app fecha sozinho por um erro.
+- **Monitoramento contínuo**: acompanhar o app em uso, com métricas e relatórios de falha.
+- **Depuração** (debugging): achar e corrigir a causa de um erro.
+- **Patch**: correção pequena e pontual.
+- **Teste de regressão**: testar de novo o que já funcionava, para ver se a mudança não quebrou nada.
+- **Hotfix**: correção urgente de um problema grave em produção.
+- **Roadmap**: mapa do que será feito e em que ordem.
+- **Backlog**: lista de tarefas e ideias a fazer.
+- **Scrum** e **Kanban**: métodos ágeis de organizar o trabalho em ciclos curtos (Scrum) ou em fluxo contínuo (Kanban).
+- **Feature flag**: "chave" no código que liga ou desliga uma funcionalidade sem novo envio.
+- **Idempotência**: propriedade de uma operação que, repetida, dá o mesmo resultado (cobrar duas vezes o mesmo pedido não gera duas cobranças).
+- **AVA** (Ambiente Virtual de Aprendizagem): a plataforma onde a escola recebe as atividades.
+
+</Accordion>
+
+## Antes de Começar
+
+**O que esta aula cobre.** Quatro aulas em uma, o caminho depois de o app estar pronto: **o processo de submissão**, **o gerenciamento do feedback da revisão**, **correções e atualizações** e **a preparação da próxima versão**. O cenário do material é um **aplicativo de serviços financeiros** (*financial services app*), em que erros custam dinheiro e confiança.
+
+**O que você precisa saber antes.** As semanas 22 e 23: contas de desenvolvedor, requisitos das lojas, assinatura, build e release.
+
+**Sobre os prazos das lojas.** Os tempos de revisão mudam com o tempo. Na página oficial de revisão da Apple, consultada para esta aula, a Apple informa que **pelo menos 50% dos envios** são revisados em **menos de 24 horas** e **90% em menos de 48 horas**. O Google informa que, em algumas contas de desenvolvedor, a revisão detalhada pode levar **até sete dias, ou mais** em casos excepcionais. Confira os números atuais antes de fixar um cronograma.
+
+## A Aula
+
+### 1. Processo de submissão
+
+#### 1.1 As etapas
+
+A submissão tem **três fases**, e cada uma pode atrasar o lançamento se for mal feita:
+
+| Fase | O que acontece | Exemplos |
+|---|---|---|
+| **1. Preparação dos recursos** | Material e requisitos prontos | Capturas de tela, vídeos demonstrativos, descrição detalhada; revisão de compatibilidade, desempenho e segurança |
+| **2. Envio do aplicativo** | O arquivo vai para as lojas, **respeitando suas diretrizes** | Google Play e App Store; inserção dos **metadados** (versão, notas da versão, política de privacidade) |
+| **3. Revisão e aprovação** | A loja avalia, e pode pedir ajustes | Interação com os revisores e resposta a pedidos |
+
+<figure class="figura">
+  <svg viewBox="0 0 560 190" role="img" aria-labelledby="fig-mob24-ciclo-t fig-mob24-ciclo-d">
+    <title id="fig-mob24-ciclo-t">O ciclo de submissão e revisão</title>
+    <desc id="fig-mob24-ciclo-d">Cinco etapas: preparar os recursos, enviar, revisão da loja, aprovado e publicado, ou pedido de ajustes. Se houver pedido de ajustes, o time analisa o feedback, responde e corrige, e volta a enviar.</desc>
+    <defs>
+      <marker id="seta-mob24-ciclo" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+        <path d="M1,1 L9,5 L1,9" class="traco" />
+      </marker>
+    </defs>
+    <rect x="5" y="25" width="110" height="50" rx="8" class="traco" />
+    <text x="60" y="47" class="rotulo" text-anchor="middle">1. Preparar</text>
+    <text x="60" y="63" class="rotulo-fraco" text-anchor="middle">recursos e dados</text>
+    <rect x="145" y="25" width="100" height="50" rx="8" class="traco" />
+    <text x="195" y="55" class="rotulo" text-anchor="middle">2. Enviar</text>
+    <rect x="275" y="25" width="130" height="50" rx="8" class="traco preenche" />
+    <text x="340" y="47" class="rotulo" text-anchor="middle">3. Revisão</text>
+    <text x="340" y="63" class="rotulo-fraco" text-anchor="middle">da loja</text>
+    <rect x="435" y="25" width="120" height="50" rx="8" class="traco" />
+    <text x="495" y="47" class="rotulo" text-anchor="middle">Aprovado</text>
+    <text x="495" y="63" class="rotulo-fraco" text-anchor="middle">e publicado</text>
+    <line x1="115" y1="50" x2="143" y2="50" class="traco" marker-end="url(#seta-mob24-ciclo)" />
+    <line x1="245" y1="50" x2="273" y2="50" class="traco" marker-end="url(#seta-mob24-ciclo)" />
+    <line x1="405" y1="50" x2="433" y2="50" class="traco" marker-end="url(#seta-mob24-ciclo)" />
+    <path d="M340,77 L340,135 L195,135 L195,77" class="tracejado" marker-end="url(#seta-mob24-ciclo)" />
+    <text x="268" y="158" class="rotulo-fraco" text-anchor="middle">pediu ajustes: analisar, responder, corrigir e reenviar</text>
+  </svg>
+</figure>
+
+#### 1.2 Ferramentas de submissão
+
+| Ferramenta | Para que serve |
+|---|---|
+| **App Store Connect** e **Google Play Console** | **Acompanhar o status**, ver rejeições e entender o que a loja pede |
+| **Git** (controle de versão) | Registrar cada alteração e **cada versão enviada**, para saber exatamente o que foi submetido |
+| **TestFlight** (iOS), faixas de teste do Google Play e simuladores | **Achar problemas antes** do envio |
+
+#### 1.3 Boas práticas
+
+1. **Documentação completa:** registre cada etapa (o que enviou, quando, com quais dados). Facilita auditorias e submissões futuras.
+2. **Revisão cruzada:** desenvolvimento, design e **QA** (garantia de qualidade) validam cada aspecto antes do envio. Quem escreveu raramente vê o próprio erro.
+3. **Planejamento antecipado:** um cronograma que **conte com revisões e atrasos**. Nunca marque o lançamento para o dia seguinte ao envio.
+
+#### 1.4 Um cronograma de submissão (exemplo)
+
+Para o app financeiro, uma sequência realista (os prazos são ilustrativos):
+
+| Quando | Etapa | Responsável | Ferramenta |
+|---|---|---|---|
+| Semana 1 | Recursos: capturas, vídeo, textos, política de privacidade | Design e marketing | Editor de imagem, planilha de textos |
+| Semana 1 | Requisitos técnicos: desempenho, segurança, compatibilidade | Desenvolvimento e QA | Profilers, testes automáticos |
+| Semana 2 | **Revisão cruzada** do material e do build | Equipes trocadas | Checklist compartilhado |
+| Semana 2 | Teste beta fechado | QA | TestFlight, faixa de teste do Google Play |
+| Semana 3 | **Envio** às duas lojas | Líder técnico | App Store Connect, Play Console |
+| Semanas 3 e 4 | **Revisão** da loja e **folga** para ajustes | Todos | Painéis de status |
+| Semana 4 | Publicação (liberação em etapas) | Líder técnico | Painel da loja |
+
+**Pontos críticos:** os **metadados** (política de privacidade e declarações), as **capturas de tela** fiéis ao app real, a **assinatura** e o número de versão, e o **tempo de revisão**.
+
+#### 1.5 Situação: a App Store pediu ajustes
+
+A mensagem no Slack: *"A App Store retornou pedindo ajustes na documentação e nas capturas de tela. Como ajustamos nosso processo para atender rápido?"* Quatro perguntas, quatro respostas:
+
+1. **Como revisar a documentação e as capturas de forma ágil, mantendo a qualidade?** Ler a mensagem da revisão **com calma**, listar cada pedido, dividir entre quem tem o material, **corrigir cada item** e **conferir com as diretrizes**, usando o checklist da revisão cruzada antes de reenviar. Não reenviar "no escuro".
+2. **Como as ferramentas ajudam a monitorar e evitar o imprevisto?** O **App Store Connect** e o **Play Console** mostram o status e as razões da rejeição; o **Git** registra o que foi enviado; o **TestFlight** pega problemas antes. Um **checklist** com as diretrizes evita repetir o erro.
+3. **Como o planejamento antecipado reduz o impacto?** Com **folga** no cronograma, o pedido de ajuste **não derruba a data** de lançamento, e com a documentação pronta o reenvio é rápido.
+4. **Como otimizar a comunicação entre as áreas?** Um **canal único** para as pendências, **responsáveis e prazos** claros, atualização curta e frequente, e os pedidos da loja **repassados na hora** a quem pode resolver (design cuida das capturas; desenvolvimento, dos dados técnicos).
+
+### 2. Gerenciamento de feedback de revisão
+
+#### 2.1 Coletar e classificar o feedback
+
+Depois do envio, o retorno da loja (e de testadores) é uma fonte de melhoria. O processo:
+
+1. **Coleta:** relatórios de revisão, e-mails dos revisores, mensagens no painel da loja e plataformas de QA.
+2. **Classificação por criticidade:** separar o que **bloqueia a aprovação** (segurança, violação de política) do que é **recomendação**. Isso permite **priorizar**.
+3. **Interpretação:** buscar **padrões**. Três avisos sobre o mesmo tema (por exemplo, permissões) indicam um problema de **usabilidade ou segurança**, e não três casos isolados.
+
+Por isso, o **principal objetivo da análise de feedback** é **identificar falhas e priorizar as ações corretivas**. Coletar só números sem interpretar, ignorar opiniões divergentes ou responder automaticamente sem avaliar **não geram melhoria**.
+
+**Exemplo de classificação** (problemas de usabilidade e segurança apontados pelos revisores):
+
+| Feedback | Criticidade | Ação |
+|---|---|---|
+| Dados do usuário enviados sem criptografia | **Crítica** (segurança) | Corrigir antes de reenviar |
+| Botão de pagamento difícil de achar | **Alta** (usabilidade, fluxo principal) | Corrigir nesta versão |
+| Texto da tela de ajuda confuso | **Média** | Corrigir se couber, ou na próxima |
+| Sugestão de novo tema de cores | **Baixa** | Registrar no backlog |
+
+#### 2.2 Responder aos revisores
+
+A resposta mostra **compromisso com a qualidade**. Uma resposta eficaz:
+
+- **Reconhece** cada ponto levantado, sem se defender nem culpar.
+- **Explica o que será feito**, com um **plano**: o quê, quem e quando.
+- É **objetiva** e educada, com **evidências** (captura de tela, descrição da correção) quando ajudam.
+- **Mantém os revisores informados** das mudanças, e não muda o app em silêncio.
+
+Por isso, a estratégia mais eficaz é **reconhecer os pontos e propor um plano**. Ignorar o feedback negativo, adiar a resposta ou implementar mudanças sem avisar os revisores prejudica a aprovação.
+
+**Modelo de resposta** (ilustrativo):
+
+```text
+Olá, equipe de revisão. Obrigado pelo retorno.
+
+1) Criptografia dos dados: confirmamos o problema. Passamos a usar HTTPS/TLS em
+   todas as chamadas e removemos o envio em texto puro. Corrigido na versão 1.0.3.
+2) Botão de pagamento: reposicionamos o botão na tela inicial (captura anexa).
+3) Textos da ajuda: revisados; seguem na próxima atualização.
+
+Reenviamos a versão 1.0.3 hoje. Ficamos à disposição para qualquer dúvida.
+```
+
+**Se você discordar** da decisão, as lojas oferecem um caminho de **contestação** (*appeal*). Na Apple, é submetida à **App Review Board**, com **razões específicas** de por que o app cumpre as diretrizes, e é **uma contestação por envio rejeitado**. No Google Play, há a opção de **enviar uma contestação**. Conteste com **fatos**, e não com irritação.
+
+**Revisão urgente.** Em situações excepcionais (como um erro crítico), a Apple permite **pedir revisão acelerada** (*expedited review*), informando como reproduzir o problema. Use só quando for realmente necessário.
+
+#### 2.3 Planejamento de ações
+
+Defina um **cronograma** e **responsáveis**. Exemplo de plano para os três pontos acima:
+
+| Ação | Responsável | Prazo | Verificação |
+|---|---|---|---|
+| Ativar TLS e remover o envio em texto puro | Back-end e mobile | 2 dias | Teste de rede mostra apenas tráfego criptografado |
+| Reposicionar o botão de pagamento | Design e mobile | 3 dias | Teste de usabilidade com 5 pessoas |
+| Revisar os textos da ajuda | Conteúdo | 4 dias | Revisão cruzada |
+| Teste de regressão e reenvio | QA | 5 dias | Suíte de testes passando |
+
+#### 2.4 Implementar, testar e acompanhar
+
+1. **Desenvolver as correções** e **testar com rigor** para confirmar que os problemas sumiram.
+2. **Teste de regressão:** conferir que o que já funcionava **continua funcionando**. Uma correção pode quebrar outra parte.
+3. **Reenviar** o app, se necessário, para a validação dos revisores.
+4. **Acompanhamento contínuo:** monitorar os resultados depois da publicação, para ver se atendem ao esperado e **não geram novos problemas**.
+
+Por isso a etapa **fundamental** nas melhorias é **realizar testes de regressão e monitorar os resultados**. Só atualizar documentação, enviar sem conferir ou deixar uma equipe só cuidando da melhoria deixam falhas passarem.
+
+#### 2.5 Situação: os revisores apontaram problemas críticos
+
+A mensagem: *"Os revisores apontaram problemas críticos em usabilidade e segurança. Precisamos de um plano de ação urgente."* As quatro respostas:
+
+1. **Como analisar os feedbacks e achar os mais críticos?** Reunir tudo num lugar só, **classificar por criticidade** (segurança e bloqueio de aprovação primeiro) e procurar **padrões** (seção 2.1).
+2. **Como estruturar a resposta aos revisores?** Reconhecer cada ponto, explicar a ação, dar **prazo** e responsável, e informar quando o reenvio estiver pronto (seção 2.2).
+3. **Etapas fundamentais das melhorias:** priorizar, corrigir, **testar** (incluindo regressão), reenviar, **monitorar** (seção 2.4).
+4. **Como a comunicação interna acelera?** Um canal com os responsáveis, reuniões curtas de alinhamento, **quadro de tarefas** visível e aviso imediato de bloqueios.
+
+### 3. Correções e atualizações
+
+#### 3.1 Identificar problemas
+
+Imagine que, depois de uma nova versão do app financeiro, usuários relatam que ele **trava** durante transações e, às vezes, mostra **dados incorretos**. Isso afeta a **confiabilidade**, a **imagem da empresa** e a **segurança do dinheiro** das pessoas. Por isso, correções e atualizações constantes são fundamentais em apps desse tipo. **Sinais de problema:** pico de crashes, avaliações negativas repetindo o mesmo assunto, aumento de chamados de suporte e queda de uso depois de uma versão.
+
+Três frentes para identificar problemas:
+
+| Frente | O que faz | Exemplo |
+|---|---|---|
+| **Monitoramento contínuo** | Ferramentas como **Firebase Crashlytics**, **Sentry** e **New Relic** registram falhas em tempo real | Os logs mostram que os crashes ocorrem sempre na autenticação, apontando um problema na integração com o servidor de login |
+| **Feedback dos usuários** | E-mail, chat de suporte, redes sociais e **avaliações nas lojas**, organizados por assunto | Comentários sobre lentidão nas transações indicam gargalo de performance ou de rede |
+| **Testes automatizados e métricas** | Testes unitários, de integração e ponta a ponta; tempo de resposta, memória e latência | Um teste de performance mostra aumento do tempo de resposta depois da atualização |
+
+**Estudo de caso do material.** Depois da atualização, os **crashes durante o login subiram 25%**. A análise de logs e feedbacks mostrou que o **módulo de autenticação não lidava com picos de tráfego**, falhando na comunicação com o servidor.
+
+#### 3.2 Desenvolver a correção, um passo de cada vez
+
+| Passo | O que fazer | Exemplo |
+|---|---|---|
+| **Diagnóstico e depuração** | **Reproduzir o erro** num ambiente de teste e **isolar** o ponto exato da falha com logs detalhados | Simular a falha de autenticação com alta carga de usuários |
+| **Revisão de código** | Análise coletiva das causas e da melhor correção, **sem criar novos erros**, seguindo padrões de qualidade e segurança | A revisão mostrou que o gerenciamento de sessões usava uma **biblioteca desatualizada** |
+| **Implementar e testar** | Correção **incremental** (patch), documentando cada mudança, com **testes de regressão** (Jest, Espresso no Android, XCTest no iOS) | Depois de atualizar a biblioteca, os testes automáticos confirmaram a correção sem afetar o resto |
+| **Documentar e comunicar** | Registrar problema, solução, testes e resultados; **avisar** suporte, QA e marketing | Um relatório detalhado, usado em atualizações e auditorias futuras |
+
+#### 3.3 Situação: duplicidade de débitos em horário de pico
+
+**Cenário.** Você lidera a equipe. Durante um **pico de transações**, um bug crítico causa **débitos duplicados**. A tensão é alta e é preciso agir rápido. **Ação:** em **10 minutos**, identificar as **possíveis causas** e propor uma **ação imediata** para reduzir os danos enquanto a correção definitiva é feita.
+
+**Primeiro, estancar, depois entender.**
+
+1. **Mitigar na hora** (os primeiros minutos): **desativar a funcionalidade** de pagamento afetada com uma **feature flag** (ou *kill switch*), **pausar a liberação gradual** da versão no painel da loja e, se necessário, **reverter** para a versão anterior. Ative um **aviso** no app e informe o suporte.
+2. **Levantar as causas prováveis** (10 minutos):
+   - **Falta de idempotência:** o app ou o servidor **reenvia** o pedido quando a resposta demora, e a operação roda duas vezes.
+   - **Duplo toque:** o botão não é desabilitado depois do primeiro toque.
+   - **Repetição automática** (*retry*) do cliente ou de uma fila sem chave única.
+   - **Concorrência no servidor** sob pico: duas requisições idênticas processadas ao mesmo tempo.
+   - **Mudança recente** na versão (o que entrou nela?).
+3. **Medir o estrago:** consultar o banco para **listar as transações duplicadas** (mesmo cliente, valor e instante).
+4. **Reparar:** **estornar** os débitos duplicados e **avisar** os clientes afetados.
+5. **Correção definitiva:** usar uma **chave de idempotência** em cada pedido (o servidor ignora o repetido), desabilitar o botão após o toque, **testar** (inclusive de carga) e **liberar em etapas**.
+6. **Registrar** o que houve, a causa e as ações (para a **análise pós-incidente**, sem culpados).
+
+**Sob pressão:** divida papéis (quem mitiga, quem investiga, quem comunica), mantenha **uma pessoa** centralizando as informações e **respire**: decisões calmas e curtas valem mais que pressa desordenada.
+
+### 4. Preparação para a próxima versão
+
+#### 4.1 Coleta de ideias
+
+A próxima versão começa pelas **ideias**. Fontes:
+
+- **Feedback dos usuários** (avaliações, suporte, pesquisas);
+- **Sugestões da equipe** interna;
+- **Análise de mercado** e comparação com **concorrentes** (*benchmarking*).
+
+**Ferramentas:** plataformas colaborativas como **Miro** e **Trello**, ou um sistema interno de sugestões, que **registram e organizam** tudo num lugar só. **Como garantir que todas as sugestões sejam registradas e analisadas:** um **canal único** de entrada, um **formulário padrão** (quem sugeriu, qual o problema, qual a ideia), **nenhuma ideia perdida** (tudo entra no backlog) e uma **análise periódica** com data marcada.
+
+#### 4.2 Priorização
+
+**Critérios do material:**
+
+1. **Impacto na experiência do usuário:** quantas pessoas e o quanto melhora.
+2. **Viabilidade técnica:** o quanto custa e se é possível.
+3. **Alinhamento com os objetivos estratégicos** da empresa.
+
+**Método: a matriz de impacto e esforço.**
+
+| | **Esforço baixo** | **Esforço alto** |
+|---|---|---|
+| **Impacto alto** | **Fazer já** | **Planejar** |
+| **Impacto baixo** | Fazer se sobrar tempo | **Descartar ou adiar** |
+
+Métodos complementares conhecidos: **MoSCoW** (essencial, importante, desejável e fora desta versão) e **RICE** (alcance, impacto, confiança e esforço). Num app financeiro, itens de **segurança e conformidade** costumam subir de prioridade mesmo com impacto "invisível".
+
+#### 4.3 Planejamento do desenvolvimento
+
+- **Cronograma e roadmap:** defina etapas e prazos, **integrando desenvolvimento, design e QA**.
+- **Metodologias ágeis:** **Scrum** (ciclos curtos chamados *sprints*, com planejamento e revisão) ou **Kanban** (fluxo contínuo com limite de itens em andamento). Elas permitem **entregas frequentes**, **adaptação** ao feedback e planejamento mais realista.
+- **Entregas iterativas e feedback contínuo:** liberar em pequenos pedaços, ouvir os usuários e ajustar.
+
+**Deploy e release não são a mesma coisa.** **Deploy** é colocar o código em produção; **release** é **liberar** a funcionalidade para os usuários. Com **feature flags**, o código vai para produção **desligado** e é ligado quando está pronto e validado, o que reduz risco e evita bugs em novas entregas.
+
+#### 4.4 Situação: muitas sugestões para a próxima versão
+
+A mensagem: *"Recebemos várias sugestões para a próxima versão. Qual seria sua abordagem para coletar, priorizar e planejar?"* As quatro respostas:
+
+1. **Como estruturar a coleta?** Canal único, formulário padrão, tudo no backlog, análise periódica (seção 4.1).
+2. **Que critérios usar para priorizar e por quê?** Impacto no usuário, viabilidade técnica e alinhamento estratégico, porque equilibram **valor**, **custo** e **direção** do produto, ajudados pela matriz de impacto e esforço (seção 4.2).
+3. **Como as metodologias ágeis ajudam?** **Ciclos curtos**, entregas pequenas, revisões frequentes e **adaptação rápida** ao que os usuários dizem (seção 4.3).
+4. **Como a comunicação entre áreas ajuda?** Todas as áreas **enxergam o mesmo backlog**, **explicam as restrições** (técnicas, de design, de segurança e de mercado) e **decidem juntas** a prioridade, sem surpresas no fim.
+
+## Situações e Roteiros Práticos
+
+As atividades abaixo vêm do material da escola (situações fictícias, da SEDUC-SP), em torno de um **aplicativo de serviços financeiros**. Antes de começar, façam **esboços no papel** da intenção e do resultado e usem as ferramentas de desenvolvimento disponíveis. As atividades são em **grupo**.
+
+*Materiais: computador com internet, caderno e caneta.*
+
+<Accordion titulo="Atividade 1 · Submissão de apps com excelência" dica="Cronograma, plano e a mensagem da App Store" icone="list-check" rolagem={false}>
+
+**Cenário.** Vocês precisam **submeter um novo aplicativo de serviços financeiros**.
+
+1. **Etapa 1 · Cronograma de submissão.** Elaborem um cronograma detalhado com a preparação dos recursos, o envio e a revisão, **especificando as ferramentas** e **como será a revisão cruzada** com a equipe. → seção 1.4.
+2. **Etapa 2 · Plano de submissão.** Com base no cronograma, escrevam um plano que **justifique as escolhas** e identifique os **pontos críticos**. → seções 1.1 a 1.4.
+3. **Etapa 3 · Resposta a uma situação realista.** No Slack: a App Store pediu ajustes na documentação e nas capturas de tela. Respondam às quatro perguntas (estratégia ágil de revisão, ferramentas, planejamento antecipado e comunicação entre áreas). → seção 1.5.
+
+</Accordion>
+
+<Accordion titulo="Atividade 2 · Gerenciando revisões com eficiência" dica="Plano de ação para feedback crítico" icone="list-check" rolagem={false}>
+
+**Cenário.** Depois da submissão do app financeiro, os revisores apontaram **problemas de usabilidade e de segurança**.
+
+1. **Etapa 1 · Plano de ação.** Elaborem um plano que aborde a **análise dos feedbacks**, a **resposta aos revisores** e o **cronograma** das melhorias. → seções 2.1 a 2.3.
+2. **Etapa 2 · Documento justificado.** Escrevam o documento com o plano, **justificando as prioridades** e as ações. → seção 2.3.
+3. **Etapa 3 · Resposta a uma situação realista.** No Slack: "os revisores apontaram problemas críticos... qual é a sua proposta?". Respondam às quatro perguntas (análise, estrutura da resposta, etapas da implementação e comunicação interna). → seção 2.5.
+
+**Gerenciamento de uma revisão, em resumo:** coleta e classificação → interpretação → resposta transparente → plano com cronograma e responsáveis → correção e testes → reenvio → acompanhamento.
+
+</Accordion>
+
+<Accordion titulo="Atividade 3 · Preparando a próxima versão" dica="Coletar, priorizar e planejar sugestões" icone="list-check" rolagem={false}>
+
+**Cenário.** A equipe do app financeiro recebeu **muitas sugestões** para a próxima versão, de **usuários** e de **membros da equipe**, desde novas funcionalidades até melhorias de interface e de segurança. O desafio é **coletar, priorizar e planejar**, com entregas consistentes e alinhadas às metas do projeto.
+
+1. **Etapa 1 · Planejamento estratégico.** Elaborem um roteiro com a **coleta de ideias** (usuários, equipe, mercado), a **priorização** com critérios definidos e o **cronograma** de desenvolvimento com entregas iterativas e feedback contínuo. → seções 4.1 a 4.3.
+2. **Etapa 2 · Documento justificativo.** Expliquem cada etapa, justificando as escolhas e apontando os principais **desafios e soluções**.
+3. **Etapa 3 · Resposta a uma situação realista.** No Slack: "recebemos diversas sugestões... qual seria sua abordagem?". Respondam às quatro perguntas (estrutura da coleta, critérios de priorização, metodologias ágeis e comunicação entre departamentos). → seção 4.4.
+
+**Entrega.** Um **texto-síntese**, enviado pelo **AVA**.
+
+</Accordion>
+
+<Accordion titulo="Aula 3 · Duplicidade de débitos (Ser sempre +)" dica="Dez minutos para mitigar um bug crítico" icone="list-check" rolagem={false}>
+
+**Situação.** Em um **pico de transações**, um bug crítico causa **débitos duplicados**. Vocês lideram a equipe e precisam agir rápido.
+
+**Ação.** Em **10 minutos**, identifiquem as **possíveis causas** e proponham uma **ação imediata** para mitigar os danos enquanto a solução definitiva é desenvolvida. → seção 3.3.
+
+**Antes dessa aula, discutam:** quais os principais sinais de que há problemas no app (seção 3.1)? Por que correções e atualizações constantes são fundamentais num aplicativo de serviços financeiros (seção 3.1)?
+
+</Accordion>
+
+## Tópicos-Chave para Revisão
+
+<div className="topico">
+
+#### 1. Etapas da submissão
+
+**Preparar os recursos**, **enviar** (com **metadados**) e **passar pela revisão**. Use **App Store Connect** e **Google Play Console**, **Git** e **TestFlight**.
+
+#### 2. Boas práticas
+
+**Documentação completa**, **revisão cruzada** (desenvolvimento, design e QA) e **planejamento antecipado**, com folga para ajustes.
+
+#### 3. Prazos
+
+A Apple informa que **50% dos envios** saem em menos de 24 horas e **90% em menos de 48**; o Google pode levar **até sete dias** em algumas contas. **Confira os números atuais.**
+
+#### 4. Analisar o feedback
+
+**Coletar**, **classificar por criticidade** e **interpretar padrões**. O objetivo é **identificar falhas e priorizar ações corretivas**.
+
+#### 5. Responder aos revisores
+
+**Reconhecer os pontos** e **propor um plano** (o quê, quem e quando). Sem ignorar, adiar nem mudar sem avisar. A **contestação** existe, com fatos.
+
+#### 6. Implementar melhorias
+
+Corrigir, **testes de regressão**, reenviar e **monitorar os resultados**.
+
+#### 7. Identificar problemas em produção
+
+**Monitoramento contínuo** (Crashlytics, Sentry, New Relic), **feedback dos usuários** e **testes e métricas**.
+
+#### 8. Corrigir com método
+
+**Reproduzir**, **isolar**, **revisar o código**, **implementar** com **regressão** (Jest, Espresso, XCTest) e **documentar e comunicar**.
+
+#### 9. Incidente crítico
+
+**Estancar primeiro** (feature flag, pausar liberação, reverter), **levantar causas** (idempotência, retry, concorrência), **reparar** e fazer a **correção definitiva**.
+
+#### 10. Próxima versão
+
+**Coletar ideias** (usuários, equipe, mercado), **priorizar** (impacto, viabilidade, alinhamento; matriz de impacto e esforço) e **planejar** em ciclos curtos (**Scrum** ou **Kanban**).
+
+#### 11. Deploy e release
+
+**Deploy** é colocar em produção; **release** é liberar ao usuário. **Feature flags** separam um do outro.
+
+</div>
+
+## Pause e Responda
+
+*Marque uma alternativa em cada questão e confira tudo de uma vez no botão do fim.*
+
+**Questão 1**
+
+*Pause e Responda S24A2a · Gerenciamento de feedback de revisão (Aula 2)*
+
+Qual é o principal objetivo da análise de feedback em revisões de aplicativos? Indique a alternativa correta.
+
+A) Identificar falhas e priorizar ações corretivas.\
+B) Ignorar opiniões divergentes da equipe.\
+C) Coletar apenas dados quantitativos sem interpretação.\
+D) Responder automaticamente aos feedbacks sem avaliação.\
+E) Esconder dos revisores os problemas já conhecidos.
+
+**Questão 2**
+
+*Pause e Responda S24A2b · Gerenciamento de feedback de revisão (Aula 2)*
+
+Qual é a estratégia mais eficaz para responder aos revisores de forma transparente e construtiva? Indique a alternativa correta.
+
+A) Ignorar os feedbacks negativos e focar apenas os positivos.\
+B) Reconhecer os pontos e propor um plano.\
+C) Adiar respostas e evitar novas perguntas.\
+D) Implementar mudanças sem comunicar os revisores.\
+E) Responder apenas com a palavra "corrigido".
+
+**Questão 3**
+
+*Pause e Responda S24A2c · Gerenciamento de feedback de revisão (Aula 2)*
+
+Qual etapa é fundamental na implementação de melhorias baseadas nos feedbacks dos revisores? Indique a alternativa correta.
+
+A) Realizar testes de regressão e monitorar os resultados das correções.\
+B) Apenas atualizar a documentação, sem alterar o código.\
+C) Submeter o app sem checar mudanças.\
+D) Deixar só uma equipe cuidar da melhoria.\
+E) Esperar a próxima versão para olhar o feedback.

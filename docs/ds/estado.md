@@ -39,6 +39,8 @@ O material é ponto de partida, não verdade: erros, premissas fracas e itens de
 | Front-End | 4º | 2 · Técnicas de Esteiras de Entrega Contínua | Semana 23 |
 | Versionamento de Código | 4º | 2 · Pull Request e Code Review Eficaz | Semana 22 |
 | Programação Mobile | 4º | 2 · Preparativos Finais para Publicação | Semana 23 |
+| Programação Mobile | 4º | 3 · Submissão e Revisão de Aplicativos | Semana 24 |
+| Projeto Multidisciplinar | 4º | 3 · Comunicando o Projeto: Marketing | Semana 24 |
 | Projeto Multidisciplinar | 4º | 2 · Ajustes Finais do Projeto | Semana 23 |
 | Banco de Dados | 4º | 2 · Ferramentas e Tecnologias NoSQL | Semana 23 |
 
@@ -157,4 +159,18 @@ Todas as 12 aulas de DS ganharam a seção "Situações e Roteiros Práticos" (a
 - O material não traz respostas modelo; elas foram escritas para a aula. Seção "Situações e Roteiros Práticos" já incluída.
 
 **Língua Portuguesa:** Revisão R1 (Inferência Textual), mini aula pedida pelo Max, feita pelo tema, sem material do professor (exemplos inventados). Aula 6 (Saramago, parte 2 e colocação pronominal): sem as atividades do livro e sem reproduzir os trechos; os exemplos de colocação são frases inventadas.
+
+## Aulas de 15/10/2026
+
+O pedido citava as semanas 23 de Mobile e de Projeto Multidisciplinar, que já estavam no ar desde 13/10; foram feitas as **semanas 24** (as próximas).
+
+**Programação Mobile, semana 24 (Submissão e Revisão de Aplicativos)**
+- Quatro aulas em uma; o Pause e Responda do material é todo da aula 2 (feedback de revisão). Prazos de revisão conferidos nas páginas oficiais da Apple (50% em menos de 24 h e 90% em menos de 48 h) e do Google (até sete dias ou mais em algumas contas). Contestação e revisão acelerada conferidas na página da Apple.
+- Resposta modelo para a duplicidade de débitos (feature flag, pausar a liberação, idempotência, estorno) escrita para a aula. Nada foi executado (conteúdo de processo, sem código).
+
+**Projeto Multidisciplinar, semana 24 (Comunicando o Projeto: Marketing)**
+- Marketing, ferramentas digitais (redes, e-mail, anúncios, SEO) e plano 5W2H, com exemplos próprios (projeto Ecobag). Inclui nota de LGPD no e-mail marketing.
+
+**Matemática, Aula 8 (verificação)**
+- A aula do livro só traz quatro questões de vestibular (ficam na apostila): a aula ensina os quatro tipos (classificação, divisão proporcional, velocidade e tempo, capacidade) com exemplos próprios, e responde as duas perguntas "Com suas palavras". A armadilha da classificação (dizer o que fica fixo) é explicada.
 
