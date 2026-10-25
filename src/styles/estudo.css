@@ -88,7 +88,8 @@
   color: var(--color-ink-soft);
 }
 .campo input[type='text'],
-.campo input[type='number'] {
+.campo input[type='number'],
+.campo select {
   min-height: 2.75rem;
   padding: 0.4rem 0.75rem;
   border: 1px solid var(--color-controle);
@@ -923,6 +924,9 @@
   border-radius: 1rem;
   background: var(--color-surface);
 }
+.est-bloco--metas {
+  --cor-bloco: var(--color-estudo);
+}
 .est-bloco--materias {
   --cor-bloco: var(--color-escolar);
 }
@@ -1179,6 +1183,113 @@
   margin: 0;
   font-size: calc(0.8rem * var(--escala-texto, 1));
   color: var(--color-ink-soft);
+}
+
+/* --------------------------------------------------------- metas da semana */
+.metas__lista {
+  display: grid;
+  gap: 0.8rem;
+  margin: 0 0 1rem;
+  padding: 0;
+  list-style: none;
+}
+@media (min-width: 720px) {
+  .metas__lista {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+.meta {
+  display: grid;
+  gap: 0.55rem;
+  padding: 0.9rem 1rem;
+  border: 1px solid var(--color-line);
+  border-radius: 0.8rem;
+  background: var(--color-paper);
+}
+.meta__topo {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.6rem;
+}
+.meta__nome {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: calc(1rem * var(--escala-texto, 1));
+}
+.meta__conta,
+.meta__situacao,
+.metas__vazio,
+.metas__aviso {
+  margin: 0;
+  font-size: calc(0.88rem * var(--escala-texto, 1));
+  color: var(--color-ink-soft);
+}
+.meta__conta {
+  color: var(--color-ink);
+  font-weight: 700;
+  white-space: nowrap;
+}
+.meta__dias {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 2rem));
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.meta__dia {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1;
+  border: 1px solid var(--color-controle);
+  border-radius: 4px;
+  background: transparent;
+  color: var(--color-ink-soft);
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+.meta__dia[data-feito='true'] {
+  border-color: var(--color-estudo);
+  background: var(--color-estudo);
+  color: var(--color-paper);
+}
+.meta__acoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.meta__hist summary {
+  cursor: pointer;
+  font-size: calc(0.88rem * var(--escala-texto, 1));
+  font-weight: 700;
+}
+.meta__tabela {
+  width: 100%;
+  margin: 0.5rem 0 0;
+  border-collapse: collapse;
+  font-size: calc(0.85rem * var(--escala-texto, 1));
+}
+.meta__tabela th,
+.meta__tabela td {
+  padding: 0.3rem 0.4rem;
+  border-bottom: 1px solid var(--color-line);
+  text-align: left;
+}
+.metas__aviso {
+  margin: 0 0 1rem;
+}
+.metas__campos {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 0.6rem;
+}
+.metas__campos .campo {
+  flex: 1 1 12rem;
+}
+.metas__campos .campo--curto {
+  flex: 0 1 8rem;
 }
 
 /* ------------------------------------------------------ estudo fora do site */

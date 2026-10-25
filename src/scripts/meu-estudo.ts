@@ -5,8 +5,8 @@
  * Nada aqui é guardado: tudo é calculado na hora do registro de eventos e do progresso das aulas
  * (src/lib/estudo.ts). Apagar um registro ou desmarcar uma aula recalcula tudo.
  * ------------------------------------------------------------------------- */
-import { acoesPorDia, diaLocal, estadoDaAula, mesclarRegistros, nivelDoDia, normalizarRegistro, secoesDaAula } from '../lib/estudo';
-import type { EstadoSecao, Evento } from '../lib/estudo';
+import { META_DIAS_MAX, META_DIAS_MIN, acoesPorDia, diaLocal, diasSemRegistro, estadoDaAula, historicoDaMeta, inicioDaSemana, mesclarRegistros, nivelDoDia, normalizarMetas, normalizarRegistro, progressoDaSemana, secoesDaAula, somarDias } from '../lib/estudo';
+import type { EstadoSecao, Evento, ProgressoMeta } from '../lib/estudo';
 import { u } from '../lib/url';
 import { carregarIndice } from './busca';
 import type { AulaBusca } from './busca';
@@ -16,7 +16,7 @@ import { confirmarAcao } from './confirmacao';
 import { filaDeHoje } from './fila';
 import { CHAVE_ANDAMENTO, CHAVE_PROGRESSO, andamentos, vistas } from './progresso';
 import type { Andamento } from './progresso';
-import { apagarEvento, gravarRegistro, lerAjustes, lerRegistro, registrar } from './registro';
+import { apagarEvento, gravarMetas, gravarRegistro, lerAjustes, lerMetas, lerRegistro, registrar } from './registro';
 import { dataExtensa, escapar, gravar, ler } from './util';
 
 /** O painel de dias mostra sempre os últimos 6 meses (180 dias). */
@@ -26,6 +26,8 @@ const CHAVE_SEM_REVISAO = 'cdt:estudo-sem-revisao';
 const DIAS_POR_PAGINA = 30;
 const SELO_ESTADO: Record<EstadoSecao, string> = { firme: 'Firme', acertou: 'Acertou', rever: 'Rever' };
 
+const diaDe = (dia: string) => new Date(+dia.slice(0, 4), +dia.slice(5, 7) - 1, +dia.slice(8, 10), 12);
+const nomeDoDia = (dia: string) => diaDe(dia).toLocaleDateString('pt-BR', { weekday: 'long' });
 const dm = (d: Date) => d.toLocaleDateString('pt-BR', { day: 'numeric', month: 'long' });
 const somar = (d: Date, n: number) => new Date(d.getFullYear(), d.getMonth(), d.getDate() + n, 12);
 const plural = (n: number, um: string, varios: string) => `${n} ${n === 1 ? um : varios}`;
@@ -317,9 +319,153 @@ export async function montarEstudo() {
     q('[data-dados-resumo]').textContent = `Agora: ${plural(n, 'registro', 'registros')} e ${plural(aulas, 'aula concluída', 'aulas concluídas')}.`;
   }
 
+  /* ------------------------------------------------------ metas da semana */
+  const nomeDaMateria = new Map(indice.map((a) => [a.s, a.m]));
+  const nomeMateria = (chave: string) => nomeDaMateria.get(chave) ?? chave.split('/')[1];
+
+  function textoDaSituacao(m: ProgressoMeta): string {
+    if (m.situacao === 'cumprida') return 'Meta da semana cumprida.';
+    if (m.situacao === 'fora-de-alcance') return `Esta semana não dá mais para chegar a ${plural(m.meta, 'dia', 'dias')}; a próxima começa na segunda.`;
+    if (m.situacao === 'apertada') return `Faltam ${plural(m.faltam, 'dia', 'dias')} e restam ${plural(m.restantes, 'dia', 'dias')} na semana, contando hoje.`;
+    return `Faltam ${plural(m.faltam, 'dia', 'dias')}; restam ${plural(m.restantes, 'dia', 'dias')} na semana, contando hoje.`;
+  }
+
+  function desenharMetas() {
+    const metas = lerMetas();
+    const hoje = diaLocal(Date.now());
+    const { eventos } = lerRegistro();
+    const feitas = vistas();
+    const lista = progressoDaSemana({ eventos, vistas: feitas, metas, hoje });
+    const ini = inicioDaSemana(hoje);
+
+    const select = q<HTMLSelectElement>('[data-metas-materia]');
+    if (!select.options.length) {
+      const grupos = new Map<string, Map<string, string>>();
+      for (const a of indice) {
+        const g = grupos.get(a.a) ?? new Map<string, string>();
+        g.set(a.s, a.m);
+        grupos.set(a.a, g);
+      }
+      select.innerHTML = [...grupos]
+        .map(([grupo, mats]) => {
+          const opcoes = [...mats]
+            .sort((x, y) => x[1].localeCompare(y[1], 'pt-BR'))
+            .map(([chave, nome]) => `<option value="${escapar(chave)}">${escapar(nome)}</option>`)
+            .join('');
+          return `<optgroup label="${escapar(grupo)}">${opcoes}</optgroup>`;
+        })
+        .join('');
+    }
+
+    if (!lista.length) {
+      bloco('metas').innerHTML = '<p class="metas__vazio">Você ainda não definiu metas. Elas são opcionais: use o formulário abaixo se quiser acompanhar uma matéria.</p>';
+      return;
+    }
+
+    const itens = lista.map((m) => {
+      const quadrados = Array.from({ length: 7 }, (_, i) => {
+        const d = somarDias(ini, i);
+        const fez = m.dias.includes(d);
+        return `<li class="meta__dia" data-feito="${fez}"><span class="apenas-leitor">${nomeDoDia(d)}: ${fez ? 'com ação' : 'sem ação'}</span><span aria-hidden="true">${nomeDoDia(d)[0].toUpperCase()}</span></li>`;
+      }).join('');
+      const hist = historicoDaMeta({ eventos, vistas: feitas, materia: m.materia, meta: m.meta, hoje });
+      const linhas = hist
+        .slice()
+        .reverse()
+        .map((sem) => `<tr><th scope="row">${escapar(dm(diaDe(sem.inicio)))}</th><td>${plural(sem.feito, 'dia', 'dias')}</td><td>${sem.emAndamento ? 'em andamento' : sem.cumpriu ? 'meta cumprida' : 'abaixo da meta'}</td></tr>`)
+        .join('');
+      const nome = nomeMateria(m.materia);
+      return `
+        <li class="meta" data-situacao="${m.situacao}">
+          <div class="meta__topo">
+            <h3 class="meta__nome">${escapar(nome)}</h3>
+            <p class="meta__conta">${m.feito} de ${plural(m.meta, 'dia', 'dias')}</p>
+          </div>
+          <ol class="meta__dias" aria-label="Semana de ${escapar(dm(diaDe(ini)))}: dias com ação em ${escapar(nome)}">${quadrados}</ol>
+          <p class="meta__situacao">${escapar(textoDaSituacao(m))}</p>
+          <div class="meta__acoes">
+            <button type="button" class="est-botao" data-meta-alterar="${escapar(m.materia)}">Alterar</button>
+            <button type="button" class="est-botao" data-meta-remover="${escapar(m.materia)}">Remover</button>
+          </div>
+          <details class="meta__hist">
+            <summary>Últimas 8 semanas</summary>
+            <table class="meta__tabela">
+              <caption class="apenas-leitor">Dias com ação em ${escapar(nome)} por semana</caption>
+              <thead><tr><th scope="col">Semana de</th><th scope="col">Dias</th><th scope="col">Resultado</th></tr></thead>
+              <tbody>${linhas}</tbody>
+            </table>
+          </details>
+        </li>`;
+    });
+
+    const sem = diasSemRegistro({ eventos, vistas: feitas, hoje });
+    const aviso = sem.length
+      ? `<p class="metas__aviso">Dias dos últimos 7 sem nenhum registro: ${sem.map((d) => nomeDoDia(d)).join(', ')}. Dia sem registro não é falha, é só um dia sem quadrado.</p>`
+      : '';
+    bloco('metas').innerHTML = `<ul class="metas__lista">${itens.join('')}</ul>${aviso}`;
+  }
+
+  const erroMeta = q('[data-metas-erro]');
+  const okMeta = q('[data-metas-ok]');
+  const avisoMeta = (texto: string, erro = false) => {
+    erroMeta.hidden = !erro;
+    erroMeta.textContent = erro ? texto : '';
+    okMeta.textContent = '';
+    if (!erro) window.setTimeout(() => (okMeta.textContent = texto), 30);
+  };
+
+  q<HTMLFormElement>('[data-metas-form]').addEventListener(
+    'submit',
+    (e) => {
+      e.preventDefault();
+      const materia = q<HTMLSelectElement>('[data-metas-materia]').value;
+      const campo = q<HTMLInputElement>('#meta-dias');
+      const dias = Number(campo.value);
+      const metas = lerMetas();
+      if (!Number.isInteger(dias) || dias < META_DIAS_MIN || dias > META_DIAS_MAX) {
+        campo.setAttribute('aria-invalid', 'true');
+        return avisoMeta(`Escolha de ${META_DIAS_MIN} a ${META_DIAS_MAX} dias por semana.`, true);
+      }
+      campo.removeAttribute('aria-invalid');
+      const nova = { ...metas, [materia]: dias };
+      if (!(materia in normalizarMetas(nova))) {
+        return avisoMeta('O caderno guarda até 12 metas. Remova uma para criar outra.', true);
+      }
+      if (!gravarMetas(nova)) return avisoMeta('Não foi possível guardar a meta neste navegador.', true);
+      desenharMetas();
+      avisoMeta(`Meta definida: ${nomeMateria(materia)}, ${plural(dias, 'dia', 'dias')} por semana.`);
+    },
+    { signal }
+  );
+
+  bloco('metas').addEventListener(
+    'click',
+    (e) => {
+      const alvo = e.target as HTMLElement;
+      const alterar = alvo.closest<HTMLElement>('[data-meta-alterar]');
+      if (alterar) {
+        const materia = alterar.dataset.metaAlterar!;
+        q<HTMLSelectElement>('[data-metas-materia]').value = materia;
+        const campo = q<HTMLInputElement>('#meta-dias');
+        campo.value = String(lerMetas()[materia] ?? campo.value);
+        campo.focus();
+        return;
+      }
+      const remover = alvo.closest<HTMLElement>('[data-meta-remover]');
+      if (!remover) return;
+      const { [remover.dataset.metaRemover!]: _, ...resto } = lerMetas();
+      gravarMetas(resto);
+      desenharMetas();
+      q<HTMLElement>('#estudo-metas').focus();
+      toast('Meta removida. O histórico de estudo continua igual.');
+    },
+    { signal }
+  );
+
   function desenharTudo() {
     desenharRevisao();
     desenharDias();
+    desenharMetas();
     desenharMaterias();
     desenharHistorico();
     desenharDados();
@@ -465,6 +611,7 @@ export async function montarEstudo() {
         progresso: vistas(),
         andamento: andamentos(),
         ajustes: lerAjustes(),
+        metas: lerMetas(),
       };
       const arquivo = new Blob([JSON.stringify(pacote, null, 1)], { type: 'application/json' });
       const url = URL.createObjectURL(arquivo);
@@ -517,6 +664,9 @@ export async function montarEstudo() {
       };
     }
     gravar(CHAVE_ANDAMENTO, and);
+
+    // Metas: as do arquivo entram só onde a matéria ainda não tem meta aqui.
+    gravarMetas({ ...normalizarMetas(dados.metas), ...lerMetas() });
 
     desenharTudo();
     avisarDados(`Dados juntados: ${plural(junto.eventos.length - antes.eventos.length, 'registro novo', 'registros novos')}.`);
