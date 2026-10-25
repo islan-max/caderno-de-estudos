@@ -788,6 +788,14 @@ export const COMO_CALCULAMOS = {
     naoMede: 'Se a aula serve para você agora: não olha dificuldade, pré-requisito nem o texto da aula, só o título e a matéria. Sem matéria marcada nem avaliação, não há sugestão.',
     melhorar: 'Marque poucas matérias de cada vez e use “não quero algo assim” sem culpa: ele afasta aulas parecidas. Apagar uma avaliação devolve a aula à lista.',
   },
+  resumo: {
+    titulo: 'Resumo de vídeo',
+    entra: 'A transcrição que você colou ou enviou (e, se quiser, o endereço do vídeo, só para os links do minuto). Nada é buscado no YouTube.',
+    calculo:
+      'O texto é cortado em frases e em trechos de cerca de 250 palavras ou 2 minutos. Em cada trecho, as palavras que aparecem em poucos trechos pesam mais; a nota de uma frase é a soma do peso das suas palavras, e as 1 a 3 frases de maior nota viram os pontos. Os pontos são frases da transcrição, sem reescrita, cada um com o momento em que a frase começa.',
+    naoMede: 'Se o ponto é o mais importante do vídeo: o caderno não entende o assunto, só vê quais palavras são raras no trecho. Legenda automática sem pontuação ou com erros dá pontos piores, e frases importantes ditas de passagem podem ficar de fora.',
+    melhorar: 'Use a transcrição com pontuação quando houver, desmarque o que não serve e confira cada ponto no vídeo pelo link do minuto antes de exportar.',
+  },
   materia: {
     titulo: 'Por matéria',
     entra: 'As aulas marcadas como vistas e as seções com resposta registrada.',

@@ -24,6 +24,7 @@ import { montarHub } from './hub';
 import { ligarNotasSoltas } from './notas';
 import { montarEstudo } from './meu-estudo';
 import { montarRecomendacoes } from './recomendacoes';
+import { montarResumoDeVideo } from './resumo-de-video';
 import { montarRevisao } from './revisao';
 import { aplicarFontePx, lerBrilho, aplicarBrilho, aplicarDispensados, lerFontePx, preferencias, aplicarA11y } from './preferencias';
 import { vistas, refletirProgresso } from './progresso';
@@ -45,6 +46,7 @@ function iniciar() {
   void montarRevisao();
   void montarEstudo();
   void montarRecomendacoes();
+  montarResumoDeVideo();
   void montarAjustes();
   ligarAtalhos();
   ligarNotasSoltas();
