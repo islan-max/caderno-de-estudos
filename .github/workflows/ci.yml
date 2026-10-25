@@ -11,11 +11,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # histórico completo para o gitleaks
       - uses: actions/setup-node@v4
         with:
           node-version: 24
           cache: npm
       - run: npm ci
+      # Segredos no histórico inteiro (a action só olha o intervalo do PR).
+      - name: gitleaks (histórico completo)
+        run: |
+          curl -sSfL -o /tmp/gl.tgz https://github.com/gitleaks/gitleaks/releases/download/v8.28.0/gitleaks_8.28.0_linux_x64.tar.gz
+          tar -xzf /tmp/gl.tgz -C /tmp gitleaks
+          /tmp/gitleaks detect --redact --verbose --no-banner --exit-code 2
+      # Falha em achado alto ou crítico nas dependências de produção; os moderados ficam em docs/VERIFICACAO.md.
+      - run: npm audit --omit=dev --audit-level=high
       - run: npm ci --prefix scripts
       # Regras de estudo (estados, fila de revisão, sugestões do Hoje): src/lib/estudo.test.ts.
       - run: npm test

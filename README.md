@@ -34,6 +34,16 @@ O que o estudante responde fica só no navegador dele (`cdt:registro`, ver `/pri
 - A home mostra `Hoje` (retrátil; até três ações, cada uma com o motivo; "Agora não" esconde por 1 hora; matérias em foco e tamanho da revisão ficam na página `/ajustes`, que também mostra uma prévia e as sugestões escondidas) e `/meu-estudo` mostra revisão, dias de estudo (de 1 semana a 1 ano), matérias, histórico editável e dados. As duas têm aba própria e um botão "?" no topo com as explicações (`AjudaDaPagina.astro`).
 - Uma seção sai de "Rever" quando a questão é acertada pelo menos 30 minutos depois do último erro (`INTERVALO_REVER_MS`); acertar antes disso não tira, e o aviso da aula diz a partir de que horas vale.
 
+## Metas, recomendações e resumo de vídeo
+
+Três ferramentas de estudo que rodam inteiras no navegador (sem servidor, sem conta e sem enviar nada), com as regras em funções puras testadas por `npm test`:
+
+- **Metas da semana** (`/meu-estudo`): quantos dias da semana (segunda a domingo) você quer estudar cada matéria. Conta dia com ação, não tempo; semana que passou não deixa dívida, e dia sem registro não é falha. Regras em `src/lib/estudo.ts`, guardadas em `cdt:metas`.
+- **Recomendações** (`/recomendacoes`): sugere aulas pelas matérias que você marca e pelos "gostei" e "não quero algo assim", sempre dizendo por quê. Regras em `src/lib/recomendacao.ts`; decisões, avaliação offline e limites em [`docs/recomendacao.md`](docs/recomendacao.md) (`node --experimental-strip-types scripts/avaliar-recomendacao.ts` depois do build).
+- **Resumo de vídeo** (`/resumo-de-video`): você cola ou envia a transcrição (.vtt, .srt ou o texto de "Mostrar transcrição") e recebe frases-chave por trecho, com o minuto de cada uma, para revisar e exportar em Markdown. É um resumo extrativo (frases da própria transcrição, sem reescrita). Regras em `src/lib/resumo.ts`; decisões, exemplo e limites em [`docs/resumo-de-video.md`](docs/resumo-de-video.md).
+
+O que foi verificado e o que não foi está em [`docs/VERIFICACAO.md`](docs/VERIFICACAO.md).
+
 ## Acessibilidade
 
 O site busca conformidade com o WCAG 2.2 nível AA. As decisões, o passo a passo para novos componentes e para quem escreve aulas, e os verificadores (`scripts/checar-acessibilidade.mjs` e `scripts/checar-contraste.mjs`) estão em `docs/acessibilidade.md`. A página pública é a Declaração de Acessibilidade (`/acessibilidade`).

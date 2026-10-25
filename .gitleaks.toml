@@ -1,0 +1,12 @@
+[extend]
+useDefault = true
+
+# O commit 938c375 (jul/2026, troca do deploy para a Vercel) incluiu a saída de build `.vercel/output/`
+# por engano; o commit 8428bda passou a ignorá-la e ela não está na árvore atual. Os 6 achados estão
+# só nesses arquivos: uma chave anon do Supabase (pública por desenho), um segredo de middleware e
+# uma chave de servidor do Astro, ambos gerados a cada build de um modo de deploy que não é mais usado.
+# O histórico não foi reescrito; se esses valores ainda valerem em algum lugar, devem ser trocados
+# (ver docs/VERIFICACAO.md). O resto do repositório continua sendo varrido por todas as regras.
+[allowlist]
+description = "saída de build da Vercel commitada por engano (histórico)"
+paths = ['''^\.vercel/output/''']
