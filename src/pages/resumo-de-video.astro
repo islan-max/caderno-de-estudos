@@ -1,0 +1,104 @@
+---
+// Resumo de vídeo: a pessoa envia a transcrição (.vtt, .srt, texto copiado do YouTube) e recebe
+// os pontos principais, cada um com o momento do vídeo. Roda inteiro no navegador
+// (src/scripts/resumo-de-video.ts; regras em src/lib/resumo.ts): nada é enviado nem guardado.
+import Base from '../layouts/Base.astro';
+import Icone from '../components/Icone.astro';
+import AjudaDaPagina from '../components/AjudaDaPagina.astro';
+import { u } from '../lib/url';
+---
+
+<Base
+  title="Resumo de vídeo"
+  active="estudo"
+  description="Resuma a transcrição de um vídeo no seu navegador, com o momento de cada ponto"
+  voltar={{ href: u('/meu-estudo'), label: 'Meu estudo' }}
+>
+  <div class="estudo" data-resumo>
+    <header class="est-hero" data-surgir>
+      <p class="est-hero__selo"><Icone nome="timeline" /> Resumo de vídeo</p>
+      <h1 class="est-hero__h1">Os pontos de um vídeo, com o minuto de cada um</h1>
+      <p class="est-hero__intro">
+        Cole ou envie a transcrição do vídeo e o caderno escolhe as frases mais importantes de cada
+        trecho. Não é uma explicação reescrita: cada ponto é uma frase da própria transcrição, para você
+        conferir no vídeo. Nada sai do seu navegador e nada fica guardado.
+      </p>
+    </header>
+
+    <div class="estudo__corpo">
+      <section class="est-bloco est-bloco--fora" aria-labelledby="resumo-entrada">
+        <header class="est-bloco__cabeca">
+          <span class="est-bloco__icone"><Icone nome="pen-to-square" /></span>
+          <div>
+            <h2 id="resumo-entrada" class="est-bloco__titulo">Transcrição</h2>
+            <p class="est-bloco__sub">
+              No YouTube: abra o vídeo, “...mais”, “Mostrar transcrição”, selecione o texto e cole aqui.
+              Também aceita arquivos .vtt e .srt. Até 1 MB, 60 mil palavras ou 3 horas de vídeo.
+            </p>
+          </div>
+        </header>
+        <form class="resumo__form" data-resumo-form novalidate>
+          <div class="campo">
+            <label for="resumo-url">Endereço do vídeo <span class="campo__opc">(opcional: só serve para os links do minuto)</span></label>
+            <input id="resumo-url" name="url" type="text" inputmode="url" autocomplete="off" aria-describedby="resumo-erro" />
+          </div>
+          <div class="campo">
+            <label for="resumo-texto">Texto da transcrição</label>
+            <textarea id="resumo-texto" name="texto" rows="8" aria-describedby="resumo-erro"></textarea>
+          </div>
+          <div class="campo">
+            <label for="resumo-arquivo">Ou envie um arquivo <span class="campo__opc">(.vtt, .srt ou .txt)</span></label>
+            <input id="resumo-arquivo" name="arquivo" type="file" accept=".vtt,.srt,.txt,text/plain,text/vtt" />
+          </div>
+          <p class="fora__erro" id="resumo-erro" data-resumo-erro role="alert" hidden></p>
+          <div class="fora__rodape">
+            <button type="submit" class="est-botao est-botao--principal"><Icone nome="plus" /> Resumir</button>
+            <button type="reset" class="est-botao">Limpar</button>
+          </div>
+        </form>
+      </section>
+
+      <p class="apenas-leitor" role="status" data-resumo-status></p>
+
+      <div data-resumo-saida hidden>
+        <section class="est-bloco est-bloco--materias" aria-labelledby="resumo-pontos">
+          <header class="est-bloco__cabeca">
+            <span class="est-bloco__icone"><Icone nome="layer-group" /></span>
+            <div>
+              <h2 id="resumo-pontos" class="est-bloco__titulo" tabindex="-1">Pontos por trecho</h2>
+              <p class="est-bloco__sub">Desmarque o que não quiser levar. O texto exportado abaixo muda junto.</p>
+            </div>
+          </header>
+          <ul class="resumo__avisos" data-resumo-avisos></ul>
+          <div data-resumo-trechos></div>
+        </section>
+
+        <section class="est-bloco est-bloco--dados" aria-labelledby="resumo-exportar">
+          <header class="est-bloco__cabeca">
+            <span class="est-bloco__icone"><Icone nome="download" /></span>
+            <div>
+              <h2 id="resumo-exportar" class="est-bloco__titulo">Revisar e exportar</h2>
+              <p class="est-bloco__sub">Confira o texto, escreva um título se quiser e baixe ou copie em Markdown.</p>
+            </div>
+          </header>
+          <div class="resumo__form">
+            <div class="campo">
+              <label for="resumo-titulo">Título <span class="campo__opc">(opcional)</span></label>
+              <input id="resumo-titulo" type="text" maxlength="120" autocomplete="off" data-resumo-titulo />
+            </div>
+            <div class="campo">
+              <label for="resumo-md">Texto que será exportado</label>
+              <textarea id="resumo-md" rows="10" readonly data-resumo-md></textarea>
+            </div>
+            <div class="fora__rodape">
+              <button type="button" class="est-botao est-botao--principal" data-resumo-baixar><Icone nome="download" /> Baixar .md</button>
+              <button type="button" class="est-botao" data-resumo-copiar>Copiar texto</button>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <AjudaDaPagina titulo="Como o resumo é feito" chaves={['resumo']} />
+  </div>
+</Base>
