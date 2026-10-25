@@ -1,0 +1,551 @@
+---
+title: "Funções Polinomiais e Racionais"
+subject: "Funções"
+order: 6
+relevance: >
+  Uma função polinomial é feita de potências de x somadas, como as funções afim e quadrática. Uma função
+  racional tem a variável no denominador, como y = 12 ÷ x, e descreve grandezas inversamente
+  proporcionais: quando uma dobra, a outra cai pela metade. O ENEM (Exame Nacional do Ensino Médio) cobra
+  esse tema em situações de física e do dia a dia: reconhecer o gráfico certo entre vários formatos, comparar
+  valores quando a variável aparece ao quadrado no denominador, calcular tempos a partir de velocidades e
+  decidir para quais valores de x um modelo faz sentido (o domínio).
+quickSummary: >
+  Raízes de um polinômio são os valores de x em que ele vale zero: onde o gráfico corta o eixo x. Duas
+  grandezas são inversamente proporcionais quando o produto delas é constante, y = k ÷ x, e o gráfico é um
+  ramo de hipérbole, que se aproxima dos eixos sem tocá-los. Se y = k ÷ x², multiplicar x por 3 divide y por 9. Num
+  problema real, o domínio é só o trecho de x em que a situação existe.
+resources:
+  conteudoComplementar:
+    conteudo: "Progressão Geométrica"
+    comoAjuda: "A próxima aula trata de grandezas que se multiplicam por um fator fixo, outro tipo de crescimento que o ENEM costuma comparar com a reta e com a hipérbole."
+gabarito:
+  - correta: 2
+    porque: >
+      Tempo = distância ÷ velocidade. Concorde: 1 000 ÷ 2 330 ≈ 0,429 h ≈ 25,75 min; Sonic Wind: 1 000 ÷ 3 000
+      ≈ 0,333 h = 20 min. A diferença é cerca de 5,75 min, e o valor mais próximo é 6,0.
+      Revisar: Aula Teórica › 4. Tempo e velocidade
+  - correta: 0
+    porque: >
+      I = k ÷ d². Com d₂ = 2d₁, I₂ = k ÷ (2d₁)² = k ÷ (4d₁²) = I₁ ÷ 4. Então I₁ = 4I₂: o receptor mais perto
+      recebe quatro vezes mais.
+      Revisar: Aula Teórica › 5. Inversamente proporcional ao quadrado
+  - correta: 2
+    porque: >
+      R inversamente proporcional a S quer dizer R = k ÷ S: um ramo de hipérbole que desce e se aproxima dos
+      eixos sem tocá-los. A reta e o arco tocam o eixo S, o gráfico D é proporção direta, e o gráfico E começa
+      num valor fixo do eixo R.
+      Revisar: Aula Teórica › 3. Proporção inversa e a hipérbole
+  - correta: 4
+    porque: >
+      Isolando v: v + b = K ÷ (p + a), então v = K ÷ (p + a) − b. É a forma y = k ÷ x deslocada, cujo gráfico
+      é um ramo de hipérbole.
+      Revisar: Aula Teórica › 6. Reconhecer o formato pela equação
+  - correta: 1
+    porque: >
+      O salto começa no andaime, em x = 0, e termina no chão, na raiz positiva x₂. Antes de 0 a pessoa ainda
+      não pulou, e depois de x₂ ela já está no chão. O domínio é um intervalo (não um ponto só), com os x reais
+      tais que 0 ≤ x ≤ x₂; a raiz negativa fica fora.
+      Revisar: Aula Teórica › 2. Domínio: onde o modelo faz sentido
+---
+
+<Accordion titulo="Palavras e siglas desta aula" dica="Consulte quando encontrar um termo novo" icone="spell-check">
+
+- **ENEM** (Exame Nacional do Ensino Médio): a prova nacional que dá acesso a faculdades e bolsas.
+- **INEP** (Instituto Nacional de Estudos e Pesquisas Educacionais Anísio Teixeira): o órgão do governo que faz o ENEM.
+- **Ramo**: um pedaço de curva. O gráfico de y = k ÷ x tem dois ramos; nos problemas reais, só aparece o ramo com x positivo.
+- **Semirreta**: um pedaço de reta que tem começo, mas não tem fim.
+- **Oblíqua**: inclinada, nem horizontal nem vertical.
+- **Arco de circunferência**: um pedaço de um círculo.
+- **LSRV**: sigla do nome em inglês do veículo Sonic Wind (*Land Speed Record Vehicle*, veículo para recorde de velocidade em terra).
+- **Intuito**: intenção, objetivo.
+- **Contração**: o encolhimento de um músculo quando ele trabalha.
+- **Resistência elétrica**: o quanto um fio dificulta a passagem da corrente elétrica.
+- **Seção transversal**: o corte reto de um objeto, como a "fatia" circular de um fio.
+- **Condutor homogêneo**: fio feito do mesmo material em todo o comprimento.
+- **Fisiologista**: cientista que estuda o funcionamento do corpo.
+- **Andaime**: estrutura provisória onde se sobe para trabalhar no alto de uma construção.
+
+</Accordion>
+
+## Antes de Começar
+
+**O que o ENEM cobra aqui.** A prova descreve uma relação entre duas grandezas, muitas vezes de física, e pede o gráfico, uma comparação ou um cálculo. Quase sempre é preciso traduzir "inversamente proporcional" em conta. Os temas que costumam aparecer são estes:
+
+- **Usar a proporção inversa** em cálculos de física e do dia a dia.
+- **Relacionar equação e gráfico**: reconhecer reta, parábola, hipérbole e exponencial.
+- **Ler raízes e domínio** de funções em situações reais.
+
+**O que você precisa saber antes.**
+
+- **Função e gráfico.** Uma função liga cada x a um único y; o gráfico mostra os pares (x; y) no plano cartesiano. Revise as aulas de Função Afim e de Funções Quadráticas.
+- **Potências.** (3x)² = 9x²: o quadrado vale para o número e para a letra. Revise a aula de Potências e Raízes.
+- **Frações.** Dividir por uma fração é multiplicar pelo inverso: 6 ÷ (1/2) = 12. Revise a aula de Frações.
+- **Horas e minutos.** 1 hora = 60 minutos; 0,5 h = 30 min; 0,25 h = 15 min.
+- **Desigualdades.** a ≤ x ≤ b quer dizer que x vai de a até b, incluindo os dois. x ≥ 0 quer dizer "x maior ou igual a 0"; a > 0, "a maior que 0"; e x &lt; 4, "x menor que 4". Revise a aula de Inequações.
+- **Índices.** Um número pequeno embaixo de uma letra só numera: x₁ é o primeiro x e x₂ é o segundo.
+
+## Aula Teórica
+
+### 1. Funções polinomiais e suas raízes
+
+Uma **função polinomial** é uma soma de termos do tipo número × potência de x. A maior potência de x é o **grau**.
+
+- Grau 1: f(x) = 2x + 3, a função afim (gráfico em reta).
+- Grau 2: f(x) = x² − 4x + 3, a função quadrática (gráfico em parábola).
+- Grau 3: f(x) = x³ − 2x² − 5x + 6, que faz uma curva com até duas "voltas".
+
+As **raízes** (ou **zeros**) da função são os valores de x em que f(x) = 0. No gráfico, são os pontos onde a curva corta o eixo x. Um polinômio de grau n tem no máximo n raízes.
+
+<figure class="figura">
+  <svg viewBox="0 0 460 220" role="img" aria-labelledby="fig-polin-1-t fig-polin-1-d">
+    <title id="fig-polin-1-t">Gráfico de um polinômio de grau 3</title>
+    <desc id="fig-polin-1-d">Gráfico de uma curva que sobe, desce e sobe de novo, cortando o eixo x em três pontos destacados: x = −2, x = 1 e x = 3. Ao lado, a nota: as raízes são os pontos onde o gráfico corta o eixo x, ou seja, onde y = 0.</desc>
+    <line x1="38" y1="110" x2="389" y2="110" class="traco-fino" />
+    <line x1="200" y1="10" x2="200" y2="210" class="traco-fino" />
+    <text x="389" y="126" class="rotulo-fraco" text-anchor="end">x</text>
+    <text x="192" y="20" class="rotulo-fraco" text-anchor="end">y</text>
+    <path d="M 89.7 148.1 L 93.2 140.6 L 96.6 133.5 L 100.0 126.9 L 103.4 120.8 L 106.8 115.0 L 110.2 109.7 L 113.6 104.9 L 117.0 100.4 L 120.4 96.3 L 123.8 92.6 L 127.2 89.2 L 130.6 86.2 L 134.0 83.6 L 137.4 81.2 L 140.8 79.2 L 144.2 77.5 L 147.6 76.1 L 151.0 75.0 L 154.4 74.1 L 157.8 73.5 L 161.2 73.2 L 164.6 73.1 L 168.0 73.2 L 171.4 73.5 L 174.8 74.0 L 178.2 74.7 L 181.6 75.6 L 185.0 76.7 L 188.4 77.9 L 191.8 79.2 L 195.2 80.7 L 198.7 82.3 L 202.1 84.0 L 205.5 85.9 L 208.9 87.7 L 212.3 89.7 L 215.7 91.7 L 219.1 93.8 L 222.5 95.9 L 225.9 98.1 L 229.3 100.2 L 232.7 102.4 L 236.1 104.5 L 239.5 106.6 L 242.9 108.7 L 246.3 110.8 L 249.7 112.8 L 253.1 114.7 L 256.5 116.5 L 259.9 118.3 L 263.3 119.9 L 266.7 121.5 L 270.1 122.9 L 273.5 124.2 L 276.9 125.3 L 280.3 126.2 L 283.7 127.0 L 287.1 127.6 L 290.5 128.1 L 293.9 128.3 L 297.3 128.2 L 300.7 128.0 L 304.1 127.5 L 307.6 126.8 L 311.0 125.7 L 314.4 124.4 L 317.8 122.9 L 321.2 121.0 L 324.6 118.8 L 328.0 116.3 L 331.4 113.4 L 334.8 110.2 L 338.2 106.7 L 341.6 102.7 L 345.0 98.4 L 348.4 93.7 L 351.8 88.6 L 355.2 83.1 L 358.6 77.1 L 362.0 70.7" class="traco" />
+    <circle cx="110.0" cy="110" r="4.5" class="rotulo" />
+    <text x="120.0" y="132" class="rotulo" text-anchor="middle">−2</text>
+    <circle cx="245.0" cy="110" r="4.5" class="rotulo" />
+    <text x="245.0" y="132" class="rotulo" text-anchor="middle">1</text>
+    <circle cx="335.0" cy="110" r="4.5" class="rotulo" />
+    <text x="335.0" y="132" class="rotulo" text-anchor="middle">3</text>
+    <text x="300" y="196" class="rotulo-fraco">raízes: onde o gráfico</text>
+    <text x="300" y="210" class="rotulo-fraco">corta o eixo x (y = 0)</text>
+  </svg>
+</figure>
+
+**Exemplo resolvido.** Quais são as raízes de f(x) = (x + 2)(x − 1)(x − 3)?
+
+1. Um produto vale zero quando um dos fatores vale zero.
+2. x + 2 = 0 dá x = −2; x − 1 = 0 dá x = 1; x − 3 = 0 dá x = 3.
+3. Resposta: as raízes são −2, 1 e 3, como no gráfico acima.
+
+Para saber se um valor é raiz, troque x por ele e veja se dá zero. Em f(x) = x² − 4x + 3, f(1) = 1 − 4 + 3 = 0, então 1 é raiz.
+
+**Erro comum.** Confundir raiz com o ponto onde o gráfico corta o eixo y. O corte com o eixo y é f(0), o valor da função quando x = 0; a raiz é o x que faz f(x) = 0.
+
+### 2. Domínio: onde o modelo faz sentido
+
+O **domínio** de uma função é o conjunto dos valores de x que podem ser usados nela. Na matemática pura, um polinômio aceita qualquer número real. Num problema real, o domínio é menor: só vale o trecho de x em que a situação **existe**.
+
+Para escrever um domínio, usa-se a notação de conjunto. As chaves &#123; &#125; guardam os elementos de um conjunto: &#123;7&#125; é o conjunto com um só elemento, o 7. ℝ é o conjunto dos números reais (todos os números da reta). O símbolo ∈ quer dizer "pertence a", e a barra vertical | quer dizer "tal que". Assim, D = &#123;x ∈ ℝ | 2 ≤ x ≤ 7&#125; se lê "D é o conjunto dos x reais tais que x vai de 2 a 7".
+
+**Exemplo resolvido.** O volume de água de uma piscina, em milhares de litros, segue V(t) = 64 − t², com t em horas contadas desde o meio-dia. Mas a bomba só é ligada às 2 da tarde; antes disso, a piscina fica parada, com 60 mil litros. Qual é o domínio que faz sentido para essa fórmula?
+
+1. Começo: a fórmula passa a valer quando a bomba liga, em t = 2. Antes disso, ela não descreve a situação.
+2. Fim: a piscina esvazia quando V(t) = 0: 64 − t² = 0, então t² = 64, e t = 8 ou t = −8.
+3. A raiz t = −8 fica muito antes do começo e não tem sentido.
+4. Resposta: D = &#123;t ∈ ℝ | 2 ≤ t ≤ 8&#125;. Depois de t = 8 a piscina já está vazia.
+
+<figure class="figura">
+  <svg viewBox="0 0 460 210" role="img" aria-labelledby="fig-polin-2-t fig-polin-2-d">
+    <title id="fig-polin-2-t">Domínio de um modelo de esvaziamento</title>
+    <desc id="fig-polin-2-d">Gráfico do volume V = 64 − t², em milhares de litros, em função do tempo t, em horas. De t = 0 a t = 2 a curva é tracejada: a bomba ainda está desligada e a fórmula não vale. De t = 2 a t = 8 a curva é cheia: começa em 60 mil litros, em t = 2, e desce até o eixo t, onde a piscina esvazia. O domínio é 2 ≤ t ≤ 8.</desc>
+    <line x1="50" y1="186" x2="445" y2="186" class="traco-fino" />
+    <line x1="50" y1="6" x2="50" y2="194" class="traco-fino" />
+    <text x="445" y="180" class="rotulo-fraco" text-anchor="end">t (h)</text>
+    <text x="58" y="14" class="rotulo-fraco">V (mil litros)</text>
+    <path d="M 50.0 19.6 L 54.2 19.6 L 58.4 19.7 L 62.6 19.8 L 66.8 20.0 L 71.0 20.2 L 75.2 20.5 L 79.4 20.9 L 83.6 21.3 L 87.8 21.7 L 92.0 22.2 L 96.2 22.7 L 100.4 23.3 L 104.6 24.0 L 108.8 24.7 L 113.0 25.4 L 117.2 26.3 L 121.4 27.1 L 125.6 28.0 L 129.8 29.0 L 134.0 30.0" class="tracejado" />
+    <path d="M 134.0 30.0 L 138.2 31.1 L 142.4 32.2 L 146.6 33.4 L 150.8 34.6 L 155.0 35.8 L 159.2 37.2 L 163.4 38.6 L 167.6 40.0 L 171.8 41.5 L 176.0 43.0 L 180.2 44.6 L 184.4 46.2 L 188.6 47.9 L 192.8 49.7 L 197.0 51.4 L 201.2 53.3 L 205.4 55.2 L 209.6 57.1 L 213.8 59.1 L 218.0 61.2 L 222.2 63.3 L 226.4 65.5 L 230.6 67.7 L 234.8 69.9 L 239.0 72.2 L 243.2 74.6 L 247.4 77.0 L 251.6 79.5 L 255.8 82.0 L 260.0 84.6 L 264.2 87.2 L 268.4 89.9 L 272.6 92.6 L 276.8 95.4 L 281.0 98.2 L 285.2 101.1 L 289.4 104.1 L 293.6 107.1 L 297.8 110.1 L 302.0 113.2 L 306.2 116.3 L 310.4 119.5 L 314.6 122.8 L 318.8 126.1 L 323.0 129.4 L 327.2 132.9 L 331.4 136.3 L 335.6 139.8 L 339.8 143.4 L 344.0 147.0 L 348.2 150.7 L 352.4 154.4 L 356.6 158.2 L 360.8 162.0 L 365.0 165.8 L 369.2 169.8 L 373.4 173.8 L 377.6 177.8 L 381.8 181.9 L 386.0 186.0" class="traco" />
+    <circle cx="134" cy="30.0" r="4.5" class="rotulo" />
+    <text x="144" y="46.0" class="rotulo-fraco">60</text>
+    <circle cx="386" cy="186" r="4.5" class="rotulo" />
+    <line x1="134" y1="36.0" x2="134" y2="186" class="tracejado" />
+    <text x="50" y="202" class="rotulo-fraco" text-anchor="middle">0</text>
+    <text x="134" y="202" class="rotulo" text-anchor="middle">2</text>
+    <text x="386" y="202" class="rotulo" text-anchor="middle">8</text>
+    <text x="235" y="25" class="rotulo">domínio: 2 ≤ t ≤ 8</text>
+    <text x="56" y="108" class="rotulo-fraco">bomba</text>
+    <text x="56" y="121" class="rotulo-fraco">desligada</text>
+  </svg>
+</figure>
+
+Ao escolher o domínio, procure no texto onde a situação **começa** e onde ela **termina**, e use cada informação do enunciado.
+
+**Erro comum.** Usar como domínio todos os valores em que a fórmula pode ser calculada, sem olhar o texto. A fórmula pode dar números para momentos que não aconteceram.
+
+### 3. Proporção inversa e a hipérbole
+
+Duas grandezas são **inversamente proporcionais** quando, se uma dobra, a outra cai pela metade; se uma triplica, a outra fica dividida por 3. O produto das duas fica sempre igual.
+
+Pense em 12 pedaços de bolo divididos entre amigos. Com 2 amigos, cada um ganha 6; com 3, ganha 4; com 4, ganha 3. O número de amigos vezes os pedaços de cada um dá sempre 12.
+
+**Fórmula: proporção inversa**
+
+**y = k ÷ x**
+
+- **x**: uma grandeza (diferente de zero).
+- **y**: a outra grandeza.
+- **k**: a constante, o produto x × y, que é sempre o mesmo.
+- **Em palavras:** y é uma constante dividida por x; quanto maior x, menor y.
+- **Quando usar:** quando o texto diz "inversamente proporcional", ou quando o produto de duas grandezas é fixo.
+
+**Exemplo resolvido.** Uma tarefa é feita por 6 pessoas em 10 dias. Se o número de pessoas e o de dias são inversamente proporcionais, quantos dias levam 15 pessoas?
+
+1. Constante: k = 6 × 10 = 60.
+2. Com 15 pessoas: dias = 60 ÷ 15 = 4.
+3. Resposta: 4 dias.
+
+O gráfico de y = k ÷ x (com k e x positivos) é um **ramo de hipérbole**. Ele desce depressa no começo e depois cada vez mais devagar. Nunca toca os eixos: y nunca vira zero, por maior que seja x, e x não pode ser zero, porque não se divide por zero. Essas linhas de que a curva se aproxima sem tocar se chamam **assíntotas**.
+
+<figure class="figura">
+  <svg viewBox="0 0 460 210" role="img" aria-labelledby="fig-polin-3-t fig-polin-3-d">
+    <title id="fig-polin-3-t">Gráfico de y = 12 ÷ x</title>
+    <desc id="fig-polin-3-d">Gráfico da curva y = 12 ÷ x para x positivo, com os pontos (1; 12), (2; 6), (3; 4), (4; 3), (6; 2) e (12; 1). A curva desce depressa no começo e depois cada vez mais devagar, chegando perto dos dois eixos sem nunca tocá-los. Em todos os pontos, x vezes y dá 12.</desc>
+    <line x1="50" y1="190" x2="428" y2="190" class="traco-fino" />
+    <line x1="50" y1="190" x2="50" y2="8" class="traco-fino" />
+    <text x="428" y="206" class="rotulo-fraco" text-anchor="end">x</text>
+    <text x="42" y="16" class="rotulo-fraco" text-anchor="end">y</text>
+    <path d="M 76.6 13.2 L 79.4 30.1 L 82.2 44.0 L 85.0 55.7 L 87.8 65.7 L 90.7 74.3 L 93.5 81.8 L 96.3 88.4 L 99.1 94.2 L 101.9 99.4 L 104.7 104.0 L 107.5 108.2 L 110.3 112.0 L 113.2 115.5 L 116.0 118.7 L 118.8 121.6 L 121.6 124.3 L 124.4 126.8 L 127.2 129.1 L 130.0 131.2 L 132.8 133.2 L 135.6 135.1 L 138.5 136.8 L 141.3 138.5 L 144.1 140.0 L 146.9 141.5 L 149.7 142.8 L 152.5 144.1 L 155.3 145.3 L 158.1 146.5 L 161.0 147.6 L 163.8 148.7 L 166.6 149.6 L 169.4 150.6 L 172.2 151.5 L 175.0 152.4 L 177.8 153.2 L 180.6 154.0 L 183.4 154.7 L 186.3 155.5 L 189.1 156.2 L 191.9 156.8 L 194.7 157.5 L 197.5 158.1 L 200.3 158.7 L 203.1 159.3 L 205.9 159.8 L 208.7 160.4 L 211.6 160.9 L 214.4 161.4 L 217.2 161.9 L 220.0 162.3 L 222.8 162.8 L 225.6 163.2 L 228.4 163.6 L 231.2 164.0 L 234.1 164.4 L 236.9 164.8 L 239.7 165.2 L 242.5 165.6 L 245.3 165.9 L 248.1 166.3 L 250.9 166.6 L 253.7 166.9 L 256.5 167.2 L 259.4 167.5 L 262.2 167.8 L 265.0 168.1 L 267.8 168.4 L 270.6 168.7 L 273.4 168.9 L 276.2 169.2 L 279.0 169.5 L 281.9 169.7 L 284.7 170.0 L 287.5 170.2 L 290.3 170.4 L 293.1 170.6 L 295.9 170.9 L 298.7 171.1 L 301.5 171.3 L 304.3 171.5 L 307.2 171.7 L 310.0 171.9 L 312.8 172.1 L 315.6 172.3 L 318.4 172.5 L 321.2 172.7 L 324.0 172.8 L 326.8 173.0 L 329.6 173.2 L 332.5 173.3 L 335.3 173.5 L 338.1 173.7 L 340.9 173.8 L 343.7 174.0 L 346.5 174.1 L 349.3 174.3 L 352.1 174.4 L 355.0 174.6 L 357.8 174.7 L 360.6 174.9 L 363.4 175.0 L 366.2 175.1 L 369.0 175.3 L 371.8 175.4 L 374.6 175.5 L 377.4 175.6 L 380.3 175.8 L 383.1 175.9 L 385.9 176.0 L 388.7 176.1 L 391.5 176.2 L 394.3 176.3 L 397.1 176.4 L 399.9 176.6 L 402.8 176.7 L 405.6 176.8 L 408.4 176.9 L 411.2 177.0 L 414.0 177.1" class="traco" />
+    <circle cx="78.0" cy="22.0" r="4" class="rotulo" />
+    <circle cx="106.0" cy="106.0" r="4" class="rotulo" />
+    <circle cx="134.0" cy="134.0" r="4" class="rotulo" />
+    <circle cx="162.0" cy="148.0" r="4" class="rotulo" />
+    <circle cx="218.0" cy="162.0" r="4" class="rotulo" />
+    <circle cx="386.0" cy="176.0" r="4" class="rotulo" />
+    <text x="114" y="102" class="rotulo-fraco">(2; 6)</text>
+    <text x="170" y="142" class="rotulo-fraco">(4; 3)</text>
+    <text x="386" y="166" class="rotulo-fraco" text-anchor="middle">(12; 1)</text>
+    <text x="190" y="50" class="rotulo">y = 12 ÷ x: x vezes y dá sempre 12</text>
+    <text x="190" y="68" class="rotulo-fraco">a curva se aproxima dos eixos,</text>
+    <text x="190" y="82" class="rotulo-fraco">mas nunca os toca</text>
+  </svg>
+</figure>
+
+Daí sai um critério simples: se a curva **encosta em qualquer eixo**, ela não é o gráfico de y = k ÷ x.
+
+**Erro comum.** Achar que qualquer curva que desce representa uma proporção inversa. O que define a proporção inversa é o produto constante, e o gráfico dela nunca encosta nos eixos.
+
+### 4. Tempo e velocidade
+
+Para uma distância fixa, quanto maior a velocidade, menor o tempo. Velocidade e tempo são inversamente proporcionais, e o produto deles é a distância.
+
+**Fórmula: tempo a partir da velocidade**
+
+**t = d ÷ v**
+
+- **t**: o tempo da viagem (em horas, se v estiver em km/h).
+- **d**: a distância, em km.
+- **v**: a velocidade, em km/h (quilômetros por hora).
+- **Em palavras:** o tempo é a distância dividida pela velocidade.
+- **Quando usar:** para achar o tempo de um percurso quando se conhecem a distância e a velocidade.
+
+**Exemplo resolvido.** Um ciclista percorre 18 km a 24 km/h. Quanto tempo leva, em minutos?
+
+1. Fórmula: t = 18 ÷ 24 = 0,75 h.
+2. A conta deu horas, porque km ÷ (km/h) = h. Para minutos, multiplique por 60: 0,75 × 60 = 45.
+3. Resposta: 45 minutos.
+
+A unidade do resultado sai da própria conta: quilômetros divididos por quilômetros por hora dão horas. Se a resposta é pedida em minutos, multiplique as horas por 60.
+
+Quando a divisão não é exata, faça a conta com duas ou três casas decimais e só arredonde no fim. Se as alternativas pedem "o valor mais próximo", compare o seu resultado com cada uma.
+
+**Erro comum.** Ler as horas decimais como minutos: 0,75 h não são 75 minutos. O certo é 0,75 × 60 = 45 min.
+
+### 5. Inversamente proporcional ao quadrado
+
+Em muitos fenômenos, uma grandeza é inversamente proporcional ao **quadrado** de uma distância: a luz de uma lâmpada, o som, a atração da gravidade. A intensidade se espalha numa área cada vez maior, e a área cresce com o quadrado da distância.
+
+**Fórmula: inverso do quadrado**
+
+**y = k ÷ x²**
+
+- **x**: a distância (ou a grandeza que fica ao quadrado).
+- **y**: a intensidade.
+- **k**: uma constante.
+- **Em palavras:** y é uma constante dividida pelo quadrado de x.
+- **Quando usar:** quando o texto diz "inversamente proporcional ao quadrado".
+
+Se x é multiplicado por um número, y fica dividido pelo **quadrado** desse número:
+
+| x vira | y fica |
+|---|---|
+| 3 vezes maior | dividido por 3² = 9 |
+| 5 vezes maior | dividido por 5² = 25 |
+| 10 vezes maior | dividido por 10² = 100 |
+| a terça parte | multiplicado por 9 |
+
+Em geral: se x fica n vezes maior, y fica dividido por n².
+
+**Exemplo resolvido.** A iluminação de uma lâmpada a 1 m de distância é L. Quanto ela vale a 3 m?
+
+1. A distância foi multiplicada por 3.
+2. A iluminação fica dividida por 3² = 9.
+3. Resposta: L ÷ 9. Dito de outro jeito, a 1 m a iluminação é 9 vezes a de 3 m.
+
+Nesses fenômenos, quem está **mais perto** recebe **mais**.
+
+**Erro comum.** No exemplo, dividir a iluminação por 3 em vez de 9: o fator que multiplica a distância também precisa ser elevado ao quadrado.
+
+### 6. Reconhecer o formato pela equação
+
+A prova às vezes dá uma equação e pergunta o tipo de gráfico. Isole y e compare com os modelos:
+
+- y = ax + b (x só elevado a 1): **reta**;
+- y = ax² + bx + c (x ao quadrado): **parábola**;
+- y = k ÷ x, ou x × y = k: **hipérbole**;
+- y = b × aˣ (x no expoente): **exponencial**.
+
+<figure class="figura">
+  <svg viewBox="0 0 460 136" role="img" aria-labelledby="fig-polin-4-t fig-polin-4-d">
+    <title id="fig-polin-4-t">Formas de gráfico que o ENEM mistura</title>
+    <desc id="fig-polin-4-d">Quatro gráficos pequenos lado a lado. A reta, y = ax + b, desce e corta os dois eixos. A parábola, y = ax² + bx + c, sobe e desce em forma de arco. A hipérbole, y = k ÷ x, desce muito no começo e depois quase deita, sem tocar nenhum eixo. A exponencial, y = b × aˣ, começa num ponto do eixo y e desce até quase encostar no eixo x.</desc>
+    <line x1="15" y1="94" x2="110" y2="94" class="traco-fino" />
+    <line x1="15" y1="14" x2="15" y2="94" class="traco-fino" />
+    <line x1="15" y1="22" x2="95" y2="94" class="traco" />
+    <text x="62.5" y="114" class="rotulo" text-anchor="middle">reta</text>
+    <text x="62.5" y="128" class="rotulo-fraco" text-anchor="middle">y = ax + b</text>
+    <line x1="128" y1="94" x2="223" y2="94" class="traco-fino" />
+    <line x1="128" y1="14" x2="128" y2="94" class="traco-fino" />
+    <path d="M 136 94 Q 175.5 -50 215 94" class="traco" />
+    <text x="175.5" y="114" class="rotulo" text-anchor="middle">parábola</text>
+    <text x="175.5" y="128" class="rotulo-fraco" text-anchor="middle">y = ax² + bx + c</text>
+    <line x1="241" y1="94" x2="336" y2="94" class="traco-fino" />
+    <line x1="241" y1="14" x2="241" y2="94" class="traco-fino" />
+    <path d="M 249 16 Q 255 82 332 86" class="traco" />
+    <text x="288.5" y="114" class="rotulo" text-anchor="middle">hipérbole</text>
+    <text x="288.5" y="128" class="rotulo-fraco" text-anchor="middle">y = k ÷ x</text>
+    <line x1="354" y1="94" x2="449" y2="94" class="traco-fino" />
+    <line x1="354" y1="14" x2="354" y2="94" class="traco-fino" />
+    <path d="M 354 34 Q 378 90 445 90" class="traco" />
+    <text x="401.5" y="114" class="rotulo" text-anchor="middle">exponencial</text>
+    <text x="401.5" y="128" class="rotulo-fraco" text-anchor="middle">y = b × aˣ</text>
+  </svg>
+</figure>
+
+Somar ou subtrair números de x ou de y só **desloca** o gráfico, sem mudar o formato. Por exemplo, y = 6 ÷ (x − 1) − 2 ainda é um número dividido por algo com x. É uma hipérbole, só que mudada de lugar: 1 para a direita e 2 para baixo.
+
+**Exemplo resolvido.** Qual é o formato do gráfico de x × (y − 4) = 10?
+
+1. Isolar y: y − 4 = 10 ÷ x.
+2. Somar 4: y = 10 ÷ x + 4.
+3. É a forma k ÷ x, deslocada 4 unidades para cima.
+4. Resposta: um ramo de hipérbole (para x positivo).
+
+Quando só uma parte da curva interessa (por exemplo, só valores positivos), o gráfico é um **ramo**, ou um pedaço da curva. Uma **semirreta** é o pedaço de uma reta; um **ramo de parábola** é um pedaço de parábola.
+
+**Erro comum.** Decidir o formato olhando a equação antes de isolar y. Primeiro isole; depois compare com os modelos da lista.
+
+### Armadilhas típicas do INEP
+
+1. **Confundir raiz com o corte no eixo y**: raiz é onde y = 0.
+2. **Ignorar o texto ao escolher o domínio**: ele vai de onde a situação começa até onde termina.
+3. **Tomar qualquer curva que desce** por uma proporção inversa: a hipérbole nunca encosta nos eixos.
+4. **Ler horas decimais como minutos**: 0,75 h são 45 min, e não 75 min.
+5. **Esquecer de elevar ao quadrado** o fator, no inverso do quadrado.
+6. **Achar que deslocar muda o formato**: somar números só muda a posição da curva.
+
+## Tópicos-Chave para Revisão
+
+<div className="topico">
+
+#### 1. Polinômios e raízes
+
+Uma **função polinomial** soma potências de x; a maior é o **grau**. As **raízes** são os x com f(x) = 0, onde o gráfico corta o **eixo x**.
+
+<figure class="figura">
+  <svg viewBox="0 0 460 220" role="img" aria-labelledby="fig-polin-1-rev-t fig-polin-1-rev-d">
+    <title id="fig-polin-1-rev-t">Gráfico de um polinômio de grau 3</title>
+    <desc id="fig-polin-1-rev-d">Gráfico de uma curva que sobe, desce e sobe de novo, cortando o eixo x em três pontos destacados: x = −2, x = 1 e x = 3. Ao lado, a nota: as raízes são os pontos onde o gráfico corta o eixo x, ou seja, onde y = 0.</desc>
+    <line x1="38" y1="110" x2="389" y2="110" class="traco-fino" />
+    <line x1="200" y1="10" x2="200" y2="210" class="traco-fino" />
+    <text x="389" y="126" class="rotulo-fraco" text-anchor="end">x</text>
+    <text x="192" y="20" class="rotulo-fraco" text-anchor="end">y</text>
+    <path d="M 89.7 148.1 L 93.2 140.6 L 96.6 133.5 L 100.0 126.9 L 103.4 120.8 L 106.8 115.0 L 110.2 109.7 L 113.6 104.9 L 117.0 100.4 L 120.4 96.3 L 123.8 92.6 L 127.2 89.2 L 130.6 86.2 L 134.0 83.6 L 137.4 81.2 L 140.8 79.2 L 144.2 77.5 L 147.6 76.1 L 151.0 75.0 L 154.4 74.1 L 157.8 73.5 L 161.2 73.2 L 164.6 73.1 L 168.0 73.2 L 171.4 73.5 L 174.8 74.0 L 178.2 74.7 L 181.6 75.6 L 185.0 76.7 L 188.4 77.9 L 191.8 79.2 L 195.2 80.7 L 198.7 82.3 L 202.1 84.0 L 205.5 85.9 L 208.9 87.7 L 212.3 89.7 L 215.7 91.7 L 219.1 93.8 L 222.5 95.9 L 225.9 98.1 L 229.3 100.2 L 232.7 102.4 L 236.1 104.5 L 239.5 106.6 L 242.9 108.7 L 246.3 110.8 L 249.7 112.8 L 253.1 114.7 L 256.5 116.5 L 259.9 118.3 L 263.3 119.9 L 266.7 121.5 L 270.1 122.9 L 273.5 124.2 L 276.9 125.3 L 280.3 126.2 L 283.7 127.0 L 287.1 127.6 L 290.5 128.1 L 293.9 128.3 L 297.3 128.2 L 300.7 128.0 L 304.1 127.5 L 307.6 126.8 L 311.0 125.7 L 314.4 124.4 L 317.8 122.9 L 321.2 121.0 L 324.6 118.8 L 328.0 116.3 L 331.4 113.4 L 334.8 110.2 L 338.2 106.7 L 341.6 102.7 L 345.0 98.4 L 348.4 93.7 L 351.8 88.6 L 355.2 83.1 L 358.6 77.1 L 362.0 70.7" class="traco" />
+    <circle cx="110.0" cy="110" r="4.5" class="rotulo" />
+    <text x="120.0" y="132" class="rotulo" text-anchor="middle">−2</text>
+    <circle cx="245.0" cy="110" r="4.5" class="rotulo" />
+    <text x="245.0" y="132" class="rotulo" text-anchor="middle">1</text>
+    <circle cx="335.0" cy="110" r="4.5" class="rotulo" />
+    <text x="335.0" y="132" class="rotulo" text-anchor="middle">3</text>
+    <text x="300" y="196" class="rotulo-fraco">raízes: onde o gráfico</text>
+    <text x="300" y="210" class="rotulo-fraco">corta o eixo x (y = 0)</text>
+  </svg>
+</figure>
+
+#### 2. Domínio
+
+O **domínio** é o conjunto de x que podem ser usados. Num problema real, vai do **começo** ao **fim** da situação, conforme o texto. Valores que não aconteceram **não entram**.
+
+#### 3. Proporção inversa
+
+**y = k ÷ x**: o **produto** x × y é constante. O gráfico é um **ramo de hipérbole**, que nunca toca os eixos (**assíntotas**).
+
+<figure class="figura">
+  <svg viewBox="0 0 460 210" role="img" aria-labelledby="fig-polin-3-rev-t fig-polin-3-rev-d">
+    <title id="fig-polin-3-rev-t">Gráfico de y = 12 ÷ x</title>
+    <desc id="fig-polin-3-rev-d">Gráfico da curva y = 12 ÷ x para x positivo, com os pontos (1; 12), (2; 6), (3; 4), (4; 3), (6; 2) e (12; 1). A curva desce depressa no começo e depois cada vez mais devagar, chegando perto dos dois eixos sem nunca tocá-los. Em todos os pontos, x vezes y dá 12.</desc>
+    <line x1="50" y1="190" x2="428" y2="190" class="traco-fino" />
+    <line x1="50" y1="190" x2="50" y2="8" class="traco-fino" />
+    <text x="428" y="206" class="rotulo-fraco" text-anchor="end">x</text>
+    <text x="42" y="16" class="rotulo-fraco" text-anchor="end">y</text>
+    <path d="M 76.6 13.2 L 79.4 30.1 L 82.2 44.0 L 85.0 55.7 L 87.8 65.7 L 90.7 74.3 L 93.5 81.8 L 96.3 88.4 L 99.1 94.2 L 101.9 99.4 L 104.7 104.0 L 107.5 108.2 L 110.3 112.0 L 113.2 115.5 L 116.0 118.7 L 118.8 121.6 L 121.6 124.3 L 124.4 126.8 L 127.2 129.1 L 130.0 131.2 L 132.8 133.2 L 135.6 135.1 L 138.5 136.8 L 141.3 138.5 L 144.1 140.0 L 146.9 141.5 L 149.7 142.8 L 152.5 144.1 L 155.3 145.3 L 158.1 146.5 L 161.0 147.6 L 163.8 148.7 L 166.6 149.6 L 169.4 150.6 L 172.2 151.5 L 175.0 152.4 L 177.8 153.2 L 180.6 154.0 L 183.4 154.7 L 186.3 155.5 L 189.1 156.2 L 191.9 156.8 L 194.7 157.5 L 197.5 158.1 L 200.3 158.7 L 203.1 159.3 L 205.9 159.8 L 208.7 160.4 L 211.6 160.9 L 214.4 161.4 L 217.2 161.9 L 220.0 162.3 L 222.8 162.8 L 225.6 163.2 L 228.4 163.6 L 231.2 164.0 L 234.1 164.4 L 236.9 164.8 L 239.7 165.2 L 242.5 165.6 L 245.3 165.9 L 248.1 166.3 L 250.9 166.6 L 253.7 166.9 L 256.5 167.2 L 259.4 167.5 L 262.2 167.8 L 265.0 168.1 L 267.8 168.4 L 270.6 168.7 L 273.4 168.9 L 276.2 169.2 L 279.0 169.5 L 281.9 169.7 L 284.7 170.0 L 287.5 170.2 L 290.3 170.4 L 293.1 170.6 L 295.9 170.9 L 298.7 171.1 L 301.5 171.3 L 304.3 171.5 L 307.2 171.7 L 310.0 171.9 L 312.8 172.1 L 315.6 172.3 L 318.4 172.5 L 321.2 172.7 L 324.0 172.8 L 326.8 173.0 L 329.6 173.2 L 332.5 173.3 L 335.3 173.5 L 338.1 173.7 L 340.9 173.8 L 343.7 174.0 L 346.5 174.1 L 349.3 174.3 L 352.1 174.4 L 355.0 174.6 L 357.8 174.7 L 360.6 174.9 L 363.4 175.0 L 366.2 175.1 L 369.0 175.3 L 371.8 175.4 L 374.6 175.5 L 377.4 175.6 L 380.3 175.8 L 383.1 175.9 L 385.9 176.0 L 388.7 176.1 L 391.5 176.2 L 394.3 176.3 L 397.1 176.4 L 399.9 176.6 L 402.8 176.7 L 405.6 176.8 L 408.4 176.9 L 411.2 177.0 L 414.0 177.1" class="traco" />
+    <circle cx="78.0" cy="22.0" r="4" class="rotulo" />
+    <circle cx="106.0" cy="106.0" r="4" class="rotulo" />
+    <circle cx="134.0" cy="134.0" r="4" class="rotulo" />
+    <circle cx="162.0" cy="148.0" r="4" class="rotulo" />
+    <circle cx="218.0" cy="162.0" r="4" class="rotulo" />
+    <circle cx="386.0" cy="176.0" r="4" class="rotulo" />
+    <text x="114" y="102" class="rotulo-fraco">(2; 6)</text>
+    <text x="170" y="142" class="rotulo-fraco">(4; 3)</text>
+    <text x="386" y="166" class="rotulo-fraco" text-anchor="middle">(12; 1)</text>
+    <text x="190" y="50" class="rotulo">y = 12 ÷ x: x vezes y dá sempre 12</text>
+    <text x="190" y="68" class="rotulo-fraco">a curva se aproxima dos eixos,</text>
+    <text x="190" y="82" class="rotulo-fraco">mas nunca os toca</text>
+  </svg>
+</figure>
+
+#### 4. Tempo e velocidade
+
+**t = d ÷ v**: a **unidade** sai da conta (km ÷ km/h dá **horas**), e **× 60** passa para minutos.
+
+#### 5. Inverso do quadrado
+
+**y = k ÷ x²**: se x fica n vezes maior, y fica **dividido por n²**. Quem está **mais perto** recebe mais.
+
+#### 6. Formato pela equação
+
+Isole y: **reta** (x¹), **parábola** (x²), **hipérbole** (x no denominador), **exponencial** (x no expoente). Somar números só **desloca**.
+
+<figure class="figura">
+  <svg viewBox="0 0 460 136" role="img" aria-labelledby="fig-polin-4-rev-t fig-polin-4-rev-d">
+    <title id="fig-polin-4-rev-t">Formas de gráfico que o ENEM mistura</title>
+    <desc id="fig-polin-4-rev-d">Quatro gráficos pequenos lado a lado. A reta, y = ax + b, desce e corta os dois eixos. A parábola, y = ax² + bx + c, sobe e desce em forma de arco. A hipérbole, y = k ÷ x, desce muito no começo e depois quase deita, sem tocar nenhum eixo. A exponencial, y = b × aˣ, começa num ponto do eixo y e desce até quase encostar no eixo x.</desc>
+    <line x1="15" y1="94" x2="110" y2="94" class="traco-fino" />
+    <line x1="15" y1="14" x2="15" y2="94" class="traco-fino" />
+    <line x1="15" y1="22" x2="95" y2="94" class="traco" />
+    <text x="62.5" y="114" class="rotulo" text-anchor="middle">reta</text>
+    <text x="62.5" y="128" class="rotulo-fraco" text-anchor="middle">y = ax + b</text>
+    <line x1="128" y1="94" x2="223" y2="94" class="traco-fino" />
+    <line x1="128" y1="14" x2="128" y2="94" class="traco-fino" />
+    <path d="M 136 94 Q 175.5 -50 215 94" class="traco" />
+    <text x="175.5" y="114" class="rotulo" text-anchor="middle">parábola</text>
+    <text x="175.5" y="128" class="rotulo-fraco" text-anchor="middle">y = ax² + bx + c</text>
+    <line x1="241" y1="94" x2="336" y2="94" class="traco-fino" />
+    <line x1="241" y1="14" x2="241" y2="94" class="traco-fino" />
+    <path d="M 249 16 Q 255 82 332 86" class="traco" />
+    <text x="288.5" y="114" class="rotulo" text-anchor="middle">hipérbole</text>
+    <text x="288.5" y="128" class="rotulo-fraco" text-anchor="middle">y = k ÷ x</text>
+    <line x1="354" y1="94" x2="449" y2="94" class="traco-fino" />
+    <line x1="354" y1="14" x2="354" y2="94" class="traco-fino" />
+    <path d="M 354 34 Q 378 90 445 90" class="traco" />
+    <text x="401.5" y="114" class="rotulo" text-anchor="middle">exponencial</text>
+    <text x="401.5" y="128" class="rotulo-fraco" text-anchor="middle">y = b × aˣ</text>
+  </svg>
+</figure>
+
+</div>
+
+## Questões do ENEM
+
+*Marque uma alternativa em cada questão e confira tudo de uma vez no botão do fim.*
+
+**Questão 1**
+
+*ENEM 2016 · 2ª aplicação · 2º dia · caderno azul · questão 144*
+
+O veículo terrestre mais veloz já fabricado até hoje é o Sonic Wind LSRV, que está sendo preparado para atingir a velocidade de 3 000 km/h. Ele é mais veloz do que o Concorde, um dos aviões de passageiros mais rápidos já feitos, que alcança 2 330 km/h.
+
+Foto: ver prova oficial, página 20 ([PDF do INEP](https://download.inep.gov.br/educacao%5Fbasica/enem/provas/2016/P2%5F07%5FAZUL%5FLC%5FMT%5F2016%5FREG.pdf)). A foto mostra o Sonic Wind, um veículo longo e fino, em forma de foguete, parado num terreno plano e seco.
+
+Para uma distância fixa, a velocidade e o tempo são inversamente proporcionais.
+
+BASILIO, A. Galileu, mar. 2012 (adaptado).
+
+Para percorrer uma distância de 1 000 km, o valor mais próximo da diferença, em minuto, entre os tempos gastos pelo Sonic Wind LSRV e pelo Concorde, em suas velocidades máximas, é
+
+A) 0,1.\
+B) 0,7.\
+C) 6,0.\
+D) 11,2.\
+E) 40,2.
+
+**Questão 2**
+
+*ENEM 2025 · 2ª aplicação · 2º dia · caderno azul · questão 161*
+
+Um gerador emite um sinal cuja intensidade I recebida por um receptor é inversamente proporcional ao quadrado da distância desse receptor ao gerador. O receptor 1 recebe uma intensidade de sinal I₁ desse gerador, enquanto que o receptor 2 recebe uma intensidade de sinal I₂ desse mesmo gerador. Sabe-se que a distância do receptor 2 ao gerador é o dobro da distância do receptor 1 ao gerador.
+
+As intensidades I₁ e I₂ satisfazem a relação
+
+A) I₁ = 4I₂\
+B) I₁ = 2I₂\
+C) I₁ = I₂\
+D) I₁ = (1/2)I₂\
+E) I₁ = (1/4)I₂
+
+**Questão 3**
+
+*ENEM 2018 · 2ª aplicação · 2º dia · caderno azul · questão 138*
+
+A resistência elétrica R de um condutor homogêneo é inversamente proporcional à área S de sua seção transversal.
+
+Desenho: ver prova oficial, página 17 ([PDF do INEP](https://download.inep.gov.br/educacao%5Fbasica/enem/provas/2018/2018%5FPV%5Freaplicacao%5FPPL%5FD2%5FCD19.pdf)). O desenho mostra um fio em forma de cilindro deitado, chamado "Condutor homogêneo", com a ponta da esquerda hachurada e marcada como "Seção transversal"; uma seta indica o raio dessa seção.
+
+Disponível em: http://efisica.if.usp.br. Acesso em: 2 ago. 2012.
+
+O gráfico que representa a variação da resistência R do condutor em função da área S de sua seção transversal é
+
+<figure class="figura">
+
+![Cinco gráficos de R em função de S, marcados de A a E. A: uma reta que desce do eixo R até tocar o eixo S. B: um arco que começa no eixo R quase horizontal e cai até tocar o eixo S. C: uma curva que começa muito alta perto do eixo R e desce cada vez mais devagar, aproximando-se do eixo S sem tocá-lo e sem tocar o eixo R. D: uma reta que sobe a partir da origem. E: uma curva que começa num ponto do eixo R e desce devagar, quase deitando sobre o eixo S.](./img/funcoes-polinomiais-e-racionais/q3-alternativas.png)
+
+</figure>
+
+A) Gráfico A\
+B) Gráfico B\
+C) Gráfico C\
+D) Gráfico D\
+E) Gráfico E
+
+**Questão 4**
+
+*ENEM 2017 · 2º dia · caderno azul · questão 162*
+
+O fisiologista inglês Archibald Vivian Hill propôs, em seus estudos, que a velocidade v de contração de um músculo ao ser submetido a um peso p é dada pela equação (p + a) (v + b) = K, com a, b e K constantes.
+
+Um fisioterapeuta, com o intuito de maximizar o efeito benéfico dos exercícios que recomendaria a um de seus pacientes, quis estudar essa equação e a classificou desta forma:
+
+| Tipo de curva |
+|---|
+| Semirreta oblíqua |
+| Semirreta horizontal |
+| Ramo de parábola |
+| Arco de circunferência |
+| Ramo de hipérbole |
+
+O fisioterapeuta analisou a dependência entre v e p na equação de Hill e a classificou de acordo com sua representação geométrica no plano cartesiano, utilizando o par de coordenadas (p ; v). Admita que K > 0.
+
+Disponível em: http://rspb.royalsocietypublishing.org. Acesso em: 14 jul. 2015 (adaptado).
+
+O gráfico da equação que o fisioterapeuta utilizou para maximizar o efeito dos exercícios é do tipo
+
+A) semirreta oblíqua.\
+B) semirreta horizontal.\
+C) ramo de parábola.\
+D) arco de circunferência.\
+E) ramo de hipérbole.
+
+**Questão 5**
+
+*ENEM 2022 · 2ª aplicação · 2º dia · caderno azul · questão 166*
+
+A trajetória de uma pessoa que pula de um andaime até o chão é descrita por uma função y = f(x), sendo x e y medidos em metro, conforme mostra a figura.
+
+<figure class="figura">
+
+![Gráfico com x e y em metros. À esquerda do eixo y há o desenho de uma pessoa agachada sobre um andaime. A trajetória é uma parábola, f(x) = ax² + bx + c, que começa no eixo y, na altura de cerca de 0,75 m (o andaime), sobe até pouco menos de 1,5 m perto de x = 0,75 e desce até tocar o chão, no eixo x, perto de x = 1,8 m.](./img/funcoes-polinomiais-e-racionais/q5.png)
+
+</figure>
+
+Seja D o domínio da função f(x), como definida na figura.
+
+Para que a situação representada na figura seja real, o domínio dessa função deve ser igual a
+
+A) &#123;x₂&#125;, sendo x₂ a raiz positiva de f(x).\
+B) &#123;x ∈ ℝ | 0 ≤ x ≤ x₂&#125;, sendo x₂ a raiz positiva de f(x).\
+C) &#123;x ∈ ℝ | x₁ ≤ x ≤ x₂&#125;, sendo x₁ e x₂ raízes de f(x), com x₁ &lt; x₂.\
+D) &#123;x ∈ ℝ | x ≥ 0&#125;.\
+E) x ∈ ℝ.

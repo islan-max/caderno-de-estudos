@@ -59,7 +59,9 @@ const SOBRESCRITO = { '⁰': '0', '¹': '1', '²': '2', '³': '3', '⁴': '4', '
 // Uma folga antes do grupo inteiro (não de cada caractere): "10¹²" vira "10 12", um único token "12",
 // igual ao "10^12" do banco depois de perder o "^" na troca de símbolos por espaço, mais abaixo.
 const semSobrescrito = (t) => t.replace(/[⁰¹²³⁴⁵⁶⁷⁸⁹⁻⁺₀₁₂₃₄₅₆₇₈₉ⁿₙˣᵗₛ]+/g, (grupo) => ' ' + [...grupo].map((c) => SOBRESCRITO[c]).join(''));
-const normal = (t) => semAcento(semSobrescrito(t)).toLowerCase().replace(/[^a-z0-9%,.]+/g, ' ').trim();
+// entidades (&#123; para "{", que o MDX não aceita cru; &lt;) contam como o caractere que representam
+const semEntidades = (t) => t.replace(/&#(\d+);/g, (_, n) => String.fromCharCode(Number(n))).replace(/&lt;/g, '<').replace(/&gt;/g, '>');
+const normal = (t) => semAcento(semSobrescrito(semEntidades(t))).toLowerCase().replace(/[^a-z0-9%,.]+/g, ' ').trim();
 
 function semelhanca(a, b) {
   const pa = new Set(normal(a).split(' ').filter(Boolean));
@@ -495,7 +497,9 @@ function validar(arquivo) {
       const aplicacoes = apl ? APLICACOES[apl.toLowerCase()] : ['regular'];
       const aplicacao = aplicacoes.join('/');
       const achadas = lista.filter((b) => b.ano === Number(ano) && aplicacoes.includes(b.aplicacao) && b.dia === Number(dia) && b.cor === cor
-        && b.numero === Number(num) && (!lingua || b.lingua === lingua.replace('ê', 'e')));
+        && b.numero === Number(num) && (!lingua || b.lingua === lingua.replace('ê', 'e')))
+        // mesmo ano e cor em duas aplicações (2014: 2ª e 3ª, ambas cinza): vale a primeira da lista do rótulo
+        .sort((x, y) => aplicacoes.indexOf(x.aplicacao) - aplicacoes.indexOf(y.aplicacao));
       if (!achadas.length) {
         erro(q.linhaFonte, `questão ${q.n}: não está no banco do INEP (${ano} ${aplicacao} D${dia} ${cor} Q${num}${lingua ? ' ' + lingua : ''}). Use \`banco_inep.py localizar\` ou corrija a fonte`);
         return;

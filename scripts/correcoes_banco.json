@@ -962,5 +962,103 @@
       "540 cm³."
     ],
     "alternativas_em_imagem": false
+  },
+  "2016-segunda-aplicacao-D2-azul-Q180": {
+    "nota": "última questão do dia: a extração pegou a folha de redação da página 32 como região e figura; conferido na imagem da página em 14/10/2026",
+    "regioes": [
+      {
+        "pagina": 31,
+        "bbox": [
+          314.1,
+          471.9,
+          628.1,
+          767.9
+        ]
+      }
+    ],
+    "figuras": []
+  },
+  "2017-ppl-D2-azul-Q139": {
+    "nota": "frações empilhadas nas alternativas; conferido na imagem da página em 14/10/2026",
+    "alternativas": [
+      "x/y = 4/3",
+      "x/y = 3/4",
+      "x/y > 4/3",
+      "x/y > 3/4",
+      "x/y < 4/3"
+    ]
+  },
+  "2014-regular-D2-azul-Q162": {
+    "nota": "a figura é o quadro das faixas, transcrito como tabela na aula; conferido na imagem da página em 14/10/2026",
+    "figuras": []
+  },
+  "2022-ppl-D2-azul-Q173": {
+    "nota": "a figura é o quadro de compras, transcrito como tabela na aula; conferido na imagem da página em 14/10/2026",
+    "figuras": []
+  },
+  "2014-ppl-D2-cinza-Q157": {
+    "nota": "a figura detectada é a tarja cinza da margem do caderno; conferido na imagem da página em 14/10/2026",
+    "figuras": []
+  },
+  "2014-terceira-aplicacao-D2-cinza-Q177": {
+    "nota": "a alternativa E (20) não foi extraída e a questão ficou marcada como alternativas em imagem; as alternativas são texto; conferido na imagem da página em 14/10/2026",
+    "alternativas": [
+      "5",
+      "6",
+      "9",
+      "16",
+      "20"
+    ],
+    "alternativas_em_imagem": false
+  },
+  "2013-regular-D2-azul-Q149": {
+    "nota": "a figura é o quadro da projeção, transcrito como tabela na aula; conferido na imagem da página em 14/10/2026",
+    "figuras": []
+  },
+  "2018-ppl-D2-azul-Q138": {
+    "nota": "alternativas são gráficos (recortados para a aula); o texto extraído era só R e S; conferido na imagem da página em 14/10/2026",
+    "alternativas": [
+      "Gráfico A",
+      "Gráfico B",
+      "Gráfico C",
+      "Gráfico D",
+      "Gráfico E"
+    ],
+    "alternativas_em_imagem": true
+  },
+  "2025-reaplicacao-D2-azul-Q161": {
+    "nota": "índices e frações das alternativas embaralhados; conferido na imagem da página em 14/10/2026",
+    "alternativas": [
+      "I₁ = 4I₂",
+      "I₁ = 2I₂",
+      "I₁ = I₂",
+      "I₁ = (1/2)I₂",
+      "I₁ = (1/4)I₂"
+    ]
+  },
+  "2022-ppl-D2-azul-Q166": {
+    "nota": "notação de conjunto das alternativas embaralhada e marca d'água no texto; conferido na imagem da página em 14/10/2026",
+    "texto": "A trajetória de uma pessoa que pula de um andaime até o chão é descrita por uma função y = f(x), sendo x e y medidos em metro, conforme mostra a figura. Seja D o domínio da função f(x), como definida na figura. Para que a situação representada na figura seja real, o domínio dessa função deve ser igual a",
+    "alternativas": [
+      "{x₂}, sendo x₂ a raiz positiva de f(x).",
+      "{x ∈ ℝ | 0 ≤ x ≤ x₂}, sendo x₂ a raiz positiva de f(x).",
+      "{x ∈ ℝ | x₁ ≤ x ≤ x₂}, sendo x₁ e x₂ raízes de f(x), com x₁ < x₂.",
+      "{x ∈ ℝ | x ≥ 0}.",
+      "x ∈ ℝ."
+    ]
+  },
+  "2017-regular-D2-azul-Q162": {
+    "nota": "a figura é o quadro dos tipos de curva, transcrito como tabela na aula; conferido na imagem da página em 14/10/2026",
+    "figuras": []
+  },
+  "2022-ppl-D2-azul-Q155": {
+    "nota": "índice e expoentes de N₀ embaralhados nas alternativas; conferido na imagem da página em 14/10/2026",
+    "alternativas": [
+      "N₀, N₀², N₀³, N₀⁴, N₀⁵, N₀⁶",
+      "N₀, N₀², N₀⁴, N₀⁸, N₀¹⁶, N₀³²",
+      "N₀, 2N₀, 3N₀, 4N₀, 5N₀, 6N₀",
+      "N₀, 2N₀, 4N₀, 8N₀, 16N₀, 32N₀",
+      "N₀, 3N₀, 7N₀, 15N₀, 31N₀, 63N₀"
+    ]
   }
 }
