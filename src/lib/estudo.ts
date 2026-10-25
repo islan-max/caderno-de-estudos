@@ -780,6 +780,14 @@ export const COMO_CALCULAMOS = {
     naoMede: 'Quanto tempo você estudou nem se aprendeu. Estudo fora do site não tem matéria do caderno e não entra aqui. Dias sem registro não são cobrados.',
     melhorar: 'Escolha metas que cabem na sua semana (1 ou 2 dias já mantêm o hábito) e mude quando a vida mudar: a meta é sua e pode ser trocada ou apagada a qualquer hora.',
   },
+  recomendacao: {
+    titulo: 'Recomendações',
+    entra: 'As matérias que você marcou, os “gostei” e “não quero algo assim” que você deu e as aulas que você já concluiu.',
+    calculo:
+      'Cada aula tem etiquetas: a matéria (peso maior), o grupo e os termos mais raros do título. Sua matéria marcada soma 1 na etiqueta da matéria; cada “gostei” soma meio ponto em todas as etiquetas da aula, e cada “não quero” tira meio ponto. A nota da aula é a soma dos pesos das etiquetas que ela tem. Entram só as de nota positiva, sem as já concluídas nem as já avaliadas.',
+    naoMede: 'Se a aula serve para você agora: não olha dificuldade, pré-requisito nem o texto da aula, só o título e a matéria. Sem matéria marcada nem avaliação, não há sugestão.',
+    melhorar: 'Marque poucas matérias de cada vez e use “não quero algo assim” sem culpa: ele afasta aulas parecidas. Apagar uma avaliação devolve a aula à lista.',
+  },
   materia: {
     titulo: 'Por matéria',
     entra: 'As aulas marcadas como vistas e as seções com resposta registrada.',

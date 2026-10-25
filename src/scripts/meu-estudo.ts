@@ -16,7 +16,8 @@ import { confirmarAcao } from './confirmacao';
 import { filaDeHoje } from './fila';
 import { CHAVE_ANDAMENTO, CHAVE_PROGRESSO, andamentos, vistas } from './progresso';
 import type { Andamento } from './progresso';
-import { apagarEvento, gravarMetas, gravarRegistro, lerAjustes, lerMetas, lerRegistro, registrar } from './registro';
+import { apagarEvento, gravarMetas, gravarPreferencias, gravarRegistro, lerAjustes, lerMetas, lerPreferencias, lerRegistro, registrar } from './registro';
+import { mesclarPreferencias, normalizarPreferencias } from '../lib/recomendacao';
 import { dataExtensa, escapar, gravar, ler } from './util';
 
 /** O painel de dias mostra sempre os últimos 6 meses (180 dias). */
@@ -612,6 +613,7 @@ export async function montarEstudo() {
         andamento: andamentos(),
         ajustes: lerAjustes(),
         metas: lerMetas(),
+        recomendacao: lerPreferencias(),
       };
       const arquivo = new Blob([JSON.stringify(pacote, null, 1)], { type: 'application/json' });
       const url = URL.createObjectURL(arquivo);
@@ -667,6 +669,7 @@ export async function montarEstudo() {
 
     // Metas: as do arquivo entram só onde a matéria ainda não tem meta aqui.
     gravarMetas({ ...normalizarMetas(dados.metas), ...lerMetas() });
+    gravarPreferencias(mesclarPreferencias(lerPreferencias(), normalizarPreferencias(dados.recomendacao)));
 
     desenharTudo();
     avisarDados(`Dados juntados: ${plural(junto.eventos.length - antes.eventos.length, 'registro novo', 'registros novos')}.`);
