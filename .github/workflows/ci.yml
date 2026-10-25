@@ -23,7 +23,7 @@ jobs:
         run: |
           curl -sSfL -o /tmp/gl.tgz https://github.com/gitleaks/gitleaks/releases/download/v8.28.0/gitleaks_8.28.0_linux_x64.tar.gz
           tar -xzf /tmp/gl.tgz -C /tmp gitleaks
-          /tmp/gitleaks detect --redact --no-banner --exit-code 2
+          /tmp/gitleaks detect --redact --verbose --no-banner --exit-code 2
       # Falha em achado alto ou crítico nas dependências de produção; os moderados ficam em docs/VERIFICACAO.md.
       - run: npm audit --omit=dev --audit-level=high
       - run: npm ci --prefix scripts
