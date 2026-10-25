@@ -4,6 +4,8 @@
  * ------------------------------------------------------------------------- */
 import { DISPENSA_MS, FILA_MAX, FILA_MIN, LIMITES_FILA, dispensasAtivas, limparFoco, normalizarMetas, normalizarRegistro, proximoRetorno, semEvento } from '../lib/estudo.ts';
 import type { Dispensas, Metas } from '../lib/estudo.ts';
+import { normalizarPreferencias } from '../lib/recomendacao.ts';
+import type { Preferencias } from '../lib/recomendacao.ts';
 import type { Evento, Registro } from '../lib/estudo.ts';
 import { gravar, ler } from './util.ts';
 
@@ -11,6 +13,15 @@ export const CHAVE_REGISTRO = 'cdt:registro';
 export const CHAVE_AJUSTES = 'cdt:ajustes';
 export const CHAVE_DISPENSADOS_HOJE = 'cdt:hoje-dispensado';
 export const CHAVE_METAS = 'cdt:metas';
+export const CHAVE_RECOMENDACAO = 'cdt:recomendacao';
+
+export function lerPreferencias(): Preferencias {
+  return normalizarPreferencias(ler<unknown>(CHAVE_RECOMENDACAO, null));
+}
+
+export function gravarPreferencias(prefs: Preferencias): boolean {
+  return gravar(CHAVE_RECOMENDACAO, normalizarPreferencias(prefs));
+}
 
 export function lerMetas(): Metas {
   return normalizarMetas(ler<unknown>(CHAVE_METAS, null));

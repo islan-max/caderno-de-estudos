@@ -1,0 +1,67 @@
+---
+// Recomendações: aulas sugeridas a partir das matérias que você escolhe e dos "gostei" e "não
+// quero". As regras estão em src/lib/recomendacao.ts; a página é montada no navegador por
+// src/scripts/recomendacoes.ts e nada sai deste navegador.
+import Base from '../layouts/Base.astro';
+import Icone from '../components/Icone.astro';
+import AjudaDaPagina from '../components/AjudaDaPagina.astro';
+import { u } from '../lib/url';
+---
+
+<Base
+  title="Recomendações"
+  active="estudo"
+  description="Aulas sugeridas pelas matérias que você escolhe e pelo que você curte"
+  voltar={{ href: u('/meu-estudo'), label: 'Meu estudo' }}
+>
+  <div class="estudo" data-recomendacoes>
+    <header class="est-hero" data-surgir>
+      <p class="est-hero__selo"><Icone nome="chart-line" /> Recomendações</p>
+      <h1 class="est-hero__h1">Aulas para ver a seguir</h1>
+      <p class="est-hero__intro">
+        Escolha as matérias que interessam e diga “gostei” ou “não quero algo assim” nas sugestões:
+        a lista muda e cada aula mostra por que apareceu. Não há ranking nem dado de outras pessoas, e
+        suas escolhas ficam só neste navegador.
+      </p>
+    </header>
+
+    <p class="estudo__status" data-rec-status role="status">Montando…</p>
+
+    <div class="estudo__corpo" data-rec-corpo hidden>
+      <section class="est-bloco est-bloco--metas" aria-labelledby="rec-materias">
+        <header class="est-bloco__cabeca">
+          <span class="est-bloco__icone"><Icone nome="layer-group" /></span>
+          <div>
+            <h2 id="rec-materias" class="est-bloco__titulo">Suas matérias</h2>
+            <p class="est-bloco__sub">Marque as que você quer ver nas sugestões. Dá para mudar quando quiser.</p>
+          </div>
+        </header>
+        <div data-rec-materias></div>
+      </section>
+
+      <section class="est-bloco est-bloco--materias" aria-labelledby="rec-sugestoes">
+        <header class="est-bloco__cabeca">
+          <span class="est-bloco__icone"><Icone nome="timeline" /></span>
+          <div>
+            <h2 id="rec-sugestoes" class="est-bloco__titulo" tabindex="-1">Sugestões</h2>
+            <p class="est-bloco__sub">Sem aulas já concluídas nem já avaliadas.</p>
+          </div>
+        </header>
+        <div data-rec-sugestoes></div>
+      </section>
+
+      <section class="est-bloco est-bloco--historico" aria-labelledby="rec-avaliadas">
+        <header class="est-bloco__cabeca">
+          <span class="est-bloco__icone"><Icone nome="clock" /></span>
+          <div>
+            <h2 id="rec-avaliadas" class="est-bloco__titulo">Suas avaliações</h2>
+            <p class="est-bloco__sub">Desfazer uma avaliação devolve a aula às sugestões.</p>
+          </div>
+        </header>
+        <div data-rec-avaliadas></div>
+      </section>
+    </div>
+
+    <AjudaDaPagina titulo="Como as sugestões são feitas" chaves={['recomendacao']} />
+  </div>
+</Base>
