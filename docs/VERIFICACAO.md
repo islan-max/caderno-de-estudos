@@ -24,7 +24,7 @@ Modelo: checklist de publicação e relatório de verificação do guia de desen
 | S06-01 | Bloqueador | Dados e respostas | Nada do resumo é guardado; metas e recomendações ficam no `localStorage`; exportação gera arquivo local | APROVADO | B, `privacidade.astro` |
 | S07-01 | Bloqueador | HTTPS e cabeçalhos | HTTPS e HSTS vêm do GitHub Pages. **Cabeçalhos próprios (CSP, nosniff) não são controlados em Pages** e não há `<meta>` de CSP | NÃO VERIFICADO | limitação da hospedagem |
 | S08-01 | Recomendado | Limites | Sem servidor não há o que limitar além do tamanho do arquivo e da transcrição | N/A | — |
-| S09-01 | Bloqueador | Dependências sem vulnerabilidades conhecidas | `npm audit --omit=dev` tinha 14 achados (1 crítico em `astro`); depois do PR #28 restam **2 moderados** em `postcss-selector-parser` via `@tailwindcss/typography` (CPU ao analisar seletores, só no build). O conserto automático propõe rebaixar o plugin e não foi aplicado | FALHOU (2 moderados) | CI: não roda `npm audit`; rodado à mão |
+| S09-01 | Bloqueador | Dependências sem vulnerabilidades conhecidas | `npm audit --omit=dev` tinha 14 achados (1 crítico em `astro`); depois do PR #28 restam **2 moderados** em `postcss-selector-parser` via `@tailwindcss/typography` (CPU ao analisar seletores, só no build). O conserto automático propõe rebaixar o plugin e não foi aplicado | FALHOU (2 moderados) | CI: `npm audit --audit-level=high` passa a rodar e barra achados altos e críticos |
 | Q01-01 | Bloqueador | Funcionamento | Metas: definir, rejeitar valor inválido, remover; Recomendações: marcar matéria, dar 👍, desfazer; Resumo: erros de campo vazio e de endereço fora do YouTube, 3 trechos, link do minuto, desmarcar reduz o texto exportado. Conferido local e, para o resumo, também no site publicado | APROVADO | B |
 | Q01-02 | Bloqueador | Celular | Layout usa as mesmas regras responsivas do caderno, **não foi aberto em celular nem em largura estreita** | NÃO VERIFICADO | pendente |
 | Q01-03 | Recomendado | Outros navegadores | Só o navegador do app (Chromium) | NÃO VERIFICADO | pendente |
@@ -42,7 +42,7 @@ Modelo: checklist de publicação e relatório de verificação do guia de desen
 | Controle | Impacto | O que falta |
 |---|---|---|
 | S01-01 | Bloqueia "publicado e verificado" | **Ação do responsável:** conferir se o projeto Supabase e o deploy da Vercel de jul/2026 ainda existem; se existirem, trocar o `middlewareSecret` e a chave do Astro e rever a chave anon. Reescrever o histórico só se o responsável decidir (é destrutivo) |
-| S09-01 | Moderado, só no build | Esperar versão de `@tailwindcss/typography` que não dependa do `postcss-selector-parser` vulnerável; pôr `npm audit` no CI |
+| S09-01 | Moderado, só no build | Esperar versão de `@tailwindcss/typography` que não dependa do `postcss-selector-parser` vulnerável |
 | Q01-02, Q01-03, A11Y-02 | Recomendados | Testar em celular, em Firefox/Safari e com leitor de tela |
 | F-03 | Recomendado | Testar o resumo com transcrições reais (dois ou três vídeos) e anotar o que falha |
 | S07-01 | Limite da hospedagem | Se importar, publicar atrás de um serviço que permita CSP |
