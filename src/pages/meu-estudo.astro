@@ -43,6 +43,32 @@ import { u } from '../lib/url';
         <div data-bloco="dias"></div>
       </section>
 
+      <section class="est-bloco est-bloco--metas" aria-labelledby="estudo-metas">
+        <header class="est-bloco__cabeca">
+          <span class="est-bloco__icone"><Icone nome="chart-line" /></span>
+          <div>
+            <h2 id="estudo-metas" class="est-bloco__titulo" tabindex="-1">Metas da semana</h2>
+            <p class="est-bloco__sub">Opcional: escolha quantos dias da semana (segunda a domingo) quer estudar uma matéria. Conta dia com ação, não tempo; semana que passou não deixa dívida.</p>
+          </div>
+        </header>
+        <div data-bloco="metas"></div>
+        <form class="metas__form" data-metas-form novalidate>
+          <div class="metas__campos">
+            <div class="campo">
+              <label for="meta-materia">Matéria</label>
+              <select id="meta-materia" name="materia" data-metas-materia></select>
+            </div>
+            <div class="campo campo--curto">
+              <label for="meta-dias">Dias por semana</label>
+              <input id="meta-dias" name="dias" type="number" min="1" max="7" value="3" inputmode="numeric" />
+            </div>
+            <button type="submit" class="est-botao est-botao--principal"><Icone nome="plus" /> Definir meta</button>
+          </div>
+          <p class="fora__erro" data-metas-erro role="alert" hidden></p>
+          <p class="apenas-leitor" role="status" data-metas-ok></p>
+        </form>
+      </section>
+
       <section class="est-bloco est-bloco--materias" aria-labelledby="estudo-materias">
         <header class="est-bloco__cabeca">
           <span class="est-bloco__icone"><Icone nome="layer-group" /></span>
@@ -136,7 +162,7 @@ import { u } from '../lib/url';
       </section>
     </div>
 
-    <AjudaDaPagina titulo="Como ler esta página" chaves={['dias', 'materia', 'revisao']}>
+    <AjudaDaPagina titulo="Como ler esta página" chaves={['dias', 'metas', 'materia', 'revisao']}>
       <p class="ajuda__texto">
         Esta página é calculada, na hora, do histórico guardado neste navegador. Apagar um registro ou
         desmarcar uma aula muda tudo o que depende dele. Dia sem quadrado colorido é “sem registro”,

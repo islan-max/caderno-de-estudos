@@ -2,14 +2,23 @@
  * Registro de estudo no navegador: o que foi respondido, revisado e estudado fora do site.
  * As regras (estados, fila, sugestões) ficam em src/lib/estudo.ts; aqui só se lê e grava.
  * ------------------------------------------------------------------------- */
-import { DISPENSA_MS, FILA_MAX, FILA_MIN, LIMITES_FILA, dispensasAtivas, limparFoco, normalizarRegistro, proximoRetorno, semEvento } from '../lib/estudo.ts';
-import type { Dispensas } from '../lib/estudo.ts';
+import { DISPENSA_MS, FILA_MAX, FILA_MIN, LIMITES_FILA, dispensasAtivas, limparFoco, normalizarMetas, normalizarRegistro, proximoRetorno, semEvento } from '../lib/estudo.ts';
+import type { Dispensas, Metas } from '../lib/estudo.ts';
 import type { Evento, Registro } from '../lib/estudo.ts';
 import { gravar, ler } from './util.ts';
 
 export const CHAVE_REGISTRO = 'cdt:registro';
 export const CHAVE_AJUSTES = 'cdt:ajustes';
 export const CHAVE_DISPENSADOS_HOJE = 'cdt:hoje-dispensado';
+export const CHAVE_METAS = 'cdt:metas';
+
+export function lerMetas(): Metas {
+  return normalizarMetas(ler<unknown>(CHAVE_METAS, null));
+}
+
+export function gravarMetas(metas: Metas): boolean {
+  return gravar(CHAVE_METAS, normalizarMetas(metas));
+}
 
 export function lerRegistro(): Registro {
   return normalizarRegistro(ler<unknown>(CHAVE_REGISTRO, null));
