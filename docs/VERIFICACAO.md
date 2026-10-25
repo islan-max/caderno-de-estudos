@@ -15,7 +15,7 @@ Modelo: checklist de publicação e relatório de verificação do guia de desen
 
 | ID | Criticidade | Esperado | Observado | Estado | Evidência |
 |---|---|---|---|---|---|
-| S01-01 | Bloqueador | Sem segredos no código nem no histórico | Não há chaves, tokens nem servidores neste repositório; **nenhuma varredura (gitleaks) foi executada** | NÃO VERIFICADO | pendente: varredura no CI |
+| S01-01 | Bloqueador | Sem segredos no código nem no histórico | gitleaks (CI) no histórico de 520 commits achou **6 valores** no commit `938c375` (jul/2026), em `.vercel/output/` (saída de build da Vercel commitada por engano e ignorada depois): uma chave anon do Supabase (pública por desenho), um `middlewareSecret` e uma chave de servidor do Astro, ambos gerados a cada build de um deploy que não existe mais. Nada disso está na árvore atual. **O histórico não foi reescrito e os valores não foram trocados**: a pasta foi liberada por caminho em `.gitleaks.toml` para o CI voltar a proteger o resto | FALHOU (histórico) | CI, `.gitleaks.toml` |
 | S02-01 | Bloqueador | Autenticação e permissões | Não há login nem servidor; dados só no navegador de quem usa | N/A | `docs/plano-aprendizagem.md`, README |
 | S03-01 | Bloqueador | Banco e isolamento | Não há banco | N/A | — |
 | S04-01 | Bloqueador | Entrada validada | `cdt:metas` e `cdt:recomendacao` são normalizados ao ler, gravar e importar (matéria e id por expressão fixa, 1 a 7 dias, 1 ou -1, limites de 12 metas, 12 interesses e 500 avaliações; `__proto__` e lixo descartados). A transcrição tem limites (1 MB, 60 mil palavras, 3 h) e o endereço aceita só hosts do YouTube | APROVADO | T: `estudo.test.ts`, `recomendacao.test.ts`, `resumo.test.ts` |
@@ -41,7 +41,7 @@ Modelo: checklist de publicação e relatório de verificação do guia de desen
 
 | Controle | Impacto | O que falta |
 |---|---|---|
-| S01-01 | Bloqueia "publicado e verificado" | Rodar gitleaks no histórico (e pôr no CI) |
+| S01-01 | Bloqueia "publicado e verificado" | **Ação do responsável:** conferir se o projeto Supabase e o deploy da Vercel de jul/2026 ainda existem; se existirem, trocar o `middlewareSecret` e a chave do Astro e rever a chave anon. Reescrever o histórico só se o responsável decidir (é destrutivo) |
 | S09-01 | Moderado, só no build | Esperar versão de `@tailwindcss/typography` que não dependa do `postcss-selector-parser` vulnerável; pôr `npm audit` no CI |
 | Q01-02, Q01-03, A11Y-02 | Recomendados | Testar em celular, em Firefox/Safari e com leitor de tela |
 | F-03 | Recomendado | Testar o resumo com transcrições reais (dois ou três vídeos) e anotar o que falha |
@@ -49,6 +49,6 @@ Modelo: checklist de publicação e relatório de verificação do guia de desen
 
 ## Parecer
 
-- Estado: **PRONTO PARA PUBLICAÇÃO CONTROLADA** (já está publicado, mas não "publicado e verificado no escopo": há bloqueadores sem evidência, S01-01 e S07-01, e dois achados moderados de dependência).
+- Estado: **PRONTO PARA PUBLICAÇÃO CONTROLADA** (já está publicado, mas não "publicado e verificado no escopo": há S01-01 (segredos antigos no histórico, não rotacionados), S07-01 sem evidência e dois achados moderados de dependência).
 - Justificativa: regras testadas, verificadores de contraste e acessibilidade verdes, fluxos conferidos no navegador e no site publicado; o que falta é de segurança do repositório e de teste em dispositivos reais.
 - Limitações: verificação feita pelo próprio autor do código, num só navegador; este relatório não afirma acessibilidade nem segurança absolutas.
