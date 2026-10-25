@@ -581,6 +581,163 @@ export function nivelDoDia(acoes: number): 0 | 1 | 2 | 3 | 4 {
   return 4;
 }
 
+/* ------------------------------------------------ metas semanais por matéria */
+
+/** Uma meta é "quantos dias da semana eu quero fazer alguma coisa desta matéria" (1 a 7). */
+export const META_DIAS_MIN = 1;
+export const META_DIAS_MAX = 7;
+const METAS_MAX = 12;
+
+/** "enem/fisica" → dias por semana. Escolhido pela pessoa, opcional. */
+export type Metas = Record<string, number>;
+
+const MATERIA_VALIDA = /^(enem|escolar|ds)\/[a-z0-9_-]+$/;
+
+/** Aceita qualquer coisa vinda do armazenamento ou de um arquivo importado e devolve só o que presta. */
+export function normalizarMetas(bruto: unknown): Metas {
+  const metas: Metas = {};
+  if (!bruto || typeof bruto !== 'object' || Array.isArray(bruto)) return metas;
+  for (const [materia, dias] of Object.entries(bruto as Record<string, unknown>)) {
+    if (Object.keys(metas).length >= METAS_MAX) break;
+    if (!MATERIA_VALIDA.test(materia) || typeof dias !== 'number' || !Number.isInteger(dias)) continue;
+    if (dias >= META_DIAS_MIN && dias <= META_DIAS_MAX) metas[materia] = dias;
+  }
+  return metas;
+}
+
+/** Quantos dias separam duas datas "AAAA-MM-DD" (b - a), sem depender de horário de verão. */
+export function diasEntre(a: string, b: string): number {
+  const t = (d: string) => {
+    const [ano, mes, dia] = d.split('-').map(Number);
+    return Date.UTC(ano, mes - 1, dia);
+  };
+  return Math.round((t(b) - t(a)) / 86400000);
+}
+
+/** A semana vai de segunda a domingo: devolve a segunda-feira do dia dado ("2026-10-12" → ela mesma). */
+export function inicioDaSemana(dia: string): string {
+  const [a, m, d] = dia.split('-').map(Number);
+  const dow = new Date(a, m - 1, d, 12).getDay(); // 0 = domingo
+  return somarDias(dia, -((dow + 6) % 7));
+}
+
+/** Matéria ("enem/fisica") de uma aula ou de um cartão; o estudo fora do site não tem matéria do caderno. */
+export function materiaDaAula(aula: string): string | null {
+  const [frente, materia] = aula.split('/');
+  const chave = `${frente}/${materia}`;
+  return materia && MATERIA_VALIDA.test(chave) ? chave : null;
+}
+
+/** Dias em que houve alguma ação na matéria (questão, cartão ou aula concluída). */
+export function diasDaMateria(eventos: Evento[], vistas: Record<string, number>, materia: string): Set<string> {
+  const dias = new Set<string>();
+  for (const e of eventos) {
+    const aula = e.k === 'q' ? e.a : e.k === 'c' ? e.c.split('#')[0] : null;
+    if (aula && materiaDaAula(aula) === materia) dias.add(diaLocal(e.t));
+  }
+  for (const [aula, t] of Object.entries(vistas)) {
+    if (Number.isFinite(t) && materiaDaAula(aula) === materia) dias.add(diaLocal(t));
+  }
+  return dias;
+}
+
+export type SituacaoMeta = 'cumprida' | 'no-caminho' | 'apertada' | 'fora-de-alcance';
+
+export interface ProgressoMeta {
+  materia: string;
+  /** Dias por semana que a pessoa quis. */
+  meta: number;
+  /** Dias da semana com ação na matéria, em ordem. */
+  dias: string[];
+  feito: number;
+  faltam: number;
+  /** Dias que ainda restam na semana, contando hoje. */
+  restantes: number;
+  situacao: SituacaoMeta;
+}
+
+export function situacaoDaMeta(meta: number, feito: number, restantes: number): SituacaoMeta {
+  const faltam = Math.max(0, meta - feito);
+  if (faltam === 0) return 'cumprida';
+  if (faltam > restantes) return 'fora-de-alcance';
+  return faltam === restantes ? 'apertada' : 'no-caminho';
+}
+
+/** O andamento de cada meta na semana de `hoje`. Nada é guardado: sai do registro. */
+export function progressoDaSemana(p: {
+  eventos: Evento[];
+  vistas: Record<string, number>;
+  metas: Metas;
+  hoje: string;
+}): ProgressoMeta[] {
+  const ini = inicioDaSemana(p.hoje);
+  const fim = somarDias(ini, 6);
+  const restantes = 7 - diasEntre(ini, p.hoje);
+  return Object.entries(p.metas)
+    .map(([materia, meta]) => {
+      const dias = [...diasDaMateria(p.eventos, p.vistas, materia)].filter((d) => d >= ini && d <= fim).sort();
+      const feito = dias.length;
+      return {
+        materia,
+        meta,
+        dias,
+        feito,
+        faltam: Math.max(0, meta - feito),
+        restantes,
+        situacao: situacaoDaMeta(meta, feito, restantes),
+      };
+    })
+    .sort((a, b) => a.materia.localeCompare(b.materia));
+}
+
+export interface SemanaDaMeta {
+  /** Segunda-feira da semana. */
+  inicio: string;
+  feito: number;
+  cumpriu: boolean;
+  /** A semana de hoje ainda não acabou: não conta como "não cumpriu". */
+  emAndamento: boolean;
+}
+
+/** As últimas semanas de uma meta (a mais recente por último), com a de hoje marcada como em andamento. */
+export function historicoDaMeta(p: {
+  eventos: Evento[];
+  vistas: Record<string, number>;
+  materia: string;
+  meta: number;
+  hoje: string;
+  semanas?: number;
+}): SemanaDaMeta[] {
+  const n = Math.min(26, Math.max(1, p.semanas ?? 8));
+  const atual = inicioDaSemana(p.hoje);
+  const dias = diasDaMateria(p.eventos, p.vistas, p.materia);
+  const out: SemanaDaMeta[] = [];
+  for (let i = n - 1; i >= 0; i--) {
+    const inicio = somarDias(atual, -7 * i);
+    let feito = 0;
+    for (let k = 0; k < 7; k++) if (dias.has(somarDias(inicio, k))) feito++;
+    out.push({ inicio, feito, cumpriu: feito >= p.meta, emAndamento: i === 0 });
+  }
+  return out;
+}
+
+/** Dias dos últimos `n` (contando hoje) sem nenhuma ação registrada. Sem registro não é falha: é só um dia sem quadrado. */
+export function diasSemRegistro(p: {
+  eventos: Evento[];
+  vistas: Record<string, number>;
+  hoje: string;
+  n?: number;
+}): string[] {
+  const n = Math.min(60, Math.max(1, p.n ?? 7));
+  const com = acoesPorDia(p.eventos, p.vistas);
+  const sem: string[] = [];
+  for (let i = n - 1; i >= 0; i--) {
+    const d = somarDias(p.hoje, -i);
+    if (!com.has(d)) sem.push(d);
+  }
+  return sem;
+}
+
 /* -------------------------------------------------- transparência (10) */
 
 export interface ComoCalculamos {
@@ -614,6 +771,14 @@ export const COMO_CALCULAMOS = {
     calculo: 'Cada quadrado é um dia. A cor depende de quantas ações houve: 1, de 2 a 4, de 5 a 9 e 10 ou mais.',
     naoMede: 'Tempo de estudo nem aprendizagem. Um dia sem quadrado é “sem registro”, não é falha.',
     melhorar: 'Não há meta. Pouco e com frequência costuma fixar mais do que muito de uma vez.',
+  },
+  metas: {
+    titulo: 'Metas da semana',
+    entra: 'As metas que você escolheu (quantos dias da semana quer estudar cada matéria) e as ações do registro: questão corrigida, cartão revisto e aula concluída.',
+    calculo:
+      'A semana vai de segunda a domingo. Um dia conta para a matéria se houve nela pelo menos uma ação. “Cumprida”: já houve dias o bastante. “No caminho”: faltam menos dias do que restam. “Apertada”: faltam tantos dias quanto restam, então todo dia que sobra conta. “Fora de alcance”: faltam mais dias do que restam; não é falha, é só uma conta.',
+    naoMede: 'Quanto tempo você estudou nem se aprendeu. Estudo fora do site não tem matéria do caderno e não entra aqui. Dias sem registro não são cobrados.',
+    melhorar: 'Escolha metas que cabem na sua semana (1 ou 2 dias já mantêm o hábito) e mude quando a vida mudar: a meta é sua e pode ser trocada ou apagada a qualquer hora.',
   },
   materia: {
     titulo: 'Por matéria',

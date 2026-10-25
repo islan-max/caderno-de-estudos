@@ -4,8 +4,18 @@ import { test } from 'node:test';
 import {
   INTERVALOS,
   INTERVALO_REVER_MS,
+  META_DIAS_MAX,
   acoesPorDia,
   diaLocal,
+  diasDaMateria,
+  diasEntre,
+  diasSemRegistro,
+  historicoDaMeta,
+  inicioDaSemana,
+  materiaDaAula,
+  normalizarMetas,
+  progressoDaSemana,
+  situacaoDaMeta,
   estadoDaAula,
   estadoDoCartao,
   mesclarRegistros,
@@ -330,4 +340,144 @@ test('foco: cada categoria tem o seu limite e uma não interfere na outra', () =
   const foco = limparFoco(['enem/fisica', 'enem/biologia', 'enem/historia', 'enem/artes', 'escolar/matematica', 'escolar/lingua-portuguesa', 'ds/back-end', 'ds/front-end', 'ds/banco-de-dados']);
   assert.deepEqual(foco, ['enem/fisica', 'enem/biologia', 'enem/historia', 'escolar/matematica', 'ds/back-end', 'ds/front-end']);
   assert.deepEqual(limparFoco(['enem/fisica', 'enem/fisica', 'outra/coisa']), ['enem/fisica']);
+});
+
+/* ------------------------------------------------------- metas semanais */
+
+const D = (d: number) => diaLocal(dia(d)); // "2026-10-<d>"; 12/10/2026 é segunda-feira
+
+test('inicioDaSemana: a semana vai de segunda a domingo', () => {
+  assert.equal(inicioDaSemana('2026-10-12'), '2026-10-12'); // segunda
+  assert.equal(inicioDaSemana('2026-10-14'), '2026-10-12'); // quarta
+  assert.equal(inicioDaSemana('2026-10-18'), '2026-10-12'); // domingo ainda é da semana que começou na segunda
+  assert.equal(inicioDaSemana('2026-10-19'), '2026-10-19');
+  assert.equal(inicioDaSemana('2026-11-01'), '2026-10-26'); // atravessa o mês
+  assert.equal(inicioDaSemana('2027-01-01'), '2026-12-28'); // e o ano
+});
+
+test('diasEntre não é enganado por horário de verão', () => {
+  assert.equal(diasEntre('2026-10-12', '2026-10-12'), 0);
+  assert.equal(diasEntre('2026-10-12', '2026-10-18'), 6);
+  assert.equal(diasEntre('2018-11-01', '2018-11-10'), 9); // virada do horário de verão no Brasil, em 2018
+  assert.equal(diasEntre('2026-03-01', '2026-03-31'), 30);
+});
+
+test('normalizarMetas aceita só matéria válida e dias de 1 a 7', () => {
+  const bruto = JSON.parse(
+    '{"enem/fisica":3,"ds/banco-de-dados":7,"escolar/matematica":1,"enem/fisica/extra":2,"outra/coisa":2,' +
+      '"enem/quimica":0,"enem/biologia":8,"enem/historia":2.5,"enem/geografia":"3","__proto__":4}',
+  );
+  assert.deepEqual(normalizarMetas(bruto), { 'enem/fisica': 3, 'ds/banco-de-dados': 7, 'escolar/matematica': 1 });
+  assert.equal(META_DIAS_MAX, 7);
+  for (const lixo of [null, undefined, 5, 'x', [], [1, 2]]) assert.deepEqual(normalizarMetas(lixo), {});
+});
+
+test('normalizarMetas guarda no máximo 12 metas', () => {
+  const muitas = Object.fromEntries(Array.from({ length: 30 }, (_, i) => [`enem/m${i}`, 2]));
+  assert.equal(Object.keys(normalizarMetas(muitas)).length, 12);
+});
+
+test('materiaDaAula pega a frente e a matéria do id', () => {
+  assert.equal(materiaDaAula('enem/matematica-basica/fracoes'), 'enem/matematica-basica');
+  assert.equal(materiaDaAula('ds/banco-de-dados/bim1/semana-3'), 'ds/banco-de-dados');
+  assert.equal(materiaDaAula('escolar/ciencias/b1/s2'), 'escolar/ciencias');
+  assert.equal(materiaDaAula('livro'), null);
+  assert.equal(materiaDaAula('xyz/fisica/a'), null);
+});
+
+test('diasDaMateria conta questão, cartão e aula concluída, e só da matéria pedida', () => {
+  const eventos: Evento[] = [
+    q(A, 0, true, 12),
+    c(`${A}#0`, 2, 13),
+    q('enem/fisica/cinematica', 0, false, 14),
+    { id: 'x1', t: dia(15), k: 'x', m: 'Livro de matemática' }, // fora do site: não tem matéria do caderno
+  ];
+  const vistas = { 'enem/matematica-basica/porcentagem': dia(16), 'enem/fisica/leis-de-newton': dia(17) };
+  assert.deepEqual([...diasDaMateria(eventos, vistas, 'enem/matematica-basica')].sort(), [D(12), D(13), D(16)]);
+  assert.deepEqual([...diasDaMateria(eventos, vistas, 'enem/fisica')].sort(), [D(14), D(17)]);
+  assert.equal(diasDaMateria(eventos, vistas, 'enem/quimica').size, 0);
+});
+
+test('dois eventos no mesmo dia contam um dia só', () => {
+  const eventos = [q(A, 0, true, 12, undefined, 8), q(A, 1, false, 12, undefined, 20), c(`${A}#0`, 1, 12)];
+  assert.equal(diasDaMateria(eventos, {}, 'enem/matematica-basica').size, 1);
+});
+
+test('situacaoDaMeta: cumprida, no caminho, apertada e fora de alcance', () => {
+  assert.equal(situacaoDaMeta(3, 3, 2), 'cumprida');
+  assert.equal(situacaoDaMeta(3, 5, 1), 'cumprida'); // passou da meta: segue cumprida
+  assert.equal(situacaoDaMeta(3, 0, 5), 'no-caminho');
+  assert.equal(situacaoDaMeta(3, 1, 2), 'apertada'); // faltam 2 e restam 2
+  assert.equal(situacaoDaMeta(3, 0, 2), 'fora-de-alcance'); // faltam 3 e restam 2
+  assert.equal(situacaoDaMeta(3, 0, 3), 'apertada');
+});
+
+test('progressoDaSemana: só a semana de hoje conta e os dias restantes incluem hoje', () => {
+  const eventos = [
+    q(A, 0, true, 11), // domingo da semana anterior: não conta
+    q(A, 0, true, 12), // segunda
+    c(`${A}#1`, 2, 14), // quarta
+    q('enem/fisica/cinematica', 0, true, 13),
+  ];
+  const metas = { 'enem/matematica-basica': 3, 'enem/fisica': 2 };
+  const quarta = progressoDaSemana({ eventos, vistas: {}, metas, hoje: D(14) });
+  const mat = quarta.find((m) => m.materia === 'enem/matematica-basica')!;
+  assert.deepEqual([mat.feito, mat.faltam, mat.restantes, mat.situacao], [2, 1, 5, 'no-caminho']);
+  assert.deepEqual(mat.dias, [D(12), D(14)]);
+  const fis = quarta.find((m) => m.materia === 'enem/fisica')!;
+  assert.deepEqual([fis.feito, fis.faltam, fis.situacao], [1, 1, 'no-caminho']);
+  // No domingo resta só 1 dia (hoje): a de matemática (2 de 3) e a de física (1 de 2) ficam apertadas.
+  const domingo = progressoDaSemana({ eventos, vistas: {}, metas, hoje: D(18) });
+  assert.equal(domingo[0].restantes, 1);
+  assert.deepEqual(domingo.map((m) => m.situacao), ['apertada', 'apertada']);
+  // Na segunda seguinte tudo recomeça, sem dívida da semana passada.
+  const proxima = progressoDaSemana({ eventos, vistas: {}, metas, hoje: D(19) });
+  assert.deepEqual(proxima.map((m) => [m.feito, m.restantes]), [[0, 7], [0, 7]]);
+});
+
+test('progressoDaSemana sem metas devolve lista vazia, e a ordem é pela matéria', () => {
+  assert.deepEqual(progressoDaSemana({ eventos: [], vistas: {}, metas: {}, hoje: D(14) }), []);
+  const r = progressoDaSemana({ eventos: [], vistas: {}, metas: { 'ds/z': 1, 'enem/a': 1, 'ds/a': 1 }, hoje: D(14) });
+  assert.deepEqual(r.map((m) => m.materia), ['ds/a', 'ds/z', 'enem/a']);
+});
+
+test('apagar um evento recalcula a meta (nada é guardado como total)', () => {
+  const eventos = [q(A, 0, true, 12), q(A, 1, true, 13)];
+  const metas = { 'enem/matematica-basica': 2 };
+  assert.equal(progressoDaSemana({ eventos, vistas: {}, metas, hoje: D(14) })[0].situacao, 'cumprida');
+  const sem = semEvento({ v: 1, eventos }, eventos[1].id).eventos;
+  const depois = progressoDaSemana({ eventos: sem, vistas: {}, metas, hoje: D(14) })[0];
+  assert.deepEqual([depois.feito, depois.situacao], [1, 'no-caminho']);
+});
+
+test('historicoDaMeta: semanas passadas, a atual em andamento', () => {
+  // Semana de 5/10: 3 dias; semana de 12/10: 1 dia.
+  const eventos = [q(A, 0, true, 5), q(A, 0, true, 6), q(A, 0, true, 7), q(A, 0, true, 14)];
+  const h = historicoDaMeta({ eventos, vistas: {}, materia: 'enem/matematica-basica', meta: 3, hoje: D(14), semanas: 4 });
+  assert.deepEqual(h.map((s) => s.inicio), ['2026-09-21', '2026-09-28', '2026-10-05', '2026-10-12']);
+  assert.deepEqual(h.map((s) => s.feito), [0, 0, 3, 1]);
+  assert.deepEqual(h.map((s) => s.cumpriu), [false, false, true, false]);
+  assert.deepEqual(h.map((s) => s.emAndamento), [false, false, false, true]);
+});
+
+test('historicoDaMeta limita o número de semanas', () => {
+  const n = (semanas?: number) =>
+    historicoDaMeta({ eventos: [], vistas: {}, materia: 'enem/fisica', meta: 1, hoje: D(14), semanas }).length;
+  assert.equal(n(), 8);
+  assert.equal(n(0), 1);
+  assert.equal(n(500), 26);
+});
+
+test('diasSemRegistro lista os dias sem nenhuma ação, contando hoje', () => {
+  const eventos = [q(A, 0, true, 12), c(`${A}#0`, 1, 14)];
+  const vistas = { 'enem/fisica/cinematica': dia(16) };
+  assert.deepEqual(diasSemRegistro({ eventos, vistas, hoje: D(18), n: 7 }), [D(13), D(15), D(17), D(18)]);
+  assert.deepEqual(diasSemRegistro({ eventos: [], vistas: {}, hoje: D(18), n: 3 }), [D(16), D(17), D(18)]);
+  assert.equal(diasSemRegistro({ eventos: [], vistas: {}, hoje: D(18) }).length, 7);
+});
+
+test('estudo fora do site conta como dia de estudo, mas não como dia de uma matéria do caderno', () => {
+  const fora: Evento = { id: 'x2', t: dia(13), k: 'x', m: 'enem/fisica' }; // texto livre igual à chave: continua sem matéria
+  assert.equal(diasDaMateria([fora], {}, 'enem/fisica').size, 0);
+  assert.equal(diasSemRegistro({ eventos: [fora], vistas: {}, hoje: D(13), n: 1 }).length, 0);
 });
