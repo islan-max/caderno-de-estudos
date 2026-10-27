@@ -29,6 +29,7 @@ import { montarRevisao } from './revisao';
 import { aplicarFontePx, lerBrilho, aplicarBrilho, aplicarDispensados, lerFontePx, preferencias, aplicarA11y } from './preferencias';
 import { vistas, refletirProgresso } from './progresso';
 import { aplicarTema, temaSalvo } from './tema';
+import { ligarPwa } from './pwa';
 
 function iniciar() {
   // O primeiro carregamento dispara `astro:page-load` e também a chamada direta lá embaixo:
@@ -61,6 +62,7 @@ function iniciar() {
   montarAvisoRever();
   montarSumario();
   montarBarrasDeRolagem();
+  ligarPwa();
 }
 
 document.addEventListener('astro:page-load', () => {

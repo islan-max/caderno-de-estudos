@@ -39,6 +39,19 @@ const legais = [
       </p>
     </div>
 
+    <!-- Instalar como app: o estado vem de src/scripts/pwa.ts. Sem JS (ou já instalado, ou
+         navegador sem instalação), nada aparece. -->
+    <div class="rodape__instalar" data-bloco-instalar>
+      <button type="button" class="rodape__instalar-botao" data-instalar data-so="pronto">
+        <Icone nome="download" /> Instalar o Caderno
+      </button>
+      <p class="rodape__instalar-dica" data-so="pronto">Abre como app e funciona sem internet nas aulas já abertas.</p>
+      <p class="rodape__instalar-dica" data-so="ios">
+        <Icone nome="download" /> Para instalar no iPhone: toque em <strong>Compartilhar</strong> e depois em
+        <strong>Adicionar à Tela de Início</strong>. Funciona sem internet nas aulas já abertas.
+      </p>
+    </div>
+
     <p class="rodape__nota">
       Biblioteca de estudo aberta e gratuita, publicada por <strong>Islan Max</strong> sob licença
       MIT. Material de apoio, sem vínculo com o INEP, o MEC ou qualquer instituição de ensino.
@@ -78,6 +91,49 @@ const legais = [
     gap: 0.6rem 1.25rem;
   }
 
+  .rodape__instalar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.4rem 0.9rem;
+    margin-top: 0.9rem;
+  }
+  .rodape__instalar:not([data-estado='pronto']):not([data-estado='ios']),
+  .rodape__instalar:not([data-estado='pronto']) [data-so='pronto'],
+  .rodape__instalar:not([data-estado='ios']) [data-so='ios'] {
+    display: none;
+  }
+  .rodape__instalar-botao {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: 2.75rem;
+    padding: 0 1.1rem;
+    border: 1px solid var(--color-ink);
+    border-radius: 999px;
+    background: var(--color-ink);
+    color: var(--color-surface);
+    font-family: var(--font-display);
+    font-size: calc(0.85rem * var(--escala-texto, 1));
+    font-weight: 700;
+    cursor: pointer;
+  }
+  .rodape__instalar-botao:hover {
+    opacity: 0.88;
+  }
+  .rodape__instalar-dica {
+    margin: 0;
+    font-family: var(--font-body);
+    font-size: calc(0.8rem * var(--escala-texto, 1));
+    color: var(--color-ink-soft);
+  }
+  /* No celular a barra de ferramentas fica presa embaixo: o rodapé termina acima dela. */
+  @media (max-width: 639px) {
+    .rodape__conteudo {
+      padding-bottom: calc(var(--barra-inferior) + 1rem);
+    }
+  }
+
   .rodape__marca {
     margin: 0;
     font-family: var(--font-display);
@@ -96,6 +152,9 @@ const legais = [
     gap: 0.25rem 0.9rem;
   }
   .rodape__lista a {
+    /* Alvo de toque de 24px+ (WCAG 2.5.8) sem mudar o desenho: o preenchimento é invisível. */
+    display: inline-block;
+    padding-block: 0.3rem;
     font-family: var(--font-body);
     font-size: calc(0.8rem * var(--escala-texto, 1));
     color: var(--color-ink-soft);
@@ -124,6 +183,7 @@ const legais = [
   }
   .rodape__assinatura-link {
     display: inline-flex;
+    padding-block: 0.3rem;
     align-items: center;
     gap: 0.35rem;
     color: var(--color-enem);
