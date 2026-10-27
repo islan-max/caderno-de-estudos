@@ -20,6 +20,7 @@
   "shortcuts": [
     { "name": "Revisão", "url": "revisao/", "icons": [{ "src": "icon-192.png", "sizes": "192x192" }] },
     { "name": "Meu estudo", "url": "meu-estudo/", "icons": [{ "src": "icon-192.png", "sizes": "192x192" }] },
+    { "name": "Simulado", "url": "simulado/", "icons": [{ "src": "icon-192.png", "sizes": "192x192" }] },
     { "name": "ENEM", "url": "enem/", "icons": [{ "src": "icon-192.png", "sizes": "192x192" }] }
   ]
 }

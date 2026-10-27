@@ -42,6 +42,8 @@ Três ferramentas de estudo que rodam inteiras no navegador (sem servidor, sem c
 - **Recomendações** (`/recomendacoes`): sugere aulas pelas matérias que você marca e pelos "gostei" e "não quero algo assim", sempre dizendo por quê. Regras em `src/lib/recomendacao.ts`; decisões, avaliação offline e limites em [`docs/recomendacao.md`](docs/recomendacao.md) (`node --experimental-strip-types scripts/avaliar-recomendacao.ts` depois do build).
 - **Resumo de vídeo** (`/resumo-de-video`): você cola ou envia a transcrição (.vtt, .srt ou o texto de "Mostrar transcrição") e recebe frases-chave por trecho, com o minuto de cada uma, para revisar e exportar em Markdown. É um resumo extrativo (frases da própria transcrição, sem reescrita). Regras em `src/lib/resumo.ts`; decisões, exemplo e limites em [`docs/resumo-de-video.md`](docs/resumo-de-video.md).
 
+- **Simulado** (`/simulado`): sorteia questões reais do ENEM das aulas de Química, Biologia e Física (15, 30 ou 45, divididas igualmente entre as matérias escolhidas), com cronômetro opcional de 3 min por questão, correção no fim e link para a seção da aula de cada erro. O texto de cada questão vem da página da própria aula, lido pelo mesmo código do quiz, e o gabarito vem do frontmatter. As respostas entram no registro de estudo como as do quiz. O andamento fica em `cdt:simulado`. Regras em `src/lib/simulado.ts`.
+
 O que foi verificado e o que não foi está em [`docs/VERIFICACAO.md`](docs/VERIFICACAO.md).
 
 ## Celular e app instalável (PWA)

@@ -1,0 +1,421 @@
+---
+// Simulado de Ciências da Natureza: sorteia questões reais do ENEM das aulas de Química,
+// Biologia e Física. A lista de questões disponíveis sai do gabarito de cada aula no build;
+// o enunciado e as alternativas o navegador lê da própria página da aula
+// (src/scripts/simulado.ts), do mesmo jeito que o quiz da aula. Regras em src/lib/simulado.ts.
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import Icone from '../components/Icone.astro';
+import AjudaDaPagina from '../components/AjudaDaPagina.astro';
+import { u } from '../lib/url';
+import { MINUTOS_POR_QUESTAO } from '../lib/simulado';
+
+const MATERIAS = [
+  { slug: 'quimica', label: 'Química', icone: 'vial', cor: 'var(--color-quimica)' },
+  { slug: 'biologia', label: 'Biologia', icone: 'dna', cor: 'var(--color-biologia)' },
+  { slug: 'fisica', label: 'Física', icone: 'atom', cor: 'var(--color-fisica)' },
+];
+const TAMANHOS = [15, 30, 45];
+/** 45 → "2h15", 15 → "45 min". */
+function duracao(questoes: number): string {
+  const min = questoes * MINUTOS_POR_QUESTAO;
+  const h = Math.floor(min / 60);
+  return h ? `${h}h${String(min % 60).padStart(2, '0')}` : `${min} min`;
+}
+
+const entradas = (await getCollection('enem')).filter((e) => MATERIAS.some((m) => e.id.startsWith(`${m.slug}/`)));
+const aulas: Record<string, { titulo: string; url: string }> = {};
+const disponiveis: { aula: string; materia: string; n: number }[] = [];
+for (const e of entradas) {
+  const [materia, tema] = e.id.split('/');
+  const id = `enem/${materia}/${tema}`;
+  aulas[id] = { titulo: e.data.title, url: u(`/enem/${materia}/${tema}/`) };
+  (e.data.gabarito ?? []).forEach((_, n) => disponiveis.push({ aula: id, materia, n }));
+}
+const contagem = Object.fromEntries(MATERIAS.map((m) => [m.slug, disponiveis.filter((q) => q.materia === m.slug).length]));
+const dados = JSON.stringify({ aulas, disponiveis, materias: MATERIAS.map(({ slug, label }) => ({ slug, label })) });
+---
+
+<Base
+  title="Simulado de Natureza"
+  active="enem"
+  description="Simulado com questões reais do ENEM de Química, Biologia e Física, corrigido no fim"
+  voltar={{ href: u('/enem/'), label: 'ENEM' }}
+>
+  <div class="simulado" data-simulado>
+    <script type="application/json" data-simulado-dados set:html={dados} />
+
+    <header class="aj-hero sim-hero">
+      <p class="aj-hero__selo sim-hero__selo"><Icone nome="flask" /> Simulado</p>
+      <h1 class="aj-hero__h1">Ciências da Natureza</h1>
+      <p class="aj-hero__intro">
+        Questões reais do ENEM, sorteadas das aulas de Química, Biologia e Física. Você responde todas e
+        corrige no fim, como na prova. Cada erro leva direto à parte da aula que explica o assunto.
+      </p>
+    </header>
+
+    <!-- 1. Montar -->
+    <form class="sim-config" data-sim-config>
+      <fieldset class="sim-grupo">
+        <legend class="sim-grupo__titulo">Matérias</legend>
+        <div class="sim-opcoes">
+          {MATERIAS.map((m) => (
+            <label class="sim-chip" style={`--cor: ${m.cor}`}>
+              <input type="checkbox" name="materia" value={m.slug} checked />
+              <Icone nome={m.icone} />
+              <span>{m.label}</span>
+              <span class="sim-chip__conta">{contagem[m.slug]} questões</span>
+            </label>
+          ))}
+        </div>
+      </fieldset>
+
+      <fieldset class="sim-grupo">
+        <legend class="sim-grupo__titulo">Quantas questões</legend>
+        <div class="sim-opcoes">
+          {TAMANHOS.map((t, i) => (
+            <label class="sim-chip sim-chip--simples">
+              <input type="radio" name="total" value={t} checked={i === 0} />
+              <span>{t} questões</span>
+              <span class="sim-chip__conta">{duracao(t)} de prova</span>
+            </label>
+          ))}
+        </div>
+      </fieldset>
+
+      <label class="sim-tempo">
+        <input type="checkbox" name="cronometro" />
+        <span>
+          <strong>Contar o tempo da prova</strong>
+          <span class="sim-tempo__dica">{MINUTOS_POR_QUESTAO} minutos por questão, como no ENEM. Quando o tempo acaba, o simulado é corrigido.</span>
+        </span>
+      </label>
+
+      <p class="sim-erro" data-sim-erro role="alert" hidden></p>
+      <button type="submit" class="quiz__botao quiz__botao--principal sim-comecar">
+        <Icone nome="play" /> Começar o simulado
+      </button>
+    </form>
+
+    <!-- 2. Responder -->
+    <section class="sim-prova" data-sim-prova hidden aria-label="Questões do simulado">
+      <div class="sim-barra" data-sim-barra>
+        <p class="sim-barra__conta"><span data-sim-respondidas>0</span> de <span data-sim-total>0</span> respondidas</p>
+        <p class="sim-barra__tempo" data-sim-tempo-caixa hidden>
+          <Icone nome="clock" /> <span data-sim-tempo aria-label="Tempo">00:00</span>
+        </p>
+        <div class="sim-barra__progresso" aria-hidden="true"><span data-sim-progresso></span></div>
+      </div>
+      <p class="estudo__status" data-sim-status role="status"></p>
+      <div class="sim-resultado" data-sim-resultado tabindex="-1" hidden></div>
+      <form class="quiz sim-questoes" data-sim-questoes novalidate></form>
+      <div class="quiz__acoes sim-acoes">
+        <button type="button" class="quiz__botao quiz__botao--principal" data-sim-entregar>
+          <Icone nome="circle-check" /> Entregar e corrigir
+        </button>
+        <button type="button" class="quiz__botao" data-sim-novo hidden>
+          <Icone nome="rotate-left" /> Novo simulado
+        </button>
+        <button type="button" class="quiz__botao" data-sim-desistir>
+          <Icone nome="xmark" /> Desistir
+        </button>
+      </div>
+    </section>
+
+    <AjudaDaPagina titulo="Como o simulado funciona">
+      <p>
+        As questões são as mesmas das aulas de Química, Biologia e Física do ENEM, sorteadas a cada simulado e
+        divididas igualmente entre as matérias que você escolher.
+      </p>
+      <p>
+        Nada é corrigido antes da entrega. Você pode fechar a página no meio: o simulado continua de onde parou
+        quando você voltar aqui neste navegador.
+      </p>
+      <p>
+        As respostas entram no seu registro de estudo, como as do quiz da aula: um erro marca a seção da aula
+        como “Rever”, e ela aparece na Revisão e no Meu estudo.
+      </p>
+      <p>Para fazer sem internet, abra antes, com conexão, as aulas das matérias que vai usar.</p>
+    </AjudaDaPagina>
+  </div>
+</Base>
+
+<style>
+  .simulado {
+    max-width: 46rem;
+    margin: 0 auto;
+  }
+  .sim-hero {
+    border-color: color-mix(in srgb, var(--color-ok) 35%, var(--color-line));
+    background:
+      radial-gradient(120% 140% at 100% 0%, color-mix(in srgb, var(--color-ok) 14%, transparent), transparent 60%),
+      color-mix(in srgb, var(--color-ok) 5%, var(--color-surface));
+  }
+  .sim-hero__selo {
+    background: var(--color-ok);
+  }
+
+  .sim-config {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+  .sim-config[hidden],
+  .sim-prova[hidden] {
+    display: none;
+  }
+  .sim-grupo {
+    margin: 0;
+    padding: 0;
+    border: none;
+    min-width: 0;
+  }
+  .sim-grupo__titulo {
+    margin-bottom: 0.6rem;
+    font-family: var(--font-display);
+    font-size: calc(0.75rem * var(--escala-texto, 1));
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-ink-soft);
+  }
+  .sim-opcoes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(9.5rem, 1fr));
+    gap: 0.5rem;
+  }
+  .sim-chip {
+    --cor: var(--color-ink);
+    position: relative;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    column-gap: 0.55rem;
+    min-height: 3.25rem;
+    padding: 0.6rem 0.85rem;
+    border: 1px solid var(--color-controle);
+    border-radius: 0.75rem;
+    background: var(--color-surface);
+    font-family: var(--font-display);
+    font-weight: 700;
+    color: color-mix(in srgb, var(--cor) 70%, var(--color-ink));
+    cursor: pointer;
+    transition: border-color 0.18s var(--ease), background-color 0.18s var(--ease);
+  }
+  /* Sem ícone (quantidade de questões): texto e detalhe um embaixo do outro. */
+  .sim-chip--simples {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 0.1rem;
+  }
+  .sim-chip input {
+    position: absolute;
+    opacity: 0;
+    inset: 0;
+    margin: 0;
+    cursor: pointer;
+  }
+  .sim-chip :global(i) {
+    grid-row: span 2;
+  }
+  .sim-chip__conta {
+    grid-column: 2;
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: calc(0.78rem * var(--escala-texto, 1));
+    color: var(--color-ink-soft);
+  }
+  .sim-chip:has(input:checked) {
+    border: 2px solid var(--cor);
+    padding: calc(0.6rem - 1px) calc(0.85rem - 1px);
+    background: color-mix(in srgb, var(--cor) 9%, var(--color-surface));
+  }
+  .sim-chip:has(input:focus-visible) {
+    outline: 2px solid var(--color-ink);
+    outline-offset: 2px;
+  }
+  @media (hover: hover) {
+    .sim-chip:hover {
+      border-color: var(--color-ink);
+    }
+  }
+
+  .sim-tempo {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.7rem;
+    cursor: pointer;
+    line-height: 1.5;
+  }
+  .sim-tempo input {
+    width: 1.3rem;
+    height: 1.3rem;
+    margin-top: 0.15rem;
+    flex-shrink: 0;
+    accent-color: var(--color-ok);
+  }
+  .sim-tempo strong {
+    display: block;
+    font-family: var(--font-display);
+  }
+  .sim-tempo__dica {
+    color: var(--color-ink-soft);
+    font-size: calc(0.9rem * var(--escala-texto, 1));
+  }
+  .sim-erro {
+    margin: 0;
+    color: var(--color-enem);
+    font-weight: 700;
+  }
+  .sim-comecar {
+    align-self: flex-start;
+    min-height: 2.9rem;
+  }
+
+  /* Barra presa no topo durante a prova: quantas faltam e o relógio. */
+  .sim-barra {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.25rem 1rem;
+    margin: 0 -0.5rem 1rem;
+    padding: 0.6rem 0.75rem 0.75rem;
+    border-bottom: 1px solid var(--color-line);
+    background: color-mix(in srgb, var(--color-surface) 94%, transparent);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    font-family: var(--font-display);
+    font-weight: 700;
+  }
+  /* Em telas largas o cabeçalho fixo de círculos ocupa o topo da janela. */
+  @media (min-width: 640px) and (max-width: 1279px) {
+    .sim-barra {
+      top: 3.6rem;
+    }
+  }
+  .sim-barra p {
+    margin: 0;
+  }
+  .sim-barra__tempo {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-variant-numeric: tabular-nums;
+  }
+  .sim-barra__tempo[hidden] {
+    display: none;
+  }
+  .sim-barra__tempo[data-pouco='sim'] {
+    color: var(--color-enem);
+  }
+  .sim-barra__progresso {
+    flex-basis: 100%;
+    height: 6px;
+    border-radius: 999px;
+    background: var(--color-paper-dark);
+    overflow: hidden;
+  }
+  .sim-barra__progresso span {
+    display: block;
+    height: 100%;
+    width: 0;
+    background: var(--color-ok);
+    transition: width 0.25s var(--ease);
+  }
+
+  .sim-questoes {
+    margin-top: 0;
+  }
+  .sim-acoes {
+    margin-top: 1.5rem;
+  }
+  .sim-acoes [hidden] {
+    display: none;
+  }
+
+  /* Resultado */
+  .sim-resultado {
+    margin-bottom: 1.5rem;
+    padding: 1.1rem 1.15rem;
+    border: 1px solid var(--color-line);
+    border-radius: 1rem;
+    background: var(--color-surface);
+  }
+  .sim-resultado[hidden] {
+    display: none;
+  }
+  .sim-resultado:focus-visible {
+    outline: 2px solid var(--color-ink);
+    outline-offset: 2px;
+  }
+  .sim-resultado :global(.sim-nota) {
+    margin: 0 0 0.25rem;
+    font-family: var(--font-display);
+    font-size: calc(1.6rem * var(--escala-texto, 1));
+    font-weight: 800;
+  }
+  .sim-resultado :global(.sim-nota-sub) {
+    margin: 0 0 1rem;
+    color: var(--color-ink-soft);
+  }
+  .sim-resultado :global(.sim-materias) {
+    margin: 0 0 1rem;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+  .sim-resultado :global(.sim-materia) {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 0.3rem;
+    font-family: var(--font-display);
+    font-weight: 700;
+  }
+  .sim-resultado :global(.sim-materia__barra) {
+    grid-column: 1 / -1;
+    height: 8px;
+    border-radius: 999px;
+    background: var(--color-paper-dark);
+    overflow: hidden;
+  }
+  .sim-resultado :global(.sim-materia__barra span) {
+    display: block;
+    height: 100%;
+    background: var(--cor, var(--color-ok));
+  }
+  .sim-resultado :global(h2) {
+    margin: 1rem 0 0.5rem;
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: calc(1rem * var(--escala-texto, 1));
+  }
+  .sim-resultado :global(ul.sim-rever) {
+    margin: 0;
+    padding-left: 1.2rem;
+    line-height: 1.7;
+  }
+  .sim-resultado :global(a) {
+    color: var(--color-ink);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .sim-questoes :global(.sim-origem) {
+    margin: 0.75rem 0 0;
+    font-family: var(--font-display);
+    font-size: calc(0.8rem * var(--escala-texto, 1));
+    color: var(--color-ink-soft);
+  }
+  .sim-questoes :global(.sim-origem a) {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+</style>

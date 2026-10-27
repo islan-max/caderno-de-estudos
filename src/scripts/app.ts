@@ -30,6 +30,7 @@ import { aplicarFontePx, lerBrilho, aplicarBrilho, aplicarDispensados, lerFonteP
 import { vistas, refletirProgresso } from './progresso';
 import { aplicarTema, temaSalvo } from './tema';
 import { ligarPwa } from './pwa';
+import { montarSimulado } from './simulado';
 
 function iniciar() {
   // O primeiro carregamento dispara `astro:page-load` e também a chamada direta lá embaixo:
@@ -48,6 +49,7 @@ function iniciar() {
   void montarEstudo();
   void montarRecomendacoes();
   montarResumoDeVideo();
+  montarSimulado();
   void montarAjustes();
   ligarAtalhos();
   ligarNotasSoltas();
