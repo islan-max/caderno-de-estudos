@@ -6,6 +6,7 @@ import { ENEM_AREAS } from '../../lib/enemAreas';
 import AreaMaterias from '../../components/AreaMaterias.astro';
 import { indiceEnem } from '../../lib/aulas';
 import mapa from '../../data/enem-mapa.json';
+import Icone from '../../components/Icone.astro';
 
 // Toda matéria das 4 áreas aparece na página, mesmo sem conteúdo publicado
 // ainda (estado vazio padronizado).
@@ -33,6 +34,15 @@ for (const [materia, itens] of Object.entries(mapa.materias as Record<string, { 
     trilha de aulas na ordem de aprendizado: sem bimestre, sem semana, só o tema e o treino.
   </TopoSecao>
 
+  <a class="chamada-simulado" href={u('/simulado/')}>
+    <span class="chamada-simulado__icone"><Icone nome="flask" /></span>
+    <span class="chamada-simulado__textos">
+      <strong>Simulado de Ciências da Natureza</strong>
+      <span>Química, Biologia e Física com questões reais do ENEM, corrigido no fim.</span>
+    </span>
+    <Icone nome="arrow-right" />
+  </a>
+
   <div class="areas">
     {ENEM_AREAS.map((area, ai) => (
       <AreaMaterias area={area} porMateria={porMateria} emBreve={emBreve} indice={ai} />
@@ -41,6 +51,46 @@ for (const [materia, itens] of Object.entries(mapa.materias as Record<string, { 
 </Base>
 
 <style>
+  .chamada-simulado {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    margin: 0 0 1.75rem;
+    padding: 0.9rem 1rem;
+    border: 1px solid color-mix(in srgb, var(--color-ok) 40%, var(--color-line));
+    border-radius: 0.9rem;
+    background: color-mix(in srgb, var(--color-ok) 7%, var(--color-surface));
+    color: var(--color-ink);
+    text-decoration: none;
+    transition: border-color 0.2s var(--ease);
+  }
+  .chamada-simulado:hover {
+    border-color: var(--color-ok);
+  }
+  .chamada-simulado__icone {
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 999px;
+    background: var(--color-ok);
+    color: var(--color-paper);
+  }
+  .chamada-simulado__textos {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    flex: 1;
+    min-width: 0;
+    font-size: calc(0.9rem * var(--escala-texto, 1));
+    color: var(--color-ink-soft);
+  }
+  .chamada-simulado__textos strong {
+    font-family: var(--font-display);
+    font-size: calc(1rem * var(--escala-texto, 1));
+    color: var(--color-ink);
+  }
   .areas {
     display: flex;
     flex-direction: column;

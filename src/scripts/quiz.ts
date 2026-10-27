@@ -51,7 +51,7 @@ function separarAlternativas(texto: string): string[] {
   return partes.map((p) => p.replace(/^\(?[a-eA-E]\)\s*/, '').trim());
 }
 
-function coletarQuestoes(artigo: HTMLElement): Questao[] {
+export function coletarQuestoes(artigo: HTMLElement): Questao[] {
   const questoes: Questao[] = [];
   let atual: Questao | null = null;
 
