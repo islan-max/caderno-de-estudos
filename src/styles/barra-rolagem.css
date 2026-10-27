@@ -470,6 +470,14 @@ html[data-tema='escuro'] .barra[data-modelo='giz'] {
   }
 }
 
+/* Celular: o trilho da página para acima da barra de ferramentas de baixo (CabecalhoFixo.astro)
+   quando ela está à vista, em vez de passar por cima dos botões. */
+@media (max-width: 639px) {
+  html:has(.cab-flut[data-visivel='true']):not([data-rolagem='baixo']) .barra[data-alvo='pagina']:not([data-eixo='x']) {
+    bottom: var(--barra-inferior);
+  }
+}
+
 /* Alto contraste: trilho, fita e corretivo na tinta mais forte do tema. */
 html[data-contraste='sim'] .barra__trilho {
   background: repeating-linear-gradient(to bottom, var(--color-ink) 0 4px, transparent 4px 8px);

@@ -49,6 +49,8 @@
 }
 
 :root {
+  /* Altura da barra de ferramentas presa embaixo no celular (CabecalhoFixo.astro). */
+  --barra-inferior: calc(3.65rem + env(safe-area-inset-bottom));
   /* Deslocamento da pauta.
      A marca do topo tem tamanho fixo por breakpoint e caixa de linha de 2
      pautas (70px), então a posição da sua linha de base é determinística.
@@ -1053,8 +1055,26 @@ html[data-contraste="sim"] .prose-tema :is(th, td) {
   cursor: pointer;
   transition: border-color 0.18s var(--ease), background-color 0.18s var(--ease);
 }
+@media (max-width: 639px) {
+  .quiz__questao {
+    padding: 0.9rem 0.8rem 0.85rem;
+  }
+  .quiz__alternativa {
+    padding-left: 0.6rem;
+    gap: 0.55rem;
+  }
+}
+.quiz__alternativa:active {
+  background: color-mix(in srgb, var(--color-paper-dark) 45%, var(--color-surface));
+}
 .quiz__alternativa:hover {
   border-color: var(--color-ink);
+}
+/* Hover só onde há mouse: no toque ele "gruda" depois do toque e parece marcado. */
+@media (hover: none) {
+  .quiz__alternativa:hover {
+    border-color: var(--color-controle);
+  }
 }
 /* Depois de corrigir os inputs ficam desabilitados: o cursor avisa. */
 .quiz__alternativa:has(input:disabled) {
@@ -1266,7 +1286,7 @@ html[data-contraste="sim"] .prose-tema :is(th, td) {
   position: fixed;
   z-index: 90;
   left: 50%;
-  bottom: 1.25rem;
+  bottom: calc(1.25rem + env(safe-area-inset-bottom));
   transform: translateX(-50%);
   display: flex;
   flex-direction: column-reverse;
@@ -1275,6 +1295,12 @@ html[data-contraste="sim"] .prose-tema :is(th, td) {
   width: max-content;
   max-width: min(92vw, 26rem);
   pointer-events: none;
+}
+@media (max-width: 639px) {
+  /* Acima da barra de baixo do celular, quando ela está à vista. */
+  html:has(.cab-flut[data-visivel='true']):not([data-rolagem='baixo']) #toasts {
+    bottom: calc(var(--barra-inferior) + 0.75rem);
+  }
 }
 .toast {
   display: flex;

@@ -44,6 +44,13 @@ Três ferramentas de estudo que rodam inteiras no navegador (sem servidor, sem c
 
 O que foi verificado e o que não foi está em [`docs/VERIFICACAO.md`](docs/VERIFICACAO.md).
 
+## Celular e app instalável (PWA)
+
+- Abaixo de 640px a folha perde os furos do fichário (o texto ganha ~40px de largura) e as ferramentas viram uma barra presa embaixo (`CabecalhoFixo.astro`), que some ao rolar para baixo e volta ao rolar para cima (`html[data-rolagem]`, `src/scripts/cabecalho.ts`).
+- O site é instalável (`public/manifest.webmanifest`) e funciona sem internet (`public/sw.js`): páginas vêm da rede primeiro e caem na cópia guardada sem conexão; os arquivos de `/_astro/` vêm do cache. Toda aula aberta (ou pré-carregada) fica guardada, até 400 páginas. Sem cópia, aparece `/offline`, com a lista do que já está no aparelho.
+- O botão "Instalar o Caderno" fica no rodapé e só aparece quando o navegador oferece a instalação; no iPhone aparece o passo a passo (`src/scripts/pwa.ts`).
+- Ao mudar a estratégia de cache, troque `VERSAO` em `public/sw.js`: o cache antigo é apagado na ativação.
+
 ## Acessibilidade
 
 O site busca conformidade com o WCAG 2.2 nível AA. As decisões, o passo a passo para novos componentes e para quem escreve aulas, e os verificadores (`scripts/checar-acessibilidade.mjs` e `scripts/checar-contraste.mjs`) estão em `docs/acessibilidade.md`. A página pública é a Declaração de Acessibilidade (`/acessibilidade`).

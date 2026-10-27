@@ -54,7 +54,12 @@ const borderColor = cor ?? (active ? accentByTab[active] : 'var(--color-line)');
 <html lang="pt-BR" data-base={u('/') || '/'}>
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <link rel="manifest" href={u('/manifest.webmanifest')} />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="Caderno" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
     <meta name="description" content={description} />
     <title>{title} · Caderno de Estudos</title>
     <link rel="icon" type="image/svg+xml" href={u('/favicon.svg')} />
@@ -154,7 +159,7 @@ const borderColor = cor ?? (active ? accentByTab[active] : 'var(--color-line)');
       transition:animate="none"
     >
       <div
-        class="paper-sheet min-h-[60vh] p-4 pl-10 sm:p-6 sm:pl-12 md:p-10 md:pl-16 -mt-[2px]"
+        class="paper-sheet min-h-[60vh] p-4 sm:p-6 sm:pl-12 md:p-10 md:pl-16 -mt-[2px]"
         style={`border-color: ${borderColor};`}
       >
         <CabecalhoFixo active={active} corAtiva={cor} />
@@ -232,7 +237,12 @@ const borderColor = cor ?? (active ? accentByTab[active] : 'var(--color-line)');
       @media (max-width: 639px) {
         .topo {
           right: 1rem;
-          bottom: 1rem;
+          bottom: calc(1rem + env(safe-area-inset-bottom));
+          transition: opacity 0.22s var(--ease), transform 0.22s var(--ease), bottom 0.22s var(--ease);
+        }
+        /* Com a barra de baixo à vista (CabecalhoFixo.astro), o botão sobe e fica acima dela. */
+        :global(html:has(.cab-flut[data-visivel='true']):not([data-rolagem='baixo'])) .topo {
+          bottom: calc(var(--barra-inferior) + 0.75rem);
         }
       }
       @media print {
@@ -262,13 +272,19 @@ const borderColor = cor ?? (active ? accentByTab[active] : 'var(--color-line)');
          a linha de base da marca caia exatamente sobre uma linha da pauta —
          a marca fica "escrita" sobre o papel, não atravessada por ele. */
       .cabecalho {
-        padding-top: 56px;
+        /* 21px no celular: uma pauta (35px) a menos, a marca continua sobre a mesma linha. */
+        padding-top: 21px;
         /* O cabeçalho e o <main> têm cada um um view-transition-name (transition:animate),
            o que cria um contexto de empilhamento para cada. Sem z-index aqui, o <main>
            (que vem depois) pintaria a folha inteira por cima das abas, e a aba ativa não
            conseguiria cobrir a borda de cima da folha. */
         position: relative;
         z-index: 6;
+      }
+      @media (min-width: 640px) {
+        .cabecalho {
+          padding-top: 56px;
+        }
       }
       .cabecalho__linha {
         display: flex;
@@ -441,6 +457,12 @@ const borderColor = cor ?? (active ? accentByTab[active] : 'var(--color-line)');
           radial-gradient(circle 6px at 9px 21.5px, rgba(255, 255, 255, 0.8) 99%, transparent 100%);
         background-size: 18px 40px;
         background-repeat: no-repeat space;
+      }
+      /* No celular os furos ocupavam 40px de margem: a folha fica lisa e o texto ganha largura. */
+      @media (max-width: 639px) {
+        .paper-sheet::before {
+          display: none;
+        }
       }
       :global(html[data-tema='escuro']) .paper-sheet::before {
         background-image:

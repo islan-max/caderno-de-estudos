@@ -124,6 +124,16 @@ const {
     height: 2.1rem;
     font-size: calc(0.9rem * var(--escala-texto, 1));
   }
+  /* Telas estreitas: o ícone é enfeite e roubava largura do título. */
+  @media (max-width: 479px) {
+    .acordeao__cabeca {
+      gap: 0.6rem;
+      padding: 0.75rem 0.75rem 0.75rem 0.85rem;
+    }
+    .acordeao__icone {
+      display: none;
+    }
+  }
 
   .acordeao__textos {
     display: flex;

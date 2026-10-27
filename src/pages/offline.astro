@@ -1,0 +1,120 @@
+---
+// Página mostrada pelo service worker (public/sw.js) quando não há internet e a página
+// pedida ainda não foi guardada. Lista o que já está guardado neste aparelho.
+import Base from '../layouts/Base.astro';
+import Icone from '../components/Icone.astro';
+import { u } from '../lib/url';
+---
+
+<Base title="Sem internet" description="Sem conexão: as aulas já abertas continuam disponíveis">
+  <div class="offline">
+    <p class="offline__selo"><Icone nome="wifi" /> Sem internet</p>
+    <h1 class="offline__titulo">Esta página ainda não está guardada</h1>
+    <p class="offline__texto">
+      O caderno guarda cada aula que você abre. Sem conexão, dá para continuar por estas:
+    </p>
+    <p class="offline__status" data-offline-status role="status">Procurando as aulas guardadas…</p>
+    <ul class="offline__lista" data-offline-lista></ul>
+    <p class="offline__texto">
+      <a href={u('/')}>Voltar ao início</a> ou tente de novo quando a conexão voltar.
+    </p>
+  </div>
+</Base>
+
+<script>
+  async function listar() {
+    const lista = document.querySelector('[data-offline-lista]');
+    const status = document.querySelector('[data-offline-status]');
+    if (!lista || !status) return;
+    lista.replaceChildren();
+    const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
+    const itens: { href: string; titulo: string }[] = [];
+    try {
+      for (const nome of await caches.keys()) {
+        if (!nome.startsWith('cdt-paginas-')) continue;
+        const cache = await caches.open(nome);
+        for (const req of await cache.keys()) {
+          const url = new URL(req.url);
+          if (!url.pathname.endsWith('/') || url.pathname === `${base}offline/`) continue;
+          const html = await (await cache.match(req))?.text();
+          const titulo = html?.match(/<title>([^<]*)<\/title>/)?.[1]?.replace(/\s*·\s*Caderno de Estudos\s*$/, '');
+          if (titulo) itens.push({ href: url.pathname, titulo: new DOMParser().parseFromString(titulo, 'text/html').body.textContent ?? titulo });
+        }
+      }
+    } catch {
+      /* navegador sem Cache API: só o status muda */
+    }
+    itens.sort((a, b) => a.titulo.localeCompare(b.titulo, 'pt-BR'));
+    for (const { href, titulo } of itens) {
+      const li = document.createElement('li');
+      const a = document.createElement('a');
+      a.href = href;
+      a.textContent = titulo;
+      li.append(a);
+      lista.append(li);
+    }
+    status.textContent = itens.length
+      ? `${itens.length} ${itens.length === 1 ? 'página guardada' : 'páginas guardadas'} neste aparelho.`
+      : 'Nenhuma página guardada ainda. Com internet, abra as aulas que quer ter à mão.';
+  }
+  document.addEventListener('astro:page-load', () => {
+    if (document.querySelector('[data-offline-lista]')) void listar();
+  });
+</script>
+
+<style>
+  .offline {
+    max-width: 40rem;
+  }
+  .offline__selo {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0 0 0.5rem;
+    font-family: var(--font-display);
+    font-size: calc(0.75rem * var(--escala-texto, 1));
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-ink-soft);
+  }
+  .offline__titulo {
+    margin: 0 0 0.75rem;
+    font-family: var(--font-display);
+    font-size: calc(1.6rem * var(--escala-texto, 1));
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+  }
+  .offline__texto,
+  .offline__status {
+    font-family: var(--font-body);
+    font-size: calc(1rem * var(--escala-texto, 1));
+    line-height: 1.6;
+  }
+  .offline__status {
+    color: var(--color-ink-soft);
+  }
+  .offline__lista {
+    margin: 0 0 1.5rem;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+  .offline__lista :global(a) {
+    display: block;
+    padding: 0.7rem 0.9rem;
+    border: 1px solid var(--color-line);
+    border-radius: 0.6rem;
+    background: var(--color-surface);
+    color: var(--color-ink);
+    font-family: var(--font-display);
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .offline__lista :global(a:hover) {
+    border-color: var(--color-ink);
+  }
+</style>
