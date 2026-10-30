@@ -4,7 +4,7 @@ Cada questão vira o recorte da própria página do PDF oficial (texto, figura e
 exatamente como na prova). Gabarito: o do PDF do INEP, exigindo que bata com o dos microdados.
 Uso (na raiz do repositório principal ou do worktree):  CACHE=<pasta .cache> python scripts/gerar-treino.py
 """
-import json, os, pathlib
+import json, os, pathlib, re
 import pymupdf
 
 RAIZ = pathlib.Path(__file__).resolve().parent.parent
@@ -22,6 +22,33 @@ def banco(ano, dia=2):
     return {q['numero']: q for q in json.load(open(CACHE / 'inep/questoes' / f'{ano}-regular-D{dia}-azul.json', encoding='utf-8'))}
 
 
+# Alternativas só viram texto quando o texto extraído é simples e confere com o PDF: letras, números e
+# pontuação comum, sem expoente, quebra de linha ou caractere quebrado. O resto fica como imagem.
+SIMPLES = re.compile(r"^[\w .,;:!?%()/\-–—'\"“”‘’$º°ª+=×÷<>≤≥]+$")
+
+
+def alternativas_em_texto(q, pag, clip):
+    """Devolve (y onde as alternativas começam, lista de 5 textos) ou (None, None)."""
+    alts = q.get('alternativas') or []
+    if len(alts) != 5 or q.get('alternativas_em_imagem') or q.get('texto_ilegivel'):
+        return None, None
+    alts = [a.strip() for a in alts]
+    if not all(a and SIMPLES.match(a) for a in alts):
+        return None, None
+    ys = []
+    for a in alts:
+        achados = [r for r in pag.search_for(a[:30], clip=clip) if r.y0 > clip.y0 + 40]
+        if not achados:
+            return None, None
+        ys.append(min(r.y0 for r in achados))
+    if ys != sorted(ys) or len(set(round(y) for y in ys)) != 5:  # lista vertical, uma por linha
+        return None, None
+    # Corta logo abaixo da última linha (ou figura) acima da alternativa A, sem depender do espaço entre elas.
+    acima = [b for b in pag.get_text('dict', clip=clip)['blocks'] for b in ([b] if b['type'] == 1 else b.get('lines', []))]
+    fundos = [pymupdf.Rect(b['bbox']).y1 for b in acima if pymupdf.Rect(b['bbox']).y0 < ys[0] - 4 and 'ENEM' not in ''.join(sp['text'] for sp in b.get('spans', []))]
+    return (min(max(fundos) + 3, ys[0] - 2) if fundos else ys[0] - 7), alts
+
+
 def recortar(q, nome):
     pdf = pymupdf.open(CACHE.parent / q['pdf'])
     imgs = []
@@ -34,7 +61,7 @@ def recortar(q, nome):
             arq = f'{nome}-{i + 1}.png'
             pdf[p - 1].get_pixmap(matrix=pymupdf.Matrix(1.7, 1.7)).save(SAIDA / arq)
             imgs.append(arq)
-        return imgs
+        return imgs, None
     for i, r in enumerate(regioes):
         arq = f'{nome}-{i + 1}.png'
         pag = pdf[r['pagina'] - 1]
@@ -47,14 +74,18 @@ def recortar(q, nome):
                 clip.y1 = it.y1 + 4
         if clip.y1 != pymupdf.Rect(*r['bbox']).y1:
             print('esticado', nome, r['bbox'][3], '->', round(clip.y1))
+        y_alt, alts = alternativas_em_texto(q, pag, clip)
+        if alts:
+            clip.y1 = y_alt
         pag.get_pixmap(matrix=pymupdf.Matrix(2, 2), clip=clip).save(SAIDA / arq)
         imgs.append(arq)
-    return imgs
+    return imgs, alts
 
 
 def questao(q, nome, rotulo):
     assert not q['anulada'] and q['gabarito'] == q['gabarito_microdados'] and q['gabarito'] in 'ABCDE', q['id']
-    return {'id': nome, 'rotulo': rotulo, 'imgs': recortar(q, nome), 'gabarito': q['gabarito'],
+    imgs, alts = recortar(q, nome)
+    return {'id': nome, 'rotulo': rotulo, 'imgs': imgs, 'alternativas': alts, 'gabarito': q['gabarito'],
             'habilidade': q['habilidade'], 'fonte': f"ENEM {q['ano']}, questão {q['numero']}", 'paginaInteira': len(q['regioes']) > 1}
 
 
@@ -65,7 +96,7 @@ simulado = []
 for n in range(136, 181):
     q = b25[n]
     if q['anulada'] and q['gabarito'] == 'anulada':  # 174: anulada pelo INEP, vale ponto para todos
-        simulado.append({'id': f's2025-{n}', 'rotulo': f'Questão {n}', 'imgs': recortar(q, f's2025-{n}'), 'gabarito': None,
+        simulado.append({'id': f's2025-{n}', 'rotulo': f'Questão {n}', 'imgs': recortar(q, f's2025-{n}')[0], 'alternativas': None, 'gabarito': None,
                          'habilidade': q['habilidade'], 'fonte': f'ENEM 2025, questão {n}'})
     else:
         q = dict(q, anulada=False)  # a 172 consta como "anulada" nos microdados, mas o PDF oficial dá A

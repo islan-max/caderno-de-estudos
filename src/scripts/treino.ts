@@ -1,75 +1,122 @@
 /* ---------------------------------------------------------------------------
- * Página /treino/[id]: cronômetro, respostas, chutes e correção das listas de questões (e o texto
- * da redação). A marcação é montada no servidor (src/pages/treino/[id].astro); aqui só se liga o estado,
- * guardado no navegador em `cdt:treino:<id>`, para sobreviver a recarregar a página.
+ * /treino: a página de navegação (estado de cada lista) e a página de cada lista (cronômetro com
+ * pausa, respostas, chutes, correção e resumo para colar no chat).
+ *
+ * A marcação sai pronta do build (src/pages/treino/[id].astro). Aqui só se liga o estado, guardado
+ * no navegador em `cdt:treino:<id>`, para sobreviver a fechar ou recarregar a página. O texto da
+ * redação quem guarda é a folha (src/components/Textarea.astro).
  * ------------------------------------------------------------------------- */
 import { ler, gravar } from './util';
 import { toast } from './avisos';
+import { confirmarAcao } from './confirmacao';
+import { relogio } from '../lib/treino';
 
 interface Estado {
+  /** Letra marcada em cada questão. */
   r: Record<string, string>;
+  /** Questões marcadas como chute. */
   c: Record<string, boolean>;
+  /** Início, fim, milissegundos já pausados e início da pausa atual (0 = não pausado). */
   ini: number;
   fim: number;
-  /** Milissegundos já pausados e, se está pausado agora, o instante em que a pausa começou. */
   p: number;
   pa: number;
-  texto: string;
+  /** Acertos e total, guardados na entrega para a página de navegação mostrar. */
+  nota?: { c: number; t: number };
 }
 
-const mmss = (s: number) => String(Math.floor(s / 60)).padStart(2, '0') + ':' + String(s % 60).padStart(2, '0');
+const CHAVE = 'cdt:treino:';
+const NOVO = (): Estado => ({ r: {}, c: {}, ini: 0, fim: 0, p: 0, pa: 0 });
 const palavras = (t: string) => (t.trim() ? t.trim().split(/\s+/).length : 0);
 
-export function montarTreino() {
+/** Segundos de prova já usados, sem contar as pausas. */
+function decorrido(e: Estado): number {
+  if (!e.ini) return 0;
+  return Math.max(0, Math.round(((e.fim || e.pa || Date.now()) - e.ini - (e.p || 0)) / 1000));
+}
+
+function montarHub() {
+  document.querySelectorAll<HTMLElement>('[data-treino-card]').forEach((card) => {
+    const e = ler<Estado>(CHAVE + card.dataset.treinoCard, NOVO());
+    const total = Number(card.dataset.total);
+    const rotulo = card.querySelector<HTMLElement>('[data-estado-card]')!;
+    const respondidas = Object.keys(e.r).length;
+    if (e.fim) {
+      rotulo.dataset.estado = 'feito';
+      rotulo.textContent = e.nota ? `Feito · ${e.nota.c} de ${e.nota.t} (${Math.round((e.nota.c / e.nota.t) * 100)}%)` : 'Entregue';
+    } else if (e.ini || respondidas) {
+      rotulo.dataset.estado = 'andamento';
+      rotulo.textContent = total ? `Em andamento · ${respondidas} de ${total} respondidas` : 'Em andamento';
+    }
+  });
+}
+
+function montarProva() {
   const raiz = document.querySelector<HTMLElement>('[data-treino]');
   if (!raiz) return;
-  const chave = 'cdt:treino:' + raiz.dataset.treino;
+  const id = raiz.dataset.treino!;
+  const chave = CHAVE + id;
+  const ehRedacao = raiz.dataset.tipo === 'redacao';
   const limite = Number(raiz.dataset.minutos) * 60;
   const q = <T extends HTMLElement>(s: string) => raiz.querySelector<T>(s)!;
-  const estado = ler<Estado>(chave, { r: {}, c: {}, ini: 0, fim: 0, p: 0, pa: 0, texto: '' });
+  const estado = ler<Estado>(chave, NOVO());
   const salvar = () => gravar(chave, estado);
-  const fichas = Array.from(raiz.querySelectorAll<HTMLElement>('.tq'));
-  const area = raiz.querySelector<HTMLTextAreaElement>('[data-texto]');
+  const fichas = Array.from(raiz.querySelectorAll<HTMLElement>('.tr-q'));
+  const folha = raiz.querySelector<HTMLTextAreaElement>('.folha__campo');
 
-  // Cronômetro: guarda o instante de início, então recarregar a página não zera o tempo.
+  // ---- cronômetro ----------------------------------------------------------------------------
   const tempo = q('[data-tempo]');
+  const caixaTempo = tempo.closest<HTMLElement>('.tr-barra__tempo')!;
   const btnIniciar = q<HTMLButtonElement>('[data-iniciar]');
-  let relogio = 0;
-  const decorrido = () => Math.round(((estado.fim || estado.pa || Date.now()) - estado.ini - (estado.p || 0)) / 1000);
+  const btnPausar = q<HTMLButtonElement>('[data-pausar]');
+  const rotuloPausar = q('[data-pausar-rotulo]');
+  let relogioId = 0;
+
   const pintar = () => {
-    const sobra = limite - decorrido();
-    tempo.textContent = sobra >= 0 ? mmss(sobra) : '+' + mmss(-sobra);
-    tempo.toggleAttribute('data-estourou', sobra < 0);
+    const sobra = limite - decorrido(estado);
+    tempo.textContent = (sobra < 0 ? '+' : '') + relogio(sobra);
+    caixaTempo.dataset.pouco = sobra < 300 ? 'sim' : 'nao';
   };
-  const btnPausa = q<HTMLButtonElement>('[data-pausar]');
+  const rotular = () => {
+    rotuloPausar.textContent = estado.pa ? 'Continuar' : 'Pausar';
+    btnPausar.querySelector('i')!.className = `fa-solid fa-${estado.pa ? 'play' : 'hourglass-half'}`;
+  };
   const andar = () => {
     btnIniciar.hidden = true;
-    btnPausa.hidden = !!estado.fim;
-    btnPausa.textContent = estado.pa ? 'Continuar' : 'Pausar';
+    btnPausar.hidden = !!estado.fim;
+    rotular();
     pintar();
-    if (!estado.fim) relogio = window.setInterval(pintar, 1000);
+    if (!estado.fim) relogioId = window.setInterval(pintar, 1000);
   };
+  // O cronômetro também começa sozinho na primeira resposta (ou na primeira letra da redação).
   const comecar = () => {
     if (estado.ini) return;
     estado.ini = Date.now();
     andar();
   };
   if (estado.ini) andar();
-  btnPausa.addEventListener('click', () => {
-    if (estado.pa) {
-      estado.p = (estado.p || 0) + Date.now() - estado.pa;
-      estado.pa = 0;
-    } else estado.pa = Date.now();
-    btnPausa.textContent = estado.pa ? 'Continuar' : 'Pausar';
-    salvar();
-    pintar();
-  });
   btnIniciar.addEventListener('click', () => {
     comecar();
     salvar();
   });
+  btnPausar.addEventListener('click', () => {
+    if (estado.pa) {
+      estado.p += Date.now() - estado.pa;
+      estado.pa = 0;
+    } else estado.pa = Date.now();
+    rotular();
+    salvar();
+    pintar();
+  });
 
-  // Respostas e chutes.
+  // ---- respostas -----------------------------------------------------------------------------
+  const rotuloRespondidas = raiz.querySelector<HTMLElement>('[data-respondidas]');
+  const barra = raiz.querySelector<HTMLElement>('[data-progresso]');
+  const contar = () => {
+    const n = fichas.filter((f) => estado.r[f.dataset.q!]).length;
+    if (rotuloRespondidas) rotuloRespondidas.textContent = String(n);
+    if (barra) barra.style.width = `${(n / fichas.length) * 100}%`;
+  };
   fichas.forEach((f) => {
     const qid = f.dataset.q!;
     const marcada = f.querySelector<HTMLInputElement>(`input[type=radio][value="${estado.r[qid]}"]`);
@@ -81,86 +128,128 @@ export function montarTreino() {
       else estado.c[qid] = el.checked;
       comecar();
       salvar();
-    });
-  });
-
-  // Redação.
-  if (area) {
-    const contar = () => (q('[data-contagem]').textContent = palavras(area.value) + ' palavras');
-    area.value = estado.texto;
-    contar();
-    area.addEventListener('input', () => {
-      estado.texto = area.value;
-      comecar();
-      salvar();
       contar();
     });
-  }
+  });
+  contar();
+  raiz.querySelector('[data-folha]')?.addEventListener('input', () => {
+    comecar();
+    salvar();
+  });
 
+  // ---- entrega -------------------------------------------------------------------------------
   const resultado = q('[data-resultado]');
   const copia = q<HTMLTextAreaElement>('[data-copia]');
+  const nota = q('[data-nota]');
+  const notaSub = q('[data-nota-sub]');
 
-  function finalizar() {
-    estado.fim = estado.fim || estado.pa || Date.now();
-    btnPausa.hidden = true;
-    clearInterval(relogio);
-    pintar();
-    salvar();
-    const minutos = estado.ini ? Math.round(decorrido() / 60) : 0;
-    let resumo = '';
-    let texto = `${raiz!.dataset.titulo}\nTempo usado: ${minutos} min`;
+  function corrigir(): { texto: string } {
+    let certas = 0;
+    let brancas = 0;
+    let chutes = 0;
+    let chutesCertos = 0;
+    const lista = raiz!.querySelector<HTMLElement>('[data-erros]')!;
+    lista.replaceChildren();
+    const linhas: string[] = [];
+    const chutados: string[] = [];
 
-    if (area) {
-      resumo = `${palavras(area.value)} palavras em ${minutos} min.`;
-      texto += `\n\n${area.value}`;
-    } else {
-      let certas = 0;
-      let brancas = 0;
-      let certasChute = 0;
-      const erros: Record<string, number> = {};
-      const linhas: string[] = [];
-      const chutes: string[] = [];
-      for (const f of fichas) {
-        const resp = estado.r[f.dataset.q!];
-        const gab = f.dataset.gab!;
-        const hab = f.dataset.hab!;
-        const certa = !gab || resp === gab; // sem gabarito = anulada: vale ponto para todos
-        f.toggleAttribute('data-certa', certa);
-        f.toggleAttribute('data-errada', !certa);
-        f.querySelectorAll('input').forEach((i) => (i.disabled = true));
-        const res = f.querySelector<HTMLElement>('[data-res]')!;
-        res.hidden = false;
-        res.textContent = !gab
-          ? 'Questão anulada pelo INEP: vale ponto para todos.'
-          : `${certa ? 'Certo' : resp ? 'Errado' : 'Em branco'}. Gabarito: ${gab}${resp && !certa ? ` (você marcou ${resp})` : ''} · ${f.dataset.fonte} · ${hab}`;
-        if (certa) certas++;
-        else erros[hab] = (erros[hab] || 0) + 1;
-        if (!resp) brancas++;
-        if (estado.c[f.dataset.q!]) {
-          chutes.push(f.dataset.num!);
-          if (certa) certasChute++;
-        }
-        linhas.push(f.dataset.num + (resp || '-'));
+    for (const f of fichas) {
+      const qid = f.dataset.q!;
+      const resp = estado.r[qid] ?? '';
+      const gab = f.dataset.gab!;
+      const num = f.dataset.num!;
+      const chute = !!estado.c[qid];
+      const certa = !gab || resp === gab; // sem gabarito = anulada pelo INEP: vale ponto para todos
+      const res = f.querySelector<HTMLElement>('[data-res]')!;
+      f.querySelectorAll('input').forEach((i) => (i.disabled = true));
+
+      if (gab) {
+        f.dataset.estado = certa ? 'certa' : resp ? 'errada' : 'vazia';
+        const rotulo = (l: string) => f.querySelector<HTMLElement>(`.quiz__alternativa[data-letra="${l}"]`);
+        if (resp) rotulo(resp)!.dataset.estado = certa ? 'certa' : 'errada';
+        if (!certa) rotulo(gab)!.dataset.estado = 'gabarito';
       }
-      const porHab = Object.entries(erros)
-        .sort((a, b) => b[1] - a[1])
-        .map(([h, n]) => `${h}: ${n}`)
-        .join(', ');
-      resumo = `${certas} de ${fichas.length} certas, ${brancas} em branco, ${certasChute} acertos entre ${chutes.length} chutes.` + (porHab ? ` Erros por habilidade: ${porHab}.` : '');
-      texto += `\nRespostas: ${linhas.join(' ')}\nChutes: ${chutes.join(', ') || 'nenhum'}`;
+      res.hidden = false;
+      res.textContent = !gab
+        ? 'O INEP anulou esta questão: ela vale ponto para todos.'
+        : `${certa ? 'Acertou.' : resp ? `Gabarito: ${gab}. Você marcou ${resp}.` : `Em branco. Gabarito: ${gab}.`} ${f.dataset.fonte}, habilidade ${f.dataset.hab}.${chute ? ' Marcada como chute.' : ''}`;
+
+      if (certa) certas++;
+      else {
+        const li = document.createElement('li');
+        const link = document.createElement('a');
+        link.href = `#${qid}`;
+        link.textContent = `Questão ${num}`;
+        const det = document.createElement('span');
+        det.textContent = ` · gabarito ${gab}, ${resp ? `você marcou ${resp}` : 'em branco'} · ${f.dataset.hab}${chute ? ' · chute' : ''}`;
+        li.append(link, det);
+        lista.append(li);
+      }
+      if (!resp) brancas++;
+      if (chute) {
+        chutes++;
+        chutados.push(num);
+        if (certa) chutesCertos++;
+      }
+      linhas.push(num + (resp || '-'));
     }
-    q('[data-resumo]').textContent = resumo;
-    copia.value = texto;
-    resultado.hidden = false;
-    resultado.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (!lista.children.length) {
+      const li = document.createElement('li');
+      li.textContent = 'Nenhum erro. Pode partir para a próxima lista.';
+      lista.append(li);
+    }
+
+    const total = fichas.length;
+    estado.nota = { c: certas, t: total };
+    nota.textContent = `${certas} de ${total} certas`;
+    notaSub.textContent =
+      `${Math.round((certas / total) * 100)}% · ${brancas} em branco · ${chutesCertos} de ${chutes} chutes certos · ` +
+      `tempo ${relogio(decorrido(estado))}`;
+    return {
+      texto:
+        `${raiz!.dataset.titulo}\nTempo usado: ${Math.round(decorrido(estado) / 60)} min\n` +
+        `Respostas: ${linhas.join(' ')}\nChutes: ${chutados.join(', ') || 'nenhum'}`,
+    };
   }
 
-  q('[data-finalizar]').addEventListener('click', () => {
-    const faltam = fichas.filter((f) => !estado.r[f.dataset.q!]).length;
-    if (faltam && !confirm(`${faltam} questão(ões) em branco. Finalizar mesmo assim?`)) return;
-    finalizar();
+  function entregar(rolar: boolean) {
+    estado.fim = estado.fim || estado.pa || Date.now();
+    clearInterval(relogioId);
+    btnPausar.hidden = true;
+    pintar();
+    let texto: string;
+    if (ehRedacao) {
+      const escrito = folha?.value ?? '';
+      nota.textContent = `${palavras(escrito)} palavras`;
+      notaSub.textContent = `Tempo ${relogio(decorrido(estado))} de ${relogio(limite)}`;
+      texto = `${raiz!.dataset.titulo}\nTempo usado: ${Math.round(decorrido(estado) / 60)} min\n\n${escrito}`;
+    } else texto = corrigir().texto;
+    salvar();
+    copia.value = texto;
+    resultado.hidden = false;
+    if (rolar) {
+      resultado.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      resultado.focus({ preventScroll: true });
+    }
+  }
+
+  q('[data-finalizar]').addEventListener('click', async () => {
+    const brancas = ehRedacao ? (folha?.value.trim() ? 0 : 1) : fichas.filter((f) => !estado.r[f.dataset.q!]).length;
+    if (brancas) {
+      const { ok } = await confirmarAcao(
+        ehRedacao
+          ? { titulo: 'Entregar sem texto?', texto: 'A folha está vazia.', confirmar: 'Entregar assim' }
+          : {
+              titulo: 'Entregar com questões em branco?',
+              texto: `${brancas} ${brancas === 1 ? 'questão está' : 'questões estão'} sem resposta e ${brancas === 1 ? 'conta' : 'contam'} como erro.`,
+              confirmar: 'Entregar assim',
+            },
+      );
+      if (!ok) return;
+    }
+    entregar(true);
   });
-  if (estado.fim) finalizar();
+  if (estado.fim) entregar(false);
 
   q('[data-copiar]').addEventListener('click', async () => {
     try {
@@ -168,14 +257,26 @@ export function montarTreino() {
       toast('Copiado');
     } catch {
       copia.select();
-      toast('Selecione e copie (Ctrl+C)');
+      toast('Selecione e copie com Ctrl+C', 'circle-info');
     }
   });
-  q('[data-refazer]').addEventListener('click', () => {
-    if (!confirm('Apagar respostas, texto e cronômetro desta lista?')) return;
+
+  q('[data-refazer]').addEventListener('click', async () => {
+    const { ok } = await confirmarAcao({
+      titulo: 'Apagar e refazer?',
+      texto: ehRedacao ? 'O texto, o cronômetro e o resultado desta redação são apagados.' : 'As respostas, o cronômetro e o resultado desta lista são apagados.',
+      confirmar: 'Apagar tudo',
+    });
+    if (!ok) return;
     try {
       localStorage.removeItem(chave);
+      if (ehRedacao) localStorage.removeItem(`cdt:redacao:${location.pathname}:${id}`);
     } catch {}
     location.reload();
   });
+}
+
+export function montarTreino() {
+  montarHub();
+  montarProva();
 }

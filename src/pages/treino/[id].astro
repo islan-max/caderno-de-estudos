@@ -1,95 +1,431 @@
 ---
-// Uma lista de treino: as questões são recortes do PDF oficial (public/treino), gerados por
-// scripts/gerar-treino.py. O estado (respostas, chutes, cronômetro) fica no navegador: src/scripts/treino.ts.
+// Uma lista de treino: simulado, treino rápido ou redação. A marcação toda sai pronta no build; o
+// navegador só liga o cronômetro, as respostas e a correção (src/scripts/treino.ts).
+// As questões são recortes do PDF oficial (public/treino): o enunciado sempre como imagem, e as
+// alternativas como texto quando a extração do PDF é confiável, senão dentro da imagem.
 import Base from '../../layouts/Base.astro';
+import Icone from '../../components/Icone.astro';
+import Accordion from '../../components/Accordion.astro';
+import Textarea from '../../components/Textarea.astro';
+import AjudaDaPagina from '../../components/AjudaDaPagina.astro';
 import { u } from '../../lib/url';
-import treino from '../../data/treino.json';
+import { CONJUNTOS, duracao, relogio } from '../../lib/treino';
+import dados from '../../data/treino.json';
 
 export function getStaticPaths() {
-  return [
-    { params: { id: 'manha' }, props: { titulo: 'Treino de Matemática', minutos: 60, questoes: treino.manha } },
-    { params: { id: 'simulado-mat-2025' }, props: { titulo: 'Simulado: Matemática ENEM 2025', minutos: 150, questoes: treino.simulado } },
-    { params: { id: 'simulado-humanas-2024' }, props: { titulo: 'Simulado: Ciências Humanas ENEM 2024', minutos: 135, questoes: treino.humanas } },
-    { params: { id: 'redacao-2025' }, props: { titulo: 'Redação ENEM 2025', minutos: 75, questoes: null, paginas: treino.redacao, tema: 'ENEM 2025' } },
-    { params: { id: 'redacao-2024' }, props: { titulo: 'Redação ENEM 2024', minutos: 75, questoes: null, paginas: treino.redacao2024, tema: 'ENEM 2024' } },
-  ];
+  return CONJUNTOS.map((c) => ({ params: { id: c.id }, props: { c } }));
 }
-const { id } = Astro.params;
-const { titulo, minutos, questoes, paginas = [], tema = '' } = Astro.props as { titulo: string; minutos: number; questoes: any[] | null; paginas?: string[]; tema?: string };
+const { c } = Astro.props as { c: (typeof CONJUNTOS)[number] };
+const ehRedacao = c.tipo === 'redacao';
+const questoes = ehRedacao ? [] : (dados[c.dados] as any[]);
+const paginas = ehRedacao ? (dados[c.dados] as string[]) : [];
 const img = (arq: string) => u(`/treino/${arq}`);
+const LETRAS = ['A', 'B', 'C', 'D', 'E'];
+const fatos = ehRedacao
+  ? [duracao(c.minutos), 'mín. 7 e máx. 30 linhas', c.fonte]
+  : [`${questoes.length} questões`, duracao(c.minutos), c.fonte];
 ---
 
-<Base title={titulo} voltar={{ href: u('/treino'), label: 'Treino' }}>
-  <div class="treino" data-treino={id} data-minutos={minutos} data-titulo={titulo}>
-    <h1>{titulo}</h1>
+<Base
+  title={c.titulo}
+  active="enem"
+  cor={c.cor}
+  description={c.resumo}
+  voltar={{ href: u('/treino/'), label: 'Treino' }}
+>
+  <div class="treino" data-treino={c.id} data-minutos={c.minutos} data-titulo={c.titulo} data-tipo={c.tipo} style={`--cor: ${c.cor}`}>
+    <header class="aj-hero tr-hero">
+      <p class="aj-hero__selo tr-hero__selo"><Icone nome={c.icone} /> {ehRedacao ? 'Redação' : c.grupo === 'simulado' ? 'Simulado' : 'Treino'}</p>
+      <h1 class="aj-hero__h1">{c.titulo}</h1>
+      <p class="aj-hero__intro">
+        {ehRedacao ? `Tema: “${c.tema}”. Leia a proposta e os textos de apoio, escreva na folha e entregue quando terminar.` : c.resumo}
+      </p>
+      <ul class="tr-fatos">{fatos.map((f) => <li>{f}</li>)}</ul>
+    </header>
 
-    <div class="treino__barra">
-      <output class="treino__tempo" data-tempo aria-live="off">{String(minutos).padStart(2, '0')}:00</output>
-      <button type="button" class="treino__btn" data-iniciar>Iniciar cronômetro</button>
-      <button type="button" class="treino__btn" data-pausar hidden>Pausar</button>
-      <button type="button" class="treino__btn treino__btn--ok" data-finalizar>{questoes ? 'Finalizar e corrigir' : 'Finalizar'}</button>
+    {!ehRedacao && (
+      <section class="tr-dicas" aria-labelledby="tr-dicas-t">
+        <h2 id="tr-dicas-t">Antes de começar</h2>
+        <ul>{c.dicas.map((d) => <li>{d}</li>)}</ul>
+      </section>
+    )}
+
+    <div class="tr-barra" data-barra>
+      <p class="tr-barra__conta" data-conta-caixa>
+        {ehRedacao ? 'Cronômetro' : <><span data-respondidas>0</span> de <span data-total>{questoes.length}</span><span class="tr-barra__sufixo"> respondidas</span></>}
+      </p>
+      <p class="tr-barra__tempo">
+        <Icone nome="clock" /> <output data-tempo aria-label="Tempo restante">{relogio(c.minutos * 60)}</output>
+      </p>
+      <div class="tr-barra__botoes">
+        <button type="button" class="quiz__botao" data-iniciar><Icone nome="play" /> Iniciar</button>
+        <button type="button" class="quiz__botao" data-pausar hidden><Icone nome="hourglass-half" /> <span data-pausar-rotulo>Pausar</span></button>
+      </div>
+      {!ehRedacao && <div class="tr-barra__progresso" aria-hidden="true"><span data-progresso></span></div>}
     </div>
 
-    {questoes ? (
-      <form class="treino__questoes" onsubmit="return false">
+    {ehRedacao ? (
+      <>
+        <section class="tr-proposta" aria-labelledby="tr-proposta-t">
+          <h2 id="tr-proposta-t">Proposta e textos de apoio</h2>
+          <p class="tr-proposta__fonte">Página oficial da prova do INEP.</p>
+          {paginas.map((arq) => (
+            <div class="tr-folha"><img src={img(arq)} alt={`Proposta de redação do ${c.fonte}: textos de apoio e instruções`} loading="lazy" /></div>
+          ))}
+        </section>
+
+        <Accordion titulo="Roteiro para não travar" dica="Estrutura de 4 parágrafos" icone="list-ol" dobra="treino-roteiro">
+          <ol class="tr-roteiro">
+            <li><strong>Introdução:</strong> apresente o tema com um repertório (fato, dado ou obra) e termine com a tese, o seu ponto de vista.</li>
+            <li><strong>1º desenvolvimento:</strong> uma causa ou argumento, explicado e provado com um exemplo.</li>
+            <li><strong>2º desenvolvimento:</strong> outro argumento, com a mesma estrutura.</li>
+            <li><strong>Conclusão:</strong> retome a tese e escreva a proposta de intervenção com os 5 elementos: <em>agente</em>, <em>ação</em>, <em>meio</em>, <em>finalidade</em> e <em>detalhamento</em>.</li>
+          </ol>
+          <p>
+            Fugir do tema zera a redação, e sem proposta de intervenção a nota cai muito na competência 5. Antes de escrever, revise
+            a <a href={u('/enem/redacao/proposta-de-intervencao/')}>proposta de intervenção</a>, o{' '}
+            <a href={u('/enem/redacao/projeto-de-texto-e-argumentacao/')}>projeto de texto</a> e as{' '}
+            <a href={u('/enem/redacao/regras-da-nota-zero/')}>regras da nota zero</a>.
+          </p>
+        </Accordion>
+
+        <Textarea id={c.id} titulo="Sua redação" dica="Escreva a versão final aqui. O rascunho fica guardado neste navegador." correcao={false} />
+      </>
+    ) : (
+      <form class="quiz tr-questoes" novalidate onsubmit="return false">
         {questoes.map((q) => (
-          <fieldset class="tq" data-q={q.id} data-num={q.rotulo.replace(/\D/g, '')} data-gab={q.gabarito ?? ''} data-hab={q.habilidade} data-fonte={q.fonte}>
-            <legend>{q.rotulo}</legend>
-            {q.paginaInteira && <p class="tq__aviso">Esta questão ocupa a página inteira: resolva a <strong>{q.rotulo}</strong>.</p>}
-            {q.imgs.map((arq: string) => <img src={img(arq)} alt={`Enunciado e alternativas da ${q.rotulo}`} loading="lazy" />)}
-            <div class="tq__resp">
-              {['A', 'B', 'C', 'D', 'E'].map((l) => (
-                <label><input type="radio" name={q.id} value={l} /><span>{l}</span></label>
-              ))}
-              <label class="tq__chute"><input type="checkbox" name={`${q.id}-chute`} /> chutei</label>
+          <fieldset class="quiz__questao tr-q" id={q.id} data-q={q.id} data-num={q.rotulo.replace(/\D/g, '')} data-gab={q.gabarito ?? ''} data-hab={q.habilidade} data-fonte={q.fonte}>
+            <legend class="quiz__legenda">{q.rotulo}</legend>
+            {q.paginaInteira && <p class="tr-aviso"><Icone nome="circle-info" /> Esta questão ocupa a página inteira. Resolva a <strong>{q.rotulo}</strong>.</p>}
+            <div class="tr-folha">
+              {q.imgs.map((arq: string) => <img src={img(arq)} alt={`Enunciado da ${q.rotulo}${q.alternativas ? '' : ', com as alternativas'}`} loading="lazy" />)}
             </div>
-            <p class="tq__res" data-res hidden></p>
+            <div class:list={['quiz__alternativas', { 'tr-letras': !q.alternativas }]} role="radiogroup" aria-label={`Alternativas da ${q.rotulo}`}>
+              {LETRAS.map((l, i) => (
+                <label class="quiz__alternativa" data-letra={l}>
+                  <input class="quiz__radio" type="radio" name={q.id} value={l} />
+                  <span class="quiz__letra" aria-hidden="true">{l}</span>
+                  <span class="apenas-leitor">Alternativa {l}{q.alternativas ? ': ' : ''}</span>
+                  {q.alternativas && <span class="quiz__texto">{q.alternativas[i]}</span>}
+                  <span class="quiz__marca" aria-hidden="true"></span>
+                </label>
+              ))}
+            </div>
+            <label class="tr-chute"><input type="checkbox" name={`${q.id}-chute`} /> Chutei</label>
+            <p class="quiz__resposta" data-res hidden></p>
           </fieldset>
         ))}
       </form>
-    ) : (
-      <div class="treino__redacao">
-        <p>Proposta oficial do {tema}. Escreva no mínimo 7 e no máximo 30 linhas, com proposta de intervenção que respeite os direitos humanos.</p>
-        {paginas.map((arq: string) => <img src={img(arq)} alt="Proposta de redação e textos motivadores" loading="lazy" />)}
-        <label for="redacao-texto"><strong>Seu texto</strong> (salvo automaticamente neste navegador)</label>
-        <textarea id="redacao-texto" data-texto rows="24" spellcheck="true"></textarea>
-        <p class="tq__aviso" data-contagem>0 palavras</p>
-      </div>
     )}
 
-    <section class="treino__resultado" data-resultado hidden aria-live="polite">
-      <h2>Resultado</h2>
-      <p data-resumo></p>
-      <p>Copie e cole no chat para eu corrigir por tema:</p>
-      <textarea readonly rows={questoes ? 6 : 3} data-copia></textarea>
-      <button type="button" class="treino__btn" data-copiar>Copiar</button>
+    <div class="quiz__acoes tr-acoes">
+      <button type="button" class="quiz__botao quiz__botao--principal" data-finalizar>
+        <Icone nome="circle-check" /> {ehRedacao ? 'Entregar redação' : 'Entregar e corrigir'}
+      </button>
+      <button type="button" class="quiz__botao" data-refazer><Icone nome="rotate-left" /> Apagar e refazer</button>
+    </div>
+
+    <section class="tr-resultado" data-resultado tabindex="-1" hidden aria-labelledby="tr-res-t">
+      <h2 id="tr-res-t" class="tr-resultado__titulo">{ehRedacao ? 'Redação entregue' : 'Resultado'}</h2>
+      <p class="tr-nota" data-nota></p>
+      <p class="tr-nota-sub" data-nota-sub></p>
+      {!ehRedacao && (
+        <>
+          <h3 class="tr-resultado__sub">Para rever</h3>
+          <ul class="tr-erros" data-erros></ul>
+        </>
+      )}
+      <h3 class="tr-resultado__sub">Mandar para o chat</h3>
+      <p class="tr-resultado__dica">
+        {ehRedacao
+          ? 'Copie o texto abaixo e cole no chat para eu corrigir pelas cinco competências do ENEM.'
+          : 'Copie o resumo abaixo e cole no chat: eu separo os erros por tema e monto o próximo treino.'}
+      </p>
+      <textarea class="tr-copia" readonly rows={ehRedacao ? 8 : 5} data-copia aria-label="Resumo para copiar"></textarea>
+      <button type="button" class="quiz__botao" data-copiar><Icone nome="copy" /> Copiar</button>
     </section>
 
-    <p><button type="button" class="treino__btn treino__btn--fraco" data-refazer>Apagar tudo e refazer</button></p>
+    <AjudaDaPagina titulo={ehRedacao ? 'Como a redação funciona' : 'Como a lista funciona'}>
+      <p>O cronômetro começa quando você clica em Iniciar ou {ehRedacao ? 'começa a escrever' : 'marca a primeira resposta'}. Dá para pausar. Se o tempo acabar, nada trava.</p>
+      {!ehRedacao && <p>Nada é corrigido antes de você entregar. Depois, cada questão mostra o gabarito, o seu palpite e a habilidade da matriz do ENEM.</p>}
+      <p>Respostas e texto ficam só neste navegador. Fechar a página não perde nada, mas abrir em outro aparelho recomeça do zero.</p>
+    </AjudaDaPagina>
   </div>
 </Base>
 
 <style>
-  .treino__barra { position: sticky; top: 0; z-index: 5; display: flex; flex-wrap: wrap; gap: 0.6rem; align-items: center; padding: 0.6rem 0.8rem; margin: 0 0 1rem; background: var(--color-surface); border: 1px solid var(--color-line); border-radius: 0.8rem; }
-  .treino__tempo { font: 700 1.4rem/1 monospace; margin-right: auto; }
-  .treino__tempo[data-estourou] { color: var(--color-enem); }
-  .treino__btn { padding: 0.5rem 0.9rem; border: 1px solid var(--color-ink); border-radius: 0.6rem; background: var(--color-paper); color: var(--color-ink); font: inherit; cursor: pointer; }
-  .treino__btn--ok { background: var(--color-ink); color: var(--color-paper); }
-  .treino__btn--fraco { border-color: var(--color-line); color: var(--color-ink-soft); }
-  .tq { margin: 0 0 1.4rem; padding: 0.8rem; border: 1px solid var(--color-line); border-radius: 0.8rem; background: #fff; }
-  .tq legend { padding: 0 0.4rem; font-weight: 700; }
-  .tq img, .treino__redacao img { display: block; max-width: 100%; height: auto; margin: 0 auto 0.6rem; }
-  .tq__aviso { color: var(--color-aviso); font-size: 0.9rem; }
-  .tq__resp { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; }
-  .tq__resp label { display: inline-flex; align-items: center; gap: 0.3rem; cursor: pointer; }
-  .tq__resp label:not(.tq__chute) span { display: inline-grid; place-items: center; width: 2.6rem; height: 2.6rem; border: 2px solid var(--color-line); border-radius: 50%; font-weight: 700; }
-  .tq__resp input[type='radio'] { position: absolute; opacity: 0; }
-  .tq__resp input[type='radio']:checked + span { background: var(--color-ink); border-color: var(--color-ink); color: var(--color-paper); }
-  .tq__resp input[type='radio']:focus-visible + span { outline: 3px solid var(--color-enem); outline-offset: 2px; }
-  .tq__chute { margin-left: auto; color: var(--color-ink-soft); }
-  .tq[data-certa] { border-color: var(--color-ok); }
-  .tq[data-errada] { border-color: var(--color-enem); }
-  .tq__res { margin: 0.6rem 0 0; font-weight: 600; }
-  .treino__redacao textarea, .treino__resultado textarea { width: 100%; padding: 0.8rem; border: 1px solid var(--color-line); border-radius: 0.6rem; font: inherit; line-height: 1.7; background: #fff; color: var(--color-ink); }
-  .treino__resultado { margin: 1.5rem 0; padding: 1rem; border: 2px solid var(--color-ink); border-radius: 0.8rem; }
+  .treino {
+    max-width: 46rem;
+    margin: 0 auto;
+  }
+  .tr-hero {
+    border-color: color-mix(in srgb, var(--cor) 38%, var(--color-line));
+    background:
+      radial-gradient(120% 140% at 100% 0%, color-mix(in srgb, var(--cor) 15%, transparent), transparent 60%),
+      color-mix(in srgb, var(--cor) 5%, var(--color-surface));
+  }
+  .tr-hero__selo {
+    background: var(--cor);
+  }
+  .tr-fatos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin: 0.9rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+  .tr-fatos li {
+    padding: 0.2rem 0.65rem;
+    border: 1px solid var(--color-line);
+    border-radius: 999px;
+    background: var(--color-surface);
+    font-family: var(--font-display);
+    font-size: calc(0.78rem * var(--escala-texto, 1));
+    font-weight: 700;
+    color: var(--color-ink-soft);
+  }
+
+  .tr-dicas {
+    margin: 0 0 1.25rem;
+    padding: 0.9rem 1rem;
+    border-left: 3px solid var(--cor);
+    border-radius: 0 0.6rem 0.6rem 0;
+    background: color-mix(in srgb, var(--cor) 7%, transparent);
+  }
+  .tr-dicas h2 {
+    margin: 0 0 0.35rem;
+    font-family: var(--font-display);
+    font-size: calc(0.95rem * var(--escala-texto, 1));
+    font-weight: 800;
+  }
+  .tr-dicas ul {
+    margin: 0;
+    padding-left: 1.1rem;
+    line-height: 1.6;
+    font-size: calc(0.92rem * var(--escala-texto, 1));
+  }
+
+  /* Barra presa no topo: quantas faltam, o relógio e o progresso. */
+  .tr-barra {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.25rem 1rem;
+    margin: 0 -0.5rem 1rem;
+    padding: 0.6rem 0.75rem 0.75rem;
+    border-bottom: 1px solid var(--color-line);
+    background: color-mix(in srgb, var(--color-surface) 94%, transparent);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    font-family: var(--font-display);
+    font-weight: 700;
+  }
+  /* Em telas médias o cabeçalho fixo de círculos ocupa o topo da janela. */
+  @media (min-width: 640px) and (max-width: 1279px) {
+    .tr-barra {
+      top: 3.6rem;
+    }
+  }
+  .tr-barra p {
+    margin: 0;
+  }
+  .tr-barra__tempo {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-right: auto;
+    font-variant-numeric: tabular-nums;
+  }
+  .tr-barra__tempo output {
+    font-size: calc(1.15rem * var(--escala-texto, 1));
+  }
+  @media (max-width: 480px) {
+    .tr-barra__sufixo {
+      display: none;
+    }
+    .tr-barra__tempo {
+      margin-right: 0;
+    }
+    .tr-barra__botoes .quiz__botao {
+      padding: 0.45rem 0.8rem;
+    }
+  }
+  .tr-barra__tempo[data-pouco='sim'] {
+    color: var(--color-enem);
+  }
+  .tr-barra__botoes {
+    display: flex;
+    gap: 0.4rem;
+  }
+  .tr-barra__botoes [hidden] {
+    display: none;
+  }
+  .tr-barra__progresso {
+    flex-basis: 100%;
+    height: 6px;
+    border-radius: 999px;
+    background: var(--color-paper-dark);
+    overflow: hidden;
+  }
+  .tr-barra__progresso span {
+    display: block;
+    height: 100%;
+    width: 0;
+    background: var(--color-ok);
+    transition: width 0.25s var(--ease);
+  }
+
+  /* A prova é uma folha branca: no tema escuro ela continua legível em vez de virar um bloco claro solto. */
+  .tr-folha {
+    margin: 0 0 0.9rem;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    background: #fff;
+  }
+  .tr-folha img {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto;
+  }
+  .tr-aviso {
+    display: flex;
+    gap: 0.45rem;
+    margin: 0 0 0.6rem;
+    color: var(--color-aviso);
+    font-size: calc(0.88rem * var(--escala-texto, 1));
+  }
+
+  /* Alternativas dentro da imagem: só as letras, em fila. */
+  .tr-letras {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .tr-letras .quiz__alternativa {
+    flex: 1 1 4.5rem;
+    justify-content: center;
+    padding: 0.6rem 1.6rem 0.6rem 0.7rem;
+  }
+  .tr-letras .quiz__letra {
+    width: 1.9rem;
+    height: 1.9rem;
+    font-size: calc(0.85rem * var(--escala-texto, 1));
+  }
+  .tr-letras .quiz__marca {
+    right: 0.5rem;
+  }
+  .tr-chute {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    margin-top: 0.7rem;
+    color: var(--color-ink-soft);
+    font-size: calc(0.85rem * var(--escala-texto, 1));
+    cursor: pointer;
+  }
+  .tr-chute input {
+    width: 1.1rem;
+    height: 1.1rem;
+    accent-color: var(--color-aviso);
+  }
+
+  .tr-acoes {
+    margin-top: 1.5rem;
+  }
+  .tr-proposta h2 {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: calc(1.1rem * var(--escala-texto, 1));
+    font-weight: 800;
+  }
+  .tr-proposta__fonte {
+    margin: 0.15rem 0 0.7rem;
+    color: var(--color-ink-soft);
+    font-size: calc(0.85rem * var(--escala-texto, 1));
+  }
+  .tr-roteiro {
+    margin: 0 0 0.8rem;
+    padding-left: 1.3rem;
+    list-style: decimal;
+    line-height: 1.65;
+  }
+
+  .tr-resultado {
+    margin: 1.5rem 0;
+    padding: 1.1rem 1.15rem;
+    border: 1px solid var(--color-line);
+    border-radius: 1rem;
+    background: var(--color-surface);
+  }
+  .tr-resultado[hidden] {
+    display: none;
+  }
+  .tr-resultado:focus-visible {
+    outline: 2px solid var(--color-ink);
+    outline-offset: 2px;
+  }
+  .tr-resultado__titulo {
+    margin: 0 0 0.4rem;
+    font-family: var(--font-display);
+    font-size: calc(1rem * var(--escala-texto, 1));
+    font-weight: 800;
+  }
+  .tr-resultado__sub {
+    margin: 1.1rem 0 0.4rem;
+    font-family: var(--font-display);
+    font-size: calc(0.95rem * var(--escala-texto, 1));
+    font-weight: 800;
+  }
+  .tr-resultado__dica {
+    margin: 0 0 0.5rem;
+    color: var(--color-ink-soft);
+    font-size: calc(0.9rem * var(--escala-texto, 1));
+  }
+  .tr-nota {
+    margin: 0 0 0.2rem;
+    font-family: var(--font-display);
+    font-size: calc(1.7rem * var(--escala-texto, 1));
+    font-weight: 800;
+  }
+  .tr-nota-sub {
+    margin: 0;
+    color: var(--color-ink-soft);
+  }
+  .tr-erros {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    line-height: 1.5;
+  }
+  .tr-erros :global(a) {
+    color: var(--color-ink);
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .tr-erros :global(span) {
+    color: var(--color-ink-soft);
+  }
+  .tr-copia {
+    display: block;
+    width: 100%;
+    margin: 0 0 0.6rem;
+    padding: 0.7rem;
+    border: 1px solid var(--color-line);
+    border-radius: 0.6rem;
+    background: var(--color-paper);
+    color: var(--color-ink);
+    font: inherit;
+    font-size: calc(0.85rem * var(--escala-texto, 1));
+    line-height: 1.5;
+  }
 </style>

@@ -27,6 +27,8 @@ interface Props {
   dica?: string;
   linhas?: number;
   minimo?: number;
+  /** Mostra o botão (ainda desabilitado) de correção. As páginas de treino corrigem fora daqui. */
+  correcao?: boolean;
 }
 const {
   id,
@@ -34,6 +36,7 @@ const {
   dica = 'Escreva aqui. O rascunho fica guardado neste navegador.',
   linhas = 30,
   minimo = 7,
+  correcao = true,
 } = Astro.props;
 const campo = `redacao-${id}`;
 ---
@@ -77,10 +80,12 @@ const campo = `redacao-${id}`;
       <button type="button" class="folha__botao" data-folha-limpar>
         <Icone nome="rotate-left" /> Limpar
       </button>
-      <button type="button" class="folha__botao folha__botao--principal" disabled title="A correção automática ainda está sendo construída">
-        <Icone nome="wand-magic-sparkles" /> Enviar para correção
-        <span class="folha__selo">em breve</span>
-      </button>
+      {correcao && (
+        <button type="button" class="folha__botao folha__botao--principal" disabled title="A correção automática ainda está sendo construída">
+          <Icone nome="wand-magic-sparkles" /> Enviar para correção
+          <span class="folha__selo">em breve</span>
+        </button>
+      )}
     </div>
   </footer>
 </section>

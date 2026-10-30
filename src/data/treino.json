@@ -6,6 +6,7 @@
    "imgs": [
     "m2023-153-1.png"
    ],
+   "alternativas": null,
    "gabarito": "E",
    "habilidade": "H17",
    "fonte": "ENEM 2023, questão 153",
@@ -17,6 +18,7 @@
    "imgs": [
     "m2023-156-1.png"
    ],
+   "alternativas": null,
    "gabarito": "A",
    "habilidade": "H20",
    "fonte": "ENEM 2023, questão 156",
@@ -27,6 +29,13 @@
    "rotulo": "Questão 3",
    "imgs": [
     "m2024-139-1.png"
+   ],
+   "alternativas": [
+    "I, pois o valor é R$ 7,00.",
+    "I, pois o valor é R$ 4,00.",
+    "II, pois o valor é R$ 6,00.",
+    "I, pois anuncia o componente com o menor preço.",
+    "II, pois o componente X, que é o mais utilizado, tem menor preço."
    ],
    "gabarito": "A",
    "habilidade": "H26",
@@ -39,6 +48,13 @@
    "imgs": [
     "m2024-154-1.png"
    ],
+   "alternativas": [
+    "13,0.",
+    "15,0.",
+    "19,8.",
+    "20,0.",
+    "23,3."
+   ],
    "gabarito": "C",
    "habilidade": "H27",
    "fonte": "ENEM 2024, questão 154",
@@ -49,6 +65,13 @@
    "rotulo": "Questão 5",
    "imgs": [
     "m2024-178-1.png"
+   ],
+   "alternativas": [
+    "56.",
+    "58.",
+    "59.",
+    "60.",
+    "62."
    ],
    "gabarito": "E",
    "habilidade": "H27",
@@ -61,6 +84,13 @@
    "imgs": [
     "m2023-162-1.png"
    ],
+   "alternativas": [
+    "y = 250x",
+    "y = 500x",
+    "y = 750x",
+    "y = 250x + 500",
+    "y = 500x + 250"
+   ],
    "gabarito": "D",
    "habilidade": "H19",
    "fonte": "ENEM 2023, questão 162",
@@ -72,6 +102,7 @@
    "imgs": [
     "m2022-171-1.png"
    ],
+   "alternativas": null,
    "gabarito": "A",
    "habilidade": "H29",
    "fonte": "ENEM 2022, questão 171",
@@ -82,6 +113,13 @@
    "rotulo": "Questão 8",
    "imgs": [
     "m2024-157-1.png"
+   ],
+   "alternativas": [
+    "12,50",
+    "20,00",
+    "24,00",
+    "30,00",
+    "37,50"
    ],
    "gabarito": "C",
    "habilidade": "H23",
@@ -94,6 +132,7 @@
    "imgs": [
     "m2024-145-1.png"
    ],
+   "alternativas": null,
    "gabarito": "D",
    "habilidade": "H08",
    "fonte": "ENEM 2024, questão 145",
@@ -105,6 +144,7 @@
    "imgs": [
     "m2023-137-1.png"
    ],
+   "alternativas": null,
    "gabarito": "C",
    "habilidade": "H27",
    "fonte": "ENEM 2023, questão 137",
@@ -116,6 +156,7 @@
    "imgs": [
     "m2024-153-1.png"
    ],
+   "alternativas": null,
    "gabarito": "D",
    "habilidade": "H01",
    "fonte": "ENEM 2024, questão 153",
@@ -127,6 +168,7 @@
    "imgs": [
     "m2023-157-1.png"
    ],
+   "alternativas": null,
    "gabarito": "B",
    "habilidade": "H25",
    "fonte": "ENEM 2023, questão 157",
@@ -138,6 +180,7 @@
    "imgs": [
     "m2023-141-1.png"
    ],
+   "alternativas": null,
    "gabarito": "E",
    "habilidade": "H28",
    "fonte": "ENEM 2023, questão 141",
@@ -149,6 +192,7 @@
    "imgs": [
     "m2023-155-1.png"
    ],
+   "alternativas": null,
    "gabarito": "D",
    "habilidade": "H12",
    "fonte": "ENEM 2023, questão 155",
@@ -160,6 +204,7 @@
    "imgs": [
     "m2023-143-1.png"
    ],
+   "alternativas": null,
    "gabarito": "B",
    "habilidade": "H05",
    "fonte": "ENEM 2023, questão 143",
@@ -171,6 +216,7 @@
    "imgs": [
     "m2024-140-1.png"
    ],
+   "alternativas": null,
    "gabarito": "B",
    "habilidade": "H04",
    "fonte": "ENEM 2024, questão 140",
@@ -181,6 +227,13 @@
    "rotulo": "Questão 17",
    "imgs": [
     "m2024-137-1.png"
+   ],
+   "alternativas": [
+    "4.",
+    "5.",
+    "6.",
+    "19.",
+    "21."
    ],
    "gabarito": "B",
    "habilidade": "H28",
@@ -193,6 +246,13 @@
    "imgs": [
     "m2024-173-1.png"
    ],
+   "alternativas": [
+    "entre 25 e 45 anos, pois é a faixa etária com maior quantidade de funcionários.",
+    "entre 25 e 45 anos, pois é a única faixa etária cujas porcentagens são maiores do que as porcentagens mínimas de cada setor.",
+    "até 25 anos, pois é a única faixa etária cujos percentuais associados aos setores aumentam com o aumento da quantidade de funcionários por setor.",
+    "até 25 anos, pois é a faixa etária que apresenta maior quantidade de funcionários no setor de produção, que é o setor que emprega metade dos funcionários dessa empresa.",
+    "a partir de 45 anos, pois a soma das porcentagens associadas a essa faixa etária é 110%, que é maior do que as respectivas somas associadas às outras faixas etárias, que são 105% e 85%."
+   ],
    "gabarito": "A",
    "habilidade": "H29",
    "fonte": "ENEM 2024, questão 173",
@@ -204,6 +264,13 @@
    "imgs": [
     "m2022-164-1.png"
    ],
+   "alternativas": [
+    "0,125.",
+    "0,200.",
+    "4,800.",
+    "6,000.",
+    "12,000."
+   ],
    "gabarito": "B",
    "habilidade": "H12",
    "fonte": "ENEM 2022, questão 164",
@@ -214,6 +281,13 @@
    "rotulo": "Questão 20",
    "imgs": [
     "m2024-176-1.png"
+   ],
+   "alternativas": [
+    "7.",
+    "8.",
+    "9.",
+    "10.",
+    "11."
    ],
    "gabarito": "B",
    "habilidade": "H24",
@@ -228,6 +302,13 @@
    "imgs": [
     "s2025-136-1.png"
    ],
+   "alternativas": [
+    "10",
+    "14",
+    "17",
+    "21",
+    "25"
+   ],
    "gabarito": "C",
    "habilidade": "H04",
    "fonte": "ENEM 2025, questão 136",
@@ -239,6 +320,7 @@
    "imgs": [
     "s2025-137-1.png"
    ],
+   "alternativas": null,
    "gabarito": "B",
    "habilidade": "H28",
    "fonte": "ENEM 2025, questão 137",
@@ -250,6 +332,7 @@
    "imgs": [
     "s2025-138-1.png"
    ],
+   "alternativas": null,
    "gabarito": "E",
    "habilidade": "H06",
    "fonte": "ENEM 2025, questão 138",
@@ -260,6 +343,13 @@
    "rotulo": "Questão 139",
    "imgs": [
     "s2025-139-1.png"
+   ],
+   "alternativas": [
+    "4.",
+    "8.",
+    "15.",
+    "30.",
+    "60."
    ],
    "gabarito": "C",
    "habilidade": "H09",
@@ -272,6 +362,13 @@
    "imgs": [
     "s2025-140-1.png"
    ],
+   "alternativas": [
+    "0,0050",
+    "0,0100",
+    "0,5000",
+    "4,9775",
+    "5,0000"
+   ],
    "gabarito": "E",
    "habilidade": "H18",
    "fonte": "ENEM 2025, questão 140",
@@ -282,6 +379,13 @@
    "rotulo": "Questão 141",
    "imgs": [
     "s2025-141-1.png"
+   ],
+   "alternativas": [
+    "20 100",
+    "20 200",
+    "20 300",
+    "20 400",
+    "20 600"
    ],
    "gabarito": "C",
    "habilidade": "H05",
@@ -294,6 +398,13 @@
    "imgs": [
     "s2025-142-1.png"
    ],
+   "alternativas": [
+    "360.",
+    "370.",
+    "380.",
+    "390.",
+    "400."
+   ],
    "gabarito": "C",
    "habilidade": "H27",
    "fonte": "ENEM 2025, questão 142",
@@ -304,6 +415,13 @@
    "rotulo": "Questão 143",
    "imgs": [
     "s2025-143-1.png"
+   ],
+   "alternativas": [
+    "Batata chips.",
+    "Palitos salgados.",
+    "Biscoito multigrãos.",
+    "Biscoito de polvilho.",
+    "Biscoito de água e sal."
    ],
    "gabarito": "A",
    "habilidade": "H17",
@@ -316,6 +434,13 @@
    "imgs": [
     "s2025-144-1.png"
    ],
+   "alternativas": [
+    "9",
+    "8",
+    "6",
+    "4",
+    "3"
+   ],
    "gabarito": "D",
    "habilidade": "H07",
    "fonte": "ENEM 2025, questão 144",
@@ -327,6 +452,7 @@
    "imgs": [
     "s2025-145-1.png"
    ],
+   "alternativas": null,
    "gabarito": "D",
    "habilidade": "H20",
    "fonte": "ENEM 2025, questão 145",
@@ -337,6 +463,13 @@
    "rotulo": "Questão 146",
    "imgs": [
     "s2025-146-1.png"
+   ],
+   "alternativas": [
+    "0,02",
+    "0,42",
+    "0,52",
+    "1,02",
+    "1,42"
    ],
    "gabarito": "B",
    "habilidade": "H03",
@@ -349,6 +482,13 @@
    "imgs": [
     "s2025-147-1.png"
    ],
+   "alternativas": [
+    "2.",
+    "12.",
+    "20.",
+    "22.",
+    "40."
+   ],
    "gabarito": "E",
    "habilidade": "H24",
    "fonte": "ENEM 2025, questão 147",
@@ -360,6 +500,7 @@
    "imgs": [
     "s2025-148-1.png"
    ],
+   "alternativas": null,
    "gabarito": "C",
    "habilidade": "H11",
    "fonte": "ENEM 2025, questão 148",
@@ -370,6 +511,13 @@
    "rotulo": "Questão 149",
    "imgs": [
     "s2025-149-1.png"
+   ],
+   "alternativas": [
+    "21",
+    "25",
+    "55",
+    "80",
+    "110"
    ],
    "gabarito": "B",
    "habilidade": "H08",
@@ -382,6 +530,13 @@
    "imgs": [
     "s2025-150-1.png"
    ],
+   "alternativas": [
+    "800.",
+    "1 080.",
+    "1 200.",
+    "1 800.",
+    "2 520."
+   ],
    "gabarito": "D",
    "habilidade": "H16",
    "fonte": "ENEM 2025, questão 150",
@@ -392,6 +547,13 @@
    "rotulo": "Questão 151",
    "imgs": [
     "s2025-151-1.png"
+   ],
+   "alternativas": [
+    "0109082.",
+    "0281090.",
+    "1010982.",
+    "2081090.",
+    "2810910."
    ],
    "gabarito": "D",
    "habilidade": "H01",
@@ -404,6 +566,7 @@
    "imgs": [
     "s2025-152-1.png"
    ],
+   "alternativas": null,
    "gabarito": "D",
    "habilidade": "H28",
    "fonte": "ENEM 2025, questão 152",
@@ -415,6 +578,7 @@
    "imgs": [
     "s2025-153-1.png"
    ],
+   "alternativas": null,
    "gabarito": "A",
    "habilidade": "H22",
    "fonte": "ENEM 2025, questão 153",
@@ -426,6 +590,7 @@
    "imgs": [
     "s2025-154-1.png"
    ],
+   "alternativas": null,
    "gabarito": "C",
    "habilidade": "H26",
    "fonte": "ENEM 2025, questão 154",
@@ -436,6 +601,13 @@
    "rotulo": "Questão 155",
    "imgs": [
     "s2025-155-1.png"
+   ],
+   "alternativas": [
+    "10 × 9 × 8",
+    "20 × 18 × 16",
+    "20 × 19 × 18",
+    "10 × 9 × 8 × 2",
+    "20 × 18 × 16 × 2"
    ],
    "gabarito": "B",
    "habilidade": "H02",
@@ -448,6 +620,13 @@
    "imgs": [
     "s2025-156-1.png"
    ],
+   "alternativas": [
+    "1 : 1,5",
+    "1 : 2,25",
+    "1 : 10",
+    "1 : 100",
+    "1 : 150"
+   ],
    "gabarito": "E",
    "habilidade": "H11",
    "fonte": "ENEM 2025, questão 156",
@@ -459,6 +638,7 @@
    "imgs": [
     "s2025-157-1.png"
    ],
+   "alternativas": null,
    "gabarito": "C",
    "habilidade": "H19",
    "fonte": "ENEM 2025, questão 157",
@@ -469,6 +649,13 @@
    "rotulo": "Questão 158",
    "imgs": [
     "s2025-158-1.png"
+   ],
+   "alternativas": [
+    "185,60.",
+    "226,09.",
+    "245,20.",
+    "268,93.",
+    "285,60."
    ],
    "gabarito": "C",
    "habilidade": "H18",
@@ -481,6 +668,13 @@
    "imgs": [
     "s2025-159-1.png"
    ],
+   "alternativas": [
+    "5.",
+    "8.",
+    "50.",
+    "80.",
+    "800."
+   ],
    "gabarito": "D",
    "habilidade": "H12",
    "fonte": "ENEM 2025, questão 159",
@@ -492,6 +686,7 @@
    "imgs": [
     "s2025-160-1.png"
    ],
+   "alternativas": null,
    "gabarito": "E",
    "habilidade": "H19",
    "fonte": "ENEM 2025, questão 160",
@@ -502,6 +697,13 @@
    "rotulo": "Questão 161",
    "imgs": [
     "s2025-161-1.png"
+   ],
+   "alternativas": [
+    "P.",
+    "Q.",
+    "R.",
+    "S.",
+    "T."
    ],
    "gabarito": "A",
    "habilidade": "H06",
@@ -514,6 +716,13 @@
    "imgs": [
     "s2025-162-1.png"
    ],
+   "alternativas": [
+    "135.",
+    "140.",
+    "155.",
+    "160.",
+    "175."
+   ],
    "gabarito": "B",
    "habilidade": "H23",
    "fonte": "ENEM 2025, questão 162",
@@ -524,6 +733,13 @@
    "rotulo": "Questão 163",
    "imgs": [
     "s2025-163-1.png"
+   ],
+   "alternativas": [
+    "720",
+    "360",
+    "320",
+    "288",
+    "240"
    ],
    "gabarito": "B",
    "habilidade": "H25",
@@ -536,6 +752,13 @@
    "imgs": [
     "s2025-164-1.png"
    ],
+   "alternativas": [
+    "135 e 7 horas e 15 minutos.",
+    "45 e 7 horas e 15 minutos.",
+    "135 e 12 horas.",
+    "135 e 6 horas.",
+    "45 e 6 horas."
+   ],
    "gabarito": "A",
    "habilidade": "H08",
    "fonte": "ENEM 2025, questão 164",
@@ -546,6 +769,13 @@
    "rotulo": "Questão 165",
    "imgs": [
     "s2025-165-1.png"
+   ],
+   "alternativas": [
+    "1.",
+    "2.",
+    "3.",
+    "4.",
+    "5."
    ],
    "gabarito": "D",
    "habilidade": "H29",
@@ -558,6 +788,7 @@
    "imgs": [
     "s2025-166-1.png"
    ],
+   "alternativas": null,
    "gabarito": "E",
    "habilidade": "H30",
    "fonte": "ENEM 2025, questão 166",
@@ -568,6 +799,13 @@
    "rotulo": "Questão 167",
    "imgs": [
     "s2025-167-1.png"
+   ],
+   "alternativas": [
+    "4",
+    "8",
+    "14",
+    "21",
+    "30"
    ],
    "gabarito": "D",
    "habilidade": "H25",
@@ -580,6 +818,7 @@
    "imgs": [
     "s2025-168-1.png"
    ],
+   "alternativas": null,
    "gabarito": "E",
    "habilidade": "H04",
    "fonte": "ENEM 2025, questão 168",
@@ -591,6 +830,7 @@
    "imgs": [
     "s2025-169-1.png"
    ],
+   "alternativas": null,
    "gabarito": "A",
    "habilidade": "H15",
    "fonte": "ENEM 2025, questão 169",
@@ -601,6 +841,13 @@
    "rotulo": "Questão 170",
    "imgs": [
     "s2025-170-1.png"
+   ],
+   "alternativas": [
+    "10.",
+    "8.",
+    "4.",
+    "3.",
+    "2."
    ],
    "gabarito": "B",
    "habilidade": "H14",
@@ -613,6 +860,7 @@
    "imgs": [
     "s2025-171-1.png"
    ],
+   "alternativas": null,
    "gabarito": "E",
    "habilidade": "H09",
    "fonte": "ENEM 2025, questão 171",
@@ -624,6 +872,7 @@
    "imgs": [
     "s2025-172-1.png"
    ],
+   "alternativas": null,
    "gabarito": "A",
    "habilidade": "H22",
    "fonte": "ENEM 2025, questão 172",
@@ -635,6 +884,7 @@
    "imgs": [
     "s2025-173-1.png"
    ],
+   "alternativas": null,
    "gabarito": "A",
    "habilidade": "H13",
    "fonte": "ENEM 2025, questão 173",
@@ -646,6 +896,7 @@
    "imgs": [
     "s2025-174-1.png"
    ],
+   "alternativas": null,
    "gabarito": null,
    "habilidade": "H21",
    "fonte": "ENEM 2025, questão 174"
@@ -655,6 +906,13 @@
    "rotulo": "Questão 175",
    "imgs": [
     "s2025-175-1.png"
+   ],
+   "alternativas": [
+    "36",
+    "53",
+    "300",
+    "360",
+    "560"
    ],
    "gabarito": "C",
    "habilidade": "H03",
@@ -667,6 +925,13 @@
    "imgs": [
     "s2025-176-1.png"
    ],
+   "alternativas": [
+    "4,5.",
+    "6,0.",
+    "7,5.",
+    "9,0.",
+    "12,0."
+   ],
    "gabarito": "C",
    "habilidade": "H16",
    "fonte": "ENEM 2025, questão 176",
@@ -677,6 +942,13 @@
    "rotulo": "Questão 177",
    "imgs": [
     "s2025-177-1.png"
+   ],
+   "alternativas": [
+    "288",
+    "297",
+    "567",
+    "990",
+    "1 134"
    ],
    "gabarito": "B",
    "habilidade": "H12",
@@ -689,6 +961,13 @@
    "imgs": [
     "s2025-178-1.png"
    ],
+   "alternativas": [
+    "Artur, com probabilidade de 2 3",
+    "João, com probabilidade de 4 9",
+    "Artur, com probabilidade de 91 216",
+    "João, com probabilidade de 91 216",
+    "Artur, com probabilidade de 125 216"
+   ],
    "gabarito": "E",
    "habilidade": "H29",
    "fonte": "ENEM 2025, questão 178",
@@ -700,6 +979,7 @@
    "imgs": [
     "s2025-179-1.png"
    ],
+   "alternativas": null,
    "gabarito": "A",
    "habilidade": "H10",
    "fonte": "ENEM 2025, questão 179",
@@ -712,6 +992,7 @@
     "s2025-180-1.png",
     "s2025-180-2.png"
    ],
+   "alternativas": null,
    "gabarito": "D",
    "habilidade": "H02",
    "fonte": "ENEM 2025, questão 180",
@@ -729,6 +1010,13 @@
    "imgs": [
     "h2024-46-1.png"
    ],
+   "alternativas": [
+    "Planícies costeiras.",
+    "Bacias continentais.",
+    "Zonas de subducção.",
+    "Áreas de denudação.",
+    "Vertentes escarpadas."
+   ],
    "gabarito": "C",
    "habilidade": "H26",
    "fonte": "ENEM 2024, questão 46",
@@ -739,6 +1027,13 @@
    "rotulo": "Questão 47",
    "imgs": [
     "h2024-47-1.png"
+   ],
+   "alternativas": [
+    "higienização moral.",
+    "imposição eugênica.",
+    "assimilação cultural.",
+    "hegemonização identitária.",
+    "hierarquização profissional."
    ],
    "gabarito": "E",
    "habilidade": "H11",
@@ -751,6 +1046,13 @@
    "imgs": [
     "h2024-48-1.png"
    ],
+   "alternativas": [
+    "Flexibilização de parâmetros ambientais.",
+    "Consolidação de identidades regionais.",
+    "Fragilização de vínculos afetivos.",
+    "Supressão de práticas exploratórias.",
+    "Recuperação de tradições ancestrais."
+   ],
    "gabarito": "C",
    "habilidade": "H27",
    "fonte": "ENEM 2024, questão 48",
@@ -761,6 +1063,13 @@
    "rotulo": "Questão 49",
    "imgs": [
     "h2024-49-1.png"
+   ],
+   "alternativas": [
+    "expansão estratégica do imperialismo.",
+    "ascensão gradual do mercantilismo.",
+    "laicidade da educação.",
+    "retomada do absolutismo.",
+    "visão republicana de nação."
    ],
    "gabarito": "E",
    "habilidade": "H16",
@@ -773,6 +1082,13 @@
    "imgs": [
     "h2024-50-1.png"
    ],
+   "alternativas": [
+    "execrado pelos reis e reverenciado pelos religiosos do local.",
+    "detestado pelos colonizadores e respeitado pelos povos do lugar.",
+    "menosprezado pela colônia e idolatrado pelos governantes da região.",
+    "desrespeitado pela metrópole e adorado pelos invasores da Espanha.",
+    "desacatado pelos excluídos e valorizado pelos negociantes de negros."
+   ],
    "gabarito": "B",
    "habilidade": "H14",
    "fonte": "ENEM 2024, questão 50",
@@ -783,6 +1099,13 @@
    "rotulo": "Questão 51",
    "imgs": [
     "h2024-51-1.png"
+   ],
+   "alternativas": [
+    "traços advindos da feitiçaria nórdica.",
+    "práticas inspiradas em rituais pagãos.",
+    "regras decorrentes do período renascentista.",
+    "compassos produzidos em territórios colonizados.",
+    "elementos provenientes de segmentos populares."
    ],
    "gabarito": "E",
    "habilidade": "H05",
@@ -795,6 +1118,13 @@
    "imgs": [
     "h2024-52-1.png"
    ],
+   "alternativas": [
+    "manter a conquista de direitos sociais.",
+    "integrar a diversidade do grupo identitário.",
+    "priorizar a preservação de culturas africanas.",
+    "defender a adoção de valores supremacistas.",
+    "permitir a permanência do modelo androcêntrico."
+   ],
    "gabarito": "B",
    "habilidade": "H10",
    "fonte": "ENEM 2024, questão 52",
@@ -805,6 +1135,13 @@
    "rotulo": "Questão 53",
    "imgs": [
     "h2024-53-1.png"
+   ],
+   "alternativas": [
+    "variabilidade solar anual.",
+    "temperatura média mensal.",
+    "declividade do relevo local.",
+    "dinâmica tectônica regional.",
+    "gradação da turbidez fluvial."
    ],
    "gabarito": "C",
    "habilidade": "H26",
@@ -817,6 +1154,13 @@
    "imgs": [
     "h2024-54-1.png"
    ],
+   "alternativas": [
+    "estética, que normatiza os padrões corporais.",
+    "sensorial, que privilegia as habilidades visuais.",
+    "afetiva, que impede as expressões emocionais.",
+    "epistêmica, que prejudica as trocas informacionais.",
+    "econômica, que perpetua as desigualdades materiais."
+   ],
    "gabarito": "D",
    "habilidade": "H12",
    "fonte": "ENEM 2024, questão 54",
@@ -827,6 +1171,13 @@
    "rotulo": "Questão 55",
    "imgs": [
     "h2024-55-1.png"
+   ],
+   "alternativas": [
+    "pressuposto lógico.",
+    "pensamento dicotômico.",
+    "contemplação da natureza.",
+    "raciocínio argumentativo.",
+    "crítica à individualidade."
    ],
    "gabarito": "B",
    "habilidade": "H03",
@@ -839,6 +1190,13 @@
    "imgs": [
     "h2024-56-1.png"
    ],
+   "alternativas": [
+    "manutenção de uma memória coletiva.",
+    "contestação de uma identidade étnica.",
+    "imolação de uma divindade africana.",
+    "legitimação de uma prática pagã.",
+    "promissão de uma revolta social."
+   ],
    "gabarito": "A",
    "habilidade": "H02",
    "fonte": "ENEM 2024, questão 56",
@@ -849,6 +1207,13 @@
    "rotulo": "Questão 57",
    "imgs": [
     "h2024-57-1.png"
+   ],
+   "alternativas": [
+    "prática do lazer.",
+    "vigilância da sociedade.",
+    "erradicação da violência.",
+    "construção da democracia.",
+    "diversificação do trabalho."
    ],
    "gabarito": "D",
    "habilidade": "H15",
@@ -861,6 +1226,13 @@
    "imgs": [
     "h2024-58-1.png"
    ],
+   "alternativas": [
+    "teoria das formas essenciais.",
+    "identificação dos princípios racionais.",
+    "desenvolvimento das técnicas retóricas.",
+    "aperfeiçoamento das condutas humanas.",
+    "conhecimento das epistemes verdadeiras."
+   ],
    "gabarito": "D",
    "habilidade": "H23",
    "fonte": "ENEM 2024, questão 58",
@@ -871,6 +1243,13 @@
    "rotulo": "Questão 59",
    "imgs": [
     "h2024-59-1.png"
+   ],
+   "alternativas": [
+    "adotar currículo e método padronizado.",
+    "rejeitar ideologias e costumes orientais.",
+    "possuir organização e função mercantil.",
+    "transmitir técnicas e valores ecumênicos.",
+    "agregar tradição e conhecimento científico."
    ],
    "gabarito": "E",
    "habilidade": "H03",
@@ -883,6 +1262,13 @@
    "imgs": [
     "h2024-60-1.png"
    ],
+   "alternativas": [
+    "integração de mercados regidos por pressões regionais.",
+    "conexão de valores fundamentados por decisões locais.",
+    "unificação de preços delimitados por demandas nacionais.",
+    "normatização de regras construídas por instituições mundiais.",
+    "valorização de tradições orientadas por determinações globais."
+   ],
    "gabarito": "B",
    "habilidade": "H30",
    "fonte": "ENEM 2024, questão 60",
@@ -893,6 +1279,13 @@
    "rotulo": "Questão 61",
    "imgs": [
     "h2024-61-1.png"
+   ],
+   "alternativas": [
+    "implicações éticas.",
+    "finitude humana.",
+    "limitações da linguagem.",
+    "pressuposição existencial.",
+    "objetividade do conhecimento."
    ],
    "gabarito": "B",
    "habilidade": "H11",
@@ -905,6 +1298,13 @@
    "imgs": [
     "h2024-62-1.png"
    ],
+   "alternativas": [
+    "estatuto epistemológico da linguagem.",
+    "alicerce estruturante da moralidade.",
+    "conteúdo essencial da metafísica.",
+    "princípio constitutivo da ontologia.",
+    "domínio reflexivo da estética."
+   ],
    "gabarito": "A",
    "habilidade": "H04",
    "fonte": "ENEM 2024, questão 62",
@@ -915,6 +1315,13 @@
    "rotulo": "Questão 63",
    "imgs": [
     "h2024-63-1.png"
+   ],
+   "alternativas": [
+    "Ferramenta de luta coletiva.",
+    "Mecanismo de controle social.",
+    "Instituição de interesse público.",
+    "Organização da iniciativa privada.",
+    "Instrumento de manipulação estatal."
    ],
    "gabarito": "B",
    "habilidade": "H21",
@@ -927,6 +1334,13 @@
    "imgs": [
     "h2024-64-1.png"
    ],
+   "alternativas": [
+    "ação integralista.",
+    "literatura realista.",
+    "movimento abolicionista.",
+    "política indigenista.",
+    "nacionalismo desenvolvimentista."
+   ],
    "gabarito": "C",
    "habilidade": "H15",
    "fonte": "ENEM 2024, questão 64",
@@ -937,6 +1351,13 @@
    "rotulo": "Questão 65",
    "imgs": [
     "h2024-65-1.png"
+   ],
+   "alternativas": [
+    "elevar a renda da população.",
+    "abandonar os valores morais.",
+    "estabelecer a igualdade racial.",
+    "fortalecer as pautas das minorias.",
+    "inverter os fluxos das migrações."
    ],
    "gabarito": "D",
    "habilidade": "H10",
@@ -949,6 +1370,13 @@
    "imgs": [
     "h2024-66-1.png"
    ],
+   "alternativas": [
+    "O afastamento da autoridade médica na regulação da fecundidade.",
+    "A superação do discurso da moralidade pela ação da mídia estatal.",
+    "A ampliação do debate público sobre o planejamento familiar.",
+    "A centralização da pesquisa científica pelo sistema privado de saúde.",
+    "O enrijecimento das doutrinas religiosas sobre a organização da vida doméstica."
+   ],
    "gabarito": "C",
    "habilidade": "H16",
    "fonte": "ENEM 2024, questão 66",
@@ -959,6 +1387,13 @@
    "rotulo": "Questão 67",
    "imgs": [
     "h2024-67-1.png"
+   ],
+   "alternativas": [
+    "Valorização da economia local.",
+    "Elaboração de projetos culturais.",
+    "Estabelecimento de regras comerciais.",
+    "Incremento da infraestrutura educacional.",
+    "Homogeneização da qualificação profissional."
    ],
    "gabarito": "A",
    "habilidade": "H19",
@@ -971,6 +1406,7 @@
    "imgs": [
     "h2024-68-1.png"
    ],
+   "alternativas": null,
    "gabarito": "E",
    "habilidade": "H29",
    "fonte": "ENEM 2024, questão 68",
@@ -981,6 +1417,13 @@
    "rotulo": "Questão 69",
    "imgs": [
     "h2024-69-1.png"
+   ],
+   "alternativas": [
+    "recuperação de sua participação política.",
+    "equiparação de ganhos salariais.",
+    "valorização de seu papel social.",
+    "distinção de padrões biológicos.",
+    "ocupação de cargos públicos."
    ],
    "gabarito": "C",
    "habilidade": "H22",
@@ -993,6 +1436,13 @@
    "imgs": [
     "h2024-70-1.png"
    ],
+   "alternativas": [
+    "desindustrialização da economia.",
+    "desregulamentação do mercado.",
+    "concentração da produção.",
+    "distribuição de renda.",
+    "dinamização dos fluxos."
+   ],
    "gabarito": "E",
    "habilidade": "H17",
    "fonte": "ENEM 2024, questão 70",
@@ -1003,6 +1453,13 @@
    "rotulo": "Questão 71",
    "imgs": [
     "h2024-71-1.png"
+   ],
+   "alternativas": [
+    "povos ribeirinhos e segmentos culturais.",
+    "blocos econômicos e instituições militares.",
+    "grupos científicos e universidades públicas.",
+    "organismos supranacionais e sociedade civil.",
+    "agentes governamentais e demanda turística."
    ],
    "gabarito": "D",
    "habilidade": "H09",
@@ -1015,6 +1472,13 @@
    "imgs": [
     "h2024-72-1.png"
    ],
+   "alternativas": [
+    "cuidado, proteção e valorização dos indivíduos.",
+    "entendimento, perdão e tolerância dos responsáveis.",
+    "cerceamento, arregimentação e controle de entidades.",
+    "regramento, legislação e responsabilização de culpados.",
+    "ensimesmamento, interiorização e indulgência dos agentes."
+   ],
    "gabarito": "A",
    "habilidade": "H25",
    "fonte": "ENEM 2024, questão 72",
@@ -1025,6 +1489,13 @@
    "rotulo": "Questão 73",
    "imgs": [
     "h2024-73-1.png"
+   ],
+   "alternativas": [
+    "manifestação jornalística.",
+    "narrativa literária.",
+    "indústria regional.",
+    "estética editorial.",
+    "cultura erudita."
    ],
    "gabarito": "D",
    "habilidade": "H05",
@@ -1037,6 +1508,13 @@
    "imgs": [
     "h2024-74-1.png"
    ],
+   "alternativas": [
+    "instituição de políticas públicas de âmbito local.",
+    "registro de bens culturais de natureza imaterial.",
+    "tombamento de sítios arqueológicos de propriedade privada.",
+    "salvaguarda de elementos sacros de expressão regional.",
+    "categorização de manifestações cristãs de caráter oficial."
+   ],
    "gabarito": "B",
    "habilidade": "H03",
    "fonte": "ENEM 2024, questão 74",
@@ -1047,6 +1525,13 @@
    "rotulo": "Questão 75",
    "imgs": [
     "h2024-75-1.png"
+   ],
+   "alternativas": [
+    "segregar pensadores e aumentar a circulação de ideias.",
+    "apoiar revolucionários e perseguir a nobreza local.",
+    "rejeitar poetisas e proibir a entrada de mulheres.",
+    "censurar cronistas e coibir o patrocínio editorial.",
+    "integrar artistas e ampliar o comércio urbano."
    ],
    "gabarito": "A",
    "habilidade": "H01",
@@ -1059,6 +1544,13 @@
    "imgs": [
     "h2024-76-1.png"
    ],
+   "alternativas": [
+    "Estrutura fixa.",
+    "Lógica binária.",
+    "Controle homogêneo.",
+    "Uniformidade de opiniões.",
+    "Pluralidade de interações."
+   ],
    "gabarito": "E",
    "habilidade": "H20",
    "fonte": "ENEM 2024, questão 76",
@@ -1069,6 +1561,13 @@
    "rotulo": "Questão 77",
    "imgs": [
     "h2024-77-1.png"
+   ],
+   "alternativas": [
+    "Estereótipos da cultura nacional.",
+    "Exploração da população pobre.",
+    "Preconceitos de ordem racial.",
+    "Política de censura midiática.",
+    "Projeto de país industrial."
    ],
    "gabarito": "A",
    "habilidade": "H21",
@@ -1081,6 +1580,13 @@
    "imgs": [
     "h2024-78-1.png"
    ],
+   "alternativas": [
+    "Doutrina teleológica.",
+    "Imperativo categórico.",
+    "Pensamento utilitarista.",
+    "Secularização inautêntica.",
+    "Raciocínio consequencialista."
+   ],
    "gabarito": "B",
    "habilidade": "H23",
    "fonte": "ENEM 2024, questão 78",
@@ -1091,6 +1597,13 @@
    "rotulo": "Questão 79",
    "imgs": [
     "h2024-79-1.png"
+   ],
+   "alternativas": [
+    "planejamento familiar.",
+    "segregação territorial.",
+    "homogeneização cultural.",
+    "diferenciação étnico-racial.",
+    "integração socioeconômica."
    ],
    "gabarito": "E",
    "habilidade": "H08",
@@ -1103,6 +1616,13 @@
    "imgs": [
     "h2024-80-1.png"
    ],
+   "alternativas": [
+    "cultural, ao subjetivarem costumes da teledramaturgia estrangeira.",
+    "econômico, ao importarem confecções de estilistas famosos.",
+    "geográfico, ao encurtarem distâncias de caráter ideológico.",
+    "antropológico, ao adaptarem valores de povos tradicionais.",
+    "político, ao adotarem sistemas de governos democráticos."
+   ],
    "gabarito": "A",
    "habilidade": "H04",
    "fonte": "ENEM 2024, questão 80",
@@ -1113,6 +1633,13 @@
    "rotulo": "Questão 81",
    "imgs": [
     "h2024-81-1.png"
+   ],
+   "alternativas": [
+    "iniciativas de planejamento familiar.",
+    "projetos de reorientação religiosa.",
+    "programas de moradias sustentáveis.",
+    "políticas de inserção social.",
+    "medidas de homogeneização educacional."
    ],
    "gabarito": "D",
    "habilidade": "H02",
@@ -1125,6 +1652,13 @@
    "imgs": [
     "h2024-82-1.png"
    ],
+   "alternativas": [
+    "Prático, porque recolhe evidências e recomenda ações.",
+    "Absoluto, porque busca confirmações e bloqueia refutações.",
+    "Indutivo, porque observa eventos particulares e infere leis universais.",
+    "Demonstrativo, porque encadeia premissas e extrai conclusões indubitáveis.",
+    "Analógico, porque compara diferentes situações e detecta elementos semelhantes."
+   ],
    "gabarito": "C",
    "habilidade": "H01",
    "fonte": "ENEM 2024, questão 82",
@@ -1135,6 +1669,13 @@
    "rotulo": "Questão 83",
    "imgs": [
     "h2024-83-1.png"
+   ],
+   "alternativas": [
+    "preservação de espaços naturais.",
+    "emancipação de sujeitos marginais.",
+    "revalorização de culturas reprimidas.",
+    "inversão de hierarquias estabelecidas.",
+    "sustentação de hegemonias territoriais."
    ],
    "gabarito": "E",
    "habilidade": "H07",
@@ -1147,6 +1688,13 @@
    "imgs": [
     "h2024-84-1.png"
    ],
+   "alternativas": [
+    "organização de rotas de fuga na floresta tropical.",
+    "criação de postos de trabalho nos seringais nortistas.",
+    "divulgação de receitas de fármacos nas zonas ribeirinhas.",
+    "construção de redes de sociabilidade no interior brasileiro.",
+    "ampliação de ambientes de lazer nos territórios autóctones."
+   ],
    "gabarito": "D",
    "habilidade": "H05",
    "fonte": "ENEM 2024, questão 84",
@@ -1157,6 +1705,13 @@
    "rotulo": "Questão 85",
    "imgs": [
     "h2024-85-1.png"
+   ],
+   "alternativas": [
+    "Violação dos direitos humanos.",
+    "Insegurança da juventude periférica.",
+    "Naturalização da violência doméstica.",
+    "Ampliação das desigualdades sociais.",
+    "Relativização dos princípios democráticos."
    ],
    "gabarito": "A",
    "habilidade": "H13",
@@ -1169,6 +1724,13 @@
    "imgs": [
     "h2024-86-1.png"
    ],
+   "alternativas": [
+    "conservação de lugares afetivos.",
+    "aumento de áreas desertificadas.",
+    "redefinição de fronteiras nacionais.",
+    "artificialização do espaço geográfico.",
+    "mudança da dinâmica macroclimática."
+   ],
    "gabarito": "D",
    "habilidade": "H06",
    "fonte": "ENEM 2024, questão 86",
@@ -1179,6 +1741,13 @@
    "rotulo": "Questão 87",
    "imgs": [
     "h2024-87-1.png"
+   ],
+   "alternativas": [
+    "Soberania popular.",
+    "Divisão de classes.",
+    "Acúmulo de capital.",
+    "Defesa da propriedade.",
+    "Centralização administrativa."
    ],
    "gabarito": "A",
    "habilidade": "H24",
@@ -1191,6 +1760,13 @@
    "imgs": [
     "h2024-88-1.png"
    ],
+   "alternativas": [
+    "Criação de faixas sinalizadoras.",
+    "Incineração de resíduos sólidos.",
+    "Implantação de parques públicos.",
+    "Verticalização de espaços centrais.",
+    "Construção de estacionamentos privados."
+   ],
    "gabarito": "C",
    "habilidade": "H28",
    "fonte": "ENEM 2024, questão 88",
@@ -1201,6 +1777,13 @@
    "rotulo": "Questão 89",
    "imgs": [
     "h2024-89-1.png"
+   ],
+   "alternativas": [
+    "Igualdade militar.",
+    "Assimetria política.",
+    "Consenso multipolar.",
+    "Equilíbrio estratégico.",
+    "Soberania compartilhada."
    ],
    "gabarito": "B",
    "habilidade": "H07",
@@ -1214,6 +1797,7 @@
     "h2024-90-1.png",
     "h2024-90-2.png"
    ],
+   "alternativas": null,
    "gabarito": "C",
    "habilidade": "H18",
    "fonte": "ENEM 2024, questão 90",

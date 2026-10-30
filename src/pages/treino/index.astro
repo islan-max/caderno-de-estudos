@@ -1,33 +1,175 @@
 ---
-// Treino: listas de questões oficiais do INEP (recorte do PDF da prova) com cronômetro e correção.
+// Treino: página de navegação com os simulados, o treino rápido e as redações. O estado de cada
+// lista ("Em andamento", "Feito") é lido do navegador por src/scripts/treino.ts.
 import Base from '../../layouts/Base.astro';
+import Icone from '../../components/Icone.astro';
+import AjudaDaPagina from '../../components/AjudaDaPagina.astro';
 import { u } from '../../lib/url';
-import treino from '../../data/treino.json';
+import { CONJUNTOS, GRUPOS, duracao } from '../../lib/treino';
+import dados from '../../data/treino.json';
 
-const itens = [
-  { id: 'manha', titulo: 'Treino de Matemática', info: `${treino.manha.length} questões · 60 min · ENEM 2022 a 2024, das mais fáceis às médias` },
-  { id: 'simulado-mat-2025', titulo: 'Simulado: Matemática ENEM 2025', info: `${treino.simulado.length} questões · 2h30 · caderno azul, 2º dia` },
-  { id: 'simulado-humanas-2024', titulo: 'Simulado: Ciências Humanas ENEM 2024', info: `${treino.humanas.length} questões · 2h15 · 1º dia, caderno azul` },
-  { id: 'redacao-2024', titulo: 'Redação ENEM 2024', info: 'Proposta oficial com textos motivadores · 1h15 · “Desafios para a valorização da herança africana no Brasil”' },
-  { id: 'redacao-2025', titulo: 'Redação ENEM 2025', info: 'Proposta oficial · 1h15 · “Perspectivas acerca do envelhecimento na sociedade brasileira”' },
-];
+const quantas = (c: (typeof CONJUNTOS)[number]) => (c.tipo === 'questoes' ? `${(dados[c.dados] as unknown[]).length} questões` : 'Tema oficial');
 ---
 
-<Base title="Treino" description="Questões oficiais com cronômetro e correção" voltar={{ href: u('/'), label: 'Início' }}>
-  <h1>Treino</h1>
-  <p>Resolva com o cronômetro e marque as letras. A correção só aparece quando você finaliza.</p>
-  <ul class="treino-lista">
-    {itens.map((i) => (
-      <li>
-        <a href={u(`/treino/${i.id}`)}><strong>{i.titulo}</strong><span>{i.info}</span></a>
-      </li>
+<Base
+  title="Treino"
+  active="enem"
+  description="Simulados com provas reais do ENEM, treino rápido e redações com cronômetro"
+  voltar={{ href: u('/enem/'), label: 'ENEM' }}
+>
+  <div class="treino-hub" data-treino-hub>
+    <header class="aj-hero tr-hero">
+      <p class="aj-hero__selo tr-hero__selo"><Icone nome="clock" /> Treino</p>
+      <h1 class="aj-hero__h1">Treine com provas de verdade</h1>
+      <p class="aj-hero__intro">
+        Questões e propostas de redação oficiais do ENEM, com cronômetro. Você responde sem ver o gabarito e corrige
+        tudo no fim, como na prova.
+      </p>
+    </header>
+
+    {GRUPOS.map((g) => (
+      <section class="tr-grupo" aria-labelledby={`grupo-${g.id}`}>
+        <h2 class="tr-grupo__titulo" id={`grupo-${g.id}`}>{g.titulo}</h2>
+        <p class="tr-grupo__sub">{g.sub}</p>
+        <ul class="tr-cards">
+          {CONJUNTOS.filter((c) => c.grupo === g.id).map((c) => (
+            <li>
+              <a class="tr-card" href={u(`/treino/${c.id}/`)} style={`--cor: ${c.cor}`} data-treino-card={c.id} data-total={c.tipo === 'questoes' ? (dados[c.dados] as unknown[]).length : 0}>
+                <span class="tr-card__icone"><Icone nome={c.icone} /></span>
+                <span class="tr-card__textos">
+                  <strong>{c.titulo}</strong>
+                  <span>{c.resumo}</span>
+                  <span class="tr-card__meta">{quantas(c)} · {duracao(c.minutos)} · {c.fonte}</span>
+                  <span class="tr-card__estado" data-estado-card>Ainda não começou</span>
+                </span>
+                <Icone nome="arrow-right" />
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
     ))}
-  </ul>
+
+    <section class="tr-grupo" aria-labelledby="grupo-natureza">
+      <h2 class="tr-grupo__titulo" id="grupo-natureza">Ciências da Natureza</h2>
+      <p class="tr-grupo__sub">O simulado de Natureza monta as questões a partir das aulas.</p>
+      <ul class="tr-cards">
+        <li>
+          <a class="tr-card" href={u('/simulado/')} style="--cor: var(--color-ok)">
+            <span class="tr-card__icone"><Icone nome="flask" /></span>
+            <span class="tr-card__textos">
+              <strong>Simulado de Natureza</strong>
+              <span>Química, Biologia e Física, sorteadas das aulas. Cada erro leva à parte da aula que explica.</span>
+            </span>
+            <Icone nome="arrow-right" />
+          </a>
+        </li>
+      </ul>
+    </section>
+
+    <AjudaDaPagina titulo="Como o treino funciona">
+      <p>As questões são recortes das provas oficiais do INEP, com o gabarito conferido. Nenhuma foi inventada.</p>
+      <p>O cronômetro começa quando você clica em Iniciar ou marca a primeira resposta, e dá para pausar. O tempo é só uma referência: nada trava quando ele acaba.</p>
+      <p>Respostas e rascunhos ficam só neste navegador. Se abrir o caderno em outro aparelho, a lista começa do zero.</p>
+    </AjudaDaPagina>
+  </div>
 </Base>
 
 <style>
-  .treino-lista { list-style: none; padding: 0; display: grid; gap: 0.8rem; }
-  .treino-lista a { display: grid; gap: 0.2rem; padding: 1rem 1.1rem; border: 1px solid var(--color-line); border-radius: 0.8rem; background: var(--color-surface); text-decoration: none; color: var(--color-ink); }
-  .treino-lista a:hover { border-color: var(--color-enem); }
-  .treino-lista span { color: var(--color-ink-soft); font-size: 0.9rem; }
+  .treino-hub {
+    max-width: 46rem;
+    margin: 0 auto;
+  }
+  .tr-hero {
+    border-color: color-mix(in srgb, var(--color-ok) 35%, var(--color-line));
+    background:
+      radial-gradient(120% 140% at 100% 0%, color-mix(in srgb, var(--color-ok) 14%, transparent), transparent 60%),
+      color-mix(in srgb, var(--color-ok) 5%, var(--color-surface));
+  }
+  .tr-hero__selo {
+    background: var(--color-ok);
+  }
+  .tr-grupo {
+    margin: 0 0 1.75rem;
+  }
+  .tr-grupo__titulo {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: calc(1.15rem * var(--escala-texto, 1));
+    font-weight: 800;
+  }
+  .tr-grupo__sub {
+    margin: 0.15rem 0 0.75rem;
+    color: var(--color-ink-soft);
+    font-size: calc(0.9rem * var(--escala-texto, 1));
+  }
+  .tr-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .tr-card {
+    --cor: var(--color-ink);
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    padding: 0.9rem 1rem;
+    border: 1px solid color-mix(in srgb, var(--cor) 38%, var(--color-line));
+    border-radius: 0.9rem;
+    background: color-mix(in srgb, var(--cor) 6%, var(--color-surface));
+    color: var(--color-ink);
+    text-decoration: none;
+    transition: border-color 0.2s var(--ease), background-color 0.2s var(--ease);
+  }
+  .tr-card:hover {
+    border-color: var(--cor);
+  }
+  .tr-card:focus-visible {
+    outline: 2px solid var(--color-ink);
+    outline-offset: 2px;
+  }
+  .tr-card__icone {
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    width: 2.6rem;
+    height: 2.6rem;
+    border-radius: 999px;
+    background: var(--cor);
+    color: var(--color-paper);
+  }
+  .tr-card__textos {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    flex: 1;
+    min-width: 0;
+    color: var(--color-ink-soft);
+    font-size: calc(0.9rem * var(--escala-texto, 1));
+    line-height: 1.45;
+  }
+  .tr-card__textos strong {
+    font-family: var(--font-display);
+    font-size: calc(1.02rem * var(--escala-texto, 1));
+    color: var(--color-ink);
+  }
+  .tr-card__meta {
+    font-size: calc(0.8rem * var(--escala-texto, 1));
+  }
+  .tr-card__estado {
+    margin-top: 0.2rem;
+    font-family: var(--font-display);
+    font-size: calc(0.8rem * var(--escala-texto, 1));
+    font-weight: 700;
+    color: var(--color-ink-soft);
+  }
+  .tr-card__estado[data-estado='andamento'] {
+    color: var(--color-aviso);
+  }
+  .tr-card__estado[data-estado='feito'] {
+    color: var(--color-ok);
+  }
 </style>

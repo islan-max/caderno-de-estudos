@@ -43,6 +43,15 @@ for (const [materia, itens] of Object.entries(mapa.materias as Record<string, { 
     <Icone nome="arrow-right" />
   </a>
 
+  <a class="chamada-simulado" href={u('/treino/')}>
+    <span class="chamada-simulado__icone"><Icone nome="clock" /></span>
+    <span class="chamada-simulado__textos">
+      <strong>Treino com provas reais</strong>
+      <span>Simulados de Humanas e Matemática, treino rápido e propostas de redação, com cronômetro.</span>
+    </span>
+    <Icone nome="arrow-right" />
+  </a>
+
   <div class="areas">
     {ENEM_AREAS.map((area, ai) => (
       <AreaMaterias area={area} porMateria={porMateria} emBreve={emBreve} indice={ai} />
