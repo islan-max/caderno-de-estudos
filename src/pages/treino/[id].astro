@@ -1,0 +1,95 @@
+---
+// Uma lista de treino: as questões são recortes do PDF oficial (public/treino), gerados por
+// scripts/gerar-treino.py. O estado (respostas, chutes, cronômetro) fica no navegador: src/scripts/treino.ts.
+import Base from '../../layouts/Base.astro';
+import { u } from '../../lib/url';
+import treino from '../../data/treino.json';
+
+export function getStaticPaths() {
+  return [
+    { params: { id: 'manha' }, props: { titulo: 'Treino de Matemática', minutos: 60, questoes: treino.manha } },
+    { params: { id: 'simulado-mat-2025' }, props: { titulo: 'Simulado: Matemática ENEM 2025', minutos: 150, questoes: treino.simulado } },
+    { params: { id: 'simulado-humanas-2024' }, props: { titulo: 'Simulado: Ciências Humanas ENEM 2024', minutos: 135, questoes: treino.humanas } },
+    { params: { id: 'redacao-2025' }, props: { titulo: 'Redação ENEM 2025', minutos: 75, questoes: null, paginas: treino.redacao, tema: 'ENEM 2025' } },
+    { params: { id: 'redacao-2024' }, props: { titulo: 'Redação ENEM 2024', minutos: 75, questoes: null, paginas: treino.redacao2024, tema: 'ENEM 2024' } },
+  ];
+}
+const { id } = Astro.params;
+const { titulo, minutos, questoes, paginas = [], tema = '' } = Astro.props as { titulo: string; minutos: number; questoes: any[] | null; paginas?: string[]; tema?: string };
+const img = (arq: string) => u(`/treino/${arq}`);
+---
+
+<Base title={titulo} voltar={{ href: u('/treino'), label: 'Treino' }}>
+  <div class="treino" data-treino={id} data-minutos={minutos} data-titulo={titulo}>
+    <h1>{titulo}</h1>
+
+    <div class="treino__barra">
+      <output class="treino__tempo" data-tempo aria-live="off">{String(minutos).padStart(2, '0')}:00</output>
+      <button type="button" class="treino__btn" data-iniciar>Iniciar cronômetro</button>
+      <button type="button" class="treino__btn" data-pausar hidden>Pausar</button>
+      <button type="button" class="treino__btn treino__btn--ok" data-finalizar>{questoes ? 'Finalizar e corrigir' : 'Finalizar'}</button>
+    </div>
+
+    {questoes ? (
+      <form class="treino__questoes" onsubmit="return false">
+        {questoes.map((q) => (
+          <fieldset class="tq" data-q={q.id} data-num={q.rotulo.replace(/\D/g, '')} data-gab={q.gabarito ?? ''} data-hab={q.habilidade} data-fonte={q.fonte}>
+            <legend>{q.rotulo}</legend>
+            {q.paginaInteira && <p class="tq__aviso">Esta questão ocupa a página inteira: resolva a <strong>{q.rotulo}</strong>.</p>}
+            {q.imgs.map((arq: string) => <img src={img(arq)} alt={`Enunciado e alternativas da ${q.rotulo}`} loading="lazy" />)}
+            <div class="tq__resp">
+              {['A', 'B', 'C', 'D', 'E'].map((l) => (
+                <label><input type="radio" name={q.id} value={l} /><span>{l}</span></label>
+              ))}
+              <label class="tq__chute"><input type="checkbox" name={`${q.id}-chute`} /> chutei</label>
+            </div>
+            <p class="tq__res" data-res hidden></p>
+          </fieldset>
+        ))}
+      </form>
+    ) : (
+      <div class="treino__redacao">
+        <p>Proposta oficial do {tema}. Escreva no mínimo 7 e no máximo 30 linhas, com proposta de intervenção que respeite os direitos humanos.</p>
+        {paginas.map((arq: string) => <img src={img(arq)} alt="Proposta de redação e textos motivadores" loading="lazy" />)}
+        <label for="redacao-texto"><strong>Seu texto</strong> (salvo automaticamente neste navegador)</label>
+        <textarea id="redacao-texto" data-texto rows="24" spellcheck="true"></textarea>
+        <p class="tq__aviso" data-contagem>0 palavras</p>
+      </div>
+    )}
+
+    <section class="treino__resultado" data-resultado hidden aria-live="polite">
+      <h2>Resultado</h2>
+      <p data-resumo></p>
+      <p>Copie e cole no chat para eu corrigir por tema:</p>
+      <textarea readonly rows={questoes ? 6 : 3} data-copia></textarea>
+      <button type="button" class="treino__btn" data-copiar>Copiar</button>
+    </section>
+
+    <p><button type="button" class="treino__btn treino__btn--fraco" data-refazer>Apagar tudo e refazer</button></p>
+  </div>
+</Base>
+
+<style>
+  .treino__barra { position: sticky; top: 0; z-index: 5; display: flex; flex-wrap: wrap; gap: 0.6rem; align-items: center; padding: 0.6rem 0.8rem; margin: 0 0 1rem; background: var(--color-surface); border: 1px solid var(--color-line); border-radius: 0.8rem; }
+  .treino__tempo { font: 700 1.4rem/1 monospace; margin-right: auto; }
+  .treino__tempo[data-estourou] { color: var(--color-enem); }
+  .treino__btn { padding: 0.5rem 0.9rem; border: 1px solid var(--color-ink); border-radius: 0.6rem; background: var(--color-paper); color: var(--color-ink); font: inherit; cursor: pointer; }
+  .treino__btn--ok { background: var(--color-ink); color: var(--color-paper); }
+  .treino__btn--fraco { border-color: var(--color-line); color: var(--color-ink-soft); }
+  .tq { margin: 0 0 1.4rem; padding: 0.8rem; border: 1px solid var(--color-line); border-radius: 0.8rem; background: #fff; }
+  .tq legend { padding: 0 0.4rem; font-weight: 700; }
+  .tq img, .treino__redacao img { display: block; max-width: 100%; height: auto; margin: 0 auto 0.6rem; }
+  .tq__aviso { color: var(--color-aviso); font-size: 0.9rem; }
+  .tq__resp { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; }
+  .tq__resp label { display: inline-flex; align-items: center; gap: 0.3rem; cursor: pointer; }
+  .tq__resp label:not(.tq__chute) span { display: inline-grid; place-items: center; width: 2.6rem; height: 2.6rem; border: 2px solid var(--color-line); border-radius: 50%; font-weight: 700; }
+  .tq__resp input[type='radio'] { position: absolute; opacity: 0; }
+  .tq__resp input[type='radio']:checked + span { background: var(--color-ink); border-color: var(--color-ink); color: var(--color-paper); }
+  .tq__resp input[type='radio']:focus-visible + span { outline: 3px solid var(--color-enem); outline-offset: 2px; }
+  .tq__chute { margin-left: auto; color: var(--color-ink-soft); }
+  .tq[data-certa] { border-color: var(--color-ok); }
+  .tq[data-errada] { border-color: var(--color-enem); }
+  .tq__res { margin: 0.6rem 0 0; font-weight: 600; }
+  .treino__redacao textarea, .treino__resultado textarea { width: 100%; padding: 0.8rem; border: 1px solid var(--color-line); border-radius: 0.6rem; font: inherit; line-height: 1.7; background: #fff; color: var(--color-ink); }
+  .treino__resultado { margin: 1.5rem 0; padding: 1rem; border: 2px solid var(--color-ink); border-radius: 0.8rem; }
+</style>

@@ -1,0 +1,1226 @@
+{
+ "manha": [
+  {
+   "id": "m2023-153",
+   "rotulo": "Questão 1",
+   "imgs": [
+    "m2023-153-1.png"
+   ],
+   "gabarito": "E",
+   "habilidade": "H17",
+   "fonte": "ENEM 2023, questão 153",
+   "paginaInteira": false
+  },
+  {
+   "id": "m2023-156",
+   "rotulo": "Questão 2",
+   "imgs": [
+    "m2023-156-1.png"
+   ],
+   "gabarito": "A",
+   "habilidade": "H20",
+   "fonte": "ENEM 2023, questão 156",
+   "paginaInteira": false
+  },
+  {
+   "id": "m2024-139",
+   "rotulo": "Questão 3",
+   "imgs": [
+    "m2024-139-1.png"
+   ],
+   "gabarito": "A",
+   "habilidade": "H26",
+   "fonte": "ENEM 2024, questão 139",
+   "paginaInteira": false
+  },
+  {
+   "id": "m2024-154",
+   "rotulo": "Questão 4",
+   "imgs": [
+    "m2024-154-1.png"
+   ],
+   "gabarito": "C",
+   "habilidade": "H27",
+   "fonte": "ENEM 2024, questão 154",
+   "paginaInteira": false
+  },
+  {
+   "id": "m2024-178",
+   "rotulo": "Questão 5",
+   "imgs": [
+    "m2024-178-1.png"
+   ],
+   "gabarito": "E",
+   "habilidade": "H27",
+   "fonte": "ENEM 2024, questão 178",
+   "paginaInteira": false
+  },
+  {
+   "id": "m2023-162",
+   "rotulo": "Questão 6",
+   "imgs": [
+    "m2023-162-1.png"
+   ],
+   "gabarito": "D",
+   "habilidade": "H19",
+   "fonte": "ENEM 2023, questão 162",
+   "paginaInteira": false
+  },
+  {
+   "id": "m2022-171",
+   "rotulo": "Questão 7",
+   "imgs": [
+    "m2022-171-1.png"
+   ],
+   "gabarito": "A",
+   "habilidade": "H29",
+   "fonte": "ENEM 2022, questão 171",
+   "paginaInteira": false
+  },
+  {
+   "id": "m2024-157",
+   "rotulo": "Questão 8",
+   "imgs": [
+    "m2024-157-1.png"
+   ],
+   "gabarito": "C",
+   "habilidade": "H23",
+   "fonte": "ENEM 2024, questão 157",
+   "paginaInteira": false
+  },
+  {
+   "id": "m2024-145",
+   "rotulo": "Questão 9",
+   "imgs": [
+    "m2024-145-1.png"
+   ],
+   "gabarito": "D",
+   "habilidade": "H08",
+   "fonte": "ENEM 2024, questão 145",
+   "paginaInteira": false
+  },
+  {
+   "id": "m2023-137",
+   "rotulo": "Questão 10",
+   "imgs": [
+    "m2023-137-1.png"
+   ],
+   "gabarito": "C",
+   "habilidade": "H27",
+   "fonte": "ENEM 2023, questão 137",
+   "paginaInteira": false
+  },
+  {
+   "id": "m2024-153",
+   "rotulo": "Questão 11",
+   "imgs": [
+    "m2024-153-1.png"
+   ],
+   "gabarito": "D",
+   "habilidade": "H01",
+   "fonte": "ENEM 2024, questão 153",
+   "paginaInteira": false
+  },
+  {
+   "id": "m2023-157",
+   "rotulo": "Questão 12",
+   "imgs": [
+    "m2023-157-1.png"
+   ],
+   "gabarito": "B",
+   "habilidade": "H25",
+   "fonte": "ENEM 2023, questão 157",
+   "paginaInteira": false
+  },
+  {
+   "id": "m2023-141",
+   "rotulo": "Questão 13",
+   "imgs": [
+    "m2023-141-1.png"
+   ],
+   "gabarito": "E",
+   "habilidade": "H28",
+   "fonte": "ENEM 2023, questão 141",
+   "paginaInteira": false
+  },
+  {
+   "id": "m2023-155",
+   "rotulo": "Questão 14",
+   "imgs": [
+    "m2023-155-1.png"
+   ],
+   "gabarito": "D",
+   "habilidade": "H12",
+   "fonte": "ENEM 2023, questão 155",
+   "paginaInteira": false
+  },
+  {
+   "id": "m2023-143",
+   "rotulo": "Questão 15",
+   "imgs": [
+    "m2023-143-1.png"
+   ],
+   "gabarito": "B",
+   "habilidade": "H05",
+   "fonte": "ENEM 2023, questão 143",
+   "paginaInteira": false
+  },
+  {
+   "id": "m2024-140",
+   "rotulo": "Questão 16",
+   "imgs": [
+    "m2024-140-1.png"
+   ],
+   "gabarito": "B",
+   "habilidade": "H04",
+   "fonte": "ENEM 2024, questão 140",
+   "paginaInteira": false
+  },
+  {
+   "id": "m2024-137",
+   "rotulo": "Questão 17",
+   "imgs": [
+    "m2024-137-1.png"
+   ],
+   "gabarito": "B",
+   "habilidade": "H28",
+   "fonte": "ENEM 2024, questão 137",
+   "paginaInteira": false
+  },
+  {
+   "id": "m2024-173",
+   "rotulo": "Questão 18",
+   "imgs": [
+    "m2024-173-1.png"
+   ],
+   "gabarito": "A",
+   "habilidade": "H29",
+   "fonte": "ENEM 2024, questão 173",
+   "paginaInteira": false
+  },
+  {
+   "id": "m2022-164",
+   "rotulo": "Questão 19",
+   "imgs": [
+    "m2022-164-1.png"
+   ],
+   "gabarito": "B",
+   "habilidade": "H12",
+   "fonte": "ENEM 2022, questão 164",
+   "paginaInteira": false
+  },
+  {
+   "id": "m2024-176",
+   "rotulo": "Questão 20",
+   "imgs": [
+    "m2024-176-1.png"
+   ],
+   "gabarito": "B",
+   "habilidade": "H24",
+   "fonte": "ENEM 2024, questão 176",
+   "paginaInteira": false
+  }
+ ],
+ "simulado": [
+  {
+   "id": "s2025-136",
+   "rotulo": "Questão 136",
+   "imgs": [
+    "s2025-136-1.png"
+   ],
+   "gabarito": "C",
+   "habilidade": "H04",
+   "fonte": "ENEM 2025, questão 136",
+   "paginaInteira": false
+  },
+  {
+   "id": "s2025-137",
+   "rotulo": "Questão 137",
+   "imgs": [
+    "s2025-137-1.png"
+   ],
+   "gabarito": "B",
+   "habilidade": "H28",
+   "fonte": "ENEM 2025, questão 137",
+   "paginaInteira": false
+  },
+  {
+   "id": "s2025-138",
+   "rotulo": "Questão 138",
+   "imgs": [
+    "s2025-138-1.png"
+   ],
+   "gabarito": "E",
+   "habilidade": "H06",
+   "fonte": "ENEM 2025, questão 138",
+   "paginaInteira": false
+  },
+  {
+   "id": "s2025-139",
+   "rotulo": "Questão 139",
+   "imgs": [
+    "s2025-139-1.png"
+   ],
+   "gabarito": "C",
+   "habilidade": "H09",
+   "fonte": "ENEM 2025, questão 139",
+   "paginaInteira": false
+  },
+  {
+   "id": "s2025-140",
+   "rotulo": "Questão 140",
+   "imgs": [
+    "s2025-140-1.png"
+   ],
+   "gabarito": "E",
+   "habilidade": "H18",
+   "fonte": "ENEM 2025, questão 140",
+   "paginaInteira": false
+  },
+  {
+   "id": "s2025-141",
+   "rotulo": "Questão 141",
+   "imgs": [
+    "s2025-141-1.png"
+   ],
+   "gabarito": "C",
+   "habilidade": "H05",
+   "fonte": "ENEM 2025, questão 141",
+   "paginaInteira": false
+  },
+  {
+   "id": "s2025-142",
+   "rotulo": "Questão 142",
+   "imgs": [
+    "s2025-142-1.png"
+   ],
+   "gabarito": "C",
+   "habilidade": "H27",
+   "fonte": "ENEM 2025, questão 142",
+   "paginaInteira": false
+  },
+  {
+   "id": "s2025-143",
+   "rotulo": "Questão 143",
+   "imgs": [
+    "s2025-143-1.png"
+   ],
+   "gabarito": "A",
+   "habilidade": "H17",
+   "fonte": "ENEM 2025, questão 143",
+   "paginaInteira": false
+  },
+  {
+   "id": "s2025-144",
+   "rotulo": "Questão 144",
+   "imgs": [
+    "s2025-144-1.png"
+   ],
+   "gabarito": "D",
+   "habilidade": "H07",
+   "fonte": "ENEM 2025, questão 144",
+   "paginaInteira": false
+  },
+  {
+   "id": "s2025-145",
+   "rotulo": "Questão 145",
+   "imgs": [
+    "s2025-145-1.png"
+   ],
+   "gabarito": "D",
+   "habilidade": "H20",
+   "fonte": "ENEM 2025, questão 145",
+   "paginaInteira": false
+  },
+  {
+   "id": "s2025-146",
+   "rotulo": "Questão 146",
+   "imgs": [
+    "s2025-146-1.png"
+   ],
+   "gabarito": "B",
+   "habilidade": "H03",
+   "fonte": "ENEM 2025, questão 146",
+   "paginaInteira": false
+  },
+  {
+   "id": "s2025-147",
+   "rotulo": "Questão 147",
+   "imgs": [
+    "s2025-147-1.png"
+   ],
+   "gabarito": "E",
+   "habilidade": "H24",
+   "fonte": "ENEM 2025, questão 147",
+   "paginaInteira": false
+  },
+  {
+   "id": "s2025-148",
+   "rotulo": "Questão 148",
+   "imgs": [
+    "s2025-148-1.png"
+   ],
+   "gabarito": "C",
+   "habilidade": "H11",
+   "fonte": "ENEM 2025, questão 148",
+   "paginaInteira": false
+  },
+  {
+   "id": "s2025-149",
+   "rotulo": "Questão 149",
+   "imgs": [
+    "s2025-149-1.png"
+   ],
+   "gabarito": "B",
+   "habilidade": "H08",
+   "fonte": "ENEM 2025, questão 149",
+   "paginaInteira": false
+  },
+  {
+   "id": "s2025-150",
+   "rotulo": "Questão 150",
+   "imgs": [
+    "s2025-150-1.png"
+   ],
+   "gabarito": "D",
+   "habilidade": "H16",
+   "fonte": "ENEM 2025, questão 150",
+   "paginaInteira": false
+  },
+  {
+   "id": "s2025-151",
+   "rotulo": "Questão 151",
+   "imgs": [
+    "s2025-151-1.png"
+   ],
+   "gabarito": "D",
+   "habilidade": "H01",
+   "fonte": "ENEM 2025, questão 151",
+   "paginaInteira": false
+  },
+  {
+   "id": "s2025-152",
+   "rotulo": "Questão 152",
+   "imgs": [
+    "s2025-152-1.png"
+   ],
+   "gabarito": "D",
+   "habilidade": "H28",
+   "fonte": "ENEM 2025, questão 152",
+   "paginaInteira": false
+  },
+  {
+   "id": "s2025-153",
+   "rotulo": "Questão 153",
+   "imgs": [
+    "s2025-153-1.png"
+   ],
+   "gabarito": "A",
+   "habilidade": "H22",
+   "fonte": "ENEM 2025, questão 153",
+   "paginaInteira": false
+  },
+  {
+   "id": "s2025-154",
+   "rotulo": "Questão 154",
+   "imgs": [
+    "s2025-154-1.png"
+   ],
+   "gabarito": "C",
+   "habilidade": "H26",
+   "fonte": "ENEM 2025, questão 154",
+   "paginaInteira": false
+  },
+  {
+   "id": "s2025-155",
+   "rotulo": "Questão 155",
+   "imgs": [
+    "s2025-155-1.png"
+   ],
+   "gabarito": "B",
+   "habilidade": "H02",
+   "fonte": "ENEM 2025, questão 155",
+   "paginaInteira": false
+  },
+  {
+   "id": "s2025-156",
+   "rotulo": "Questão 156",
+   "imgs": [
+    "s2025-156-1.png"
+   ],
+   "gabarito": "E",
+   "habilidade": "H11",
+   "fonte": "ENEM 2025, questão 156",
+   "paginaInteira": false
+  },
+  {
+   "id": "s2025-157",
+   "rotulo": "Questão 157",
+   "imgs": [
+    "s2025-157-1.png"
+   ],
+   "gabarito": "C",
+   "habilidade": "H19",
+   "fonte": "ENEM 2025, questão 157",
+   "paginaInteira": false
+  },
+  {
+   "id": "s2025-158",
+   "rotulo": "Questão 158",
+   "imgs": [
+    "s2025-158-1.png"
+   ],
+   "gabarito": "C",
+   "habilidade": "H18",
+   "fonte": "ENEM 2025, questão 158",
+   "paginaInteira": false
+  },
+  {
+   "id": "s2025-159",
+   "rotulo": "Questão 159",
+   "imgs": [
+    "s2025-159-1.png"
+   ],
+   "gabarito": "D",
+   "habilidade": "H12",
+   "fonte": "ENEM 2025, questão 159",
+   "paginaInteira": false
+  },
+  {
+   "id": "s2025-160",
+   "rotulo": "Questão 160",
+   "imgs": [
+    "s2025-160-1.png"
+   ],
+   "gabarito": "E",
+   "habilidade": "H19",
+   "fonte": "ENEM 2025, questão 160",
+   "paginaInteira": false
+  },
+  {
+   "id": "s2025-161",
+   "rotulo": "Questão 161",
+   "imgs": [
+    "s2025-161-1.png"
+   ],
+   "gabarito": "A",
+   "habilidade": "H06",
+   "fonte": "ENEM 2025, questão 161",
+   "paginaInteira": false
+  },
+  {
+   "id": "s2025-162",
+   "rotulo": "Questão 162",
+   "imgs": [
+    "s2025-162-1.png"
+   ],
+   "gabarito": "B",
+   "habilidade": "H23",
+   "fonte": "ENEM 2025, questão 162",
+   "paginaInteira": false
+  },
+  {
+   "id": "s2025-163",
+   "rotulo": "Questão 163",
+   "imgs": [
+    "s2025-163-1.png"
+   ],
+   "gabarito": "B",
+   "habilidade": "H25",
+   "fonte": "ENEM 2025, questão 163",
+   "paginaInteira": false
+  },
+  {
+   "id": "s2025-164",
+   "rotulo": "Questão 164",
+   "imgs": [
+    "s2025-164-1.png"
+   ],
+   "gabarito": "A",
+   "habilidade": "H08",
+   "fonte": "ENEM 2025, questão 164",
+   "paginaInteira": false
+  },
+  {
+   "id": "s2025-165",
+   "rotulo": "Questão 165",
+   "imgs": [
+    "s2025-165-1.png"
+   ],
+   "gabarito": "D",
+   "habilidade": "H29",
+   "fonte": "ENEM 2025, questão 165",
+   "paginaInteira": false
+  },
+  {
+   "id": "s2025-166",
+   "rotulo": "Questão 166",
+   "imgs": [
+    "s2025-166-1.png"
+   ],
+   "gabarito": "E",
+   "habilidade": "H30",
+   "fonte": "ENEM 2025, questão 166",
+   "paginaInteira": true
+  },
+  {
+   "id": "s2025-167",
+   "rotulo": "Questão 167",
+   "imgs": [
+    "s2025-167-1.png"
+   ],
+   "gabarito": "D",
+   "habilidade": "H25",
+   "fonte": "ENEM 2025, questão 167",
+   "paginaInteira": false
+  },
+  {
+   "id": "s2025-168",
+   "rotulo": "Questão 168",
+   "imgs": [
+    "s2025-168-1.png"
+   ],
+   "gabarito": "E",
+   "habilidade": "H04",
+   "fonte": "ENEM 2025, questão 168",
+   "paginaInteira": true
+  },
+  {
+   "id": "s2025-169",
+   "rotulo": "Questão 169",
+   "imgs": [
+    "s2025-169-1.png"
+   ],
+   "gabarito": "A",
+   "habilidade": "H15",
+   "fonte": "ENEM 2025, questão 169",
+   "paginaInteira": true
+  },
+  {
+   "id": "s2025-170",
+   "rotulo": "Questão 170",
+   "imgs": [
+    "s2025-170-1.png"
+   ],
+   "gabarito": "B",
+   "habilidade": "H14",
+   "fonte": "ENEM 2025, questão 170",
+   "paginaInteira": false
+  },
+  {
+   "id": "s2025-171",
+   "rotulo": "Questão 171",
+   "imgs": [
+    "s2025-171-1.png"
+   ],
+   "gabarito": "E",
+   "habilidade": "H09",
+   "fonte": "ENEM 2025, questão 171",
+   "paginaInteira": false
+  },
+  {
+   "id": "s2025-172",
+   "rotulo": "Questão 172",
+   "imgs": [
+    "s2025-172-1.png"
+   ],
+   "gabarito": "A",
+   "habilidade": "H22",
+   "fonte": "ENEM 2025, questão 172",
+   "paginaInteira": false
+  },
+  {
+   "id": "s2025-173",
+   "rotulo": "Questão 173",
+   "imgs": [
+    "s2025-173-1.png"
+   ],
+   "gabarito": "A",
+   "habilidade": "H13",
+   "fonte": "ENEM 2025, questão 173",
+   "paginaInteira": false
+  },
+  {
+   "id": "s2025-174",
+   "rotulo": "Questão 174",
+   "imgs": [
+    "s2025-174-1.png"
+   ],
+   "gabarito": null,
+   "habilidade": "H21",
+   "fonte": "ENEM 2025, questão 174"
+  },
+  {
+   "id": "s2025-175",
+   "rotulo": "Questão 175",
+   "imgs": [
+    "s2025-175-1.png"
+   ],
+   "gabarito": "C",
+   "habilidade": "H03",
+   "fonte": "ENEM 2025, questão 175",
+   "paginaInteira": false
+  },
+  {
+   "id": "s2025-176",
+   "rotulo": "Questão 176",
+   "imgs": [
+    "s2025-176-1.png"
+   ],
+   "gabarito": "C",
+   "habilidade": "H16",
+   "fonte": "ENEM 2025, questão 176",
+   "paginaInteira": false
+  },
+  {
+   "id": "s2025-177",
+   "rotulo": "Questão 177",
+   "imgs": [
+    "s2025-177-1.png"
+   ],
+   "gabarito": "B",
+   "habilidade": "H12",
+   "fonte": "ENEM 2025, questão 177",
+   "paginaInteira": false
+  },
+  {
+   "id": "s2025-178",
+   "rotulo": "Questão 178",
+   "imgs": [
+    "s2025-178-1.png"
+   ],
+   "gabarito": "E",
+   "habilidade": "H29",
+   "fonte": "ENEM 2025, questão 178",
+   "paginaInteira": false
+  },
+  {
+   "id": "s2025-179",
+   "rotulo": "Questão 179",
+   "imgs": [
+    "s2025-179-1.png"
+   ],
+   "gabarito": "A",
+   "habilidade": "H10",
+   "fonte": "ENEM 2025, questão 179",
+   "paginaInteira": false
+  },
+  {
+   "id": "s2025-180",
+   "rotulo": "Questão 180",
+   "imgs": [
+    "s2025-180-1.png",
+    "s2025-180-2.png"
+   ],
+   "gabarito": "D",
+   "habilidade": "H02",
+   "fonte": "ENEM 2025, questão 180",
+   "paginaInteira": true
+  }
+ ],
+ "redacao": [
+  "redacao2025-20.png",
+  "redacao2025-21.png"
+ ],
+ "humanas": [
+  {
+   "id": "h2024-46",
+   "rotulo": "Questão 46",
+   "imgs": [
+    "h2024-46-1.png"
+   ],
+   "gabarito": "C",
+   "habilidade": "H26",
+   "fonte": "ENEM 2024, questão 46",
+   "paginaInteira": false
+  },
+  {
+   "id": "h2024-47",
+   "rotulo": "Questão 47",
+   "imgs": [
+    "h2024-47-1.png"
+   ],
+   "gabarito": "E",
+   "habilidade": "H11",
+   "fonte": "ENEM 2024, questão 47",
+   "paginaInteira": false
+  },
+  {
+   "id": "h2024-48",
+   "rotulo": "Questão 48",
+   "imgs": [
+    "h2024-48-1.png"
+   ],
+   "gabarito": "C",
+   "habilidade": "H27",
+   "fonte": "ENEM 2024, questão 48",
+   "paginaInteira": false
+  },
+  {
+   "id": "h2024-49",
+   "rotulo": "Questão 49",
+   "imgs": [
+    "h2024-49-1.png"
+   ],
+   "gabarito": "E",
+   "habilidade": "H16",
+   "fonte": "ENEM 2024, questão 49",
+   "paginaInteira": false
+  },
+  {
+   "id": "h2024-50",
+   "rotulo": "Questão 50",
+   "imgs": [
+    "h2024-50-1.png"
+   ],
+   "gabarito": "B",
+   "habilidade": "H14",
+   "fonte": "ENEM 2024, questão 50",
+   "paginaInteira": false
+  },
+  {
+   "id": "h2024-51",
+   "rotulo": "Questão 51",
+   "imgs": [
+    "h2024-51-1.png"
+   ],
+   "gabarito": "E",
+   "habilidade": "H05",
+   "fonte": "ENEM 2024, questão 51",
+   "paginaInteira": false
+  },
+  {
+   "id": "h2024-52",
+   "rotulo": "Questão 52",
+   "imgs": [
+    "h2024-52-1.png"
+   ],
+   "gabarito": "B",
+   "habilidade": "H10",
+   "fonte": "ENEM 2024, questão 52",
+   "paginaInteira": false
+  },
+  {
+   "id": "h2024-53",
+   "rotulo": "Questão 53",
+   "imgs": [
+    "h2024-53-1.png"
+   ],
+   "gabarito": "C",
+   "habilidade": "H26",
+   "fonte": "ENEM 2024, questão 53",
+   "paginaInteira": false
+  },
+  {
+   "id": "h2024-54",
+   "rotulo": "Questão 54",
+   "imgs": [
+    "h2024-54-1.png"
+   ],
+   "gabarito": "D",
+   "habilidade": "H12",
+   "fonte": "ENEM 2024, questão 54",
+   "paginaInteira": false
+  },
+  {
+   "id": "h2024-55",
+   "rotulo": "Questão 55",
+   "imgs": [
+    "h2024-55-1.png"
+   ],
+   "gabarito": "B",
+   "habilidade": "H03",
+   "fonte": "ENEM 2024, questão 55",
+   "paginaInteira": false
+  },
+  {
+   "id": "h2024-56",
+   "rotulo": "Questão 56",
+   "imgs": [
+    "h2024-56-1.png"
+   ],
+   "gabarito": "A",
+   "habilidade": "H02",
+   "fonte": "ENEM 2024, questão 56",
+   "paginaInteira": false
+  },
+  {
+   "id": "h2024-57",
+   "rotulo": "Questão 57",
+   "imgs": [
+    "h2024-57-1.png"
+   ],
+   "gabarito": "D",
+   "habilidade": "H15",
+   "fonte": "ENEM 2024, questão 57",
+   "paginaInteira": false
+  },
+  {
+   "id": "h2024-58",
+   "rotulo": "Questão 58",
+   "imgs": [
+    "h2024-58-1.png"
+   ],
+   "gabarito": "D",
+   "habilidade": "H23",
+   "fonte": "ENEM 2024, questão 58",
+   "paginaInteira": false
+  },
+  {
+   "id": "h2024-59",
+   "rotulo": "Questão 59",
+   "imgs": [
+    "h2024-59-1.png"
+   ],
+   "gabarito": "E",
+   "habilidade": "H03",
+   "fonte": "ENEM 2024, questão 59",
+   "paginaInteira": false
+  },
+  {
+   "id": "h2024-60",
+   "rotulo": "Questão 60",
+   "imgs": [
+    "h2024-60-1.png"
+   ],
+   "gabarito": "B",
+   "habilidade": "H30",
+   "fonte": "ENEM 2024, questão 60",
+   "paginaInteira": false
+  },
+  {
+   "id": "h2024-61",
+   "rotulo": "Questão 61",
+   "imgs": [
+    "h2024-61-1.png"
+   ],
+   "gabarito": "B",
+   "habilidade": "H11",
+   "fonte": "ENEM 2024, questão 61",
+   "paginaInteira": false
+  },
+  {
+   "id": "h2024-62",
+   "rotulo": "Questão 62",
+   "imgs": [
+    "h2024-62-1.png"
+   ],
+   "gabarito": "A",
+   "habilidade": "H04",
+   "fonte": "ENEM 2024, questão 62",
+   "paginaInteira": false
+  },
+  {
+   "id": "h2024-63",
+   "rotulo": "Questão 63",
+   "imgs": [
+    "h2024-63-1.png"
+   ],
+   "gabarito": "B",
+   "habilidade": "H21",
+   "fonte": "ENEM 2024, questão 63",
+   "paginaInteira": false
+  },
+  {
+   "id": "h2024-64",
+   "rotulo": "Questão 64",
+   "imgs": [
+    "h2024-64-1.png"
+   ],
+   "gabarito": "C",
+   "habilidade": "H15",
+   "fonte": "ENEM 2024, questão 64",
+   "paginaInteira": false
+  },
+  {
+   "id": "h2024-65",
+   "rotulo": "Questão 65",
+   "imgs": [
+    "h2024-65-1.png"
+   ],
+   "gabarito": "D",
+   "habilidade": "H10",
+   "fonte": "ENEM 2024, questão 65",
+   "paginaInteira": false
+  },
+  {
+   "id": "h2024-66",
+   "rotulo": "Questão 66",
+   "imgs": [
+    "h2024-66-1.png"
+   ],
+   "gabarito": "C",
+   "habilidade": "H16",
+   "fonte": "ENEM 2024, questão 66",
+   "paginaInteira": false
+  },
+  {
+   "id": "h2024-67",
+   "rotulo": "Questão 67",
+   "imgs": [
+    "h2024-67-1.png"
+   ],
+   "gabarito": "A",
+   "habilidade": "H19",
+   "fonte": "ENEM 2024, questão 67",
+   "paginaInteira": false
+  },
+  {
+   "id": "h2024-68",
+   "rotulo": "Questão 68",
+   "imgs": [
+    "h2024-68-1.png"
+   ],
+   "gabarito": "E",
+   "habilidade": "H29",
+   "fonte": "ENEM 2024, questão 68",
+   "paginaInteira": false
+  },
+  {
+   "id": "h2024-69",
+   "rotulo": "Questão 69",
+   "imgs": [
+    "h2024-69-1.png"
+   ],
+   "gabarito": "C",
+   "habilidade": "H22",
+   "fonte": "ENEM 2024, questão 69",
+   "paginaInteira": false
+  },
+  {
+   "id": "h2024-70",
+   "rotulo": "Questão 70",
+   "imgs": [
+    "h2024-70-1.png"
+   ],
+   "gabarito": "E",
+   "habilidade": "H17",
+   "fonte": "ENEM 2024, questão 70",
+   "paginaInteira": false
+  },
+  {
+   "id": "h2024-71",
+   "rotulo": "Questão 71",
+   "imgs": [
+    "h2024-71-1.png"
+   ],
+   "gabarito": "D",
+   "habilidade": "H09",
+   "fonte": "ENEM 2024, questão 71",
+   "paginaInteira": false
+  },
+  {
+   "id": "h2024-72",
+   "rotulo": "Questão 72",
+   "imgs": [
+    "h2024-72-1.png"
+   ],
+   "gabarito": "A",
+   "habilidade": "H25",
+   "fonte": "ENEM 2024, questão 72",
+   "paginaInteira": false
+  },
+  {
+   "id": "h2024-73",
+   "rotulo": "Questão 73",
+   "imgs": [
+    "h2024-73-1.png"
+   ],
+   "gabarito": "D",
+   "habilidade": "H05",
+   "fonte": "ENEM 2024, questão 73",
+   "paginaInteira": false
+  },
+  {
+   "id": "h2024-74",
+   "rotulo": "Questão 74",
+   "imgs": [
+    "h2024-74-1.png"
+   ],
+   "gabarito": "B",
+   "habilidade": "H03",
+   "fonte": "ENEM 2024, questão 74",
+   "paginaInteira": false
+  },
+  {
+   "id": "h2024-75",
+   "rotulo": "Questão 75",
+   "imgs": [
+    "h2024-75-1.png"
+   ],
+   "gabarito": "A",
+   "habilidade": "H01",
+   "fonte": "ENEM 2024, questão 75",
+   "paginaInteira": false
+  },
+  {
+   "id": "h2024-76",
+   "rotulo": "Questão 76",
+   "imgs": [
+    "h2024-76-1.png"
+   ],
+   "gabarito": "E",
+   "habilidade": "H20",
+   "fonte": "ENEM 2024, questão 76",
+   "paginaInteira": false
+  },
+  {
+   "id": "h2024-77",
+   "rotulo": "Questão 77",
+   "imgs": [
+    "h2024-77-1.png"
+   ],
+   "gabarito": "A",
+   "habilidade": "H21",
+   "fonte": "ENEM 2024, questão 77",
+   "paginaInteira": false
+  },
+  {
+   "id": "h2024-78",
+   "rotulo": "Questão 78",
+   "imgs": [
+    "h2024-78-1.png"
+   ],
+   "gabarito": "B",
+   "habilidade": "H23",
+   "fonte": "ENEM 2024, questão 78",
+   "paginaInteira": false
+  },
+  {
+   "id": "h2024-79",
+   "rotulo": "Questão 79",
+   "imgs": [
+    "h2024-79-1.png"
+   ],
+   "gabarito": "E",
+   "habilidade": "H08",
+   "fonte": "ENEM 2024, questão 79",
+   "paginaInteira": false
+  },
+  {
+   "id": "h2024-80",
+   "rotulo": "Questão 80",
+   "imgs": [
+    "h2024-80-1.png"
+   ],
+   "gabarito": "A",
+   "habilidade": "H04",
+   "fonte": "ENEM 2024, questão 80",
+   "paginaInteira": false
+  },
+  {
+   "id": "h2024-81",
+   "rotulo": "Questão 81",
+   "imgs": [
+    "h2024-81-1.png"
+   ],
+   "gabarito": "D",
+   "habilidade": "H02",
+   "fonte": "ENEM 2024, questão 81",
+   "paginaInteira": false
+  },
+  {
+   "id": "h2024-82",
+   "rotulo": "Questão 82",
+   "imgs": [
+    "h2024-82-1.png"
+   ],
+   "gabarito": "C",
+   "habilidade": "H01",
+   "fonte": "ENEM 2024, questão 82",
+   "paginaInteira": false
+  },
+  {
+   "id": "h2024-83",
+   "rotulo": "Questão 83",
+   "imgs": [
+    "h2024-83-1.png"
+   ],
+   "gabarito": "E",
+   "habilidade": "H07",
+   "fonte": "ENEM 2024, questão 83",
+   "paginaInteira": false
+  },
+  {
+   "id": "h2024-84",
+   "rotulo": "Questão 84",
+   "imgs": [
+    "h2024-84-1.png"
+   ],
+   "gabarito": "D",
+   "habilidade": "H05",
+   "fonte": "ENEM 2024, questão 84",
+   "paginaInteira": false
+  },
+  {
+   "id": "h2024-85",
+   "rotulo": "Questão 85",
+   "imgs": [
+    "h2024-85-1.png"
+   ],
+   "gabarito": "A",
+   "habilidade": "H13",
+   "fonte": "ENEM 2024, questão 85",
+   "paginaInteira": false
+  },
+  {
+   "id": "h2024-86",
+   "rotulo": "Questão 86",
+   "imgs": [
+    "h2024-86-1.png"
+   ],
+   "gabarito": "D",
+   "habilidade": "H06",
+   "fonte": "ENEM 2024, questão 86",
+   "paginaInteira": false
+  },
+  {
+   "id": "h2024-87",
+   "rotulo": "Questão 87",
+   "imgs": [
+    "h2024-87-1.png"
+   ],
+   "gabarito": "A",
+   "habilidade": "H24",
+   "fonte": "ENEM 2024, questão 87",
+   "paginaInteira": false
+  },
+  {
+   "id": "h2024-88",
+   "rotulo": "Questão 88",
+   "imgs": [
+    "h2024-88-1.png"
+   ],
+   "gabarito": "C",
+   "habilidade": "H28",
+   "fonte": "ENEM 2024, questão 88",
+   "paginaInteira": false
+  },
+  {
+   "id": "h2024-89",
+   "rotulo": "Questão 89",
+   "imgs": [
+    "h2024-89-1.png"
+   ],
+   "gabarito": "B",
+   "habilidade": "H07",
+   "fonte": "ENEM 2024, questão 89",
+   "paginaInteira": false
+  },
+  {
+   "id": "h2024-90",
+   "rotulo": "Questão 90",
+   "imgs": [
+    "h2024-90-1.png",
+    "h2024-90-2.png"
+   ],
+   "gabarito": "C",
+   "habilidade": "H18",
+   "fonte": "ENEM 2024, questão 90",
+   "paginaInteira": true
+  }
+ ],
+ "redacao2024": [
+  "redacao2024-19.png"
+ ]
+}

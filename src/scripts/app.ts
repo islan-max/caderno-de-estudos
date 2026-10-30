@@ -26,6 +26,7 @@ import { montarEstudo } from './meu-estudo';
 import { montarRecomendacoes } from './recomendacoes';
 import { montarResumoDeVideo } from './resumo-de-video';
 import { montarRevisao } from './revisao';
+import { montarTreino } from './treino';
 import { aplicarFontePx, lerBrilho, aplicarBrilho, aplicarDispensados, lerFontePx, preferencias, aplicarA11y } from './preferencias';
 import { vistas, refletirProgresso } from './progresso';
 import { aplicarTema, temaSalvo } from './tema';
@@ -46,6 +47,7 @@ function iniciar() {
   refletirProgresso();
   montarHub();
   void montarRevisao();
+  montarTreino();
   void montarEstudo();
   void montarRecomendacoes();
   montarResumoDeVideo();

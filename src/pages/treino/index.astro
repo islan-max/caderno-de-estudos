@@ -1,0 +1,33 @@
+---
+// Treino: listas de questões oficiais do INEP (recorte do PDF da prova) com cronômetro e correção.
+import Base from '../../layouts/Base.astro';
+import { u } from '../../lib/url';
+import treino from '../../data/treino.json';
+
+const itens = [
+  { id: 'manha', titulo: 'Treino de Matemática', info: `${treino.manha.length} questões · 60 min · ENEM 2022 a 2024, das mais fáceis às médias` },
+  { id: 'simulado-mat-2025', titulo: 'Simulado: Matemática ENEM 2025', info: `${treino.simulado.length} questões · 2h30 · caderno azul, 2º dia` },
+  { id: 'simulado-humanas-2024', titulo: 'Simulado: Ciências Humanas ENEM 2024', info: `${treino.humanas.length} questões · 2h15 · 1º dia, caderno azul` },
+  { id: 'redacao-2024', titulo: 'Redação ENEM 2024', info: 'Proposta oficial com textos motivadores · 1h15 · “Desafios para a valorização da herança africana no Brasil”' },
+  { id: 'redacao-2025', titulo: 'Redação ENEM 2025', info: 'Proposta oficial · 1h15 · “Perspectivas acerca do envelhecimento na sociedade brasileira”' },
+];
+---
+
+<Base title="Treino" description="Questões oficiais com cronômetro e correção" voltar={{ href: u('/'), label: 'Início' }}>
+  <h1>Treino</h1>
+  <p>Resolva com o cronômetro e marque as letras. A correção só aparece quando você finaliza.</p>
+  <ul class="treino-lista">
+    {itens.map((i) => (
+      <li>
+        <a href={u(`/treino/${i.id}`)}><strong>{i.titulo}</strong><span>{i.info}</span></a>
+      </li>
+    ))}
+  </ul>
+</Base>
+
+<style>
+  .treino-lista { list-style: none; padding: 0; display: grid; gap: 0.8rem; }
+  .treino-lista a { display: grid; gap: 0.2rem; padding: 1rem 1.1rem; border: 1px solid var(--color-line); border-radius: 0.8rem; background: var(--color-surface); text-decoration: none; color: var(--color-ink); }
+  .treino-lista a:hover { border-color: var(--color-enem); }
+  .treino-lista span { color: var(--color-ink-soft); font-size: 0.9rem; }
+</style>
