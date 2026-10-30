@@ -35,12 +35,31 @@ function decorrido(e: Estado): number {
   return Math.max(0, Math.round(((e.fim || e.pa || Date.now()) - e.ini - (e.p || 0)) / 1000));
 }
 
+/** Apaga o progresso de uma lista: respostas, cronômetro e, na redação, o rascunho da folha. */
+function apagar(id: string) {
+  try {
+    localStorage.removeItem(CHAVE + id);
+    const rascunho = new RegExp(`^cdt:redacao:.*/treino/${id}/?:${id}$`);
+    Object.keys(localStorage).filter((k) => rascunho.test(k)).forEach((k) => localStorage.removeItem(k));
+  } catch {}
+}
+
 function montarHub() {
-  document.querySelectorAll<HTMLElement>('[data-treino-card]').forEach((card) => {
-    const e = ler<Estado>(CHAVE + card.dataset.treinoCard, NOVO());
+  const cards = Array.from(document.querySelectorAll<HTMLElement>('[data-treino-card]'));
+  if (!cards.length) return;
+  let algum = false;
+  cards.forEach((card) => {
+    const id = card.dataset.treinoCard!;
+    const e = ler<Estado>(CHAVE + id, NOVO());
     const total = Number(card.dataset.total);
     const rotulo = card.querySelector<HTMLElement>('[data-estado-card]')!;
     const respondidas = Object.keys(e.r).length;
+    const comProgresso = !!(e.fim || e.ini || respondidas);
+    algum ||= comProgresso;
+    delete rotulo.dataset.estado;
+    rotulo.textContent = 'Ainda não começou';
+    const zerar = card.parentElement!.querySelector<HTMLElement>('[data-zerar]');
+    if (zerar) zerar.hidden = !comProgresso;
     if (e.fim) {
       rotulo.dataset.estado = 'feito';
       rotulo.textContent = e.nota ? `Feito · ${e.nota.c} de ${e.nota.t} (${Math.round((e.nota.c / e.nota.t) * 100)}%)` : 'Entregue';
@@ -48,6 +67,30 @@ function montarHub() {
       rotulo.dataset.estado = 'andamento';
       rotulo.textContent = total ? `Em andamento · ${respondidas} de ${total} respondidas` : 'Em andamento';
     }
+  });
+  const tudo = document.querySelector<HTMLElement>('[data-zerar-tudo-caixa]');
+  if (tudo) tudo.hidden = !algum;
+}
+
+function ligarZerar() {
+  const hub = document.querySelector('[data-treino-hub]');
+  if (!hub) return;
+  hub.addEventListener('click', async (ev) => {
+    const alvo = (ev.target as HTMLElement).closest<HTMLElement>('[data-zerar], [data-zerar-tudo]');
+    if (!alvo) return;
+    const um = alvo.dataset.zerar;
+    const { ok } = await confirmarAcao({
+      titulo: um ? 'Zerar esta lista?' : 'Zerar todo o treino?',
+      texto: um
+        ? `As respostas, o cronômetro e o resultado de “${alvo.dataset.titulo}” são apagados deste navegador.`
+        : 'As respostas, os cronômetros, os resultados e os rascunhos de redação de todas as listas são apagados deste navegador.',
+      confirmar: 'Zerar',
+    });
+    if (!ok) return;
+    const ids = um ? [um] : Array.from(hub.querySelectorAll<HTMLElement>('[data-treino-card]'), (c) => c.dataset.treinoCard!);
+    ids.forEach(apagar);
+    montarHub();
+    toast(um ? 'Lista zerada' : 'Treino zerado');
   });
 }
 
@@ -268,15 +311,13 @@ function montarProva() {
       confirmar: 'Apagar tudo',
     });
     if (!ok) return;
-    try {
-      localStorage.removeItem(chave);
-      if (ehRedacao) localStorage.removeItem(`cdt:redacao:${location.pathname}:${id}`);
-    } catch {}
+    apagar(id);
     location.reload();
   });
 }
 
 export function montarTreino() {
   montarHub();
+  ligarZerar();
   montarProva();
 }

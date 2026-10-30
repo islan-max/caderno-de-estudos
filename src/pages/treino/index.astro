@@ -13,7 +13,7 @@ const quantas = (c: (typeof CONJUNTOS)[number]) => (c.tipo === 'questoes' ? `${(
 
 <Base
   title="Treino"
-  active="enem"
+  active="treino"
   description="Simulados com provas reais do ENEM, treino rápido e redações com cronômetro"
   voltar={{ href: u('/enem/'), label: 'ENEM' }}
 >
@@ -33,7 +33,7 @@ const quantas = (c: (typeof CONJUNTOS)[number]) => (c.tipo === 'questoes' ? `${(
         <p class="tr-grupo__sub">{g.sub}</p>
         <ul class="tr-cards">
           {CONJUNTOS.filter((c) => c.grupo === g.id).map((c) => (
-            <li>
+            <li class="tr-item">
               <a class="tr-card" href={u(`/treino/${c.id}/`)} style={`--cor: ${c.cor}`} data-treino-card={c.id} data-total={c.tipo === 'questoes' ? (dados[c.dados] as unknown[]).length : 0}>
                 <span class="tr-card__icone"><Icone nome={c.icone} /></span>
                 <span class="tr-card__textos">
@@ -44,11 +44,18 @@ const quantas = (c: (typeof CONJUNTOS)[number]) => (c.tipo === 'questoes' ? `${(
                 </span>
                 <Icone nome="arrow-right" />
               </a>
+              <button type="button" class="tr-zerar" data-zerar={c.id} data-titulo={c.titulo} hidden>
+                <Icone nome="rotate-left" /> Zerar <span class="apenas-leitor">{c.titulo}</span>
+              </button>
             </li>
           ))}
         </ul>
       </section>
     ))}
+
+    <p class="tr-zerar-tudo" data-zerar-tudo-caixa hidden>
+      <button type="button" class="quiz__botao" data-zerar-tudo><Icone nome="rotate-left" /> Zerar todo o treino</button>
+    </p>
 
     <section class="tr-grupo" aria-labelledby="grupo-natureza">
       <h2 class="tr-grupo__titulo" id="grupo-natureza">Ciências da Natureza</h2>
@@ -81,13 +88,13 @@ const quantas = (c: (typeof CONJUNTOS)[number]) => (c.tipo === 'questoes' ? `${(
     margin: 0 auto;
   }
   .tr-hero {
-    border-color: color-mix(in srgb, var(--color-ok) 35%, var(--color-line));
+    border-color: color-mix(in srgb, var(--color-treino) 35%, var(--color-line));
     background:
-      radial-gradient(120% 140% at 100% 0%, color-mix(in srgb, var(--color-ok) 14%, transparent), transparent 60%),
-      color-mix(in srgb, var(--color-ok) 5%, var(--color-surface));
+      radial-gradient(120% 140% at 100% 0%, color-mix(in srgb, var(--color-treino) 14%, transparent), transparent 60%),
+      color-mix(in srgb, var(--color-treino) 5%, var(--color-surface));
   }
   .tr-hero__selo {
-    background: var(--color-ok);
+    background: var(--color-treino);
   }
   .tr-grupo {
     margin: 0 0 1.75rem;
@@ -110,6 +117,37 @@ const quantas = (c: (typeof CONJUNTOS)[number]) => (c.tipo === 'questoes' ? `${(
     margin: 0;
     padding: 0;
     list-style: none;
+  }
+  .tr-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+  .tr-zerar {
+    align-self: flex-end;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.25rem 0.7rem;
+    border: 1px solid var(--color-line);
+    border-radius: 999px;
+    background: transparent;
+    color: var(--color-ink-soft);
+    font-family: var(--font-display);
+    font-size: calc(0.78rem * var(--escala-texto, 1));
+    font-weight: 700;
+    cursor: pointer;
+  }
+  .tr-zerar[hidden],
+  .tr-zerar-tudo[hidden] {
+    display: none;
+  }
+  .tr-zerar:hover {
+    color: var(--color-ink);
+    border-color: color-mix(in srgb, var(--color-ink) 35%, var(--color-line));
+  }
+  .tr-zerar-tudo {
+    margin: 0 0 1.5rem;
   }
   .tr-card {
     --cor: var(--color-ink);

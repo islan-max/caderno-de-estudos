@@ -132,6 +132,7 @@ const outrasAbas = (
         <h2 class="secao__titulo"><span class="aba-selo"><Icone nome="graduation-cap" /> ENEM</span> Trilhas por área</h2>
         <div class="secao__lado">
           <span class="secao__meta">{porArea.reduce((t, a) => t + a.total, 0)} aulas</span>
+          <a href={u('/treino/')} class="secao__link">Treino <Icone nome="clock" /></a>
           <a href={u('/enem')} class="secao__link">Ver todas as matérias <Icone nome="arrow-right" /></a>
         </div>
       </header>
