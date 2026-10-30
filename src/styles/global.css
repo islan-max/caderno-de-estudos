@@ -30,6 +30,8 @@
   --color-revisao-soft: #e6dff0;
   --color-estudo: #0e6a73;
   --color-estudo-soft: #d6e8ea;
+  --color-treino: #8a5200;
+  --color-treino-soft: #f1e3c9;
 
   --color-line: #c9c2a8;
   /* Borda de CONTROLE (campo de texto, alternativa do quiz, interruptor): é o
@@ -201,6 +203,8 @@ html[data-tema="escuro"] {
   --color-revisao-soft: #2c2540;
   --color-estudo: #6fd0d8;
   --color-estudo-soft: #1b3335;
+  --color-treino: #e8b75d;
+  --color-treino-soft: #382c17;
   --color-ok: #7fc79b;
   --color-aviso: #e0b84f;
 

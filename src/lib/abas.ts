@@ -1,8 +1,9 @@
 // Abas do estudo (além do Início e das seções de conteúdo): usadas pelo TabNav e pelo
-// CabecalhoFixo. As cores são os tokens --color-revisao e --color-estudo (global.css).
+// CabecalhoFixo. As cores são os tokens --color-revisao, --color-estudo e --color-treino (global.css).
 export const ABAS_ESTUDO = [
   { key: 'revisao', label: 'Revisão', href: '/revisao', color: 'var(--color-revisao)', soft: 'var(--color-revisao-soft)', icone: 'repeat' },
   { key: 'estudo', label: 'Meu estudo', href: '/meu-estudo', color: 'var(--color-estudo)', soft: 'var(--color-estudo-soft)', icone: 'chart-line' },
+  { key: 'treino', label: 'Treino', href: '/treino/', color: 'var(--color-treino)', soft: 'var(--color-treino-soft)', icone: 'clock' },
 ] as const;
 
 export type ChaveAba = 'hub' | 'enem' | 'escolar' | 'ds' | (typeof ABAS_ESTUDO)[number]['key'];
