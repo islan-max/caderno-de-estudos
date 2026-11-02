@@ -74,6 +74,12 @@ def recortar(q, nome):
                 clip.y1 = it.y1 + 4
         if clip.y1 != pymupdf.Rect(*r['bbox']).y1:
             print('esticado', nome, r['bbox'][3], '->', round(clip.y1))
+        # Questão de largura total (tabela ou texto que atravessa as duas colunas): o bbox do banco só tem a
+        # coluna da esquerda e cortaria a direita (Q165 de 2025). Alarga para a página inteira.
+        if any(b[0] < clip.x1 - 4 and b[2] > clip.x1 + 4 and b[3] > clip.y0 and b[1] < clip.y1 and 'ENEM' not in b[4]
+               for b in pag.get_text('blocks')):
+            print('alargado', nome)
+            clip.x0, clip.x1 = 0, pag.rect.width
         y_alt, alts = alternativas_em_texto(q, pag, clip)
         if alts:
             clip.y1 = y_alt
