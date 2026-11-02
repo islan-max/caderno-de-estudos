@@ -18,7 +18,7 @@ export interface ConjuntoTreino {
   cor: string;
   minutos: number;
   /** Chave em src/data/treino.json: lista de questões ou páginas da proposta de redação. */
-  dados: 'manha' | 'simulado' | 'erros' | 'humanas' | 'redacao' | 'redacao2024';
+  dados: 'manha' | 'simulado' | 'humanas' | 'redacao' | 'redacao2024';
   /** De onde vêm as questões ou a proposta. */
   fonte: string;
   dicas: string[];
@@ -61,19 +61,6 @@ export const CONJUNTOS: ConjuntoTreino[] = [
     dados: 'simulado',
     fonte: 'ENEM 2025, 2º dia, caderno azul',
     dicas: [...DICAS_QUESTOES, 'Antes de calcular, sublinhe o que a pergunta pede. Muito erro é parar uma conta antes do fim.'],
-  },
-  {
-    id: 'erros-mat-2025',
-    grupo: 'treino',
-    tipo: 'questoes',
-    titulo: 'Refazer meus erros · Matemática 2025',
-    resumo: 'As 22 questões que errei no simulado. Faça sem olhar a solução e confira no fim.',
-    icone: 'rotate-left',
-    cor: 'var(--color-geometria)',
-    minutos: 66,
-    dados: 'erros',
-    fonte: 'ENEM 2025, 2º dia, caderno azul',
-    dicas: [...DICAS_QUESTOES, 'Dessa vez, antes de marcar, pergunte: isso responde o que a pergunta pede?'],
   },
   {
     id: 'manha',
