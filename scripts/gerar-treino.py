@@ -125,5 +125,9 @@ b24 = banco(2024, 1)
 humanas = [questao(b24[n], f'h2024-{n}', f'Questão {n}') for n in range(46, 91)]
 red24 = paginas(2024, (19,), 'redacao2024')
 
-json.dump({'manha': manha, 'simulado': simulado, 'redacao': red, 'humanas': humanas, 'redacao2024': red24}, open(RAIZ / 'src/data/treino.json', 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
+# Refazer só o que errei no simulado de Matemática 2025 (corrigido em 02/11): mesmas imagens, ids próprios.
+ERROS = {138, 139, 140, 142, 144, 145, 149, 152, 153, 155, 161, 162, 164, 167, 169, 171, 172, 173, 175, 178, 179, 180}
+erros = [{**q, 'id': q['id'].replace('s2025', 'e2025')} for q in simulado if int(q['id'].split('-')[1]) in ERROS]
+
+json.dump({'manha': manha, 'simulado': simulado, 'erros': erros, 'redacao': red, 'humanas': humanas, 'redacao2024': red24}, open(RAIZ / 'src/data/treino.json', 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
 print(len(manha), len(simulado), len(humanas), 'ok')
