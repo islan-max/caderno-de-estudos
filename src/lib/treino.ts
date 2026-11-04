@@ -18,7 +18,7 @@ export interface ConjuntoTreino {
   cor: string;
   minutos: number;
   /** Chave em src/data/treino.json: lista de questões ou páginas da proposta de redação. */
-  dados: 'manha' | 'simulado' | 'humanas' | 'redacao' | 'redacao2024';
+  dados: 'manha' | 'lingua' | 'humanas' | 'natureza' | 'simulado' | 'redacao' | 'redacao2024';
   /** De onde vêm as questões ou a proposta. */
   fonte: string;
   dicas: string[];
@@ -34,45 +34,71 @@ const DICAS_QUESTOES = [
 
 export const CONJUNTOS: ConjuntoTreino[] = [
   {
-    id: 'simulado-humanas-2024',
+    id: 'simulado-linguagens-2023',
     grupo: 'simulado',
     tipo: 'questoes',
-    titulo: 'Ciências Humanas · ENEM 2024',
+    titulo: 'Linguagens · ENEM 2023',
+    resumo: 'A área de Linguagens do 1º dia, na ordem da prova, sem as cinco de língua estrangeira.',
+    icone: 'book-open',
+    cor: 'var(--color-lingua-portuguesa)',
+    minutos: 130,
+    dados: 'lingua',
+    fonte: 'ENEM 2023, 1º dia, caderno azul, questões 6 a 45',
+    dicas: [...DICAS_QUESTOES, 'Leia a pergunta antes do texto: você sabe o que procurar enquanto lê.'],
+  },
+  {
+    id: 'simulado-humanas-2023',
+    grupo: 'simulado',
+    tipo: 'questoes',
+    titulo: 'Ciências Humanas · ENEM 2023',
     resumo: 'A área inteira de Humanas do 1º dia, na ordem da prova.',
     icone: 'landmark',
     cor: 'var(--color-historia)',
-    minutos: 135,
+    minutos: 150,
     dados: 'humanas',
-    fonte: 'ENEM 2024, 1º dia, caderno azul',
+    fonte: 'ENEM 2023, 1º dia, caderno azul, questões 46 a 90',
     dicas: [
       ...DICAS_QUESTOES,
       'Leia a pergunta do fim antes do texto de apoio: você sabe o que procurar enquanto lê.',
     ],
   },
   {
-    id: 'simulado-mat-2025',
+    id: 'simulado-natureza-2023',
     grupo: 'simulado',
     tipo: 'questoes',
-    titulo: 'Matemática · ENEM 2025',
-    resumo: 'A área inteira de Matemática do 2º dia, na ordem da prova.',
+    titulo: 'Ciências da Natureza · ENEM 2023',
+    resumo: 'A área inteira de Natureza do 2º dia, na ordem da prova.',
+    icone: 'atom',
+    cor: 'var(--color-biologia)',
+    minutos: 150,
+    dados: 'natureza',
+    fonte: 'ENEM 2023, 2º dia, caderno azul, questões 91 a 135',
+    dicas: [...DICAS_QUESTOES, 'Muita questão de Natureza se resolve só com o texto e o gráfico. Marque o que a conta ou o texto mostram, não o que você lembra.'],
+  },
+  {
+    id: 'simulado-matematica-2022',
+    grupo: 'simulado',
+    tipo: 'questoes',
+    titulo: 'Matemática · ENEM 2022',
+    resumo: 'A área de Matemática do 2º dia, na ordem da prova, sem duas que já foram feitas em outra lista.',
     icone: 'square-root-variable',
     cor: 'var(--color-geometria)',
-    minutos: 150,
+    minutos: 140,
     dados: 'simulado',
-    fonte: 'ENEM 2025, 2º dia, caderno azul',
+    fonte: 'ENEM 2022, 2º dia, caderno azul, questões 136 a 180 (sem a 164 e a 171)',
     dicas: [...DICAS_QUESTOES, 'Antes de calcular, sublinhe o que a pergunta pede. Muito erro é parar uma conta antes do fim.'],
   },
   {
-    id: 'manha',
+    id: 'treino-matematica-2023',
     grupo: 'treino',
     tipo: 'questoes',
-    titulo: 'Treino de Matemática',
-    resumo: 'Das mais fáceis às médias, para pegar ritmo antes de um simulado.',
+    titulo: 'Treino de Matemática · ENEM 2023',
+    resumo: 'As 30 mais acessíveis da prova, das mais fáceis às mais difíceis, para pegar ritmo.',
     icone: 'bullseye',
     cor: 'var(--color-geometria)',
-    minutos: 60,
+    minutos: 90,
     dados: 'manha',
-    fonte: 'ENEM 2022 a 2024, 2º dia, caderno azul',
+    fonte: 'ENEM 2023, 2º dia, caderno azul',
     dicas: DICAS_QUESTOES,
   },
   {
