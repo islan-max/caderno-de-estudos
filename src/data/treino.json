@@ -58,7 +58,8 @@
    "id": "m2023-169",
    "rotulo": "Questão 4",
    "imgs": [
-    "m2023-169-1.png"
+    "m2023-169-1.png",
+    "m2023-169-2.png"
    ],
    "alternativas": null,
    "gabarito": "D",
@@ -148,7 +149,8 @@
    "id": "m2023-177",
    "rotulo": "Questão 10",
    "imgs": [
-    "m2023-177-1.png"
+    "m2023-177-1.png",
+    "m2023-177-2.png"
    ],
    "alternativas": null,
    "gabarito": "A",
@@ -216,7 +218,13 @@
    "imgs": [
     "m2023-175-1.png"
    ],
-   "alternativas": null,
+   "alternativas": [
+    "4,68",
+    "6,30",
+    "9,30",
+    "10,50",
+    "10,65"
+   ],
    "gabarito": "B",
    "habilidade": "H21",
    "fonte": "ENEM 2023, questão 175",
@@ -258,7 +266,13 @@
    "imgs": [
     "m2023-167-1.png"
    ],
-   "alternativas": null,
+   "alternativas": [
+    "(5,0 ; 5,5).",
+    "(8,0 ; 8,5).",
+    "(11,5 ; 12,5).",
+    "(19,5 ; 20,5).",
+    "(3,5 ; 4,0)."
+   ],
    "gabarito": "A",
    "habilidade": "H18",
    "fonte": "ENEM 2023, questão 167",
@@ -310,7 +324,8 @@
    "id": "m2023-145",
    "rotulo": "Questão 21",
    "imgs": [
-    "m2023-145-1.png"
+    "m2023-145-1.png",
+    "m2023-145-2.png"
    ],
    "alternativas": null,
    "gabarito": "B",
@@ -352,7 +367,8 @@
    "id": "m2023-148",
    "rotulo": "Questão 24",
    "imgs": [
-    "m2023-148-1.png"
+    "m2023-148-1.png",
+    "m2023-148-2.png"
    ],
    "alternativas": null,
    "gabarito": "C",
@@ -364,7 +380,8 @@
    "id": "m2023-172",
    "rotulo": "Questão 25",
    "imgs": [
-    "m2023-172-1.png"
+    "m2023-172-1.png",
+    "m2023-172-2.png"
    ],
    "alternativas": null,
    "gabarito": "C",
@@ -516,7 +533,8 @@
    "id": "l2023-10",
    "rotulo": "Questão 10",
    "imgs": [
-    "l2023-10-1.png"
+    "l2023-10-1.png",
+    "l2023-10-2.png"
    ],
    "alternativas": null,
    "gabarito": "E",
@@ -636,7 +654,8 @@
    "id": "l2023-17",
    "rotulo": "Questão 17",
    "imgs": [
-    "l2023-17-1.png"
+    "l2023-17-1.png",
+    "l2023-17-2.png"
    ],
    "alternativas": null,
    "gabarito": "D",
@@ -684,9 +703,16 @@
    "id": "l2023-20",
    "rotulo": "Questão 20",
    "imgs": [
-    "l2023-20-1.png"
+    "l2023-20-1.png",
+    "l2023-20-2.png"
    ],
-   "alternativas": null,
+   "alternativas": [
+    "revelar a origem religiosa da linguagem.",
+    "questionar o temor sobre o futuro da linguagem.",
+    "descrever a relação entre sociedade e linguagem.",
+    "apresentar as consequências do esfacelamento da linguagem.",
+    "criticar o obstáculo promovido pelos usos especializados da linguagem."
+   ],
    "gabarito": "E",
    "habilidade": "H24",
    "fonte": "ENEM 2023, questão 20",
@@ -732,9 +758,16 @@
    "id": "l2023-23",
    "rotulo": "Questão 23",
    "imgs": [
-    "l2023-23-1.png"
+    "l2023-23-1.png",
+    "l2023-23-2.png"
    ],
-   "alternativas": null,
+   "alternativas": [
+    "censura a formas de expressão femininas.",
+    "ausência da figura feminina na vida pública.",
+    "construções imaginárias cristalizadas na sociedade.",
+    "limitações inerentes às figuras femininas e masculinas.",
+    "dificuldade na atribuição de papéis masculinos e femininos."
+   ],
    "gabarito": "C",
    "habilidade": "H22",
    "fonte": "ENEM 2023, questão 23",
@@ -846,7 +879,8 @@
    "id": "l2023-30",
    "rotulo": "Questão 30",
    "imgs": [
-    "l2023-30-1.png"
+    "l2023-30-1.png",
+    "l2023-30-2.png"
    ],
    "alternativas": null,
    "gabarito": "A",
@@ -894,9 +928,16 @@
    "id": "l2023-33",
    "rotulo": "Questão 33",
    "imgs": [
-    "l2023-33-1.png"
+    "l2023-33-1.png",
+    "l2023-33-2.png"
    ],
-   "alternativas": null,
+   "alternativas": [
+    "representar uma estética tida como inconveniente para o ideário político vigente.",
+    "manifestar um posicionamento político-cultural concebido por grupos de oposição.",
+    "expressar a cultura artística por meio da representação parcial do corpo humano.",
+    "apresentar uma composição que antecipa o imaginário artístico germânico.",
+    "estimular discussões sobre o papel da arte na construção coletiva de cultura."
+   ],
    "gabarito": "A",
    "habilidade": "H13",
    "fonte": "ENEM 2023, questão 33",
@@ -1074,7 +1115,8 @@
    "id": "l2023-44",
    "rotulo": "Questão 44",
    "imgs": [
-    "l2023-44-1.png"
+    "l2023-44-1.png",
+    "l2023-44-2.png"
    ],
    "alternativas": null,
    "gabarito": "A",
@@ -1208,9 +1250,16 @@
    "id": "h2023-52",
    "rotulo": "Questão 52",
    "imgs": [
-    "h2023-52-1.png"
+    "h2023-52-1.png",
+    "h2023-52-2.png"
    ],
-   "alternativas": null,
+   "alternativas": [
+    "participação sociopolítica.",
+    "definição estético-cultural.",
+    "competição econômica local.",
+    "manutenção do sistema escolar.",
+    "capacitação de mobilidade individual."
+   ],
    "gabarito": "A",
    "habilidade": "H23",
    "fonte": "ENEM 2023, questão 52",
@@ -1328,7 +1377,8 @@
    "id": "h2023-59",
    "rotulo": "Questão 59",
    "imgs": [
-    "h2023-59-1.png"
+    "h2023-59-1.png",
+    "h2023-59-2.png"
    ],
    "alternativas": null,
    "gabarito": "A",
@@ -2700,7 +2750,8 @@
    "id": "sm2022-143",
    "rotulo": "Questão 143",
    "imgs": [
-    "sm2022-143-1.png"
+    "sm2022-143-1.png",
+    "sm2022-143-2.png"
    ],
    "alternativas": null,
    "gabarito": "D",
@@ -3102,9 +3153,16 @@
    "id": "sm2022-169",
    "rotulo": "Questão 169",
    "imgs": [
-    "sm2022-169-1.png"
+    "sm2022-169-1.png",
+    "sm2022-169-2.png"
    ],
-   "alternativas": null,
+   "alternativas": [
+    "I.",
+    "II.",
+    "III.",
+    "IV.",
+    "V."
+   ],
    "gabarito": "E",
    "habilidade": "H09",
    "fonte": "ENEM 2022, questão 169",
