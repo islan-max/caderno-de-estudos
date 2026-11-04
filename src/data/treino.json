@@ -1,1808 +1,3287 @@
 {
  "manha": [
   {
-   "id": "m2023-153",
+   "id": "m2023-174",
    "rotulo": "Questão 1",
    "imgs": [
-    "m2023-153-1.png"
+    "m2023-174-1.png"
    ],
-   "alternativas": null,
+   "alternativas": [
+    "A6.",
+    "H1.",
+    "H6.",
+    "I1.",
+    "I6."
+   ],
    "gabarito": "E",
-   "habilidade": "H17",
-   "fonte": "ENEM 2023, questão 153",
+   "habilidade": "H06",
+   "fonte": "ENEM 2023, questão 174",
    "paginaInteira": false
   },
   {
-   "id": "m2023-156",
+   "id": "m2023-179",
    "rotulo": "Questão 2",
    "imgs": [
-    "m2023-156-1.png"
+    "m2023-179-1.png"
+   ],
+   "alternativas": [
+    "okosa urapum urapum urapum e okosa okosa urapum urapum urapum.",
+    "okosa okosa urapum e okosa okosa okosa okosa urapum.",
+    "okosa okosa urapum e okosa okosa okosa urapum.",
+    "okosa urapum urapum e okosa urapum okosa urapum urapum.",
+    "okosa okosa urapum e okosa okosa okosa okosa."
+   ],
+   "gabarito": "C",
+   "habilidade": "H01",
+   "fonte": "ENEM 2023, questão 179",
+   "paginaInteira": false
+  },
+  {
+   "id": "m2023-180",
+   "rotulo": "Questão 3",
+   "imgs": [
+    "m2023-180-1.png"
+   ],
+   "alternativas": [
+    "Outubro.",
+    "Novembro.",
+    "Dezembro.",
+    "Janeiro.",
+    "Fevereiro."
+   ],
+   "gabarito": "C",
+   "habilidade": "H30",
+   "fonte": "ENEM 2023, questão 180",
+   "paginaInteira": false
+  },
+  {
+   "id": "m2023-169",
+   "rotulo": "Questão 4",
+   "imgs": [
+    "m2023-169-1.png"
+   ],
+   "alternativas": null,
+   "gabarito": "D",
+   "habilidade": "H02",
+   "fonte": "ENEM 2023, questão 169",
+   "paginaInteira": true
+  },
+  {
+   "id": "m2023-151",
+   "rotulo": "Questão 5",
+   "imgs": [
+    "m2023-151-1.png"
+   ],
+   "alternativas": null,
+   "gabarito": "B",
+   "habilidade": "H20",
+   "fonte": "ENEM 2023, questão 151",
+   "paginaInteira": false
+  },
+  {
+   "id": "m2023-166",
+   "rotulo": "Questão 6",
+   "imgs": [
+    "m2023-166-1.png"
+   ],
+   "alternativas": [
+    "segunda-feira.",
+    "terça-feira.",
+    "quarta-feira.",
+    "quinta-feira.",
+    "sexta-feira."
+   ],
+   "gabarito": "C",
+   "habilidade": "H26",
+   "fonte": "ENEM 2023, questão 166",
+   "paginaInteira": false
+  },
+  {
+   "id": "m2023-159",
+   "rotulo": "Questão 7",
+   "imgs": [
+    "m2023-159-1.png"
+   ],
+   "alternativas": [
+    "2",
+    "4",
+    "6",
+    "12",
+    "18"
+   ],
+   "gabarito": "D",
+   "habilidade": "H23",
+   "fonte": "ENEM 2023, questão 159",
+   "paginaInteira": false
+  },
+  {
+   "id": "m2023-176",
+   "rotulo": "Questão 8",
+   "imgs": [
+    "m2023-176-1.png"
+   ],
+   "alternativas": [
+    "59.",
+    "83.",
+    "86.",
+    "89.",
+    "92."
+   ],
+   "gabarito": "E",
+   "habilidade": "H02",
+   "fonte": "ENEM 2023, questão 176",
+   "paginaInteira": false
+  },
+  {
+   "id": "m2023-150",
+   "rotulo": "Questão 9",
+   "imgs": [
+    "m2023-150-1.png"
    ],
    "alternativas": null,
    "gabarito": "A",
-   "habilidade": "H20",
-   "fonte": "ENEM 2023, questão 156",
+   "habilidade": "H19",
+   "fonte": "ENEM 2023, questão 150",
    "paginaInteira": false
   },
   {
-   "id": "m2024-139",
-   "rotulo": "Questão 3",
+   "id": "m2023-177",
+   "rotulo": "Questão 10",
    "imgs": [
-    "m2024-139-1.png"
+    "m2023-177-1.png"
    ],
-   "alternativas": [
-    "I, pois o valor é R$ 7,00.",
-    "I, pois o valor é R$ 4,00.",
-    "II, pois o valor é R$ 6,00.",
-    "I, pois anuncia o componente com o menor preço.",
-    "II, pois o componente X, que é o mais utilizado, tem menor preço."
-   ],
+   "alternativas": null,
    "gabarito": "A",
-   "habilidade": "H26",
-   "fonte": "ENEM 2024, questão 139",
-   "paginaInteira": false
+   "habilidade": "H15",
+   "fonte": "ENEM 2023, questão 177",
+   "paginaInteira": true
   },
   {
-   "id": "m2024-154",
-   "rotulo": "Questão 4",
+   "id": "m2023-171",
+   "rotulo": "Questão 11",
    "imgs": [
-    "m2024-154-1.png"
+    "m2023-171-1.png"
    ],
    "alternativas": [
-    "13,0.",
-    "15,0.",
-    "19,8.",
-    "20,0.",
-    "23,3."
+    "741",
+    "1 040",
+    "1 460",
+    "2 100",
+    "5 200"
    ],
    "gabarito": "C",
-   "habilidade": "H27",
-   "fonte": "ENEM 2024, questão 154",
+   "habilidade": "H03",
+   "fonte": "ENEM 2023, questão 171",
    "paginaInteira": false
   },
   {
-   "id": "m2024-178",
-   "rotulo": "Questão 5",
+   "id": "m2023-149",
+   "rotulo": "Questão 12",
    "imgs": [
-    "m2024-178-1.png"
+    "m2023-149-1.png"
    ],
    "alternativas": [
-    "56.",
-    "58.",
-    "59.",
-    "60.",
-    "62."
+    "1 : 5.",
+    "1 : 11.",
+    "1 : 55.",
+    "1 : 5 000.",
+    "1 : 500 000."
    ],
    "gabarito": "E",
-   "habilidade": "H27",
-   "fonte": "ENEM 2024, questão 178",
+   "habilidade": "H11",
+   "fonte": "ENEM 2023, questão 149",
    "paginaInteira": false
   },
   {
-   "id": "m2023-162",
-   "rotulo": "Questão 6",
+   "id": "m2023-139",
+   "rotulo": "Questão 13",
    "imgs": [
-    "m2023-162-1.png"
+    "m2023-139-1.png"
    ],
    "alternativas": [
-    "y = 250x",
-    "y = 500x",
-    "y = 750x",
-    "y = 250x + 500",
-    "y = 500x + 250"
+    "Junho.",
+    "Julho.",
+    "Agosto.",
+    "Setembro.",
+    "Outubro."
    ],
    "gabarito": "D",
-   "habilidade": "H19",
-   "fonte": "ENEM 2023, questão 162",
+   "habilidade": "H24",
+   "fonte": "ENEM 2023, questão 139",
    "paginaInteira": false
   },
   {
-   "id": "m2022-171",
-   "rotulo": "Questão 7",
+   "id": "m2023-175",
+   "rotulo": "Questão 14",
    "imgs": [
-    "m2022-171-1.png"
+    "m2023-175-1.png"
+   ],
+   "alternativas": null,
+   "gabarito": "B",
+   "habilidade": "H21",
+   "fonte": "ENEM 2023, questão 175",
+   "paginaInteira": true
+  },
+  {
+   "id": "m2023-146",
+   "rotulo": "Questão 15",
+   "imgs": [
+    "m2023-146-1.png"
+   ],
+   "alternativas": [
+    "Há somente uma solução possível, e as somas em cada lado do triângulo são iguais a 7.",
+    "Há somente uma solução possível, e as somas em cada lado do triângulo são iguais a 9.",
+    "Há somente duas soluções possíveis, uma em que as somas em cada lado do triângulo são iguais a 7 e outra em que as somas são iguais a 9.",
+    "Há somente duas soluções possíveis, uma em que as somas em cada lado do triângulo são iguais a 9 e outra em que as somas são iguais a 12.",
+    "Há somente duas soluções possíveis, uma em que as somas em cada lado do triângulo são iguais a 10 e outra em que as somas são iguais a 11."
+   ],
+   "gabarito": "E",
+   "habilidade": "H04",
+   "fonte": "ENEM 2023, questão 146",
+   "paginaInteira": false
+  },
+  {
+   "id": "m2023-154",
+   "rotulo": "Questão 16",
+   "imgs": [
+    "m2023-154-1.png"
+   ],
+   "alternativas": null,
+   "gabarito": "B",
+   "habilidade": "H07",
+   "fonte": "ENEM 2023, questão 154",
+   "paginaInteira": false
+  },
+  {
+   "id": "m2023-167",
+   "rotulo": "Questão 17",
+   "imgs": [
+    "m2023-167-1.png"
+   ],
+   "alternativas": null,
+   "gabarito": "A",
+   "habilidade": "H18",
+   "fonte": "ENEM 2023, questão 167",
+   "paginaInteira": true
+  },
+  {
+   "id": "m2023-165",
+   "rotulo": "Questão 18",
+   "imgs": [
+    "m2023-165-1.png"
+   ],
+   "alternativas": null,
+   "gabarito": "E",
+   "habilidade": "H08",
+   "fonte": "ENEM 2023, questão 165",
+   "paginaInteira": false
+  },
+  {
+   "id": "m2023-147",
+   "rotulo": "Questão 19",
+   "imgs": [
+    "m2023-147-1.png"
+   ],
+   "alternativas": [
+    "1.",
+    "4.",
+    "6.",
+    "7.",
+    "8."
+   ],
+   "gabarito": "D",
+   "habilidade": "H16",
+   "fonte": "ENEM 2023, questão 147",
+   "paginaInteira": false
+  },
+  {
+   "id": "m2023-173",
+   "rotulo": "Questão 20",
+   "imgs": [
+    "m2023-173-1.png"
+   ],
+   "alternativas": null,
+   "gabarito": "B",
+   "habilidade": "H10",
+   "fonte": "ENEM 2023, questão 173",
+   "paginaInteira": false
+  },
+  {
+   "id": "m2023-145",
+   "rotulo": "Questão 21",
+   "imgs": [
+    "m2023-145-1.png"
+   ],
+   "alternativas": null,
+   "gabarito": "B",
+   "habilidade": "H09",
+   "fonte": "ENEM 2023, questão 145",
+   "paginaInteira": true
+  },
+  {
+   "id": "m2023-140",
+   "rotulo": "Questão 22",
+   "imgs": [
+    "m2023-140-1.png"
+   ],
+   "alternativas": null,
+   "gabarito": "E",
+   "habilidade": "H27",
+   "fonte": "ENEM 2023, questão 140",
+   "paginaInteira": true
+  },
+  {
+   "id": "m2023-144",
+   "rotulo": "Questão 23",
+   "imgs": [
+    "m2023-144-1.png"
+   ],
+   "alternativas": [
+    "0,3",
+    "0,5",
+    "0,9",
+    "1,8",
+    "2,7"
+   ],
+   "gabarito": "C",
+   "habilidade": "H12",
+   "fonte": "ENEM 2023, questão 144",
+   "paginaInteira": false
+  },
+  {
+   "id": "m2023-148",
+   "rotulo": "Questão 24",
+   "imgs": [
+    "m2023-148-1.png"
+   ],
+   "alternativas": null,
+   "gabarito": "C",
+   "habilidade": "H09",
+   "fonte": "ENEM 2023, questão 148",
+   "paginaInteira": true
+  },
+  {
+   "id": "m2023-172",
+   "rotulo": "Questão 25",
+   "imgs": [
+    "m2023-172-1.png"
+   ],
+   "alternativas": null,
+   "gabarito": "C",
+   "habilidade": "H13",
+   "fonte": "ENEM 2023, questão 172",
+   "paginaInteira": true
+  },
+  {
+   "id": "m2023-160",
+   "rotulo": "Questão 26",
+   "imgs": [
+    "m2023-160-1.png"
    ],
    "alternativas": null,
    "gabarito": "A",
    "habilidade": "H29",
-   "fonte": "ENEM 2022, questão 171",
+   "fonte": "ENEM 2023, questão 160",
    "paginaInteira": false
   },
   {
-   "id": "m2024-157",
-   "rotulo": "Questão 8",
+   "id": "m2023-142",
+   "rotulo": "Questão 27",
    "imgs": [
-    "m2024-157-1.png"
+    "m2023-142-1.png"
    ],
    "alternativas": [
-    "12,50",
-    "20,00",
-    "24,00",
-    "30,00",
-    "37,50"
+    "50",
+    "60",
+    "80",
+    "140",
+    "150"
    ],
-   "gabarito": "C",
-   "habilidade": "H23",
-   "fonte": "ENEM 2024, questão 157",
+   "gabarito": "A",
+   "habilidade": "H14",
+   "fonte": "ENEM 2023, questão 142",
    "paginaInteira": false
   },
   {
-   "id": "m2024-145",
-   "rotulo": "Questão 9",
+   "id": "m2023-136",
+   "rotulo": "Questão 28",
    "imgs": [
-    "m2024-145-1.png"
+    "m2023-136-1.png"
+   ],
+   "alternativas": [
+    "1 198,8",
+    "1 296,0",
+    "1 360,8",
+    "4 665,6",
+    "4 860,0"
+   ],
+   "gabarito": "B",
+   "habilidade": "H08",
+   "fonte": "ENEM 2023, questão 136",
+   "paginaInteira": false
+  },
+  {
+   "id": "m2023-168",
+   "rotulo": "Questão 29",
+   "imgs": [
+    "m2023-168-1.png"
+   ],
+   "alternativas": null,
+   "gabarito": "A",
+   "habilidade": "H28",
+   "fonte": "ENEM 2023, questão 168",
+   "paginaInteira": false
+  },
+  {
+   "id": "m2023-158",
+   "rotulo": "Questão 30",
+   "imgs": [
+    "m2023-158-1.png"
    ],
    "alternativas": null,
    "gabarito": "D",
-   "habilidade": "H08",
-   "fonte": "ENEM 2024, questão 145",
+   "habilidade": "H05",
+   "fonte": "ENEM 2023, questão 158",
+   "paginaInteira": false
+  }
+ ],
+ "lingua": [
+  {
+   "id": "l2023-6",
+   "rotulo": "Questão 6",
+   "imgs": [
+    "l2023-6-1.png"
+   ],
+   "alternativas": [
+    "unificação do lema anterior ao atual.",
+    "aproximação entre o lema olímpico e o COI.",
+    "junção do lema olímpico com os princípios esportivos.",
+    "associação entre o lema olímpico e a cooperatividade.",
+    "vinculação entre o lema olímpico e os eventos atléticos."
+   ],
+   "gabarito": "D",
+   "habilidade": "H09",
+   "fonte": "ENEM 2023, questão 6",
    "paginaInteira": false
   },
   {
-   "id": "m2023-137",
-   "rotulo": "Questão 10",
+   "id": "l2023-7",
+   "rotulo": "Questão 7",
    "imgs": [
-    "m2023-137-1.png"
+    "l2023-7-1.png"
    ],
    "alternativas": null,
+   "gabarito": "A",
+   "habilidade": "H17",
+   "fonte": "ENEM 2023, questão 7",
+   "paginaInteira": false
+  },
+  {
+   "id": "l2023-8",
+   "rotulo": "Questão 8",
+   "imgs": [
+    "l2023-8-1.png"
+   ],
+   "alternativas": [
+    "à dificuldade de consolidação da literatura brasileira em outros países.",
+    "aos diferentes graus de instrução formal entre os falantes de língua portuguesa.",
+    "à existência de uma língua ideal que alguns falantes lusitanos creem ser a falada em Portugal.",
+    "ao intercâmbio cultural que ocorre entre os povos dos diferentes países de língua portuguesa.",
+    "à distância territorial entre os falantes do português que vivem em Portugal e no Brasil."
+   ],
    "gabarito": "C",
    "habilidade": "H27",
-   "fonte": "ENEM 2023, questão 137",
+   "fonte": "ENEM 2023, questão 8",
    "paginaInteira": false
   },
   {
-   "id": "m2024-153",
-   "rotulo": "Questão 11",
+   "id": "l2023-9",
+   "rotulo": "Questão 9",
    "imgs": [
-    "m2024-153-1.png"
+    "l2023-9-1.png"
    ],
-   "alternativas": null,
-   "gabarito": "D",
-   "habilidade": "H01",
-   "fonte": "ENEM 2024, questão 153",
-   "paginaInteira": false
-  },
-  {
-   "id": "m2023-157",
-   "rotulo": "Questão 12",
-   "imgs": [
-    "m2023-157-1.png"
+   "alternativas": [
+    "velocidade de circulação das notícias.",
+    "nível de letramento da população marginalizada.",
+    "poder de censura por parte dos serviços públicos.",
+    "legitimidade da voz dos representantes da nobreza.",
+    "diversidade dos meios disponíveis em uma época histórica."
    ],
-   "alternativas": null,
-   "gabarito": "B",
-   "habilidade": "H25",
-   "fonte": "ENEM 2023, questão 157",
+   "gabarito": "E",
+   "habilidade": "H30",
+   "fonte": "ENEM 2023, questão 9",
    "paginaInteira": false
   },
   {
-   "id": "m2023-141",
-   "rotulo": "Questão 13",
+   "id": "l2023-10",
+   "rotulo": "Questão 10",
    "imgs": [
-    "m2023-141-1.png"
+    "l2023-10-1.png"
    ],
    "alternativas": null,
    "gabarito": "E",
-   "habilidade": "H28",
-   "fonte": "ENEM 2023, questão 141",
+   "habilidade": "H29",
+   "fonte": "ENEM 2023, questão 10",
+   "paginaInteira": true
+  },
+  {
+   "id": "l2023-11",
+   "rotulo": "Questão 11",
+   "imgs": [
+    "l2023-11-1.png"
+   ],
+   "alternativas": [
+    "enumerar as causas determinantes da violência no trânsito.",
+    "contextualizar a campanha de advertência no cenário mundial.",
+    "divulgar dados numéricos alarmantes sobre acidentes de trânsito.",
+    "sensibilizar o público para a importância de uma direção responsável.",
+    "restringir os problemas da violência no trânsito a aspectos emocionais."
+   ],
+   "gabarito": "D",
+   "habilidade": "H23",
+   "fonte": "ENEM 2023, questão 11",
    "paginaInteira": false
   },
   {
-   "id": "m2023-155",
+   "id": "l2023-12",
+   "rotulo": "Questão 12",
+   "imgs": [
+    "l2023-12-1.png"
+   ],
+   "alternativas": [
+    "opção por termos e expressões de sentido ambíguo.",
+    "crítica social inspirada pelo convívio com os patrões.",
+    "descrição impressionista do fetiche do personagem.",
+    "presença de um foco narrativo de caráter impreciso.",
+    "ambiência de mistério das relações entre familiares."
+   ],
+   "gabarito": "C",
+   "habilidade": "H15",
+   "fonte": "ENEM 2023, questão 12",
+   "paginaInteira": false
+  },
+  {
+   "id": "l2023-13",
+   "rotulo": "Questão 13",
+   "imgs": [
+    "l2023-13-1.png"
+   ],
+   "alternativas": [
+    "vergonha das marcas provocadas pela passagem do tempo.",
+    "indecisão em face das possibilidades afetivas do presente.",
+    "serenidade sedimentada pela entrega pacífica ao desejo.",
+    "frustração causada pela vontade de retorno ao passado.",
+    "disponibilidade para a exploração do prazer efêmero."
+   ],
+   "gabarito": "C",
+   "habilidade": "H16",
+   "fonte": "ENEM 2023, questão 13",
+   "paginaInteira": false
+  },
+  {
+   "id": "l2023-14",
    "rotulo": "Questão 14",
    "imgs": [
-    "m2023-155-1.png"
+    "l2023-14-1.png"
+   ],
+   "alternativas": [
+    "qualidade do som do rádio.",
+    "estabilidade do enredo contado.",
+    "ineditismo do capítulo da novela.",
+    "jeito singular de falar aos ouvintes.",
+    "dificuldade de compreensão da história."
+   ],
+   "gabarito": "D",
+   "habilidade": "H29",
+   "fonte": "ENEM 2023, questão 14",
+   "paginaInteira": false
+  },
+  {
+   "id": "l2023-15",
+   "rotulo": "Questão 15",
+   "imgs": [
+    "l2023-15-1.png"
+   ],
+   "alternativas": [
+    "exige a retomada das pesquisas por especialistas de diferentes áreas.",
+    "representa danos irreparáveis à memória e à identidade nacionais.",
+    "impossibilita o surgimento de novas pesquisas na área.",
+    "resulta na extinção da cultura de povos originários.",
+    "inviabiliza o estudo da língua do povo Tikuna."
+   ],
+   "gabarito": "B",
+   "habilidade": "H30",
+   "fonte": "ENEM 2023, questão 15",
+   "paginaInteira": false
+  },
+  {
+   "id": "l2023-16",
+   "rotulo": "Questão 16",
+   "imgs": [
+    "l2023-16-1.png"
+   ],
+   "alternativas": [
+    "passa por fenômenos de variação linguística como qualquer outra língua.",
+    "apresenta variações regionais, assumindo novo sentido para algumas palavras.",
+    "sofre mudança estrutural motivada pelo uso de sinais diferentes para algumas palavras.",
+    "diferencia-se em todo o Brasil, desenvolvendo cada região a sua própria língua de sinais.",
+    "é ininteligível para parte dos usuários em razão das mudanças de sinais motivadas geograficamente."
+   ],
+   "gabarito": "A",
+   "habilidade": "H26",
+   "fonte": "ENEM 2023, questão 16",
+   "paginaInteira": false
+  },
+  {
+   "id": "l2023-17",
+   "rotulo": "Questão 17",
+   "imgs": [
+    "l2023-17-1.png"
    ],
    "alternativas": null,
    "gabarito": "D",
-   "habilidade": "H12",
-   "fonte": "ENEM 2023, questão 155",
+   "habilidade": "H27",
+   "fonte": "ENEM 2023, questão 17",
+   "paginaInteira": true
+  },
+  {
+   "id": "l2023-18",
+   "rotulo": "Questão 18",
+   "imgs": [
+    "l2023-18-1.png"
+   ],
+   "alternativas": [
+    "referência às cores como elemento de crítica a hábitos contemporâneos.",
+    "percepção da profusão de informações gerada pela tecnologia.",
+    "contraposição entre os vícios e as virtudes da vida moderna.",
+    "busca constante pela liberdade de expressão individual.",
+    "crítica à finalidade comercial das notícias."
+   ],
+   "gabarito": "B",
+   "habilidade": "H28",
+   "fonte": "ENEM 2023, questão 18",
    "paginaInteira": false
   },
   {
-   "id": "m2023-143",
-   "rotulo": "Questão 15",
+   "id": "l2023-19",
+   "rotulo": "Questão 19",
    "imgs": [
-    "m2023-143-1.png"
+    "l2023-19-1.png"
+   ],
+   "alternativas": [
+    "ressaltar a importância da poesia para denunciar a morte de negros, que cresce a cada dia.",
+    "destacar o crescimento exponencial da temática do preconceito na produção literária no Brasil.",
+    "demonstrar o incremento no quantitativo de expressões artísticas na discussão de problemas sociais.",
+    "evidenciar argumentos que reforçam a ideia de que os negros são vítimas em potencial da violência.",
+    "salientar o aumento da participação de jovens nos movimentos de resistência na área da cultura."
+   ],
+   "gabarito": "D",
+   "habilidade": "H23",
+   "fonte": "ENEM 2023, questão 19",
+   "paginaInteira": false
+  },
+  {
+   "id": "l2023-20",
+   "rotulo": "Questão 20",
+   "imgs": [
+    "l2023-20-1.png"
+   ],
+   "alternativas": null,
+   "gabarito": "E",
+   "habilidade": "H24",
+   "fonte": "ENEM 2023, questão 20",
+   "paginaInteira": true
+  },
+  {
+   "id": "l2023-21",
+   "rotulo": "Questão 21",
+   "imgs": [
+    "l2023-21-1.png"
+   ],
+   "alternativas": [
+    "apontaram erros motivados pelo desconhecimento da variedade linguística local.",
+    "explicaram problemas provocados pela incapacidade de comunicação.",
+    "descobriram novos sintomas de doenças existentes na comunidade.",
+    "propiciaram melhor compreensão dos sintomas dos pacientes.",
+    "divulgaram um novo rol de doenças características da localidade."
+   ],
+   "gabarito": "D",
+   "habilidade": "H25",
+   "fonte": "ENEM 2023, questão 21",
+   "paginaInteira": false
+  },
+  {
+   "id": "l2023-22",
+   "rotulo": "Questão 22",
+   "imgs": [
+    "l2023-22-1.png"
+   ],
+   "alternativas": [
+    "representa a memória de uma língua africana extinta.",
+    "exalta a rotina executada por jovens afrodescendentes.",
+    "preserva a ancestralidade africana por meio da tradição oral.",
+    "resgata a musicalidade africana por meio de palavras inteligíveis.",
+    "remonta à tristeza dos negros mais velhos com saudade da África."
+   ],
+   "gabarito": "C",
+   "habilidade": "H20",
+   "fonte": "ENEM 2023, questão 22",
+   "paginaInteira": false
+  },
+  {
+   "id": "l2023-23",
+   "rotulo": "Questão 23",
+   "imgs": [
+    "l2023-23-1.png"
+   ],
+   "alternativas": null,
+   "gabarito": "C",
+   "habilidade": "H22",
+   "fonte": "ENEM 2023, questão 23",
+   "paginaInteira": true
+  },
+  {
+   "id": "l2023-24",
+   "rotulo": "Questão 24",
+   "imgs": [
+    "l2023-24-1.png"
+   ],
+   "alternativas": [
+    "divulgar o canal telefônico de atendimento a casos de violência contra a mulher.",
+    "informar sobre a atuação de uma entidade defensora da mulher vítima de violência.",
+    "evidenciar o trabalho da Defensoria Pública em relação ao problema do abuso contra a mulher.",
+    "alertar a sociedade sobre o aumento da violência contra a mulher em decorrência do coronavírus.",
+    "incentivar o público feminino a denunciar crimes de violência contra a mulher durante o período de isolamento."
+   ],
+   "gabarito": "E",
+   "habilidade": "H21",
+   "fonte": "ENEM 2023, questão 24",
+   "paginaInteira": false
+  },
+  {
+   "id": "l2023-25",
+   "rotulo": "Questão 25",
+   "imgs": [
+    "l2023-25-1.png"
+   ],
+   "alternativas": [
+    "reflete o olhar do pai sobre as etapas do plantio.",
+    "metaforiza a linguagem como ferramenta de lavoura.",
+    "explicita, na busca pela palavra, o medo da solidão.",
+    "confirma a frustração da narradora com relação à terra.",
+    "sugere, na ausência da linguagem, a estagnação do tempo."
+   ],
+   "gabarito": "B",
+   "habilidade": "H16",
+   "fonte": "ENEM 2023, questão 25",
+   "paginaInteira": false
+  },
+  {
+   "id": "l2023-26",
+   "rotulo": "Questão 26",
+   "imgs": [
+    "l2023-26-1.png"
+   ],
+   "alternativas": null,
+   "gabarito": "C",
+   "habilidade": "H17",
+   "fonte": "ENEM 2023, questão 26",
+   "paginaInteira": false
+  },
+  {
+   "id": "l2023-27",
+   "rotulo": "Questão 27",
+   "imgs": [
+    "l2023-27-1.png"
+   ],
+   "alternativas": [
+    "repetição do pronome indefinido “todos”.",
+    "utilização do travessão na marcação do aposto.",
+    "retomada do antecedente pelo pronome “isso”.",
+    "contraposição de ideias marcada pela conjunção “mas”.",
+    "substantivação de expressões pela anteposição do artigo."
+   ],
+   "gabarito": "A",
+   "habilidade": "H18",
+   "fonte": "ENEM 2023, questão 27",
+   "paginaInteira": false
+  },
+  {
+   "id": "l2023-28",
+   "rotulo": "Questão 28",
+   "imgs": [
+    "l2023-28-1.png"
+   ],
+   "alternativas": [
+    "revelar as desilusões amorosas.",
+    "refletir sobre a censura à sua voz.",
+    "expressar a dificuldade de comunicação.",
+    "ressaltar a existência de pressões externas.",
+    "manifestar as dores do processo de criação."
+   ],
+   "gabarito": "C",
+   "habilidade": "H19",
+   "fonte": "ENEM 2023, questão 28",
+   "paginaInteira": false
+  },
+  {
+   "id": "l2023-29",
+   "rotulo": "Questão 29",
+   "imgs": [
+    "l2023-29-1.png"
+   ],
+   "alternativas": [
+    "desenho imaginativo do casario colonial de Ouro Preto.",
+    "efeito de apagamento de limites entre ficção e realidade.",
+    "vínculo estabelecido entre animais urbanos e literatura.",
+    "questionamento sutil quanto à sanidade dos inconfidentes.",
+    "contraste entre austeridade pomposa e imagem repugnante."
+   ],
+   "gabarito": "E",
+   "habilidade": "H15",
+   "fonte": "ENEM 2023, questão 29",
+   "paginaInteira": false
+  },
+  {
+   "id": "l2023-30",
+   "rotulo": "Questão 30",
+   "imgs": [
+    "l2023-30-1.png"
+   ],
+   "alternativas": null,
+   "gabarito": "A",
+   "habilidade": "H15",
+   "fonte": "ENEM 2023, questão 30",
+   "paginaInteira": true
+  },
+  {
+   "id": "l2023-31",
+   "rotulo": "Questão 31",
+   "imgs": [
+    "l2023-31-1.png"
+   ],
+   "alternativas": [
+    "invocar o interlocutor para uma tomada de posição.",
+    "questionar a validade do envolvimento romântico.",
+    "diluir em banalidade a comoção de um amor frustrado.",
+    "transformar em paz as emoções conflituosas do casal.",
+    "condicionar a existência da paixão a espaços idealizados."
+   ],
+   "gabarito": "C",
+   "habilidade": "H16",
+   "fonte": "ENEM 2023, questão 31",
+   "paginaInteira": false
+  },
+  {
+   "id": "l2023-32",
+   "rotulo": "Questão 32",
+   "imgs": [
+    "l2023-32-1.png"
+   ],
+   "alternativas": [
+    "inter-relação de referenciais estéticos aparentemente distanciados.",
+    "valorização de músicas que revelam mensagens de serenidade.",
+    "consagração do repertório erudito como cultura dominante.",
+    "iniciativa de estímulo à vocação turística da cidade.",
+    "divisão hierárquica entre gêneros e estilos musicais."
+   ],
+   "gabarito": "A",
+   "habilidade": "H14",
+   "fonte": "ENEM 2023, questão 32",
+   "paginaInteira": false
+  },
+  {
+   "id": "l2023-33",
+   "rotulo": "Questão 33",
+   "imgs": [
+    "l2023-33-1.png"
+   ],
+   "alternativas": null,
+   "gabarito": "A",
+   "habilidade": "H13",
+   "fonte": "ENEM 2023, questão 33",
+   "paginaInteira": true
+  },
+  {
+   "id": "l2023-34",
+   "rotulo": "Questão 34",
+   "imgs": [
+    "l2023-34-1.png"
+   ],
+   "alternativas": [
+    "crítica aos movimentos padronizados do balé clássico.",
+    "representação contemporânea de rituais ancestrais extintos.",
+    "reelaboração estética erudita de práticas religiosas populares.",
+    "releitura irônica da atmosfera mística presente no culto a entidades.",
+    "oposição entre o resgate de tradições e a efemeridade da vida humana."
+   ],
+   "gabarito": "C",
+   "habilidade": "H14",
+   "fonte": "ENEM 2023, questão 34",
+   "paginaInteira": false
+  },
+  {
+   "id": "l2023-35",
+   "rotulo": "Questão 35",
+   "imgs": [
+    "l2023-35-1.png"
+   ],
+   "alternativas": [
+    "condição favorável à expansão dessa modalidade.",
+    "promoção dessa prática por jogadores profissionais.",
+    "impulsionamento de um processo de marketing.",
+    "favorecimento de fabricantes dos jogos.",
+    "modificação da audiência televisiva."
+   ],
+   "gabarito": "A",
+   "habilidade": "H11",
+   "fonte": "ENEM 2023, questão 35",
+   "paginaInteira": false
+  },
+  {
+   "id": "l2023-36",
+   "rotulo": "Questão 36",
+   "imgs": [
+    "l2023-36-1.png"
+   ],
+   "alternativas": null,
+   "gabarito": "A",
+   "habilidade": "H12",
+   "fonte": "ENEM 2023, questão 36",
+   "paginaInteira": false
+  },
+  {
+   "id": "l2023-37",
+   "rotulo": "Questão 37",
+   "imgs": [
+    "l2023-37-1.png"
+   ],
+   "alternativas": [
+    "dar suporte à técnica de colagem em Artes Visuais, contornando dificuldades práticas.",
+    "aproximar-se da estética visual própria da editoração de obras artísticas, como capas de livros.",
+    "oferecer uma vitrine internacional para sua produção artística, a fim de dar mais visibilidade a suas obras.",
+    "enfatizar o caráter original e inovador de suas criações artísticas, diferenciando-se das artes tradicionais.",
+    "trazer um sentido tecnológico às suas colagens, uma vez que as imagens artísticas são recorrentes nas redes sociais."
+   ],
+   "gabarito": "C",
+   "habilidade": "H12",
+   "fonte": "ENEM 2023, questão 37",
+   "paginaInteira": false
+  },
+  {
+   "id": "l2023-38",
+   "rotulo": "Questão 38",
+   "imgs": [
+    "l2023-38-1.png"
+   ],
+   "alternativas": [
+    "fusão de manifestações artísticas urbanas contemporâneas com a cultura indígena.",
+    "contraposição das temáticas socioambientais indígenas às questões urbanas.",
+    "rejeição da indústria radiofônica às músicas indígenas.",
+    "distanciamento da realidade social indígena.",
+    "estímulo ao estudo da poesia indígena."
+   ],
+   "gabarito": "A",
+   "habilidade": "H13",
+   "fonte": "ENEM 2023, questão 38",
+   "paginaInteira": false
+  },
+  {
+   "id": "l2023-39",
+   "rotulo": "Questão 39",
+   "imgs": [
+    "l2023-39-1.png"
+   ],
+   "alternativas": [
+    "inclusão de informações no verbete.",
+    "relevância social da instituição casamento.",
+    "utilização pública da petição pelos cidadãos.",
+    "rapidez na disseminação digital do verbete.",
+    "divulgação de plataformas para a criação de petição."
+   ],
+   "gabarito": "C",
+   "habilidade": "H04",
+   "fonte": "ENEM 2023, questão 39",
+   "paginaInteira": false
+  },
+  {
+   "id": "l2023-40",
+   "rotulo": "Questão 40",
+   "imgs": [
+    "l2023-40-1.png"
    ],
    "alternativas": null,
    "gabarito": "B",
-   "habilidade": "H05",
-   "fonte": "ENEM 2023, questão 143",
+   "habilidade": "H11",
+   "fonte": "ENEM 2023, questão 40",
    "paginaInteira": false
   },
   {
-   "id": "m2024-140",
-   "rotulo": "Questão 16",
+   "id": "l2023-41",
+   "rotulo": "Questão 41",
    "imgs": [
-    "m2024-140-1.png"
+    "l2023-41-1.png"
+   ],
+   "alternativas": [
+    "o desempenho atlético internacional.",
+    "a dimensão emocional dos atletas.",
+    "os comitês olímpicos nacionais.",
+    "as instituições de inteligência.",
+    "as federações esportivas."
+   ],
+   "gabarito": "B",
+   "habilidade": "H10",
+   "fonte": "ENEM 2023, questão 41",
+   "paginaInteira": false
+  },
+  {
+   "id": "l2023-42",
+   "rotulo": "Questão 42",
+   "imgs": [
+    "l2023-42-1.png"
+   ],
+   "alternativas": [
+    "diferença entre homens e mulheres.",
+    "inexistência de políticas públicas.",
+    "diversidade de faixa etária.",
+    "variação de condição étnica.",
+    "desigualdade entre classes sociais."
+   ],
+   "gabarito": "E",
+   "habilidade": "H10",
+   "fonte": "ENEM 2023, questão 42",
+   "paginaInteira": false
+  },
+  {
+   "id": "l2023-43",
+   "rotulo": "Questão 43",
+   "imgs": [
+    "l2023-43-1.png"
+   ],
+   "alternativas": [
+    "metáforas relacionadas à trajetória pessoal e criadora do homenageado.",
+    "recursos fonológicos empregados para a valorização do ritmo do texto.",
+    "frases curtas e diretas no relato da vida e da morte do homenageado.",
+    "contraposição de ideias presentes na obra do homenageado.",
+    "seleção vocabular representativa do sentimento de nostalgia."
+   ],
+   "gabarito": "A",
+   "habilidade": "H01",
+   "fonte": "ENEM 2023, questão 43",
+   "paginaInteira": false
+  },
+  {
+   "id": "l2023-44",
+   "rotulo": "Questão 44",
+   "imgs": [
+    "l2023-44-1.png"
+   ],
+   "alternativas": null,
+   "gabarito": "A",
+   "habilidade": "H22",
+   "fonte": "ENEM 2023, questão 44",
+   "paginaInteira": true
+  },
+  {
+   "id": "l2023-45",
+   "rotulo": "Questão 45",
+   "imgs": [
+    "l2023-45-1.png"
+   ],
+   "alternativas": [
+    "sensibilizar o idoso a respeito dos cuidados com a saúde.",
+    "alertar os governantes sobre os cuidados requeridos pelo idoso.",
+    "divulgar o trabalho da Sociedade Brasileira de Geriatria e Gerontologia.",
+    "informar o setor público sobre o retrocesso da legislação destinada à população idosa.",
+    "chamar a atenção da população sobre a qualidade dos serviços de saúde pública para o idoso."
+   ],
+   "gabarito": "E",
+   "habilidade": "H03",
+   "fonte": "ENEM 2023, questão 45",
+   "paginaInteira": false
+  }
+ ],
+ "humanas": [
+  {
+   "id": "h2023-46",
+   "rotulo": "Questão 46",
+   "imgs": [
+    "h2023-46-1.png"
+   ],
+   "alternativas": [
+    "percursos e roteiros turísticos.",
+    "trajetos e movimentos holísticos.",
+    "vivências e itinerários socioafetivos.",
+    "fronteiras e demarcações territoriais.",
+    "profissões e interesses econômicos."
+   ],
+   "gabarito": "C",
+   "habilidade": "H06",
+   "fonte": "ENEM 2023, questão 46",
+   "paginaInteira": false
+  },
+  {
+   "id": "h2023-47",
+   "rotulo": "Questão 47",
+   "imgs": [
+    "h2023-47-1.png"
+   ],
+   "alternativas": null,
+   "gabarito": "D",
+   "habilidade": "H09",
+   "fonte": "ENEM 2023, questão 47",
+   "paginaInteira": false
+  },
+  {
+   "id": "h2023-48",
+   "rotulo": "Questão 48",
+   "imgs": [
+    "h2023-48-1.png"
+   ],
+   "alternativas": [
+    "cerco aos camponeses, inviabilizando a manutenção das condições para a vida.",
+    "descaso aos latifundiários, impactando a plantação de alimentos para a exportação.",
+    "desprezo ao assalariado, afetando o engajamento dos sindicatos para o trabalhador.",
+    "desrespeito aos governantes, comprometendo a criação de empregos para o lavrador.",
+    "assédio ao empresariado, dificultando o investimento de maquinários para a produção."
+   ],
+   "gabarito": "A",
+   "habilidade": "H17",
+   "fonte": "ENEM 2023, questão 48",
+   "paginaInteira": false
+  },
+  {
+   "id": "h2023-49",
+   "rotulo": "Questão 49",
+   "imgs": [
+    "h2023-49-1.png"
+   ],
+   "alternativas": [
+    "Promover a ocupação rural.",
+    "Favorecer a liberdade religiosa.",
+    "Descentralizar a gestão pública.",
+    "Incentivar a pluralidade cultural.",
+    "Assegurar a integridade territorial."
+   ],
+   "gabarito": "E",
+   "habilidade": "H08",
+   "fonte": "ENEM 2023, questão 49",
+   "paginaInteira": false
+  },
+  {
+   "id": "h2023-50",
+   "rotulo": "Questão 50",
+   "imgs": [
+    "h2023-50-1.png"
+   ],
+   "alternativas": [
+    "recuperação do tradicionalismo.",
+    "estímulo ao antropocentrismo.",
+    "reforço do etnocentrismo.",
+    "resgate do teocentrismo.",
+    "crítica ao eurocentrismo."
+   ],
+   "gabarito": "E",
+   "habilidade": "H05",
+   "fonte": "ENEM 2023, questão 50",
+   "paginaInteira": false
+  },
+  {
+   "id": "h2023-51",
+   "rotulo": "Questão 51",
+   "imgs": [
+    "h2023-51-1.png"
+   ],
+   "alternativas": [
+    "promover o bem-estar social.",
+    "negociar o apoio muçulmano.",
+    "mediar os conflitos territoriais.",
+    "estimular a cooperação regional.",
+    "combater os governos autocráticos."
+   ],
+   "gabarito": "C",
+   "habilidade": "H01",
+   "fonte": "ENEM 2023, questão 51",
+   "paginaInteira": false
+  },
+  {
+   "id": "h2023-52",
+   "rotulo": "Questão 52",
+   "imgs": [
+    "h2023-52-1.png"
+   ],
+   "alternativas": null,
+   "gabarito": "A",
+   "habilidade": "H23",
+   "fonte": "ENEM 2023, questão 52",
+   "paginaInteira": true
+  },
+  {
+   "id": "h2023-53",
+   "rotulo": "Questão 53",
+   "imgs": [
+    "h2023-53-1.png"
+   ],
+   "alternativas": [
+    "Derrame de lava vulcânica.",
+    "Encontro de placas tectônicas.",
+    "Ação do intemperismo químico.",
+    "Sedimentação de erosão eólica.",
+    "Derretimento de geleiras glaciais."
+   ],
+   "gabarito": "B",
+   "habilidade": "H26",
+   "fonte": "ENEM 2023, questão 53",
+   "paginaInteira": false
+  },
+  {
+   "id": "h2023-54",
+   "rotulo": "Questão 54",
+   "imgs": [
+    "h2023-54-1.png"
+   ],
+   "alternativas": [
+    "apresentar uma visão dualista.",
+    "confirmar uma tese naturalista.",
+    "demonstrar uma premissa realista.",
+    "sustentar um argumento idealista.",
+    "defender uma posição intencionalista."
+   ],
+   "gabarito": "A",
+   "habilidade": "H01",
+   "fonte": "ENEM 2023, questão 54",
+   "paginaInteira": false
+  },
+  {
+   "id": "h2023-55",
+   "rotulo": "Questão 55",
+   "imgs": [
+    "h2023-55-1.png"
+   ],
+   "alternativas": [
+    "consumo de produtos culturais elaborados no mesmo sistema produtivo do capitalismo.",
+    "forma de realizar as diversas potencialidades da natureza humana.",
+    "alternativa para equilibrar tensões psicológicas do dia a dia.",
+    "promoção da satisfação de necessidades artificiais.",
+    "mecanismo de organização do ócio e do prazer."
+   ],
+   "gabarito": "A",
+   "habilidade": "H21",
+   "fonte": "ENEM 2023, questão 55",
+   "paginaInteira": false
+  },
+  {
+   "id": "h2023-56",
+   "rotulo": "Questão 56",
+   "imgs": [
+    "h2023-56-1.png"
+   ],
+   "alternativas": [
+    "situação de revolta individual.",
+    "satisfação de desejos pessoais.",
+    "participação em ações decisórias.",
+    "permanência em passividade social.",
+    "conivência em interesses partidários."
+   ],
+   "gabarito": "C",
+   "habilidade": "H24",
+   "fonte": "ENEM 2023, questão 56",
+   "paginaInteira": false
+  },
+  {
+   "id": "h2023-57",
+   "rotulo": "Questão 57",
+   "imgs": [
+    "h2023-57-1.png"
+   ],
+   "alternativas": [
+    "rejeição particular amparada pelo desejo de poder.",
+    "decisão subjetiva determinada pela vontade divina.",
+    "liberdade mitigada pela predestinação do espírito.",
+    "escolhas humanas definidas pelo conhecimento empírico.",
+    "relações interpessoais mediadas pela autonomia dos indivíduos."
+   ],
+   "gabarito": "E",
+   "habilidade": "H23",
+   "fonte": "ENEM 2023, questão 57",
+   "paginaInteira": false
+  },
+  {
+   "id": "h2023-58",
+   "rotulo": "Questão 58",
+   "imgs": [
+    "h2023-58-1.png"
+   ],
+   "alternativas": [
+    "elementos tradicionais e modernos em torno de uma crença religiosa.",
+    "argumentos teológicos e históricos em consequência de uma ordem papal.",
+    "fundamentos estéticos e etnográficos em função de uma cerimônia clerical.",
+    "práticas corporais e esportivas em decorrência de uma imposição eclesiástica.",
+    "discursos filosóficos e antropológicos em resultado de uma determinação paroquial."
+   ],
+   "gabarito": "A",
+   "habilidade": "H02",
+   "fonte": "ENEM 2023, questão 58",
+   "paginaInteira": false
+  },
+  {
+   "id": "h2023-59",
+   "rotulo": "Questão 59",
+   "imgs": [
+    "h2023-59-1.png"
+   ],
+   "alternativas": null,
+   "gabarito": "A",
+   "habilidade": "H03",
+   "fonte": "ENEM 2023, questão 59",
+   "paginaInteira": true
+  },
+  {
+   "id": "h2023-60",
+   "rotulo": "Questão 60",
+   "imgs": [
+    "h2023-60-1.png"
+   ],
+   "alternativas": [
+    "ação difamatória.",
+    "desvio comportamental.",
+    "expressão preconceituosa.",
+    "violência patrimonial.",
+    "desentendimento matrimonial."
+   ],
+   "gabarito": "D",
+   "habilidade": "H22",
+   "fonte": "ENEM 2023, questão 60",
+   "paginaInteira": false
+  },
+  {
+   "id": "h2023-61",
+   "rotulo": "Questão 61",
+   "imgs": [
+    "h2023-61-1.png"
+   ],
+   "alternativas": [
+    "Diversificação da função.",
+    "Mobilidade da população.",
+    "Autonomia do empregado.",
+    "Concentração da produção.",
+    "Invisibilidade do profissional."
+   ],
+   "gabarito": "E",
+   "habilidade": "H16",
+   "fonte": "ENEM 2023, questão 61",
+   "paginaInteira": false
+  },
+  {
+   "id": "h2023-62",
+   "rotulo": "Questão 62",
+   "imgs": [
+    "h2023-62-1.png"
+   ],
+   "alternativas": [
+    "domínio cultural-identitário de atores sociais.",
+    "disputas étnico-raciais de povos tradicionais.",
+    "divergências político-ideológicas de agentes estatais.",
+    "imposição econômico-financeira de empresas privadas.",
+    "protestos ecológico-sustentáveis de entidades ambientais."
+   ],
+   "gabarito": "C",
+   "habilidade": "H07",
+   "fonte": "ENEM 2023, questão 62",
+   "paginaInteira": false
+  },
+  {
+   "id": "h2023-63",
+   "rotulo": "Questão 63",
+   "imgs": [
+    "h2023-63-1.png"
+   ],
+   "alternativas": null,
+   "gabarito": "B",
+   "habilidade": "H11",
+   "fonte": "ENEM 2023, questão 63",
+   "paginaInteira": false
+  },
+  {
+   "id": "h2023-64",
+   "rotulo": "Questão 64",
+   "imgs": [
+    "h2023-64-1.png"
+   ],
+   "alternativas": [
+    "manejo tradicional.",
+    "reciclagem residual.",
+    "consumo consciente.",
+    "exploração predatória.",
+    "reaproveitamento energético."
+   ],
+   "gabarito": "D",
+   "habilidade": "H27",
+   "fonte": "ENEM 2023, questão 64",
+   "paginaInteira": false
+  },
+  {
+   "id": "h2023-65",
+   "rotulo": "Questão 65",
+   "imgs": [
+    "h2023-65-1.png"
+   ],
+   "alternativas": [
+    "equidade de gênero.",
+    "liberdade de expressão.",
+    "admissibilidade de voto.",
+    "igualdade de oportunidade.",
+    "reciprocidade de tratamento."
+   ],
+   "gabarito": "A",
+   "habilidade": "H13",
+   "fonte": "ENEM 2023, questão 65",
+   "paginaInteira": false
+  },
+  {
+   "id": "h2023-66",
+   "rotulo": "Questão 66",
+   "imgs": [
+    "h2023-66-1.png"
+   ],
+   "alternativas": [
+    "recorrência da miséria.",
+    "planejamento da saúde.",
+    "superação da escassez.",
+    "constância da economia.",
+    "romantização da carência."
+   ],
+   "gabarito": "A",
+   "habilidade": "H15",
+   "fonte": "ENEM 2023, questão 66",
+   "paginaInteira": false
+  },
+  {
+   "id": "h2023-67",
+   "rotulo": "Questão 67",
+   "imgs": [
+    "h2023-67-1.png"
+   ],
+   "alternativas": [
+    "difusão comercial de lavouras temporárias.",
+    "utilização sustentável dos recursos naturais.",
+    "ampliação tecnológica da pecuária intensiva.",
+    "padronização alimentar dos povos tradicionais.",
+    "modernização logística de plantios convencionais."
+   ],
+   "gabarito": "B",
+   "habilidade": "H30",
+   "fonte": "ENEM 2023, questão 67",
+   "paginaInteira": false
+  },
+  {
+   "id": "h2023-68",
+   "rotulo": "Questão 68",
+   "imgs": [
+    "h2023-68-1.png"
+   ],
+   "alternativas": [
+    "conservação do meio rural.",
+    "crescimento da vegetação ciliar.",
+    "interferência do espaço geográfico.",
+    "equilíbrio do ambiente das cidades.",
+    "controle da proliferação dos animais."
+   ],
+   "gabarito": "C",
+   "habilidade": "H26",
+   "fonte": "ENEM 2023, questão 68",
+   "paginaInteira": false
+  },
+  {
+   "id": "h2023-69",
+   "rotulo": "Questão 69",
+   "imgs": [
+    "h2023-69-1.png"
+   ],
+   "alternativas": [
+    "afronta às estruturas sociais.",
+    "desprezo aos valores religiosos.",
+    "transgressão às normas morais.",
+    "desrespeito à dignidade humana.",
+    "oposição aos princípios hierárquicos."
+   ],
+   "gabarito": "D",
+   "habilidade": "H12",
+   "fonte": "ENEM 2023, questão 69",
+   "paginaInteira": false
+  },
+  {
+   "id": "h2023-70",
+   "rotulo": "Questão 70",
+   "imgs": [
+    "h2023-70-1.png"
+   ],
+   "alternativas": [
+    "Incorporação da estética popular para justificar o ideal de integração nacional.",
+    "Afirmação da estratégia psicossocial para favorecer o objetivo de propaganda cívica.",
+    "Institucionalização de mecanismos repressivos para eliminar os focos de resistência.",
+    "Adoção de cerimoniais públicos para controlar as manifestações de grupos opositores.",
+    "Estatização de meios de comunicação para selecionar a divulgação de atos governamentais."
+   ],
+   "gabarito": "C",
+   "habilidade": "H15",
+   "fonte": "ENEM 2023, questão 70",
+   "paginaInteira": false
+  },
+  {
+   "id": "h2023-71",
+   "rotulo": "Questão 71",
+   "imgs": [
+    "h2023-71-1.png"
+   ],
+   "alternativas": null,
+   "gabarito": "A",
+   "habilidade": "H19",
+   "fonte": "ENEM 2023, questão 71",
+   "paginaInteira": false
+  },
+  {
+   "id": "h2023-72",
+   "rotulo": "Questão 72",
+   "imgs": [
+    "h2023-72-1.png"
+   ],
+   "alternativas": [
+    "Dependência e progresso.",
+    "Expectativa e desconfiança.",
+    "Angústia e adaptação.",
+    "Pioneirismo e retrocesso.",
+    "Receio e civilidade."
+   ],
+   "gabarito": "B",
+   "habilidade": "H20",
+   "fonte": "ENEM 2023, questão 72",
+   "paginaInteira": false
+  },
+  {
+   "id": "h2023-73",
+   "rotulo": "Questão 73",
+   "imgs": [
+    "h2023-73-1.png"
+   ],
+   "alternativas": [
+    "O processo de expansão marítima.",
+    "A eclosão do renascimento cultural.",
+    "A concretização da centralização política.",
+    "O movimento de reformas religiosas.",
+    "A manutenção do sistema feudal."
+   ],
+   "gabarito": "A",
+   "habilidade": "H29",
+   "fonte": "ENEM 2023, questão 73",
+   "paginaInteira": false
+  },
+  {
+   "id": "h2023-74",
+   "rotulo": "Questão 74",
+   "imgs": [
+    "h2023-74-1.png"
+   ],
+   "alternativas": [
+    "aceitável no que alude aos direitos humanos.",
+    "admissível no que remete às crenças coloniais.",
+    "tolerável no que se refere aos regimes tributários.",
+    "flexível no que diz respeito aos costumes religiosos.",
+    "compreensível no que concerne às normas laborais."
+   ],
+   "gabarito": "D",
+   "habilidade": "H09",
+   "fonte": "ENEM 2023, questão 74",
+   "paginaInteira": false
+  },
+  {
+   "id": "h2023-75",
+   "rotulo": "Questão 75",
+   "imgs": [
+    "h2023-75-1.png"
+   ],
+   "alternativas": [
+    "Rejeição de costumes elitistas.",
+    "Repulsão de condutas misóginas.",
+    "Condenação do preconceito racial.",
+    "Criminalização de práticas homofóbicas.",
+    "Contestação do comportamento machista."
+   ],
+   "gabarito": "C",
+   "habilidade": "H10",
+   "fonte": "ENEM 2023, questão 75",
+   "paginaInteira": false
+  },
+  {
+   "id": "h2023-76",
+   "rotulo": "Questão 76",
+   "imgs": [
+    "h2023-76-1.png"
+   ],
+   "alternativas": [
+    "Flexibilização legal da prática de aborto.",
+    "Envelhecimento da população brasileira.",
+    "Crescimento dos casos de gravidez precoce.",
+    "Participação feminina no mercado de trabalho.",
+    "Diminuição dos benefícios na licença-maternidade."
+   ],
+   "gabarito": "D",
+   "habilidade": "H06",
+   "fonte": "ENEM 2023, questão 76",
+   "paginaInteira": false
+  },
+  {
+   "id": "h2023-77",
+   "rotulo": "Questão 77",
+   "imgs": [
+    "h2023-77-1.png"
+   ],
+   "alternativas": [
+    "As leis observáveis regem o mundo material.",
+    "O monarca racional promove a sociedade justa.",
+    "O direito natural justifica a liberdade dos homens.",
+    "A produção da terra garante a riqueza das nações.",
+    "A responsabilidade dos governantes assegura a saúde dos povos."
+   ],
+   "gabarito": "E",
+   "habilidade": "H08",
+   "fonte": "ENEM 2023, questão 77",
+   "paginaInteira": false
+  },
+  {
+   "id": "h2023-78",
+   "rotulo": "Questão 78",
+   "imgs": [
+    "h2023-78-1.png"
+   ],
+   "alternativas": [
+    "ocupação de lugares ociosos.",
+    "densificação da área central.",
+    "valorização do mercado externo.",
+    "priorização de insumos químicos.",
+    "mecanização de técnicas de cultivo."
+   ],
+   "gabarito": "A",
+   "habilidade": "H27",
+   "fonte": "ENEM 2023, questão 78",
+   "paginaInteira": false
+  },
+  {
+   "id": "h2023-79",
+   "rotulo": "Questão 79",
+   "imgs": [
+    "h2023-79-1.png"
+   ],
+   "alternativas": [
+    "evidencia a manifestação do inconsciente.",
+    "nega a possibilidade de transcendência.",
+    "contraria o conhecimento difuso.",
+    "sustenta a fugacidade da vida.",
+    "refuta a evolução biológica."
+   ],
+   "gabarito": "B",
+   "habilidade": "H11",
+   "fonte": "ENEM 2023, questão 79",
+   "paginaInteira": false
+  },
+  {
+   "id": "h2023-80",
+   "rotulo": "Questão 80",
+   "imgs": [
+    "h2023-80-1.png"
+   ],
+   "alternativas": [
+    "controlar as tensões políticas.",
+    "limitar a legislação trabalhista.",
+    "divulgar o programa populista.",
+    "regularizar a propriedade da terra.",
+    "estimular a oferta de mão de obra."
+   ],
+   "gabarito": "A",
+   "habilidade": "H22",
+   "fonte": "ENEM 2023, questão 80",
+   "paginaInteira": false
+  },
+  {
+   "id": "h2023-81",
+   "rotulo": "Questão 81",
+   "imgs": [
+    "h2023-81-1.png"
+   ],
+   "alternativas": [
+    "gestão das ilicitudes pelo sistema judicial.",
+    "aplicação das sanções pelo modelo equânime.",
+    "supressão dos crimes pela penalização severa.",
+    "regulamentação dos privilégios pela justiça social.",
+    "repartição de vantagens pela hierarquização cultural."
+   ],
+   "gabarito": "A",
+   "habilidade": "H12",
+   "fonte": "ENEM 2023, questão 81",
+   "paginaInteira": false
+  },
+  {
+   "id": "h2023-82",
+   "rotulo": "Questão 82",
+   "imgs": [
+    "h2023-82-1.png"
+   ],
+   "alternativas": null,
+   "gabarito": "B",
+   "habilidade": "H16",
+   "fonte": "ENEM 2023, questão 82",
+   "paginaInteira": false
+  },
+  {
+   "id": "h2023-83",
+   "rotulo": "Questão 83",
+   "imgs": [
+    "h2023-83-1.png"
+   ],
+   "alternativas": [
+    "elevação da biomassa.",
+    "redução da salinização.",
+    "diminuição da fertilidade.",
+    "ampliação da microfauna.",
+    "decomposição do substrato."
+   ],
+   "gabarito": "C",
+   "habilidade": "H28",
+   "fonte": "ENEM 2023, questão 83",
+   "paginaInteira": false
+  },
+  {
+   "id": "h2023-84",
+   "rotulo": "Questão 84",
+   "imgs": [
+    "h2023-84-1.png"
+   ],
+   "alternativas": [
+    "controle do orçamento familiar.",
+    "libertação das tradições religiosas.",
+    "exercício da representatividade política.",
+    "ampliação dos momentos de socialização.",
+    "afastamento das atividades especializadas."
+   ],
+   "gabarito": "D",
+   "habilidade": "H03",
+   "fonte": "ENEM 2023, questão 84",
+   "paginaInteira": false
+  },
+  {
+   "id": "h2023-85",
+   "rotulo": "Questão 85",
+   "imgs": [
+    "h2023-85-1.png"
+   ],
+   "alternativas": [
+    "restrição dos fluxos migratórios e a maior atuação de sindicatos.",
+    "ampliação das leis trabalhistas e a plena importação de manufaturados.",
+    "proteção das florestas nacionais e a ampla transferência de tecnologias.",
+    "manutenção das barreiras fitossanitárias e a livre circulação de mercadorias.",
+    "remoção dos entraves alfandegários e a melhor remuneração de empregados."
+   ],
+   "gabarito": "D",
+   "habilidade": "H14",
+   "fonte": "ENEM 2023, questão 85",
+   "paginaInteira": false
+  },
+  {
+   "id": "h2023-86",
+   "rotulo": "Questão 86",
+   "imgs": [
+    "h2023-86-1.png"
+   ],
+   "alternativas": null,
+   "gabarito": "E",
+   "habilidade": "H25",
+   "fonte": "ENEM 2023, questão 86",
+   "paginaInteira": false
+  },
+  {
+   "id": "h2023-87",
+   "rotulo": "Questão 87",
+   "imgs": [
+    "h2023-87-1.png"
+   ],
+   "alternativas": [
+    "preceitos teológicos e religiosos.",
+    "aspectos socioeconômicos e ideológicos.",
+    "regulamentações territoriais e alfandegárias.",
+    "orientações constitucionais e estatutárias.",
+    "decretos legislativos e internacionais."
+   ],
+   "gabarito": "B",
+   "habilidade": "H07",
+   "fonte": "ENEM 2023, questão 87",
+   "paginaInteira": false
+  },
+  {
+   "id": "h2023-88",
+   "rotulo": "Questão 88",
+   "imgs": [
+    "h2023-88-1.png"
+   ],
+   "alternativas": [
+    "Adoção do dumping comercial.",
+    "Fusão da função administrativa.",
+    "Criação de holding empresarial.",
+    "Limitação do mercado monopolista.",
+    "Modernização da produção industrial."
+   ],
+   "gabarito": "A",
+   "habilidade": "H18",
+   "fonte": "ENEM 2023, questão 88",
+   "paginaInteira": false
+  },
+  {
+   "id": "h2023-89",
+   "rotulo": "Questão 89",
+   "imgs": [
+    "h2023-89-1.png"
+   ],
+   "alternativas": [
+    "Expandir o transporte marítimo.",
+    "Incentivar os fluxos migratórios.",
+    "Monitorar as atividades vulcânicas.",
+    "Controlar as emissões de carbono.",
+    "Priorizar a utilização de termoelétricas."
+   ],
+   "gabarito": "D",
+   "habilidade": "H30",
+   "fonte": "ENEM 2023, questão 89",
+   "paginaInteira": false
+  },
+  {
+   "id": "h2023-90",
+   "rotulo": "Questão 90",
+   "imgs": [
+    "h2023-90-1.png"
    ],
    "alternativas": null,
    "gabarito": "B",
    "habilidade": "H04",
-   "fonte": "ENEM 2024, questão 140",
+   "fonte": "ENEM 2023, questão 90",
+   "paginaInteira": false
+  }
+ ],
+ "natureza": [
+  {
+   "id": "n2023-91",
+   "rotulo": "Questão 91",
+   "imgs": [
+    "n2023-91-1.png"
+   ],
+   "alternativas": [
+    "reduz sua predação.",
+    "reduz o uso de pesticidas.",
+    "reduz a competição por abrigo.",
+    "aumenta a oferta de alimento.",
+    "aumenta os locais de reprodução."
+   ],
+   "gabarito": "D",
+   "habilidade": "H04",
+   "fonte": "ENEM 2023, questão 91",
    "paginaInteira": false
   },
   {
-   "id": "m2024-137",
-   "rotulo": "Questão 17",
+   "id": "n2023-92",
+   "rotulo": "Questão 92",
    "imgs": [
-    "m2024-137-1.png"
+    "n2023-92-1.png"
    ],
    "alternativas": [
-    "4.",
-    "5.",
-    "6.",
-    "19.",
-    "21."
+    "tratar a diarreia.",
+    "prevenir a anemia.",
+    "evitar as verminoses.",
+    "remediar o raquitismo.",
+    "combater a febre amarela."
+   ],
+   "gabarito": "B",
+   "habilidade": "H03",
+   "fonte": "ENEM 2023, questão 92",
+   "paginaInteira": false
+  },
+  {
+   "id": "n2023-93",
+   "rotulo": "Questão 93",
+   "imgs": [
+    "n2023-93-1.png"
+   ],
+   "alternativas": null,
+   "gabarito": "E",
+   "habilidade": "H12",
+   "fonte": "ENEM 2023, questão 93",
+   "paginaInteira": false
+  },
+  {
+   "id": "n2023-94",
+   "rotulo": "Questão 94",
+   "imgs": [
+    "n2023-94-1.png"
+   ],
+   "alternativas": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5"
+   ],
+   "gabarito": "A",
+   "habilidade": "H07",
+   "fonte": "ENEM 2023, questão 94",
+   "paginaInteira": false
+  },
+  {
+   "id": "n2023-95",
+   "rotulo": "Questão 95",
+   "imgs": [
+    "n2023-95-1.png"
+   ],
+   "alternativas": [
+    "execução de manobras.",
+    "metabolismo corpóreo elevado.",
+    "manutenção da aerodinâmica.",
+    "deslocamento a grandes velocidades.",
+    "capacidade de voo em grandes altitudes."
    ],
    "gabarito": "B",
    "habilidade": "H28",
-   "fonte": "ENEM 2024, questão 137",
+   "fonte": "ENEM 2023, questão 95",
    "paginaInteira": false
   },
   {
-   "id": "m2024-173",
-   "rotulo": "Questão 18",
+   "id": "n2023-96",
+   "rotulo": "Questão 96",
    "imgs": [
-    "m2024-173-1.png"
+    "n2023-96-1.png"
    ],
    "alternativas": [
-    "entre 25 e 45 anos, pois é a faixa etária com maior quantidade de funcionários.",
-    "entre 25 e 45 anos, pois é a única faixa etária cujas porcentagens são maiores do que as porcentagens mínimas de cada setor.",
-    "até 25 anos, pois é a única faixa etária cujos percentuais associados aos setores aumentam com o aumento da quantidade de funcionários por setor.",
-    "até 25 anos, pois é a faixa etária que apresenta maior quantidade de funcionários no setor de produção, que é o setor que emprega metade dos funcionários dessa empresa.",
-    "a partir de 45 anos, pois a soma das porcentagens associadas a essa faixa etária é 110%, que é maior do que as respectivas somas associadas às outras faixas etárias, que são 105% e 85%."
+    "14%",
+    "16%",
+    "24%",
+    "32%",
+    "75%"
+   ],
+   "gabarito": "D",
+   "habilidade": "H26",
+   "fonte": "ENEM 2023, questão 96",
+   "paginaInteira": false
+  },
+  {
+   "id": "n2023-97",
+   "rotulo": "Questão 97",
+   "imgs": [
+    "n2023-97-1.png"
+   ],
+   "alternativas": [
+    "acúmulo de gás etileno.",
+    "redução da umidade do ar.",
+    "aumento da concentração de CO₂.",
+    "diminuição da intensidade luminosa.",
+    "isolamento do contato com O₂ atmosférico."
    ],
    "gabarito": "A",
-   "habilidade": "H29",
-   "fonte": "ENEM 2024, questão 173",
+   "habilidade": "H03",
+   "fonte": "ENEM 2023, questão 97",
    "paginaInteira": false
   },
   {
-   "id": "m2022-164",
-   "rotulo": "Questão 19",
+   "id": "n2023-98",
+   "rotulo": "Questão 98",
    "imgs": [
-    "m2022-164-1.png"
+    "n2023-98-1.png"
    ],
    "alternativas": [
-    "0,125.",
-    "0,200.",
-    "4,800.",
-    "6,000.",
-    "12,000."
+    "ácidos nucleicos.",
+    "carboidratos.",
+    "proteínas.",
+    "vitaminas.",
+    "lipídios."
    ],
    "gabarito": "B",
-   "habilidade": "H12",
-   "fonte": "ENEM 2022, questão 164",
+   "habilidade": "H28",
+   "fonte": "ENEM 2023, questão 98",
    "paginaInteira": false
   },
   {
-   "id": "m2024-176",
-   "rotulo": "Questão 20",
+   "id": "n2023-99",
+   "rotulo": "Questão 99",
    "imgs": [
-    "m2024-176-1.png"
+    "n2023-99-1.png"
    ],
    "alternativas": [
-    "7.",
-    "8.",
-    "9.",
-    "10.",
-    "11."
+    "Urina.",
+    "Saliva.",
+    "Fezes.",
+    "Sangue.",
+    "Secreção ocular."
    ],
-   "gabarito": "B",
+   "gabarito": "D",
+   "habilidade": "H30",
+   "fonte": "ENEM 2023, questão 99",
+   "paginaInteira": false
+  },
+  {
+   "id": "n2023-100",
+   "rotulo": "Questão 100",
+   "imgs": [
+    "n2023-100-1.png"
+   ],
+   "alternativas": null,
+   "gabarito": "C",
+   "habilidade": "H20",
+   "fonte": "ENEM 2023, questão 100",
+   "paginaInteira": false
+  },
+  {
+   "id": "n2023-101",
+   "rotulo": "Questão 101",
+   "imgs": [
+    "n2023-101-1.png"
+   ],
+   "alternativas": [
+    "regressão do corpo lúteo ovariano.",
+    "diminuição na produção de ocitocina.",
+    "liberação do gameta feminino na ovulação.",
+    "aumento nos níveis dos hormônios LH e FSH.",
+    "elevação nos níveis sorológicos de adrenalina."
+   ],
+   "gabarito": "A",
+   "habilidade": "H14",
+   "fonte": "ENEM 2023, questão 101",
+   "paginaInteira": false
+  },
+  {
+   "id": "n2023-102",
+   "rotulo": "Questão 102",
+   "imgs": [
+    "n2023-102-1.png"
+   ],
+   "alternativas": [
+    "hexanal.",
+    "hexan-1-ol.",
+    "hexan-3-ol.",
+    "hex-1-en-1-ol.",
+    "ácido hexanoico."
+   ],
+   "gabarito": "C",
    "habilidade": "H24",
-   "fonte": "ENEM 2024, questão 176",
+   "fonte": "ENEM 2023, questão 102",
+   "paginaInteira": false
+  },
+  {
+   "id": "n2023-103",
+   "rotulo": "Questão 103",
+   "imgs": [
+    "n2023-103-1.png"
+   ],
+   "alternativas": [
+    "Fruto.",
+    "Esporo.",
+    "Semente.",
+    "Tubo polínico.",
+    "Vaso condutor."
+   ],
+   "gabarito": "D",
+   "habilidade": "H16",
+   "fonte": "ENEM 2023, questão 103",
+   "paginaInteira": false
+  },
+  {
+   "id": "n2023-104",
+   "rotulo": "Questão 104",
+   "imgs": [
+    "n2023-104-1.png"
+   ],
+   "alternativas": [
+    "vidro do frasco for translúcido.",
+    "concentração de gluconato de cálcio for alta.",
+    "frasco de vidro apresentar uma maior espessura.",
+    "vidro for previamente esterilizado em altas temperaturas.",
+    "reação do alumínio com gluconato de cálcio for endotérmica."
+   ],
+   "gabarito": "B",
+   "habilidade": "H25",
+   "fonte": "ENEM 2023, questão 104",
+   "paginaInteira": false
+  },
+  {
+   "id": "n2023-105",
+   "rotulo": "Questão 105",
+   "imgs": [
+    "n2023-105-1.png"
+   ],
+   "alternativas": [
+    "fotossíntese.",
+    "transpiração.",
+    "troca de gases.",
+    "formação de brotos.",
+    "nutrição das raízes."
+   ],
+   "gabarito": "E",
+   "habilidade": "H08",
+   "fonte": "ENEM 2023, questão 105",
+   "paginaInteira": false
+  },
+  {
+   "id": "n2023-106",
+   "rotulo": "Questão 106",
+   "imgs": [
+    "n2023-106-1.png"
+   ],
+   "alternativas": [
+    "estimulação de leucócitos induzida pela capa lipídica contendo RNAm.",
+    "atuação do RNAm como sequestrador do vírus para o meio extracelular.",
+    "tradução do RNAm em proteína viral, desencadeando a resposta antigênica.",
+    "competição entre o RNAm vacinal e o RNA viral pelos sítios dos ribossomos.",
+    "incorporação do RNAm viral ao genoma do hospedeiro, gerando novo fenótipo."
+   ],
+   "gabarito": "C",
+   "habilidade": "H11",
+   "fonte": "ENEM 2023, questão 106",
+   "paginaInteira": false
+  },
+  {
+   "id": "n2023-107",
+   "rotulo": "Questão 107",
+   "imgs": [
+    "n2023-107-1.png"
+   ],
+   "alternativas": [
+    "formação do pronúcleo masculino.",
+    "início da divisão mitótica do zigoto.",
+    "término da segunda divisão meiótica do ovócito.",
+    "passagem do espermatozoide pela corona radiata e zona pelúcida.",
+    "fusão das membranas plasmáticas do ovócito e do espermatozoide."
+   ],
+   "gabarito": "D",
+   "habilidade": "H29",
+   "fonte": "ENEM 2023, questão 107",
+   "paginaInteira": false
+  },
+  {
+   "id": "n2023-108",
+   "rotulo": "Questão 108",
+   "imgs": [
+    "n2023-108-1.png"
+   ],
+   "alternativas": [
+    "radiação.",
+    "condução.",
+    "campo elétrico variável.",
+    "campo magnético variável.",
+    "ressonância eletromagnética."
+   ],
+   "gabarito": "D",
+   "habilidade": "H06",
+   "fonte": "ENEM 2023, questão 108",
+   "paginaInteira": false
+  },
+  {
+   "id": "n2023-109",
+   "rotulo": "Questão 109",
+   "imgs": [
+    "n2023-109-1.png"
+   ],
+   "alternativas": null,
+   "gabarito": "D",
+   "habilidade": "H07",
+   "fonte": "ENEM 2023, questão 109",
+   "paginaInteira": false
+  },
+  {
+   "id": "n2023-110",
+   "rotulo": "Questão 110",
+   "imgs": [
+    "n2023-110-1.png"
+   ],
+   "alternativas": null,
+   "gabarito": "B",
+   "habilidade": "H17",
+   "fonte": "ENEM 2023, questão 110",
+   "paginaInteira": true
+  },
+  {
+   "id": "n2023-111",
+   "rotulo": "Questão 111",
+   "imgs": [
+    "n2023-111-1.png"
+   ],
+   "alternativas": [
+    "Altura.",
+    "Período.",
+    "Amplitude.",
+    "Velocidade.",
+    "Comprimento de onda."
+   ],
+   "gabarito": "C",
+   "habilidade": "H01",
+   "fonte": "ENEM 2023, questão 111",
+   "paginaInteira": false
+  },
+  {
+   "id": "n2023-112",
+   "rotulo": "Questão 112",
+   "imgs": [
+    "n2023-112-1.png"
+   ],
+   "alternativas": [
+    "Violeta.",
+    "Azul.",
+    "Verde.",
+    "Vermelho.",
+    "Infravermelho."
+   ],
+   "gabarito": "A",
+   "habilidade": "H01",
+   "fonte": "ENEM 2023, questão 112",
+   "paginaInteira": false
+  },
+  {
+   "id": "n2023-113",
+   "rotulo": "Questão 113",
+   "imgs": [
+    "n2023-113-1.png"
+   ],
+   "alternativas": null,
+   "gabarito": "A",
+   "habilidade": "H23",
+   "fonte": "ENEM 2023, questão 113",
+   "paginaInteira": false
+  },
+  {
+   "id": "n2023-114",
+   "rotulo": "Questão 114",
+   "imgs": [
+    "n2023-114-1.png"
+   ],
+   "alternativas": null,
+   "gabarito": "A",
+   "habilidade": "H17",
+   "fonte": "ENEM 2023, questão 114",
+   "paginaInteira": false
+  },
+  {
+   "id": "n2023-115",
+   "rotulo": "Questão 115",
+   "imgs": [
+    "n2023-115-1.png"
+   ],
+   "alternativas": null,
+   "gabarito": "B",
+   "habilidade": "H10",
+   "fonte": "ENEM 2023, questão 115",
+   "paginaInteira": false
+  },
+  {
+   "id": "n2023-116",
+   "rotulo": "Questão 116",
+   "imgs": [
+    "n2023-116-1.png"
+   ],
+   "alternativas": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5"
+   ],
+   "gabarito": "B",
+   "habilidade": "H09",
+   "fonte": "ENEM 2023, questão 116",
+   "paginaInteira": false
+  },
+  {
+   "id": "n2023-117",
+   "rotulo": "Questão 117",
+   "imgs": [
+    "n2023-117-1.png"
+   ],
+   "alternativas": [
+    "8",
+    "10",
+    "80",
+    "100",
+    "1 000"
+   ],
+   "gabarito": "A",
+   "habilidade": "H22",
+   "fonte": "ENEM 2023, questão 117",
+   "paginaInteira": false
+  },
+  {
+   "id": "n2023-118",
+   "rotulo": "Questão 118",
+   "imgs": [
+    "n2023-118-1.png"
+   ],
+   "alternativas": [
+    "I.",
+    "II.",
+    "III.",
+    "IV.",
+    "V."
+   ],
+   "gabarito": "C",
+   "habilidade": "H18",
+   "fonte": "ENEM 2023, questão 118",
+   "paginaInteira": false
+  },
+  {
+   "id": "n2023-119",
+   "rotulo": "Questão 119",
+   "imgs": [
+    "n2023-119-1.png"
+   ],
+   "alternativas": null,
+   "gabarito": "C",
+   "habilidade": "H21",
+   "fonte": "ENEM 2023, questão 119",
+   "paginaInteira": false
+  },
+  {
+   "id": "n2023-120",
+   "rotulo": "Questão 120",
+   "imgs": [
+    "n2023-120-1.png"
+   ],
+   "alternativas": null,
+   "gabarito": "C",
+   "habilidade": "H05",
+   "fonte": "ENEM 2023, questão 120",
+   "paginaInteira": false
+  },
+  {
+   "id": "n2023-121",
+   "rotulo": "Questão 121",
+   "imgs": [
+    "n2023-121-1.png"
+   ],
+   "alternativas": [
+    "potássio.",
+    "cálcio.",
+    "magnésio.",
+    "zinco.",
+    "ferro."
+   ],
+   "gabarito": "A",
+   "habilidade": "H04",
+   "fonte": "ENEM 2023, questão 121",
+   "paginaInteira": false
+  },
+  {
+   "id": "n2023-122",
+   "rotulo": "Questão 122",
+   "imgs": [
+    "n2023-122-1.png"
+   ],
+   "alternativas": null,
+   "gabarito": "D",
+   "habilidade": "H06",
+   "fonte": "ENEM 2023, questão 122",
+   "paginaInteira": true
+  },
+  {
+   "id": "n2023-123",
+   "rotulo": "Questão 123",
+   "imgs": [
+    "n2023-123-1.png"
+   ],
+   "alternativas": [
+    "fenacetina.",
+    "paracetamol.",
+    "dipirona sódica.",
+    "diclofenaco sódico.",
+    "butilbrometo de escopolamina."
+   ],
+   "gabarito": "E",
+   "habilidade": "H24",
+   "fonte": "ENEM 2023, questão 123",
+   "paginaInteira": false
+  },
+  {
+   "id": "n2023-124",
+   "rotulo": "Questão 124",
+   "imgs": [
+    "n2023-124-1.png"
+   ],
+   "alternativas": null,
+   "gabarito": "B",
+   "habilidade": "H20",
+   "fonte": "ENEM 2023, questão 124",
+   "paginaInteira": true
+  },
+  {
+   "id": "n2023-125",
+   "rotulo": "Questão 125",
+   "imgs": [
+    "n2023-125-1.png"
+   ],
+   "alternativas": [
+    "todos normais.",
+    "todos tetrassômicos.",
+    "apenas normais ou tetrassômicos.",
+    "apenas trissômicos ou tetrassômicos.",
+    "normais, trissômicos ou tetrassômicos."
+   ],
+   "gabarito": "E",
+   "habilidade": "H13",
+   "fonte": "ENEM 2023, questão 125",
+   "paginaInteira": false
+  },
+  {
+   "id": "n2023-126",
+   "rotulo": "Questão 126",
+   "imgs": [
+    "n2023-126-1.png"
+   ],
+   "alternativas": [
+    "basicidade.",
+    "lipofilicidade.",
+    "caráter iônico.",
+    "cadeia carbônica.",
+    "estado de oxidação."
+   ],
+   "gabarito": "C",
+   "habilidade": "H02",
+   "fonte": "ENEM 2023, questão 126",
+   "paginaInteira": false
+  },
+  {
+   "id": "n2023-127",
+   "rotulo": "Questão 127",
+   "imgs": [
+    "n2023-127-1.png"
+   ],
+   "alternativas": null,
+   "gabarito": "C",
+   "habilidade": "H15",
+   "fonte": "ENEM 2023, questão 127",
+   "paginaInteira": true
+  },
+  {
+   "id": "n2023-128",
+   "rotulo": "Questão 128",
+   "imgs": [
+    "n2023-128-1.png"
+   ],
+   "alternativas": [
+    "forem ambas audíveis.",
+    "tiverem a mesma potência.",
+    "tiverem a mesma frequência.",
+    "tiverem a mesma intensidade.",
+    "propagarem-se com velocidades diferentes."
+   ],
+   "gabarito": "C",
+   "habilidade": "H02",
+   "fonte": "ENEM 2023, questão 128",
+   "paginaInteira": false
+  },
+  {
+   "id": "n2023-129",
+   "rotulo": "Questão 129",
+   "imgs": [
+    "n2023-129-1.png"
+   ],
+   "alternativas": [
+    "Saliva, por consequência da atividade de enzimas.",
+    "Sangue, em função das hemácias e leucócitos.",
+    "Lágrima, em razão da concentração de sais.",
+    "Urina, pela presença de moléculas de ureia.",
+    "Leite, por causa do alto teor de gorduras."
+   ],
+   "gabarito": "E",
+   "habilidade": "H10",
+   "fonte": "ENEM 2023, questão 129",
+   "paginaInteira": false
+  },
+  {
+   "id": "n2023-130",
+   "rotulo": "Questão 130",
+   "imgs": [
+    "n2023-130-1.png"
+   ],
+   "alternativas": [
+    "Ter a durabilidade de uma cerâmica e ser totalmente biodegradável.",
+    "Ser tão durável quanto uma cerâmica e ter alta condutividade térmica.",
+    "Ser um mau condutor térmico e aumentar o resíduo biodegradável na natureza.",
+    "Ter baixa condutividade térmica e reduzir o resíduo não biodegradável na natureza.",
+    "Ter alta condutividade térmica e possibilitar a degradação do material no meio ambiente."
+   ],
+   "gabarito": "D",
+   "habilidade": "H12",
+   "fonte": "ENEM 2023, questão 130",
+   "paginaInteira": false
+  },
+  {
+   "id": "n2023-131",
+   "rotulo": "Questão 131",
+   "imgs": [
+    "n2023-131-1.png"
+   ],
+   "alternativas": [
+    "maior densidade.",
+    "menor viscosidade.",
+    "maior volume de gás dissolvido.",
+    "menor massa de solutos dissolvidos.",
+    "maior temperatura de congelamento."
+   ],
+   "gabarito": "A",
+   "habilidade": "H18",
+   "fonte": "ENEM 2023, questão 131",
+   "paginaInteira": false
+  },
+  {
+   "id": "n2023-132",
+   "rotulo": "Questão 132",
+   "imgs": [
+    "n2023-132-1.png"
+   ],
+   "alternativas": null,
+   "gabarito": "E",
+   "habilidade": "H21",
+   "fonte": "ENEM 2023, questão 132",
+   "paginaInteira": true
+  },
+  {
+   "id": "n2023-133",
+   "rotulo": "Questão 133",
+   "imgs": [
+    "n2023-133-1.png"
+   ],
+   "alternativas": [
+    "Retirar a parte polar da molécula.",
+    "Eliminar as insaturações do anel aromático.",
+    "Trocar o grupo aniônico por um grupo neutro.",
+    "Alterar o grupo aniônico por um grupo catiônico.",
+    "Modificar a cadeia carbônica para cadeia normal."
+   ],
+   "gabarito": "E",
+   "habilidade": "H27",
+   "fonte": "ENEM 2023, questão 133",
+   "paginaInteira": false
+  },
+  {
+   "id": "n2023-134",
+   "rotulo": "Questão 134",
+   "imgs": [
+    "n2023-134-1.png"
+   ],
+   "alternativas": null,
+   "gabarito": "E",
+   "habilidade": "H29",
+   "fonte": "ENEM 2023, questão 134",
+   "paginaInteira": false
+  },
+  {
+   "id": "n2023-135",
+   "rotulo": "Questão 135",
+   "imgs": [
+    "n2023-135-1.png"
+   ],
+   "alternativas": [
+    "270.",
+    "540.",
+    "818.",
+    "1 500.",
+    "1 800."
+   ],
+   "gabarito": "D",
+   "habilidade": "H19",
+   "fonte": "ENEM 2023, questão 135",
    "paginaInteira": false
   }
  ],
  "simulado": [
   {
-   "id": "s2025-136",
+   "id": "sm2022-136",
    "rotulo": "Questão 136",
    "imgs": [
-    "s2025-136-1.png"
+    "sm2022-136-1.png"
    ],
    "alternativas": [
-    "10",
-    "14",
-    "17",
-    "21",
-    "25"
+    "1",
+    "2",
+    "3",
+    "4",
+    "5"
    ],
-   "gabarito": "C",
-   "habilidade": "H04",
-   "fonte": "ENEM 2025, questão 136",
+   "gabarito": "E",
+   "habilidade": "H25",
+   "fonte": "ENEM 2022, questão 136",
    "paginaInteira": false
   },
   {
-   "id": "s2025-137",
+   "id": "sm2022-137",
    "rotulo": "Questão 137",
    "imgs": [
-    "s2025-137-1.png"
+    "sm2022-137-1.png"
    ],
    "alternativas": null,
-   "gabarito": "B",
+   "gabarito": "C",
    "habilidade": "H28",
-   "fonte": "ENEM 2025, questão 137",
+   "fonte": "ENEM 2022, questão 137",
    "paginaInteira": false
   },
   {
-   "id": "s2025-138",
+   "id": "sm2022-138",
    "rotulo": "Questão 138",
    "imgs": [
-    "s2025-138-1.png"
+    "sm2022-138-1.png"
    ],
    "alternativas": null,
-   "gabarito": "E",
-   "habilidade": "H06",
-   "fonte": "ENEM 2025, questão 138",
+   "gabarito": "D",
+   "habilidade": "H27",
+   "fonte": "ENEM 2022, questão 138",
    "paginaInteira": false
   },
   {
-   "id": "s2025-139",
+   "id": "sm2022-139",
    "rotulo": "Questão 139",
    "imgs": [
-    "s2025-139-1.png"
+    "sm2022-139-1.png"
    ],
    "alternativas": [
-    "4.",
-    "8.",
-    "15.",
-    "30.",
-    "60."
+    "1,80 e 0,60.",
+    "1,80 e 0,70.",
+    "1,90 e 0,80.",
+    "2,00 e 0,90.",
+    "2,00 e 1,00."
    ],
-   "gabarito": "C",
-   "habilidade": "H09",
-   "fonte": "ENEM 2025, questão 139",
+   "gabarito": "A",
+   "habilidade": "H11",
+   "fonte": "ENEM 2022, questão 139",
    "paginaInteira": false
   },
   {
-   "id": "s2025-140",
+   "id": "sm2022-140",
    "rotulo": "Questão 140",
    "imgs": [
-    "s2025-140-1.png"
-   ],
-   "alternativas": [
-    "0,0050",
-    "0,0100",
-    "0,5000",
-    "4,9775",
-    "5,0000"
-   ],
-   "gabarito": "E",
-   "habilidade": "H18",
-   "fonte": "ENEM 2025, questão 140",
-   "paginaInteira": false
-  },
-  {
-   "id": "s2025-141",
-   "rotulo": "Questão 141",
-   "imgs": [
-    "s2025-141-1.png"
-   ],
-   "alternativas": [
-    "20 100",
-    "20 200",
-    "20 300",
-    "20 400",
-    "20 600"
-   ],
-   "gabarito": "C",
-   "habilidade": "H05",
-   "fonte": "ENEM 2025, questão 141",
-   "paginaInteira": false
-  },
-  {
-   "id": "s2025-142",
-   "rotulo": "Questão 142",
-   "imgs": [
-    "s2025-142-1.png"
-   ],
-   "alternativas": [
-    "360.",
-    "370.",
-    "380.",
-    "390.",
-    "400."
-   ],
-   "gabarito": "C",
-   "habilidade": "H27",
-   "fonte": "ENEM 2025, questão 142",
-   "paginaInteira": false
-  },
-  {
-   "id": "s2025-143",
-   "rotulo": "Questão 143",
-   "imgs": [
-    "s2025-143-1.png"
-   ],
-   "alternativas": [
-    "Batata chips.",
-    "Palitos salgados.",
-    "Biscoito multigrãos.",
-    "Biscoito de polvilho.",
-    "Biscoito de água e sal."
-   ],
-   "gabarito": "A",
-   "habilidade": "H17",
-   "fonte": "ENEM 2025, questão 143",
-   "paginaInteira": false
-  },
-  {
-   "id": "s2025-144",
-   "rotulo": "Questão 144",
-   "imgs": [
-    "s2025-144-1.png"
-   ],
-   "alternativas": [
-    "9",
-    "8",
-    "6",
-    "4",
-    "3"
-   ],
-   "gabarito": "D",
-   "habilidade": "H07",
-   "fonte": "ENEM 2025, questão 144",
-   "paginaInteira": false
-  },
-  {
-   "id": "s2025-145",
-   "rotulo": "Questão 145",
-   "imgs": [
-    "s2025-145-1.png"
+    "sm2022-140-1.png"
    ],
    "alternativas": null,
-   "gabarito": "D",
-   "habilidade": "H20",
-   "fonte": "ENEM 2025, questão 145",
-   "paginaInteira": false
-  },
-  {
-   "id": "s2025-146",
-   "rotulo": "Questão 146",
-   "imgs": [
-    "s2025-146-1.png"
-   ],
-   "alternativas": [
-    "0,02",
-    "0,42",
-    "0,52",
-    "1,02",
-    "1,42"
-   ],
    "gabarito": "B",
    "habilidade": "H03",
-   "fonte": "ENEM 2025, questão 146",
+   "fonte": "ENEM 2022, questão 140",
    "paginaInteira": false
   },
   {
-   "id": "s2025-147",
-   "rotulo": "Questão 147",
+   "id": "sm2022-141",
+   "rotulo": "Questão 141",
    "imgs": [
-    "s2025-147-1.png"
+    "sm2022-141-1.png"
    ],
-   "alternativas": [
-    "2.",
-    "12.",
-    "20.",
-    "22.",
-    "40."
-   ],
+   "alternativas": null,
    "gabarito": "E",
-   "habilidade": "H24",
-   "fonte": "ENEM 2025, questão 147",
-   "paginaInteira": false
-  },
-  {
-   "id": "s2025-148",
-   "rotulo": "Questão 148",
-   "imgs": [
-    "s2025-148-1.png"
-   ],
-   "alternativas": null,
-   "gabarito": "C",
-   "habilidade": "H11",
-   "fonte": "ENEM 2025, questão 148",
-   "paginaInteira": false
-  },
-  {
-   "id": "s2025-149",
-   "rotulo": "Questão 149",
-   "imgs": [
-    "s2025-149-1.png"
-   ],
-   "alternativas": [
-    "21",
-    "25",
-    "55",
-    "80",
-    "110"
-   ],
-   "gabarito": "B",
-   "habilidade": "H08",
-   "fonte": "ENEM 2025, questão 149",
-   "paginaInteira": false
-  },
-  {
-   "id": "s2025-150",
-   "rotulo": "Questão 150",
-   "imgs": [
-    "s2025-150-1.png"
-   ],
-   "alternativas": [
-    "800.",
-    "1 080.",
-    "1 200.",
-    "1 800.",
-    "2 520."
-   ],
-   "gabarito": "D",
-   "habilidade": "H16",
-   "fonte": "ENEM 2025, questão 150",
-   "paginaInteira": false
-  },
-  {
-   "id": "s2025-151",
-   "rotulo": "Questão 151",
-   "imgs": [
-    "s2025-151-1.png"
-   ],
-   "alternativas": [
-    "0109082.",
-    "0281090.",
-    "1010982.",
-    "2081090.",
-    "2810910."
-   ],
-   "gabarito": "D",
-   "habilidade": "H01",
-   "fonte": "ENEM 2025, questão 151",
-   "paginaInteira": false
-  },
-  {
-   "id": "s2025-152",
-   "rotulo": "Questão 152",
-   "imgs": [
-    "s2025-152-1.png"
-   ],
-   "alternativas": null,
-   "gabarito": "D",
    "habilidade": "H28",
-   "fonte": "ENEM 2025, questão 152",
+   "fonte": "ENEM 2022, questão 141",
    "paginaInteira": false
   },
   {
-   "id": "s2025-153",
-   "rotulo": "Questão 153",
+   "id": "sm2022-142",
+   "rotulo": "Questão 142",
    "imgs": [
-    "s2025-153-1.png"
-   ],
-   "alternativas": null,
-   "gabarito": "A",
-   "habilidade": "H22",
-   "fonte": "ENEM 2025, questão 153",
-   "paginaInteira": false
-  },
-  {
-   "id": "s2025-154",
-   "rotulo": "Questão 154",
-   "imgs": [
-    "s2025-154-1.png"
-   ],
-   "alternativas": null,
-   "gabarito": "C",
-   "habilidade": "H26",
-   "fonte": "ENEM 2025, questão 154",
-   "paginaInteira": false
-  },
-  {
-   "id": "s2025-155",
-   "rotulo": "Questão 155",
-   "imgs": [
-    "s2025-155-1.png"
+    "sm2022-142-1.png"
    ],
    "alternativas": [
-    "10 × 9 × 8",
-    "20 × 18 × 16",
-    "20 × 19 × 18",
-    "10 × 9 × 8 × 2",
-    "20 × 18 × 16 × 2"
-   ],
-   "gabarito": "B",
-   "habilidade": "H02",
-   "fonte": "ENEM 2025, questão 155",
-   "paginaInteira": false
-  },
-  {
-   "id": "s2025-156",
-   "rotulo": "Questão 156",
-   "imgs": [
-    "s2025-156-1.png"
-   ],
-   "alternativas": [
-    "1 : 1,5",
-    "1 : 2,25",
-    "1 : 10",
-    "1 : 100",
-    "1 : 150"
-   ],
-   "gabarito": "E",
-   "habilidade": "H11",
-   "fonte": "ENEM 2025, questão 156",
-   "paginaInteira": false
-  },
-  {
-   "id": "s2025-157",
-   "rotulo": "Questão 157",
-   "imgs": [
-    "s2025-157-1.png"
-   ],
-   "alternativas": null,
-   "gabarito": "C",
-   "habilidade": "H19",
-   "fonte": "ENEM 2025, questão 157",
-   "paginaInteira": false
-  },
-  {
-   "id": "s2025-158",
-   "rotulo": "Questão 158",
-   "imgs": [
-    "s2025-158-1.png"
-   ],
-   "alternativas": [
-    "185,60.",
-    "226,09.",
-    "245,20.",
-    "268,93.",
-    "285,60."
-   ],
-   "gabarito": "C",
-   "habilidade": "H18",
-   "fonte": "ENEM 2025, questão 158",
-   "paginaInteira": false
-  },
-  {
-   "id": "s2025-159",
-   "rotulo": "Questão 159",
-   "imgs": [
-    "s2025-159-1.png"
-   ],
-   "alternativas": [
-    "5.",
     "8.",
-    "50.",
-    "80.",
-    "800."
-   ],
-   "gabarito": "D",
-   "habilidade": "H12",
-   "fonte": "ENEM 2025, questão 159",
-   "paginaInteira": false
-  },
-  {
-   "id": "s2025-160",
-   "rotulo": "Questão 160",
-   "imgs": [
-    "s2025-160-1.png"
-   ],
-   "alternativas": null,
-   "gabarito": "E",
-   "habilidade": "H19",
-   "fonte": "ENEM 2025, questão 160",
-   "paginaInteira": false
-  },
-  {
-   "id": "s2025-161",
-   "rotulo": "Questão 161",
-   "imgs": [
-    "s2025-161-1.png"
-   ],
-   "alternativas": [
-    "P.",
-    "Q.",
-    "R.",
-    "S.",
-    "T."
-   ],
-   "gabarito": "A",
-   "habilidade": "H06",
-   "fonte": "ENEM 2025, questão 161",
-   "paginaInteira": false
-  },
-  {
-   "id": "s2025-162",
-   "rotulo": "Questão 162",
-   "imgs": [
-    "s2025-162-1.png"
-   ],
-   "alternativas": [
-    "135.",
-    "140.",
-    "155.",
-    "160.",
-    "175."
+    "9.",
+    "11.",
+    "18.",
+    "24."
    ],
    "gabarito": "B",
-   "habilidade": "H23",
-   "fonte": "ENEM 2025, questão 162",
+   "habilidade": "H05",
+   "fonte": "ENEM 2022, questão 142",
    "paginaInteira": false
   },
   {
-   "id": "s2025-163",
-   "rotulo": "Questão 163",
+   "id": "sm2022-143",
+   "rotulo": "Questão 143",
    "imgs": [
-    "s2025-163-1.png"
-   ],
-   "alternativas": [
-    "720",
-    "360",
-    "320",
-    "288",
-    "240"
-   ],
-   "gabarito": "B",
-   "habilidade": "H25",
-   "fonte": "ENEM 2025, questão 163",
-   "paginaInteira": false
-  },
-  {
-   "id": "s2025-164",
-   "rotulo": "Questão 164",
-   "imgs": [
-    "s2025-164-1.png"
-   ],
-   "alternativas": [
-    "135 e 7 horas e 15 minutos.",
-    "45 e 7 horas e 15 minutos.",
-    "135 e 12 horas.",
-    "135 e 6 horas.",
-    "45 e 6 horas."
-   ],
-   "gabarito": "A",
-   "habilidade": "H08",
-   "fonte": "ENEM 2025, questão 164",
-   "paginaInteira": false
-  },
-  {
-   "id": "s2025-165",
-   "rotulo": "Questão 165",
-   "imgs": [
-    "s2025-165-1.png"
-   ],
-   "alternativas": [
-    "1.",
-    "2.",
-    "3.",
-    "4.",
-    "5."
-   ],
-   "gabarito": "D",
-   "habilidade": "H29",
-   "fonte": "ENEM 2025, questão 165",
-   "paginaInteira": false
-  },
-  {
-   "id": "s2025-166",
-   "rotulo": "Questão 166",
-   "imgs": [
-    "s2025-166-1.png"
+    "sm2022-143-1.png"
    ],
    "alternativas": null,
-   "gabarito": "E",
-   "habilidade": "H30",
-   "fonte": "ENEM 2025, questão 166",
+   "gabarito": "D",
+   "habilidade": "H07",
+   "fonte": "ENEM 2022, questão 143",
    "paginaInteira": true
   },
   {
-   "id": "s2025-167",
-   "rotulo": "Questão 167",
+   "id": "sm2022-144",
+   "rotulo": "Questão 144",
    "imgs": [
-    "s2025-167-1.png"
+    "sm2022-144-1.png"
    ],
    "alternativas": [
-    "4",
+    "0",
+    "6",
+    "7",
     "8",
-    "14",
-    "21",
-    "30"
+    "9"
    ],
-   "gabarito": "D",
-   "habilidade": "H25",
-   "fonte": "ENEM 2025, questão 167",
+   "gabarito": "C",
+   "habilidade": "H01",
+   "fonte": "ENEM 2022, questão 144",
    "paginaInteira": false
   },
   {
-   "id": "s2025-168",
-   "rotulo": "Questão 168",
+   "id": "sm2022-145",
+   "rotulo": "Questão 145",
    "imgs": [
-    "s2025-168-1.png"
+    "sm2022-145-1.png"
    ],
-   "alternativas": null,
+   "alternativas": [
+    "50 000.",
+    "100 000.",
+    "200 000.",
+    "300 000.",
+    "400 000."
+   ],
    "gabarito": "E",
-   "habilidade": "H04",
-   "fonte": "ENEM 2025, questão 168",
-   "paginaInteira": true
+   "habilidade": "H18",
+   "fonte": "ENEM 2022, questão 145",
+   "paginaInteira": false
   },
   {
-   "id": "s2025-169",
-   "rotulo": "Questão 169",
+   "id": "sm2022-146",
+   "rotulo": "Questão 146",
    "imgs": [
-    "s2025-169-1.png"
-   ],
-   "alternativas": null,
-   "gabarito": "A",
-   "habilidade": "H15",
-   "fonte": "ENEM 2025, questão 169",
-   "paginaInteira": true
-  },
-  {
-   "id": "s2025-170",
-   "rotulo": "Questão 170",
-   "imgs": [
-    "s2025-170-1.png"
+    "sm2022-146-1.png"
    ],
    "alternativas": [
     "10.",
-    "8.",
-    "4.",
-    "3.",
-    "2."
+    "13.",
+    "14.",
+    "15.",
+    "16."
    ],
-   "gabarito": "B",
-   "habilidade": "H14",
-   "fonte": "ENEM 2025, questão 170",
+   "gabarito": "E",
+   "habilidade": "H21",
+   "fonte": "ENEM 2022, questão 146",
    "paginaInteira": false
   },
   {
-   "id": "s2025-171",
-   "rotulo": "Questão 171",
+   "id": "sm2022-147",
+   "rotulo": "Questão 147",
    "imgs": [
-    "s2025-171-1.png"
+    "sm2022-147-1.png"
+   ],
+   "alternativas": [
+    "não satisfatório.",
+    "regular.",
+    "bom.",
+    "muito bom.",
+    "excelente."
+   ],
+   "gabarito": "C",
+   "habilidade": "H17",
+   "fonte": "ENEM 2022, questão 147",
+   "paginaInteira": false
+  },
+  {
+   "id": "sm2022-148",
+   "rotulo": "Questão 148",
+   "imgs": [
+    "sm2022-148-1.png"
+   ],
+   "alternativas": null,
+   "gabarito": "D",
+   "habilidade": "H15",
+   "fonte": "ENEM 2022, questão 148",
+   "paginaInteira": false
+  },
+  {
+   "id": "sm2022-149",
+   "rotulo": "Questão 149",
+   "imgs": [
+    "sm2022-149-1.png"
+   ],
+   "alternativas": [
+    "1,0.",
+    "1,5.",
+    "1,9.",
+    "2,1.",
+    "2,5."
+   ],
+   "gabarito": "B",
+   "habilidade": "H27",
+   "fonte": "ENEM 2022, questão 149",
+   "paginaInteira": false
+  },
+  {
+   "id": "sm2022-150",
+   "rotulo": "Questão 150",
+   "imgs": [
+    "sm2022-150-1.png"
+   ],
+   "alternativas": [
+    "apenas no ginásio I.",
+    "apenas nos ginásios I e II.",
+    "apenas nos ginásios I, II e III.",
+    "apenas nos ginásios I, II, III e IV.",
+    "em todos os ginásios."
+   ],
+   "gabarito": "D",
+   "habilidade": "H22",
+   "fonte": "ENEM 2022, questão 150",
+   "paginaInteira": false
+  },
+  {
+   "id": "sm2022-151",
+   "rotulo": "Questão 151",
+   "imgs": [
+    "sm2022-151-1.png"
+   ],
+   "alternativas": [
+    "30 minutos ou menos.",
+    "mais de 35 e menos de 45 minutos.",
+    "mais de 45 e menos de 55 minutos.",
+    "mais de 60 e menos de 70 minutos.",
+    "70 minutos ou mais."
+   ],
+   "gabarito": "C",
+   "habilidade": "H17",
+   "fonte": "ENEM 2022, questão 151",
+   "paginaInteira": false
+  },
+  {
+   "id": "sm2022-152",
+   "rotulo": "Questão 152",
+   "imgs": [
+    "sm2022-152-1.png"
+   ],
+   "alternativas": [
+    "26",
+    "27",
+    "28",
+    "29",
+    "35"
+   ],
+   "gabarito": "C",
+   "habilidade": "H18",
+   "fonte": "ENEM 2022, questão 152",
+   "paginaInteira": false
+  },
+  {
+   "id": "sm2022-153",
+   "rotulo": "Questão 153",
+   "imgs": [
+    "sm2022-153-1.png"
+   ],
+   "alternativas": [
+    "1,52.",
+    "3,24.",
+    "3,60.",
+    "6,48.",
+    "7,20."
+   ],
+   "gabarito": "C",
+   "habilidade": "H14",
+   "fonte": "ENEM 2022, questão 153",
+   "paginaInteira": false
+  },
+  {
+   "id": "sm2022-154",
+   "rotulo": "Questão 154",
+   "imgs": [
+    "sm2022-154-1.png"
+   ],
+   "alternativas": [
+    "16 514.",
+    "86 700.",
+    "115 600.",
+    "441 343.",
+    "448 568."
+   ],
+   "gabarito": "C",
+   "habilidade": "H03",
+   "fonte": "ENEM 2022, questão 154",
+   "paginaInteira": false
+  },
+  {
+   "id": "sm2022-155",
+   "rotulo": "Questão 155",
+   "imgs": [
+    "sm2022-155-1.png"
+   ],
+   "alternativas": null,
+   "gabarito": "B",
+   "habilidade": "H02",
+   "fonte": "ENEM 2022, questão 155",
+   "paginaInteira": false
+  },
+  {
+   "id": "sm2022-156",
+   "rotulo": "Questão 156",
+   "imgs": [
+    "sm2022-156-1.png"
+   ],
+   "alternativas": null,
+   "gabarito": "C",
+   "habilidade": "H07",
+   "fonte": "ENEM 2022, questão 156",
+   "paginaInteira": true
+  },
+  {
+   "id": "sm2022-157",
+   "rotulo": "Questão 157",
+   "imgs": [
+    "sm2022-157-1.png"
+   ],
+   "alternativas": null,
+   "gabarito": null,
+   "habilidade": "H19",
+   "fonte": "ENEM 2022, questão 157",
+   "paginaInteira": false
+  },
+  {
+   "id": "sm2022-158",
+   "rotulo": "Questão 158",
+   "imgs": [
+    "sm2022-158-1.png"
+   ],
+   "alternativas": [
+    "I.",
+    "II.",
+    "III.",
+    "IV.",
+    "V."
+   ],
+   "gabarito": "C",
+   "habilidade": "H23",
+   "fonte": "ENEM 2022, questão 158",
+   "paginaInteira": false
+  },
+  {
+   "id": "sm2022-159",
+   "rotulo": "Questão 159",
+   "imgs": [
+    "sm2022-159-1.png"
+   ],
+   "alternativas": null,
+   "gabarito": "B",
+   "habilidade": "H02",
+   "fonte": "ENEM 2022, questão 159",
+   "paginaInteira": false
+  },
+  {
+   "id": "sm2022-160",
+   "rotulo": "Questão 160",
+   "imgs": [
+    "sm2022-160-1.png"
+   ],
+   "alternativas": null,
+   "gabarito": "A",
+   "habilidade": "H06",
+   "fonte": "ENEM 2022, questão 160",
+   "paginaInteira": false
+  },
+  {
+   "id": "sm2022-161",
+   "rotulo": "Questão 161",
+   "imgs": [
+    "sm2022-161-1.png"
+   ],
+   "alternativas": null,
+   "gabarito": "A",
+   "habilidade": "H11",
+   "fonte": "ENEM 2022, questão 161",
+   "paginaInteira": false
+  },
+  {
+   "id": "sm2022-162",
+   "rotulo": "Questão 162",
+   "imgs": [
+    "sm2022-162-1.png"
+   ],
+   "alternativas": [
+    "5 000",
+    "7 000",
+    "11 000",
+    "18 000",
+    "29 000"
+   ],
+   "gabarito": "C",
+   "habilidade": "H24",
+   "fonte": "ENEM 2022, questão 162",
+   "paginaInteira": false
+  },
+  {
+   "id": "sm2022-163",
+   "rotulo": "Questão 163",
+   "imgs": [
+    "sm2022-163-1.png"
+   ],
+   "alternativas": [
+    "14,4.",
+    "20,7.",
+    "22,0.",
+    "30,0.",
+    "37,5."
+   ],
+   "gabarito": "D",
+   "habilidade": "H30",
+   "fonte": "ENEM 2022, questão 163",
+   "paginaInteira": false
+  },
+  {
+   "id": "sm2022-165",
+   "rotulo": "Questão 165",
+   "imgs": [
+    "sm2022-165-1.png"
+   ],
+   "alternativas": [
+    "2,5",
+    "10,0",
+    "730,0",
+    "13 322,5",
+    "53 290,0"
+   ],
+   "gabarito": "A",
+   "habilidade": "H10",
+   "fonte": "ENEM 2022, questão 165",
+   "paginaInteira": false
+  },
+  {
+   "id": "sm2022-166",
+   "rotulo": "Questão 166",
+   "imgs": [
+    "sm2022-166-1.png"
+   ],
+   "alternativas": [
+    "0",
+    "1",
+    "2",
+    "3",
+    "4"
+   ],
+   "gabarito": "A",
+   "habilidade": "H20",
+   "fonte": "ENEM 2022, questão 166",
+   "paginaInteira": false
+  },
+  {
+   "id": "sm2022-167",
+   "rotulo": "Questão 167",
+   "imgs": [
+    "sm2022-167-1.png"
+   ],
+   "alternativas": [
+    "R$ 2,00 menor.",
+    "R$ 100,00 menor.",
+    "R$ 200,00 menor.",
+    "R$ 42,00 maior.",
+    "R$ 80,00 maior."
+   ],
+   "gabarito": "A",
+   "habilidade": "H04",
+   "fonte": "ENEM 2022, questão 167",
+   "paginaInteira": false
+  },
+  {
+   "id": "sm2022-168",
+   "rotulo": "Questão 168",
+   "imgs": [
+    "sm2022-168-1.png"
+   ],
+   "alternativas": [
+    "DDEFDDEEFFD.",
+    "DFEFDDDEFFD.",
+    "DFEFDDEEFFD.",
+    "EFDFEEDDFFE.",
+    "EFDFEEEDFFE."
+   ],
+   "gabarito": "C",
+   "habilidade": "H06",
+   "fonte": "ENEM 2022, questão 168",
+   "paginaInteira": false
+  },
+  {
+   "id": "sm2022-169",
+   "rotulo": "Questão 169",
+   "imgs": [
+    "sm2022-169-1.png"
    ],
    "alternativas": null,
    "gabarito": "E",
    "habilidade": "H09",
-   "fonte": "ENEM 2025, questão 171",
-   "paginaInteira": false
+   "fonte": "ENEM 2022, questão 169",
+   "paginaInteira": true
   },
   {
-   "id": "s2025-172",
-   "rotulo": "Questão 172",
+   "id": "sm2022-170",
+   "rotulo": "Questão 170",
    "imgs": [
-    "s2025-172-1.png"
-   ],
-   "alternativas": null,
-   "gabarito": "A",
-   "habilidade": "H22",
-   "fonte": "ENEM 2025, questão 172",
-   "paginaInteira": false
-  },
-  {
-   "id": "s2025-173",
-   "rotulo": "Questão 173",
-   "imgs": [
-    "s2025-173-1.png"
-   ],
-   "alternativas": null,
-   "gabarito": "A",
-   "habilidade": "H13",
-   "fonte": "ENEM 2025, questão 173",
-   "paginaInteira": false
-  },
-  {
-   "id": "s2025-174",
-   "rotulo": "Questão 174",
-   "imgs": [
-    "s2025-174-1.png"
-   ],
-   "alternativas": null,
-   "gabarito": null,
-   "habilidade": "H21",
-   "fonte": "ENEM 2025, questão 174"
-  },
-  {
-   "id": "s2025-175",
-   "rotulo": "Questão 175",
-   "imgs": [
-    "s2025-175-1.png"
+    "sm2022-170-1.png"
    ],
    "alternativas": [
-    "36",
-    "53",
-    "300",
-    "360",
-    "560"
-   ],
-   "gabarito": "C",
-   "habilidade": "H03",
-   "fonte": "ENEM 2025, questão 175",
-   "paginaInteira": false
-  },
-  {
-   "id": "s2025-176",
-   "rotulo": "Questão 176",
-   "imgs": [
-    "s2025-176-1.png"
-   ],
-   "alternativas": [
-    "4,5.",
-    "6,0.",
-    "7,5.",
-    "9,0.",
-    "12,0."
-   ],
-   "gabarito": "C",
-   "habilidade": "H16",
-   "fonte": "ENEM 2025, questão 176",
-   "paginaInteira": false
-  },
-  {
-   "id": "s2025-177",
-   "rotulo": "Questão 177",
-   "imgs": [
-    "s2025-177-1.png"
-   ],
-   "alternativas": [
-    "288",
-    "297",
-    "567",
-    "990",
-    "1 134"
+    "2005",
+    "2007",
+    "2009",
+    "2011",
+    "2013"
    ],
    "gabarito": "B",
-   "habilidade": "H12",
-   "fonte": "ENEM 2025, questão 177",
+   "habilidade": "H26",
+   "fonte": "ENEM 2022, questão 170",
    "paginaInteira": false
   },
   {
-   "id": "s2025-178",
-   "rotulo": "Questão 178",
+   "id": "sm2022-172",
+   "rotulo": "Questão 172",
    "imgs": [
-    "s2025-178-1.png"
+    "sm2022-172-1.png"
    ],
    "alternativas": [
-    "Artur, com probabilidade de 2 3",
-    "João, com probabilidade de 4 9",
-    "Artur, com probabilidade de 91 216",
-    "João, com probabilidade de 91 216",
-    "Artur, com probabilidade de 125 216"
+    "I.",
+    "II.",
+    "III.",
+    "IV.",
+    "V."
    ],
-   "gabarito": "E",
-   "habilidade": "H29",
-   "fonte": "ENEM 2025, questão 178",
+   "gabarito": "B",
+   "habilidade": "H13",
+   "fonte": "ENEM 2022, questão 172",
    "paginaInteira": false
   },
   {
-   "id": "s2025-179",
-   "rotulo": "Questão 179",
+   "id": "sm2022-173",
+   "rotulo": "Questão 173",
    "imgs": [
-    "s2025-179-1.png"
+    "sm2022-173-1.png"
+   ],
+   "alternativas": [
+    "200",
+    "400",
+    "1 200",
+    "1 235",
+    "7 200"
+   ],
+   "gabarito": "D",
+   "habilidade": "H25",
+   "fonte": "ENEM 2022, questão 173",
+   "paginaInteira": false
+  },
+  {
+   "id": "sm2022-174",
+   "rotulo": "Questão 174",
+   "imgs": [
+    "sm2022-174-1.png"
+   ],
+   "alternativas": [
+    "800",
+    "1 200",
+    "2 400",
+    "4 800",
+    "6 400"
+   ],
+   "gabarito": "D",
+   "habilidade": "H08",
+   "fonte": "ENEM 2022, questão 174",
+   "paginaInteira": false
+  },
+  {
+   "id": "sm2022-175",
+   "rotulo": "Questão 175",
+   "imgs": [
+    "sm2022-175-1.png"
+   ],
+   "alternativas": [
+    "135 000,00.",
+    "1 350 000,00.",
+    "13 500 000,00.",
+    "135 000 000,00.",
+    "1 350 000 000,00."
+   ],
+   "gabarito": "E",
+   "habilidade": "H01",
+   "fonte": "ENEM 2022, questão 175",
+   "paginaInteira": false
+  },
+  {
+   "id": "sm2022-176",
+   "rotulo": "Questão 176",
+   "imgs": [
+    "sm2022-176-1.png"
+   ],
+   "alternativas": [
+    "I",
+    "II",
+    "III",
+    "IV",
+    "V"
+   ],
+   "gabarito": "D",
+   "habilidade": "H09",
+   "fonte": "ENEM 2022, questão 176",
+   "paginaInteira": false
+  },
+  {
+   "id": "sm2022-177",
+   "rotulo": "Questão 177",
+   "imgs": [
+    "sm2022-177-1.png"
    ],
    "alternativas": null,
    "gabarito": "A",
-   "habilidade": "H10",
-   "fonte": "ENEM 2025, questão 179",
+   "habilidade": "H26",
+   "fonte": "ENEM 2022, questão 177",
    "paginaInteira": false
   },
   {
-   "id": "s2025-180",
+   "id": "sm2022-178",
+   "rotulo": "Questão 178",
+   "imgs": [
+    "sm2022-178-1.png"
+   ],
+   "alternativas": [
+    "2",
+    "3",
+    "6",
+    "12",
+    "24"
+   ],
+   "gabarito": "E",
+   "habilidade": "H12",
+   "fonte": "ENEM 2022, questão 178",
+   "paginaInteira": false
+  },
+  {
+   "id": "sm2022-179",
+   "rotulo": "Questão 179",
+   "imgs": [
+    "sm2022-179-1.png"
+   ],
+   "alternativas": [
+    "74,23.",
+    "74,51.",
+    "75,07.",
+    "75,23.",
+    "78,49."
+   ],
+   "gabarito": "B",
+   "habilidade": "H24",
+   "fonte": "ENEM 2022, questão 179",
+   "paginaInteira": false
+  },
+  {
+   "id": "sm2022-180",
    "rotulo": "Questão 180",
    "imgs": [
-    "s2025-180-1.png",
-    "s2025-180-2.png"
+    "sm2022-180-1.png"
    ],
    "alternativas": null,
-   "gabarito": "D",
-   "habilidade": "H02",
-   "fonte": "ENEM 2025, questão 180",
-   "paginaInteira": true
+   "gabarito": "E",
+   "habilidade": "H06",
+   "fonte": "ENEM 2022, questão 180",
+   "paginaInteira": false
   }
  ],
  "redacao": [
   "redacao2025-20.png",
   "redacao2025-21.png"
- ],
- "humanas": [
-  {
-   "id": "h2024-46",
-   "rotulo": "Questão 46",
-   "imgs": [
-    "h2024-46-1.png"
-   ],
-   "alternativas": [
-    "Planícies costeiras.",
-    "Bacias continentais.",
-    "Zonas de subducção.",
-    "Áreas de denudação.",
-    "Vertentes escarpadas."
-   ],
-   "gabarito": "C",
-   "habilidade": "H26",
-   "fonte": "ENEM 2024, questão 46",
-   "paginaInteira": false
-  },
-  {
-   "id": "h2024-47",
-   "rotulo": "Questão 47",
-   "imgs": [
-    "h2024-47-1.png"
-   ],
-   "alternativas": [
-    "higienização moral.",
-    "imposição eugênica.",
-    "assimilação cultural.",
-    "hegemonização identitária.",
-    "hierarquização profissional."
-   ],
-   "gabarito": "E",
-   "habilidade": "H11",
-   "fonte": "ENEM 2024, questão 47",
-   "paginaInteira": false
-  },
-  {
-   "id": "h2024-48",
-   "rotulo": "Questão 48",
-   "imgs": [
-    "h2024-48-1.png"
-   ],
-   "alternativas": [
-    "Flexibilização de parâmetros ambientais.",
-    "Consolidação de identidades regionais.",
-    "Fragilização de vínculos afetivos.",
-    "Supressão de práticas exploratórias.",
-    "Recuperação de tradições ancestrais."
-   ],
-   "gabarito": "C",
-   "habilidade": "H27",
-   "fonte": "ENEM 2024, questão 48",
-   "paginaInteira": false
-  },
-  {
-   "id": "h2024-49",
-   "rotulo": "Questão 49",
-   "imgs": [
-    "h2024-49-1.png"
-   ],
-   "alternativas": [
-    "expansão estratégica do imperialismo.",
-    "ascensão gradual do mercantilismo.",
-    "laicidade da educação.",
-    "retomada do absolutismo.",
-    "visão republicana de nação."
-   ],
-   "gabarito": "E",
-   "habilidade": "H16",
-   "fonte": "ENEM 2024, questão 49",
-   "paginaInteira": false
-  },
-  {
-   "id": "h2024-50",
-   "rotulo": "Questão 50",
-   "imgs": [
-    "h2024-50-1.png"
-   ],
-   "alternativas": [
-    "execrado pelos reis e reverenciado pelos religiosos do local.",
-    "detestado pelos colonizadores e respeitado pelos povos do lugar.",
-    "menosprezado pela colônia e idolatrado pelos governantes da região.",
-    "desrespeitado pela metrópole e adorado pelos invasores da Espanha.",
-    "desacatado pelos excluídos e valorizado pelos negociantes de negros."
-   ],
-   "gabarito": "B",
-   "habilidade": "H14",
-   "fonte": "ENEM 2024, questão 50",
-   "paginaInteira": false
-  },
-  {
-   "id": "h2024-51",
-   "rotulo": "Questão 51",
-   "imgs": [
-    "h2024-51-1.png"
-   ],
-   "alternativas": [
-    "traços advindos da feitiçaria nórdica.",
-    "práticas inspiradas em rituais pagãos.",
-    "regras decorrentes do período renascentista.",
-    "compassos produzidos em territórios colonizados.",
-    "elementos provenientes de segmentos populares."
-   ],
-   "gabarito": "E",
-   "habilidade": "H05",
-   "fonte": "ENEM 2024, questão 51",
-   "paginaInteira": false
-  },
-  {
-   "id": "h2024-52",
-   "rotulo": "Questão 52",
-   "imgs": [
-    "h2024-52-1.png"
-   ],
-   "alternativas": [
-    "manter a conquista de direitos sociais.",
-    "integrar a diversidade do grupo identitário.",
-    "priorizar a preservação de culturas africanas.",
-    "defender a adoção de valores supremacistas.",
-    "permitir a permanência do modelo androcêntrico."
-   ],
-   "gabarito": "B",
-   "habilidade": "H10",
-   "fonte": "ENEM 2024, questão 52",
-   "paginaInteira": false
-  },
-  {
-   "id": "h2024-53",
-   "rotulo": "Questão 53",
-   "imgs": [
-    "h2024-53-1.png"
-   ],
-   "alternativas": [
-    "variabilidade solar anual.",
-    "temperatura média mensal.",
-    "declividade do relevo local.",
-    "dinâmica tectônica regional.",
-    "gradação da turbidez fluvial."
-   ],
-   "gabarito": "C",
-   "habilidade": "H26",
-   "fonte": "ENEM 2024, questão 53",
-   "paginaInteira": false
-  },
-  {
-   "id": "h2024-54",
-   "rotulo": "Questão 54",
-   "imgs": [
-    "h2024-54-1.png"
-   ],
-   "alternativas": [
-    "estética, que normatiza os padrões corporais.",
-    "sensorial, que privilegia as habilidades visuais.",
-    "afetiva, que impede as expressões emocionais.",
-    "epistêmica, que prejudica as trocas informacionais.",
-    "econômica, que perpetua as desigualdades materiais."
-   ],
-   "gabarito": "D",
-   "habilidade": "H12",
-   "fonte": "ENEM 2024, questão 54",
-   "paginaInteira": false
-  },
-  {
-   "id": "h2024-55",
-   "rotulo": "Questão 55",
-   "imgs": [
-    "h2024-55-1.png"
-   ],
-   "alternativas": [
-    "pressuposto lógico.",
-    "pensamento dicotômico.",
-    "contemplação da natureza.",
-    "raciocínio argumentativo.",
-    "crítica à individualidade."
-   ],
-   "gabarito": "B",
-   "habilidade": "H03",
-   "fonte": "ENEM 2024, questão 55",
-   "paginaInteira": false
-  },
-  {
-   "id": "h2024-56",
-   "rotulo": "Questão 56",
-   "imgs": [
-    "h2024-56-1.png"
-   ],
-   "alternativas": [
-    "manutenção de uma memória coletiva.",
-    "contestação de uma identidade étnica.",
-    "imolação de uma divindade africana.",
-    "legitimação de uma prática pagã.",
-    "promissão de uma revolta social."
-   ],
-   "gabarito": "A",
-   "habilidade": "H02",
-   "fonte": "ENEM 2024, questão 56",
-   "paginaInteira": false
-  },
-  {
-   "id": "h2024-57",
-   "rotulo": "Questão 57",
-   "imgs": [
-    "h2024-57-1.png"
-   ],
-   "alternativas": [
-    "prática do lazer.",
-    "vigilância da sociedade.",
-    "erradicação da violência.",
-    "construção da democracia.",
-    "diversificação do trabalho."
-   ],
-   "gabarito": "D",
-   "habilidade": "H15",
-   "fonte": "ENEM 2024, questão 57",
-   "paginaInteira": false
-  },
-  {
-   "id": "h2024-58",
-   "rotulo": "Questão 58",
-   "imgs": [
-    "h2024-58-1.png"
-   ],
-   "alternativas": [
-    "teoria das formas essenciais.",
-    "identificação dos princípios racionais.",
-    "desenvolvimento das técnicas retóricas.",
-    "aperfeiçoamento das condutas humanas.",
-    "conhecimento das epistemes verdadeiras."
-   ],
-   "gabarito": "D",
-   "habilidade": "H23",
-   "fonte": "ENEM 2024, questão 58",
-   "paginaInteira": false
-  },
-  {
-   "id": "h2024-59",
-   "rotulo": "Questão 59",
-   "imgs": [
-    "h2024-59-1.png"
-   ],
-   "alternativas": [
-    "adotar currículo e método padronizado.",
-    "rejeitar ideologias e costumes orientais.",
-    "possuir organização e função mercantil.",
-    "transmitir técnicas e valores ecumênicos.",
-    "agregar tradição e conhecimento científico."
-   ],
-   "gabarito": "E",
-   "habilidade": "H03",
-   "fonte": "ENEM 2024, questão 59",
-   "paginaInteira": false
-  },
-  {
-   "id": "h2024-60",
-   "rotulo": "Questão 60",
-   "imgs": [
-    "h2024-60-1.png"
-   ],
-   "alternativas": [
-    "integração de mercados regidos por pressões regionais.",
-    "conexão de valores fundamentados por decisões locais.",
-    "unificação de preços delimitados por demandas nacionais.",
-    "normatização de regras construídas por instituições mundiais.",
-    "valorização de tradições orientadas por determinações globais."
-   ],
-   "gabarito": "B",
-   "habilidade": "H30",
-   "fonte": "ENEM 2024, questão 60",
-   "paginaInteira": false
-  },
-  {
-   "id": "h2024-61",
-   "rotulo": "Questão 61",
-   "imgs": [
-    "h2024-61-1.png"
-   ],
-   "alternativas": [
-    "implicações éticas.",
-    "finitude humana.",
-    "limitações da linguagem.",
-    "pressuposição existencial.",
-    "objetividade do conhecimento."
-   ],
-   "gabarito": "B",
-   "habilidade": "H11",
-   "fonte": "ENEM 2024, questão 61",
-   "paginaInteira": false
-  },
-  {
-   "id": "h2024-62",
-   "rotulo": "Questão 62",
-   "imgs": [
-    "h2024-62-1.png"
-   ],
-   "alternativas": [
-    "estatuto epistemológico da linguagem.",
-    "alicerce estruturante da moralidade.",
-    "conteúdo essencial da metafísica.",
-    "princípio constitutivo da ontologia.",
-    "domínio reflexivo da estética."
-   ],
-   "gabarito": "A",
-   "habilidade": "H04",
-   "fonte": "ENEM 2024, questão 62",
-   "paginaInteira": false
-  },
-  {
-   "id": "h2024-63",
-   "rotulo": "Questão 63",
-   "imgs": [
-    "h2024-63-1.png"
-   ],
-   "alternativas": [
-    "Ferramenta de luta coletiva.",
-    "Mecanismo de controle social.",
-    "Instituição de interesse público.",
-    "Organização da iniciativa privada.",
-    "Instrumento de manipulação estatal."
-   ],
-   "gabarito": "B",
-   "habilidade": "H21",
-   "fonte": "ENEM 2024, questão 63",
-   "paginaInteira": false
-  },
-  {
-   "id": "h2024-64",
-   "rotulo": "Questão 64",
-   "imgs": [
-    "h2024-64-1.png"
-   ],
-   "alternativas": [
-    "ação integralista.",
-    "literatura realista.",
-    "movimento abolicionista.",
-    "política indigenista.",
-    "nacionalismo desenvolvimentista."
-   ],
-   "gabarito": "C",
-   "habilidade": "H15",
-   "fonte": "ENEM 2024, questão 64",
-   "paginaInteira": false
-  },
-  {
-   "id": "h2024-65",
-   "rotulo": "Questão 65",
-   "imgs": [
-    "h2024-65-1.png"
-   ],
-   "alternativas": [
-    "elevar a renda da população.",
-    "abandonar os valores morais.",
-    "estabelecer a igualdade racial.",
-    "fortalecer as pautas das minorias.",
-    "inverter os fluxos das migrações."
-   ],
-   "gabarito": "D",
-   "habilidade": "H10",
-   "fonte": "ENEM 2024, questão 65",
-   "paginaInteira": false
-  },
-  {
-   "id": "h2024-66",
-   "rotulo": "Questão 66",
-   "imgs": [
-    "h2024-66-1.png"
-   ],
-   "alternativas": [
-    "O afastamento da autoridade médica na regulação da fecundidade.",
-    "A superação do discurso da moralidade pela ação da mídia estatal.",
-    "A ampliação do debate público sobre o planejamento familiar.",
-    "A centralização da pesquisa científica pelo sistema privado de saúde.",
-    "O enrijecimento das doutrinas religiosas sobre a organização da vida doméstica."
-   ],
-   "gabarito": "C",
-   "habilidade": "H16",
-   "fonte": "ENEM 2024, questão 66",
-   "paginaInteira": false
-  },
-  {
-   "id": "h2024-67",
-   "rotulo": "Questão 67",
-   "imgs": [
-    "h2024-67-1.png"
-   ],
-   "alternativas": [
-    "Valorização da economia local.",
-    "Elaboração de projetos culturais.",
-    "Estabelecimento de regras comerciais.",
-    "Incremento da infraestrutura educacional.",
-    "Homogeneização da qualificação profissional."
-   ],
-   "gabarito": "A",
-   "habilidade": "H19",
-   "fonte": "ENEM 2024, questão 67",
-   "paginaInteira": false
-  },
-  {
-   "id": "h2024-68",
-   "rotulo": "Questão 68",
-   "imgs": [
-    "h2024-68-1.png"
-   ],
-   "alternativas": null,
-   "gabarito": "E",
-   "habilidade": "H29",
-   "fonte": "ENEM 2024, questão 68",
-   "paginaInteira": false
-  },
-  {
-   "id": "h2024-69",
-   "rotulo": "Questão 69",
-   "imgs": [
-    "h2024-69-1.png"
-   ],
-   "alternativas": [
-    "recuperação de sua participação política.",
-    "equiparação de ganhos salariais.",
-    "valorização de seu papel social.",
-    "distinção de padrões biológicos.",
-    "ocupação de cargos públicos."
-   ],
-   "gabarito": "C",
-   "habilidade": "H22",
-   "fonte": "ENEM 2024, questão 69",
-   "paginaInteira": false
-  },
-  {
-   "id": "h2024-70",
-   "rotulo": "Questão 70",
-   "imgs": [
-    "h2024-70-1.png"
-   ],
-   "alternativas": [
-    "desindustrialização da economia.",
-    "desregulamentação do mercado.",
-    "concentração da produção.",
-    "distribuição de renda.",
-    "dinamização dos fluxos."
-   ],
-   "gabarito": "E",
-   "habilidade": "H17",
-   "fonte": "ENEM 2024, questão 70",
-   "paginaInteira": false
-  },
-  {
-   "id": "h2024-71",
-   "rotulo": "Questão 71",
-   "imgs": [
-    "h2024-71-1.png"
-   ],
-   "alternativas": [
-    "povos ribeirinhos e segmentos culturais.",
-    "blocos econômicos e instituições militares.",
-    "grupos científicos e universidades públicas.",
-    "organismos supranacionais e sociedade civil.",
-    "agentes governamentais e demanda turística."
-   ],
-   "gabarito": "D",
-   "habilidade": "H09",
-   "fonte": "ENEM 2024, questão 71",
-   "paginaInteira": false
-  },
-  {
-   "id": "h2024-72",
-   "rotulo": "Questão 72",
-   "imgs": [
-    "h2024-72-1.png"
-   ],
-   "alternativas": [
-    "cuidado, proteção e valorização dos indivíduos.",
-    "entendimento, perdão e tolerância dos responsáveis.",
-    "cerceamento, arregimentação e controle de entidades.",
-    "regramento, legislação e responsabilização de culpados.",
-    "ensimesmamento, interiorização e indulgência dos agentes."
-   ],
-   "gabarito": "A",
-   "habilidade": "H25",
-   "fonte": "ENEM 2024, questão 72",
-   "paginaInteira": false
-  },
-  {
-   "id": "h2024-73",
-   "rotulo": "Questão 73",
-   "imgs": [
-    "h2024-73-1.png"
-   ],
-   "alternativas": [
-    "manifestação jornalística.",
-    "narrativa literária.",
-    "indústria regional.",
-    "estética editorial.",
-    "cultura erudita."
-   ],
-   "gabarito": "D",
-   "habilidade": "H05",
-   "fonte": "ENEM 2024, questão 73",
-   "paginaInteira": false
-  },
-  {
-   "id": "h2024-74",
-   "rotulo": "Questão 74",
-   "imgs": [
-    "h2024-74-1.png"
-   ],
-   "alternativas": [
-    "instituição de políticas públicas de âmbito local.",
-    "registro de bens culturais de natureza imaterial.",
-    "tombamento de sítios arqueológicos de propriedade privada.",
-    "salvaguarda de elementos sacros de expressão regional.",
-    "categorização de manifestações cristãs de caráter oficial."
-   ],
-   "gabarito": "B",
-   "habilidade": "H03",
-   "fonte": "ENEM 2024, questão 74",
-   "paginaInteira": false
-  },
-  {
-   "id": "h2024-75",
-   "rotulo": "Questão 75",
-   "imgs": [
-    "h2024-75-1.png"
-   ],
-   "alternativas": [
-    "segregar pensadores e aumentar a circulação de ideias.",
-    "apoiar revolucionários e perseguir a nobreza local.",
-    "rejeitar poetisas e proibir a entrada de mulheres.",
-    "censurar cronistas e coibir o patrocínio editorial.",
-    "integrar artistas e ampliar o comércio urbano."
-   ],
-   "gabarito": "A",
-   "habilidade": "H01",
-   "fonte": "ENEM 2024, questão 75",
-   "paginaInteira": false
-  },
-  {
-   "id": "h2024-76",
-   "rotulo": "Questão 76",
-   "imgs": [
-    "h2024-76-1.png"
-   ],
-   "alternativas": [
-    "Estrutura fixa.",
-    "Lógica binária.",
-    "Controle homogêneo.",
-    "Uniformidade de opiniões.",
-    "Pluralidade de interações."
-   ],
-   "gabarito": "E",
-   "habilidade": "H20",
-   "fonte": "ENEM 2024, questão 76",
-   "paginaInteira": false
-  },
-  {
-   "id": "h2024-77",
-   "rotulo": "Questão 77",
-   "imgs": [
-    "h2024-77-1.png"
-   ],
-   "alternativas": [
-    "Estereótipos da cultura nacional.",
-    "Exploração da população pobre.",
-    "Preconceitos de ordem racial.",
-    "Política de censura midiática.",
-    "Projeto de país industrial."
-   ],
-   "gabarito": "A",
-   "habilidade": "H21",
-   "fonte": "ENEM 2024, questão 77",
-   "paginaInteira": false
-  },
-  {
-   "id": "h2024-78",
-   "rotulo": "Questão 78",
-   "imgs": [
-    "h2024-78-1.png"
-   ],
-   "alternativas": [
-    "Doutrina teleológica.",
-    "Imperativo categórico.",
-    "Pensamento utilitarista.",
-    "Secularização inautêntica.",
-    "Raciocínio consequencialista."
-   ],
-   "gabarito": "B",
-   "habilidade": "H23",
-   "fonte": "ENEM 2024, questão 78",
-   "paginaInteira": false
-  },
-  {
-   "id": "h2024-79",
-   "rotulo": "Questão 79",
-   "imgs": [
-    "h2024-79-1.png"
-   ],
-   "alternativas": [
-    "planejamento familiar.",
-    "segregação territorial.",
-    "homogeneização cultural.",
-    "diferenciação étnico-racial.",
-    "integração socioeconômica."
-   ],
-   "gabarito": "E",
-   "habilidade": "H08",
-   "fonte": "ENEM 2024, questão 79",
-   "paginaInteira": false
-  },
-  {
-   "id": "h2024-80",
-   "rotulo": "Questão 80",
-   "imgs": [
-    "h2024-80-1.png"
-   ],
-   "alternativas": [
-    "cultural, ao subjetivarem costumes da teledramaturgia estrangeira.",
-    "econômico, ao importarem confecções de estilistas famosos.",
-    "geográfico, ao encurtarem distâncias de caráter ideológico.",
-    "antropológico, ao adaptarem valores de povos tradicionais.",
-    "político, ao adotarem sistemas de governos democráticos."
-   ],
-   "gabarito": "A",
-   "habilidade": "H04",
-   "fonte": "ENEM 2024, questão 80",
-   "paginaInteira": false
-  },
-  {
-   "id": "h2024-81",
-   "rotulo": "Questão 81",
-   "imgs": [
-    "h2024-81-1.png"
-   ],
-   "alternativas": [
-    "iniciativas de planejamento familiar.",
-    "projetos de reorientação religiosa.",
-    "programas de moradias sustentáveis.",
-    "políticas de inserção social.",
-    "medidas de homogeneização educacional."
-   ],
-   "gabarito": "D",
-   "habilidade": "H02",
-   "fonte": "ENEM 2024, questão 81",
-   "paginaInteira": false
-  },
-  {
-   "id": "h2024-82",
-   "rotulo": "Questão 82",
-   "imgs": [
-    "h2024-82-1.png"
-   ],
-   "alternativas": [
-    "Prático, porque recolhe evidências e recomenda ações.",
-    "Absoluto, porque busca confirmações e bloqueia refutações.",
-    "Indutivo, porque observa eventos particulares e infere leis universais.",
-    "Demonstrativo, porque encadeia premissas e extrai conclusões indubitáveis.",
-    "Analógico, porque compara diferentes situações e detecta elementos semelhantes."
-   ],
-   "gabarito": "C",
-   "habilidade": "H01",
-   "fonte": "ENEM 2024, questão 82",
-   "paginaInteira": false
-  },
-  {
-   "id": "h2024-83",
-   "rotulo": "Questão 83",
-   "imgs": [
-    "h2024-83-1.png"
-   ],
-   "alternativas": [
-    "preservação de espaços naturais.",
-    "emancipação de sujeitos marginais.",
-    "revalorização de culturas reprimidas.",
-    "inversão de hierarquias estabelecidas.",
-    "sustentação de hegemonias territoriais."
-   ],
-   "gabarito": "E",
-   "habilidade": "H07",
-   "fonte": "ENEM 2024, questão 83",
-   "paginaInteira": false
-  },
-  {
-   "id": "h2024-84",
-   "rotulo": "Questão 84",
-   "imgs": [
-    "h2024-84-1.png"
-   ],
-   "alternativas": [
-    "organização de rotas de fuga na floresta tropical.",
-    "criação de postos de trabalho nos seringais nortistas.",
-    "divulgação de receitas de fármacos nas zonas ribeirinhas.",
-    "construção de redes de sociabilidade no interior brasileiro.",
-    "ampliação de ambientes de lazer nos territórios autóctones."
-   ],
-   "gabarito": "D",
-   "habilidade": "H05",
-   "fonte": "ENEM 2024, questão 84",
-   "paginaInteira": false
-  },
-  {
-   "id": "h2024-85",
-   "rotulo": "Questão 85",
-   "imgs": [
-    "h2024-85-1.png"
-   ],
-   "alternativas": [
-    "Violação dos direitos humanos.",
-    "Insegurança da juventude periférica.",
-    "Naturalização da violência doméstica.",
-    "Ampliação das desigualdades sociais.",
-    "Relativização dos princípios democráticos."
-   ],
-   "gabarito": "A",
-   "habilidade": "H13",
-   "fonte": "ENEM 2024, questão 85",
-   "paginaInteira": false
-  },
-  {
-   "id": "h2024-86",
-   "rotulo": "Questão 86",
-   "imgs": [
-    "h2024-86-1.png"
-   ],
-   "alternativas": [
-    "conservação de lugares afetivos.",
-    "aumento de áreas desertificadas.",
-    "redefinição de fronteiras nacionais.",
-    "artificialização do espaço geográfico.",
-    "mudança da dinâmica macroclimática."
-   ],
-   "gabarito": "D",
-   "habilidade": "H06",
-   "fonte": "ENEM 2024, questão 86",
-   "paginaInteira": false
-  },
-  {
-   "id": "h2024-87",
-   "rotulo": "Questão 87",
-   "imgs": [
-    "h2024-87-1.png"
-   ],
-   "alternativas": [
-    "Soberania popular.",
-    "Divisão de classes.",
-    "Acúmulo de capital.",
-    "Defesa da propriedade.",
-    "Centralização administrativa."
-   ],
-   "gabarito": "A",
-   "habilidade": "H24",
-   "fonte": "ENEM 2024, questão 87",
-   "paginaInteira": false
-  },
-  {
-   "id": "h2024-88",
-   "rotulo": "Questão 88",
-   "imgs": [
-    "h2024-88-1.png"
-   ],
-   "alternativas": [
-    "Criação de faixas sinalizadoras.",
-    "Incineração de resíduos sólidos.",
-    "Implantação de parques públicos.",
-    "Verticalização de espaços centrais.",
-    "Construção de estacionamentos privados."
-   ],
-   "gabarito": "C",
-   "habilidade": "H28",
-   "fonte": "ENEM 2024, questão 88",
-   "paginaInteira": false
-  },
-  {
-   "id": "h2024-89",
-   "rotulo": "Questão 89",
-   "imgs": [
-    "h2024-89-1.png"
-   ],
-   "alternativas": [
-    "Igualdade militar.",
-    "Assimetria política.",
-    "Consenso multipolar.",
-    "Equilíbrio estratégico.",
-    "Soberania compartilhada."
-   ],
-   "gabarito": "B",
-   "habilidade": "H07",
-   "fonte": "ENEM 2024, questão 89",
-   "paginaInteira": false
-  },
-  {
-   "id": "h2024-90",
-   "rotulo": "Questão 90",
-   "imgs": [
-    "h2024-90-1.png",
-    "h2024-90-2.png"
-   ],
-   "alternativas": null,
-   "gabarito": "C",
-   "habilidade": "H18",
-   "fonte": "ENEM 2024, questão 90",
-   "paginaInteira": true
-  }
  ],
  "redacao2024": [
   "redacao2024-19.png"
