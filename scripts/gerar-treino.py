@@ -75,21 +75,21 @@ def regioes_da(q):
 
 def recortar(q, nome):
     pdf = pymupdf.open(CACHE.parent / q['pdf'])
-    imgs = []
+    imgs, alts, feitos = [], None, []
     regioes = regioes_da(q)
-    if len(regioes) > 1:
-        # A questão atravessa as duas colunas (ou a página): o recorte por coluna a cortaria no meio.
-        # Mostra a(s) página(s) inteira(s) e a interface avisa qual é a questão.
-        paginas = list(dict.fromkeys(r['pagina'] for r in regioes))
-        for i, p in enumerate(paginas):
-            arq = f'{nome}-{i + 1}.png'
-            pdf[p - 1].get_pixmap(matrix=pymupdf.Matrix(1.7, 1.7)).save(SAIDA / arq)
-            imgs.append(arq)
-        return imgs, None
     for i, r in enumerate(regioes):
         arq = f'{nome}-{i + 1}.png'
         pag = pdf[r['pagina'] - 1]
         clip = pymupdf.Rect(*r['bbox'])
+        # Região que já está dentro de um recorte anterior da mesma página (Q110 de 2023): não repete.
+        # Também não repete uma região da página em que o recorte anterior já ocupa a largura toda (Q122 e Q124 de 2023).
+        if any(pg == r['pagina'] and ((clip & c).get_area() > 0.5 * clip.get_area() or c.width > pag.rect.width - 5) for pg, c in feitos):
+            continue
+        # Região de continuação (2ª coluna ou página): acaba antes do cabeçalho da próxima questão (Q143 de 2022).
+        if i > 0:
+            outras = [bl[1] for bl in pag.get_text('blocks') if re.match(r'QUESTÃO\s+\d+', bl[4]) and clip.y0 + 20 < bl[1] < clip.y1 and bl[0] < clip.x1 - 10 and bl[2] > clip.x0 + 10]
+            if outras:
+                clip.y1 = min(outras) - 1
         # O bbox do banco às vezes termina antes da última figura (Q138 de 2025): estica até cobrir
         # imagens que começam dentro do recorte e acabam fora, sem passar do rodapé.
         itens = [pymupdf.Rect(b['bbox']) for b in pag.get_image_info()]
@@ -129,17 +129,18 @@ def recortar(q, nome):
         # Tira o rodapé da página ("22 ——— MT • 2º DIA • CAD"), que o bbox do banco às vezes inclui.
         if rodapes and clip.y0 + 40 < min(rodapes) < clip.y1:
             clip.y1 = min(rodapes) - 1
-        y_alt, alts = alternativas_em_texto(q, pag, clip)
-        if alts:
-            clip.y1 = y_alt
+        y_alt, alts_r = alternativas_em_texto(q, pag, clip)
+        if alts_r:
+            clip.y1, alts = y_alt, alts_r
         cortadas = [l for blk in pag.get_text('dict', clip=clip)['blocks'] for l in blk.get('lines', [])
                     if l['bbox'][1] < clip.y1 - 2 < l['bbox'][3] - 2 and l['bbox'][2] > clip.x0 + 20 and l['bbox'][0] < clip.x1 - 20]
         if cortadas:
             print('AVISO corte', nome, [''.join(sp['text'] for sp in l['spans'])[:40] for l in cortadas][:2])
         cabecalhos = re.findall(r'QUESTÃO\s+(\d+)', pag.get_text(clip=clip))
-        if [int(c) for c in cabecalhos] != [q['numero']]:  # o recorte cortou o próprio cabeçalho ou pegou a questão do lado
+        if [int(c) for c in cabecalhos] != ([q['numero']] if i == 0 else []):  # o recorte cortou o próprio cabeçalho ou pegou a questão do lado
             print('AVISO cabeçalhos', nome, cabecalhos)
         pag.get_pixmap(matrix=pymupdf.Matrix(2, 2), clip=clip).save(SAIDA / arq)
+        feitos.append((r['pagina'], pymupdf.Rect(clip)))
         imgs.append(arq)
     return imgs, alts
 
